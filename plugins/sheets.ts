@@ -6,7 +6,7 @@ import type Site from "../core/site.ts";
 import type { RawData } from "../core/file.ts";
 
 export interface Options {
-  /** Extensions processed by this plugin */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Return the first sheet only or all sheets if the document have more */

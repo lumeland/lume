@@ -8,9 +8,7 @@ Deno.test("picture plugin", async (t) => {
   });
 
   site.use(picture());
-  site.use(transformImages({
-    cache: false,
-  }));
+  site.use(transformImages());
 
   await build(site);
   await assertSiteSnapshot(t, site, {

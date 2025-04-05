@@ -6,32 +6,32 @@ snapshot[`json_ld plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`json_ld plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`json_ld plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`json_ld plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -158,7 +161,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -166,7 +168,6 @@ I hope you enjoy it.
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-1",
       remote: undefined,
@@ -208,7 +209,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -216,7 +216,6 @@ I hope you enjoy it.
       url: "/page-2/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/page-2",
       remote: undefined,
@@ -246,7 +245,6 @@ I hope you enjoy it.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -254,7 +252,6 @@ I hope you enjoy it.
       url: "/page-3/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/page-3",
       remote: undefined,

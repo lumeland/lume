@@ -9,9 +9,6 @@ import type Site from "../core/site.ts";
 import type { Locale } from "../deps/date.ts";
 
 export interface Options {
-  /** The name of the helper */
-  name?: string;
-
   /** The loaded locales */
   locales?: Record<string, Locale>;
 
@@ -21,7 +18,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  name: "date",
   locales: {},
   formats: {
     ATOM: "yyyy-MM-dd'T'HH:mm:ssXXX",
@@ -43,7 +39,7 @@ export function date(userOptions?: Options) {
   return (site: Site) => {
     const defaultLocale = Object.keys(options.locales).shift();
 
-    site.filter(options.name, filter);
+    site.filter("date", filter);
 
     function filter(
       date: string | Date,

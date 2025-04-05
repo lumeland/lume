@@ -1,5 +1,3 @@
-import { Temporal } from "../../deps/temporal.ts";
-
 /**
  * Returns the date of the git commit that created or modified the file.
  * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
@@ -44,46 +42,5 @@ export function getZonedDateTime(
     return Temporal.Instant.from(date).toZonedDateTimeISO(timezone);
   } catch {
     return Temporal.PlainDateTime.from(date).toZonedDateTime(timezone);
-  }
-}
-
-/**
- * Parse a date/datetime from a basename.
- *
- * Basenames can be prepended with a date (yyyy-mm-dd) or datetime
- * (yyyy-mm-dd-hh-ii-ss) followed by an underscore (_) or hyphen (-).
- */
-export function parseDateFromBasename(
-  basename: string,
-) {
-  const basenameRegex =
-    /^(?<year>\d{4})-(?<month>\d\d)-(?<day>\d\d)(?:-(?<hour>\d\d)-(?<minute>\d\d)(?:-(?<second>\d\d))?)?(?:_|-)(?<basename>.*)/;
-  const basenameParts = basenameRegex.exec(basename)?.groups;
-
-  if (basenameParts) {
-    const {
-      year,
-      month,
-      day,
-      hour = "00",
-      minute = "00",
-      second = "00",
-      basename,
-    } = basenameParts;
-
-    try {
-      const date = parseDate(
-        `${year}-${month}-${day} ${hour}:${minute}:${second}`,
-      );
-
-      return {
-        date,
-        basename,
-      };
-    } catch {
-      throw new Error(
-        `Invalid date: ${basename} (${year}-${month}-${day} ${hour}:${minute}:${second})`,
-      );
-    }
   }
 }

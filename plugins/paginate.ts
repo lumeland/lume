@@ -52,15 +52,11 @@ export interface PaginateResult<T> {
 }
 
 export interface Options {
-  /** The helper name */
-  name?: string;
-
   /** The default pagination options */
   options?: PaginateOptions;
 }
 
 export const defaults: Options = {
-  name: "paginate",
   options: {
     size: 10,
   },
@@ -81,7 +77,7 @@ export function paginate(userOptions?: Options) {
     }
 
     // Register the helper
-    site.data(options.name, createPaginator(options.options));
+    site.data("paginate", createPaginator(options.options));
   };
 }
 

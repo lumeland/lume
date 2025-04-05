@@ -6,32 +6,32 @@ snapshot[`FFF plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`FFF plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`FFF plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`FFF plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -116,8 +119,7 @@ snapshot[`FFF plugin 2`] = `[]`;
 snapshot[`FFF plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>The <code>published</code> should be used as <code>date</code>.</p>
+    content: "<p>The <code>published</code> should be used as <code>date</code>.</p>
 ",
     data: {
       alt: "undefined",
@@ -140,7 +142,6 @@ snapshot[`FFF plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       published: [],
@@ -156,15 +157,13 @@ snapshot[`FFF plugin 3`] = `
       visibility: "undefined",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/date",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>FFF Image Test</p>
+    content: "<p>FFF Image Test</p>
 ",
     data: {
       alt: "FFF Image Test",
@@ -190,7 +189,6 @@ snapshot[`FFF plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -204,15 +202,13 @@ snapshot[`FFF plugin 3`] = `
       visibility: "undefined",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/image",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>FFF Tags Test</p>
+    content: "<p>FFF Tags Test</p>
 <p>The <code>categories</code> should be merged into <code>tags</code>.</p>
 ",
     data: {
@@ -239,7 +235,6 @@ The \`categories\` should be merged into \`tags\`.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -255,7 +250,6 @@ The \`categories\` should be merged into \`tags\`.
       visibility: "undefined",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/tags",
       remote: undefined,

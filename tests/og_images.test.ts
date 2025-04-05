@@ -6,9 +6,7 @@ Deno.test("OpenGraph images", async (t) => {
     src: "og_images",
   });
 
-  site.use(ogImages({
-    cache: false,
-  }));
+  site.use(ogImages());
 
   await build(site);
   await assertSiteSnapshot(t, site);

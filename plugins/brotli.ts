@@ -6,7 +6,7 @@ import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to compress */
   extensions?: Extensions;
 
   /**
@@ -29,26 +29,17 @@ export function brotli(userOptions?: Options) {
 
   return (site: Site) => {
     site.process(options.extensions, (pages, allPages) => {
-      const textEncoder = new TextEncoder();
-
       for (const page of pages) {
-        const content = page.content!;
-
-        const contentByteArray = typeof content === "string"
-          ? textEncoder.encode(content)
-          : content;
-
         const compressedContent = compress(
-          contentByteArray,
+          page.bytes,
           undefined,
           options.quality,
         );
 
-        const compressedPage = Page.create({
+        allPages.push(Page.create({
           url: page.outputPath + ".br",
           content: compressedContent,
-        });
-        allPages.push(compressedPage);
+        }));
       }
     });
   };

@@ -36,6 +36,7 @@ Deno.test("Unocss plugin (with transformers)", async (t) => {
     src: "unocss",
   });
 
+  site.add("styles.css");
   site.use(unocss({
     cssFile: "styles.css",
   }));
@@ -49,6 +50,7 @@ Deno.test("Unocss with placeholder", async (t) => {
     src: "unocss",
   });
 
+  site.add([".css"]);
   site.use(unocss({
     cssFile: "styles.css",
     placeholder: "/* unocss-placeholder */",

@@ -1,22 +1,9 @@
-import { isPlainObject, merge } from "../core/utils/object.ts";
+import { isPlainObject } from "../core/utils/object.ts";
 import { getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
-
-export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions?: string[];
-
-  /** The key name for the transformations definitions */
-  name?: string;
-}
-
-const defaults: Options = {
-  extensions: [".html"],
-  name: "jsonLd",
-};
 
 export type JsonldData = Graph | Thing;
 
@@ -187,19 +174,18 @@ function isEmpty(v: unknown) {
  * A plugin to insert structured JSON-LD data for SEO and social media
  * @see https://lume.land/plugins/json_ld/
  */
-export function jsonLd(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function jsonLd() {
   return (site: Site) => {
-    site.mergeKey(options.name, "object");
-    site.process(options.extensions, (pages) => pages.forEach(jsonLdProcessor));
+    site.mergeKey("jsonLd", "object");
+    site.process([".html"], (pages) => pages.forEach(jsonLdProcessor));
 
     function jsonLdProcessor(page: Page) {
-      let jsonLdData = page.data[options.name] as JsonldData | undefined;
+      let jsonLdData = page.data.jsonLd as JsonldData | undefined;
 
-      if (!jsonLdData || !page.document) {
+      if (!jsonLdData) {
         return;
       }
+
       const { document, data } = page;
 
       // Recursive function to traverse and process JSON-LD data

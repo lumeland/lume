@@ -12,9 +12,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /** Register languages on the Highlight.js context. */
   languages?: Record<string, LanguageFn>;
 
@@ -35,12 +32,6 @@ interface Theme {
   /** The name of the theme */
   name: string;
 
-  /**
-   * The path to the theme file
-   * @deprecated Use cssFile instead
-   */
-  path?: string;
-
   /** The CSS file to output the font-face rules */
   cssFile?: string;
 
@@ -50,7 +41,6 @@ interface Theme {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   options: {
     ignoreUnescapedHTML: false,
     noHighlightRe: /^$/i,
@@ -76,34 +66,27 @@ export function codeHighlight(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, processCodeHighlight);
+    site.process([".html"], processCodeHighlight);
 
     if (options.theme) {
       const themes = Array.isArray(options.theme)
         ? options.theme
         : [options.theme];
 
-      for (const { name, path, cssFile, placeholder } of themes) {
-        if (cssFile) {
-          site.addEventListener("afterRender", async () => {
-            const cssCode = await readFile(`${themesPath}${name}.min.css`);
-            const page = await site.getOrCreatePage(cssFile);
-            insertContent(page, cssCode, placeholder);
-          });
-          continue;
-        }
-
-        if (path) {
-          site.remoteFile(path, `${themesPath}${name}.min.css`);
-        } else {
-          throw new Error(`The theme ${name} must have a path or cssFile`);
-        }
+      for (
+        const { name, cssFile = site.options.cssFile, placeholder } of themes
+      ) {
+        site.process(async () => {
+          const cssCode = await readFile(`${themesPath}${name}.min.css`);
+          const page = await site.getOrCreatePage(cssFile);
+          page.text = insertContent(page.text, cssCode, placeholder);
+        });
       }
     }
 
     function processCodeHighlight(pages: Page[]) {
       for (const page of pages) {
-        page.document!.querySelectorAll<HTMLElement>(
+        page.document.querySelectorAll<HTMLElement>(
           options.options.cssSelector!,
         )
           .forEach((element) => {

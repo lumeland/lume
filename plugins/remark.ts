@@ -16,7 +16,7 @@ import type { Page } from "../core/file.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
-  /** List of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /**
@@ -73,19 +73,6 @@ export class MarkdownEngine implements Engine {
       data: page?.data,
       path: filename,
     })).toString();
-  }
-
-  renderComponent(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    const page = data?.page as Page | undefined;
-    return this.engine.processSync({
-      value: content,
-      data: page?.data,
-      path: filename,
-    }).toString();
   }
 
   addHelper() {}

@@ -8,7 +8,7 @@ import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { EtaConfig } from "../deps/eta.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */
@@ -57,17 +57,6 @@ export class EtaEngine implements Engine {
 
     data.filters = this.filters;
     return this.engine.renderAsync(template, data, { filepath: filename });
-  }
-
-  renderComponent(
-    content: string,
-    data: Record<string, unknown>,
-    filename: string,
-  ): string {
-    const template = this.getTemplate(content, filename, false);
-
-    data.filters = this.filters;
-    return this.engine.render(template, data, { filepath: filename });
   }
 
   getTemplate(content: string, filename: string, async?: boolean) {

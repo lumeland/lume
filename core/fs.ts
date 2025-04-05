@@ -2,9 +2,10 @@ import { posix } from "../deps/path.ts";
 import { toFileUrl } from "../deps/path.ts";
 
 import type { RawData } from "./file.ts";
-import type { Loader } from "./loaders/mod.ts";
 
 type EntryType = "file" | "directory";
+
+export type Loader = (path: string) => Promise<RawData>;
 
 export interface Options {
   root: string;
@@ -267,7 +268,7 @@ export default class FS {
   }
 }
 
-function createFileInfo(type: EntryType): Deno.FileInfo & { ctime: Date } {
+function createFileInfo(type: EntryType): Deno.FileInfo {
   return {
     isFile: type === "file",
     isDirectory: type === "directory",

@@ -6,32 +6,32 @@ snapshot[`Decap CMS plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Decap CMS plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Decap CMS plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`Decap CMS plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -137,12 +137,10 @@ local_backend: false
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/admin/config.yml",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -150,42 +148,65 @@ local_backend: false
   },
   {
     content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
         <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-        </body>
-        </html>
-        ',
+      </body>
+      </html>
+      ',
     data: {
-      basename: "index",
-      content: '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Admin</title>
-        </head>
-        <body>
+      basename: "admin",
+      children: '
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
         <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-        </body>
-        </html>
-        ',
+      </body>
+      </html>
+      ',
+      content: '
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </body>
+      </html>
+      ',
+      date: [],
+      decap_cms: [
+        "backend",
+        "media_folder",
+        "public_folder",
+      ],
+      mergedKeys: [
+        "tags",
+      ],
       page: [
         "src",
         "data",
-        "asset",
       ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
       url: "/admin/",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -196,7 +217,7 @@ local_backend: false
 <html><head><script>if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "/admin/" + document.location.hash; }</script></head><body><h1>Hello world</h1>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello world</h1>
 ",
       content: "# Hello world
@@ -213,7 +234,6 @@ local_backend: false
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -221,7 +241,6 @@ local_backend: false
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

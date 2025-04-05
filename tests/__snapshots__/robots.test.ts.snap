@@ -6,32 +6,32 @@ snapshot[`Robots plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Robots plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Robots plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`Robots plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -138,27 +138,7 @@ snapshot[`Robots plugin 2`] = `[]`;
 snapshot[`Robots plugin 3`] = `
 [
   {
-    content: "User-agent: *
-Allow: /",
-    data: {
-      basename: "robots",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/robots.txt",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -180,7 +160,6 @@ Allow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -189,54 +168,15 @@ Allow: /",
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 2",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
-    },
-    src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 2",
-    data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -261,7 +201,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -271,15 +210,128 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -305,7 +357,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -315,15 +366,13 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -352,7 +401,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -362,94 +410,25 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
+    content: "User-agent: *
+Allow: /",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "robots",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/robots.txt",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -462,32 +441,32 @@ snapshot[`Robots plugin with allow 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -504,14 +483,14 @@ snapshot[`Robots plugin with allow 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -528,14 +507,14 @@ snapshot[`Robots plugin with allow 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -547,15 +526,15 @@ snapshot[`Robots plugin with allow 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -594,30 +573,7 @@ snapshot[`Robots plugin with allow 2`] = `[]`;
 snapshot[`Robots plugin with allow 3`] = `
 [
   {
-    content: "User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /",
-    data: {
-      basename: "robots",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/robots.txt",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -639,7 +595,6 @@ Allow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -648,54 +603,15 @@ Allow: /",
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 2",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
-    },
-    src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 2",
-    data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -720,7 +636,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -730,15 +645,128 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -764,7 +792,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -774,15 +801,13 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -811,7 +836,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -821,94 +845,28 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
+    content: "User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "robots",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/robots.txt",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -921,32 +879,32 @@ snapshot[`Robots plugin with disallow 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -963,14 +921,14 @@ snapshot[`Robots plugin with disallow 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -987,14 +945,14 @@ snapshot[`Robots plugin with disallow 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -1006,15 +964,15 @@ snapshot[`Robots plugin with disallow 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -1053,30 +1011,7 @@ snapshot[`Robots plugin with disallow 2`] = `[]`;
 snapshot[`Robots plugin with disallow 3`] = `
 [
   {
-    content: "User-agent: *
-Allow: /
-
-User-agent: ChatGPT-User
-Disallow: /",
-    data: {
-      basename: "robots",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/robots.txt",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -1098,7 +1033,6 @@ Disallow: /",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1107,54 +1041,15 @@ Disallow: /",
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 2",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
-    },
-    src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 2",
-    data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -1179,7 +1074,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1189,15 +1083,128 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -1223,7 +1230,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1233,15 +1239,13 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -1270,7 +1274,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1280,94 +1283,28 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
+    content: "User-agent: *
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "robots",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/robots.txt",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -1380,32 +1317,32 @@ snapshot[`Robots plugin with custom rules 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -1422,14 +1359,14 @@ snapshot[`Robots plugin with custom rules 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -1446,14 +1383,14 @@ snapshot[`Robots plugin with custom rules 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -1465,15 +1402,15 @@ snapshot[`Robots plugin with custom rules 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -1512,32 +1449,7 @@ snapshot[`Robots plugin with custom rules 2`] = `[]`;
 snapshot[`Robots plugin with custom rules 3`] = `
 [
   {
-    content: "User-agent: *
-Allow: /
-
-User-agent: *
-Disallow: /admin
-
-Sitemap: https://example.com/sitemap.xml",
-    data: {
-      basename: "robots",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/robots.txt",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -1559,7 +1471,6 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1568,54 +1479,15 @@ Sitemap: https://example.com/sitemap.xml",
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 2",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
-    },
-    src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 2",
-    data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -1640,7 +1512,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1650,15 +1521,128 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -1684,7 +1668,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1694,15 +1677,13 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -1731,7 +1712,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1741,94 +1721,30 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
+    content: "User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /admin
+
+Sitemap: https://example.com/sitemap.xml",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "robots",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/robots.txt",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

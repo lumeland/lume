@@ -1,12 +1,12 @@
 import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to. */
+  /** File extensions to minify */
   extensions?: Array<".html" | ".css" | ".js">;
 
   /** Default options for minify-html library */
@@ -21,7 +21,7 @@ export const defaults: Options = {
     ensure_spec_compliant_unquoted_attribute_values: true,
     keep_closing_tags: false,
     keep_html_and_head_opening_tags: false,
-    keep_spaces_between_attributes: false,
+    keep_spaces_between_attributes: true,
     keep_comments: false,
     minify_js: true,
     minify_css: true,
@@ -49,18 +49,17 @@ export function minifyHTML(userOptions?: Options) {
   }
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => pages.forEach(minifyHtml));
-
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
-
-    function minifyHtml(page: Page) {
-      const content = page.content as string;
-
-      page.content = decoder.decode(
-        minify(encoder.encode(content), options.options),
-      );
-    }
+    site.process(options.extensions, (pages) => {
+      for (const page of pages) {
+        try {
+          page.bytes = minify(page.bytes, options.options);
+        } catch (error) {
+          log.error(
+            `[minify-html plugin] Error minifying ${page.sourcePath}: ${error}`,
+          );
+        }
+      }
+    });
   };
 }
 

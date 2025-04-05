@@ -2,23 +2,13 @@ import { getPathAndExtension } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import binaryLoader from "../core/loaders/binary.ts";
 import sharp, { create } from "../deps/sharp.ts";
-import Cache from "../core/cache.ts";
+import { createCache } from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Page, StaticFile } from "../core/file.ts";
 
 export interface Options {
-  /** The list extensions this plugin applies to */
-  extensions: string[];
-
-  /** The key name for the transformations definitions */
-  name: string;
-
-  /** The cache folder */
-  cache: string | boolean;
-
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
 }
@@ -31,9 +21,6 @@ export type TransformationFunction = (
 
 // Default options
 export const defaults: Options = {
-  extensions: [".jpg", ".jpeg", ".png", ".webp"],
-  name: "transformImages",
-  cache: true,
   functions: {
     resize(
       image: sharp.Sharp,
@@ -51,6 +38,21 @@ export const defaults: Options = {
     },
   },
 };
+const supportedExtensions = new Set([
+  ".jpg",
+  ".jpeg",
+  ".jp2",
+  ".png",
+  ".webp",
+  ".gif",
+  ".avif",
+  ".heif",
+  ".tiff",
+]);
+
+const filter = (fileOrPage: Page | StaticFile) =>
+  supportedExtensions.has(fileOrPage.src.ext) &&
+  !!fileOrPage.data.transformImages;
 
 export type Format =
   | "jpeg"
@@ -86,42 +88,46 @@ export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.loadAssets(options.extensions, binaryLoader);
-    site.process(options.extensions, process);
+    site.process(process);
 
     // Configure the cache folder
-    const cacheFolder = options.cache === true ? "_cache" : options.cache;
-    const cache = cacheFolder
-      ? new Cache({ folder: site.root(cacheFolder) })
-      : undefined;
+    const cache = createCache(site.root("_cache"));
 
-    if (cacheFolder) {
-      site.ignore(cacheFolder);
-      site.options.watcher.ignore.push(cacheFolder);
-    }
+    async function process(_: Page[], allPages: Page[]) {
+      // Load all static files that must be transformed
+      await site.filesToPages(filter);
 
-    async function process(pages: Page[], allPages: Page[]) {
-      await concurrent(
-        pages,
-        (page) => processPage(page, allPages),
-      );
-    }
-    async function processPage(page: Page, allPages: Page[]) {
-      const transData = page.data[options.name] as
-        | Transformation
-        | Transformation[]
-        | undefined;
+      const files = allPages.filter(filter);
 
-      if (!transData) {
+      if (files.length === 0) {
+        log.info(
+          "[transform_images plugin] No images found. Make sure to add them with <gray>site.add()</gray> and set the <gray>transformImages</gray> data key",
+        );
         return;
       }
 
-      const content = page.content as Uint8Array | string;
+      // Process all files
+      await concurrent(
+        files,
+        (page) => processPage(page, allPages),
+      );
+    }
+
+    async function processPage(page: Page, allPages: Page[]) {
+      const transData = page.data.transformImages as
+        | Transformation
+        | Transformation[];
+
+      const content = page.src.ext === ".svg" ? page.text : page.bytes;
+      const url = page.data.url;
+
       const transformations = removeDuplicatedTransformations(
         getTransformations(transData),
       );
       let transformed = false;
       let index = 0;
+      let removeOriginal = false;
+
       for (const transformation of transformations) {
         if (transformation.matches) {
           const regex = new RegExp(transformation.matches);
@@ -132,10 +138,14 @@ export function transformImages(userOptions?: Partial<Options>) {
 
         const output = page.duplicate(index++, {
           ...page.data,
-          [options.name]: undefined,
+          transformImages: undefined,
         });
 
         rename(output, transformation);
+
+        if (output.data.url.toLowerCase() === url.toLowerCase()) {
+          removeOriginal = true;
+        }
 
         if (cache) {
           const result = await cache.get(content, transformation);
@@ -161,8 +171,10 @@ export function transformImages(userOptions?: Partial<Options>) {
         log.info(`[transform_images plugin] Processed ${page.sourcePath}`);
       }
 
-      // Remove the original page
-      allPages.splice(allPages.indexOf(page), 1);
+      // Remove the original page if a new one was created with the same URL
+      if (removeOriginal) {
+        allPages.splice(allPages.indexOf(page), 1);
+      }
     }
   };
 }

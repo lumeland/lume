@@ -11,7 +11,7 @@ import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Options passed to markdown-it library */
@@ -62,14 +62,6 @@ export class MarkdownEngine implements Engine {
   deleteCache() {}
 
   render(
-    content: string,
-    data?: Record<string, unknown>,
-    filename?: string,
-  ): string {
-    return this.renderComponent(content, data, filename);
-  }
-
-  renderComponent(
     content: unknown,
     data?: Record<string, unknown>,
     filename?: string,

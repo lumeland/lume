@@ -6,32 +6,32 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`relative_url plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,21 +91,21 @@ snapshot[`relative_url plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
+      ext: ".html",
+    },
+    {
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -158,7 +158,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -166,7 +165,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/contact/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -183,7 +181,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "about-us",
       children: '<p>About us</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -206,7 +204,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -214,7 +211,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -254,7 +250,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -262,7 +257,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/about-us/presentation/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -283,7 +277,7 @@ snapshot[`relative_url plugin 3`] = `
 </ul>
 </body></html>',
     data: {
-      basename: "index",
+      basename: "",
       children: '<p>Index</p>
 <ul>
 <li><a href="/">Index</a></li>
@@ -314,7 +308,6 @@ snapshot[`relative_url plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -322,7 +315,6 @@ snapshot[`relative_url plugin 3`] = `
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,
@@ -354,37 +346,12 @@ div {
 ',
     data: {
       basename: "styles",
-      content: \`@import "/style.css";
-@import "other-styles.css";
-@import "./other-styles.css";
-@import '/style.css';
-@import 'other-styles.css';
-@import './other-styles.css';
-@import url('/style.css');
-@import url('other-styles.css');
-@import url('./other-styles.css');
-@import url(/style.css);
-@import url(other-styles.css);
-@import url(./other-styles.css);
-
-@font-face {
-  font-family: "foo";
-  src: url("/fonts/cicle_fina-webfont.woff2");
-}
-
-div {
-  background-image: url("/img/avatar.png");
-
-}
-\`,
-      date: [],
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -392,7 +359,6 @@ div {
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -407,32 +373,32 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -449,14 +415,14 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -473,14 +439,14 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -492,15 +458,21 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [
@@ -553,7 +525,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -561,7 +532,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/contact.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/contact",
       remote: undefined,
@@ -601,7 +571,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -609,7 +578,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/index.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/index",
       remote: undefined,
@@ -649,7 +617,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -657,7 +624,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/about-us/presentation.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/about-us/presentation",
       remote: undefined,
@@ -709,7 +675,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -717,7 +682,6 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
       url: "/index.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/index",
       remote: undefined,

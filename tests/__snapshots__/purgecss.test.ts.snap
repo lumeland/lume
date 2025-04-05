@@ -6,32 +6,32 @@ snapshot[`purgecss plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,22 +48,20 @@ snapshot[`purgecss plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -74,14 +72,14 @@ snapshot[`purgecss plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -93,21 +91,18 @@ snapshot[`purgecss plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -129,6 +124,11 @@ snapshot[`purgecss plugin 1`] = `
 
 snapshot[`purgecss plugin 2`] = `
 [
+  {
+    entry: "/script.js",
+    flags: [],
+    outputPath: "/script.js",
+  },
   {
     entry: "/static/static.html",
     flags: [],
@@ -163,7 +163,7 @@ Título
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Título</h1>
 
 <strong>strong</strong>
@@ -184,7 +184,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -193,15 +192,39 @@ Título
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 1</p>
+    content: '<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page_2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Content of Page 1</p>
 ",
     data: {
       basename: "page1",
@@ -216,7 +239,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -225,188 +247,21 @@ Título
       url: "/pages/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div class="content-dynamic">Content of Page 2</div>',
-    data: {
-      basename: "page2",
-      children: '<div class="content-dynamic">Content of Page 2</div>',
-      content: '<div class="content-dynamic">Content of Page 2</div>',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Page 2",
-      url: "/page_2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page2",
-      remote: undefined,
-    },
-  },
-  {
-    content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-    data: {
-      basename: "script",
-      content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".js",
-      path: "/script",
-      remote: undefined,
-    },
-  },
-  {
-    content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-strong {
-  font-weight: bolder;
-}
-
- html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-",
+    content: "Uint8Array(732)",
     data: {
       basename: "styles",
-      content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
-strong {
-  font-weight: bolder;
-}
-
-em {
-  font-style: italic;
-}
-
-a[href] {
-  text-decoration: underline;
-}
-
-html > body .no-such-element .content-vento, html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.content-other {
-  padding: 20px 5px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub {
-  display: none;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
-      date: [],
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -414,7 +269,6 @@ html > body .no-such-element .content-vento, html > * .content-vento {
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,
@@ -429,32 +283,32 @@ snapshot[`purgecss plugin with options 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -471,22 +325,20 @@ snapshot[`purgecss plugin with options 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: module],
       engines: 1,
       ext: ".js",
       loader: [AsyncFunction: module],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -497,14 +349,14 @@ snapshot[`purgecss plugin with options 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -516,21 +368,18 @@ snapshot[`purgecss plugin with options 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
       ext: ".css",
-      pageType: "asset",
     },
   ],
   src: [
@@ -552,6 +401,11 @@ snapshot[`purgecss plugin with options 1`] = `
 
 snapshot[`purgecss plugin with options 2`] = `
 [
+  {
+    entry: "/script.js",
+    flags: [],
+    outputPath: "/script.js",
+  },
   {
     entry: "/static/static.html",
     flags: [],
@@ -586,7 +440,7 @@ Título
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: '<h1>Título</h1>
 
 <strong>strong</strong>
@@ -607,7 +461,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -616,15 +469,39 @@ Título
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/index",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 1</p>
+    content: '<div class="content-dynamic">Content of Page 2</div>',
+    data: {
+      basename: "page_2",
+      children: '<div class="content-dynamic">Content of Page 2</div>',
+      content: '<div class="content-dynamic">Content of Page 2</div>',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Page 2",
+      url: "/page_2/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Content of Page 1</p>
 ",
     data: {
       basename: "page1",
@@ -639,7 +516,6 @@ Título
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -648,195 +524,21 @@ Título
       url: "/pages/page1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/page1",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div class="content-dynamic">Content of Page 2</div>',
-    data: {
-      basename: "page2",
-      children: '<div class="content-dynamic">Content of Page 2</div>',
-      content: '<div class="content-dynamic">Content of Page 2</div>',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Page 2",
-      url: "/page_2/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page2",
-      remote: undefined,
-    },
-  },
-  {
-    content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-    data: {
-      basename: "script",
-      content: "document.querySelector('.dynamic-js')
-  .addEventListener('click', (event) => {
-    event.target.classList.add('dynamic-jssub-open');
-  });
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/script.js",
-    },
-    src: {
-      asset: true,
-      ext: ".js",
-      path: "/script",
-      remote: undefined,
-    },
-  },
-  {
-    content: "::root {
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
- html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
+    content: "Uint8Array(732)",
     data: {
       basename: "styles",
-      content: "::root {
-  --font-family: sans-serif;
-}
-
-body {
-  font-family: sans-serif;
-  color: black;
-}
-
-.unused {
-  margin-top: 30px;
-}
-
-strong {
-  font-weight: bolder;
-}
-
-em {
-  font-style: italic;
-}
-
-a[href] {
-  text-decoration: underline;
-}
-
-html > body .no-such-element .content-vento, html > * .content-vento {
-  max-width: 800px;
-}
-
-.content-vento:not(.test):focus-visible {
-  outline: 2px solid blue;
-}
-
-.content-dynamic {
-  display: flex;
-}
-
-.content-dynamic:focus-visible {
-  outline: 2px solid lightblue;
-}
-
-.content-static {
-  margin-top: 25px;
-}
-
-.content-other {
-  padding: 20px 5px;
-}
-
-.dynamic-js {
-  opacity: 0;
-}
-
-.dynamic-jssub {
-  display: none;
-}
-
-.dynamic-jssub-open {
-  opacity: 1;
-}
-
-#img-option {
-  max-width: 100%;
-}
-",
-      date: [],
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -844,7 +546,6 @@ html > body .no-such-element .content-vento, html > * .content-vento {
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
       remote: undefined,

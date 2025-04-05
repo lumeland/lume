@@ -1,18 +1,15 @@
 import type { Engine } from "./renderer.ts";
-import type { Loader } from "./loaders/mod.ts";
+import type { Loader } from "./fs.ts";
 
 export interface Format {
   /** The file extension for this format */
   ext: string;
 
-  /** The type of page */
-  pageType?: "page" | "asset";
+  /** Whether this format is for pages */
+  isPage?: boolean;
 
   /** The file loader used for this format (used by pages, includes, components, etc) */
   loader?: Loader;
-
-  /** The loader used as asset */
-  assetLoader?: Loader;
 
   /** Loader for _data files in this format */
   dataLoader?: Loader;
@@ -22,9 +19,6 @@ export interface Format {
    * Used to render the page and components
    */
   engines?: Engine[];
-
-  /** Whether this file must be copied instead loaded */
-  copy?: boolean | ((path: string) => string);
 }
 
 /** Class to store loaders, engines and other stuff related with different formats */
@@ -37,7 +31,8 @@ export default class Formats {
 
   /** Assign a value to a extension */
   set(format: Format, override = true): void {
-    const ext = format.ext.toLowerCase();
+    format.ext = format.ext.toLowerCase();
+    const ext = format.ext;
     const existing = this.entries.get(ext);
 
     if (existing) {

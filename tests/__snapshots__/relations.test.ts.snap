@@ -6,32 +6,32 @@ snapshot[`relations plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`relations plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`relations plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`relations plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -130,8 +133,7 @@ snapshot[`relations plugin 2`] = `[]`;
 snapshot[`relations plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Category 1</h1>
+    content: "<h1>Category 1</h1>
 
 <div><p>This is the first category</p>
 </div>
@@ -154,7 +156,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -166,15 +167,13 @@ snapshot[`relations plugin 3`] = `
       url: "/categories/category-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/categories/category-1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<h1>Category 2</h1>
+    content: "<h1>Category 2</h1>
 
 <div><p>This is the second category</p>
 </div>
@@ -197,7 +196,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -208,15 +206,13 @@ snapshot[`relations plugin 3`] = `
       url: "/categories/category-2/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/categories/category-2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the first comment</p>
+    content: "<p>This is the first comment</p>
 ",
     data: {
       basename: "comment-1",
@@ -232,7 +228,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -242,15 +237,13 @@ snapshot[`relations plugin 3`] = `
       url: "/comments/comment-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/comments/comment-1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the second comment</p>
+    content: "<p>This is the second comment</p>
 ",
     data: {
       basename: "comment-2",
@@ -266,7 +259,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -277,15 +269,13 @@ snapshot[`relations plugin 3`] = `
       url: "/comments/comment-2/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/comments/comment-2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>This is the third comment</p>
+    content: "<p>This is the third comment</p>
 ",
     data: {
       basename: "comment-3",
@@ -301,7 +291,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -311,15 +300,13 @@ snapshot[`relations plugin 3`] = `
       url: "/comments/comment-3/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/comments/comment-3",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div><p>First post with category 2 and comments 1 and 3</p>
+    content: '<div><p>First post with category 2 and comments 1 and 3</p>
 </div>
 
 <h2>Category:</h2>
@@ -363,7 +350,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       renderOrder: 1,
@@ -373,15 +359,13 @@ snapshot[`relations plugin 3`] = `
       url: "/posts/post-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/posts/post-1",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<div><p>Second post with category 1 and comment 2</p>
+    content: '<div><p>Second post with category 1 and comment 2</p>
 </div>
 
 <h2>Category:</h2>
@@ -426,7 +410,6 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -435,7 +418,6 @@ snapshot[`relations plugin 3`] = `
       url: "/posts/post-2/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/posts/post-2",
       remote: undefined,

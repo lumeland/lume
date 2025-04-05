@@ -1,6 +1,6 @@
 import satori, { SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
-import Cache from "../core/cache.ts";
+import { createCache } from "../core/cache.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
@@ -8,33 +8,24 @@ import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 
-import type { React } from "../deps/react.ts";
 import "../types.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path to load the layout
    * @default `site.options.includes`
    */
   includes?: string;
 
-  /** The cache folder */
-  cache: string | boolean;
-
   /**
    * The options for Satori to generate the SVG image.
    * @see https://github.com/vercel/satori
    */
-  satori?: Partial<SatoriOptions>;
+  options?: Partial<SatoriOptions>;
 }
 
 export const defaults: Options = {
-  extensions: [".html"],
-  cache: true,
-  satori: {
+  options: {
     width: 1200,
     height: 600,
     fonts: [],
@@ -51,20 +42,12 @@ export function ogImages(userOptions?: Options) {
       { ...defaults, includes: site.options.includes },
       userOptions,
     );
-    const satoriOptions = options.satori as SatoriOptions;
+    const satoriOptions = options.options as SatoriOptions;
 
     // Configure the cache folder
-    const cacheFolder = options.cache === true ? "_cache" : options.cache;
-    const cache = cacheFolder
-      ? new Cache({ folder: site.root(cacheFolder) })
-      : undefined;
+    const cache = createCache(site.root("_cache"));
 
-    if (cacheFolder) {
-      site.ignore(cacheFolder);
-      site.options.watcher.ignore.push(cacheFolder);
-    }
-
-    site.process(options.extensions, async (pages, allPages) => {
+    site.process([".html"], async (pages, allPages) => {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }
@@ -113,7 +96,7 @@ export function ogImages(userOptions?: Options) {
     });
 
     async function render(
-      jsx: React.ReactNode,
+      jsx: unknown,
     ): Promise<Uint8Array | undefined> {
       if (cache) {
         const result = await cache.get(new Uint8Array(), jsx);

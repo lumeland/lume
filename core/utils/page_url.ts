@@ -1,13 +1,27 @@
 import { posix } from "../../deps/path.ts";
-import { normalizePath } from "./path.ts";
+import { getExtension, normalizePath } from "./path.ts";
 
+import type { Destination } from "../source.ts";
 import type { Data, Page, RawData } from "../file.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(page404?: string): (page: Data) => boolean {
   const url404 = page404 ? normalizePath(page404) : undefined;
 
-  return (data: Data) => !url404 || data.url !== url404;
+  return url404 ? (data: Data) => data.url !== url404 : () => true;
+}
+
+/** Returns the final part of a url */
+export function getBasename(url: string): string {
+  if (url === "/") {
+    return "";
+  }
+
+  if (url.endsWith("/")) {
+    return posix.basename(url);
+  }
+
+  return posix.basename(url, getExtension(url));
 }
 
 /** Returns the final URL assigned to a page */
@@ -15,6 +29,7 @@ export function getPageUrl(
   page: Page,
   prettyUrls: boolean,
   parentPath: string,
+  destination?: Destination | string,
 ): string | false {
   const data = page.data as RawData;
   let { url } = data;
@@ -24,7 +39,7 @@ export function getPageUrl(
   }
 
   if (typeof url === "function") {
-    page.data.url = getDefaultUrl(page, parentPath, prettyUrls);
+    page.data.url = getDefaultUrl(page.data.basename, parentPath, prettyUrls);
     url = url(page);
   }
 
@@ -54,21 +69,26 @@ export function getPageUrl(
     );
   }
 
-  return getDefaultUrl(page, parentPath, prettyUrls);
+  if (typeof destination === "string") {
+    return normalizeUrl(destination);
+  }
+
+  const defaultUrl = getDefaultUrl(
+    String(page.data.basename),
+    parentPath,
+    prettyUrls,
+  );
+  return destination ? destination(defaultUrl) : defaultUrl;
 }
 
 /** Returns the default URL for a page */
 function getDefaultUrl(
-  page: Page,
+  basename: string,
   parentPath: string,
   prettyUrls: boolean,
 ): string {
   // Calculate the URL from the path
-  const url = posix.join(parentPath, page.data.basename);
-
-  if (page.asset) {
-    return url + page.src.ext;
-  }
+  const url = posix.join(parentPath, basename);
 
   // Pretty URLs affects to all pages but 404
   if (prettyUrls && url !== "/404") {

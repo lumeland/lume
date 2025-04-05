@@ -6,32 +6,32 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`Build a markdown site 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -121,8 +121,7 @@ snapshot[`Build a markdown site 2`] = `[]`;
 snapshot[`Build a markdown site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -149,7 +148,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -158,15 +156,13 @@ snapshot[`Build a markdown site 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo">link</a>{target=_blank}</p>',
+    content: '<p><a href="#foo">link</a>{target=_blank}</p>',
     data: {
       basename: "with-attributes",
       children: '<p><a href="#foo">link</a>{target=_blank}</p>',
@@ -179,7 +175,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -187,15 +182,13 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
+    content: '<pre><code class="language-html">&#x3C;p>Example&#x3C;/p>
 </code></pre>
 <pre><code>&#x3C;p>Example without color highlight&#x3C;/p>
 </code></pre>',
@@ -220,7 +213,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -228,15 +220,13 @@ snapshot[`Build a markdown site 3`] = `
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <p>This is a definition title
 : And this the description
 : Other description</p>
@@ -265,7 +255,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -273,15 +262,13 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1><p>Module <strong>example</strong></p></h1>
+    content: '<h1><p>Module <strong>example</strong></p></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -304,7 +291,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -313,15 +299,13 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>',
     data: {
       basename: "with-module",
@@ -335,7 +319,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -345,15 +328,13 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
@@ -392,7 +373,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -402,7 +382,6 @@ Foo
       url: "/with-vto/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vto",
       remote: undefined,

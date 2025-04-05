@@ -6,32 +6,32 @@ snapshot[`Image transform plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Image transform plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Image transform plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,39 +91,15 @@ snapshot[`Image transform plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
-    },
-    {
-      assetLoader: [AsyncFunction: binary],
-      engines: undefined,
-      ext: ".jpg",
-      pageType: "asset",
-    },
-    {
-      assetLoader: [AsyncFunction: binary],
-      engines: undefined,
-      ext: ".jpeg",
-      pageType: "asset",
-    },
-    {
-      assetLoader: [AsyncFunction: binary],
-      engines: undefined,
-      ext: ".png",
-      pageType: "asset",
-    },
-    {
-      assetLoader: [AsyncFunction: binary],
-      engines: undefined,
-      ext: ".webp",
-      pageType: "asset",
     },
   ],
   src: [
@@ -139,29 +115,94 @@ snapshot[`Image transform plugin 2`] = `[]`;
 snapshot[`Image transform plugin 3`] = `
 [
   {
-    content: "Uint8Array(29014)",
+    content: "Uint8Array(428)",
     data: {
       basename: "lume",
-      content: "Uint8Array(29014)",
-      date: [],
-      imageTransform: "Array(5)",
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume-small.png",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(2043)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume.jpg",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(15039)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
       url: "/lume.png",
     },
     src: {
-      asset: true,
       ext: ".png",
-      path: "/lume",
+      path: "/lume[3]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(8572)",
+    data: {
+      basename: "lume",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      transformImages: "undefined",
+      url: "/lume.webp",
+    },
+    src: {
+      ext: ".png",
+      path: "/lume[2]",
       remote: undefined,
     },
   },

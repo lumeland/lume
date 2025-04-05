@@ -1,73 +1,113 @@
-import tailwind from "../deps/tailwindcss.ts";
-import { getExtension } from "../core/utils/path.ts";
+import { compile, Scanner, specifier } from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
+import { dirname, posix } from "../deps/path.ts";
+import { readFile } from "../core/utils/read.ts";
 
-import type { Config } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
+import { ChangedContent } from "npm:@tailwindcss/oxide@4.0.3";
+import { resolveInclude } from "../core/utils/path.ts";
 
 export interface Options {
-  /** Extensions processed by this plugin to extract the utility classes */
-  extensions?: string[];
-
   /**
-   * Options passed to TailwindCSS.
-   * @see https://tailwindcss.com/docs/configuration
+   * Custom includes path
+   * @default `site.options.includes`
    */
-  options?: Omit<Config, "content">;
+  includes?: string | false;
 }
 
-export const defaults: Options = {
-  extensions: [".html"],
-};
+export const defaults: Options = {};
 
 /**
  * A plugin to extract the utility classes from HTML pages and apply TailwindCSS
  * @see https://lume.land/plugins/tailwindcss/
  */
 export function tailwindCSS(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
   return (site: Site) => {
-    // deno-lint-ignore no-explicit-any
-    let tailwindPlugins: any[];
+    const options = merge<Options>(
+      { ...defaults, includes: site.options.includes },
+      userOptions,
+    );
+    const scanner = new Scanner({});
+    const candidates: string[] = [];
+    let content: ChangedContent[] = [];
 
-    if (site.hooks.postcss) {
-      throw new Error(
-        "PostCSS plugin is required to be installed AFTER TailwindCSS plugin",
-      );
-    }
+    site.process([".html", ".js"], (pages) => {
+      for (const page of pages) {
+        const file = page.outputPath;
+        content.push({
+          content: page.text,
+          extension: file.endsWith(".html") ? ".html" : ".js",
+        });
+      }
+    });
 
-    site.process(options.extensions, (pages) => {
-      // Get the content of all HTML pages (sorted by path)
-      const content = pages.sort((a, b) => a.src.path.localeCompare(b.src.path))
-        .map((page) => ({
-          raw: page.content as string,
-          extension: getExtension(page.outputPath).substring(1),
-        }));
-
-      // Create Tailwind plugin
-      // @ts-ignore: This expression is not callable.
-      const plugin = tailwind({
-        ...options.options,
-        content,
-      });
-
-      // Ensure PostCSS plugin is installed
-      if (!site.hooks.postcss) {
-        throw new Error(
-          "PostCSS plugin is required to be installed AFTER TailwindCSS plugin",
+    site.process([".css"], async (files) => {
+      if (files.length === 0) {
+        log.info(
+          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
+        content = [];
+        return;
       }
 
-      // Replace the old Tailwind plugin configuration from PostCSS plugins
-      // deno-lint-ignore no-explicit-any
-      site.hooks.postcss((runner: any) => {
-        tailwindPlugins?.forEach((plugin) => {
-          runner.plugins.splice(runner.plugins.indexOf(plugin), 1);
+      candidates.push(...scanner.scanFiles(content));
+      content = [];
+
+      for (const file of files) {
+        const compiler = await compile(file.text, {
+          base: posix.dirname(file.outputPath),
+          async loadModule(id, base, resourceHint) {
+            if (id.startsWith(".")) {
+              id = site.root(base, id);
+              const mod = await import(id);
+              return {
+                base,
+                module: mod.default,
+              };
+            }
+            if (resourceHint === "plugin") {
+              const mod = await import(`npm:${id}`);
+              return {
+                base,
+                module: mod.default,
+              };
+            }
+            throw new Error(`Cannot resolve module '${id}'`);
+          },
+          async loadStylesheet(id, base) {
+            if (id === "tailwindcss") {
+              const url = `${specifier}/index.css`;
+              const content = await readFile(url);
+              return { content, base };
+            }
+
+            if (id.startsWith("tailwindcss/")) {
+              const filename = id.replace("tailwindcss/", "");
+              const url = `${specifier}/${filename}`;
+              const content = await readFile(url);
+              return { content, base };
+            }
+
+            if (options.includes === false) {
+              if (!id.startsWith(".")) {
+                throw new Error(`Cannot resolve module '${id}'`);
+              }
+            }
+
+            const filename = resolveInclude(id, options.includes || "", base);
+            const content = await site.getContent(filename, false);
+
+            if (content === undefined) {
+              throw new Error(`File ${filename} not found`);
+            }
+
+            return { content, base: dirname(filename) };
+          },
         });
-        tailwindPlugins = runner.normalize([plugin]);
-        runner.plugins = runner.plugins.concat(tailwindPlugins);
-      });
+
+        file.text = compiler.build(candidates);
+      }
     });
   };
 }

@@ -6,32 +6,32 @@ snapshot[`build a site with nunjucks 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`build a site with nunjucks 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`build a site with nunjucks 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,21 +91,21 @@ snapshot[`build a site with nunjucks 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".njk",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
   ],
   src: [
@@ -132,59 +132,6 @@ snapshot[`build a site with nunjucks 2`] = `[]`;
 
 snapshot[`build a site with nunjucks 3`] = `
 [
-  {
-    content: "
-button {
-  background-color: blue;
-}
-
-icon {
-  width: 48px;
-  height: 48px;
-}
-",
-    data: {
-      basename: "components",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/components.css",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: '
-document.querySelectorAll("button").forEach(button => {
-  button.addEventListener("click", () => {
-    alert("Hello world!");
-  });
-});
-
-console.log("Hello world, from the icon/User component");
-',
-    data: {
-      basename: "components",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/components.js",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
   {
     content: '<!DOCTYPE html>
 
@@ -249,8 +196,8 @@ console.log("Hello world, from the icon/User component");
   button without arguments
 {% endcomp %}
 
-{{ comp.Button({ content: "button content" }) | safe }}
-{{ comp.icon.User({ content: "this is John", name:"John" }) | safe }}
+{{ comp.Button({ content: "button content" }) | await | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | await | safe }}
 
 {% comp "Button", className="my-button" %}
   button content
@@ -268,7 +215,6 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -276,7 +222,6 @@ console.log("Hello world, from the icon/User component");
       url: "/components/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/components",
       remote: undefined,
@@ -295,14 +240,12 @@ console.log("Hello world, from the icon/User component");
       content: "{{ colors | dump | safe }}
 ",
       date: [],
-      layout: null,
       mergedKeys: [
         "tags",
       ],
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -310,7 +253,6 @@ console.log("Hello world, from the icon/User component");
       url: "/data.json",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/data",
       remote: undefined,
@@ -331,7 +273,7 @@ console.log("Hello world, from the icon/User component");
 </html>
 ',
     data: {
-      basename: "index",
+      basename: "",
       children: "<h1>Hello World</h1>
 ",
       comp: [
@@ -348,7 +290,6 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -357,7 +298,6 @@ console.log("Hello world, from the icon/User component");
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/index",
       remote: undefined,
@@ -392,7 +332,6 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -401,9 +340,57 @@ console.log("Hello world, from the icon/User component");
       url: "/njk-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/njk-filter",
+      remote: undefined,
+    },
+  },
+  {
+    content: '// fs:/_components/Button.ts.js
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+// fs:/_components/icon/User.njk.js
+console.log("Hello world, from the icon/User component");
+',
+    data: {
+      basename: "script",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/script.js",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "button {
+  background-color: #00f;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
+",
+    data: {
+      basename: "style",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/style.css",
+    },
+    src: {
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -493,7 +480,6 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -502,7 +488,6 @@ console.log("Hello world, from the icon/User component");
       url: "/with-helpers/",
     },
     src: {
-      asset: false,
       ext: ".njk",
       path: "/with-helpers",
       remote: undefined,

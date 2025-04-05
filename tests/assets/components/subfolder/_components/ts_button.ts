@@ -1,4 +1,3 @@
-export const name = "button_ts";
 export const css = `
 .button_ts {
   color: white;

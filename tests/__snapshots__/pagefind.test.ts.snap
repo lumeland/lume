@@ -6,32 +6,32 @@ snapshot[`Pagefind plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Pagefind plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Pagefind plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,18 @@ snapshot[`Pagefind plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -117,6 +120,98 @@ snapshot[`Pagefind plugin 2`] = `[]`;
 snapshot[`Pagefind plugin 3`] = `
 [
   {
+    content: \`<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First page</title>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
+<body>
+  <div id="search"></div>
+  <h1>Hello world</h1>
+<p>This is the first page</p>
+
+
+
+</body></html>\`,
+    data: {
+      basename: "",
+      children: "<h1>Hello world</h1>
+<p>This is the first page</p>
+",
+      content: "# Hello world
+
+This is the first page
+",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/",
+    },
+    src: {
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: \`<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second page</title>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
+<body>
+  <div id="search"></div>
+  <h1>Other page</h1>
+<p>This is the second page</p>
+
+
+
+</body></html>\`,
+    data: {
+      basename: "page2",
+      children: "<h1>Other page</h1>
+<p>This is the second page</p>
+",
+      content: "# Other page
+
+This is the second page
+",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2/",
+    },
+    src: {
+      ext: ".md",
+      path: "/page2",
+      remote: undefined,
+    },
+  },
+  {
     content: "Uint8Array()",
     data: {
       basename: "en_1e3ac36",
@@ -124,12 +219,10 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -143,12 +236,10 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -162,12 +253,10 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -181,12 +270,10 @@ snapshot[`Pagefind plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2338,12 +2425,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2783,12 +2868,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2818,12 +2901,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2839,12 +2920,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2862,12 +2941,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2881,12 +2958,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2916,12 +2991,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2935,12 +3008,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -2954,110 +3025,12 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First page</title>
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
-<body>
-  <div id="search"></div>
-  <h1>Hello world</h1>
-<p>This is the first page</p>
-
-
-
-</body></html>\`,
-    data: {
-      basename: "index",
-      children: "<h1>Hello world</h1>
-<p>This is the first page</p>
-",
-      content: "# Hello world
-
-This is the first page
-",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "First page",
-      url: "/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/index",
-      remote: undefined,
-    },
-  },
-  {
-    content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Second page</title>
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
-<body>
-  <div id="search"></div>
-  <h1>Other page</h1>
-<p>This is the second page</p>
-
-
-
-</body></html>\`,
-    data: {
-      basename: "page2",
-      children: "<h1>Other page</h1>
-<p>This is the second page</p>
-",
-      content: "# Other page
-
-This is the second page
-",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Second page",
-      url: "/page2/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page2",
       remote: undefined,
     },
   },
@@ -3070,32 +3043,32 @@ snapshot[`Pagefind plugin with global variable 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -3112,14 +3085,14 @@ snapshot[`Pagefind plugin with global variable 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -3136,14 +3109,14 @@ snapshot[`Pagefind plugin with global variable 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -3155,15 +3128,18 @@ snapshot[`Pagefind plugin with global variable 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
+    },
+    {
+      ext: ".html",
     },
   ],
   src: [
@@ -3181,6 +3157,98 @@ snapshot[`Pagefind plugin with global variable 2`] = `[]`;
 snapshot[`Pagefind plugin with global variable 3`] = `
 [
   {
+    content: \`<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First page</title>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{window["pagefind"] = new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
+<body>
+  <div id="search"></div>
+  <h1>Hello world</h1>
+<p>This is the first page</p>
+
+
+
+</body></html>\`,
+    data: {
+      basename: "",
+      children: "<h1>Hello world</h1>
+<p>This is the first page</p>
+",
+      content: "# Hello world
+
+This is the first page
+",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "First page",
+      url: "/",
+    },
+    src: {
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: \`<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second page</title>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{window["pagefind"] = new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
+<body>
+  <div id="search"></div>
+  <h1>Other page</h1>
+<p>This is the second page</p>
+
+
+
+</body></html>\`,
+    data: {
+      basename: "page2",
+      children: "<h1>Other page</h1>
+<p>This is the second page</p>
+",
+      content: "# Other page
+
+This is the second page
+",
+      date: [],
+      layout: "main.vto",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2/",
+    },
+    src: {
+      ext: ".md",
+      path: "/page2",
+      remote: undefined,
+    },
+  },
+  {
     content: "Uint8Array()",
     data: {
       basename: "en_1e3ac36",
@@ -3188,12 +3256,10 @@ snapshot[`Pagefind plugin with global variable 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3207,12 +3273,10 @@ snapshot[`Pagefind plugin with global variable 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3226,12 +3290,10 @@ snapshot[`Pagefind plugin with global variable 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -3245,12 +3307,10 @@ snapshot[`Pagefind plugin with global variable 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5402,12 +5462,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5847,12 +5905,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5882,12 +5938,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5903,12 +5957,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5926,12 +5978,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5945,12 +5995,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5980,12 +6028,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/pagefind.js",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -5999,12 +6045,10 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
       remote: undefined,
@@ -6018,110 +6062,12 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
-        "asset",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
     src: {
-      asset: true,
       ext: "",
       path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First page</title>
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{window["pagefind"] = new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
-<body>
-  <div id="search"></div>
-  <h1>Hello world</h1>
-<p>This is the first page</p>
-
-
-
-</body></html>\`,
-    data: {
-      basename: "index",
-      children: "<h1>Hello world</h1>
-<p>This is the first page</p>
-",
-      content: "# Hello world
-
-This is the first page
-",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "First page",
-      url: "/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/index",
-      remote: undefined,
-    },
-  },
-  {
-    content: \`<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Second page</title>
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css"><script type="text/javascript" src="/pagefind/pagefind-ui.js"></script><script type="text/javascript">window.addEventListener('DOMContentLoaded',()=>{window["pagefind"] = new PagefindUI({"element":"#search","showImages":false,"excerptLength":0,"showEmptyFilters":true,"showSubResults":false,"resetStyles":true,"bundlePath":"/pagefind/","baseUrl":"/"});});</script></head>
-<body>
-  <div id="search"></div>
-  <h1>Other page</h1>
-<p>This is the second page</p>
-
-
-
-</body></html>\`,
-    data: {
-      basename: "page2",
-      children: "<h1>Other page</h1>
-<p>This is the second page</p>
-",
-      content: "# Other page
-
-This is the second page
-",
-      date: [],
-      layout: "main.vto",
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Second page",
-      url: "/page2/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page2",
       remote: undefined,
     },
   },

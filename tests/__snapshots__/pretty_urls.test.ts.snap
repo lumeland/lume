@@ -6,32 +6,32 @@ snapshot[`Disabled pretty URLs 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Disabled pretty URLs 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Disabled pretty URLs 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`Disabled pretty URLs 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -117,40 +117,7 @@ snapshot[`Disabled pretty URLs 2`] = `[]`;
 snapshot[`Disabled pretty URLs 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
-",
-    data: {
-      basename: "foo",
-      children: "<h1>Welcome</h1>
-",
-      content: "# Welcome
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Second page",
-      url: "/page2.html",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/foo",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<h1>Welcome</h1>
+    content: "<h1>Welcome</h1>
 ",
     data: {
       basename: "page1",
@@ -165,7 +132,6 @@ snapshot[`Disabled pretty URLs 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -174,9 +140,37 @@ snapshot[`Disabled pretty URLs 3`] = `
       url: "/page1.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>Welcome</h1>
+",
+    data: {
+      basename: "page2",
+      children: "<h1>Welcome</h1>
+",
+      content: "# Welcome
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Second page",
+      url: "/page2.html",
+    },
+    src: {
+      ext: ".md",
+      path: "/foo",
       remote: undefined,
     },
   },

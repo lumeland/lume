@@ -1,11 +1,11 @@
 import { merge } from "../core/utils/object.ts";
-import binLoader from "../core/loaders/binary.ts";
-import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
-import Cache from "../core/cache.ts";
+import { createCache } from "../core/cache.ts";
+import { log } from "../core/utils/log.ts";
 import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
 
 import type Site from "../core/site.ts";
+import type Cache from "../core/cache.ts";
 
 export interface Options {
   /**
@@ -13,9 +13,6 @@ export interface Options {
    * Accepted formats are SVG, PNG, JPG, GIF, BMP, TIFF, WEBP
    */
   input?: string;
-
-  /** The cache folder */
-  cache?: string | boolean;
 
   /**
    * The generated favicons
@@ -27,7 +24,6 @@ export interface Options {
 
 export const defaults: Options = {
   input: "/favicon.svg",
-  cache: true,
   favicons: [
     {
       url: "/favicon.ico",
@@ -60,33 +56,29 @@ export function favicon(userOptions?: Options) {
 
   return (site: Site) => {
     // Configure the cache folder
-    const cacheFolder = options.cache === true ? "_cache" : options.cache;
-    const cache = cacheFolder
-      ? new Cache({ folder: site.root(cacheFolder) })
-      : undefined;
+    const cache = createCache(site.root("_cache"));
 
-    if (cacheFolder) {
-      site.ignore(cacheFolder);
-      site.options.watcher.ignore.push(cacheFolder);
-    }
-
-    async function getContent(): Promise<Uint8Array | string> {
+    async function getContent(): Promise<Uint8Array | string | undefined> {
       const content = options.input.endsWith(".svg")
-        ? await site.getContent(options.input, textLoader)
-        : await site.getContent(options.input, binLoader);
+        ? await site.getContent(options.input, false)
+        : await site.getContent(options.input, true);
 
       if (!content) {
-        throw new Error(`File not found: ${options.input}`);
+        log.warn(`[favicon plugin] Input file not found: ${options.input}`);
       }
 
       return content;
     }
 
-    site.addEventListener("afterRender", async (event) => {
+    site.process(async (_, pages) => {
       const content = await getContent();
 
+      if (!content) {
+        return;
+      }
+
       for (const favicon of options.favicons) {
-        event.pages?.push(
+        pages.push(
           Page.create({
             url: favicon.url,
             content: await buildIco(
@@ -105,13 +97,13 @@ export function favicon(userOptions?: Options) {
         !site.pages.find((page) => page.data.url === options.input) &&
         !site.files.find((file) => file.outputPath === options.input)
       ) {
-        event.pages?.push(
+        site.pages.push(
           Page.create({
             url: options.input,
             content: await site.getContent(
               options.input,
-              textLoader,
-            ) as string,
+              false,
+            ),
           }),
         );
       }
@@ -119,7 +111,7 @@ export function favicon(userOptions?: Options) {
 
     site.process([".html"], (pages) => {
       for (const page of pages) {
-        const document = page.document!;
+        const { document } = page;
 
         for (const favicon of options.favicons) {
           addIcon(document, {

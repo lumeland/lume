@@ -1,39 +1,24 @@
-import {
-  getPathAndExtension,
-  isAbsolutePath,
-  isUrl,
-  normalizePath,
-} from "../core/utils/path.ts";
+import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
-import { readDenoConfig } from "../core/utils/deno_config.ts";
 import { log } from "../core/utils/log.ts";
-import { readFile } from "../core/utils/read.ts";
 import {
   build,
   BuildOptions,
+  denoPlugins,
   Metafile,
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
-import { getResolver } from "../deps/import_map.ts";
-
+import { extname, fromFileUrl, join, posix } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
 
 import type Site from "../core/site.ts";
-import type { DenoConfig, ImportMap } from "../core/utils/deno_config.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to bundle */
   extensions?: string[];
-
-  /**
-   * Global options for esm.sh CDN used to fetch NPM packages
-   * @see https://esm.sh/#docs
-   */
-  esm?: EsmOptions;
 
   /**
    * The options for esbuild
@@ -42,34 +27,14 @@ export interface Options {
   options?: BuildOptions;
 
   /**
-   * The import map to use
-   * By default, it reads the import map from the deno.json file
+   * The Deno config file to use
    */
-  importMap?: ImportMap | false;
+  denoConfig?: string;
 }
-
-export interface EsmOptions {
-  /** To include the ?dev option to all packages */
-  dev?: boolean;
-
-  /** Configure the cjs-exports option for each package */
-  cjsExports?: Record<string, string[] | string>;
-
-  /** Configure the deps for each package */
-  deps?: Record<string, string[] | string>;
-
-  /** Configure the target for each package */
-  target?: "es2015" | "es2022" | "esnext" | "deno" | "denonext";
-}
-
-const denoConfig = await readDenoConfig();
 
 // Default options
 export const defaults: Options = {
-  extensions: [".ts", ".js"],
-  esm: {
-    target: "esnext",
-  },
+  extensions: [".ts", ".js", ".tsx", ".jsx"],
   options: {
     plugins: [],
     bundle: true,
@@ -79,12 +44,19 @@ export const defaults: Options = {
     platform: "browser",
     target: "esnext",
     treeShaking: true,
+    jsx: "automatic",
     outdir: "./",
     outbase: ".",
   },
 };
 
 let resolver: ((specifier: string, referrer?: string) => string) | undefined;
+
+interface EntryPoint {
+  in: string;
+  out: string;
+  content: string;
+}
 
 /**
  * A plugin to use esbuild in Lume
@@ -93,73 +65,47 @@ let resolver: ((specifier: string, referrer?: string) => string) | undefined;
 export function esbuild(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  // Configure jsx automatically
-  if (
-    options.extensions.some((ext) =>
-      ext.endsWith(".tsx") || ext.endsWith(".jsx")
-    )
-  ) {
-    options.options = {
-      ...buildJsxConfig(denoConfig?.config),
-      ...options.options,
-    };
-  }
-
-  // Sync the jsxDev option with esm.dev
-  if (options.esm.dev) {
-    options.options.jsxDev = true;
-  } else if (options.options.jsxDev) {
-    options.esm.dev = true;
-  }
-
   return (site: Site) => {
-    // Get the import map resolver
-    if (options.importMap) {
-      resolver = getResolver(
-        toFileUrl(site.root()),
-        options.importMap,
-      );
-    } else if (denoConfig?.importMap) {
-      resolver = getResolver(
-        toFileUrl(site.root(denoConfig.file)),
-        denoConfig.importMap,
-      );
-    }
-
-    site.loadAssets(options.extensions);
-
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
     };
 
-    site.addEventListener("beforeSave", stop);
-
     const basePath = options.options.absWorkingDir || site.src();
+    const configPath = options.denoConfig
+      ? site.root(options.denoConfig)
+      : undefined;
 
-    const prefix = toFileUrl(site.src()).href;
+    try {
+      const denoConfig = configPath ?? site.root("deno.json");
+      const content = Deno.readTextFileSync(denoConfig);
+      const config = JSON.parse(content);
+      const { compilerOptions } = config;
 
-    /** Run esbuild and returns the output files */
-    const entryContent: Record<string, string> = {};
+      if (compilerOptions?.jsxImportSource) {
+        options.options.jsxImportSource = compilerOptions.jsxImportSource;
+      }
+    } catch {
+      // deno.json doesn't exist.
+    }
 
     async function runEsbuild(
       pages: Page[],
     ): Promise<[OutputFile[], Metafile, boolean]> {
-      let enableAllSourceMaps = false;
-      const entryPoints: { in: string; out: string }[] = [];
+      let sourcemap;
+      const entryPoints: EntryPoint[] = [];
 
       pages.forEach((page) => {
         const { content, filename, enableSourceMap } = prepareAsset(site, page);
         if (enableSourceMap) {
-          enableAllSourceMaps = true;
+          sourcemap = "external";
         }
 
-        let outUri = getPathAndExtension(page.outputPath)[0];
-        if (outUri.startsWith("/")) {
-          outUri = outUri.slice(1); // This prevents Esbuild to generate urls with _.._/_.._/
+        let [out] = getPathAndExtension(page.outputPath);
+        if (out.startsWith("/")) {
+          out = out.slice(1); // This prevents Esbuild to generate urls with _.._/_.._/
         }
 
-        entryPoints.push({ in: filename, out: outUri });
-        entryContent[toFileUrl(filename).href] = content;
+        entryPoints.push({ in: filename, out, content });
       });
 
       const buildOptions: BuildOptions = {
@@ -167,91 +113,68 @@ export function esbuild(userOptions?: Options) {
         write: false,
         metafile: true,
         absWorkingDir: basePath,
-        entryPoints,
-        sourcemap: enableAllSourceMaps ? "external" : undefined,
+        entryPoints: entryPoints.map((p) => ({ in: p.in, out: p.out })),
+        sourcemap,
       };
 
-      buildOptions.plugins!.push({
-        name: "lume-loader",
-        // deno-lint-ignore no-explicit-any
-        setup(build: any) {
-          build.onResolve({ filter: /.*/ }, (args: ResolveArguments) => {
-            const { path, importer } = args;
+      buildOptions.plugins!.push(
+        {
+          name: "lume-loader",
+          setup(build) {
+            build.onResolve({ filter: /.*/ }, ({ kind, path, resolveDir }) => {
+              if (kind === "entry-point") {
+                const entryPoint = entryPoints.find((entry) =>
+                  entry.in === path
+                );
 
-            // Absolute url
-            if (isUrl(path)) {
-              return resolve(path, importer, options.esm);
-            }
+                return {
+                  path,
+                  pluginData: { entryPoint },
+                };
+              }
 
-            // Resolve the relative url
-            if (isUrl(importer) && path.match(/^[./]/)) {
-              return resolve(
-                new URL(path, importer).href,
-                importer,
-                options.esm,
-              );
-            }
-
-            // It's a npm package
-            if (path.startsWith("npm:")) {
-              return resolve(path, importer, options.esm);
-            }
-
-            if (!isUrl(path)) {
-              return resolve(
-                isAbsolutePath(path) ? toFileUrl(path).href : path,
-                importer,
-                options.esm,
-              );
-            }
-
-            return resolve(path, importer, options.esm);
-          });
-
-          build.onLoad({ filter: /.*/ }, async (args: LoadArguments) => {
-            let { path, namespace } = args;
-
-            // It's one of the entry point files
-            if (entryContent[path]) {
-              return {
-                contents: entryContent[path],
-                loader: getLoader(path),
-              };
-            }
-
-            // Read files from Lume
-            if (namespace === "deno") {
-              if (path.startsWith(prefix)) {
-                const file = path.replace(prefix, "");
-                const content = await site.getContent(file, textLoader);
-
-                if (content) {
+              if (path.startsWith(".")) {
+                if (resolveDir) {
                   return {
-                    contents: content,
-                    loader: getLoader(path),
+                    path: join(resolveDir, path),
                   };
                 }
               }
-            }
+            });
 
-            // Convert file:// urls to paths
-            if (path.startsWith("file://")) {
-              path = normalizePath(fromFileUrl(path));
-            }
+            build.onLoad({ filter: /.*/ }, async ({ path, pluginData }) => {
+              if (pluginData?.entryPoint) {
+                return {
+                  contents: pluginData.entryPoint.content,
+                  loader: getLoader(path),
+                };
+              }
 
-            // Read other files from the filesystem/url
-            const content = await readFile(path);
-            return {
-              contents: content,
-              loader: getLoader(path),
-            };
-          });
+              // Load the file from the site
+              const src = normalizePath(path, basePath);
+              const entry = site.fs.entries.get(src);
+
+              if (entry) {
+                const { content } = await entry.getContent(textLoader);
+
+                return {
+                  contents: content,
+                  loader: getLoader(path),
+                };
+              }
+            });
+          },
         },
-      });
+        ...denoPlugins({
+          configPath,
+        }),
+      );
 
       const { outputFiles, metafile, warnings, errors } = await build(
         buildOptions,
       );
+
+      await stop();
 
       if (errors.length) {
         log.error(`[esbuild plugin] ${errors.length} errors `);
@@ -263,7 +186,7 @@ export function esbuild(userOptions?: Options) {
         );
       }
 
-      return [outputFiles || [], metafile!, enableAllSourceMaps];
+      return [outputFiles || [], metafile!, !!sourcemap];
     }
 
     site.process(options.extensions, async (pages, allPages) => {
@@ -301,7 +224,6 @@ export function esbuild(userOptions?: Options) {
               : outputPath,
             outputPath,
             basePath,
-            options.esm,
             metafile,
           );
 
@@ -342,55 +264,6 @@ export function esbuild(userOptions?: Options) {
   };
 }
 
-function getLoader(path: string) {
-  const ext = extname(path).toLowerCase();
-
-  switch (ext) {
-    case ".ts":
-    case ".mts":
-      return "ts";
-    case ".tsx":
-      return "tsx";
-    case ".jsx":
-      return "jsx";
-    case ".json":
-      return "json";
-    default:
-      return "js";
-  }
-}
-
-interface LoadArguments {
-  path: string;
-  namespace: string;
-  suffix: string;
-  pluginData: unknown;
-}
-
-interface ResolveArguments {
-  path: string;
-  importer: string;
-  namespace: string;
-  resolveDir: string;
-  kind: string;
-  pluginData: unknown;
-}
-
-function buildJsxConfig(config?: DenoConfig): BuildOptions | undefined {
-  if (!config) {
-    return;
-  }
-
-  const { compilerOptions } = config;
-
-  if (compilerOptions?.jsxImportSource) {
-    return {
-      jsx: "automatic",
-      jsxImportSource: compilerOptions.jsxImportSource,
-    };
-  }
-}
-
 function relativePathFromUri(uri: string, basePath?: string): string {
   if (uri.startsWith("deno:")) {
     uri = uri.slice("deno:".length);
@@ -408,14 +281,13 @@ function resolveImports(
   sourcePath: string,
   outputPath: string,
   basePath: string,
-  esm: EsmOptions,
   metafile: Metafile,
 ): string {
   source = source.replaceAll(
     /\bfrom\s*["']([^"']+)["']/g,
     (_, path) =>
       `from "${
-        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+        resolveImport(path, sourcePath, outputPath, basePath, metafile)
       }"`,
   );
 
@@ -423,7 +295,7 @@ function resolveImports(
     /\bimport\s*["']([^"']+)["']/g,
     (_, path) =>
       `import "${
-        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+        resolveImport(path, sourcePath, outputPath, basePath, metafile)
       }"`,
   );
 
@@ -431,7 +303,7 @@ function resolveImports(
     /\bimport\([\s\n]*["']([^"']+)["'](?=[\s\n]*[,)])/g,
     (_, path) =>
       `import("${
-        resolveImport(path, sourcePath, outputPath, basePath, esm, metafile)
+        resolveImport(path, sourcePath, outputPath, basePath, metafile)
       }"`,
   );
 
@@ -443,7 +315,6 @@ function resolveImport(
   sourcePath: string,
   outputPath: string,
   basePath: string,
-  esm: EsmOptions,
   metafile: Metafile,
 ): string {
   if (importPath.startsWith(".") || importPath.startsWith("/")) {
@@ -480,72 +351,36 @@ function resolveImport(
     return "./" + relativeOutputPathOfImport;
   }
 
-  return resolve(importPath, "", esm).path;
+  return resolve(importPath, "").path;
 }
 
-function resolve(path: string, referrer: string, esm: EsmOptions) {
+function resolve(path: string, referrer: string) {
   if (referrer && resolver) {
     path = resolver(path, referrer) || path;
   }
 
   return {
-    path: handleEsm(path, esm) || path,
+    path,
     namespace: "deno",
   };
 }
 
-function handleEsm(path: string, options: EsmOptions): string | undefined {
-  const match = path.match(/^(npm|jsr):(.*)$/);
+function getLoader(path: string) {
+  const ext = extname(path).toLowerCase();
 
-  if (!match) {
-    return;
+  switch (ext) {
+    case ".ts":
+    case ".mts":
+      return "ts";
+    case ".tsx":
+      return "tsx";
+    case ".jsx":
+      return "jsx";
+    case ".json":
+      return "json";
+    default:
+      return "js";
   }
-
-  const [, prefix, name] = match;
-  const url = new URL(
-    `https://esm.sh${posix.join(prefix === "npm" ? "/" : "/jsr", name)}`,
-  );
-
-  if (options.dev) {
-    url.searchParams.set("dev", "true");
-  }
-
-  // cjs exports
-  const cjs_exports = options.cjsExports?.[name];
-
-  if (cjs_exports) {
-    url.searchParams.set(
-      "cjs-exports",
-      Array.isArray(cjs_exports) ? cjs_exports.join(",") : cjs_exports,
-    );
-  }
-
-  // Target
-  if (options.target) {
-    url.searchParams.set("target", options.target);
-  }
-
-  // Deps
-  for (const key of [name, "*"]) {
-    const deps = options.deps?.[key];
-
-    if (deps) {
-      const current = url.searchParams.get("deps") || "";
-      const value = new Set(current.split(","));
-      if (Array.isArray(deps)) {
-        deps.forEach((v) => value.add(v));
-      } else {
-        value.add(deps);
-      }
-
-      url.searchParams.set(
-        "deps",
-        [...value].filter((v) => v).join(","),
-      );
-    }
-  }
-
-  return url.href;
 }
 
 export default esbuild;

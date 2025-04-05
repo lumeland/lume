@@ -6,40 +6,38 @@ snapshot[`brotli plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -50,14 +48,14 @@ snapshot[`brotli plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -74,14 +72,14 @@ snapshot[`brotli plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -93,26 +91,36 @@ snapshot[`brotli plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
-      ext: ".css",
-      pageType: "asset",
-    },
-    {
-      copy: true,
-      engines: undefined,
       ext: ".png",
+    },
+    {
+      ext: ".css",
+    },
+    {
+      ext: ".html",
+    },
+    {
+      ext: ".mjs",
+    },
+    {
+      ext: ".svg",
+    },
+    {
+      ext: ".xml",
+    },
+    {
+      ext: ".txt",
     },
   ],
   src: [
@@ -159,160 +167,7 @@ snapshot[`brotli plugin 2`] = `
 snapshot[`brotli plugin 3`] = `
 [
   {
-    content: "Uint8Array(77)",
-    data: {
-      basename: "404",
-      content: "Uint8Array(77)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/404.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(30)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(30)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/overrided-page2/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(29)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(29)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/page5/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(29)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(29)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/new-name/page7/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(87)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(87)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/page4/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(35)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(35)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/pages/page6/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(59)",
-    data: {
-      basename: "index",
-      content: "Uint8Array(59)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/static/index.html.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(41)",
-    data: {
-      basename: "styles",
-      content: "Uint8Array(41)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/styles.css.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -334,7 +189,6 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -343,54 +197,32 @@ snapshot[`brotli plugin 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Uint8Array(72)",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
+      basename: "404",
+      content: "Uint8Array(72)",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
+      url: "/404.html.br",
     },
     src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 2",
+    content: "Content of Page 2",
     data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -415,7 +247,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -425,15 +256,196 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Uint8Array(20)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(20)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/overrided-page2/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(20)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(20)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/page_3/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(20)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(20)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/page5/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(20)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(20)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pages/new-name/page7/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -459,7 +471,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -469,15 +480,30 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "Uint8Array(78)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(78)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/pages/page4/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -506,7 +532,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -516,104 +541,34 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
+    content: "Uint8Array(29)",
     data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
+      basename: "index",
+      content: "Uint8Array(29)",
       page: [
         "src",
         "data",
-        "asset",
       ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
+      url: "/pages/page6/index.html.br",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-This yaml should be ignored because it's copied statically",
+    content: "This is a page",
     data: {
       basename: "static",
-      children: "This yaml should be ignored because it's copied statically",
-      content: "This yaml should be ignored because it's copied statically",
+      children: "This is a page",
+      content: "This is a page",
       date: [],
       imagick: "Array(1)",
       mergedKeys: [
@@ -628,7 +583,6 @@ This yaml should be ignored because it's copied statically",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -637,26 +591,32 @@ This yaml should be ignored because it's copied statically",
       url: "/static/",
     },
     src: {
-      asset: false,
       ext: ".yml",
       path: "/static",
       remote: undefined,
     },
   },
   {
-    content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
+    content: "Uint8Array(18)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(18)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/static/index.html.br",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(52)",
     data: {
       basename: "styles",
-      content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      date: [],
       imagick: "Array(1)",
       mergedKeys: [
         "tags",
@@ -670,7 +630,6 @@ This yaml should be ignored because it's copied statically",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -679,9 +638,25 @@ This yaml should be ignored because it's copied statically",
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(41)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(41)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/styles.css.br",
+    },
+    src: {
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },
@@ -694,40 +669,38 @@ snapshot[`brotli plugin with options 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
       dataLoader: [AsyncFunction: json],
       engines: 0,
       ext: ".json",
       loader: [AsyncFunction: json],
-      pageType: "asset",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -738,14 +711,14 @@ snapshot[`brotli plugin with options 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -762,14 +735,14 @@ snapshot[`brotli plugin with options 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -781,26 +754,21 @@ snapshot[`brotli plugin with options 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      assetLoader: [AsyncFunction: text],
-      engines: undefined,
-      ext: ".css",
-      pageType: "asset",
-    },
-    {
-      copy: true,
-      engines: undefined,
       ext: ".png",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [
@@ -847,27 +815,7 @@ snapshot[`brotli plugin with options 2`] = `
 snapshot[`brotli plugin with options 3`] = `
 [
   {
-    content: "Uint8Array(56)",
-    data: {
-      basename: "styles",
-      content: "Uint8Array(56)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      url: "/styles.css.br",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
+    content: "<p>This page is exported to <code>/404.html</code>, not <code>/404/index.html</code></p>
 ",
     data: {
       basename: "404",
@@ -889,7 +837,6 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -898,54 +845,15 @@ snapshot[`brotli plugin with options 3`] = `
       url: "/404.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/404",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 5",
+    content: "Content of Page 2",
     data: {
-      basename: "page5",
-      children: "Content of Page 5",
-      content: "Content of Page 5",
-      date: [],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Default site name",
-      tags: "Array(0)",
-      title: "Page 5",
-      url: "/page5/",
-    },
-    src: {
-      asset: false,
-      ext: ".yaml",
-      path: "/page5",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 2",
-    data: {
-      basename: "page2",
+      basename: "overrided-page2",
       children: "Content of Page 2",
       colors: "Array(3)",
       content: "Content of Page 2",
@@ -970,7 +878,6 @@ Content of Page 2",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -980,15 +887,128 @@ Content of Page 2",
       url: "/overrided-page2/",
     },
     src: {
-      asset: false,
       ext: ".page.json",
       path: "/pages/2020-06-21_page2",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
+    content: "Content of Page 3",
+    data: {
+      basename: "page_3",
+      children: "Content of Page 3",
+      colors: "Array(3)",
+      content: "Content of Page 3",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(1)",
+      title: "Page 3",
+      url: "/page_3/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/page3",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 5",
+    data: {
+      basename: "page5",
+      children: "Content of Page 5",
+      content: "Content of Page 5",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      title: "Page 5",
+      url: "/page5/",
+    },
+    src: {
+      ext: ".yaml",
+      path: "/page5",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 7",
+    data: {
+      basename: "page7",
+      children: "Content of Page 7",
+      colors: "Array(3)",
+      content: "Content of Page 7",
+      date: [],
+      documents: "Array(3)",
+      drinks: [
+        "alcoholic",
+        "others",
+      ],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      names: "Array(2)",
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Folder overrided site name",
+      tags: "Array(3)",
+      url: "/pages/new-name/page7/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/pages/subpage/page7",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
     data: {
       basename: "page4",
       children: "Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_page4.page.ts",
@@ -1014,7 +1034,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1024,15 +1043,13 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page4/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/pages/2021-01-02-18-32_page4",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Content of Page 6</p>
+    content: "<p>Content of Page 6</p>
 ",
     data: {
       basename: "page6",
@@ -1061,7 +1078,6 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1071,104 +1087,17 @@ Content of Page 4 in Overrided site name, from the file /pages/2021-01-02-18-32_
       url: "/pages/page6/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/pages/ghost/2021-12-29-page6",
       remote: undefined,
     },
   },
   {
-    content: "Content of Page 3",
-    data: {
-      basename: "page3",
-      colors: "Array(3)",
-      content: "Content of Page 3",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(1)",
-      title: "Page 3",
-      url: "/page_3",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/page3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Content of Page 7",
-    data: {
-      basename: "page7",
-      children: "Content of Page 7",
-      colors: "Array(3)",
-      content: "Content of Page 7",
-      date: [],
-      documents: "Array(3)",
-      drinks: [
-        "alcoholic",
-        "others",
-      ],
-      imagick: "Array(1)",
-      mergedKeys: [
-        "tags",
-        "metas",
-        "imagick",
-      ],
-      metas: [
-        "title",
-        "description",
-      ],
-      names: "Array(2)",
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      site: "Folder overrided site name",
-      tags: "Array(3)",
-      url: "/pages/new-name/page7/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/pages/subpage/page7",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-This yaml should be ignored because it's copied statically",
+    content: "This is a page",
     data: {
       basename: "static",
-      children: "This yaml should be ignored because it's copied statically",
-      content: "This yaml should be ignored because it's copied statically",
+      children: "This is a page",
+      content: "This is a page",
       date: [],
       imagick: "Array(1)",
       mergedKeys: [
@@ -1183,7 +1112,6 @@ This yaml should be ignored because it's copied statically",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1192,26 +1120,15 @@ This yaml should be ignored because it's copied statically",
       url: "/static/",
     },
     src: {
-      asset: false,
       ext: ".yml",
       path: "/static",
       remote: undefined,
     },
   },
   {
-    content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
+    content: "Uint8Array(52)",
     data: {
       basename: "styles",
-      content: "body {
-  font-family: sans-serif;
-  color: black;
-}
-",
-      date: [],
       imagick: "Array(1)",
       mergedKeys: [
         "tags",
@@ -1225,7 +1142,6 @@ This yaml should be ignored because it's copied statically",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -1234,9 +1150,25 @@ This yaml should be ignored because it's copied statically",
       url: "/styles.css",
     },
     src: {
-      asset: true,
       ext: ".css",
       path: "/styles",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(56)",
+    data: {
+      basename: "styles",
+      content: "Uint8Array(56)",
+      page: [
+        "src",
+        "data",
+      ],
+      url: "/styles.css.br",
+    },
+    src: {
+      ext: "",
+      path: "",
       remote: undefined,
     },
   },

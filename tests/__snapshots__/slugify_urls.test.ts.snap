@@ -6,32 +6,32 @@ snapshot[`slugify_urls plugin 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`slugify_urls plugin 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`slugify_urls plugin 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,19 +91,20 @@ snapshot[`slugify_urls plugin 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      copy: true,
-      engines: undefined,
+      ext: ".html",
+    },
+    {
       ext: ".css",
     },
   ],
@@ -123,14 +124,14 @@ snapshot[`slugify_urls plugin 1`] = `
 snapshot[`slugify_urls plugin 2`] = `
 [
   {
-    entry: "/UI Styles.css",
-    flags: [],
-    outputPath: "/UI Styles.css",
-  },
-  {
     entry: "/_headers",
     flags: [],
     outputPath: "/_headers",
+  },
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/UI Styles.css",
   },
 ]
 `;
@@ -138,11 +139,35 @@ snapshot[`slugify_urls plugin 2`] = `
 snapshot[`slugify_urls plugin 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>Page 2</p>
+    content: "Foo",
+    data: {
+      basename: "-",
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/generator[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 2</p>
 ",
     data: {
-      basename: "Chourizos ao viño",
+      basename: "chourizos-ao-vino",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -154,7 +179,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -162,18 +186,41 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/chourizos-ao-vino/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 1</p>
+    content: "Filloas con nocilla",
+    data: {
+      basename: "filloas-con-nocilla",
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/generator[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 1</p>
 ",
     data: {
-      basename: "Page 1",
+      basename: "page-1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -185,7 +232,6 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -193,105 +239,16 @@ snapshot[`slugify_urls plugin 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Page 1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Filloas con nocilla",
-    data: {
-      basename: "generator",
-      children: "Filloas con nocilla",
-      content: "Filloas con nocilla",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/filloas-con-nocilla/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Foo",
-    data: {
-      basename: "generator",
-      children: "Foo",
-      content: "Foo",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/803nfon-sfodij/-/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[1]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>Page 3</p>
+    content: "<p>Page 4</p>
 ",
     data: {
-      basename: "page-3",
-      children: "<p>Page 3</p>
-",
-      content: "Page 3
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/paxina-numero/tres/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page-3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>Page 4</p>
-",
-    data: {
-      basename: "page-4",
+      basename: "paxina-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -303,7 +260,6 @@ Foo",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -311,9 +267,36 @@ Foo",
       url: "/paxina-4.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 3</p>
+",
+    data: {
+      basename: "tres",
+      children: "<p>Page 3</p>
+",
+      content: "Page 3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-numero/tres/",
+    },
+    src: {
+      ext: ".md",
+      path: "/page-3",
       remote: undefined,
     },
   },
@@ -326,32 +309,32 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -368,14 +351,14 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -392,14 +375,14 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -411,19 +394,17 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
-      copy: true,
-      engines: undefined,
       ext: ".css",
     },
   ],
@@ -443,14 +424,14 @@ snapshot[`slugify_urls plugin (static files) 1`] = `
 snapshot[`slugify_urls plugin (static files) 2`] = `
 [
   {
-    entry: "/UI Styles.css",
-    flags: [],
-    outputPath: "/ui-styles.css",
-  },
-  {
     entry: "/_headers",
     flags: [],
     outputPath: "/headers",
+  },
+  {
+    entry: "/UI Styles.css",
+    flags: [],
+    outputPath: "/ui-styles.css",
   },
 ]
 `;
@@ -458,11 +439,35 @@ snapshot[`slugify_urls plugin (static files) 2`] = `
 snapshot[`slugify_urls plugin (static files) 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<p>Page 2</p>
+    content: "Foo",
+    data: {
+      basename: "-",
+      children: "Foo",
+      content: "Foo",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/803nfon-sfodij/-/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/generator[1]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 2</p>
 ",
     data: {
-      basename: "Chourizos ao viño",
+      basename: "chourizos-ao-vino",
       children: "<p>Page 2</p>
 ",
       content: "Page 2
@@ -474,7 +479,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -482,18 +486,41 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/chourizos-ao-vino/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Chourizos ao viño",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<p>Page 1</p>
+    content: "Filloas con nocilla",
+    data: {
+      basename: "filloas-con-nocilla",
+      children: "Filloas con nocilla",
+      content: "Filloas con nocilla",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filloas-con-nocilla/",
+    },
+    src: {
+      ext: ".page.js",
+      path: "/generator[0]",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 1</p>
 ",
     data: {
-      basename: "Page 1",
+      basename: "page-1",
       children: "<p>Page 1</p>
 ",
       content: "Page 1
@@ -505,7 +532,6 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -513,105 +539,16 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       url: "/page-1/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/Page 1",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-Filloas con nocilla",
-    data: {
-      basename: "generator",
-      children: "Filloas con nocilla",
-      content: "Filloas con nocilla",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/filloas-con-nocilla/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[0]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-Foo",
-    data: {
-      basename: "generator",
-      children: "Foo",
-      content: "Foo",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/803nfon-sfodij/-/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/generator[1]",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>Page 3</p>
+    content: "<p>Page 4</p>
 ",
     data: {
-      basename: "page-3",
-      children: "<p>Page 3</p>
-",
-      content: "Page 3
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/paxina-numero/tres/",
-    },
-    src: {
-      asset: false,
-      ext: ".md",
-      path: "/page-3",
-      remote: undefined,
-    },
-  },
-  {
-    content: "<!DOCTYPE html>
-<p>Page 4</p>
-",
-    data: {
-      basename: "page-4",
+      basename: "paxina-4",
       children: "<p>Page 4</p>
 ",
       content: "Page 4
@@ -623,7 +560,6 @@ Foo",
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -631,9 +567,36 @@ Foo",
       url: "/paxina-4.html",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/page-4",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page 3</p>
+",
+    data: {
+      basename: "tres",
+      children: "<p>Page 3</p>
+",
+      content: "Page 3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/paxina-numero/tres/",
+    },
+    src: {
+      ext: ".md",
+      path: "/page-3",
       remote: undefined,
     },
   },

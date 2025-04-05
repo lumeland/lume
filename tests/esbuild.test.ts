@@ -4,6 +4,34 @@ import jsx from "../plugins/jsx.ts";
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
+  "esbuild plugin with JSX",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "esbuild_jsx",
+    });
+
+    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add("main.jsx");
+
+    site.use(jsx({
+      pageSubExtension: ".page",
+    }));
+
+    site.use(esbuild({
+      denoConfig: "esbuild_jsx/deno.json",
+      options: {
+        jsxImportSource: "npm:react@18.2.0",
+      },
+    }));
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);
+
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
   "esbuild plugin",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
@@ -12,6 +40,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
@@ -32,6 +61,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     // Test ignore with a function filter
     site.ignore((path) => path === "/modules" || path.startsWith("/modules/"));
@@ -82,36 +112,6 @@ Deno.test(
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
-  "esbuild plugin with JSX",
-  { sanitizeOps: false, sanitizeResources: false },
-  async (t) => {
-    const site = getSite({
-      src: "esbuild_jsx",
-    });
-
-    site.data("basename", "util/toLower", "/other/to_lowercase.ts");
-
-    site.use(jsx({
-      pageSubExtension: ".page",
-    }));
-
-    site.use(esbuild({
-      extensions: [".jsx", ".tsx"],
-      importMap: {
-        imports: {
-          react: "npm:react@18.2.0",
-          "react-dom": "npm:react-dom@18.2.0/client",
-        },
-      },
-    }));
-
-    await build(site);
-    await assertSiteSnapshot(t, site);
-  },
-);
-
-// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
-Deno.test(
   "esbuild plugin with outExtension",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
@@ -120,6 +120,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -142,6 +143,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -164,6 +166,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {
@@ -186,6 +189,7 @@ Deno.test(
     });
 
     site.data("basename", "util/toLower", "/other/to_lowercase.ts");
+    site.add([".ts"]);
 
     site.use(esbuild({
       options: {

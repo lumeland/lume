@@ -7,10 +7,8 @@ Deno.test("relative_url plugin", async (t) => {
     location: new URL("https://example.com/blog"),
   });
 
-  site.use(relativeUrls({
-    extensions: [".html", ".css"],
-  }));
-  site.loadAssets([".css"]);
+  site.use(relativeUrls());
+  site.add([".css"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);

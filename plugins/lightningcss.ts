@@ -2,10 +2,10 @@ import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
-import textLoader from "../core/loaders/text.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type {
@@ -15,22 +15,18 @@ import type {
 } from "../deps/lightningcss.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
-  extensions?: string[];
-
   /**
    * Custom includes path
    * @default `site.options.includes`
    */
   includes?: string | false;
 
-  /** Options passed to parcel_css */
+  /** Options passed to Lightningcss */
   options?: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
 }
 
 // Default options
 export const defaults: Options = {
-  extensions: [".css"],
   includes: "",
   options: {
     minify: true,
@@ -61,16 +57,27 @@ export function lightningCSS(userOptions?: Options) {
       userOptions,
     );
 
-    site.loadAssets(options.extensions);
-
+    let bundle = false;
     if (options.includes) {
-      site.process(options.extensions, lightningCSSBundler);
       site.ignore(options.includes);
-    } else {
-      site.process(
-        options.extensions,
-        (pages) => pages.forEach(lightningCSSTransformer),
-      );
+      bundle = true;
+    }
+
+    site.process([".css"], lightningCSSProcessor);
+
+    function lightningCSSProcessor(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      if (bundle) {
+        return lightningCSSBundler(files);
+      }
+
+      files.forEach(lightningCSSTransformer);
     }
 
     function lightningCSSTransformer(file: Page) {
@@ -123,7 +130,7 @@ export function lightningCSS(userOptions?: Options) {
           resolver: {
             resolve(id: string, from: string) {
               if (id.startsWith("npm:")) {
-                return `https://esm.sh/${id.slice(4)}`;
+                return id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
               }
               return resolveInclude(id, includes, posix.dirname(from));
             },
@@ -136,7 +143,7 @@ export function lightningCSS(userOptions?: Options) {
                 return readFile(file);
               }
 
-              return await site.getContent(file, textLoader) as string;
+              return await site.getContent(file, false) as string;
             },
           },
         };

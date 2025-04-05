@@ -5,7 +5,7 @@ import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */
@@ -41,12 +41,6 @@ export class ModuleEngine implements Engine {
   ): Promise<unknown> {
     return typeof content === "function"
       ? await content(data, this.helpers)
-      : content;
-  }
-
-  renderComponent(content: unknown, data: Record<string, unknown>): string {
-    return typeof content === "function"
-      ? content(data, this.helpers)
       : content;
   }
 

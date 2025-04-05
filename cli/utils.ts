@@ -26,7 +26,7 @@ export async function createSite(config?: string): Promise<Site> {
     const mod = await import(url);
     const site = mod.default as Site | undefined;
     if (!(site instanceof Site)) {
-      log.critical(
+      log.fatal(
         `[Lume] Missing Site instance! Ensure your config file does export the Site instance as default.`,
       );
       throw new Error("Site instance is not found");

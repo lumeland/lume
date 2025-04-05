@@ -20,23 +20,23 @@ Deno.test("default configuration", () => {
 
 Deno.test("static files configuration", () => {
   const site = lume();
-  const { staticPaths } = site.source;
+  const { addedFiles } = site.source;
 
-  site.copy("img");
-  equals(staticPaths.size, 1);
-  equals(staticPaths.has("/img"), true);
-  equals(staticPaths.get("/img")!.dest, undefined);
+  site.add("img");
+  equals(addedFiles.size, 1);
+  equals(addedFiles.has("/img"), true);
+  equals(typeof addedFiles.get("/img"), "function");
 
-  site.copy("statics/favicon.ico", "favicon.ico");
-  equals(staticPaths.size, 2);
+  site.add("statics/favicon.ico", "favicon.ico");
+  equals(addedFiles.size, 2);
   equals(
-    staticPaths.get("/statics/favicon.ico")!.dest,
+    addedFiles.get("/statics/favicon.ico"),
     "/favicon.ico",
   );
 
-  site.copy("css", ".");
-  equals(staticPaths.size, 3);
-  equals(staticPaths.get("/css")!.dest, "/");
+  site.add("css", ".");
+  equals(addedFiles.size, 3);
+  equals(addedFiles.get("/css"), "/");
 });
 
 Deno.test("ignored files configuration", () => {
@@ -159,16 +159,13 @@ Deno.test("pages configuration", () => {
   for (const ext of extensions) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.loader);
-    assert(formats.get(ext)?.pageType === "page");
+    equals(formats.get(ext)?.isPage, true);
   }
 
   const loader = () => Promise.resolve({});
   const engine = new class implements Engine {
     deleteCache() {}
     render() {
-      return "";
-    }
-    renderComponent() {
       return "";
     }
     addHelper() {}
@@ -183,7 +180,7 @@ Deno.test("pages configuration", () => {
   for (const ext of newExts) {
     equals(formats.has(ext), true);
     assert(formats.get(ext)?.loader);
-    assert(formats.get(ext)?.pageType === "page");
+    equals(formats.get(ext)?.isPage, true);
   }
 });
 
@@ -193,20 +190,16 @@ Deno.test("assets configuration", () => {
 
   equals(formats.size, 16);
 
-  const loader = () => Promise.resolve({});
-
   const extensions = [
     ".css",
     ".js",
   ];
 
-  site.loadAssets(extensions, loader);
+  site.add(extensions);
 
   equals(formats.size, 17);
   for (const ext of extensions) {
     equals(formats.has(ext), true);
-    assert(formats.get(ext)?.pageType === "asset");
-    assert(formats.get(ext)?.assetLoader);
   }
 });
 

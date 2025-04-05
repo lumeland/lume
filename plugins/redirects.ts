@@ -40,7 +40,7 @@ export function redirects(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process("*", (pages) => {
+    site.process((pages) => {
       const redirects: Redirect[] = [];
 
       pages.forEach((page) => {

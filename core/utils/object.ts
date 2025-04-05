@@ -1,4 +1,4 @@
-const reactElement = Symbol.for("react.element");
+const ssxElement = Symbol.for("ssx.element");
 const objectConstructor = {}.constructor;
 
 /** TypeScript helper to create optional properties recursively */
@@ -11,8 +11,8 @@ export type DeepPartial<T> = T extends object ? {
 export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
     obj.constructor === objectConstructor &&
-    // @ts-ignore: Check if the argument passed is a React element
-    obj["$$typeof"] !== reactElement &&
+    // @ts-ignore: Check if the argument passed is a SSX element
+    obj[ssxElement] !== true &&
     // @ts-ignore: Check if the argument passed is a Page.data object
     obj !== obj.page?.data;
 }
@@ -48,35 +48,4 @@ export function merge<Type>(
   }
 
   return merged as unknown as Required<Type>;
-}
-
-/**
- * Merge two objects recursively.
- * It's like merge() but it mutates the first value.
- */
-export function assign<Type>(
-  target: Type,
-  override?: Type,
-) {
-  if (!override) {
-    return;
-  }
-
-  for (const [key, value] of Object.entries(override)) {
-    if (value === undefined) {
-      continue;
-    }
-
-    // @ts-ignore: No index signature with a parameter of type 'string' was found on type 'unknown'
-    if (isPlainObject(target[key]) && isPlainObject(value)) {
-      // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-      target[key] = { ...target[key] };
-      // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-      assign(target[key], value);
-      continue;
-    }
-
-    // @ts-ignore: Type 'string' cannot be used to index type 'Type'
-    target[key] = value;
-  }
 }

@@ -6,32 +6,32 @@ snapshot[`url and htmlUrl update href 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`url and htmlUrl update href 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`url and htmlUrl update href 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`url and htmlUrl update href 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -155,7 +155,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -164,7 +163,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/default-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/default-filter",
       remote: undefined,
@@ -205,7 +203,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -214,230 +211,6 @@ snapshot[`url and htmlUrl update href 3`] = `
       url: "/renamed-filter/",
     },
     src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/renamed-filter",
-      remote: undefined,
-    },
-  },
-]
-`;
-
-snapshot[`configure url and htmlUrl names 1`] = `
-{
-  formats: [
-    {
-      engines: 0,
-      ext: ".page.toml",
-      loader: [AsyncFunction: toml],
-      pageType: "page",
-    },
-    {
-      engines: 1,
-      ext: ".page.ts",
-      loader: [AsyncFunction: module],
-      pageType: "page",
-    },
-    {
-      engines: 1,
-      ext: ".page.js",
-      loader: [AsyncFunction: module],
-      pageType: "page",
-    },
-    {
-      engines: 0,
-      ext: ".page.jsonc",
-      loader: [AsyncFunction: json],
-      pageType: "page",
-    },
-    {
-      engines: 0,
-      ext: ".page.json",
-      loader: [AsyncFunction: json],
-      pageType: "page",
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engines: 0,
-      ext: ".json",
-      loader: [AsyncFunction: json],
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engines: 0,
-      ext: ".jsonc",
-      loader: [AsyncFunction: json],
-    },
-    {
-      engines: 1,
-      ext: ".md",
-      loader: [AsyncFunction: text],
-      pageType: "page",
-    },
-    {
-      engines: 1,
-      ext: ".markdown",
-      loader: [AsyncFunction: text],
-      pageType: "page",
-    },
-    {
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".js",
-      loader: [AsyncFunction: module],
-    },
-    {
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".ts",
-      loader: [AsyncFunction: module],
-    },
-    {
-      engines: 1,
-      ext: ".vento",
-      loader: [AsyncFunction: text],
-      pageType: "page",
-    },
-    {
-      engines: 1,
-      ext: ".vto",
-      loader: [AsyncFunction: text],
-      pageType: "page",
-    },
-    {
-      dataLoader: [AsyncFunction: toml],
-      engines: 0,
-      ext: ".toml",
-      loader: [AsyncFunction: toml],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: 0,
-      ext: ".yaml",
-      loader: [AsyncFunction: yaml],
-      pageType: "page",
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: 0,
-      ext: ".yml",
-      loader: [AsyncFunction: yaml],
-      pageType: "page",
-    },
-  ],
-  src: [
-    "/",
-    "/default-filter.page.js",
-    "/renamed-filter.page.js",
-  ],
-}
-`;
-
-snapshot[`configure url and htmlUrl names 2`] = `[]`;
-
-snapshot[`configure url and htmlUrl names 3`] = `
-[
-  {
-    content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Default Filter</title>
-        </head>
-        <body>
-            <a id="url" href="undefined">Url</a>
-            undefined
-            <template>
-              <h1>Template content</h1>
-            </template>
-        </body>
-    </html>
-  ',
-    data: {
-      basename: "default-filter",
-      children: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Default Filter</title>
-        </head>
-        <body>
-            <a id="url" href="undefined">Url</a>
-            undefined
-            <template>
-              <h1>Template content</h1>
-            </template>
-        </body>
-    </html>
-  ',
-      content: "default",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Default Filter",
-      url: "/default-filter/",
-    },
-    src: {
-      asset: false,
-      ext: ".page.js",
-      path: "/default-filter",
-      remote: undefined,
-    },
-  },
-  {
-    content: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Renamed Filter</title>
-        </head>
-        <body>
-            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-        </body>
-    </html>
-  ',
-    data: {
-      basename: "renamed-filter",
-      children: '
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Renamed Filter</title>
-        </head>
-        <body>
-            <a id="urlify" href="https://example.com/urlify/">Urlify</a>
-            <a id="htmlUrlify" href="https://example.com/htmlUrlify/">htmlUrlify</a>
-        </body>
-    </html>
-  ',
-      content: "default",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      title: "Renamed Filter",
-      url: "/renamed-filter/",
-    },
-    src: {
-      asset: false,
       ext: ".page.js",
       path: "/renamed-filter",
       remote: undefined,

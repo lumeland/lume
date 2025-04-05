@@ -9,7 +9,7 @@ import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import textLoader from "../core/loaders/text.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
@@ -17,9 +17,6 @@ import type { StringOptions } from "../deps/sass.ts";
 type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
 export interface Options {
-  /** Extensions processed by this plugin */
-  extensions?: string[];
-
   /** Output format */
   format?: "compressed" | "expanded";
 
@@ -37,7 +34,6 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  extensions: [".scss", ".sass"],
   format: "compressed",
   options: {},
 };
@@ -58,9 +54,18 @@ export function sass(userOptions?: Options) {
       site.ignore(options.includes);
     }
 
-    // Load & process the assets
-    site.loadAssets(options.extensions);
-    site.process(options.extensions, (pages) => concurrent(pages, sass));
+    site.process([".scss", ".sass"], sassProcessor);
+
+    function sassProcessor(files: Page[]) {
+      if (files.length === 0) {
+        log.info(
+          "[sass plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        );
+        return;
+      }
+
+      return concurrent(files, sass);
+    }
 
     const { entries } = site.fs;
     const basePath = site.src();
@@ -108,7 +113,7 @@ export function sass(userOptions?: Options) {
           },
           async load(url: URL) {
             const pathname = fromFileUrl(url);
-            const contents = await site.getContent(pathname, textLoader);
+            const contents = await site.getContent(pathname, false);
 
             if (typeof contents === "string") {
               return {

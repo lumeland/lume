@@ -11,7 +11,7 @@ import type FS from "../core/fs.ts";
 import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";
 
 export interface Options {
-  /** The list of extensions this plugin applies to */
+  /** File extensions to load */
   extensions?: string[];
 
   /** Optional sub-extension for page files */
@@ -120,11 +120,6 @@ export class VentoEngine implements Engine {
     return result.content;
   }
 
-  renderComponent(content: string, data?: Record<string, unknown>): string {
-    const result = this.engine.runStringSync(content, data);
-    return result.content;
-  }
-
   addHelper(name: string, fn: Helper, options: HelperOptions) {
     if (options.async) {
       this.engine.filters[name] = async function (...args: unknown[]) {
@@ -201,6 +196,12 @@ function compTag(
   output: string,
   tokens: Token[],
 ): string | undefined {
+  // Components are always async
+  // so convert automatically {{ comp.whatever }} to {{ await comp.whatever }}
+  if (code.startsWith("comp.")) {
+    return `${output} += await ${code};`;
+  }
+
   if (!code.startsWith("comp ")) {
     return;
   }
@@ -216,7 +217,7 @@ function compTag(
   const [_, comp, args, closed] = match;
 
   if (closed) {
-    return `${output} += comp.${comp}(${args || ""});`;
+    return `${output} += await comp.${comp}(${args || ""});`;
   }
 
   const compiled: string[] = [];
@@ -231,7 +232,9 @@ function compTag(
 
   tokens.shift();
   compiled.push(
-    `${output} += comp.${comp}({...${args || "{}"}, content: ${tmpOutput}});`,
+    `${output} += await comp.${comp}({...${
+      args || "{}"
+    }, content: ${tmpOutput}});`,
   );
   compiled.push("}");
 

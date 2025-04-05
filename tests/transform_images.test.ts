@@ -6,9 +6,8 @@ Deno.test("Image transform plugin", async (t) => {
     src: "transform_images",
   });
 
-  site.use(imageTransform({
-    cache: false,
-  }));
+  site.add("/");
+  site.use(imageTransform());
 
   await build(site);
   await assertSiteSnapshot(t, site);

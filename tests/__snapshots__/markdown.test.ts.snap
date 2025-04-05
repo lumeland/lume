@@ -6,32 +6,32 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +48,14 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +72,14 @@ snapshot[`Build a markdown site 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,15 +91,15 @@ snapshot[`Build a markdown site 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -122,8 +122,7 @@ snapshot[`Build a markdown site 2`] = `[]`;
 snapshot[`Build a markdown site 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -152,7 +151,6 @@ snapshot[`Build a markdown site 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -161,15 +159,13 @@ snapshot[`Build a markdown site 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
     },
   },
   {
-    content: \`<!DOCTYPE html>
-<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+    content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <!-- deno-fmt-ignore -->
 <p>Subsequent paragraphs are indented to show that they
 belong to the previous footnote.</p>
@@ -216,7 +212,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -224,15 +219,13 @@ belong to the previous footnote.</p>
       url: "/footnote/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/footnote",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo" target="_blank">link</a></p>
+    content: '<p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
       basename: "with-attributes",
@@ -247,7 +240,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -255,15 +247,13 @@ belong to the previous footnote.</p>
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+    content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -294,7 +284,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -302,15 +291,13 @@ belong to the previous footnote.</p>
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -345,7 +332,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -353,15 +339,13 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module <strong>example</strong></h1>
+    content: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -384,7 +368,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -393,15 +376,13 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
     data: {
@@ -417,7 +398,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -427,15 +407,13 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
@@ -476,7 +454,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -486,7 +463,6 @@ Foo
       url: "/with-vento/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vento",
       remote: undefined,
@@ -501,32 +477,32 @@ snapshot[`Build a markdown with hooks 1`] = `
     {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -543,14 +519,14 @@ snapshot[`Build a markdown with hooks 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -567,14 +543,14 @@ snapshot[`Build a markdown with hooks 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -586,15 +562,15 @@ snapshot[`Build a markdown with hooks 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
   ],
   src: [
@@ -617,8 +593,7 @@ snapshot[`Build a markdown with hooks 2`] = `[]`;
 snapshot[`Build a markdown with hooks 3`] = `
 [
   {
-    content: "<!DOCTYPE html>
-<h1>Normal page</h1>
+    content: "<h1>Normal page</h1>
 <ul>
 <li>List</li>
 <li>Of</li>
@@ -647,7 +622,6 @@ snapshot[`Build a markdown with hooks 3`] = `
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -656,15 +630,13 @@ snapshot[`Build a markdown with hooks 3`] = `
       url: "/basic/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/basic",
       remote: undefined,
     },
   },
   {
-    content: \`<!DOCTYPE html>
-<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+    content: \`<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <!-- deno-fmt-ignore -->
 <p>Subsequent paragraphs are indented to show that they
 belong to the previous footnote.</p>
@@ -711,7 +683,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -719,15 +690,13 @@ belong to the previous footnote.</p>
       url: "/footnote/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/footnote",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<p><a href="#foo" target="_blank">link</a></p>
+    content: '<p><a href="#foo" target="_blank">link</a></p>
 ',
     data: {
       basename: "with-attributes",
@@ -742,7 +711,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -750,15 +718,13 @@ belong to the previous footnote.</p>
       url: "/with-attributes/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-attributes",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+    content: '<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
 </code></pre>
 <pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
 </code></pre>
@@ -789,7 +755,6 @@ belong to the previous footnote.</p>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -797,15 +762,13 @@ belong to the previous footnote.</p>
       url: "/with-code/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-code",
       remote: undefined,
     },
   },
   {
-    content: "<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: "<!-- deno-fmt-ignore-file -->
 <dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
@@ -840,7 +803,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -848,15 +810,13 @@ Other title
       url: "/with-deflist/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-deflist",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module <strong>example</strong></h1>
+    content: '<h1>Module <strong>example</strong></h1>
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ',
@@ -879,7 +839,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -888,15 +847,13 @@ Other title
       url: "/with-filter/",
     },
     src: {
-      asset: false,
       ext: ".vto",
       path: "/with-filter",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<h1>Module example</h1>
+    content: '<h1>Module example</h1>
 <p><a href="/">Back to home</a></p>
 ',
     data: {
@@ -912,7 +869,6 @@ Other title
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -922,15 +878,13 @@ Other title
       url: "/with-module/",
     },
     src: {
-      asset: false,
       ext: ".page.js",
       path: "/with-module",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<!-- deno-fmt-ignore-file -->
+    content: '<!-- deno-fmt-ignore-file -->
 <h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
@@ -971,7 +925,6 @@ Foo
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -981,7 +934,6 @@ Foo
       url: "/with-vento/",
     },
     src: {
-      asset: false,
       ext: ".md",
       path: "/with-vento",
       remote: undefined,

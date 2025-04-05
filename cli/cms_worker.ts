@@ -1,3 +1,4 @@
+import { adapter } from "../deps/cms.ts";
 import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
 import { toFileUrl } from "../deps/path.ts";
@@ -47,7 +48,6 @@ async function build({ type, config }: CMSOptions) {
   // Add the CMS config file to the watcher
   site.options.watcher.include.push(cmsConfig);
 
-  const { default: adapter } = await import("lume/cms/adapters/lume.ts");
   const cms = mod.default;
   const app = await adapter({ site, cms });
   const { port, hostname, open } = site.options.server;

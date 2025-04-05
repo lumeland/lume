@@ -4,34 +4,46 @@ snapshot[`Build a mdx site 1`] = `
 {
   formats: [
     {
+      engines: 1,
+      ext: ".page.tsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.jsx",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
       engines: 0,
       ext: ".page.toml",
+      isPage: true,
       loader: [AsyncFunction: toml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.ts",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".page.js",
+      isPage: true,
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.jsonc",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       engines: 0,
       ext: ".page.json",
+      isPage: true,
       loader: [AsyncFunction: json],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: json],
@@ -48,14 +60,14 @@ snapshot[`Build a mdx site 1`] = `
     {
       engines: 1,
       ext: ".md",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".markdown",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: module],
@@ -72,14 +84,14 @@ snapshot[`Build a mdx site 1`] = `
     {
       engines: 1,
       ext: ".vento",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".vto",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: toml],
@@ -91,33 +103,31 @@ snapshot[`Build a mdx site 1`] = `
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yaml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       dataLoader: [AsyncFunction: yaml],
       engines: 0,
       ext: ".yml",
+      isPage: true,
       loader: [AsyncFunction: yaml],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".jsx",
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".tsx",
       loader: [AsyncFunction: module],
-      pageType: "page",
     },
     {
       engines: 1,
       ext: ".mdx",
+      isPage: true,
       loader: [AsyncFunction: text],
-      pageType: "page",
     },
   ],
   src: [
@@ -137,31 +147,16 @@ snapshot[`Build a mdx site 2`] = `[]`;
 snapshot[`Build a mdx site 3`] = `
 [
   {
-    content: '<!DOCTYPE html>
-<header><h1>Hello world</h1><p>This is a description</p></header>
+    content: '<header><h1>Hello world</h1><p>This is a description</p></header>
 <h2>Hello world</h2>
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
-<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+<img src="https://via.placeholder.com/350x150" alt="foo">',
     data: {
-      basename: "index",
-      children: [
-        "type",
-        "props",
-        "key",
-        "ref",
-        "__k",
-        "__",
-        "__b",
-        "__e",
-        "__c",
-        "constructor",
-        "__v",
-        "__i",
-        "__u",
-        "__source",
-        "__self",
-        "toString",
-      ],
+      basename: "",
+      children: '<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<img src="https://via.placeholder.com/350x150" alt="foo">',
       comp: [
         "_components",
         "_proxies",
@@ -184,7 +179,6 @@ This is a markdown file with the title **{ title }**.
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -193,32 +187,30 @@ This is a markdown file with the title **{ title }**.
       url: "/",
     },
     src: {
-      asset: false,
       ext: ".mdx",
       path: "/index",
       remote: undefined,
     },
   },
   {
-    content: '<!DOCTYPE html>
-<hr/>
+    content: '<hr>
 <h2>title: Hello world
 description: This is a description</h2>
 
 <header><h1>Hello world</h1><p>This is a description</p></header>
 <h2>Hello world</h2>
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
-<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+<img src="https://via.placeholder.com/350x150" alt="foo">',
     data: {
       basename: "mdx-filter",
-      children: '<hr/>
+      children: '<hr>
 <h2>title: Hello world
 description: This is a description</h2>
 
 <header><h1>Hello world</h1><p>This is a description</p></header>
 <h2>Hello world</h2>
 <p>This is a markdown file with the title <strong>Hello world</strong>.</p>
-<img src="https://via.placeholder.com/350x150" alt="foo"/>',
+<img src="https://via.placeholder.com/350x150" alt="foo">',
       comp: [
         "_components",
         "_proxies",
@@ -231,7 +223,6 @@ description: This is a description</h2>
       page: [
         "src",
         "data",
-        "asset",
       ],
       paginate: "paginate",
       search: [],
@@ -240,7 +231,6 @@ description: This is a description</h2>
       url: "/mdx-filter/",
     },
     src: {
-      asset: false,
       ext: ".page.ts",
       path: "/mdx-filter",
       remote: undefined,
