@@ -51,14 +51,18 @@ export function notFound(userOptions?: Partial<Options>): Middleware {
 async function getDirectoryIndex(root: string, file: string): Promise<string> {
   const folders: [string, string][] = [];
   const files: [string, string][] = [];
+  const folderIcon =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><use xlink:href="#icon-folder"></use></svg>`;
+  const fileIcon =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><use xlink:href="#icon-file"></use></svg>`;
 
   try {
     for await (const info of Deno.readDir(join(root, file))) {
       info.isDirectory
-        ? folders.push([`${info.name}/`, `📁 ${info.name}/`])
+        ? folders.push([`${info.name}/`, `${folderIcon} ${info.name}/`])
         : files.push([
           info.name === "index.html" ? "./" : info.name,
-          `📄 ${info.name}`,
+          `${fileIcon} ${info.name}`,
         ]);
     }
   } catch {
@@ -69,11 +73,11 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
         info.isDirectory
           ? folders.push([
             posix.join(base, `${info.name}/`),
-            `📁 ${info.name}/`,
+            `${folderIcon} ${info.name}/`,
           ])
           : files.push([
             posix.join(base, info.name === "index.html" ? "./" : info.name),
-            `📄 ${info.name}`,
+            `${fileIcon} ${info.name}`,
           ]);
       }
     } catch {
@@ -94,9 +98,47 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>404 - Not found</title>
-      <style> body { font-family: sans-serif; max-width: 40em; margin: auto; padding: 2em; line-height: 1.5; }</style>
+      <style>
+        html {
+          color-scheme: light dark;
+        }
+        body {
+          font-family: sans-serif;
+          max-width: 40em;
+          margin: auto;
+          padding: 2em;
+          line-height: 1.5;
+        }
+        h1 {
+          margin-bottom: 0;
+        }
+        ul {
+          margin: 2em 0;
+          padding: 0;
+          list-style-type: "";
+        }
+        li a {
+          display: flex;
+          align-items: center;
+          column-gap: 0.5em;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      </style>
     </head>
     <body>
+      <svg display="none">
+        <defs>
+          <g id="icon-file">
+            <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"/>
+          </g>
+          <g id="icon-folder">
+            <path d="M232,88V200.89A15.13,15.13,0,0,1,216.89,216H40a16,16,0,0,1-16-16V64A16,16,0,0,1,40,48H93.33a16.12,16.12,0,0,1,9.6,3.2L130.67,72H216A16,16,0,0,1,232,88Z"></path>
+          </g>
+        </defs>
+      </svg>
       <h1>404 - Not found</h1>
       <p>The URL <code>${file}</code> does not exist</p>
       <ul>
