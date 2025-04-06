@@ -9,7 +9,7 @@
 //   `https://deno.land/x/lume_init@${versions.latest}/upgrade.ts`
 // );
 
-const commit = "7c6eb142ad077a9e0ff08466b787fbe096891295";
+const commit = "ec9431f67f7a4bf6def5647af09f15370d7affc3";
 
 const { run } = await import(
   `https://cdn.jsdelivr.net/gh/lumeland/init@${commit}/mod.ts`
