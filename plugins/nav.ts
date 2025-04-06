@@ -138,39 +138,37 @@ export class Nav {
 
     for (const data of dataPages) {
       const url = data.page?.outputPath;
-      const parts = url.split("/").filter((part) => part !== "");
-      let part = parts.shift();
-      let current = nav;
+      const parts = url.split("/")
+        .filter((part) => part !== "" && part !== "index.html")
+        .map((part) => part.endsWith(".html") ? part.slice(0, -5) : part);
 
-      while (part) {
-        if (part === "index.html") {
+      let current = nav;
+      let path = "";
+
+      while (true) {
+        const part = parts.shift();
+
+        // we are at the last part of the path
+        if (!part) {
           current.data = data;
           break;
         }
-        if (part.endsWith(".html") && parts.length === 0) {
-          part = part.slice(0, -5);
-        }
 
-        if (!current.children) {
-          current.children = {};
-        }
+        current.children ??= {};
+        path += `/${part}`;
 
         if (!current.children[part]) {
           current = current.children[part] = {
             slug: part,
-            data: { basename: part } as Data,
+            data: {
+              ...this.#search.data(path),
+              basename: part,
+            } as Data,
             parent: current,
           };
         } else {
           current = current.children[part];
         }
-
-        if (parts.length === 0) {
-          current.data = data;
-          break;
-        }
-
-        part = parts.shift();
       }
     }
 
