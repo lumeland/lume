@@ -4,7 +4,7 @@ import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { MergeStrategy } from "./utils/merge_data.ts";
-import type { ProxyComponents } from "./source.ts";
+import type { ProxyComponents } from "./components.ts";
 import type { Entry } from "./fs.ts";
 
 const decoder = new TextDecoder();

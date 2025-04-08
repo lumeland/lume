@@ -6,7 +6,7 @@ import { basename, join, posix } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
-import type { ProxyComponents } from "../core/source.ts";
+import type { ProxyComponents } from "../core/components.ts";
 
 export interface Options {
   /** File extensions to load */

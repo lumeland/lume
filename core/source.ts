@@ -4,6 +4,7 @@ import { mergeData } from "./utils/merge_data.ts";
 import { getBasename, getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
+import { toProxy } from "./components.ts";
 
 import type { Data, RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -589,64 +590,11 @@ export default class Source {
   }
 }
 
-/**
- * Create and returns a proxy to use the components
- * as comp.name() instead of components.get("name").render()
- */
-function toProxy(
-  components: Components,
-  extraCode: Map<string, string | Entry>,
-): ProxyComponents {
-  const node = {
-    _components: components,
-    _proxies: new Map(),
-  };
-  return new Proxy(node, {
-    get: (target, name) => {
-      if (typeof name !== "string" || name in target) {
-        return;
-      }
-
-      const key = name.toLowerCase();
-
-      if (target._proxies.has(key)) {
-        return target._proxies.get(key);
-      }
-
-      const component = target._components.get(key);
-
-      if (!component) {
-        throw new Error(`Component "${name}" not found`);
-      }
-
-      if (component instanceof Map) {
-        const proxy = toProxy(component, extraCode);
-        target._proxies.set(key, proxy);
-        return proxy;
-      }
-
-      // Save component assets
-      for (const [key, value] of component.assets) {
-        extraCode.set(key, value);
-      }
-
-      // Return the function to render the component
-      return (props: Record<string, unknown>) => component.render(props);
-    },
-  }) as unknown as ProxyComponents;
-}
-
 export type Destination = (path: string) => string;
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export type BasenameParser = (filename: string) => RawData | undefined;
-
-export interface ProxyComponents {
-  // deno-lint-ignore no-explicit-any
-  (props?: Record<string, unknown>): any;
-  [key: string]: ProxyComponents;
-}
 
 /** Merge the cascade components */
 function mergeComponents(...components: Components[]): Components {

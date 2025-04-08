@@ -317,3 +317,56 @@ async function getEntryContent(entry?: Entry | string): Promise<string> {
 
   return "";
 }
+
+export interface ProxyComponents {
+  // deno-lint-ignore no-explicit-any
+  (props?: Record<string, unknown>): any;
+  [key: string]: ProxyComponents;
+}
+
+/**
+ * Create and returns a proxy to use the components
+ * as comp.name() instead of components.get("name").render()
+ */
+export function toProxy(
+  components: Components,
+  extraCode: Map<string, string | Entry>,
+): ProxyComponents {
+  const node = {
+    _components: components,
+    _proxies: new Map(),
+  };
+  return new Proxy(node, {
+    get: (target, name) => {
+      if (typeof name !== "string" || name in target) {
+        return;
+      }
+
+      const key = name.toLowerCase();
+
+      if (target._proxies.has(key)) {
+        return target._proxies.get(key);
+      }
+
+      const component = target._components.get(key);
+
+      if (!component) {
+        throw new Error(`Component "${name}" not found`);
+      }
+
+      if (component instanceof Map) {
+        const proxy = toProxy(component, extraCode);
+        target._proxies.set(key, proxy);
+        return proxy;
+      }
+
+      // Save component assets
+      for (const [key, value] of component.assets) {
+        extraCode.set(key, value);
+      }
+
+      // Return the function to render the component
+      return (props: Record<string, unknown>) => component.render(props);
+    },
+  }) as unknown as ProxyComponents;
+}
