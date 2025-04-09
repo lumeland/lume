@@ -34,10 +34,10 @@ export const pluginNames = [
   "katex",
   "google_fonts",
   "sass",
+  "unocss",
   "lightningcss",
   "postcss",
   "tailwindcss",
-  "unocss",
   "purgecss",
   "source_maps",
 
