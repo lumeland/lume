@@ -12,7 +12,6 @@ export function relativeUrls() {
     const basePath = site.options.location.pathname;
 
     site.use(modifyUrls({
-      extensions: [".html", ".css"],
       fn(url, page) {
         if (!url.startsWith("/") || url.startsWith("//")) {
           return url;

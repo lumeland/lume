@@ -7,9 +7,6 @@ import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
 
 export interface Options {
-  /** File extensions to process */
-  extensions?: Array<".html" | ".css">;
-
   /**
    * The function to generate the new url
    * @default `(url) => url`
@@ -19,7 +16,6 @@ export interface Options {
 
 // Default options
 export const defaults: Options = {
-  extensions: [".html"],
   fn: (url) => url,
 };
 
@@ -52,7 +48,7 @@ export function modifyUrls(userOptions: Options) {
 
   return (site: Site) => {
     site.process(
-      options.extensions,
+      [".html", ".css"],
       (pages) =>
         concurrent(pages, async (page: Page) => {
           if (page.outputPath.endsWith(".css")) {

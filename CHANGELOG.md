@@ -63,7 +63,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `liquid` plugin. Use `nunjucks` instead.
 - `site.copyRemainingFiles()` and `site.copy()`. Use `site.add()` instead.
 - Automatic `<!doctype html>` to all HTML pages.
-- `extensions` option of the plugins `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`, `postcss`, `lightningcss`, `sass`, `svgo`, `filter_pages`.
+- `extensions` option of the plugins `modify_urls`, `check_urls`, `base_path`, `code_highlight`, `fff`, `inline`, `json_ld`, `katex`, `metas`, `multilanguage`, `og_images`, `prism`, `purgecss`, `relative_urls`, `postcss`, `lightningcss`, `sass`, `svgo`, `filter_pages`.
 - `name` option of the plugins: `date`, `json_ld`, `metas`, `nav`, `paginate`, `picture`, `reading_info`, `search`, `transform_images`, `url`, `postcss`.
 - `site.loadAssets()` function. Use `site.add()` instead.
 - `on_demand` plugin and middleware. If you need some server-side logic, you can use router middleware.

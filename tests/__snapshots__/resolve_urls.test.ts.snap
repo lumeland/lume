@@ -104,6 +104,9 @@ snapshot[`relative_url plugin 1`] = `
     {
       ext: ".html",
     },
+    {
+      ext: ".css",
+    },
   ],
   src: [
     "/",
@@ -533,6 +536,9 @@ snapshot[`relative_url plugin (without slugify) 1`] = `
     },
     {
       ext: ".html",
+    },
+    {
+      ext: ".css",
     },
   ],
   src: [

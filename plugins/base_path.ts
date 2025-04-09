@@ -9,7 +9,6 @@ import type Site from "../core/site.ts";
 export function basePath() {
   return (site: Site) => {
     site.use(modifyUrls({
-      extensions: [".html", ".css"],
       fn: (url) => url.startsWith("/") ? site.url(url) : url,
     }));
   };
