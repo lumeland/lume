@@ -581,7 +581,7 @@ export default class Source {
     // Save the page object in the data object
     page.data.page = page;
 
-    // Prevent running the layout if the page is an asset
+    // Prevent running the layout if the page is not HTML
     if (!pageData.layout && !page.outputPath.endsWith(".html")) {
       delete page.data.layout;
     }
