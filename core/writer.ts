@@ -176,19 +176,27 @@ export class FSWriter implements Writer {
           const outputPath = posix.join(this.dest, file);
           this.#outputs.delete(outputPath.toLowerCase());
           await Deno.remove(outputPath);
+
           // Remove empty directories
-          const dir = posix.dirname(outputPath);
-          try {
-            if (dir !== this.dest) {
-              await Deno.remove(dir);
-            }
-          } catch {
-            // Ignored
-          }
+          removeEmptyDirectory(outputPath, this.dest);
         } catch {
           // Ignored
         }
       },
     );
+  }
+}
+
+function removeEmptyDirectory(path: string, base: string) {
+  const dir = posix.dirname(path);
+
+  try {
+    if (dir !== base) {
+      Deno.removeSync(dir);
+      // Check if the parent directory is also empty
+      removeEmptyDirectory(dir, base);
+    }
+  } catch {
+    // Ignored
   }
 }

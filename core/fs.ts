@@ -93,15 +93,6 @@ export default class FS {
       entry.src = src;
     }
 
-    // New directory, walk it
-    if (entry.type === "directory") {
-      if (!exist) {
-        this.#walkFs(entry);
-      }
-
-      return;
-    }
-
     try {
       entry.getInfo();
     } catch (error) {
@@ -116,6 +107,11 @@ export default class FS {
         this.removeEntry(path);
         return exist;
       }
+    }
+
+    // New directory, walk it
+    if (entry.type === "directory" && !exist) {
+      this.#walkFs(entry);
     }
   }
 

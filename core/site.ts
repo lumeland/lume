@@ -628,12 +628,13 @@ export default class Site {
       }
 
       // Remove pages or static files depending on this entry
-      const pages = this.pages.filter((page) => page.src.entry === entry).map((
-        page,
-      ) => page.outputPath);
-      const files = this.files.filter((file) => file.src.entry === entry).map((
-        file,
-      ) => file.outputPath);
+      const pages = this.pages
+        .filter((page) => pathBelongs(entry.path, page.src.entry?.path))
+        .map((page) => page.outputPath);
+      const files = this.files
+        .filter((file) => pathBelongs(entry.path, file.src.entry?.path))
+        .map((file) => file.outputPath);
+
       await this.writer.removeFiles([...pages, ...files]);
     }
 
@@ -1106,3 +1107,10 @@ export type SiteEventType = keyof SiteEventMap;
 
 /** A generic Lume plugin */
 export type Plugin = (site: Site) => void;
+
+function pathBelongs(base: string, path?: string): boolean {
+  if (!path) {
+    return false;
+  }
+  return base === path || path?.startsWith(base + "/");
+}
