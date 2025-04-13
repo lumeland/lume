@@ -81,6 +81,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Improved the output CSS and JS code of components.
 - Components interoperability, specially between JSX vs text engines.
 - Improved reload after renaming or removing a folder.
+- Added live-reload to the 404 page.
 
 [#660]: https://github.com/lumeland/lume/issues/660
 [#736]: https://github.com/lumeland/lume/issues/736

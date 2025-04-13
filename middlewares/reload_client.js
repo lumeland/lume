@@ -1,4 +1,4 @@
-export default function liveReload(initRevision, basepath) {
+export default function liveReload(initRevision, basepath, statusCode) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
@@ -38,6 +38,11 @@ export default function liveReload(initRevision, basepath) {
       revision = message.revision;
 
       if (message.type === "update") {
+        if (statusCode !== 200) {
+          location.reload();
+          return;
+        }
+
         const files = message.files;
 
         if (!Array.isArray(message.files)) {

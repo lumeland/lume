@@ -80,7 +80,7 @@ export function reload(options: Options): Middleware {
     // It's a regular request
     const response = await next(request);
 
-    if (!response.body || response.status !== 200) {
+    if (!response.body) {
       return response;
     }
 
@@ -98,7 +98,7 @@ export function reload(options: Options): Middleware {
       }
 
       const source =
-        `${reloadClient}; liveReload(${revision}, "${options.basepath}");`;
+        `${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status});`;
       const integrity = await computeSourceIntegrity(source);
 
       // Add live reload script and pass initial revision
