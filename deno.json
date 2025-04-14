@@ -41,7 +41,7 @@
     "temporal"
   ],
   "imports": {
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.11.1/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.11.3/",
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.8/jsx-runtime.ts"
   }
 }

@@ -1,1 +1,1 @@
-export { serveFile } from "jsr:@std/http@1.0.13/file-server";
+export { serveFile } from "jsr:@std/http@1.0.14/file-server";
