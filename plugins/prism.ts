@@ -2,6 +2,7 @@ import Prism, { themesPath } from "../deps/prism.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -41,6 +42,12 @@ export function prism(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
+    if (site._data.codeHighlight) {
+      log.error(
+        `The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "prism". Registering "prism" may lead to conflicts and unpredictable behavior.`,
+      );
+    }
+    site._data.codeHighlight = "prism";
     site.process([".html"], (pages) => pages.forEach(prism));
 
     if (options.theme) {

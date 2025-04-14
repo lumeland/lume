@@ -82,7 +82,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Components interoperability, specially between JSX vs text engines.
 - Improved reload after renaming or removing a folder.
 - Added live-reload to the 404 page.
+- Log an error if prism and codeHighlight plugins are registered at the same time [#497].
 
+[#497]: https://github.com/lumeland/lume/issues/497
 [#660]: https://github.com/lumeland/lume/issues/660
 [#736]: https://github.com/lumeland/lume/issues/736
 [#740]: https://github.com/lumeland/lume/issues/740
