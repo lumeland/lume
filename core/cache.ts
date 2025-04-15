@@ -20,16 +20,16 @@ export default class Cache {
   /** Save some content in the cache folder */
   async set(
     key: unknown[],
-    result: string | Uint8Array,
+    value: string | Uint8Array,
   ): Promise<void> {
     const path = await this.getPath(key);
 
     await ensureDir(posix.dirname(path));
 
-    if (typeof result === "string") {
-      Deno.writeTextFileSync(path, result);
+    if (typeof value === "string") {
+      Deno.writeTextFileSync(path, value);
     } else {
-      Deno.writeFileSync(path, result);
+      Deno.writeFileSync(path, value);
     }
   }
 
