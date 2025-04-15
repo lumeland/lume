@@ -18,11 +18,6 @@ export class Page<D extends Data = Data> {
   /** Used to save the page data */
   data: D = {} as D;
 
-  /**
-   * Internal data. Used to save arbitrary data by plugins and processors
-   */
-  #_data = {};
-
   /** The page content (string or Uint8Array) */
   #content?: Content;
 
@@ -50,18 +45,6 @@ export class Page<D extends Data = Data> {
 
   constructor(src?: Partial<Src>) {
     this.src = { path: "", ext: "", ...src };
-  }
-
-  /**
-   * The property _data is to store internal data,
-   * used by plugins, processors, etc to save arbitrary values
-   */
-  set _data(data: Record<string, unknown>) {
-    this.#_data = data;
-  }
-
-  get _data() {
-    return this.#_data;
   }
 
   /** Duplicate this page. */
