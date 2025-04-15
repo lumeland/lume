@@ -147,14 +147,14 @@ export function transformImages(userOptions?: Partial<Options>) {
         }
 
         if (cache) {
-          const result = await cache.get(content, transformation);
+          const result = await cache.getBytes([content, transformation]);
 
           if (result) {
             output.content = result;
           } else {
             await transform(content, output, transformation, options);
             transformed = true;
-            await cache.set(content, transformation, output.content!);
+            await cache.set([content, transformation], output.content!);
           }
         } else {
           await transform(content, output, transformation, options);

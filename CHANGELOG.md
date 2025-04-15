@@ -59,6 +59,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Renamed `CRITICAL` log level to `FATAL`. And added `TRACE` level.
 - Renamed `site.server()` to `site.getServer()` for consistency with `site.getWatcher()`.
 - Use the `site.cache` instance instead of creating a different instance per plugin.
+- Changes in the `Cache` class:
+  - Renamed `get()` to `getBytes()` for consistency with `getText()`
+  - New method `remove()`.
+  - Changed the signature of `getText()` and `getBytes()`.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

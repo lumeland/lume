@@ -147,7 +147,7 @@ async function buildIco(
   cache?: Cache,
 ): Promise<Uint8Array> {
   if (cache) {
-    const result = await cache.get(content, { format, size });
+    const result = await cache.getBytes([content, format, size]);
 
     if (result) {
       return result;
@@ -170,7 +170,7 @@ async function buildIco(
   }
 
   if (cache) {
-    cache.set(content, { format, size }, image);
+    cache.set([content, format, size], image);
   }
 
   return image;

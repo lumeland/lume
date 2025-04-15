@@ -98,7 +98,7 @@ export function ogImages(userOptions?: Options) {
       jsx: unknown,
     ): Promise<Uint8Array | undefined> {
       if (cache) {
-        const result = await cache.get(new Uint8Array(), jsx);
+        const result = await cache.getBytes(["og", jsx]);
 
         if (result) {
           return result;
@@ -109,7 +109,7 @@ export function ogImages(userOptions?: Options) {
       const content = await (await create(svg)).toBuffer();
 
       if (cache) {
-        await cache.set(new Uint8Array(), jsx, content);
+        await cache.set(["og", jsx], content);
       }
 
       return content;
