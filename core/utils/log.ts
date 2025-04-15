@@ -54,6 +54,10 @@ class Logger {
     this.#level = severity[level];
   }
 
+  get level(): number {
+    return this.#level;
+  }
+
   #log(msg: string, level: number): void {
     if (level >= severity.FATAL) {
       msg = `<Red>FATAL</Red> ${msg}`;

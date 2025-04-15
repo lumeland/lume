@@ -57,6 +57,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `multilanguage` plugin: Now it can handle generator pages with an array of languages.
 - `source_map` plugin: The `sourceContent` option is `true` by default.
 - Renamed `CRITICAL` log level to `FATAL`. And added `TRACE` level.
+- Renamed `site.server()` to `site.getServer()` for consistency with `site.getWatcher()`.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

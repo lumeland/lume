@@ -232,7 +232,7 @@ export default class Site {
 
     this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
       if (!fetchServer) {
-        fetchServer = this.server();
+        fetchServer = this.getServer();
       }
 
       return fetchServer.handle(request, info);
@@ -664,24 +664,6 @@ export default class Site {
     });
   }
 
-  /** Returns a server */
-  server(): Server {
-    const { port, page404, middlewares } = this.options.server;
-    const root = this.options.server.root || this.dest();
-    const server = new Server({ root, port });
-
-    server.use(notFound({
-      root,
-      page404,
-    }));
-
-    if (middlewares) {
-      server.use(...middlewares);
-    }
-
-    return server;
-  }
-
   /**
    * Internal function to render pages
    * The common operations of build and update
@@ -939,6 +921,25 @@ export default class Site {
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
     });
+  }
+
+  /** Returns a Web server of the site */
+  getServer(): Server {
+    const { port, hostname, page404, middlewares } = this.options.server;
+    const root = this.options.server.root || this.dest();
+    const server = new Server({ root, port, hostname });
+
+    server.use(notFound({
+      root,
+      page404,
+      directoryIndex: true,
+    }));
+
+    if (middlewares) {
+      server.use(...middlewares);
+    }
+
+    return server;
   }
 }
 

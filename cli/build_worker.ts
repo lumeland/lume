@@ -1,14 +1,12 @@
 import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
 import { setEnv } from "../core/utils/env.ts";
-import Server from "../core/server.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
 import noCors from "../middlewares/no_cors.ts";
-import notFound from "../middlewares/not_found.ts";
 import reload from "../middlewares/reload.ts";
 import { buildSite } from "./utils.ts";
 import { initLocalStorage } from "./missing_worker_apis.ts";
@@ -74,9 +72,8 @@ async function build({ type, config, serve }: BuildOptions) {
   }
 
   // Start the local server
-  const { port, hostname, open, page404, middlewares } = site.options.server;
-  const root = site.options.server.root || site.dest();
-  const server = new Server({ root, port, hostname });
+  const server = site.getServer();
+  const { port, hostname, open } = site.options.server;
 
   server.addEventListener("start", () => {
     if (type === "build") {
@@ -97,7 +94,7 @@ async function build({ type, config, serve }: BuildOptions) {
     site.dispatchEvent({ type: "afterStartServer" });
   });
 
-  if (log.level === 0) {
+  if (log.level < 5) {
     server.use(logger());
   }
 
@@ -108,16 +105,7 @@ async function build({ type, config, serve }: BuildOptions) {
     }),
     noCache(),
     noCors(),
-    notFound({
-      root,
-      page404,
-      directoryIndex: true,
-    }),
   );
-
-  if (middlewares) {
-    server.use(...middlewares);
-  }
 
   server.start();
 }
