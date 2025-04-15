@@ -239,10 +239,6 @@ export default class Site {
     };
   }
 
-  get globalData(): RawData {
-    return this.scopedData.get("/")!;
-  }
-
   /**
    * Returns the full path to the root directory.
    * Use the arguments to return a subpath

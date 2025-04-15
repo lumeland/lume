@@ -73,6 +73,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `name` special variable of components to customize the name. It's always the filename.
 - `slugify_urls` plugin no longer handle unicode characters by default. Use the `transliterate` option to configure it.
 - Internal variable `page._data` because it's useless.
+- `site.globalData` variable due it's no longer needed. Use `site.scopedData.get("/")` if you need it.
 
 ### Fixed
 - The resolution of npm and jsr specifiers by esbuild plugin have been improved.
