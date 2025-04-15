@@ -1,6 +1,7 @@
 import { ParsingOptions, read, utils } from "../deps/sheetjs.ts";
 import { merge } from "../core/utils/object.ts";
-import loadFile from "../core/loaders/binary.ts";
+import loadText from "../core/loaders/text.ts";
+import loadBinary from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";
 import type { RawData } from "../core/file.ts";
@@ -30,8 +31,15 @@ export function sheets(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   async function loader(path: string): Promise<RawData> {
-    const { content } = await loadFile(path);
-    const wb = read(content, options.options);
+    const type = path.endsWith(".csv") ? "string" : "array";
+    const { content } = type === "string"
+      ? await loadText(path)
+      : await loadBinary(path);
+
+    const wb = read(content, {
+      ...options.options,
+      type,
+    });
 
     // Return only the first sheet
     if (options.sheets === "first" || wb.SheetNames.length === 1) {
