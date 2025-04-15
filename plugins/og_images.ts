@@ -1,6 +1,5 @@
 import satori, { SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
-import { createCache } from "../core/cache.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
@@ -44,8 +43,8 @@ export function ogImages(userOptions?: Options) {
     );
     const satoriOptions = options.options as SatoriOptions;
 
-    // Configure the cache folder
-    const cache = createCache(site.root("_cache"));
+    // Get the cache folder
+    const { cache } = site;
 
     site.process([".html"], async (pages, allPages) => {
       if (!satoriOptions.fonts.length) {

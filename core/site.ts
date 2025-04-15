@@ -23,6 +23,7 @@ import { Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
+import Cache from "./cache.ts";
 import notFound from "../middlewares/not_found.ts";
 
 import type { Loader } from "./fs.ts";
@@ -114,6 +115,9 @@ export default class Site {
 
   /** To search pages */
   search: Searcher;
+
+  /** To store cached stuff in the _cache folder */
+  cache: Cache | undefined;
 
   /** To write the generated pages in the dest folder */
   writer: Writer;
@@ -223,9 +227,15 @@ export default class Site {
     this.options.watcher.ignore = this.options.watcher.ignore.map((path) =>
       typeof path === "string" ? normalizePath(path) : path
     );
+
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(normalizePath(this.options.dest));
     this.fs.options.ignore = this.options.watcher.ignore;
+
+    // Initialize the cache if LUME_NOCACHE is not enabled
+    if (env<boolean>("LUME_NOCACHE") !== true) {
+      this.cache = new Cache({ folder: this.root("_cache") });
+    }
 
     // Create the fetch function for `deno serve`
     let fetchServer: Server | undefined;

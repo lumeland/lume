@@ -3,7 +3,6 @@ import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import sharp, { create } from "../deps/sharp.ts";
-import { createCache } from "../core/cache.ts";
 
 import type Site from "../core/site.ts";
 import type { Page, StaticFile } from "../core/file.ts";
@@ -91,7 +90,7 @@ export function transformImages(userOptions?: Partial<Options>) {
     site.process(process);
 
     // Configure the cache folder
-    const cache = createCache(site.root("_cache"));
+    const { cache } = site;
 
     async function process(_: Page[], allPages: Page[]) {
       // Load all static files that must be transformed

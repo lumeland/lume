@@ -1,6 +1,5 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
-import { createCache } from "../core/cache.ts";
 import { log } from "../core/utils/log.ts";
 import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
 
@@ -55,9 +54,6 @@ export function favicon(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    // Configure the cache folder
-    const cache = createCache(site.root("_cache"));
-
     async function getContent(): Promise<Uint8Array | string | undefined> {
       const content = options.input.endsWith(".svg")
         ? await site.getContent(options.input, false)
@@ -77,6 +73,7 @@ export function favicon(userOptions?: Options) {
         return;
       }
 
+      const { cache } = site;
       for (const favicon of options.favicons) {
         pages.push(
           Page.create({

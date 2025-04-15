@@ -1,17 +1,10 @@
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
 import { md5 } from "./utils/digest.ts";
-import { env } from "./utils/env.ts";
-
-const useCache = env<boolean>("LUME_NOCACHE") !== true;
 
 export interface Options {
   /** The folder to load the files from */
   folder?: string;
-}
-
-export function createCache(folder: string): Cache | undefined {
-  return useCache ? new Cache({ folder }) : undefined;
 }
 
 /**
