@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
-import { serveFile as HttpServeFile } from "../deps/http.ts";
+import { serveFile as httpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
@@ -179,7 +179,7 @@ export async function serveFile(
 }
 
 async function fixServeFile(request: Request, path: string): Promise<Response> {
-  const response = await HttpServeFile(request, path);
+  const response = await httpServeFile(request, path);
 
   // Fix for https://github.com/lumeland/lume/issues/734
   if (response.headers.get("content-type") === "application/rss+xml") {
