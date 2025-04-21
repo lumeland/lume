@@ -11,7 +11,9 @@ Deno.test("Sitemap plugin", async (t) => {
     location: new URL("https://example.com/"),
   });
 
-  site.use(sitemap());
+  site.use(sitemap({
+    stylesheet: "/sitemap-style.xml",
+  }));
   site.use(extractDate());
   site.ignore("static.yml");
 

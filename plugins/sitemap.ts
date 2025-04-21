@@ -19,6 +19,9 @@ export interface Options {
   /** The sitemap file name */
   filename?: string;
 
+  /** The xml-stylesheet document for styling */
+  stylesheet?: string;
+
   /**
    * The query to search pages included in the sitemap
    * @default "isRedirect!=true" excludes redirect pages produced by the redirects plugin
@@ -128,7 +131,15 @@ export function sitemap(userOptions?: Options) {
         },
       };
 
-      return stringify(sitemap);
+      const result = stringify(sitemap);
+      return options.stylesheet
+        ? result.replace(
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="${
+            site.url(options.stylesheet)
+          }"?>`,
+        )
+        : result;
     }
   };
 }
