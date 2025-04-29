@@ -1,4 +1,4 @@
-import { build, getSite } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { assertSnapshot } from "../deps/snapshot.ts";
 import { buildFilter, buildSort } from "../core/searcher.ts";
 import extractDate from "../plugins/extract_date.ts";
@@ -210,4 +210,14 @@ Deno.test("Test the file searcher", async (t) => {
   await assertSnapshot(t, search.files().sort());
   await assertSnapshot(t, search.files("/*.png").sort());
   await assertSnapshot(t, search.files(/\.png$/).sort());
+});
+
+Deno.test("Test undefined values", async (t) => {
+  const site = getSite({
+    src: "search",
+  });
+
+  await build(site);
+
+  await assertSiteSnapshot(t, site);
 });

@@ -90,3 +90,262 @@ snapshot[`Test the file searcher 3`] = `
   "/favicon.png",
 ]
 `;
+
+snapshot[`Test undefined values 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/a.md",
+    "/b.md",
+    "/c.md",
+    "/d.md",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`Test undefined values 2`] = `[]`;
+
+snapshot[`Test undefined values 3`] = `
+[
+  {
+    content: "<p>Page A</p>
+",
+    data: {
+      basename: "a",
+      children: "<p>Page A</p>
+",
+      content: "Page A",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "A",
+      url: "/a/",
+    },
+    src: {
+      ext: ".md",
+      path: "/a",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page B</p>
+",
+    data: {
+      basename: "b",
+      children: "<p>Page B</p>
+",
+      content: "Page B",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/b/",
+    },
+    src: {
+      ext: ".md",
+      path: "/b",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page C</p>
+",
+    data: {
+      basename: "c",
+      children: "<p>Page C</p>
+",
+      content: "Page C",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "C",
+      url: "/c/",
+    },
+    src: {
+      ext: ".md",
+      path: "/c",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>Page D</p>
+",
+    data: {
+      basename: "d",
+      children: "<p>Page D</p>
+",
+      content: "Page D",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/d/",
+    },
+    src: {
+      ext: ".md",
+      path: "/d",
+      remote: undefined,
+    },
+  },
+  {
+    content: "bdac",
+    data: {
+      basename: "",
+      children: "bdac",
+      content: '{{ for post of search.pages("", "title") }}
+  {{- post.basename -}}
+{{ /for }}
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "Z",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+]
+`;

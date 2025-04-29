@@ -442,10 +442,12 @@ export function buildSort(sort: string): (a: Data, b: Data) => number {
           `(a.${key} == b.${key} ? ${fn} : collator.compare(b.${key} || "", a.${key} || ""))`;
         break;
       case "desc":
-        fn = `(a.${key} == b.${key} ? ${fn} : a.${key} < b.${key} ? 1 : -1)`;
+        fn =
+          `(a.${key} == b.${key} ? ${fn} : (a.${key} ?? "") < (b.${key} ?? "") ? 1 : -1)`;
         break;
       default:
-        fn = `(a.${key} == b.${key} ? ${fn} : a.${key} > b.${key} ? 1 : -1)`;
+        fn =
+          `(a.${key} == b.${key} ? ${fn} : (a.${key} ?? "") > (b.${key} ?? "") ? 1 : -1)`;
         break;
     }
   });

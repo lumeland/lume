@@ -1,0 +1,5 @@
+---
+title: C
+---
+
+Page C
