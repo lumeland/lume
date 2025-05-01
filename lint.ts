@@ -20,7 +20,9 @@ export default {
         const calls: string[] = [];
 
         return {
-          "ImportDeclaration[source.value=/lume\/plugins\//]"(node) {
+          "ImportDeclaration[source.value=/lume\/plugins\//]"(
+            node: Deno.lint.ImportDeclaration,
+          ) {
             const source = node.source.value;
             const identifier = node.specifiers[0].local.name;
             const position = validOrder.indexOf(source);
@@ -69,7 +71,9 @@ export default {
     "jsx-spread-position": {
       create(context) {
         return {
-          "JSXSpreadAttribute:not(:last-child)"(node) {
+          "JSXSpreadAttribute:not(:last-child)"(
+            node: Deno.lint.JSXSpreadAttribute,
+          ) {
             context.report({
               node,
               message:
