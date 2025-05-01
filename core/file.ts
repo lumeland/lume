@@ -276,3 +276,17 @@ export interface Data extends RawData {
    */
   alternates?: Data[];
 }
+
+/** Promote files to pages */
+export async function filesToPages(
+  files: StaticFile[],
+  pages: Page[],
+  filter: (file: StaticFile) => boolean,
+): Promise<void> {
+  const toRemove: StaticFile[] = files.filter(filter);
+
+  for (const file of toRemove) {
+    pages.push(await file.toPage());
+    files.splice(files.indexOf(file), 1);
+  }
+}

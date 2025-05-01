@@ -19,7 +19,7 @@ import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
-import { Page } from "./file.ts";
+import { filesToPages, Page } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -679,6 +679,14 @@ export default class Site {
    * The common operations of build and update
    */
   async #buildPages(pages: Page[]): Promise<boolean> {
+    // Promote the files that must be preprocessed to pages
+    const preExtensions = this.preprocessors.extensions;
+    await filesToPages(
+      this.files,
+      pages,
+      (file) => preExtensions.has(file.src.ext),
+    );
+
     if (await this.dispatchEvent({ type: "beforeRender", pages }) === false) {
       return false;
     }
@@ -748,7 +756,11 @@ export default class Site {
 
     // Promote the files that must be processed to pages
     const extensions = this.processors.extensions;
-    await this.filesToPages((file) => extensions.has(file.src.ext));
+    await filesToPages(
+      this.files,
+      this.pages,
+      (file) => extensions.has(file.src.ext),
+    );
 
     // Run the processors to the pages
     await this.processors.run(this.pages);
@@ -763,22 +775,6 @@ export default class Site {
     );
 
     return await this.dispatchEvent({ type: "beforeSave" });
-  }
-
-  /** Promote a file to page. */
-  async filesToPages(filter: (file: StaticFile) => boolean): Promise<void> {
-    const toRemove: StaticFile[] = [];
-
-    for (const file of this.files) {
-      if (filter(file)) {
-        this.pages.push(await file.toPage());
-        toRemove.push(file);
-      }
-    }
-
-    for (const file of toRemove) {
-      this.files.splice(this.files.indexOf(file), 1);
-    }
   }
 
   /** Return the URL of a path */

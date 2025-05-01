@@ -1,4 +1,5 @@
 import { getPathAndExtension } from "../core/utils/path.ts";
+import { filesToPages } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
@@ -94,7 +95,7 @@ export function transformImages(userOptions?: Partial<Options>) {
 
     async function process(_: Page[], allPages: Page[]) {
       // Load all static files that must be transformed
-      await site.filesToPages(filter);
+      await filesToPages(site.files, site.pages, filter);
 
       const files = allPages.filter(filter);
 
