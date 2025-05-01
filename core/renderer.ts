@@ -64,6 +64,8 @@ export default class Renderer {
 
   /** Render the provided pages */
   async renderPages(from: Page[], to: Page[]): Promise<void> {
+    const renderedPages: Page[] = [];
+
     for (const group of this.#groupPages(from)) {
       const pages: Page[] = [];
       const generators: Page[] = [];
@@ -141,7 +143,6 @@ export default class Renderer {
       to.push(...generatedPages);
 
       // Render the pages content
-      const renderedPages: Page[] = [];
       await concurrent(
         pages.concat(generatedPages),
         async (page) => {
@@ -162,25 +163,25 @@ export default class Renderer {
           }
         },
       );
-
-      // Render the pages layouts
-      await concurrent(
-        renderedPages,
-        async (page) => {
-          try {
-            page.content = await this.#renderLayout(
-              page,
-              page.data.children as Content,
-            );
-          } catch (cause) {
-            throw new Error(
-              `Error rendering the layout of the page ${page.sourcePath}`,
-              { cause },
-            );
-          }
-        },
-      );
     }
+
+    // Render the pages layouts at the end
+    await concurrent(
+      renderedPages,
+      async (page) => {
+        try {
+          page.content = await this.#renderLayout(
+            page,
+            page.data.children as Content,
+          );
+        } catch (cause) {
+          throw new Error(
+            `Error rendering the layout of the page ${page.sourcePath}`,
+            { cause },
+          );
+        }
+      },
+    );
   }
 
   /** Render a template */

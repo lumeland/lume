@@ -64,6 +64,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Renamed `get()` to `getBytes()` for consistency with `getText()`
   - New method `remove()`.
   - Changed the signature of `getText()` and `getBytes()`.
+- `renderOrder` property is not applied to page layouts [#749].
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.
@@ -101,3 +102,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#736]: https://github.com/lumeland/lume/issues/736
 [#740]: https://github.com/lumeland/lume/issues/740
 [#748]: https://github.com/lumeland/lume/issues/748
+[#749]: https://github.com/lumeland/lume/issues/749
