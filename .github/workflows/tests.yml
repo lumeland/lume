@@ -33,7 +33,13 @@ jobs:
         run: deno lint
 
       - name: Run tests
+        if: matrix.deno_version == 'latest'
         run: deno task test
+
+      # Lint plugins are not supported by Deno 2.1
+      - name: Run tests
+        if: matrix.deno_version == 2.1
+        run: deno task test --ignore=tests/lint.test.ts
 
       - name: Test upgrade
         run: deno run -A cli.ts upgrade
