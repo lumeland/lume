@@ -24,10 +24,9 @@ Deno.test("plugin-order linter", () => {
   );
 
   assertEquals(diagnostics.length, 1);
-  const d = diagnostics[0];
   assertEquals(
     'Invalid order of plugins: "json_ld" should be used before "postcss"',
-    d.message,
+    diagnostics[0].message,
   );
 });
 
@@ -54,4 +53,27 @@ Deno.test("plugin-order linter (other files)", () => {
   );
 
   assertEquals(diagnostics.length, 0);
+});
+
+Deno.test("jsx-spread-position linter", () => {
+  const diagnostics = Deno.lint.runPlugin(
+    plugins,
+    "foo.tsx",
+    `
+    return () => <>
+      <button {...props} key={tab}>
+        {tab}
+      </button>
+      <button key={tab} {...props}>
+        {tab}
+      </button>
+    </>;
+    `,
+  );
+
+  assertEquals(diagnostics.length, 1);
+  assertEquals(
+    "JSX spread attributes should be at the end of the props",
+    diagnostics[0].message,
+  );
 });

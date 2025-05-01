@@ -66,5 +66,18 @@ export default {
         };
       },
     },
+    "jsx-spread-position": {
+      create(context) {
+        return {
+          "JSXSpreadAttribute:not(:last-child)"(node) {
+            context.report({
+              node,
+              message:
+                "JSX spread attributes should be at the end of the props",
+            });
+          },
+        };
+      },
+    },
   },
 } satisfies Deno.lint.Plugin;
