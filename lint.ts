@@ -43,7 +43,7 @@ export default {
 
             for (const callName of calls) {
               const callPosition = imports.get(callName)!;
-              console.log(callPosition, position);
+
               if (position < callPosition) {
                 if (!validPrevious || callPosition < validPrevious[1]) {
                   validPrevious = [callName, callPosition];
