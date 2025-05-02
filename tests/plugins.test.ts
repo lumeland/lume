@@ -8,7 +8,6 @@ Deno.test("Plugins list in init", () => {
 
   equals(pluginNames, [
     "attributes",
-    "toml",
     "date",
     "code_highlight",
     "decap_cms",
@@ -33,6 +32,7 @@ Deno.test("Plugins list in init", () => {
     "sheets",
     "filter_pages",
     "redirects",
+    "icons",
     "esbuild",
     "terser",
     "katex",
