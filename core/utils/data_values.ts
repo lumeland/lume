@@ -44,9 +44,13 @@ function searchValue(data: Partial<Data>, value: string): unknown {
     }
 
     const keys = key.split(".");
-    let val = data;
+    // deno-lint-ignore no-explicit-any
+    let val: any = data;
     for (const key of keys) {
       val = val?.[key];
+    }
+    if (typeof val === "string" && val.startsWith("=")) {
+      return searchValue(data, val);
     }
     return val ?? searchValue(data, value);
   }

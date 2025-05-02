@@ -7,11 +7,10 @@ export default {
     "plugin-order": {
       create(context) {
         const { filename } = context;
+        const files = ["_config.ts", "_config.js", "plugins.ts", "plugins.js"];
 
         // Ignore files that are not lume config files
-        if (
-          !filename.endsWith("_config.ts") && !filename.endsWith("_config.js")
-        ) {
+        if (files.every((file) => !filename.endsWith(file))) {
           return {};
         }
 
