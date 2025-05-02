@@ -154,6 +154,7 @@ I hope you enjoy it.
         "keywords",
         "emptyThing",
       ],
+      keywords: "Array(2)",
       mergedKeys: [
         "tags",
         "jsonLd",

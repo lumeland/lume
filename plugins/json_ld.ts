@@ -196,6 +196,7 @@ export function jsonLd() {
           if (
             key &&
             urlKeys.includes(key) &&
+            typeof dataValue === "string" &&
             (dataValue.startsWith("/") ||
               dataValue.startsWith("./") ||
               dataValue.startsWith("../"))

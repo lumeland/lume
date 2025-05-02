@@ -97,6 +97,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Updated all dependencies to the latest version.
 - Plugin sheets: UTF-8 characters in .csv files.
 - Search plugin: Sorting when some pages lack key fields [#748]
+- json_ld plugin: alias to non-string value causes an error.
 
 [#497]: https://github.com/lumeland/lume/issues/497
 [#660]: https://github.com/lumeland/lume/issues/660

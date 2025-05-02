@@ -14,11 +14,12 @@ jsonLd:
       "@type": "ImageObject"
       url: "=cover"
   image: "/my-image.png"
-  keywords:
-    - "one"
-    - "two"
+  keywords: =keywords
   emptyThing:
     "@type": "EmptyThing"
+keywords:
+    - "one"
+    - "two"
 ---
 
 # Welcome to my website
