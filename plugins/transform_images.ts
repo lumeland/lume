@@ -188,7 +188,7 @@ async function transform(
   const ext = page.src.ext;
   const format = transformation.format;
 
-  const ops = ext === ".gif" && (!format || format === "gif")
+  const ops = isAnimated(ext.slice(1)) && (!format || isAnimated(format))
     ? { pages: -1 }
     : {};
 
@@ -292,4 +292,8 @@ declare global {
       transformImages?: Transformation | Transformation[];
     }
   }
+}
+
+function isAnimated(format: unknown): boolean {
+  return typeof format === "string" && (format === "gif" || format === "webp");
 }
