@@ -98,6 +98,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Plugin sheets: UTF-8 characters in .csv files.
 - Search plugin: Sorting when some pages lack key fields [#748]
 - json_ld plugin: alias to non-string value causes an error.
+- transform_images: preserve the animation between gif and webp formats [#750].
 
 [#497]: https://github.com/lumeland/lume/issues/497
 [#660]: https://github.com/lumeland/lume/issues/660
@@ -105,3 +106,4 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#740]: https://github.com/lumeland/lume/issues/740
 [#748]: https://github.com/lumeland/lume/issues/748
 [#749]: https://github.com/lumeland/lume/issues/749
+[#750]: https://github.com/lumeland/lume/issues/750
