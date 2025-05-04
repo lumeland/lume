@@ -2,6 +2,7 @@ export default function liveReload(initRevision, basepath, statusCode) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
+  let debugbar;
 
   function socket() {
     if (ws && ws.readyState !== 3) {
@@ -29,9 +30,13 @@ export default function liveReload(initRevision, basepath, statusCode) {
     ws.onmessage = (e) => {
       const message = JSON.parse(e.data);
 
-      if (message.type === "init" && message.revision > revision) {
-        location.reload();
-        return;
+      if (message.type === "init") {
+        if (message.revision > revision) {
+          location.reload();
+          return;
+        }
+
+        updateDebugbar(message.data);
       }
 
       // Always update revision
@@ -51,6 +56,7 @@ export default function liveReload(initRevision, basepath, statusCode) {
         }
 
         refresh(files);
+        updateDebugbar(message.data);
       }
     };
     ws.onclose = () => {
@@ -211,5 +217,21 @@ export default function liveReload(initRevision, basepath, statusCode) {
 
     // To handle cache busting urls (e.g. /v234/styles.css -> /styles.css)
     return newUrl.pathname.endsWith(currentUrl.pathname);
+  }
+
+  async function updateDebugbar(data) {
+    if (!debugbar) {
+      if (data === undefined) {
+        return;
+      }
+
+      const { default: DebugBar } = await import(
+        "https://cdn.jsdelivr.net/gh/lumeland/bar@d24249e5adfa8c5692aa778e38920b026531d1b8/lume-bar.js"
+      );
+      debugbar = new DebugBar();
+      document.body.appendChild(debugbar);
+    }
+
+    debugbar.update(data);
   }
 }

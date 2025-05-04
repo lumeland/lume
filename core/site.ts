@@ -24,6 +24,7 @@ import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
 import Cache from "./cache.ts";
+import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
 
 import type { Loader } from "./fs.ts";
@@ -135,6 +136,9 @@ export default class Site {
   // deno-lint-ignore no-explicit-any
   hooks: Record<string, (...args: any[]) => void> = {};
 
+  /** The debug bar data */
+  debugBar?: DebugBar;
+
   /** The generated pages are stored here */
   readonly pages: Page[] = [];
 
@@ -235,6 +239,16 @@ export default class Site {
     // Initialize the cache if LUME_NOCACHE is not enabled
     if (env<boolean>("LUME_NOCACHE") !== true) {
       this.cache = new Cache({ folder: this.root("_cache") });
+    }
+
+    // Initialize the debug bar
+    const initDebugBar = this.options.server.debugbar ??
+      env<boolean>("LUME_LIVE_RELOAD");
+
+    if (initDebugBar) {
+      const debugBar = new DebugBar();
+      this.addEventListener("beforeUpdate", () => debugBar.clear());
+      this.debugBar = debugBar;
     }
 
     // Create the fetch function for `deno serve`
@@ -1025,6 +1039,9 @@ export interface ServerOptions {
 
   /** The file to serve on 404 error */
   page404: string;
+
+  /** Whether to use the debug bar or not */
+  debugbar?: boolean;
 
   /** Optional for the server */
   middlewares: Middleware[];

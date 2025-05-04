@@ -175,6 +175,32 @@ export default function (userOptions?: Options) {
         outputConsole(notFound);
       }
 
+      const report = site.debugBar?.collection("Url checker");
+      if (report) {
+        report.icon = "link-break";
+        report.contexts = {
+          "broken link": {
+            background: "error",
+          },
+        };
+
+        for (const [url, refs] of notFound) {
+          report.items.push({
+            title: url,
+            context: "broken link",
+            items: Array.from(refs).map((ref) => ({
+              title: ref,
+              actions: [
+                {
+                  text: "Open",
+                  href: ref,
+                },
+              ],
+            })),
+          });
+        }
+      }
+
       // Clear cache
       cacheInternalUrls.clear();
       urls.clear();

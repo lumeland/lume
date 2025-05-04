@@ -102,6 +102,7 @@ async function build({ type, config, serve }: BuildOptions) {
     reload({
       watcher: new SiteWatcher(site),
       basepath: site.options.location.pathname,
+      debugBar: site.debugBar,
     }),
     noCache(),
     noCors(),
