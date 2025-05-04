@@ -99,6 +99,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Search plugin: Sorting when some pages lack key fields [#748]
 - json_ld plugin: alias to non-string value causes an error.
 - transform_images: preserve the animation between gif and webp formats [#750].
+- Set `LUME_LIVE_RELOAD` env variable in the CMS environment
 
 [#497]: https://github.com/lumeland/lume/issues/497
 [#660]: https://github.com/lumeland/lume/issues/660

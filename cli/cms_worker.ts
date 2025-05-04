@@ -39,9 +39,10 @@ async function build({ type, config }: CMSOptions) {
     throw new Error("CMS instance is not found");
   }
 
-  // Enable drafts in the CMS
+  // Set required environment variables
   setEnv("LUME_DRAFTS", "true");
   setEnv("LUME_CMS", "true");
+  setEnv("LUME_LIVE_RELOAD", "true");
 
   const site = await createSite(config);
 
