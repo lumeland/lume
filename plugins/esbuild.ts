@@ -117,6 +117,7 @@ export function esbuild(userOptions?: Options) {
         sourcemap,
       };
 
+      buildOptions.plugins = [...options.options.plugins || []];
       buildOptions.plugins!.push(
         {
           name: "lume-loader",
