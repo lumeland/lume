@@ -193,6 +193,11 @@ export function esbuild(userOptions?: Options) {
     site.process(options.extensions, async (pages, allPages) => {
       const [outputFiles, metafile, enableSourceMap] = await runEsbuild(pages);
 
+      const item = site.debugBar?.buildItem(
+        "[esbuild] build completed",
+        "info",
+      );
+
       // Save the output code
       for (const [outputPath, output] of Object.entries(metafile.outputs)) {
         if (outputPath.endsWith(".map")) {
@@ -255,6 +260,20 @@ export function esbuild(userOptions?: Options) {
           saveAsset(site, page, content, map?.text);
           allPages.push(page);
           continue;
+        }
+
+        if (item) {
+          const format = Intl.NumberFormat("en", {
+            notation: "compact",
+            style: "unit",
+            unit: "byte",
+            unitDisplay: "narrow",
+          });
+          item.items ??= [];
+          item.items.push({
+            title: normalizedOutPath,
+            details: format.format(outputFile.contents.length),
+          });
         }
 
         // The page is an entry point

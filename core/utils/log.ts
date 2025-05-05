@@ -10,6 +10,8 @@ import {
   yellow,
 } from "../../deps/colors.ts";
 
+import type { Collection } from "../debugbar.ts";
+
 const severity = {
   TRACE: 1,
   DEBUG: 5,
@@ -49,9 +51,14 @@ const logFormats: Record<string, (str: string) => string> = {
  */
 class Logger {
   #level: number;
+  #collection: Collection | undefined;
 
   constructor(level: LevelName) {
     this.#level = severity[level];
+  }
+
+  set collection(collection: Collection) {
+    this.#collection = collection;
   }
 
   get level(): number {
@@ -84,17 +91,20 @@ class Logger {
   }
 
   fatal(msg: string): void {
+    this.#bar(msg, "fatal");
     this.#log(msg, severity.FATAL);
   }
 
   error(msg: string): void {
     if (this.#level < severity.FATAL) {
+      this.#bar(msg, "error");
       this.#log(msg, severity.ERROR);
     }
   }
 
   warn(msg: string): void {
     if (this.#level < severity.ERROR) {
+      this.#bar(msg, "warn");
       this.#log(msg, severity.WARN);
     }
   }
@@ -114,6 +124,17 @@ class Logger {
   trace(msg: string): void {
     if (this.#level < severity.DEBUG) {
       this.#log(msg, severity.TRACE);
+    }
+  }
+
+  #bar(title: string, context?: string) {
+    const collection = this.#collection;
+
+    if (collection) {
+      collection.items.push({
+        context,
+        title,
+      });
     }
   }
 }

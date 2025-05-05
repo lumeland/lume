@@ -21,13 +21,27 @@ export default class DebugBar {
       return collection;
     }
 
-    const newCollection: Collection = {
+    const newCollection: Collection = name === "Build" ? buildCollection() : {
       name,
       items: [],
     };
 
     this.collections.push(newCollection);
     return newCollection;
+  }
+
+  /**
+   * Add a new item to the "Build" collection and return it
+   */
+  buildItem(title: string, context?: string): Item {
+    const collection = this.collection("Build");
+    const item: Item = {
+      title,
+      context,
+    };
+
+    collection.items.push(item);
+    return item;
   }
 }
 
@@ -48,6 +62,12 @@ export interface Collection {
    * A list of context to group the items
    */
   contexts?: Record<string, ItemContext>;
+
+  /**
+   * The text to show when the collection is empty
+   * @example "No items found"
+   */
+  empty?: string;
 
   /**
    * A list of items to show in the collection
@@ -93,9 +113,9 @@ export interface Item {
   /**
    * Small text to show at the right of the title
    * It can be a number or a string
-   * @example "2", "3 errors", "4 warnings"
+   * @example 2, "3 errors", "4 warnings"
    */
-  details?: string;
+  details?: string | number;
 
   /**
    * The text to show if the item is expanded
@@ -147,4 +167,30 @@ export interface Action {
    * It can be "_blank", "_self", "_parent" or "_top"
    */
   target?: string;
+}
+
+/** Build collection created automatically by Lume */
+function buildCollection(): Collection {
+  const collection: Collection = {
+    name: "Build",
+    icon: "fire",
+    empty: "No build messages found",
+    contexts: {
+      fatal: {
+        background: "important",
+      },
+      error: {
+        background: "error",
+      },
+      warn: {
+        background: "warning",
+      },
+      info: {
+        background: "info",
+      },
+    },
+    items: [],
+  };
+
+  return collection;
 }

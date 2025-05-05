@@ -226,7 +226,7 @@ export default function liveReload(initRevision, basepath, statusCode) {
       }
 
       const { default: DebugBar } = await import(
-        "https://cdn.jsdelivr.net/gh/lumeland/bar@764c7679e03b1bd49ffa2e09c5585f58e5cd2207/lume-bar.js"
+        "https://cdn.jsdelivr.net/gh/lumeland/bar@345d85d1ca7c432d7aa128a0bb241e94fec3622f/lume-bar.js"
       );
       debugbar = new DebugBar();
       document.body.appendChild(debugbar);

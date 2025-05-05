@@ -249,6 +249,7 @@ export default class Site {
       const debugBar = new DebugBar();
       this.addEventListener("beforeUpdate", () => debugBar.clear());
       this.debugBar = debugBar;
+      log.collection = debugBar.collection("Build");
     }
 
     // Create the fetch function for `deno serve`
