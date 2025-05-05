@@ -133,12 +133,13 @@ export function esbuild(userOptions?: Options) {
                 };
               }
 
-              if (path.startsWith(".")) {
-                if (resolveDir) {
-                  return {
-                    path: join(resolveDir, path),
-                  };
-                }
+              if (
+                kind === "import-statement" && path.startsWith(".") &&
+                resolveDir
+              ) {
+                return {
+                  path: join(resolveDir, path),
+                };
               }
             });
 
