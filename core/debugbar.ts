@@ -130,6 +130,13 @@ export interface Action {
   href: string;
 
   /**
+   * The callback to perform when the action is clicked
+   * It must be a string with the code to execute
+   * @example "alert('Hello world!')"
+   */
+  onclick?: string;
+
+  /**
    * The icon name to show in the action button
    * @see https://phosphoricons.com/
    */
