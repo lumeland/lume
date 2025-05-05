@@ -26,6 +26,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: Allow to pass an array of options or a function that return an array of options.
 - `sitemap` plugin: New option `stylesheet`.
 - Deno lint plugin.
+- New debugbar for development mode.
 
 ### Changed
 - `Temporal` API is enabled by default.
