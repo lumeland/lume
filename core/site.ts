@@ -242,7 +242,7 @@ export default class Site {
     }
 
     // Initialize the debug bar
-    const initDebugBar = this.options.server.debugbar ??
+    const initDebugBar = this.options.server.debugBar ??
       env<boolean>("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
@@ -1042,7 +1042,7 @@ export interface ServerOptions {
   page404: string;
 
   /** Whether to use the debug bar or not */
-  debugbar?: boolean;
+  debugBar?: boolean;
 
   /** Optional for the server */
   middlewares: Middleware[];
