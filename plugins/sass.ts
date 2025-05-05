@@ -58,7 +58,7 @@ export function sass(userOptions?: Options) {
 
     function sassProcessor(files: Page[]) {
       if (files.length === 0) {
-        log.info(
+        log.warn(
           "[sass plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         return;

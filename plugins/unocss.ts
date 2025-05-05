@@ -4,7 +4,7 @@ import { insertContent } from "../core/utils/page_content.ts";
 import {
   createGenerator,
   MagicString,
-  presetUno,
+  presetWind3,
   resetUrl,
   transformerDirectives,
   transformerVariantGroup,
@@ -23,7 +23,7 @@ export interface Options {
    * @see https://unocss.dev/guide/config-file
    * @default
    * {
-   *  presets: [presetUno()]
+   *  presets: [presetWind3()]
    * }
    */
   options?: UserConfig;
@@ -61,7 +61,7 @@ export interface Options {
 
 export const defaults: Options = {
   options: {
-    presets: [presetUno()],
+    presets: [presetWind3],
   },
   transformers: [
     transformerVariantGroup(),

@@ -68,7 +68,7 @@ export function codeHighlight(userOptions?: Options) {
   return (site: Site) => {
     if (site._data.codeHighlight) {
       log.error(
-        `The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "codeHighlight". Registering "codeHighlight" may lead to conflicts and unpredictable behavior.`,
+        `[code_highlight plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "codeHighlight". Registering "codeHighlight" may lead to conflicts and unpredictable behavior.`,
       );
     }
     site._data.codeHighlight = "codeHighlight";

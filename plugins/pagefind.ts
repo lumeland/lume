@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
 import { pagefind as Pagefind } from "../deps/pagefind.ts";
+import { log } from "../core/utils/log.ts";
 
 import type { CustomRecord, TranslationsOptions } from "../deps/pagefind.ts";
 import type Site from "../core/site.ts";
@@ -159,9 +160,11 @@ export function pagefind(userOptions?: Options) {
         });
 
         if (errors.length > 0) {
-          throw new Error(
-            `Pagefind index errors for ${page.src.path}:\n${errors.join("\n")}`,
+          log.error(
+            `[pagefind plugin] Indexing errors for ${page.src.path}`,
+            errors,
           );
+          continue;
         }
       }
 
@@ -170,9 +173,11 @@ export function pagefind(userOptions?: Options) {
           const { errors } = await index.addCustomRecord(record);
 
           if (errors.length > 0) {
-            throw new Error(
-              `Pagefind index errors for custom record:\n${errors.join("\n")}`,
+            log.error(
+              `[pagefind plugin] Pagefind index errors for custom record`,
+              errors,
             );
+            continue;
           }
         }
       }

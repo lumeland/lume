@@ -70,7 +70,7 @@ export function postCSS(userOptions?: Options) {
 
     function postCSSProcessor(files: Page[]) {
       if (files.length === 0) {
-        log.info(
+        log.warn(
           "[postcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         return;

@@ -2,6 +2,7 @@ import { read, readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -48,7 +49,12 @@ export function googleFonts(userOptions: Options) {
       );
 
       for (const [name, url] of Object.entries(fonts)) {
-        const css = await readFile(getCssUrl(url));
+        const file = getCssUrl(url);
+        if (!file) {
+          log.error(`[google_fonts plugin] Invalid URL: ${url}`);
+          continue;
+        }
+        const css = await readFile(file);
         const fontFaces = extractFontFaces(css, name)
           .filter((fontFace) =>
             options.subsets?.includes(fontFace.subset) ?? true
@@ -138,7 +144,7 @@ function generateCss(fontFaces: FontFace[], fontsFolder: string): string {
   }).join("\n");
 }
 
-function getCssUrl(fonts: string): string {
+function getCssUrl(fonts: string): string | undefined {
   const url = new URL(fonts);
 
   // Share URL
@@ -151,7 +157,7 @@ function getCssUrl(fonts: string): string {
   if (url.host === "fonts.google.com" && url.pathname === "/share") {
     const selection = url.searchParams.get("selection.family");
     if (!selection) {
-      throw new Error("Invalid Google Fonts URL");
+      return;
     }
     const apiUrl = new URL("https://fonts.googleapis.com/css2");
     selection.split("|").forEach((family) => {
@@ -159,8 +165,6 @@ function getCssUrl(fonts: string): string {
     });
     return apiUrl.href;
   }
-
-  throw new Error(`Invalid Google Fonts URL: ${fonts}`);
 }
 
 function getFontName(parts: (string | undefined)[]): string {

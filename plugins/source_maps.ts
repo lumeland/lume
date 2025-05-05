@@ -62,7 +62,9 @@ export function sourceMaps(userOptions?: Options) {
           sourceMap.sourcesContent = undefined;
         }
       } catch (err) {
-        log.error(`${(err as Error).message}\n${sourceMap.sources.join("\n")}`);
+        log.error(`[source_maps plugin] ${(err as Error).message}`, [
+          ...sourceMap.sources,
+        ]);
       }
 
       // Relative paths (eg. "../bar") look better in the dev-tools.

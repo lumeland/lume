@@ -100,7 +100,7 @@ export function transformImages(userOptions?: Partial<Options>) {
       const files = allPages.filter(filter);
 
       if (files.length === 0) {
-        log.info(
+        log.warn(
           "[transform_images plugin] No images found. Make sure to add them with <gray>site.add()</gray> and set the <gray>transformImages</gray> data key",
         );
         return;
@@ -211,7 +211,10 @@ async function transform(
 
       default:
         if (!options.functions[name]) {
-          throw new Error(`Unknown transformation: ${name}`);
+          log.error(
+            `[transform_images plugin] Unknown transformation: ${name}`,
+          );
+          continue;
         }
 
         if (Array.isArray(args)) {

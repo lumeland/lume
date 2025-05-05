@@ -3,6 +3,7 @@ import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 import { normalizePath, resolveInclude } from "../core/utils/path.ts";
 import { basename, join, posix } from "../deps/path.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
@@ -228,17 +229,19 @@ export function nunjucks(userOptions?: Options) {
       const props = { content, ...options };
 
       if (!components) {
-        throw new Error(`Component "${name}" not found`);
+        log.fatal(`[nunjucks plugin] Component "${name}" not found`);
+        return;
       }
       const names = name.split(".") as string[];
       let component: ProxyComponents | undefined = components;
 
       while (names.length) {
         try {
-          // @ts-ignore: `component` is defined or throw an error
+          // @ts-ignore: `component` is defined or emit an error
           component = component[names.shift()];
         } catch {
-          throw new Error(`Component "${name}" not found`);
+          log.fatal(`[nunjucks plugin] Component "${name}" not found`);
+          return;
         }
       }
 
@@ -246,7 +249,7 @@ export function nunjucks(userOptions?: Options) {
         return await component(props);
       }
 
-      throw new Error(`Component "${name}" not found`);
+      log.fatal(`[nunjucks plugin] Component "${name}" not found`);
     }, {
       type: "tag",
       body: true,

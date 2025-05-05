@@ -4,6 +4,7 @@ import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import { cdata, stringify } from "../deps/xml.ts";
 import { Page } from "../core/file.ts";
+import { log } from "../core/utils/log.ts";
 import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
@@ -258,7 +259,7 @@ export function feed(
               break;
 
             default:
-              throw new Error(`Invalid Feed format "${format}"`);
+              log.error(`[feed plugin] Input output format: ${filename}`);
           }
         }
       }

@@ -54,13 +54,13 @@ export function picture(userOptions?: Options) {
 
           if (img.tagName === "IMG" && !img.getAttribute("src")) {
             log.warn(
-              `[picture plugin] <img> element must have a src attribute (${page.sourcePath})`,
+              `[picture plugin] IMG element must have a src attribute (${page.sourcePath})`,
             );
             continue;
           }
           if (img.tagName === "SOURCE" && !img.getAttribute("srcset")) {
             log.warn(
-              `[picture plugin] <source> element must have a srcset attribute (${page.sourcePath})`,
+              `[picture plugin] SOURC element must have a srcset attribute (${page.sourcePath})`,
             );
             continue;
           }

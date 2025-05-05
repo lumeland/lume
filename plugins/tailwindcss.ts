@@ -44,7 +44,7 @@ export function tailwindCSS(userOptions?: Options) {
 
     site.process([".css"], async (files) => {
       if (files.length === 0) {
-        log.info(
+        log.warn(
           "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         content = [];
@@ -73,6 +73,7 @@ export function tailwindCSS(userOptions?: Options) {
                 module: mod.default,
               };
             }
+            log.fatal(`[tailwindcss plugin] Cannot resolve module '${id}'`);
             throw new Error(`Cannot resolve module '${id}'`);
           },
           async loadStylesheet(id, base) {
@@ -91,6 +92,7 @@ export function tailwindCSS(userOptions?: Options) {
 
             if (options.includes === false) {
               if (!id.startsWith(".")) {
+                log.fatal(`[tailwindcss plugin] Cannot resolve module '${id}'`);
                 throw new Error(`Cannot resolve module '${id}'`);
               }
             }
@@ -99,6 +101,7 @@ export function tailwindCSS(userOptions?: Options) {
             const content = await site.getContent(filename, false);
 
             if (content === undefined) {
+              log.fatal(`[tailwindcss plugin] File ${filename} not found`);
               throw new Error(`File ${filename} not found`);
             }
 

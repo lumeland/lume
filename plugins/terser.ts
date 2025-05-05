@@ -42,8 +42,8 @@ export function terser(userOptions?: Options) {
 
     function terserProcess(files: Page[]) {
       if (files.length === 0) {
-        log.info(
-          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+        log.warn(
+          "[terser plugin] No files found. Make sure to add the JS files with <gray>site.add()</gray>",
         );
         return;
       }
@@ -77,9 +77,8 @@ export function terser(userOptions?: Options) {
           output.map,
         );
       } catch (cause) {
-        throw new Error(
-          `Error processing the file: ${filename} by the Terser plugin.`,
-          { cause },
+        log.error(
+          `[terser plugin] Error processing the file: ${filename} by the Terser plugin. (${cause})`,
         );
       }
     }

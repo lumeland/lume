@@ -44,7 +44,7 @@ export function prism(userOptions?: Options) {
   return (site: Site) => {
     if (site._data.codeHighlight) {
       log.error(
-        `The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "prism". Registering "prism" may lead to conflicts and unpredictable behavior.`,
+        `[prism plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "prism". Registering "prism" may lead to conflicts and unpredictable behavior.`,
       );
     }
     site._data.codeHighlight = "prism";

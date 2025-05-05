@@ -5,6 +5,7 @@ import { posix } from "../deps/path.ts";
 import { read, readFile } from "../core/utils/read.ts";
 import { walkUrls } from "../core/utils/css_urls.ts";
 import { insertContent } from "../core/utils/page_content.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -131,9 +132,8 @@ export function katex(userOptions?: Options) {
                 element.replaceWith(div.firstChild!);
               }
             } catch (cause) {
-              throw new Error(
-                `Katex failed to render in the page ${page.outputPath}`,
-                { cause },
+              log.error(
+                `[katex plugin] Failed to render math in ${page.outputPath}: ${cause}`,
               );
             }
           });

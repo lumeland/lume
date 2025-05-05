@@ -26,7 +26,7 @@ export function svgo(userOptions?: Options) {
 
     function SVGProcessor(files: Page[]) {
       if (files.length === 0) {
-        log.info(
+        log.warn(
           "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
         );
         return;
