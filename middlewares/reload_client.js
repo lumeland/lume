@@ -4,10 +4,6 @@ export default function liveReload(initRevision, basepath, statusCode) {
   let revision = initRevision;
   let debugbar;
 
-  const debugbarModule = import(
-    "https://cdn.jsdelivr.net/gh/lumeland/bar@006e4aeda5bea28316e0eb98b91ce2da4b59420b/lume-bar.js"
-  );
-
   function socket() {
     if (ws && ws.readyState !== 3) {
       return;
@@ -229,7 +225,9 @@ export default function liveReload(initRevision, basepath, statusCode) {
         return;
       }
 
-      const { default: DebugBar } = await debugbarModule;
+      const { default: DebugBar } = await import(
+        "https://cdn.jsdelivr.net/gh/lumeland/bar@006e4aeda5bea28316e0eb98b91ce2da4b59420b/lume-bar.js"
+      );
       debugbar = new DebugBar();
       document.body.appendChild(debugbar);
     }
