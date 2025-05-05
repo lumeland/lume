@@ -100,6 +100,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - json_ld plugin: alias to non-string value causes an error.
 - transform_images: preserve the animation between gif and webp formats [#750].
 - Set `LUME_LIVE_RELOAD` env variable in the CMS environment
+- check_urls plugin: Handle correctly the spaces and other escaped characters.
 
 [#497]: https://github.com/lumeland/lume/issues/497
 [#660]: https://github.com/lumeland/lume/issues/660

@@ -4,6 +4,7 @@ import { gray, green, red } from "../deps/colors.ts";
 import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { log } from "../core/utils/log.ts";
+import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 
@@ -33,7 +34,7 @@ export const defaults: Options = {
 };
 
 const cacheExternalUrls = new Map<string, Promise<boolean>>();
-const cacheInternalUrls = new Map<string, Promise<boolean>>();
+const cacheInternalUrls = new Map<string, boolean>();
 
 /**
  * This plugin checks broken links in *.html output files.
@@ -151,16 +152,12 @@ export default function (userOptions?: Options) {
 
           if (!strict) {
             const cleaned = url === "/" ? url : url.replace(/\/$/, "");
-            if (url === "/foo/") {
-              console.log("cleaned", cleaned);
-              console.log("redirects", redirects);
-            }
             if (redirects.has(cleaned) || redirects.has(cleaned + "/")) {
               return;
             }
           }
 
-          if (!await checkInternalUrl(url, dest, strict)) {
+          if (!checkInternalUrl(url, dest, strict)) {
             notFound.set(url, refs);
           }
         },
@@ -220,28 +217,33 @@ function checkInternalUrl(
   url: string,
   dest: string,
   strict: boolean,
-): Promise<boolean> {
-  let result = cacheInternalUrls.get(url);
+): boolean {
+  const cached = cacheInternalUrls.get(url);
 
-  if (!result) {
-    if (url.endsWith("/")) {
-      result = Deno.stat(join(dest, url, "index.html")).then(() => true).catch(
-        () => false,
-      );
-    } else {
-      result = Deno.stat(join(dest, url)).then(() => true).catch(() => {
-        if (strict) {
-          return false;
-        }
-
-        return Deno.stat(join(dest, url, "/index.html"))
-          .then(() => true)
-          .catch(() => false);
-      });
-    }
-    cacheInternalUrls.set(url, result);
+  if (cached !== undefined) {
+    return cached;
   }
 
+  let result = false;
+
+  if (url.endsWith("/")) {
+    try {
+      Deno.statSync(join(dest, decodeURIComponentSafe(url), "index.html"));
+      result = true;
+    } catch {
+      // Ignore error
+    }
+  } else {
+    try {
+      Deno.statSync(join(dest, decodeURIComponentSafe(url)));
+      result = true;
+    } catch {
+      if (!strict) {
+        result = checkInternalUrl(join(url, "/index.html"), dest, true);
+      }
+    }
+  }
+  cacheInternalUrls.set(url, result);
   return result;
 }
 
