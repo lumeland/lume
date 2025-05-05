@@ -195,7 +195,7 @@ export function esbuild(userOptions?: Options) {
       const [outputFiles, metafile, enableSourceMap] = await runEsbuild(pages);
 
       const item = site.debugBar?.buildItem(
-        "[esbuild] build completed",
+        "[esbuild plugin] build completed",
         "info",
       );
 
