@@ -35,9 +35,9 @@ export const pluginNames = [
   "google_fonts",
   "sass",
   "unocss",
-  "lightningcss",
   "postcss",
   "tailwindcss",
+  "lightningcss",
   "purgecss",
   "source_maps",
 
