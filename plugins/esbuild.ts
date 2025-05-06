@@ -192,6 +192,15 @@ export function esbuild(userOptions?: Options) {
     }
 
     site.process(options.extensions, async (pages, allPages) => {
+      if (pages.length === 0) {
+        log.warn(
+          `[esbuild plugin] No ${
+            options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
+          } files found. Use <code>site.add()</code> to add files. For example: <code>site.add("script.js")</code>`,
+        );
+        return;
+      }
+
       const [outputFiles, metafile, enableSourceMap] = await runEsbuild(pages);
 
       const item = site.debugBar?.buildItem(
