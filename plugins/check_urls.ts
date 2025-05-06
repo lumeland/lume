@@ -175,6 +175,7 @@ export default function (userOptions?: Options) {
       const report = site.debugBar?.collection("Url checker");
       if (report) {
         report.icon = "link-break";
+        report.empty = "No broken links found! 🎉";
         report.contexts = {
           "broken link": {
             background: "error",
