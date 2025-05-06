@@ -1,5 +1,33 @@
 import { pluginNames } from "./core/utils/lume_config.ts";
-const validOrder = pluginNames.map((name) => `lume/plugins/${name}.ts`);
+
+// For these plugins no matter the order
+const orderNoMatter = new Set([
+  "attributes",
+  "date",
+  "decap_cms",
+  "fff",
+  "eta",
+  "extract_date",
+  "jsx",
+  "reading_info",
+  "relations",
+  "mdx",
+  "nav",
+  "nunjucks",
+  "pagefind",
+  "plaintext",
+  "pug",
+  "remark",
+  "robots",
+  "sheets",
+  "filter_pages",
+  "redirects",
+  "icons",
+]);
+
+const validOrder = pluginNames
+  .filter((name) => !orderNoMatter.has(name))
+  .map((name) => `lume/plugins/${name}.ts`);
 
 export default {
   name: "lume",
