@@ -1,8 +1,14 @@
-export default function liveReload(initRevision, basepath, statusCode) {
+export default function liveReload(
+  initRevision,
+  basepath,
+  statusCode,
+  debugbarUrl,
+) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
   let debugbar;
+  const debugbarModule = debugbarUrl ? import(debugbarUrl) : null;
 
   function socket() {
     if (ws && ws.readyState !== 3) {
@@ -220,14 +226,16 @@ export default function liveReload(initRevision, basepath, statusCode) {
   }
 
   async function updateDebugbar(data) {
+    if (!debugbarModule) {
+      return;
+    }
+
     if (!debugbar) {
       if (data === undefined) {
         return;
       }
 
-      const { default: DebugBar } = await import(
-        "https://cdn.jsdelivr.net/gh/lumeland/bar@9d07935f8cff6addb1baad41fec50c843809dd58/lume-bar.js"
-      );
+      const { default: DebugBar } = await debugbarModule;
       debugbar = new DebugBar();
       document.body.appendChild(debugbar);
     }

@@ -1,8 +1,26 @@
+import { specifier } from "../deps/debugbar.ts";
+
+export interface Options {
+  /**
+   * The URL of the debugbar script
+   */
+  url?: string;
+}
+
 /**
  * DebugBar is a class that manages collections of items to be displayed in a debug bar.
  */
 export default class DebugBar {
+  #url: string;
   collections: Collection[] = [];
+
+  constructor(options: Options = {}) {
+    this.#url = options.url || specifier;
+  }
+
+  get url() {
+    return this.#url;
+  }
 
   /**
    * Clear all collections

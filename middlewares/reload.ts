@@ -103,7 +103,9 @@ export function reload(options: Options): Middleware {
       }
 
       const source =
-        `${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status});`;
+        `${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status}, "${
+          debugBar?.url || ""
+        }");`;
       const integrity = await computeSourceIntegrity(source);
 
       // Add live reload script and pass initial revision

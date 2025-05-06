@@ -246,7 +246,9 @@ export default class Site {
       env<boolean>("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
-      const debugBar = new DebugBar();
+      const debugBar = new DebugBar({
+        url: typeof initDebugBar === "string" ? initDebugBar : undefined,
+      });
       this.addEventListener("beforeUpdate", () => debugBar.clear());
       this.debugBar = debugBar;
       log.collection = debugBar.collection("Build");
@@ -1041,8 +1043,11 @@ export interface ServerOptions {
   /** The file to serve on 404 error */
   page404: string;
 
-  /** Whether to use the debug bar or not */
-  debugBar?: boolean;
+  /**
+   * Whether to use the debug bar or not
+   * Use a string to specify a custom URL of the <lume-bar> web component
+   */
+  debugBar?: string | boolean;
 
   /** Optional for the server */
   middlewares: Middleware[];
