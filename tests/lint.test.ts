@@ -7,7 +7,7 @@ Deno.test("plugin-order linter", () => {
     "_config.ts",
     `
     import lume from "lume/mod.ts";
-    import basePath from "lume/plugins/base_path.ts";
+    import esbuild from "lume/plugins/esbuild.ts";
     import postcss from "lume/plugins/postcss.ts";
     import inline from "lume/plugins/inline.ts";
     import json_ld from "lume/plugins/json_ld.ts";
@@ -16,7 +16,7 @@ Deno.test("plugin-order linter", () => {
 
     site.use(postcss());
     site.use(json_ld());
-    site.use(basePath());
+    site.use(esbuild());
     site.use(inline());
 
     export default site;
@@ -25,7 +25,7 @@ Deno.test("plugin-order linter", () => {
 
   assertEquals(diagnostics.length, 1);
   assertEquals(
-    'Invalid order of plugins: "json_ld" should be used before "postcss"',
+    'Invalid order of plugins: "esbuild" should be used before "postcss"',
     diagnostics[0].message,
   );
 });

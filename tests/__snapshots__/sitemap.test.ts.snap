@@ -2065,11 +2065,11 @@ snapshot[`Sitemap plugin with redirects plugin 3`] = `
   <a href="/page1/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      isRedirect: true,
       page: [
         "src",
         "data",
       ],
+      unlisted: true,
       url: "/old-page1/",
     },
     src: {
@@ -2105,11 +2105,11 @@ snapshot[`Sitemap plugin with redirects plugin 3`] = `
   <a href="/page2/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      isRedirect: true,
       page: [
         "src",
         "data",
       ],
+      unlisted: true,
       url: "/old-page2/",
     },
     src: {
@@ -2145,11 +2145,11 @@ snapshot[`Sitemap plugin with redirects plugin 3`] = `
   <a href="/page2/">Click here if you are not redirected.</a>
 </body>
 </html>',
-      isRedirect: true,
       page: [
         "src",
         "data",
       ],
+      unlisted: true,
       url: "/other-old-page2/",
     },
     src: {

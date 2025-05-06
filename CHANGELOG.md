@@ -68,6 +68,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Changed the signature of `getText()` and `getBytes()`.
 - `renderOrder` property is not applied to page layouts [#749].
 - unocss plugin: Used presetWind3 as default.
+- renamed the `isRedirect` property created by redirects plugin to `unlisted`.
 
 ### Removed
 - `jsx_preact` plugin. Use `jsx` instead.

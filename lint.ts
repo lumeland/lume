@@ -1,32 +1,26 @@
 import { pluginNames } from "./core/utils/lume_config.ts";
 
-// For these plugins no matter the order
-const orderNoMatter = new Set([
-  "attributes",
-  "date",
-  "decap_cms",
-  "fff",
-  "eta",
-  "extract_date",
-  "jsx",
-  "reading_info",
-  "relations",
-  "mdx",
-  "nav",
-  "nunjucks",
-  "pagefind",
-  "plaintext",
-  "pug",
-  "remark",
-  "robots",
-  "sheets",
-  "filter_pages",
-  "redirects",
-  "icons",
+// Check only the following plugins
+const orderMatter = new Set([
+  "esbuild",
+  "terser",
+  "katex",
+  "google_fonts",
+  "sass",
+  "unocss",
+  "postcss",
+  "tailwindcss",
+  "lightningcss",
+  "purgecss",
+  "source_maps",
+  "slugify_urls",
+  "picture",
+  "transform_images",
+  "inline",
 ]);
 
 const validOrder = pluginNames
-  .filter((name) => !orderNoMatter.has(name))
+  .filter((name) => orderMatter.has(name))
   .map((name) => `lume/plugins/${name}.ts`);
 
 export default {

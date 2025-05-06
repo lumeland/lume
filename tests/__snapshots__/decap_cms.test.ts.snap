@@ -204,6 +204,7 @@ local_backend: false
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
+      unlisted: true,
       url: "/admin/",
     },
     src: {

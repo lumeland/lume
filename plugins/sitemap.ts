@@ -24,7 +24,7 @@ export interface Options {
 
   /**
    * The query to search pages included in the sitemap
-   * @default "isRedirect!=true" excludes redirect pages produced by the redirects plugin
+   * @default "unlisted!=true" excludes pages with the `unlisted` property
    */
   query?: string;
 
@@ -48,7 +48,7 @@ export interface SitemapItemsOptions {
 // Default options
 export const defaults: Options = {
   filename: "/sitemap.xml",
-  query: "isRedirect!=true",
+  query: "unlisted!=true",
   sort: "url=asc",
   items: {
     lastmod: "=date",

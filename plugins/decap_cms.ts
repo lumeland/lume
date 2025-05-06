@@ -90,6 +90,7 @@ export function decapCMS(userOptions?: Options) {
     // Register the page
     site.page({
       url: posix.join(options.path, "index.html"),
+      unlisted: true,
       content: `
       <!DOCTYPE html>
       <html lang="en">
