@@ -43,7 +43,7 @@ export function terser(userOptions?: Options) {
     function terserProcess(files: Page[]) {
       if (files.length === 0) {
         log.warn(
-          "[terser plugin] No files found. Make sure to add the JS files with <gray>site.add()</gray>",
+          "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
         );
         return;
       }

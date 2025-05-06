@@ -59,7 +59,7 @@ export function sass(userOptions?: Options) {
     function sassProcessor(files: Page[]) {
       if (files.length === 0) {
         log.warn(
-          "[sass plugin] No SCSS or SASS files found. Make sure to add them with <gray>site.add()</gray>",
+          "[sass plugin] No SCSS or SASS files found. Make sure to add them with <code>site.add()</code>",
         );
         return;
       }

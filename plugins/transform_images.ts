@@ -101,7 +101,7 @@ export function transformImages(userOptions?: Partial<Options>) {
 
       if (files.length === 0) {
         log.warn(
-          "[transform_images plugin] No images found. Make sure to add them with <gray>site.add()</gray> and set the <gray>transformImages</gray> data key",
+          "[transform_images plugin] No images found. Make sure to add them with <code>site.add()</code> and set the <gray>transformImages</gray> data key",
         );
         return;
       }

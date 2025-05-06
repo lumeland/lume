@@ -45,7 +45,7 @@ export function tailwindCSS(userOptions?: Options) {
     site.process([".css"], async (files) => {
       if (files.length === 0) {
         log.warn(
-          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <gray>site.add()</gray>",
+          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         );
         content = [];
         return;
