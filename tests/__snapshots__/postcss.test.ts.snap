@@ -408,7 +408,68 @@ snapshot[`Postcss plugin (without includes) 1`] = `
 
 snapshot[`Postcss plugin (without includes) 2`] = `[]`;
 
-snapshot[`Postcss plugin (without includes) 3`] = `[]`;
+snapshot[`Postcss plugin (without includes) 3`] = `
+[
+  {
+    content: '@import "variables.css";
+@import "./text.css";
+',
+    data: {
+      basename: "index",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/index.min.css",
+    },
+    src: {
+      ext: ".css",
+      path: "/index.min",
+      remote: undefined,
+    },
+  },
+  {
+    content: '@import "npm:modern-normalize@2.0.0";
+
+.text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+  }
+}
+',
+    data: {
+      basename: "text",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/text.css",
+    },
+    src: {
+      ext: ".css",
+      path: "/text",
+      remote: undefined,
+    },
+  },
+]
+`;
 
 snapshot[`postcss plugin with hooks 1`] = `
 {
