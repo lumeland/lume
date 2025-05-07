@@ -26,7 +26,7 @@ export default class DebugBar {
    * Clear all collections
    */
   clear() {
-    this.collections = [];
+    this.collections.forEach((collection) => collection.items = []);
   }
 
   /**
