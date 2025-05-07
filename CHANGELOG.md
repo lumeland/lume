@@ -6,15 +6,16 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## 3.0.0 - Unreleased
+## [3.0.0] - 2025-05-07
 ### Added
-- `site.add()` support URLs and NPM specifiers.
-- `await` filter for nunjucks.
+- New `site.add()` with support URLs and NPM specifiers.
+- New debugbar for development mode.
 - New options `cssFile`, `jsFile` and `fontsFolder` to configure a default destination for automatic generated code.
   It's used by default by code_highlight, google_fonts, prism and unocss.
   It's also used by default by components.
 - New folder-based components.
 - Components: allow to define default data values in components.
+- `await` filter for nunjucks.
 - `page.text` and `page.bytes` getters and setters.
 - `site.process(callback)` as an alias of `site.process("*", callback)`.
 - `site.preprocess(callback)` as an alias of `site.preprocess("*", callback)`.
@@ -26,7 +27,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: Allow to pass an array of options or a function that return an array of options.
 - `sitemap` plugin: New option `stylesheet`.
 - Deno lint plugin.
-- New debugbar for development mode.
 
 ### Changed
 - `Temporal` API is enabled by default.
@@ -112,3 +112,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#748]: https://github.com/lumeland/lume/issues/748
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
+
+[3.0.0]: https://github.com/lumeland/lume/releases/tag/v3.0.0
