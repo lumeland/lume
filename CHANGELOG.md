@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.1] - Unreleased
+### Fixed
+- Warning message by the transform_images plugin.
+
 ## [3.0.0] - 2025-05-07
 ### Added
 - New `site.add()` with support URLs and NPM specifiers.
@@ -113,4 +117,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
 
+[3.0.1]: https://github.com/lumeland/lume/compare/v3.0.0...HEAD
 [3.0.0]: https://github.com/lumeland/lume/releases/tag/v3.0.0

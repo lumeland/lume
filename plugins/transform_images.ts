@@ -100,7 +100,7 @@ export function transformImages(userOptions?: Partial<Options>) {
       const files = allPages.filter(filter);
 
       const hasPages = warnUntil(
-        "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
+        "[transform_images plugin] No images to transform found. Make sure to add them with <code>site.add()</code>",
         files.length,
       );
 
