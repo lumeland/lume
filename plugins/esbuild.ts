@@ -1,6 +1,6 @@
 import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
-import { log } from "../core/utils/log.ts";
+import { log, warnUntil } from "../core/utils/log.ts";
 import {
   build,
   BuildOptions,
@@ -192,12 +192,14 @@ export function esbuild(userOptions?: Options) {
     }
 
     site.process(options.extensions, async (pages, allPages) => {
-      if (pages.length === 0) {
-        log.warn(
-          `[esbuild plugin] No ${
-            options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
-          } files found. Use <code>site.add()</code> to add files. For example: <code>site.add("script.js")</code>`,
-        );
+      const hasPages = warnUntil(
+        `[esbuild plugin] No ${
+          options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
+        } files found. Use <code>site.add()</code> to add files. For example: <code>site.add("script.js")</code>`,
+        pages.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 

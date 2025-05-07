@@ -1,6 +1,6 @@
 import { compile, Scanner, specifier } from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
-import { log } from "../core/utils/log.ts";
+import { log, warnUntil } from "../core/utils/log.ts";
 import { dirname, posix } from "../deps/path.ts";
 import { readFile } from "../core/utils/read.ts";
 
@@ -43,11 +43,12 @@ export function tailwindCSS(userOptions?: Options) {
     });
 
     site.process([".css"], async (files) => {
-      if (files.length === 0) {
-        log.warn(
-          "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
-        );
-        content = [];
+      const hasPages = warnUntil(
+        "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
+        files.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 

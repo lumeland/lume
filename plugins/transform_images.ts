@@ -1,6 +1,6 @@
 import { getPathAndExtension } from "../core/utils/path.ts";
 import { filesToPages } from "../core/file.ts";
-import { log } from "../core/utils/log.ts";
+import { log, warnUntil } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import sharp, { create } from "../deps/sharp.ts";
@@ -99,10 +99,12 @@ export function transformImages(userOptions?: Partial<Options>) {
 
       const files = allPages.filter(filter);
 
-      if (files.length === 0) {
-        log.warn(
-          "[transform_images plugin] No images found. Make sure to add them with <code>site.add()</code> and set the <gray>transformImages</gray> data key",
-        );
+      const hasPages = warnUntil(
+        "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
+        files.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 

@@ -5,7 +5,7 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import { log } from "../core/utils/log.ts";
+import { warnUntil } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
@@ -69,10 +69,12 @@ export function postCSS(userOptions?: Options) {
     site.filter("postcss", filter, true);
 
     function postCSSProcessor(files: Page[]) {
-      if (files.length === 0) {
-        log.warn(
-          "[postcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
-        );
+      const hasPages = warnUntil(
+        "[postcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
+        files.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 

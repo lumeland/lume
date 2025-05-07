@@ -1,6 +1,6 @@
 import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils/object.ts";
-import { log } from "../core/utils/log.ts";
+import { warnUntil } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -25,10 +25,12 @@ export function svgo(userOptions?: Options) {
     site.process([".svg"], SVGProcessor);
 
     function SVGProcessor(files: Page[]) {
-      if (files.length === 0) {
-        log.warn(
-          "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
-        );
+      const hasPages = warnUntil(
+        "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
+        files.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 

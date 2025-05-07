@@ -2,7 +2,7 @@ import { minify } from "../deps/terser.ts";
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import { log } from "../core/utils/log.ts";
+import { log, warnUntil } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 
 import type Site from "../core/site.ts";
@@ -41,10 +41,12 @@ export function terser(userOptions?: Options) {
     site.filter("terser", filter, true);
 
     function terserProcess(files: Page[]) {
-      if (files.length === 0) {
-        log.warn(
-          "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
-        );
+      const hasPages = warnUntil(
+        "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
+        files.length,
+      );
+
+      if (!hasPages) {
         return;
       }
 
