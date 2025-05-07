@@ -2,10 +2,11 @@ import { Entry } from "./fs.ts";
 import { bundleAsync } from "../deps/lightningcss.ts";
 import { build, stop } from "../deps/esbuild.ts";
 import textLoader from "./loaders/text.ts";
+import { posix } from "../deps/path.ts";
+import { log } from "./utils/log.ts";
 
 import type { Data } from "./file.ts";
 import type Formats from "./formats.ts";
-import { posix } from "../deps/path.ts";
 
 export interface Options {
   /** The registered file formats */
@@ -239,11 +240,17 @@ export async function compileCSS(
         }
         return id;
       },
-      read(filePath) {
+      async read(filePath) {
         if (filePath === filename) {
           return mainCode;
         }
-        return getEntryContent(imports.get(filePath) || entries.get(filePath));
+        const content = await getEntryContent(
+          imports.get(filePath) || entries.get(filePath),
+        );
+        if (!content) {
+          log.error(`[components] File "${filePath}" not found or is empty`);
+        }
+        return content;
       },
     },
   });
@@ -286,10 +293,16 @@ export async function compileJS(
           build.onLoad(
             { filter: /.*/, namespace: "fs" },
             async ({ path }) => {
-              return {
-                contents: path === filename ? mainCode : await getEntryContent(
+              const contents = path === filename
+                ? mainCode
+                : await getEntryContent(
                   imports.get(path) || entries.get(path),
-                ),
+                );
+              if (!contents) {
+                log.error(`[components] File "${path}" not found or is empty`);
+              }
+              return {
+                contents,
                 loader: path.endsWith(".ts") ? "ts" : "js",
               };
             },
