@@ -549,7 +549,7 @@ export default class Site {
       );
     }
 
-    this.source.addFile(from, to ?? ((str: string) => str));
+    this.source.addFile(normalizePath(from), to ?? ((str: string) => str));
     return this;
   }
 
