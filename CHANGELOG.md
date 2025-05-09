@@ -12,6 +12,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Warning message by the transform_images plugin.
+- Don't ignore `/.well-known` folders.
+- Updated dependencies: `tailwindcss`, `unocss` and some icons.
 
 ## [3.0.0] - 2025-05-07
 ### Added

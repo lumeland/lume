@@ -430,7 +430,7 @@ export default class Source {
   /** Check if the entry must be ignored by Lume */
   #isIgnored(entry: Entry) {
     return (entry.name.startsWith(".") &&
-      (entry.type !== "directory" || entry.path !== "/.well-known")) ||
+      (entry.type !== "directory" || !entry.path.endsWith("/.well-known"))) ||
       entry.name.startsWith("_") ||
       this.ignored.has(entry.path) ||
       this.filters.some((filter) => filter(entry.path));

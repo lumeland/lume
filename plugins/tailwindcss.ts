@@ -64,6 +64,7 @@ export function tailwindCSS(userOptions?: Options) {
               const mod = await import(id);
               return {
                 base,
+                path: id,
                 module: mod.default,
               };
             }
@@ -71,6 +72,7 @@ export function tailwindCSS(userOptions?: Options) {
               const mod = await import(`npm:${id}`);
               return {
                 base,
+                path: id,
                 module: mod.default,
               };
             }
@@ -79,16 +81,16 @@ export function tailwindCSS(userOptions?: Options) {
           },
           async loadStylesheet(id, base) {
             if (id === "tailwindcss") {
-              const url = `${specifier}/index.css`;
-              const content = await readFile(url);
-              return { content, base };
+              const path = `${specifier}/index.css`;
+              const content = await readFile(path);
+              return { content, path, base };
             }
 
             if (id.startsWith("tailwindcss/")) {
               const filename = id.replace("tailwindcss/", "");
-              const url = `${specifier}/${filename}`;
-              const content = await readFile(url);
-              return { content, base };
+              const path = `${specifier}/${filename}`;
+              const content = await readFile(path);
+              return { content, path, base };
             }
 
             if (options.includes === false) {
@@ -98,15 +100,15 @@ export function tailwindCSS(userOptions?: Options) {
               }
             }
 
-            const filename = resolveInclude(id, options.includes || "", base);
-            const content = await site.getContent(filename, false);
+            const path = resolveInclude(id, options.includes || "", base);
+            const content = await site.getContent(path, false);
 
             if (content === undefined) {
-              log.fatal(`[tailwindcss plugin] File ${filename} not found`);
-              throw new Error(`File ${filename} not found`);
+              log.fatal(`[tailwindcss plugin] File ${path} not found`);
+              throw new Error(`File ${path} not found`);
             }
 
-            return { content, base: dirname(filename) };
+            return { content, path, base: dirname(path) };
           },
         });
 
