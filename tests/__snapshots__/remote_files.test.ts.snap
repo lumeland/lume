@@ -198,6 +198,7 @@ This is a remote template
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -571,6 +572,7 @@ template {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -598,6 +600,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -623,6 +626,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -654,6 +658,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -679,6 +684,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -702,6 +708,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

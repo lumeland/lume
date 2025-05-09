@@ -160,6 +160,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -201,6 +202,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -242,6 +244,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -276,6 +279,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -317,6 +321,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -357,6 +362,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -401,6 +407,7 @@ snapshot[`Robots plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -423,6 +430,7 @@ Allow: /",
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/robots.txt",
     },
@@ -595,6 +603,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -636,6 +645,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -677,6 +687,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -711,6 +722,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -752,6 +764,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -792,6 +805,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -836,6 +850,7 @@ snapshot[`Robots plugin with allow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -861,6 +876,7 @@ Allow: /",
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/robots.txt",
     },
@@ -1033,6 +1049,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1074,6 +1091,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1115,6 +1133,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1149,6 +1168,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1190,6 +1210,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1230,6 +1251,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1274,6 +1296,7 @@ snapshot[`Robots plugin with disallow 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1299,6 +1322,7 @@ Disallow: /",
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/robots.txt",
     },
@@ -1471,6 +1495,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1512,6 +1537,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1553,6 +1579,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1587,6 +1614,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1628,6 +1656,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1668,6 +1697,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1712,6 +1742,7 @@ snapshot[`Robots plugin with custom rules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1739,6 +1770,7 @@ Sitemap: https://example.com/sitemap.xml",
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/robots.txt",
     },

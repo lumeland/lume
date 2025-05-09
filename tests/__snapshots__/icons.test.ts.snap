@@ -120,6 +120,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/ant/account-book-filled.svg",
     },
@@ -139,6 +140,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/bootstrap/0-circle.svg",
     },
@@ -155,6 +157,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/boxicons/sushi-regular.svg",
     },
@@ -191,6 +194,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/cssgg/add.svg",
     },
@@ -207,6 +211,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/feather/activity.svg",
     },
@@ -223,6 +228,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/fluent/access_time_20-outlined.svg",
     },
@@ -239,6 +245,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/fontawesome/bell-regular.svg",
     },
@@ -258,6 +265,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/heroicons/face-smile-outline.svg",
     },
@@ -277,6 +285,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/iconoir/check-regular.svg",
     },
@@ -313,6 +322,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/lucide/alarm-clock.svg",
     },
@@ -329,6 +339,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-100/10k-outlined.svg",
     },
@@ -345,6 +356,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-200/10k-outlined.svg",
     },
@@ -361,6 +373,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-300/10k-outlined.svg",
     },
@@ -377,6 +390,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-400/10k-outlined.svg",
     },
@@ -393,6 +407,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-500/10k-outlined.svg",
     },
@@ -409,6 +424,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-600/10k-outlined.svg",
     },
@@ -425,6 +441,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material-700/10k-outlined.svg",
     },
@@ -441,6 +458,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/material/10k-filled.svg",
     },
@@ -457,6 +475,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/mingcute/arrow/arrows_left_fill.svg",
     },
@@ -473,6 +492,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/myna/a-arrow-down-regular.svg",
     },
@@ -489,6 +509,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/octicons/comment-24.svg",
     },
@@ -519,6 +540,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/openmoji/E046-color.svg",
     },
@@ -535,6 +557,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/phosphor/acorn-duotone.svg",
     },
@@ -551,6 +574,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/phosphor/acorn-regular.svg",
     },
@@ -575,6 +599,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/radix/angle.svg",
     },
@@ -591,6 +616,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/remix/arrows/arrow-up-fill.svg",
     },
@@ -607,6 +633,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/sargam/add-duotone.svg",
     },
@@ -623,6 +650,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/simpleicons/facebook.svg",
     },
@@ -649,6 +677,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/icons/tabler/alien-filled.svg",
     },
@@ -788,6 +817,7 @@ snapshot[`icons plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

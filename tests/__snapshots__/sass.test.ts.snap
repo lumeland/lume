@@ -139,6 +139,7 @@ snapshot[`SASS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -161,6 +162,7 @@ snapshot[`SASS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

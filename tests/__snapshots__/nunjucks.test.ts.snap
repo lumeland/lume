@@ -215,6 +215,7 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -246,6 +247,7 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -290,6 +292,7 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -332,6 +335,7 @@ snapshot[`build a site with nunjucks 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -361,6 +365,7 @@ console.log("Hello world, from the icon/User component");
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/script.js",
     },
@@ -385,6 +390,7 @@ icon {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/style.css",
     },
@@ -480,6 +486,7 @@ icon {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

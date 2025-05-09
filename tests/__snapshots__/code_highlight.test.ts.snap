@@ -164,6 +164,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -210,6 +211,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -235,6 +237,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/style.css",
     },
@@ -411,6 +414,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -457,6 +461,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -482,6 +487,7 @@ p {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/theme.css",
     },

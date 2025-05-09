@@ -179,6 +179,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -220,6 +221,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -261,6 +263,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -295,6 +298,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -336,6 +340,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -380,6 +385,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -421,6 +427,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -466,6 +473,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -500,6 +508,7 @@ snapshot[`Load the pages of a site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

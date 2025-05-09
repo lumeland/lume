@@ -725,6 +725,7 @@ Daniels</th>
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

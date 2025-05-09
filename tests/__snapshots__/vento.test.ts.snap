@@ -208,6 +208,7 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -238,6 +239,7 @@ CUSTOM FILTER
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

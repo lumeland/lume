@@ -186,6 +186,7 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -273,6 +274,7 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -346,6 +348,7 @@ snapshot[`metas plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       robots: "this robots will be overrided",

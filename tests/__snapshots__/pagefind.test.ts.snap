@@ -152,6 +152,7 @@ This is the first page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -198,6 +199,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -219,6 +221,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
@@ -236,6 +239,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
@@ -253,6 +257,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
@@ -270,6 +275,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
@@ -2425,6 +2431,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
@@ -2868,6 +2875,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
@@ -2901,6 +2909,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
@@ -2920,6 +2929,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
@@ -2941,6 +2951,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
@@ -2958,6 +2969,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
@@ -2991,6 +3003,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind.js",
     },
@@ -3008,6 +3021,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
@@ -3025,6 +3039,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },
@@ -3189,6 +3204,7 @@ This is the first page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -3235,6 +3251,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -3256,6 +3273,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/fragment/en_1e3ac36.pf_fragment",
     },
@@ -3273,6 +3291,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/fragment/en_4e982c2.pf_fragment",
     },
@@ -3290,6 +3309,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/index/en_8a7583c.pf_index",
     },
@@ -3307,6 +3327,7 @@ This is the second page
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-entry.json",
     },
@@ -5462,6 +5483,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-highlight.js",
     },
@@ -5905,6 +5927,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-modular-ui.css",
     },
@@ -5938,6 +5961,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-modular-ui.js",
     },
@@ -5957,6 +5981,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-ui.css",
     },
@@ -5978,6 +6003,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind-ui.js",
     },
@@ -5995,6 +6021,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind.en_dd935c8678.pf_meta",
     },
@@ -6028,6 +6055,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/pagefind.js",
     },
@@ -6045,6 +6073,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/wasm.en.pagefind",
     },
@@ -6062,6 +6091,7 @@ mark.js/dist/mark.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pagefind/wasm.unknown.pagefind",
     },

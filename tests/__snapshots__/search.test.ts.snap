@@ -223,6 +223,7 @@ snapshot[`Test undefined values 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -251,6 +252,7 @@ snapshot[`Test undefined values 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -278,6 +280,7 @@ snapshot[`Test undefined values 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -306,6 +309,7 @@ snapshot[`Test undefined values 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -334,6 +338,7 @@ snapshot[`Test undefined values 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

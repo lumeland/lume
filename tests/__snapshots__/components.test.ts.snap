@@ -169,6 +169,7 @@ snapshot[`Folder components 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -193,6 +194,7 @@ document.getElementById("header")?.addEventListener("click", function() {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/script.js",
     },
@@ -212,6 +214,7 @@ document.getElementById("header")?.addEventListener("click", function() {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/style.css",
     },
@@ -413,6 +416,7 @@ snapshot[`Components interoperability 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -454,6 +458,7 @@ snapshot[`Components interoperability 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

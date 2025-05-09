@@ -1451,6 +1451,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2375,6 +2376,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2963,6 +2965,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css",
     },
@@ -3887,6 +3890,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4090,6 +4094,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5017,6 +5022,7 @@ snapshot[`Unocss with placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5219,6 +5225,7 @@ snapshot[`Unocss with placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

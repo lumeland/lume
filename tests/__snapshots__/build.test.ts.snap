@@ -129,6 +129,7 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -159,6 +160,7 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -188,6 +190,7 @@ snapshot[`build a simple site 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

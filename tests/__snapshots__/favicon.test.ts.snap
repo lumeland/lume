@@ -128,6 +128,7 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/apple-touch-icon.png",
     },
@@ -145,6 +146,7 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/favicon.ico",
     },
@@ -184,6 +186,7 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/favicon.svg",
     },
@@ -227,6 +230,7 @@ snapshot[`favicon plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

@@ -164,6 +164,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -198,6 +199,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -231,6 +233,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -261,6 +264,7 @@ snapshot[`build a site with jsx/tsx modules 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -299,6 +303,7 @@ This is a **markdown** text. [Go home](/)
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -480,6 +485,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -514,6 +520,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -547,6 +554,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -577,6 +585,7 @@ snapshot[`Previous preact test with SSX 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -629,6 +638,7 @@ body {
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

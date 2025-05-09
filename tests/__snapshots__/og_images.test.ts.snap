@@ -140,6 +140,7 @@ snapshot[`OpenGraph images 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -161,6 +162,7 @@ snapshot[`OpenGraph images 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/page1/index.png",
     },

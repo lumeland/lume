@@ -222,6 +222,7 @@ console.log("foo");
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -241,6 +242,7 @@ console.log("foo");
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/style.css",
     },
@@ -475,6 +477,7 @@ console.log("foo");
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -494,6 +497,7 @@ console.log("foo");
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/theme.css",
     },

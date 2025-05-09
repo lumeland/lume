@@ -143,6 +143,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -164,6 +165,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/index.css.map",
     },
@@ -184,6 +186,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -205,6 +208,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/index2.css.map",
     },
@@ -225,6 +229,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -246,6 +251,7 @@ snapshot[`Source maps from CSS files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css.map",
     },
@@ -400,6 +406,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -421,6 +428,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/foo/bar/script.js.map",
     },
@@ -441,6 +449,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -462,6 +471,7 @@ snapshot[`Source maps from Js files 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/foo/bar/to_lowercase.js.map",
     },
@@ -494,6 +504,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -515,6 +526,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/main.js.map",
     },
@@ -542,6 +554,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -566,6 +579,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -587,6 +601,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/modules/to_uppercase.js.map",
     },
@@ -609,6 +624,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -630,6 +646,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/other.js.map",
     },

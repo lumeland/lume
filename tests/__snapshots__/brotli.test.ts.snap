@@ -189,6 +189,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -210,6 +211,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/404.html.br",
     },
@@ -247,6 +249,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -269,6 +272,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/overrided-page2/index.html.br",
     },
@@ -305,6 +309,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -327,6 +332,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/page_3/index.html.br",
     },
@@ -356,6 +362,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -378,6 +385,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/page5/index.html.br",
     },
@@ -414,6 +422,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -435,6 +444,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/new-name/page7/index.html.br",
     },
@@ -471,6 +481,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -493,6 +504,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/page4/index.html.br",
     },
@@ -532,6 +544,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -554,6 +567,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/page6/index.html.br",
     },
@@ -583,6 +597,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -604,6 +619,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/static/index.html.br",
     },
@@ -630,6 +646,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -651,6 +668,7 @@ snapshot[`brotli plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css.br",
     },
@@ -837,6 +855,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -878,6 +897,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -919,6 +939,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -953,6 +974,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -994,6 +1016,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1034,6 +1057,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1078,6 +1102,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1112,6 +1137,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1142,6 +1168,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1163,6 +1190,7 @@ snapshot[`brotli plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css.br",
     },

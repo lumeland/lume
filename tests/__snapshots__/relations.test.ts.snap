@@ -157,6 +157,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -198,6 +199,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -230,6 +232,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -261,6 +264,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -293,6 +297,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       post: "Array(1)",
@@ -352,6 +357,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       renderOrder: 1,
@@ -412,6 +418,7 @@ snapshot[`relations plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

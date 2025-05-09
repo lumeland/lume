@@ -155,6 +155,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -203,6 +204,7 @@ snapshot[`url and htmlUrl update href 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

@@ -189,6 +189,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -210,6 +211,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/404.html.gz",
     },
@@ -247,6 +249,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -269,6 +272,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/overrided-page2/index.html.gz",
     },
@@ -305,6 +309,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -327,6 +332,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/page_3/index.html.gz",
     },
@@ -356,6 +362,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -378,6 +385,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/page5/index.html.gz",
     },
@@ -414,6 +422,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -435,6 +444,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/new-name/page7/index.html.gz",
     },
@@ -471,6 +481,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -493,6 +504,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/page4/index.html.gz",
     },
@@ -532,6 +544,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -554,6 +567,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/pages/page6/index.html.gz",
     },
@@ -583,6 +597,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -604,6 +619,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/static/index.html.gz",
     },
@@ -630,6 +646,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -651,6 +668,7 @@ snapshot[`gzip plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css.gz",
     },
@@ -1575,6 +1593,7 @@ snapshot[`gzip plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1778,6 +1797,7 @@ snapshot[`gzip plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1798,6 +1818,7 @@ snapshot[`gzip plugin with options 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css.gz",
     },

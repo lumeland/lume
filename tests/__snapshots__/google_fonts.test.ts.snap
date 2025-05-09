@@ -125,6 +125,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -149,6 +150,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -173,6 +175,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -197,6 +200,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -221,6 +225,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -245,6 +250,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -269,6 +275,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -293,6 +300,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -317,6 +325,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -341,6 +350,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -365,6 +375,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -389,6 +400,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -413,6 +425,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -437,6 +450,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -461,6 +475,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -485,6 +500,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -509,6 +525,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -533,6 +550,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -557,6 +575,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -581,6 +600,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -605,6 +625,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -629,6 +650,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -653,6 +675,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -677,6 +700,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -701,6 +725,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -725,6 +750,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -749,6 +775,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -773,6 +800,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -797,6 +825,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -821,6 +850,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -845,6 +875,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -869,6 +900,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -893,6 +925,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -917,6 +950,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -941,6 +975,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -965,6 +1000,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -989,6 +1025,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1013,6 +1050,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1037,6 +1075,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1061,6 +1100,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1085,6 +1125,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1109,6 +1150,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1133,6 +1175,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1157,6 +1200,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1181,6 +1225,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1205,6 +1250,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1229,6 +1275,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1253,6 +1300,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1277,6 +1325,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1301,6 +1350,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1325,6 +1375,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1349,6 +1400,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1373,6 +1425,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1397,6 +1450,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1421,6 +1475,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1445,6 +1500,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1469,6 +1525,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1493,6 +1550,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1517,6 +1575,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1541,6 +1600,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1565,6 +1625,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1589,6 +1650,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1613,6 +1675,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1637,6 +1700,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1661,6 +1725,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1685,6 +1750,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1709,6 +1775,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1733,6 +1800,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1757,6 +1825,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1781,6 +1850,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1805,6 +1875,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1829,6 +1900,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1853,6 +1925,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1877,6 +1950,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1901,6 +1975,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1925,6 +2000,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1949,6 +2025,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1973,6 +2050,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1997,6 +2075,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2021,6 +2100,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2045,6 +2125,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2069,6 +2150,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2093,6 +2175,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2117,6 +2200,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2141,6 +2225,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2165,6 +2250,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2189,6 +2275,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2213,6 +2300,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2237,6 +2325,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2261,6 +2350,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2285,6 +2375,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2309,6 +2400,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2333,6 +2425,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2357,6 +2450,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2381,6 +2475,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2405,6 +2500,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2429,6 +2525,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2453,6 +2550,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2477,6 +2575,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2501,6 +2600,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2525,6 +2625,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2549,6 +2650,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2573,6 +2675,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2597,6 +2700,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2621,6 +2725,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2645,6 +2750,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2669,6 +2775,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -2693,6 +2800,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -3899,6 +4007,7 @@ snapshot[`Download a font from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/style.css",
     },
@@ -4036,6 +4145,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4060,6 +4170,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4084,6 +4195,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4108,6 +4220,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4132,6 +4245,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4156,6 +4270,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4180,6 +4295,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4204,6 +4320,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4228,6 +4345,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4252,6 +4370,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4276,6 +4395,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4300,6 +4420,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4324,6 +4445,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4348,6 +4470,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4372,6 +4495,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4396,6 +4520,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4420,6 +4545,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4444,6 +4570,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4468,6 +4595,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4492,6 +4620,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4516,6 +4645,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4540,6 +4670,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4564,6 +4695,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4588,6 +4720,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4612,6 +4745,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4636,6 +4770,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4660,6 +4795,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4684,6 +4820,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4708,6 +4845,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4732,6 +4870,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4756,6 +4895,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4780,6 +4920,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4804,6 +4945,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4828,6 +4970,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4852,6 +4995,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4876,6 +5020,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4900,6 +5045,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4924,6 +5070,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4948,6 +5095,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4972,6 +5120,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -4996,6 +5145,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5020,6 +5170,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5044,6 +5195,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5068,6 +5220,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5092,6 +5245,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5116,6 +5270,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5140,6 +5295,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5164,6 +5320,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5188,6 +5345,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5212,6 +5370,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5236,6 +5395,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5260,6 +5420,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5284,6 +5445,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5308,6 +5470,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5332,6 +5495,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5356,6 +5520,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5380,6 +5545,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5404,6 +5570,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5428,6 +5595,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5452,6 +5620,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5476,6 +5645,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5500,6 +5670,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5524,6 +5695,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5548,6 +5720,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5572,6 +5745,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5596,6 +5770,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5620,6 +5795,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5644,6 +5820,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5668,6 +5845,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5692,6 +5870,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5716,6 +5895,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5740,6 +5920,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5764,6 +5945,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5788,6 +5970,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5812,6 +5995,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5836,6 +6020,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5860,6 +6045,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5884,6 +6070,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5908,6 +6095,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5932,6 +6120,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5956,6 +6145,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -5980,6 +6170,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6004,6 +6195,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6028,6 +6220,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6052,6 +6245,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6076,6 +6270,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6100,6 +6295,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6124,6 +6320,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6148,6 +6345,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6172,6 +6370,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6196,6 +6395,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6220,6 +6420,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6244,6 +6445,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6268,6 +6470,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6292,6 +6495,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6316,6 +6520,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6340,6 +6545,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6364,6 +6570,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6388,6 +6595,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6412,6 +6620,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6436,6 +6645,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6460,6 +6670,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6484,6 +6695,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6508,6 +6720,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6532,6 +6745,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6556,6 +6770,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6580,6 +6795,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6604,6 +6820,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -6628,6 +6845,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -7844,6 +8062,7 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles/fonts.css",
     },
@@ -7981,6 +8200,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8005,6 +8225,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8029,6 +8250,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8053,6 +8275,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8077,6 +8300,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8101,6 +8325,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8125,6 +8350,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8149,6 +8375,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8173,6 +8400,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8197,6 +8425,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8221,6 +8450,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8245,6 +8475,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8269,6 +8500,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8293,6 +8525,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8317,6 +8550,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -8501,6 +8735,7 @@ snapshot[`Use a placeholder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/styles.css",
     },

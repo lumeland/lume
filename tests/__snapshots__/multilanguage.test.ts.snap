@@ -157,6 +157,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -208,6 +209,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -256,6 +258,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       pagination: [
@@ -305,6 +308,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -346,6 +350,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -398,6 +403,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -437,6 +443,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -479,6 +486,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -519,6 +527,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -558,6 +567,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -607,6 +617,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       pagination: [
@@ -656,6 +667,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -696,6 +708,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -738,6 +751,7 @@ snapshot[`multilanguage plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

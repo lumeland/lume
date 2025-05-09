@@ -158,6 +158,7 @@ snapshot[`esbuild plugin with JSX 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -234,6 +235,7 @@ react/cjs/react-jsx-runtime.production.min.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -391,6 +393,7 @@ snapshot[`esbuild plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -414,6 +417,7 @@ snapshot[`esbuild plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -450,6 +454,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -480,6 +485,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -505,6 +511,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -659,6 +666,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/foo/chunk-0.js",
     },
@@ -676,6 +684,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/foo/chunk-1.js",
     },
@@ -696,6 +705,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -719,6 +729,7 @@ snapshot[`esbuild plugin with splitting as true 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -755,6 +766,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -780,6 +792,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -810,6 +823,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -967,6 +981,7 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -990,6 +1005,7 @@ snapshot[`esbuild plugin with outExtension 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1026,6 +1042,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1056,6 +1073,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1079,6 +1097,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1104,6 +1123,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1274,6 +1294,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1299,6 +1320,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1322,6 +1344,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1345,6 +1368,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1368,6 +1392,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1398,6 +1423,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1562,6 +1588,7 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1585,6 +1612,7 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1608,6 +1636,7 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1631,6 +1660,7 @@ snapshot[`esbuild plugin with entryNames complex 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1667,6 +1697,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1692,6 +1723,7 @@ react-is/cjs/react-is.development.js:
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1849,6 +1881,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1872,6 +1905,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1895,6 +1929,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1925,6 +1960,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1948,6 +1984,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -1973,6 +2010,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

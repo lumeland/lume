@@ -132,6 +132,7 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -162,6 +163,7 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       published: "1979-06-21T23:45:00.000Z",
@@ -184,6 +186,7 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed.json",
     },
@@ -261,6 +264,7 @@ snapshot[`RSS plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed.rss",
     },
@@ -405,6 +409,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -435,6 +440,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       published: "1979-06-21T23:45:00.000Z",
@@ -457,6 +463,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed1.json",
     },
@@ -534,6 +541,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed1.rss",
     },
@@ -551,6 +559,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed2.json",
     },
@@ -628,6 +637,7 @@ snapshot[`RSS plugin with array function 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "feed2.rss",
     },

@@ -129,6 +129,7 @@ snapshot[`Lightningcss plugin (transform) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -151,6 +152,7 @@ snapshot[`Lightningcss plugin (transform) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -295,6 +297,7 @@ snapshot[`Lightningcss plugin (bundle) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -317,6 +320,7 @@ snapshot[`Lightningcss plugin (bundle) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

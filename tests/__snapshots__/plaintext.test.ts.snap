@@ -190,6 +190,7 @@ in multiple lines
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

@@ -132,6 +132,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -161,6 +162,7 @@ snapshot[`Disabled pretty URLs 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

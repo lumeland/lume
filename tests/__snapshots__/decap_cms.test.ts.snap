@@ -137,6 +137,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       url: "/admin/config.yml",
     },
@@ -200,6 +201,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -235,6 +237,7 @@ local_backend: false
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

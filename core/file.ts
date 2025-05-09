@@ -18,6 +18,9 @@ export class Page<D extends Data = Data> {
   /** Used to save the page data */
   data: D = {} as D;
 
+  /** Whether this page comes from a copied file with site.copy() */
+  isCopy = false;
+
   /** The page content (string or Uint8Array) */
   #content?: Content;
 
@@ -132,8 +135,13 @@ export class Page<D extends Data = Data> {
 }
 
 export class StaticFile<D extends Data = Data> {
+  /** The src info */
   src: Required<Src>;
+
+  /** Used to save the contextual data */
   data: D = {} as D;
+
+  /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
   static create(
@@ -153,6 +161,7 @@ export class StaticFile<D extends Data = Data> {
     const { content } = await this.src.entry.getContent(binaryLoader);
     const page = Page.create(this.data, this.src);
     page.content = content as Uint8Array;
+    page.isCopy = this.isCopy;
     return page;
   }
 

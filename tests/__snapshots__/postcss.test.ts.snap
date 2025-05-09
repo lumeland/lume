@@ -210,6 +210,7 @@ summary{display:list-item}
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -274,6 +275,7 @@ summary{display:list-item}
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -422,6 +424,7 @@ snapshot[`Postcss plugin (without includes) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -456,6 +459,7 @@ snapshot[`Postcss plugin (without includes) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -604,6 +608,7 @@ snapshot[`postcss plugin with hooks 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

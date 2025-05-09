@@ -126,6 +126,7 @@ snapshot[`.well-known folder 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],

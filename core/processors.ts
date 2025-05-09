@@ -62,6 +62,10 @@ export type Processor = (
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {
+  if (page.isCopy) {
+    return false;
+  }
+
   if (exts === "*") {
     return true;
   }

@@ -218,6 +218,7 @@ loop on focusing solely on the bottom line.
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       readingInfo: [

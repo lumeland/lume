@@ -151,6 +151,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -179,6 +180,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -204,6 +206,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -232,6 +235,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -260,6 +264,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -288,6 +293,7 @@ snapshot[`slugify_urls plugin 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -451,6 +457,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -479,6 +486,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -504,6 +512,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -532,6 +541,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -560,6 +570,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
@@ -588,6 +599,7 @@ snapshot[`slugify_urls plugin (static files) 3`] = `
       page: [
         "src",
         "data",
+        "isCopy",
       ],
       paginate: "paginate",
       search: [],
