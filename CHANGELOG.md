@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.1] - Unreleased
+### Added
+- Restore `site.copy()` function removed in 3.0.0.
+
 ### Fixed
 - Warning message by the transform_images plugin.
 

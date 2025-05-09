@@ -81,8 +81,8 @@ export default class Source {
   /** Custom parsers for basenames */
   basenameParsers: BasenameParser[] = [];
 
-  /** Files added with `site.add()` */
-  addedFiles = new Map<string, string | Destination>();
+  /** Files added with `site.add()` or `site.copy()` */
+  addedFiles = new Map<string, [string | Destination, boolean]>();
 
   constructor(options: Options) {
     this.dataLoader = options.dataLoader;
@@ -105,7 +105,7 @@ export default class Source {
     this.filters.push(filter);
   }
 
-  addFile(from: string, to: string | Destination) {
+  addFile(from: string, to: string | Destination, isCopy = false) {
     if (from.startsWith(".")) {
       if (typeof to !== "function") {
         throw new Error(
@@ -124,7 +124,7 @@ export default class Source {
       to = normalizePath(to);
     }
 
-    this.addedFiles.set(from, to);
+    this.addedFiles.set(from, [to, isCopy]);
   }
 
   async build(...buildFilters: BuildFilter[]): Promise<[Page[], StaticFile[]]> {
@@ -192,7 +192,7 @@ export default class Source {
     parentData: Partial<Data>,
     pages: Page[],
     staticFiles: StaticFile[],
-    destination?: Destination,
+    destination?: [Destination, boolean],
   ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
       return;
@@ -230,18 +230,23 @@ export default class Source {
     }
 
     // The folder is added with `site.add("folder")`
-    const dest = this.addedFiles.get(dir.path) ||
+    const added = this.addedFiles.get(dir.path) ||
       this.addedFiles.get(dirPath) ||
       this.addedFiles.get(`${dir.path}/`) ||
       this.addedFiles.get(`${dirPath}/`);
 
-    if (dest) {
+    if (added) {
+      const [dest, isCopy] = added;
+
       if (typeof dest === "function") {
-        const prev = destination;
-        destination = prev ? (path: string) => dest(prev(path)) : dest;
+        const prev = destination?.[0];
+        destination = [
+          prev ? (path: string) => dest(prev(path)) : dest,
+          isCopy,
+        ];
       } else {
         dirPath = dest;
-        destination ??= (path: string) => path;
+        destination ??= [(path: string) => path, isCopy];
       }
     }
 
@@ -331,39 +336,35 @@ export default class Source {
     dirData: Partial<Data>,
     pages: Page[],
     staticFiles: StaticFile[],
-    destination?: Destination,
+    destination?: [Destination, boolean],
   ): Promise<void> {
     // The file is added with `site.add("file.ext")`
-    const destPath = this.addedFiles.get(file.path);
+    const added = this.addedFiles.get(file.path);
+    let [dest, isCopy] = added ?? destination ?? [];
 
-    // If the file must be ignored and not explicitly added
-    if (!destPath && this.#isIgnored(file)) {
+    // Merge the destination with the parent folder
+    if (added) {
+      const [addedDest] = added;
+
+      if (typeof addedDest === "function") {
+        const parentDest = destination?.[0];
+        dest = parentDest ? (path) => addedDest(parentDest(path)) : addedDest;
+      }
+    } else if (this.#isIgnored(file)) {
+      // The file or parent folder is ignored and the file not explicitly added
       return;
-    }
-
-    // Merge folder and file destinations
-    let fileDestination: string | Destination | undefined;
-
-    if (typeof destPath === "string") {
-      fileDestination = destPath;
-    } else if (typeof destPath === "function") {
-      fileDestination = destination
-        ? (path) => destPath(destination(path))
-        : destPath;
-    } else {
-      fileDestination = destination;
     }
 
     const format = this.formats.search(file.path);
 
     // The format is a page `site.loadPages([".ext"])`
-    if (format?.isPage) {
+    if (format?.isPage && !isCopy) {
       const page = await this.#loadPage(
         file,
         format,
         dirData,
         dirPath,
-        fileDestination,
+        dest,
       );
 
       if (
@@ -379,34 +380,50 @@ export default class Source {
 
     const ext = format?.ext || getExtension(file.name);
 
-    // The file is added explicitly with `site.add("file.ext")`
-    if (destPath) {
-      staticFiles.push(
-        createFile(file, ext, dirPath, dirData, fileDestination),
+    // The file is added explicitly with `site.add()` or `site.copy()`
+    if (added) {
+      const staticFile = createFile(
+        file,
+        ext,
+        dirPath,
+        dirData,
+        dest,
       );
+      staticFile.isCopy = !!isCopy;
+      staticFiles.push(staticFile);
       return;
     }
 
     // The file is added with `site.add([".ext"])`
-    const extensionDest = this.addedFiles.get(ext);
+    const addedExt = this.addedFiles.get(ext);
 
-    if (typeof extensionDest === "function") {
-      const wrapper = fileDestination;
+    if (addedExt) {
+      const [addedExtDest, addedExtCopy] = addedExt;
 
-      // Merge destinations
-      fileDestination = typeof wrapper === "function"
-        ? (path: string) => wrapper(extensionDest(path))
-        : extensionDest;
+      if (typeof addedExtDest === "function") {
+        const parentDest = dest;
+        dest = typeof parentDest === "function"
+          ? (path) => addedExtDest(parentDest(path))
+          : addedExtDest;
+      }
+      if (addedExtCopy) {
+        isCopy = true;
+      }
     }
 
-    // If `fileDestination` exists is because:
+    // If `dest` exists is because:
     // - the file was added with `site.add([".ext"])`
     // - or any parent folder with `site.add("folder")`
-    if (fileDestination) {
-      staticFiles.push(
-        createFile(file, ext, dirPath, dirData, fileDestination),
+    if (dest) {
+      const staticFile = createFile(
+        file,
+        ext,
+        dirPath,
+        dirData,
+        dest,
       );
-      return;
+      staticFile.isCopy = !!isCopy;
+      staticFiles.push(staticFile);
     }
   }
 

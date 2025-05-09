@@ -498,6 +498,27 @@ export default class Site {
     from: string | string[],
     to?: string | Destination,
   ): this {
+    this.#addOrCopy(from, to, false);
+    return this;
+  }
+
+  /** Copy files or directories to the site */
+  copy(from: string, to?: string | Destination): this;
+  copy(from: string[], to?: Destination): this;
+  copy(
+    from: string | string[],
+    to?: string | Destination,
+  ): this {
+    this.#addOrCopy(from, to, true);
+    return this;
+  }
+
+  /** Add or copy files or directories to the site */
+  #addOrCopy(
+    from: string | string[],
+    to: string | Destination | undefined,
+    copy: boolean,
+  ): void {
     // File extensions
     if (Array.isArray(from)) {
       if (typeof to === "string") {
@@ -507,10 +528,10 @@ export default class Site {
       }
       const dest = typeof to === "function" ? to : (path: string) => path;
       for (const ext of from) {
-        this.source.addFile(ext, dest);
+        this.source.addFile(ext, dest, copy);
         this.formats.set({ ext });
       }
-      return this;
+      return;
     }
 
     // Remote files
@@ -538,8 +559,8 @@ export default class Site {
       }
 
       this.remoteFile(to, url.href);
-      this.source.addFile(to, to);
-      return this;
+      this.source.addFile(to, to, copy);
+      return;
     }
 
     // It's a path
@@ -549,8 +570,11 @@ export default class Site {
       );
     }
 
-    this.source.addFile(normalizePath(from), to ?? ((str: string) => str));
-    return this;
+    this.source.addFile(
+      normalizePath(from),
+      to ?? ((str: string) => str),
+      copy,
+    );
   }
 
   /** Ignore one or several files or directories */
@@ -701,7 +725,7 @@ export default class Site {
     await filesToPages(
       this.files,
       pages,
-      (file) => preExtensions.has(file.src.ext),
+      (file) => !file.isCopy && preExtensions.has(file.src.ext),
     );
 
     if (await this.dispatchEvent({ type: "beforeRender", pages }) === false) {
@@ -776,7 +800,7 @@ export default class Site {
     await filesToPages(
       this.files,
       this.pages,
-      (file) => extensions.has(file.src.ext),
+      (file) => !file.isCopy && extensions.has(file.src.ext),
     );
 
     // Run the processors to the pages

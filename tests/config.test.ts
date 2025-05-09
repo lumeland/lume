@@ -25,18 +25,18 @@ Deno.test("static files configuration", () => {
   site.add("img");
   equals(addedFiles.size, 1);
   equals(addedFiles.has("/img"), true);
-  equals(typeof addedFiles.get("/img"), "function");
+  equals(typeof addedFiles.get("/img")?.[0], "function");
 
   site.add("statics/favicon.ico", "favicon.ico");
   equals(addedFiles.size, 2);
   equals(
     addedFiles.get("/statics/favicon.ico"),
-    "/favicon.ico",
+    ["/favicon.ico", false],
   );
 
   site.add("css", ".");
   equals(addedFiles.size, 3);
-  equals(addedFiles.get("/css"), "/");
+  equals(addedFiles.get("/css"), ["/", false]);
 });
 
 Deno.test("ignored files configuration", () => {

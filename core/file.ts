@@ -134,6 +134,7 @@ export class Page<D extends Data = Data> {
 export class StaticFile<D extends Data = Data> {
   src: Required<Src>;
   data: D = {} as D;
+  isCopy = false;
 
   static create(
     data: Partial<Data> & { url: string },

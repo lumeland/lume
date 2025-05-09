@@ -52,3 +52,16 @@ Deno.test("postcss plugin with default name", () => {
 
   assert(helpers.has("postcss"));
 });
+
+Deno.test("postcss plugin with copy()", async (t) => {
+  const site = getSite({
+    src: "postcss",
+  });
+
+  site.copy([".css"]);
+  site.copy("index.min.css", "new.css");
+  site.use(postcss());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
