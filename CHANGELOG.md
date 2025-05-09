@@ -9,6 +9,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.1] - Unreleased
 ### Added
 - Restore `site.copy()` function removed in 3.0.0.
+- Minify html plugin: output info in the debugbar
+- esbuild plugin: output input info in the debugbar
 
 ### Fixed
 - Warning message by the transform_images plugin.

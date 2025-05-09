@@ -1,6 +1,7 @@
 import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
+import { bytes } from "../core/utils/format.ts";
 import {
   build,
   BuildOptions,
@@ -275,16 +276,15 @@ export function esbuild(userOptions?: Options) {
         }
 
         if (item) {
-          const format = Intl.NumberFormat("en", {
-            notation: "compact",
-            style: "unit",
-            unit: "byte",
-            unitDisplay: "narrow",
-          });
           item.items ??= [];
           item.items.push({
             title: normalizedOutPath,
-            details: format.format(outputFile.contents.length),
+            details: bytes(outputFile.contents.length),
+            items: Object.entries(output.inputs)
+              .map(([title, { bytesInOutput }]) => ({
+                title,
+                details: bytes(bytesInOutput),
+              })),
           });
         }
 

@@ -1,6 +1,7 @@
 import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { bytes } from "../core/utils/format.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
@@ -50,9 +51,26 @@ export function minifyHTML(userOptions?: Options) {
 
   return (site: Site) => {
     site.process(options.extensions, (pages) => {
+      const item = site.debugBar?.buildItem(
+        "[minify_html plugin] minification completed",
+        "info",
+      );
+
       for (const page of pages) {
         try {
-          page.bytes = minify(page.bytes, options.options);
+          const content = page.bytes;
+          page.bytes = minify(content, options.options);
+          if (item) {
+            item.items ??= [];
+            const old = content.length;
+            const minified = page.bytes.length;
+            const ratio = Math.round((1 - minified / old) * 100);
+
+            item.items.push({
+              title: `[-${ratio}%] ${page.data.url}`,
+              details: `${bytes(page.bytes.length)}`,
+            });
+          }
         } catch (error) {
           log.error(
             `[minify-html plugin] Error minifying ${page.sourcePath}: ${error}`,
