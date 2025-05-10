@@ -6,10 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.0.1] - Unreleased
+## [3.0.1] - 2025-05-10
 ### Added
-- Restore `site.copy()` function removed in 3.0.0.
-- Info from minify_html, esbuild, terser, postcss, lightningcss, google_fonts and svgo plugins to the debugbar.
+- Reintroduced `site.copy()` function removed in 3.0.0, because it's still useful in specific scenarios.
+- More info in the debugbar from minify_html, esbuild, terser, postcss, lightningcss, google_fonts and svgo plugins.
 
 ### Fixed
 - Warning message by the transform_images plugin.
@@ -123,5 +123,5 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
 
-[3.0.1]: https://github.com/lumeland/lume/compare/v3.0.0...HEAD
+[3.0.1]: https://github.com/lumeland/lume/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/lumeland/lume/releases/tag/v3.0.0
