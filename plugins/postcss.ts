@@ -6,9 +6,11 @@ import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { warnUntil } from "../core/utils/log.ts";
+import { bytes } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
+import type { Item } from "../deps/debugbar.ts";
 
 export interface Options {
   /**
@@ -78,10 +80,15 @@ export function postCSS(userOptions?: Options) {
         return;
       }
 
-      return concurrent(files, postCss);
+      const item = site.debugBar?.buildItem(
+        "[postcss plugin] processing completed",
+        "info",
+      );
+
+      return concurrent(files, (file) => postCss(file, item));
     }
 
-    async function postCss(file: Page) {
+    async function postCss(file: Page, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -97,6 +104,18 @@ export function postCSS(userOptions?: Options) {
 
       // Process the code with PostCSS
       const result = await runner.process(content, { from: filename, to, map });
+
+      if (item) {
+        item.items ??= [];
+        item.items.push({
+          title: file.data.url,
+          details: bytes(result.css.length),
+          items: result.warnings().map((warning) => ({
+            title: warning.toString(),
+            context: "warning",
+          })),
+        });
+      }
 
       saveAsset(
         site,

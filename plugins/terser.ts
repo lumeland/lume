@@ -4,9 +4,11 @@ import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
+import { bytes, percentage } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
+import type { Item } from "../deps/debugbar.ts";
 
 export interface Options {
   /** File extensions to minify */
@@ -50,10 +52,15 @@ export function terser(userOptions?: Options) {
         return;
       }
 
-      return concurrent(files, terser);
+      const item = site.debugBar?.buildItem(
+        "[terser plugin] minification completed",
+        "info",
+      );
+
+      return concurrent(files, (file) => terser(file, item));
     }
 
-    async function terser(page: Page) {
+    async function terser(page: Page, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         page,
@@ -71,6 +78,17 @@ export function terser(userOptions?: Options) {
 
       try {
         const output = await minify({ [filename]: content }, terserOptions);
+
+        if (item && output.code) {
+          item.items ??= [];
+          const old = content.length;
+          const minified = output.code.length;
+
+          item.items.push({
+            title: `[${percentage(old, minified)}] ${page.data.url}`,
+            details: `${bytes(page.bytes.length)}`,
+          });
+        }
         saveAsset(
           site,
           page,

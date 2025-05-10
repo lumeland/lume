@@ -1,6 +1,7 @@
 import { optimize } from "../deps/svgo.ts";
 import { merge } from "../core/utils/object.ts";
 import { warnUntil } from "../core/utils/log.ts";
+import { bytes, percentage } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -34,14 +35,31 @@ export function svgo(userOptions?: Options) {
         return;
       }
 
+      const item = site.debugBar?.buildItem(
+        "[svgo plugin] optimization completed",
+        "info",
+      );
+
       for (const file of files) {
         const path = site.src(file.outputPath);
-        const result = optimize(file.text, {
+        const content = file.text;
+        const { data } = optimize(content, {
           path,
           ...options.options,
         }) as { data: string };
 
-        file.content = result.data;
+        if (item) {
+          item.items ??= [];
+          const old = content.length;
+          const optimized = data.length;
+
+          item.items.push({
+            title: `[${percentage(old, optimized)}] ${file.data.url}`,
+            details: `${bytes(optimized)}`,
+          });
+        }
+
+        file.content = data;
       }
     }
   };

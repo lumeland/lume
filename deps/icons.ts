@@ -17,7 +17,7 @@ export const catalogs: Catalog[] = [
   {
     // https://icons.getbootstrap.com/
     id: "bootstrap",
-    src: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/{name}.svg",
   },
   {
     // https://heroicons.com/
@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.298/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.300/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",

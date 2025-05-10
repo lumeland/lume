@@ -1,7 +1,7 @@
 import { minify } from "../deps/minify_html.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import { bytes } from "../core/utils/format.ts";
+import { bytes, percentage } from "../core/utils/format.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
@@ -64,10 +64,9 @@ export function minifyHTML(userOptions?: Options) {
             item.items ??= [];
             const old = content.length;
             const minified = page.bytes.length;
-            const ratio = Math.round((1 - minified / old) * 100);
 
             item.items.push({
-              title: `[-${ratio}%] ${page.data.url}`,
+              title: `[${percentage(old, minified)}] ${page.data.url}`,
               details: `${bytes(page.bytes.length)}`,
             });
           }
