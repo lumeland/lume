@@ -53,7 +53,7 @@ export default class DebugBar {
   /**
    * Add a new item to the "Build" collection and return it
    */
-  buildItem(title: string, context?: string): Item {
+  buildItem(title: string, context: BuildContext = "info"): Item {
     const collection = this.collection("Build");
     const item: Item = {
       title,
@@ -64,6 +64,8 @@ export default class DebugBar {
     return item;
   }
 }
+
+type BuildContext = "fatal" | "error" | "warn" | "info";
 
 /** Build collection created automatically by Lume */
 function buildCollection(): Collection {

@@ -6,7 +6,9 @@ import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 import { warnUntil } from "../core/utils/log.ts";
+import { bytes } from "../core/utils/format.ts";
 
+import type { Item } from "../deps/debugbar.ts";
 import type Site from "../core/site.ts";
 import type {
   BundleAsyncOptions,
@@ -75,14 +77,18 @@ export function lightningCSS(userOptions?: Options) {
         return;
       }
 
+      const item = site.debugBar?.buildItem(
+        "[lightningcss plugin] CSS processing completed",
+      );
+
       if (bundle) {
-        return lightningCSSBundler(files);
+        return lightningCSSBundler(files, item);
       }
 
-      files.forEach(lightningCSSTransformer);
+      files.forEach((file) => lightningCSSTransformer(file, item));
     }
 
-    function lightningCSSTransformer(file: Page) {
+    function lightningCSSTransformer(file: Page, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -101,6 +107,21 @@ export function lightningCSS(userOptions?: Options) {
       const result = transform(transformOptions);
       const decoder = new TextDecoder();
 
+      if (item) {
+        item.items ??= [];
+        item.items.push({
+          title: file.data.url,
+          details: bytes(result.code.length),
+          items: [
+            ...result.warnings.map((warning) => ({
+              title: `[${warning.type}] ${warning.message}`,
+              text: warning.loc.filename,
+              context: "warning",
+            })),
+          ],
+        });
+      }
+
       saveAsset(
         site,
         file,
@@ -114,7 +135,7 @@ export function lightningCSS(userOptions?: Options) {
      * This cannot be done in parallel because ligthningcss has a bug that mixes the imports of all files
      * Seems like executing the bundler in sequence fixes the issue
      */
-    async function lightningCSSBundler(files: Page[]) {
+    async function lightningCSSBundler(files: Page[], item?: Item) {
       for (const file of files) {
         const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
           site,
@@ -152,6 +173,21 @@ export function lightningCSS(userOptions?: Options) {
 
         const result = await bundleAsync(bundleOptions);
         const decoder = new TextDecoder();
+
+        if (item) {
+          item.items ??= [];
+          item.items.push({
+            title: file.data.url,
+            details: bytes(result.code.length),
+            items: [
+              ...result.warnings.map((warning) => ({
+                title: `[${warning.type}] ${warning.message}`,
+                text: warning.loc.filename,
+                context: "warning",
+              })),
+            ],
+          });
+        }
 
         saveAsset(
           site,

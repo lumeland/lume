@@ -3,6 +3,7 @@ import { insertContent } from "../core/utils/page_content.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "../core/utils/log.ts";
+import { bytes } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
 
@@ -37,6 +38,7 @@ export function googleFonts(userOptions: Options) {
       "/",
       options.fontsFolder || site.options.fontsFolder,
     );
+    const downloadedFonts = new Map<string, number>();
 
     // Download the fonts and generate the CSS
     site.addEventListener("beforeBuild", async () => {
@@ -62,9 +64,11 @@ export function googleFonts(userOptions: Options) {
 
         await Promise.all(fontFaces.map(async (fontFace) => {
           const content = await read(fontFace.src, true);
+          const url = posix.join("/", fontsFolder, fontFace.file);
+          downloadedFonts.set(url, content.length);
           site.page({
             content,
-            url: posix.join("/", fontsFolder, fontFace.file),
+            url,
           });
         }));
 
@@ -76,6 +80,16 @@ export function googleFonts(userOptions: Options) {
     site.process(async () => {
       const page = await site.getOrCreatePage(cssFile);
       page.text = insertContent(page.text, cssCode, options.placeholder);
+      const item = site.debugBar?.buildItem(
+        `[google_fonts plugin] Fonts downloaded and CSS generated at ${cssFile}`,
+      );
+      if (item) {
+        item.items = [...downloadedFonts.entries()]
+          .map(([file, size]) => ({
+            title: file,
+            details: bytes(size),
+          }));
+      }
     });
   };
 }

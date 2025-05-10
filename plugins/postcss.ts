@@ -82,7 +82,6 @@ export function postCSS(userOptions?: Options) {
 
       const item = site.debugBar?.buildItem(
         "[postcss plugin] processing completed",
-        "info",
       );
 
       return concurrent(files, (file) => postCss(file, item));

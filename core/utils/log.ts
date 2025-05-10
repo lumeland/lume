@@ -10,7 +10,7 @@ import {
   yellow,
 } from "../../deps/colors.ts";
 
-import type { Collection, Item } from "../debugbar.ts";
+import type { Collection, Item } from "../../deps/debugbar.ts";
 
 const severity = {
   TRACE: 1,

@@ -54,7 +54,6 @@ export function terser(userOptions?: Options) {
 
       const item = site.debugBar?.buildItem(
         "[terser plugin] minification completed",
-        "info",
       );
 
       return concurrent(files, (file) => terser(file, item));

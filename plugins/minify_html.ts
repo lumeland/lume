@@ -53,7 +53,6 @@ export function minifyHTML(userOptions?: Options) {
     site.process(options.extensions, (pages) => {
       const item = site.debugBar?.buildItem(
         "[minify_html plugin] minification completed",
-        "info",
       );
 
       for (const page of pages) {
