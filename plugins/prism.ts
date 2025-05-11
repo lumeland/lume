@@ -76,7 +76,7 @@ export function prism(userOptions?: Options) {
 export default prism;
 
 function getCssUrl(name: string) {
-  if (name === "default") {
+  if (name === "default" || name === "prism") {
     return `${themesPath}prism.min.css`;
   }
 

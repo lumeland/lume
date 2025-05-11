@@ -275,7 +275,7 @@ export default class Source {
           // Add possible inner entries
           // For example: site.ignore("folder").add("folder/file.ext")
           for (const path of this.addedFiles.keys()) {
-            if (!path.startsWith(entry.path) || path === entry.path) {
+            if (path !== entry.path && !path.startsWith(`${entry.path}/`)) {
               continue;
             }
 
