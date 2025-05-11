@@ -8,8 +8,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.2] - Unreleased
 ### Fixed
-- Prism plugin: Allow `prism` as theme name.
+- prism plugin: Allow `prism` as theme name.
 - Add/copy paths starting with `_` (`add("_assets", "assets")`)
+- minify_html plugin: Disable js and css minification by default
+  unless `.css` and `.js` extensions are added.
 - Updated dependencies: `sass`, `lightningcss` and some icons.
 
 ## [3.0.1] - 2025-05-10

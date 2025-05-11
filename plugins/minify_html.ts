@@ -24,8 +24,6 @@ export const defaults: Options = {
     keep_html_and_head_opening_tags: false,
     keep_spaces_between_attributes: true,
     keep_comments: false,
-    minify_js: true,
-    minify_css: true,
     remove_bangs: false,
     remove_processing_instructions: false,
   },
@@ -48,6 +46,9 @@ export function minifyHTML(userOptions?: Options) {
       }. Only ".html", ".css" and ".js" are supported by minify-html plugin.`,
     );
   }
+
+  options.options.minify_css ??= options.extensions?.includes(".css");
+  options.options.minify_js ??= options.extensions?.includes(".js");
 
   return (site: Site) => {
     site.process(options.extensions, (pages) => {
