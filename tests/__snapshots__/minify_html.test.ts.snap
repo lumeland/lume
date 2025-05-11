@@ -117,7 +117,7 @@ snapshot[`minify_html plugin 2`] = `[]`;
 snapshot[`minify_html plugin 3`] = `
 [
   {
-    content: "Uint8Array(446)",
+    content: "Uint8Array(558)",
     data: {
       basename: "",
       children: \`<!DOCTYPE html>
