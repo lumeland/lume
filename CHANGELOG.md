@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Prism plugin: Allow `prism` as theme name.
 - Add/copy paths starting with `_` (`add("_assets", "assets")`)
+- Updated dependencies: `sass`, `lightningcss` and some icons.
 
 ## [3.0.1] - 2025-05-10
 ### Added
