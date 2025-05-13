@@ -1,4 +1,4 @@
-import satori, { SatoriOptions } from "../deps/satori.ts";
+import satori, { fontsSpecifier, SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
@@ -124,7 +124,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       weight: 400,
       style: "normal",
       data: (await read(
-        "https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/src/inter/Inter-Regular.woff",
+        `${fontsSpecifier}/inter/Inter-Regular.woff`,
         true,
       )).buffer as ArrayBuffer,
     },
@@ -133,7 +133,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       weight: 700,
       style: "normal",
       data: (await read(
-        "https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/src/inter/Inter-SemiBold.woff",
+        `${fontsSpecifier}/inter/Inter-SemiBold.woff`,
         true,
       )).buffer as ArrayBuffer,
     },
