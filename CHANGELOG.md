@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.2] - Unreleased
+### Added
+- Source maps support for tailwindcss plugin.
+
 ### Fixed
 - prism plugin: Allow `prism` as theme name.
 - Add/copy paths starting with `_` (`add("_assets", "assets")`)

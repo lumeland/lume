@@ -1,9 +1,15 @@
-import { compile, Scanner, specifier } from "../deps/tailwindcss.ts";
+import {
+  compile,
+  Scanner,
+  specifier,
+  toSourceMap,
+} from "../deps/tailwindcss.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
-import { dirname, posix } from "../deps/path.ts";
+import { dirname } from "../deps/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { resolveInclude } from "../core/utils/path.ts";
+import { prepareAsset, saveAsset } from "./source_maps.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
@@ -56,8 +62,13 @@ export function tailwindCSS(userOptions?: Options) {
       content = [];
 
       for (const file of files) {
-        const compiler = await compile(file.text, {
-          base: posix.dirname(file.outputPath),
+        const { content, filename, enableSourceMap } = prepareAsset(
+          site,
+          file,
+        );
+
+        const compiler = await compile(content, {
+          from: filename,
           async loadModule(id, base, resourceHint) {
             if (id.startsWith(".")) {
               id = site.root(base, id);
@@ -112,7 +123,17 @@ export function tailwindCSS(userOptions?: Options) {
           },
         });
 
-        file.text = compiler.build(candidates);
+        const code = compiler.build(candidates);
+        if (enableSourceMap) {
+          saveAsset(
+            site,
+            file,
+            code,
+            toSourceMap(compiler.buildSourceMap()).raw,
+          );
+        } else {
+          file.text = code;
+        }
       }
     });
   };
