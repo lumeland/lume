@@ -3,6 +3,7 @@ import { Page } from "../core/file.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
+import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
@@ -50,7 +51,7 @@ export function decapCMS(userOptions?: Options) {
       ? options.local
       : site.options.location.hostname === "localhost";
 
-    // Run the local netlify server
+    // Run the local decap server
     if (local_backend) {
       site.addEventListener("afterStartServer", () => {
         site.run(options.proxyCommand);
@@ -113,9 +114,10 @@ export function decapCMS(userOptions?: Options) {
         | undefined;
 
       if (!config) {
-        throw new Error(
-          `Missing configuration for Netlify CMS: ${options.configKey}`,
+        log.error(
+          `[decap_cms plugin] Missing configuration: ${options.configKey}`,
         );
+        return;
       }
 
       allPages.push(Page.create({
@@ -139,6 +141,22 @@ export function decapCMS(userOptions?: Options) {
               site.url(options.path)
             }" + document.location.hash; }`;
           document.head.appendChild(script);
+        }
+      }
+
+      if (local_backend) {
+        const url = site.url(options.path, true);
+        const item = site.debugBar?.buildItem(
+          `[decap plugin] CMS running at ${url}`,
+        );
+        if (item) {
+          item.actions = [
+            {
+              text: "Open",
+              href: url,
+              target: "_blank",
+            },
+          ];
         }
       }
     });

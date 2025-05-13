@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.2] - Unreleased
 ### Added
 - Source maps support for tailwindcss plugin.
+- Decap CMS plugin: show the URL in the debugbar.
 
 ### Fixed
 - prism plugin: Allow `prism` as theme name.
