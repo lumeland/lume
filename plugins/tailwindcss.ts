@@ -3,10 +3,10 @@ import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { dirname, posix } from "../deps/path.ts";
 import { readFile } from "../core/utils/read.ts";
-
-import type Site from "../core/site.ts";
-import { ChangedContent } from "npm:@tailwindcss/oxide@4.0.3";
 import { resolveInclude } from "../core/utils/path.ts";
+
+import type { ChangedContent } from "../deps/tailwindcss.ts";
+import type Site from "../core/site.ts";
 
 export interface Options {
   /**
