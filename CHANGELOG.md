@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Add/copy paths starting with `_` (`add("_assets", "assets")`)
 - minify_html plugin: Disable js and css minification by default
   unless `.css` and `.js` extensions are added.
+- Vento filters in components (ex: `{{ comp.button() |> toUpperCase }})
 - Updated dependencies: `sass`, `lightningcss`, `std`, `terser`,  `satori` and some icons.
 
 ## [3.0.1] - 2025-05-10
