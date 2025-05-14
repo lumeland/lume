@@ -144,6 +144,9 @@ snapshot[`build a site with vento 3`] = `
 
 </section>
 
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+
 CUSTOM FILTER
 
 <strong>Título</strong>
@@ -172,6 +175,9 @@ Título
 
 </section>
 
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+
 CUSTOM FILTER
 
 <strong>Título</strong>
@@ -194,6 +200,8 @@ CUSTOM FILTER
 {{ comp container }}
   {{ comp button {href, content: "Go to Lume"} /}}
 {{ /comp }}
+
+{{ comp.button({href, content: "Go to Lume"}) |> toUpperCase }}
 
 {{ "custom filter" |> upper }}
 

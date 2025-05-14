@@ -200,7 +200,9 @@ function compTag(
   // Components are always async
   // so convert automatically {{ comp.whatever }} to {{ await comp.whatever }}
   if (code.startsWith("comp.")) {
-    return `${output} += await ${code};`;
+    const value = `await ${code}`;
+    const val = env.compileFilters(tokens, value, env.options.autoescape);
+    return `${output} += ${val};`;
   }
 
   if (!code.startsWith("comp ")) {

@@ -17,6 +17,8 @@ layout: layout.vto
   {{ comp button {href, content: "Go to Lume"} /}}
 {{ /comp }}
 
+{{ comp.button({href, content: "Go to Lume"}) |> toUpperCase }}
+
 {{ "custom filter" |> upper }}
 
 <strong>{{ "title" |> fromPage }}</strong>
