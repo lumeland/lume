@@ -45,7 +45,11 @@ export default function createSlugifier(
   const { lowercase, alphanumeric, separator, replace, stopWords } = options;
 
   return function (string, lang?: string): string {
-    string = decodeURI(string);
+    try {
+      string = decodeURI(string);
+    } catch {
+      // ignore error
+    }
 
     const transliterate = lang ? options.transliterate?.[lang] : undefined;
 
