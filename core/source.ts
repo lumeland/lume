@@ -222,7 +222,7 @@ export default class Source {
     this.data.set(dirPath, dirData);
 
     // Load pages created with `site.page()`
-    for await (const page of this.#getDirPages(dirPath, dirData)) {
+    for await (const page of this.#getDirPages(dir.path, dirData)) {
       if (buildFilters.some((filter) => !filter(dir, page))) {
         continue;
       }
