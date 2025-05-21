@@ -30,7 +30,7 @@ export function slugifyUrls(userOptions?: Options) {
 
   return (site: Site) => {
     site.filter("slugify", function (text: string, lang?: string) {
-      return slugify(text, lang ?? this?.data.lang);
+      return slugify(text, lang ?? this?.data?.lang);
     });
 
     site.preprocess(options.extensions, (pages) => {
