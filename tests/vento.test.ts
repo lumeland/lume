@@ -8,10 +8,10 @@ Deno.test("build a site with vento", async (t) => {
 
   site.filter("upper", (value: string) => value.toUpperCase());
   site.filter("fromPage", function (key) {
-    return this?.data[key];
+    return this?.data?.[key];
   });
   site.filter("fromPageAsync", function (key) {
-    return Promise.resolve(this?.data[key]);
+    return Promise.resolve(this?.data?.[key]);
   }, true);
 
   await build(site);

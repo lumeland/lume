@@ -342,7 +342,7 @@ export interface Engine<T = string | { toString(): string }> {
 
 /** A generic helper to be used in template engines */
 export interface HelperThis {
-  data: Data;
+  data?: Data;
 }
 
 // deno-lint-ignore no-explicit-any
