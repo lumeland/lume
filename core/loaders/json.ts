@@ -7,6 +7,11 @@ import type { RawData } from "../file.ts";
 /** Load and parse a JSON / JSONC file */
 export default async function json(path: string): Promise<RawData> {
   const text = await read(path, false);
+
+  if (!text.trim()) {
+    return {};
+  }
+
   const content = path.endsWith(".jsonc") ? parse(text) : JSON.parse(text);
 
   if (!content) {

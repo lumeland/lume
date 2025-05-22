@@ -20,6 +20,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Slugifier: ignore errors for malformed URLs.
 - Duplicated pages created with `site.page()`.
 - `HelperThis` type.
+- Error loading empty JSON files.
 - Updated dependencies: `sass`, `lightningcss`, `std`, `terser`,  `satori`, `decap-cms`, `ssx`, `tailwindcss`, `unocss` and some icons.
 
 ## [3.0.1] - 2025-05-10
