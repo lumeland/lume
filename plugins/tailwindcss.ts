@@ -71,7 +71,7 @@ export function tailwindCSS(userOptions?: Options) {
           from: filename,
           async loadModule(id, base, resourceHint) {
             if (id.startsWith(".")) {
-              id = site.root(base, id);
+              id = site.src(base, id);
               const mod = await import(id);
               return {
                 base,

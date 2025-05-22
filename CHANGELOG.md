@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Duplicated pages created with `site.page()`.
 - `HelperThis` type.
 - Error loading empty JSON files.
+- Tailwindcss: Resolve relative modules
 - Updated dependencies: `sass`, `lightningcss`, `std`, `terser`,  `satori`, `decap-cms`, `ssx`, `tailwindcss`, `unocss` and some icons.
 
 ## [3.0.1] - 2025-05-10
