@@ -1,7 +1,9 @@
 import type { Middleware } from "../core/server.ts";
 
 export interface Options {
+  /** To add or remove the www */
   add: boolean;
+  /** The status code to use for the redirect */
   code: 301 | 302 | 307 | 308;
 }
 

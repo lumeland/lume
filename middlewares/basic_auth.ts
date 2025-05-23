@@ -3,8 +3,11 @@ import { merge } from "../core/utils/object.ts";
 import type { Middleware, RequestHandler } from "../core/server.ts";
 
 export interface Options {
+  /** The realm to show in the authentication dialog */
   realm: string;
+  /** The users and passwords to use for authentication */
   users: Record<string, string>;
+  /** The error message to show when authentication fails */
   errorMessage: string;
 }
 

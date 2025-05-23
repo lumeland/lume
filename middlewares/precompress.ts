@@ -6,6 +6,7 @@ import type { Middleware, RequestHandler } from "../core/server.ts";
 
 /** The options to configure the middleware server */
 export interface Options {
+  /** The encodings to use per extension */
   encodings: Record<string, string>;
 }
 

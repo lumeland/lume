@@ -4,8 +4,11 @@ import { merge } from "../core/utils/object.ts";
 import type { Middleware } from "../core/server.ts";
 
 export interface Options {
+  /** The root folder to look for the 404 page */
   root: string;
+  /** The path to the 404 page */
   page404: string;
+  /** Show the directory index if the page404 is not found */
   directoryIndex?: boolean;
 }
 

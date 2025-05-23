@@ -1,7 +1,9 @@
 import type { Middleware } from "../core/server.ts";
 
 export interface Options {
+  /** The regex to match the cache busting pattern */
   regex: RegExp;
+  /** The replacement string */
   replacement: string;
 }
 

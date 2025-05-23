@@ -9,7 +9,10 @@ import type { Catalog, Variant } from "../deps/icons.ts";
 export type { Catalog, Variant };
 
 export interface Options {
+  /** The folder where the icons will be saved */
   folder?: string;
+
+  /** The catalogs to use */
   catalogs?: Catalog[];
 }
 

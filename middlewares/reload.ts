@@ -8,8 +8,11 @@ import type { Watcher } from "../core/watcher.ts";
 import type DebugBar from "../core/debugbar.ts";
 
 export interface Options {
+  /** The watcher instance to use */
   watcher: Watcher;
+  /** The base path of the site. It's required by the reload script */
   basepath: string;
+  /** The debug bar instance to use */
   debugBar?: DebugBar;
 }
 

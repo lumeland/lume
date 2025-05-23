@@ -5,6 +5,7 @@ import type Site from "../core/site.ts";
 import { merge } from "../core/utils/object.ts";
 
 export interface Options {
+  /** Remove the date from the path */
   remove?: boolean;
 }
 

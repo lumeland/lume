@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.0.2] - Unreleased
+## [3.0.2] - 2025-05-23
 ### Added
 - Source maps support for tailwindcss plugin.
 - Decap CMS plugin: show the URL in the debugbar.
@@ -22,7 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `HelperThis` type.
 - Error loading empty JSON files.
 - Tailwindcss: Resolve relative modules
-- Updated dependencies: `sass`, `lightningcss`, `std`, `terser`,  `satori`, `decap-cms`, `ssx`, `tailwindcss`, `unocss` and some icons.
+- Updated dependencies: `sass`, `lightningcss`, `std`, `terser`,  `satori`, `decap-cms`, `ssx`, `tailwindcss`, `unocss`, `vento` and some icons.
 
 ## [3.0.1] - 2025-05-10
 ### Added
@@ -141,6 +141,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
 
-[3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...HEAD
+[3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/lumeland/lume/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/lumeland/lume/releases/tag/v3.0.0
