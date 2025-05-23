@@ -8239,10 +8239,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(11672)",
+    content: "Uint8Array(11608)",
     data: {
       basename: "jp-font-normal-700-latin",
-      content: "Uint8Array(11672)",
+      content: "Uint8Array(11608)",
       date: [],
       mergedKeys: [
         "tags",
