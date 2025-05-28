@@ -931,7 +931,7 @@ snapshot[`Tailwindcss plugin 3`] = `
     },
   },
   {
-    content: '/*! tailwindcss v4.1.7 | MIT License | https://tailwindcss.com */
+    content: '/*! tailwindcss v4.1.8 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -2611,7 +2611,7 @@ snapshot[`Tailwindcss plugin + source maps 3`] = `
     },
   },
   {
-    content: '/*! tailwindcss v4.1.7 | MIT License | https://tailwindcss.com */
+    content: '/*! tailwindcss v4.1.8 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {

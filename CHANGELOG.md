@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Google fonts plugin: new option `ignoredSubsets` [#755].
 
+### Fixed
+- Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss` and some icons.
+
 ## [3.0.2] - 2025-05-23
 ### Added
 - Source maps support for tailwindcss plugin.
