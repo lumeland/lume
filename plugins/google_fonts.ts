@@ -22,6 +22,9 @@ export interface Options {
 
   /** The font subsets to download (latin, cyrillic, etc) */
   subsets?: string[];
+
+  /** The subsets to ignore */
+  ignoredSubsets?: string[];
 }
 
 export const defaults: Options = {
@@ -60,6 +63,9 @@ export function googleFonts(userOptions: Options) {
         const fontFaces = extractFontFaces(css, name)
           .filter((fontFace) =>
             options.subsets?.includes(fontFace.subset) ?? true
+          )
+          .filter((fontFace) =>
+            !(options.ignoredSubsets?.includes(fontFace.subset) ?? false)
           );
 
         await Promise.all(fontFaces.map(async (fontFace) => {

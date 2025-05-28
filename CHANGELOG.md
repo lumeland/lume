@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.3] - Unreleased
+### Added
+- Google fonts plugin: new option `ignoredSubsets` [#755].
+
 ## [3.0.2] - 2025-05-23
 ### Added
 - Source maps support for tailwindcss plugin.
@@ -140,7 +144,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#748]: https://github.com/lumeland/lume/issues/748
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
+[#755]: https://github.com/lumeland/lume/issues/755
 
+[3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...HEAD
 [3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/lumeland/lume/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/lumeland/lume/releases/tag/v3.0.0

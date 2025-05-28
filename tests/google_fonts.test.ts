@@ -42,7 +42,9 @@ Deno.test("Use a placeholder", async (t) => {
   site.use(googleFonts({
     cssFile: "/styles.css",
     placeholder: "/* google-fonts */",
-    subsets: ["latin", "[2]"],
+    subsets: ["latin", "[2]", "latin-ext"],
+    ignoredSubsets: ["latin-ext"],
+
     fonts: {
       "ui-font":
         "https://fonts.google.com/share?selection.family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900",
