@@ -414,7 +414,8 @@ snapshot[`redirects plugin for netlify 3`] = `
   {
     content: "/old-page1/ /page1/ 301
 /old-page2/ /page2/ 301
-/other-old-page2/ /page2/ 307",
+/other-old-page2/ /page2/ 307
+",
     data: {
       basename: "_redirects",
       page: [

@@ -149,7 +149,7 @@ async function netlify(redirects: Redirect[], site: Site): Promise<void> {
   const content = redirects.map(([from, to, code]) => `${from} ${to} ${code}`)
     .join("\n");
   const page = await site.getOrCreatePage("_redirects");
-  page.content = content;
+  page.text = `${page.text.trim()}\n${content}`.trim() + "\n";
 }
 
 /** Vercel redirect */
@@ -163,7 +163,7 @@ async function vercel(redirects: Redirect[], site: Site): Promise<void> {
   };
 
   const page = await site.getOrCreatePage("vercel.json");
-  const content = JSON.parse(page.content as string | undefined || "{}");
+  const content = JSON.parse(page.text || "{}");
   Object.assign(content, config);
   page.content = JSON.stringify(content, null, 2);
 }
