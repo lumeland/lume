@@ -5,6 +5,7 @@ import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
+import type { stringifyable } from "../deps/xml.ts";
 
 type ChangeFreq =
   | "always"
@@ -85,7 +86,7 @@ export function sitemap(userOptions?: Options) {
 
     function generateSitemap(pages: Data[]): string {
       const items = options.items ?? {};
-      const sitemap = {
+      const sitemap: stringifyable = {
         "@version": "1.0",
         "@encoding": "UTF-8",
         urlset: {
@@ -130,6 +131,15 @@ export function sitemap(userOptions?: Options) {
           }),
         },
       };
+
+      if (options.stylesheet) {
+        sitemap["#instructions"] = {
+          "xml-stylesheet": {
+            "@href": options.stylesheet,
+            "@type": "text/xsl",
+          },
+        };
+      }
 
       const result = stringify(sitemap);
       return options.stylesheet
