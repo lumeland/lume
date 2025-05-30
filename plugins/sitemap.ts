@@ -141,15 +141,7 @@ export function sitemap(userOptions?: Options) {
         };
       }
 
-      const result = stringify(sitemap);
-      return options.stylesheet
-        ? result.replace(
-          '<?xml version="1.0" encoding="UTF-8"?>',
-          `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="${
-            site.url(options.stylesheet)
-          }"?>`,
-        )
-        : result;
+      return stringify(sitemap);
     }
   };
 }
