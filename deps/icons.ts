@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.301/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.302/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
