@@ -37,15 +37,16 @@ export const defaults: Options = {
     drafts: {
       customMedia: true,
     },
+    // (mayor << 16) | (minor << 8)
     targets: {
-      android: version(100),
-      chrome: version(100),
-      edge: version(100),
-      firefox: version(100),
-      ios_saf: version(16),
-      safari: version(16),
-      opera: version(100),
-      samsung: version(19),
+      android: 111 << 16,
+      chrome: 111 << 16,
+      edge: 111 << 16,
+      firefox: 128 << 16,
+      ios_saf: (16 << 16) | (4 << 8),
+      safari: (16 << 16) | (4 << 8),
+      opera: 111 << 16,
+      samsung: 19 << 16,
     },
   },
 };
@@ -231,13 +232,6 @@ export function lightningCSS(userOptions?: Options) {
       }
     }
   };
-}
-
-/**
- * Convert a version number to a single 24-bit number
- */
-export function version(major: number, minor = 0, patch = 0): number {
-  return (major << 16) | (minor << 8) | patch;
 }
 
 export default lightningCSS;
