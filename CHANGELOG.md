@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.3] - Unreleased
 ### Added
 - Google fonts plugin: new option `ignoredSubsets` [#755].
+- Lightningcss plugin: Report errors in the terminal and Lume bar.
 
 ### Fixed
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss` and some icons.

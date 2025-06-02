@@ -129,17 +129,27 @@ class Logger {
     }
   }
 
-  #bar(title: string, context?: string, items?: string[] | Item[]): void {
+  #bar(message: string, context?: string, items?: string[] | Item[]): void {
     const collection = this.#collection;
 
     if (collection) {
-      collection.items.push({
+      const [ title, ...rest ] = message.split("\n");
+
+      const item: Item = {
         context,
         title,
         items: items?.map((item) =>
           typeof item === "string" ? { title: item } : item
         ),
-      });
+      };
+
+      if (rest.length === 1) {
+        item.text = rest[0];
+      } else if (rest.length > 1) {
+        item.code = rest.join("\n");
+      }
+
+      collection.items.push(item);
     }
   }
 }

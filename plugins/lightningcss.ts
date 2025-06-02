@@ -7,6 +7,7 @@ import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
+import { log } from "../core/utils/log.ts";
 
 import type { Item } from "../deps/debugbar.ts";
 import type Site from "../core/site.ts";
@@ -14,6 +15,7 @@ import type {
   BundleAsyncOptions,
   CustomAtRules,
   TransformOptions,
+  TransformResult,
 } from "../deps/lightningcss.ts";
 
 export interface Options {
@@ -104,7 +106,20 @@ export function lightningCSS(userOptions?: Options) {
         ...options.options,
       };
 
-      const result = transform(transformOptions);
+      let result: TransformResult;
+
+      try {
+        result = transform(transformOptions);
+      } catch (err) {
+        // deno-lint-ignore no-explicit-any
+        const error = err as any;
+        const message = showError(content, error.loc.column, error.loc.line);
+        log.error(
+          `[lightningcss plugin] Error processing ${file.data.url}:\n${message}`,
+        );
+        return;
+      }
+
       const decoder = new TextDecoder();
 
       if (item) {
@@ -171,7 +186,25 @@ export function lightningCSS(userOptions?: Options) {
           },
         };
 
-        const result = await bundleAsync(bundleOptions);
+        let result: TransformResult;
+
+        try {
+          result = await bundleAsync(bundleOptions);
+        } catch (err) {
+          // deno-lint-ignore no-explicit-any
+          const error = err as any;
+          const code = await site.getContent(error.fileName, false) as string;
+
+          if (code) {
+            const message = showError(code, error.loc.column, error.loc.line);
+            log.error(
+              `[lightningcss plugin] Error processing <code>${file.data.url}</code>\n${message}`,
+            );
+            return;
+          }
+          throw err;
+        }
+
         const decoder = new TextDecoder();
 
         if (item) {
@@ -208,3 +241,10 @@ export function version(major: number, minor = 0, patch = 0): number {
 }
 
 export default lightningCSS;
+
+function showError(code: string, column: number, line: number) {
+  const lines = code.split("\n");
+  const errorLine = lines[line - 1];
+  const errorColumn = " ".repeat(column - 1) + "^";
+  return `Error at line ${line}, column ${column}:\n${errorLine}\n${errorColumn}`;
+}
