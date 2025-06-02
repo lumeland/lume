@@ -14,6 +14,20 @@ Deno.test("Tailwindcss plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
+Deno.test("Tailwindcss plugin + minify", async (t) => {
+  const site = getSite({
+    src: "tailwindcss",
+  });
+
+  site.add([".css"]);
+  site.use(tailwindcss({
+    minify: true,
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
 Deno.test("Tailwindcss plugin + source maps", async (t) => {
   const site = getSite({
     src: "tailwindcss",

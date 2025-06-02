@@ -10,6 +10,7 @@ import { dirname } from "../deps/path.ts";
 import { readFile } from "../core/utils/read.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { Features, transform } from "../deps/lightningcss.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
@@ -20,6 +21,9 @@ export interface Options {
    * @default `site.options.includes`
    */
   includes?: string | false;
+
+  /** To enable minified output */
+  minify?: boolean;
 }
 
 export const defaults: Options = {};
@@ -125,14 +129,26 @@ export function tailwindCSS(userOptions?: Options) {
 
         const code = compiler.build(candidates);
         if (enableSourceMap) {
-          saveAsset(
-            site,
-            file,
-            code,
-            toSourceMap(compiler.buildSourceMap()).raw,
-          );
+          const map = toSourceMap(compiler.buildSourceMap()).raw;
+
+          if (options.minify) {
+            const result = optimize(filename, code, map);
+            saveAsset(
+              site,
+              file,
+              new TextDecoder().decode(result.code),
+              new TextDecoder().decode(result.map!),
+            );
+          } else {
+            saveAsset(site, file, code, map);
+          }
         } else {
-          file.text = code;
+          if (options.minify) {
+            const result = optimize(filename, code);
+            file.text = new TextDecoder().decode(result.code);
+          } else {
+            file.text = code;
+          }
         }
       }
     });
@@ -140,3 +156,30 @@ export function tailwindCSS(userOptions?: Options) {
 }
 
 export default tailwindCSS;
+
+// https://github.com/tailwindlabs/tailwindcss/blob/191195af7e77234b3a5278c45d9df3eb3395cef7/packages/%40tailwindcss-node/src/optimize.ts#L29-L56
+function optimize(filename: string, code: string, map?: string) {
+  return transform({
+    filename,
+    code: new TextEncoder().encode(code),
+    minify: true,
+    sourceMap: typeof map !== "undefined",
+    inputSourceMap: map,
+    drafts: {
+      customMedia: true,
+    },
+    nonStandard: {
+      deepSelectorCombinator: true,
+    },
+    include: Features.Nesting | Features.MediaQueries,
+    exclude: Features.LogicalProperties | Features.DirSelector |
+      Features.LightDark,
+    targets: {
+      safari: (16 << 16) | (4 << 8),
+      ios_saf: (16 << 16) | (4 << 8),
+      firefox: 128 << 16,
+      chrome: 111 << 16,
+    },
+    errorRecovery: true,
+  });
+}
