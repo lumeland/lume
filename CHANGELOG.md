@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Google fonts plugin: new option `ignoredSubsets` [#755].
 - Lightningcss plugin: Report errors in the terminal and Lume bar.
+- Tailwindcss plugin: Add `minify` option [#757].
 
 ### Fixed
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss` and some icons.
@@ -150,6 +151,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#749]: https://github.com/lumeland/lume/issues/749
 [#750]: https://github.com/lumeland/lume/issues/750
 [#755]: https://github.com/lumeland/lume/issues/755
+[#757]: https://github.com/lumeland/lume/issues/757
 
 [3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...HEAD
 [3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...v3.0.2
