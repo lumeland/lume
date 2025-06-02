@@ -133,7 +133,7 @@ class Logger {
     const collection = this.#collection;
 
     if (collection) {
-      const [ title, ...rest ] = message.split("\n");
+      const [title, ...rest] = message.split("\n");
 
       const item: Item = {
         context,
