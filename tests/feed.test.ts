@@ -46,6 +46,7 @@ Deno.test("RSS plugin with array function", async (t) => {
   site.use(
     feed(() => [{
       output: ["feed1.json", "feed1.rss"],
+      stylesheet: "/feed-style.xml",
       info: {
         published: new Date("2020-01-01"),
         generator: "https://lume.land",

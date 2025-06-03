@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Google fonts plugin: new option `ignoredSubsets` [#755].
 - Lightningcss plugin: Report errors in the terminal and Lume bar.
 - Tailwindcss plugin: Add `minify` option [#757].
+- Feed plugin: new option `stylesheet` to style xml outputs.
 
 ### Fixed
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori` and some icons.

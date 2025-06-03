@@ -9,6 +9,7 @@ import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
+import type { stringifyable } from "../deps/xml.ts";
 
 export interface Options {
   /** The output filenames */
@@ -22,6 +23,9 @@ export interface Options {
 
   /** The maximum number of items */
   limit?: number;
+
+  /** The xml-stylesheet document for styling (only for xml formats) */
+  stylesheet?: string;
 
   /** The feed info */
   info?: FeedInfoOptions;
@@ -244,7 +248,7 @@ export function feed(
               site.pages.push(
                 Page.create({
                   url: filename,
-                  content: generateRss(feed, file),
+                  content: generateRss(feed, file, options.stylesheet),
                 }),
               );
               break;
@@ -286,8 +290,12 @@ function fixUrls(base: URL, html: string): string {
   );
 }
 
-function generateRss(data: FeedData, file: string): string {
-  const feed = {
+function generateRss(
+  data: FeedData,
+  file: string,
+  stylesheet?: string,
+): string {
+  const feed: stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     rss: {
@@ -348,6 +356,15 @@ function generateRss(data: FeedData, file: string): string {
       },
     },
   };
+
+  if (stylesheet) {
+    feed["#instructions"] = {
+      "xml-stylesheet": {
+        "@type": "text/xsl",
+        "@href": stylesheet,
+      },
+    };
+  }
 
   return stringify(clean(feed));
 }
