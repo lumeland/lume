@@ -1,7 +1,7 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
-import { env } from "./utils/env.ts";
+import { env, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
@@ -252,6 +252,12 @@ export default class Site {
       this.addEventListener("beforeUpdate", () => debugBar.clear());
       this.debugBar = debugBar;
       log.collection = debugBar.collection("Build");
+
+      debugBar.addEventListener("lume:drafts", (event) => {
+        const showDrafts = event.data.value ?? "false";
+        setEnv("LUME_DRAFTS", String(showDrafts));
+        this.update();
+      });
     }
 
     // Create the fetch function for `deno serve`
@@ -657,7 +663,7 @@ export default class Site {
   }
 
   /** Reload some files that might be changed */
-  async update(files: Set<string>): Promise<void> {
+  async update(files?: Set<string>): Promise<void> {
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
@@ -665,7 +671,7 @@ export default class Site {
     this.search.deleteCache();
 
     // Reload the changed files
-    for (const file of files) {
+    for (const file of files || []) {
       // Delete the file from the cache
       this.formats.deleteCache(file);
       const entry = this.fs.update(file);
@@ -691,9 +697,10 @@ export default class Site {
 
     // Get the site content
     const showDrafts = env<boolean>("LUME_DRAFTS");
+    const filters = files ? this.scopes.getFilter(files) : () => true;
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
-      this.scopes.getFilter(files),
+      filters,
     );
 
     // Build the pages and save static files into site.files
@@ -814,6 +821,32 @@ export default class Site {
           1000).toFixed(2)
       } seconds`,
     );
+
+    const item = this.debugBar?.buildItem();
+
+    if (item) {
+      const showDrafts = env<boolean>("LUME_DRAFTS");
+
+      if (showDrafts) {
+        item.title = `Built ${this.pages.length} pages (drafts included)`;
+        item.actions = [{
+          text: "Hide drafts",
+          data: {
+            type: "lume:drafts",
+            value: false,
+          },
+        }];
+      } else {
+        item.title = `Built ${this.pages.length} pages`;
+        item.actions = [{
+          text: "Show drafts",
+          data: {
+            type: "lume:drafts",
+            value: true,
+          },
+        }];
+      }
+    }
 
     return await this.dispatchEvent({ type: "beforeSave" });
   }

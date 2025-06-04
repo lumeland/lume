@@ -14,7 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Feed plugin: new option `stylesheet` to style xml outputs.
 
 ### Fixed
-- Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori` and some icons.
+- Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori`, `lume-bar` and some icons.
 - Redirects plugin with Netlify: append new redirects to the existing file instead of override the content.
 
 ## [3.0.2] - 2025-05-23

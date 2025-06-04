@@ -81,6 +81,14 @@ export function reload(options: Options): Middleware {
       };
       socket.onclose = () => sockets.delete(socket);
       socket.onerror = (e) => console.log("Socket errored", e);
+      socket.onmessage = (e) => {
+        if (options.debugBar && e.data) {
+          const message = JSON.parse(e.data);
+          const { data } = message;
+          const { type } = data;
+          options.debugBar.dispatchEvent({ type, data });
+        }
+      };
 
       return response;
     }

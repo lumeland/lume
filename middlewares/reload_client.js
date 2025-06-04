@@ -237,6 +237,7 @@ export default function liveReload(
 
       const { default: DebugBar } = await debugbarModule;
       debugbar = new DebugBar();
+      debugbar.websocket = ws;
       document.body.appendChild(debugbar);
     }
 

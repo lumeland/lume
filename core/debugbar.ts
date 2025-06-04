@@ -1,4 +1,5 @@
 import { specifier } from "../deps/debugbar.ts";
+import Events, { Event, EventListener, EventOptions } from "./events.ts";
 
 import type { Collection, Item } from "../deps/debugbar.ts";
 
@@ -14,6 +15,7 @@ export interface Options {
  */
 export default class DebugBar {
   #url: string;
+  #events = new Events<DebugEvent>();
   collections: Collection[] = [];
 
   constructor(options: Options = {}) {
@@ -53,7 +55,7 @@ export default class DebugBar {
   /**
    * Add a new item to the "Build" collection and return it
    */
-  buildItem(title: string, context: BuildContext = "info"): Item {
+  buildItem(title = "Untitled", context: BuildContext = "info"): Item {
     const collection = this.collection("Build");
     const item: Item = {
       title,
@@ -62,6 +64,19 @@ export default class DebugBar {
 
     collection.items.push(item);
     return item;
+  }
+
+  dispatchEvent(event: DebugEvent): Promise<boolean> {
+    return this.#events.dispatchEvent(event);
+  }
+
+  addEventListener(
+    type: string,
+    listenerFn: EventListener<DebugEvent>,
+    options?: EventOptions,
+  ): this {
+    this.#events.addEventListener(type, listenerFn, options);
+    return this;
   }
 }
 
@@ -91,4 +106,9 @@ function buildCollection(): Collection {
   };
 
   return collection;
+}
+
+export interface DebugEvent extends Event {
+  type: string;
+  data: Record<string, string | number | boolean>;
 }

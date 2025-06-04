@@ -33,55 +33,55 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.511.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.513.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-100",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-200",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-300",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-400",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-500",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-600",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-700",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.31.4/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.31.5/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
@@ -122,14 +122,14 @@ export const catalogs: Catalog[] = [
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.33.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.34.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
     // https://mynaui.com/icons
     id: "myna",
     src:
-      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.3.6/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.3.7/{variant}/{name}.svg",
     variants: [
       { id: "regular", path: "icons" },
       { id: "solid", path: "icons-solid" },
