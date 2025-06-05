@@ -97,6 +97,7 @@ export default class DebugBar {
 
     if (name === "build") {
       this.#measureItem.title = title;
+      this.#measureItem.icon = "clock";
       this.#measureItem.details = duration(measure.duration);
     } else if (measure.duration >= 1) {
       this.#measureItem.items.push({

@@ -33,7 +33,7 @@ const secondUnit = Intl.NumberFormat("en", {
   notation: "compact",
   style: "unit",
   unit: "second",
-  unitDisplay: "narrow",
+  unitDisplay: "short",
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
 });
@@ -42,7 +42,7 @@ const milisecondUnit = Intl.NumberFormat("en", {
   notation: "compact",
   style: "unit",
   unit: "millisecond",
-  unitDisplay: "narrow",
+  unitDisplay: "short",
   maximumFractionDigits: 0,
 });
 

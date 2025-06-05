@@ -87,7 +87,7 @@ export function googleFonts(userOptions: Options) {
       const page = await site.getOrCreatePage(cssFile);
       page.text = insertContent(page.text, cssCode, options.placeholder);
       const item = site.debugBar?.buildItem(
-        `[google_fonts plugin] Fonts downloaded and CSS generated at ${cssFile}`,
+        `[google_fonts plugin] Fonts downloaded and CSS generated at <code>${cssFile}</code>`,
       );
       if (item) {
         item.items = [...downloadedFonts.entries()]

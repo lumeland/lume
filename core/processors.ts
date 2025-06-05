@@ -50,7 +50,7 @@ export default class Processors {
         debugBar?.endMeasure(
           "processor",
           `[Processor] <code>${
-            process.name || "unknown"
+            process.name?.replace("process", "") || "unknown"
           }</code> (${pages.length} pages)`,
         );
         continue;
@@ -61,7 +61,7 @@ export default class Processors {
       debugBar?.endMeasure(
         "processor",
         `[Processor] <code>${
-          process.name || "unknown"
+          process.name?.replace("process", "") || "unknown"
         }</code> (${filtered.length} pages)`,
       );
     }

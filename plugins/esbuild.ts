@@ -194,7 +194,7 @@ export function esbuild(userOptions?: Options) {
 
     site.process(
       options.extensions,
-      async function esbuildProcessor(pages, allPages) {
+      async function processEsbuild(pages, allPages) {
         const hasPages = warnUntil(
           `[esbuild plugin] No ${
             options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
@@ -211,7 +211,7 @@ export function esbuild(userOptions?: Options) {
         );
 
         const item = site.debugBar?.buildItem(
-          "[esbuild plugin] build completed",
+          "[esbuild plugin] Build completed",
         );
 
         // Save the output code
