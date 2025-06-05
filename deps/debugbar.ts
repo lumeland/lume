@@ -2,6 +2,6 @@ export type {
   Action,
   Collection,
   Item,
-} from "https://cdn.jsdelivr.net/gh/lumeland/bar@a06f3477cec3e2ee219ec1aedd1851011c8bb2fb/types.ts";
+} from "https://cdn.jsdelivr.net/gh/lumeland/bar@0.1.6/types.ts";
 export const specifier =
-  "https://cdn.jsdelivr.net/gh/lumeland/bar@a06f3477cec3e2ee219ec1aedd1851011c8bb2fb/lume-bar.js";
+  "https://cdn.jsdelivr.net/gh/lumeland/bar@0.1.6/lume-bar.js";

@@ -46,7 +46,7 @@ export function ogImages(userOptions?: Options) {
     // Get the cache folder
     const { cache } = site;
 
-    site.process([".html"], async (pages, allPages) => {
+    site.process([".html"], async function processOgImages(pages, allPages) {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }

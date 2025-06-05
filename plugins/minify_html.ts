@@ -51,7 +51,7 @@ export function minifyHTML(userOptions?: Options) {
   options.options.minify_js ??= options.extensions?.includes(".js");
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => {
+    site.process(options.extensions, function processMinifyHTML(pages) {
       const item = site.debugBar?.buildItem(
         "[minify_html plugin] minification completed",
       );

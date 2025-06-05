@@ -67,10 +67,10 @@ export function postCSS(userOptions?: Options) {
     site.hooks.addPostcssPlugin = (plugin) => {
       runner.use(plugin);
     };
-    site.process([".css"], postCSSProcessor);
+    site.process([".css"], processPostcss);
     site.filter("postcss", filter, true);
 
-    function postCSSProcessor(files: Page[]) {
+    function processPostcss(files: Page[]) {
       const hasPages = warnUntil(
         "[postcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,

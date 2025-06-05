@@ -98,7 +98,7 @@ export default class DebugBar {
     if (name === "build") {
       this.#measureItem.title = title;
       this.#measureItem.details = duration(measure.duration);
-    } else {
+    } else if (measure.duration >= 1) {
       this.#measureItem.items.push({
         title: title,
         details: duration(measure.duration),

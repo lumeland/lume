@@ -45,7 +45,7 @@ export function icons(userOptions?: Options) {
       return file;
     }
 
-    site.process(async () => {
+    site.process(async function processIcons() {
       for (const [file, url] of icons) {
         const content = await readFile(url);
         const page = await site.getOrCreatePage(file);

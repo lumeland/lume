@@ -1,5 +1,6 @@
 import { matchExtension } from "./utils/path.ts";
 
+import type DebugBar from "./debugbar.ts";
 import type { Extensions } from "./utils/path.ts";
 import type { Page } from "./file.ts";
 
@@ -37,18 +38,32 @@ export default class Processors {
   }
 
   /** Apply the processors to the provided pages */
-  async run(pages: Page[]): Promise<void> {
+  async run(pages: Page[], debugBar?: DebugBar): Promise<void> {
     this.loadedExtensions.clear();
 
     for (const [process, extensions] of this.processors) {
+      debugBar?.startMeasure("processor");
+
       // Process all loaded pages
       if (extensions === "*") {
         await process([...pages], pages);
+        debugBar?.endMeasure(
+          "processor",
+          `[Processor] <code>${
+            process.name || "unknown"
+          }</code> (${pages.length} pages)`,
+        );
         continue;
       }
 
       const filtered = pages.filter((page) => pageMatches(extensions, page));
       await process(filtered, pages);
+      debugBar?.endMeasure(
+        "processor",
+        `[Processor] <code>${
+          process.name || "unknown"
+        }</code> (${filtered.length} pages)`,
+      );
     }
   }
 }

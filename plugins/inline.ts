@@ -30,7 +30,9 @@ export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process([".html"], (pages) => concurrent(pages, inline));
+    site.process([".html"], function processInline(pages) {
+      return concurrent(pages, inline);
+    });
 
     site.addEventListener("beforeUpdate", () => cache.clear());
 

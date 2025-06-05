@@ -11,6 +11,7 @@ import type { Content, Data, RawData } from "./file.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
+import type DebugBar from "./debugbar.ts";
 
 export interface Options {
   includes: string;
@@ -63,7 +64,11 @@ export default class Renderer {
   }
 
   /** Render the provided pages */
-  async renderPages(from: Page[], to: Page[]): Promise<void> {
+  async renderPages(
+    from: Page[],
+    to: Page[],
+    debugBar?: DebugBar,
+  ): Promise<void> {
     const renderedPages: Page[] = [];
 
     for (const group of this.#groupPages(from)) {
@@ -81,9 +86,10 @@ export default class Renderer {
       }
 
       // Preprocess the pages and add them to site.pages
-      await this.preprocessors.run(pages);
+      await this.preprocessors.run(pages, debugBar);
       to.push(...pages);
 
+      debugBar?.startMeasure("generators");
       const generatedPages: Page[] = [];
       for (const page of generators) {
         const data = { ...page.data };
@@ -137,12 +143,17 @@ export default class Renderer {
           generatedPages.push(newPage);
         }
       }
+      debugBar?.endMeasure(
+        "generators",
+        `[Generators] Created ${generatedPages.length} pages`,
+      );
 
       // Preprocess the generators and add them to site.pages
-      await this.preprocessors.run(generatedPages);
+      await this.preprocessors.run(generatedPages, debugBar);
       to.push(...generatedPages);
 
       // Render the pages content
+      debugBar?.startMeasure("render");
       await concurrent(
         pages.concat(generatedPages),
         async (page) => {
@@ -164,8 +175,13 @@ export default class Renderer {
         },
       );
     }
+    debugBar?.endMeasure(
+      "render",
+      `[Rendering] Content of ${renderedPages.length} pages`,
+    );
 
     // Render the pages layouts at the end
+    debugBar?.startMeasure("render-layouts");
     await concurrent(
       renderedPages,
       async (page) => {
@@ -181,6 +197,10 @@ export default class Renderer {
           );
         }
       },
+    );
+    debugBar?.endMeasure(
+      "render-layouts",
+      `[Rendering] Layouts of ${renderedPages.length} pages`,
     );
   }
 

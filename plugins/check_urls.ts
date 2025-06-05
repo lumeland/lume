@@ -114,7 +114,7 @@ export default function (userOptions?: Options) {
     // Search for URLs in all pages
     site.process(
       [".html"],
-      (pages) => {
+      function processCheckUrls(pages) {
         for (const page of pages) {
           const { document } = page;
           const pageURL = new URL(page.data.url, site.options.location);

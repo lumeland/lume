@@ -49,8 +49,8 @@ export function modifyUrls(userOptions: Options) {
   return (site: Site) => {
     site.process(
       [".html", ".css"],
-      (pages) =>
-        concurrent(pages, async (page: Page) => {
+      function processModifyUrls(pages) {
+        return concurrent(pages, async (page: Page) => {
           if (page.outputPath.endsWith(".css")) {
             page.text = await walkUrls(
               page.text,
@@ -81,7 +81,8 @@ export function modifyUrls(userOptions: Options) {
               await replace(value, page, element),
             );
           }
-        }),
+        });
+      },
     );
   };
 }

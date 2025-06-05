@@ -12,8 +12,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Lightningcss plugin: Report errors in the terminal and Lume bar.
 - Tailwindcss plugin: Add `minify` option [#757].
 - Feed plugin: new option `stylesheet` to style xml outputs.
+- More build info in the Lume bar, like performance and ability to enable/disable drafts.
 
 ### Fixed
+- The Lume bar is less invasive and hidden by default.
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori`, `lume-bar` and some icons.
 - Redirects plugin with Netlify: append new redirects to the existing file instead of override the content.
 

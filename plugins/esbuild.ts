@@ -192,104 +192,111 @@ export function esbuild(userOptions?: Options) {
       return [outputFiles || [], metafile!, !!sourcemap];
     }
 
-    site.process(options.extensions, async (pages, allPages) => {
-      const hasPages = warnUntil(
-        `[esbuild plugin] No ${
-          options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
-        } files found. Use <code>site.add()</code> to add files. For example: <code>site.add("script.js")</code>`,
-        pages.length,
-      );
+    site.process(
+      options.extensions,
+      async function esbuildProcessor(pages, allPages) {
+        const hasPages = warnUntil(
+          `[esbuild plugin] No ${
+            options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
+          } files found. Use <code>site.add()</code> to add files. For example: <code>site.add("script.js")</code>`,
+          pages.length,
+        );
 
-      if (!hasPages) {
-        return;
-      }
-
-      const [outputFiles, metafile, enableSourceMap] = await runEsbuild(pages);
-
-      const item = site.debugBar?.buildItem("[esbuild plugin] build completed");
-
-      // Save the output code
-      for (const [outputPath, output] of Object.entries(metafile.outputs)) {
-        if (outputPath.endsWith(".map")) {
-          continue;
+        if (!hasPages) {
+          return;
         }
 
-        const normalizedOutPath = normalizePath(outputPath);
-        const outputFile = outputFiles.find((file) => {
-          const relativeFilePath = normalizePath(
-            normalizePath(file.path).replace(basePath, ""),
-          );
+        const [outputFiles, metafile, enableSourceMap] = await runEsbuild(
+          pages,
+        );
 
-          return relativeFilePath === normalizedOutPath;
-        });
+        const item = site.debugBar?.buildItem(
+          "[esbuild plugin] build completed",
+        );
 
-        if (!outputFile) {
-          log.error(
-            `[esbuild plugin] Could not match the metafile ${normalizedOutPath} to an output file.`,
-          );
-          continue;
-        }
+        // Save the output code
+        for (const [outputPath, output] of Object.entries(metafile.outputs)) {
+          if (outputPath.endsWith(".map")) {
+            continue;
+          }
 
-        // Replace .tsx and .jsx extensions with .js
-        const content = options.options.bundle
-          ? outputFile.text
-          : resolveImports(
-            outputFile.text,
-            output.entryPoint
-              ? relativePathFromUri(output.entryPoint, basePath)
-              : outputPath,
-            outputPath,
-            basePath,
-            metafile,
-          );
+          const normalizedOutPath = normalizePath(outputPath);
+          const outputFile = outputFiles.find((file) => {
+            const relativeFilePath = normalizePath(
+              normalizePath(file.path).replace(basePath, ""),
+            );
 
-        // Get the associated source map
-        const map = enableSourceMap
-          ? outputFiles.find((f) => f.path === `${outputFile.path}.map`)
-          : undefined;
-
-        // Search the entry point of this output file
-        let entryPoint: Page | undefined;
-
-        if (output.entryPoint) {
-          const outputRelativeEntryPoint = relativePathFromUri(
-            output.entryPoint,
-            basePath,
-          );
-
-          entryPoint = pages.find((page) =>
-            page.sourcePath === outputRelativeEntryPoint ||
-            (page.sourcePath === "(generated)" &&
-              page.outputPath === outputRelativeEntryPoint)
-          );
-        }
-
-        // The page is a chunk
-        if (!entryPoint) {
-          const page = Page.create({ url: normalizedOutPath });
-          saveAsset(site, page, content, map?.text);
-          allPages.push(page);
-          continue;
-        }
-
-        if (item) {
-          item.items ??= [];
-          item.items.push({
-            title: normalizedOutPath,
-            details: bytes(outputFile.contents.length),
-            items: Object.entries(output.inputs)
-              .map(([title, { bytesInOutput }]) => ({
-                title,
-                details: bytes(bytesInOutput),
-              })),
+            return relativeFilePath === normalizedOutPath;
           });
-        }
 
-        // The page is an entry point
-        entryPoint.data.url = normalizedOutPath;
-        saveAsset(site, entryPoint, content, map?.text);
-      }
-    });
+          if (!outputFile) {
+            log.error(
+              `[esbuild plugin] Could not match the metafile ${normalizedOutPath} to an output file.`,
+            );
+            continue;
+          }
+
+          // Replace .tsx and .jsx extensions with .js
+          const content = options.options.bundle
+            ? outputFile.text
+            : resolveImports(
+              outputFile.text,
+              output.entryPoint
+                ? relativePathFromUri(output.entryPoint, basePath)
+                : outputPath,
+              outputPath,
+              basePath,
+              metafile,
+            );
+
+          // Get the associated source map
+          const map = enableSourceMap
+            ? outputFiles.find((f) => f.path === `${outputFile.path}.map`)
+            : undefined;
+
+          // Search the entry point of this output file
+          let entryPoint: Page | undefined;
+
+          if (output.entryPoint) {
+            const outputRelativeEntryPoint = relativePathFromUri(
+              output.entryPoint,
+              basePath,
+            );
+
+            entryPoint = pages.find((page) =>
+              page.sourcePath === outputRelativeEntryPoint ||
+              (page.sourcePath === "(generated)" &&
+                page.outputPath === outputRelativeEntryPoint)
+            );
+          }
+
+          // The page is a chunk
+          if (!entryPoint) {
+            const page = Page.create({ url: normalizedOutPath });
+            saveAsset(site, page, content, map?.text);
+            allPages.push(page);
+            continue;
+          }
+
+          if (item) {
+            item.items ??= [];
+            item.items.push({
+              title: normalizedOutPath,
+              details: bytes(outputFile.contents.length),
+              items: Object.entries(output.inputs)
+                .map(([title, { bytesInOutput }]) => ({
+                  title,
+                  details: bytes(bytesInOutput),
+                })),
+            });
+          }
+
+          // The page is an entry point
+          entryPoint.data.url = normalizedOutPath;
+          saveAsset(site, entryPoint, content, map?.text);
+        }
+      },
+    );
   };
 }
 

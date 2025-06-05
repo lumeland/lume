@@ -66,7 +66,7 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.process(async (_, pages) => {
+    site.process(async function processFaviconImages(_, pages) {
       const content = await getContent();
 
       if (!content) {
@@ -106,7 +106,7 @@ export function favicon(userOptions?: Options) {
       }
     });
 
-    site.process([".html"], (pages) => {
+    site.process([".html"], function processFaviconPages(pages) {
       for (const page of pages) {
         const { document } = page;
 

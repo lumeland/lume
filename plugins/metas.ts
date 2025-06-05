@@ -59,7 +59,9 @@ export function metas() {
   return (site: Site) => {
     // Configure the merged keys
     site.mergeKey("metas", "object");
-    site.process([".html"], (pages) => pages.forEach(metas));
+    site.process([".html"], function processMetas(pages) {
+      pages.forEach(metas);
+    });
 
     function metas(page: Page) {
       const metas = page.data.metas as MetaData | undefined;

@@ -88,12 +88,12 @@ export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(process);
+    site.process(processTransformImages);
 
     // Configure the cache folder
     const { cache } = site;
 
-    async function process(_: Page[], allPages: Page[]) {
+    async function processTransformImages(_: Page[], allPages: Page[]) {
       // Load all static files that must be transformed
       await filesToPages(site.files, site.pages, filter);
 
