@@ -1,5 +1,5 @@
 import { specifier } from "../deps/debugbar.ts";
-import { duration } from "./utils/format.ts";
+import { duration, bytes } from "./utils/format.ts";
 import Events, { Event, EventListener, EventOptions } from "./events.ts";
 
 import type { Action, Collection, Item } from "../deps/debugbar.ts";
@@ -98,7 +98,8 @@ export default class DebugBar {
     if (name === "build") {
       this.#measureItem.title = title;
       this.#measureItem.icon = "clock";
-      this.#measureItem.details = duration(measure.duration);
+      const memory = Deno.memoryUsage();
+      this.#measureItem.details = `${duration(measure.duration)} / ${bytes(memory.rss)}`;
     } else if (measure.duration >= 1) {
       this.#measureItem.items.push({
         title: title,
