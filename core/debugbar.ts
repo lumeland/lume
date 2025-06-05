@@ -1,7 +1,8 @@
 import { specifier } from "../deps/debugbar.ts";
+import { duration } from "./utils/format.ts";
 import Events, { Event, EventListener, EventOptions } from "./events.ts";
 
-import type { Collection, Item } from "../deps/debugbar.ts";
+import type { Action, Collection, Item } from "../deps/debugbar.ts";
 
 export interface Options {
   /**
@@ -16,6 +17,7 @@ export interface Options {
 export default class DebugBar {
   #url: string;
   #events = new Events<DebugEvent>();
+  #measureItem?: Item;
   collections: Collection[] = [];
 
   constructor(options: Options = {}) {
@@ -31,6 +33,7 @@ export default class DebugBar {
    */
   clear() {
     this.collections.forEach((collection) => collection.items = []);
+    this.#measureItem = undefined;
   }
 
   /**
@@ -77,6 +80,35 @@ export default class DebugBar {
   ): this {
     this.#events.addEventListener(type, listenerFn, options);
     return this;
+  }
+
+  /** Start a measure */
+  startMeasure(name: string): void {
+    performance.mark(name);
+  }
+
+  /** End a measure and add it to the "Build" collection */
+  endMeasure(name: string, title: string, actions?: Action[]): void {
+    this.#measureItem ??= this.buildItem("Performance info", "info");
+    this.#measureItem.items ??= [];
+
+    performance.mark(`${name}-end`);
+    const measure = performance.measure(name, name, `${name}-end`);
+
+    if (name === "build") {
+      this.#measureItem.title = title;
+      this.#measureItem.details = duration(measure.duration);
+    } else {
+      this.#measureItem.items.push({
+        title: title,
+        details: duration(measure.duration),
+        actions,
+      });
+    }
+
+    performance.clearMarks(name);
+    performance.clearMarks(`${name}-end`);
+    performance.clearMeasures(name);
   }
 }
 

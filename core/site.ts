@@ -614,6 +614,8 @@ export default class Site {
 
   /** Build the entire site */
   async build(): Promise<void> {
+    this.debugBar?.startMeasure("build");
+
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       return;
     }
@@ -622,29 +624,26 @@ export default class Site {
       await this.clear();
     }
 
-    performance.mark("start-loadfiles");
+    this.debugBar?.startMeasure("scan");
 
     // Load source files
     this.fs.init();
+
+    this.debugBar?.endMeasure("scan", "Scan source folder");
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
       return;
     }
 
     // Get the site content
+    this.debugBar?.startMeasure("load");
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
     );
-
-    performance.mark("end-loadfiles");
-
-    log.debug(
-      `Pages loaded in ${
-        (performance.measure("duration", "start-loadfiles", "end-loadfiles")
-          .duration /
-          1000).toFixed(2)
-      } seconds`,
+    this.debugBar?.endMeasure(
+      "load",
+      `Load ${_pages.length} pages and ${_staticFiles.length} static files`,
     );
 
     // Save static files into site.files
@@ -656,14 +655,21 @@ export default class Site {
     }
 
     // Save the pages and copy static files in the dest folder
+    this.debugBar?.startMeasure("save");
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
+    this.debugBar?.endMeasure(
+      "save",
+      `Save ${pages.length + staticFiles.length} files`,
+    );
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
+    this.debugBar?.endMeasure("build", "Build completed");
   }
 
   /** Reload some files that might be changed */
   async update(files?: Set<string>): Promise<void> {
+    this.debugBar?.startMeasure("build");
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
@@ -671,6 +677,7 @@ export default class Site {
     this.search.deleteCache();
 
     // Reload the changed files
+    this.debugBar?.startMeasure("reload");
     for (const file of files || []) {
       // Delete the file from the cache
       this.formats.deleteCache(file);
@@ -690,17 +697,23 @@ export default class Site {
 
       await this.writer.removeFiles([...pages, ...files]);
     }
+    this.debugBar?.endMeasure("reload", `Updated ${files?.size ?? 0} files`);
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
       return;
     }
 
     // Get the site content
+    this.debugBar?.startMeasure("load");
     const showDrafts = env<boolean>("LUME_DRAFTS");
     const filters = files ? this.scopes.getFilter(files) : () => true;
     const [_pages, _staticFiles] = await this.source.build(
       (_, page) => !page?.data.draft || showDrafts === true,
       filters,
+    );
+    this.debugBar?.endMeasure(
+      "load",
+      `Load ${_pages.length} pages and ${_staticFiles.length} static files`,
     );
 
     // Build the pages and save static files into site.files
@@ -711,8 +724,13 @@ export default class Site {
     }
 
     // Save the pages and copy static files in the dest folder
+    this.debugBar?.startMeasure("save");
     const pages = await this.writer.savePages(this.pages);
     const staticFiles = await this.writer.copyFiles(this.files);
+    this.debugBar?.endMeasure(
+      "save",
+      `Save ${pages.length + staticFiles.length} files`,
+    );
 
     await this.dispatchEvent({
       type: "afterUpdate",
@@ -720,6 +738,8 @@ export default class Site {
       pages,
       staticFiles,
     });
+
+    this.debugBar?.endMeasure("build", "Update completed");
   }
 
   /**
@@ -727,6 +747,7 @@ export default class Site {
    * The common operations of build and update
    */
   async #buildPages(pages: Page[]): Promise<boolean> {
+    this.debugBar?.startMeasure("render");
     // Promote the files that must be preprocessed to pages
     const preExtensions = this.preprocessors.extensions;
     await filesToPages(
@@ -738,30 +759,64 @@ export default class Site {
     if (await this.dispatchEvent({ type: "beforeRender", pages }) === false) {
       return false;
     }
-    performance.mark("start-render");
 
     // Render the pages
     this.pages.splice(0);
     await this.renderer.renderPages(pages, this.pages);
+    const showDrafts = env<boolean>("LUME_DRAFTS");
+
+    if (showDrafts) {
+      this.debugBar?.endMeasure(
+        "render",
+        `Render ${this.pages.length} pages (including drafts)`,
+        [{
+          text: "Discard drafts",
+          data: {
+            type: "lume:drafts",
+            value: false,
+          },
+        }],
+      );
+    } else {
+      this.debugBar?.endMeasure("render", `Render ${this.pages.length} pages`, [
+        {
+          text: "Include drafts",
+          data: {
+            type: "lume:drafts",
+            value: true,
+          },
+        },
+      ]);
+    }
 
     // Add extra code generated by the components
     for (const { path, entries } of this.source.getComponentsExtraCode()) {
       if (path.endsWith(".css")) {
+        this.debugBar?.startMeasure("components-css");
         const page = await this.getOrCreatePage(path);
         page.text = insertContent(
           page.text,
           await compileCSS(path, entries, this.fs.entries),
           this.options.components.placeholder,
         );
+        this.debugBar?.endMeasure(
+          "components-css",
+          `Compiled components CSS code into <code>${path}</code>`,
+        );
         continue;
       }
 
       if (path.endsWith(".js")) {
+        this.debugBar?.startMeasure("components-js");
         const page = await this.getOrCreatePage(path);
         page.text = insertContent(
           page.text,
           await compileJS(path, entries, this.fs.entries),
           this.options.components.placeholder,
+        );
+        this.debugBar?.endMeasure(
+          "components-js",
+          `Compiled components JS code into <code>${path}</code>`,
         );
       }
     }
@@ -782,17 +837,6 @@ export default class Site {
       }),
     );
 
-    performance.mark("end-render");
-
-    log.debug(
-      `Pages rendered in ${
-        (performance.measure("duration", "start-render", "end-render")
-          .duration /
-          1000).toFixed(2)
-      } seconds`,
-    );
-
-    performance.mark("start-process");
     if (
       await this.events.dispatchEvent({
         type: "afterRender",
@@ -802,6 +846,7 @@ export default class Site {
       return false;
     }
 
+    this.debugBar?.startMeasure("prepare-process");
     // Promote the files that must be processed to pages
     const extensions = this.processors.extensions;
     await filesToPages(
@@ -809,44 +854,12 @@ export default class Site {
       this.pages,
       (file) => !file.isCopy && extensions.has(file.src.ext),
     );
+    this.debugBar?.endMeasure("prepare-process", "Prepare to process");
 
     // Run the processors to the pages
+    this.debugBar?.startMeasure("process");
     await this.processors.run(this.pages);
-    performance.mark("end-process");
-
-    log.debug(
-      `Pages processed in ${
-        (performance.measure("duration", "start-process", "end-process")
-          .duration /
-          1000).toFixed(2)
-      } seconds`,
-    );
-
-    const item = this.debugBar?.buildItem();
-
-    if (item) {
-      const showDrafts = env<boolean>("LUME_DRAFTS");
-
-      if (showDrafts) {
-        item.title = `Built ${this.pages.length} pages (drafts included)`;
-        item.actions = [{
-          text: "Hide drafts",
-          data: {
-            type: "lume:drafts",
-            value: false,
-          },
-        }];
-      } else {
-        item.title = `Built ${this.pages.length} pages`;
-        item.actions = [{
-          text: "Show drafts",
-          data: {
-            type: "lume:drafts",
-            value: true,
-          },
-        }];
-      }
-    }
+    this.debugBar?.endMeasure("process", "Run processors");
 
     return await this.dispatchEvent({ type: "beforeSave" });
   }

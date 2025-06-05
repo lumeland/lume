@@ -28,3 +28,28 @@ export function percentage(initialValue: number, finalValue: number) {
 
   return "+" + percentageUnit.format(ratio);
 }
+
+const secondUnit = Intl.NumberFormat("en", {
+  notation: "compact",
+  style: "unit",
+  unit: "second",
+  unitDisplay: "narrow",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
+
+const milisecondUnit = Intl.NumberFormat("en", {
+  notation: "compact",
+  style: "unit",
+  unit: "millisecond",
+  unitDisplay: "narrow",
+  maximumFractionDigits: 0,
+});
+
+export function duration(miliseconds: number) {
+  if (miliseconds < 1000) {
+    return milisecondUnit.format(miliseconds);
+  }
+
+  return secondUnit.format(miliseconds / 1000);
+}
