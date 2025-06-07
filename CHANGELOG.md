@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - More build info in the Lume bar, like performance and ability to enable/disable drafts.
 
 ### Fixed
+- Sitemap plugin mangles already existing robots.txt file [#761]
 - The Lume bar is less invasive and hidden by default.
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori`, `lume-bar` and some icons.
 - Redirects plugin with Netlify: append new redirects to the existing file instead of override the content.
@@ -155,6 +156,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#750]: https://github.com/lumeland/lume/issues/750
 [#755]: https://github.com/lumeland/lume/issues/755
 [#757]: https://github.com/lumeland/lume/issues/757
+[#761]: https://github.com/lumeland/lume/issues/761
 
 [3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...HEAD
 [3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...v3.0.2

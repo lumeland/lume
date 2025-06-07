@@ -78,10 +78,8 @@ export function sitemap(userOptions?: Options) {
 
       // Add or update `robots.txt` with the sitemap url
       const robots = await site.getOrCreatePage("/robots.txt");
-      const content = robots.content as string || `User-agent: *\nAllow: /\n`;
-      robots.content = `${content}\nSitemap: ${
-        site.url(options.filename, true)
-      }`;
+      const content = robots.text || `User-agent: *\nAllow: /\n`;
+      robots.text = `${content}\nSitemap: ${site.url(options.filename, true)}`;
     });
 
     function generateSitemap(pages: Data[]): string {
