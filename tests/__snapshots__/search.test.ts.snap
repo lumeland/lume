@@ -249,6 +249,7 @@ snapshot[`Test undefined values 3`] = `
       mergedKeys: [
         "tags",
       ],
+      order: 1,
       page: [
         "src",
         "data",
@@ -306,6 +307,7 @@ snapshot[`Test undefined values 3`] = `
       mergedKeys: [
         "tags",
       ],
+      order: 2,
       page: [
         "src",
         "data",
@@ -327,7 +329,7 @@ snapshot[`Test undefined values 3`] = `
     data: {
       basename: "",
       children: "bdac",
-      content: '{{ for post of search.pages("", "title") }}
+      content: '{{ for post of search.pages("", "title order") }}
   {{- post.basename -}}
 {{ /for }}
 ',

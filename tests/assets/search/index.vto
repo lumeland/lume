@@ -2,6 +2,6 @@
 title: Z
 ---
 
-{{ for post of search.pages("", "title") }}
+{{ for post of search.pages("", "title order") }}
   {{- post.basename -}}
 {{ /for }}
