@@ -33,7 +33,7 @@ export function slugifyUrls(userOptions?: Options) {
       return slugify(text, lang ?? this?.data?.lang);
     });
 
-    site.preprocess(options.extensions, (pages) => {
+    site.preprocess(options.extensions, function processSlugifyUrls(pages) {
       // Slugify the page URLs
       pages.forEach((page) => {
         const [url, ext] = getPathAndExtension(page.data.url);

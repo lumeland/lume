@@ -23,15 +23,15 @@ export function readingInfo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess(options.extensions, (pages) => {
-      pages.forEach((page) => {
+    site.preprocess(options.extensions, function processReadingInfo(pages) {
+      for (const page of pages) {
         const { content, lang } = page.data;
 
         page.data.readingInfo = readingInfo(
           typeof content === "string" ? content : undefined,
           lang as string,
         );
-      });
+      }
     });
 
     site.filter("readingInfo", readingInfo);

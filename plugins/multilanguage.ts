@@ -78,32 +78,35 @@ export function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess([".html"], (filteredPages, allPages) => {
-      for (const page of filteredPages) {
-        fixLanguage(page);
-        const { data } = page;
-        const languages = data.lang as string | string[] | undefined;
+    site.preprocess(
+      [".html"],
+      function processMultilanguageSetup(filteredPages, allPages) {
+        for (const page of filteredPages) {
+          fixLanguage(page);
+          const { data } = page;
+          const languages = data.lang as string | string[] | undefined;
 
-        if (!Array.isArray(languages)) {
-          mergeTranslations(data);
-          continue;
+          if (!Array.isArray(languages)) {
+            mergeTranslations(data);
+            continue;
+          }
+
+          // Create a new page per language
+          const newPages: Page[] = [];
+          const id = data.id ?? page.src.path.slice(1);
+
+          for (const lang of languages) {
+            const newData: Data = { ...data, lang, id };
+            const newPage = page.duplicate(undefined, newData);
+            newPages.push(newPage);
+            mergeTranslations(newPage.data);
+          }
+
+          // Replace the current page with the multiple language versions
+          allPages.splice(allPages.indexOf(page), 1, ...newPages);
         }
-
-        // Create a new page per language
-        const newPages: Page[] = [];
-        const id = data.id ?? page.src.path.slice(1);
-
-        for (const lang of languages) {
-          const newData: Data = { ...data, lang, id };
-          const newPage = page.duplicate(undefined, newData);
-          newPages.push(newPage);
-          mergeTranslations(newPage.data);
-        }
-
-        // Replace the current page with the multiple language versions
-        allPages.splice(allPages.indexOf(page), 1, ...newPages);
-      }
-    });
+      },
+    );
 
     /**
      * Preprocessor to process the multilanguage data
@@ -112,7 +115,7 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess([".html"], (pages) => {
+    site.preprocess([".html"], function processMultilanguageAlternates(pages) {
       for (const page of pages) {
         const { data } = page;
         const { lang } = data;
@@ -171,7 +174,7 @@ export function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess([".html"], (pages) => {
+    site.preprocess([".html"], function processUnmatchedLangUrl(pages) {
       for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,

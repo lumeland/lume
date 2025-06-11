@@ -43,9 +43,9 @@ export function relations(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess(options.extensions, index);
+    site.preprocess(options.extensions, processRelations);
 
-    function index(pages1: Page[], pages: Page[]) {
+    function processRelations(pages1: Page[], pages: Page[]) {
       pages1.forEach((page1) => {
         const data1 = page1.data;
         const [

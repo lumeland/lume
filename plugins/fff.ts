@@ -39,8 +39,8 @@ export function fff(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess([".html"], (pages) =>
-      pages.forEach((page) => {
+    site.preprocess([".html"], function processFFF(pages) {
+      for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
             page.data.created = getGitDate("created", page.src.entry.src);
@@ -59,7 +59,8 @@ export function fff(userOptions?: Partial<Options>) {
         if (options.postTypeDiscovery) {
           page.data.type = postTypeDiscovery(page.data);
         }
-      }));
+      }
+    });
   };
 }
 
