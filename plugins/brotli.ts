@@ -28,7 +28,7 @@ export function brotli(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages, allPages) => {
+    site.process(options.extensions, function processBrotli(pages, allPages) {
       for (const page of pages) {
         const compressedContent = compress(
           page.bytes,

@@ -31,7 +31,7 @@ export function sri(userOptions?: Partial<Options>) {
   return (site: Site) => {
     const { origin } = site.options.location;
 
-    site.process([".html"], async (pages) => {
+    site.process([".html"], async function processRSI(pages) {
       for (const page of pages) {
         const { document } = page;
         const nodes = document.querySelectorAll(options.selector);

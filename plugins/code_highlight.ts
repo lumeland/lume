@@ -76,19 +76,19 @@ export function codeHighlight(userOptions?: Options) {
     site.process([".html"], processCodeHighlight);
 
     if (options.theme) {
-      const themes = Array.isArray(options.theme)
-        ? options.theme
-        : [options.theme];
+      site.process(async function processCodeHighlightTheme() {
+        const themes = Array.isArray(options.theme)
+          ? options.theme
+          : [options.theme];
 
-      for (
-        const { name, cssFile = site.options.cssFile, placeholder } of themes
-      ) {
-        site.process(async () => {
+        for (
+          const { name, cssFile = site.options.cssFile, placeholder } of themes
+        ) {
           const cssCode = await readFile(`${themesPath}${name}.min.css`);
           const page = await site.getOrCreatePage(cssFile);
           page.text = insertContent(page.text, cssCode, placeholder);
-        });
-      }
+        }
+      });
     }
 
     function processCodeHighlight(pages: Page[]) {

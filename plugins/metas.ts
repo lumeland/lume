@@ -60,7 +60,9 @@ export function metas() {
     // Configure the merged keys
     site.mergeKey("metas", "object");
     site.process([".html"], function processMetas(pages) {
-      pages.forEach(metas);
+      for (const page of pages) {
+        metas(page);
+      }
     });
 
     function metas(page: Page) {

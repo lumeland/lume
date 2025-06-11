@@ -145,7 +145,7 @@ export function pagefind(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process([".html"], async (pages, allPages) => {
+    site.process([".html"], async function processPagefind(pages, allPages) {
       const { index } = await Pagefind.createIndex(options.indexing);
 
       if (!index) {
@@ -209,7 +209,7 @@ export function pagefind(userOptions?: Options) {
     if (options.ui) {
       const { containerId, globalVariable, ...ui } = options.ui;
 
-      site.process([".html"], (pages) => {
+      site.process([".html"], function processPagefindUI(pages) {
         for (const page of pages) {
           const { document } = page;
           const container = document.getElementById(containerId!);

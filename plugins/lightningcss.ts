@@ -68,9 +68,7 @@ export function lightningCSS(userOptions?: Options) {
       bundle = true;
     }
 
-    site.process([".css"], lightningCSSProcessor);
-
-    function lightningCSSProcessor(files: Page[]) {
+    site.process([".css"], function processLightningCSS(files: Page[]) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -89,7 +87,7 @@ export function lightningCSS(userOptions?: Options) {
       }
 
       files.forEach((file) => lightningCSSTransformer(file, item));
-    }
+    });
 
     function lightningCSSTransformer(file: Page, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(

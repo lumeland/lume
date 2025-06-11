@@ -35,7 +35,7 @@ export function purgecss(userOptions?: Options) {
   });
 
   return (site: Site) => {
-    site.process([".css"], async (pages, allPages) => {
+    site.process([".css"], async function processPurgeCSS(pages, allPages) {
       const content: RawContent[] = [];
       for (const page of allPages) {
         if (!matchExtension(options.contentExtensions, page.outputPath)) {

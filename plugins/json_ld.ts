@@ -177,7 +177,9 @@ function isEmpty(v: unknown) {
 export function jsonLd() {
   return (site: Site) => {
     site.mergeKey("jsonLd", "object");
-    site.process([".html"], (pages) => pages.forEach(jsonLdProcessor));
+    site.process([".html"], function processJsonLd(pages) {
+      pages.forEach(jsonLdProcessor);
+    });
 
     function jsonLdProcessor(page: Page) {
       let jsonLdData = page.data.jsonLd as JsonldData | undefined;

@@ -48,7 +48,11 @@ export function prism(userOptions?: Options) {
       );
     }
     site._data.codeHighlight = "prism";
-    site.process([".html"], (pages) => pages.forEach(prism));
+    site.process([".html"], function processPrism(pages) {
+      for (const page of pages) {
+        prism(page);
+      }
+    });
 
     if (options.theme) {
       const themes = Array.isArray(options.theme)

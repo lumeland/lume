@@ -88,32 +88,32 @@ export function transformImages(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(processTransformImages);
+    site.process(
+      async function processTransformImages(_: Page[], allPages: Page[]) {
+        // Load all static files that must be transformed
+        await filesToPages(site.files, site.pages, filter);
+
+        const files = allPages.filter(filter);
+
+        const hasPages = warnUntil(
+          "[transform_images plugin] No images to transform found. Make sure to add them with <code>site.add()</code>",
+          files.length,
+        );
+
+        if (!hasPages) {
+          return;
+        }
+
+        // Process all files
+        await concurrent(
+          files,
+          (page) => processPage(page, allPages),
+        );
+      },
+    );
 
     // Configure the cache folder
     const { cache } = site;
-
-    async function processTransformImages(_: Page[], allPages: Page[]) {
-      // Load all static files that must be transformed
-      await filesToPages(site.files, site.pages, filter);
-
-      const files = allPages.filter(filter);
-
-      const hasPages = warnUntil(
-        "[transform_images plugin] No images to transform found. Make sure to add them with <code>site.add()</code>",
-        files.length,
-      );
-
-      if (!hasPages) {
-        return;
-      }
-
-      // Process all files
-      await concurrent(
-        files,
-        (page) => processPage(page, allPages),
-      );
-    }
 
     async function processPage(page: Page, allPages: Page[]) {
       const transData = page.data.transformImages as

@@ -25,8 +25,8 @@ export function gzip(userOptions?: Options) {
   return (site: Site) => {
     site.process(
       options.extensions,
-      (pages, allPages) =>
-        concurrent(pages, async (page: Page) => {
+      function processGzip(pages, allPages) {
+        return concurrent(pages, async (page: Page) => {
           const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
             new CompressionStream("gzip"),
@@ -39,7 +39,8 @@ export function gzip(userOptions?: Options) {
             content: compressedContent,
           });
           allPages.push(compressedPage);
-        }),
+        });
+      },
     );
   };
 }

@@ -88,7 +88,7 @@ export function unoCSS(userOptions?: Options) {
     const { transformers, cssFile = site.options.cssFile, reset } = options;
 
     if (transformers.length > 0) {
-      site.process([".css"], async (files) => {
+      site.process([".css"], async function processUnoCSS(files) {
         const uno = await getGenerator();
         for (const file of files) {
           const content = file.text;
@@ -109,7 +109,7 @@ export function unoCSS(userOptions?: Options) {
 
     if (cssFile === false) {
       // Insert a <style> tag for each page
-      site.process([".html"], async (pages) => {
+      site.process([".html"], async function processUnoCSSStyleTag(pages) {
         const resetCss = await getResetCss(reset);
         const uno = await getGenerator();
 
@@ -131,7 +131,7 @@ export function unoCSS(userOptions?: Options) {
     }
 
     // Generate the stylesheets for all pages
-    site.process([".html"], async (pages) => {
+    site.process([".html"], async function processUnoCSSContent(pages) {
       const classes = new Set<string>();
       const uno = await getGenerator();
 

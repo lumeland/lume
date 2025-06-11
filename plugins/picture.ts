@@ -36,7 +36,7 @@ export function picture(userOptions?: Options) {
   return (site: Site) => {
     const transforms = new Map<string, Source>();
 
-    site.process([".html"], (pages) => {
+    site.process([".html"], function processPicture(pages) {
       for (const page of pages) {
         const { document } = page;
         const basePath = posix.dirname(page.outputPath);
@@ -89,7 +89,7 @@ export function picture(userOptions?: Options) {
       }
     });
 
-    site.process(() => {
+    site.process(function processPictureImages() {
       const filesAndPages = [...site.files, ...site.pages];
 
       for (const page of filesAndPages) {

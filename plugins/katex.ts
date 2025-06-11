@@ -104,13 +104,13 @@ export function katex(userOptions?: Options) {
     });
 
     // Output the CSS file
-    site.process(async () => {
+    site.process(async function processKatexCss() {
       const page = await site.getOrCreatePage(cssFile);
       page.text = insertContent(page.text, cssCode, options.placeholder);
     });
 
     // Process the html pages and output the CSS file
-    site.process([".html"], (pages) => {
+    site.process([".html"], function processKatex(pages) {
       for (const page of pages) {
         const { document } = page;
 

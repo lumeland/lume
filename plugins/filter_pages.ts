@@ -24,7 +24,7 @@ export function filterPages(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process((pages, allPages) => {
+    site.process(function processFilterPages(pages, allPages) {
       for (const page of pages) {
         if (!options.fn(page)) {
           allPages.splice(allPages.indexOf(page), 1);

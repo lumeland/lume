@@ -42,7 +42,7 @@ export function tailwindCSS(userOptions?: Options) {
     const candidates: string[] = [];
     let content: ChangedContent[] = [];
 
-    site.process([".html", ".js"], (pages) => {
+    site.process([".html", ".js"], function processTailwindContent(pages) {
       for (const page of pages) {
         const file = page.outputPath;
         content.push({
@@ -52,7 +52,7 @@ export function tailwindCSS(userOptions?: Options) {
       }
     });
 
-    site.process([".css"], async (files) => {
+    site.process([".css"], async function processTailwindCSS(files) {
       const hasPages = warnUntil(
         "[tailwindcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,

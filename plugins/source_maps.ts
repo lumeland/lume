@@ -32,11 +32,9 @@ export function sourceMaps(userOptions?: Options) {
   return (site: Site) => {
     site._data.enableSourceMap = true;
 
-    site.process(
-      "*",
-      (pages, allPages) =>
-        concurrent(pages, (page) => processSourceMap(page, allPages)),
-    );
+    site.process(function processSourceMaps(pages, allPages) {
+      return concurrent(pages, (page) => processSourceMap(page, allPages));
+    });
 
     async function processSourceMap(file: Page, files: Page[]) {
       const sourceMap = file.data.sourceMap as SourceMap | undefined;

@@ -182,7 +182,7 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process([".html"], (pages) => {
+    site.process([".html"], function processMultilanguage(pages) {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;

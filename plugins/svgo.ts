@@ -23,9 +23,7 @@ export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process([".svg"], SVGProcessor);
-
-    function SVGProcessor(files: Page[]) {
+    site.process([".svg"], function processSVGO(files: Page[]) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -60,7 +58,7 @@ export function svgo(userOptions?: Options) {
 
         file.content = data;
       }
-    }
+    });
   };
 }
 

@@ -54,9 +54,7 @@ export function sass(userOptions?: Options) {
       site.ignore(options.includes);
     }
 
-    site.process([".scss", ".sass"], sassProcessor);
-
-    function sassProcessor(files: Page[]) {
+    site.process([".scss", ".sass"], function processSASS(files: Page[]) {
       const hasPages = warnUntil(
         "[sass plugin] No SCSS or SASS files found. Make sure to add them with <code>site.add()</code>",
         files.length,
@@ -67,7 +65,7 @@ export function sass(userOptions?: Options) {
       }
 
       return concurrent(files, sass);
-    }
+    });
 
     const { entries } = site.fs;
     const basePath = site.src();

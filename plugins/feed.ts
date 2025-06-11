@@ -176,7 +176,7 @@ export function feed(
   userOptionsFn?: Options | Options[] | (() => Options[] | Options),
 ) {
   return (site: Site) => {
-    site.process(() => {
+    site.process(function processFeed() {
       const userOptions = typeof userOptionsFn === "function"
         ? userOptionsFn()
         : userOptionsFn;

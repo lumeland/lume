@@ -39,10 +39,8 @@ export function terser(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, terserProcess);
     site.filter("terser", filter, true);
-
-    function terserProcess(files: Page[]) {
+    site.process(options.extensions, function processTerser(files: Page[]) {
       const hasPages = warnUntil(
         "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
         files.length,
@@ -57,7 +55,7 @@ export function terser(userOptions?: Options) {
       );
 
       return concurrent(files, (file) => terser(file, item));
-    }
+    });
 
     async function terser(page: Page, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
