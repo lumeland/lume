@@ -26,11 +26,11 @@
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
-      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.5.3/bin.ts"
+      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.6.2/bin.ts"
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
-      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.9/cli.ts' update"
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.10/cli.ts' update"
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
@@ -46,6 +46,8 @@
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.10/jsx-runtime.ts"
   },
   "lint": {
-    "plugins": ["./lint.ts"]
+    "plugins": [
+      "./lint.ts"
+    ]
   }
 }
