@@ -752,7 +752,7 @@ export default class Site {
 
     if (showDrafts) {
       const item = this.debugBar?.buildItem(
-        "[config] Building site (including drafts pages)",
+        "[config] Build site (including drafts pages)",
       );
       if (item) {
         item.actions = [{
@@ -764,7 +764,7 @@ export default class Site {
         }];
       }
     } else {
-      const item = this.debugBar?.buildItem("[config] Building site");
+      const item = this.debugBar?.buildItem("[config] Build site");
       if (item) {
         item.actions = [{
           text: "Enable draft pages",
