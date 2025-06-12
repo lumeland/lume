@@ -39,7 +39,6 @@ import type { Writer } from "./writer.ts";
 import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
-import type { Watcher } from "./watcher.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 
 /** Default options of the site */
@@ -147,6 +146,9 @@ export default class Site {
 
   fetch: Deno.ServeHandler;
 
+  watcher?: FSWatcher;
+  server?: Server;
+
   constructor(options: Partial<SiteOptions> = {}) {
     this.options = merge(defaults, options);
 
@@ -249,7 +251,6 @@ export default class Site {
       const debugBar = new DebugBar({
         url: typeof initDebugBar === "string" ? initDebugBar : undefined,
       });
-      this.addEventListener("beforeUpdate", () => debugBar.clear());
       this.debugBar = debugBar;
       log.collection = debugBar.collection("Build");
 
@@ -656,12 +657,15 @@ export default class Site {
     );
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
-    this.debugBar?.endMeasure("build", "[Metrics] Site generated");
+    this.debugBar?.endMeasure("build", "Site generated");
   }
 
   /** Reload some files that might be changed */
   async update(files?: Set<string>): Promise<void> {
+    this.watcher?.pause();
+    this.debugBar?.clear();
     this.debugBar?.startMeasure("build");
+
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
     }
@@ -718,14 +722,15 @@ export default class Site {
       `[Write] ${pages.length + staticFiles.length} files`,
     );
 
+    this.debugBar?.endMeasure("build", "Site updated");
+
     await this.dispatchEvent({
       type: "afterUpdate",
       files,
       pages,
       staticFiles,
     });
-
-    this.debugBar?.endMeasure("build", "[Metrics] Site updated");
+    this.watcher?.resume();
   }
 
   /**
@@ -1008,32 +1013,41 @@ export default class Site {
   }
 
   /** Returns a File system watcher of the site */
-  getWatcher(): Watcher {
-    return new FSWatcher({
+  getWatcher(): FSWatcher {
+    if (this.watcher) {
+      return this.watcher;
+    }
+    this.watcher = new FSWatcher({
       root: this.src(),
       paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
     });
+
+    return this.watcher;
   }
 
   /** Returns a Web server of the site */
   getServer(): Server {
+    if (this.server) {
+      return this.server;
+    }
+
     const { port, hostname, page404, middlewares } = this.options.server;
     const root = this.options.server.root || this.dest();
-    const server = new Server({ root, port, hostname });
+    this.server = new Server({ root, port, hostname });
 
-    server.use(notFound({
+    this.server.use(notFound({
       root,
       page404,
       directoryIndex: true,
     }));
 
     if (middlewares) {
-      server.use(...middlewares);
+      this.server.use(...middlewares);
     }
 
-    return server;
+    return this.server;
   }
 }
 

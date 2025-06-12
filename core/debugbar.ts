@@ -101,9 +101,7 @@ export default class DebugBar {
       item.title = title;
       item.icon = "clock";
       const memory = Deno.memoryUsage();
-      this.#measureItem.details = `${duration(measure.duration)} / ${
-        bytes(memory.rss)
-      }`;
+      item.details = `${duration(measure.duration)} / ${bytes(memory.rss)}`;
     } else if (measure.duration >= 1) {
       item = {
         title: title,

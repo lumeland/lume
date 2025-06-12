@@ -56,9 +56,22 @@ export interface Watcher {
 export default class FSWatcher implements Watcher {
   events: Events<WatchEvent> = new Events<WatchEvent>();
   options: Options;
+  paused = false;
 
   constructor(options: Options) {
     this.options = options;
+  }
+
+  /** Pause the watcher */
+  pause() {
+    this.paused = true;
+    return this;
+  }
+
+  /** Resume the watcher */
+  resume() {
+    this.paused = false;
+    return this;
   }
 
   /** Add a listener to an event */
@@ -87,6 +100,13 @@ export default class FSWatcher implements Watcher {
     await this.dispatchEvent({ type: "start" });
 
     const callback = async () => {
+      // If the watcher is paused, reschedule the callback
+      if (this.paused) {
+        clearTimeout(timer);
+        setTimeout(callback, debounce ?? 100);
+        return;
+      }
+
       runningCallback = true;
 
       const files = new Set(changes);
