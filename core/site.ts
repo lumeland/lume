@@ -27,7 +27,7 @@ import Cache from "./cache.ts";
 import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
 
-import type { Loader } from "./fs.ts";
+import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
@@ -614,7 +614,6 @@ export default class Site {
 
   /** Build the entire site */
   async build(): Promise<void> {
-    this.#prepareForBuild();
     this.debugBar?.startMeasure("build");
 
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
@@ -637,15 +636,7 @@ export default class Site {
     }
 
     // Get the site content
-    this.debugBar?.startMeasure("load");
-    const showDrafts = env<boolean>("LUME_DRAFTS");
-    const [_pages, _staticFiles] = await this.source.build(
-      (_, page) => !page?.data.draft || showDrafts === true,
-    );
-    this.debugBar?.endMeasure(
-      "load",
-      `[Loading] ${_pages.length} pages and ${_staticFiles.length} static files`,
-    );
+    const [_pages, _staticFiles] = await this.#loadPages(() => true);
 
     // Save static files into site.files
     this.files.splice(0, this.files.length, ..._staticFiles);
@@ -670,7 +661,6 @@ export default class Site {
 
   /** Reload some files that might be changed */
   async update(files?: Set<string>): Promise<void> {
-    this.#prepareForBuild();
     this.debugBar?.startMeasure("build");
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       return;
@@ -709,17 +699,8 @@ export default class Site {
     }
 
     // Get the site content
-    this.debugBar?.startMeasure("load");
-    const showDrafts = env<boolean>("LUME_DRAFTS");
     const filters = files ? this.scopes.getFilter(files) : () => true;
-    const [_pages, _staticFiles] = await this.source.build(
-      (_, page) => !page?.data.draft || showDrafts === true,
-      filters,
-    );
-    this.debugBar?.endMeasure(
-      "load",
-      `[Loading] ${_pages.length} pages and ${_staticFiles.length} static files`,
-    );
+    const [_pages, _staticFiles] = await this.#loadPages(filters);
 
     // Build the pages and save static files into site.files
     this.files.splice(0, this.files.length, ..._staticFiles);
@@ -747,39 +728,49 @@ export default class Site {
     this.debugBar?.endMeasure("build", "[Metrics] Site updated");
   }
 
-  #prepareForBuild(): void {
+  /**
+   * Internal function to load pages
+   * Used by build and update actions
+   */
+  async #loadPages(
+    filters: (entry: Entry) => boolean,
+  ): Promise<[Page[], StaticFile[]]> {
+    // Get the site content
+    this.debugBar?.startMeasure("load");
     const showDrafts = env<boolean>("LUME_DRAFTS");
+    let draftPages = 0;
+    const [_pages, _staticFiles] = await this.source.build((_, page) => {
+      if (page?.data.draft) {
+        draftPages++;
+      }
+      return !page?.data.draft || showDrafts === true;
+    }, filters);
 
-    if (showDrafts) {
-      const item = this.debugBar?.buildItem(
-        "[config] Build site (including drafts pages)",
-      );
-      if (item) {
-        item.actions = [{
-          text: "Disable draft pages",
-          data: {
-            type: "lume:drafts",
-            value: false,
-          },
-        }];
-      }
-    } else {
-      const item = this.debugBar?.buildItem("[config] Build site");
-      if (item) {
-        item.actions = [{
-          text: "Enable draft pages",
-          data: {
-            type: "lume:drafts",
-            value: false,
-          },
-        }];
-      }
+    const item = this.debugBar?.endMeasure(
+      "load",
+      `[Loading] ${_pages.length} pages and ${_staticFiles.length} static files`,
+    );
+
+    if (item && draftPages > 0) {
+      item.details = showDrafts
+        ? `${draftPages} draft included`
+        : `${draftPages} draft hidden`;
+
+      item.actions = [{
+        text: showDrafts ? "Hide drafts" : "Show drafts",
+        data: {
+          type: "lume:drafts",
+          value: !showDrafts,
+        },
+      }];
     }
+
+    return [_pages, _staticFiles];
   }
 
   /**
    * Internal function to render pages
-   * The common operations of build and update
+   * Used by build and update actions
    */
   async #buildPages(pages: Page[]): Promise<boolean> {
     // Promote the files that must be preprocessed to pages
