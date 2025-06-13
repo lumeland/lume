@@ -174,11 +174,11 @@ export default class Renderer {
           }
         },
       );
+      debugBar?.endMeasure(
+        "render",
+        `[Rendering] Content of ${renderedPages.length} pages`,
+      );
     }
-    debugBar?.endMeasure(
-      "render",
-      `[Rendering] Content of ${renderedPages.length} pages`,
-    );
 
     // Render the pages layouts at the end
     debugBar?.startMeasure("render-layouts");
