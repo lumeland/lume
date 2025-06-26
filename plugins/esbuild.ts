@@ -2,6 +2,7 @@ import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
+import { browsers, versionString } from "../core/utils/browsers.ts";
 import {
   build,
   BuildOptions,
@@ -43,7 +44,13 @@ export const defaults: Options = {
     minify: true,
     keepNames: true,
     platform: "browser",
-    target: "esnext",
+    target: [
+      `chrome${versionString(browsers.chrome)}`,
+      `edge${versionString(browsers.edge)}`,
+      `firefox${versionString(browsers.firefox)}`,
+      `ios${versionString(browsers.safari_ios)}`,
+      `safari${versionString(browsers.safari)}`,
+    ],
     treeShaking: true,
     jsx: "automatic",
     outdir: "./",

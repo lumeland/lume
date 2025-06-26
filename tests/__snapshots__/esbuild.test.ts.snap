@@ -1919,7 +1919,7 @@ snapshot[`esbuild plugin without bundle 3`] = `
     },
   },
   {
-    content: 'import e,{toLowercase as n}from "./modules/to_uppercase.hash.min.js";import t from "./data.json"with{type:"json"};import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=e(o.innerHTML+t.foo),n(o.innerHTML).then(r=>{o.innerHTML=r})});const i={bar:"baz"};console.log(i);
+    content: 'import e,{toLowercase as n}from "./modules/to_uppercase.hash.min.js";import t from "./data.json";import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=e(o.innerHTML+t.foo),n(o.innerHTML).then(r=>{o.innerHTML=r})});const i={bar:"baz"};console.log(i);
 ',
     data: {
       basename: "main",

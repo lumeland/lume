@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.5] - Unreleased
+### Changed
+- Unify browsers support accross several plugins like `postcss`, `highlightningcss` or `esbuild`.
+
 ### Fixed
 - Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss` and some icons.
 

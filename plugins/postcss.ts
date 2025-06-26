@@ -7,6 +7,7 @@ import { Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
+import { browsers, versionString } from "../core/utils/browsers.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
@@ -35,7 +36,16 @@ export const defaults: Options = {
 };
 
 const defaultPlugins = [
-  autoprefixer(),
+  autoprefixer({
+    overrideBrowserslist: [
+      `android >= ${versionString(browsers.chrome_android)}`,
+      `chrome >= ${versionString(browsers.chrome)}`,
+      `edge >= ${versionString(browsers.edge)}`,
+      `firefox >= ${versionString(browsers.firefox)}`,
+      `ios_saf >= ${versionString(browsers.safari_ios)}`,
+      `safari >= ${versionString(browsers.safari)}`,
+    ],
+  }),
 ];
 
 /**

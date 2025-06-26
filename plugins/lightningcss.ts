@@ -8,6 +8,7 @@ import { posix } from "../deps/path.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
 import { log } from "../core/utils/log.ts";
+import { browsers, version } from "../core/utils/browsers.ts";
 
 import type { Item } from "../deps/debugbar.ts";
 import type Site from "../core/site.ts";
@@ -37,16 +38,13 @@ export const defaults: Options = {
     drafts: {
       customMedia: true,
     },
-    // (mayor << 16) | (minor << 8)
     targets: {
-      android: 111 << 16,
-      chrome: 111 << 16,
-      edge: 111 << 16,
-      firefox: 128 << 16,
-      ios_saf: (16 << 16) | (4 << 8),
-      safari: (16 << 16) | (4 << 8),
-      opera: 111 << 16,
-      samsung: 19 << 16,
+      android: version(browsers.chrome_android),
+      chrome: version(browsers.chrome),
+      edge: version(browsers.edge),
+      firefox: version(browsers.firefox),
+      ios_saf: version(browsers.safari_ios),
+      safari: version(browsers.safari),
     },
   },
 };
