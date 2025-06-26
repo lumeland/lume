@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.5] - Unreleased
+### Fixed
+- Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss` and some icons.
+
 ## [3.0.4] - 2025-06-13
 ### Fixed
 - Performance measurement error building an empty site.
@@ -163,6 +167,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#757]: https://github.com/lumeland/lume/issues/757
 [#761]: https://github.com/lumeland/lume/issues/761
 
+[3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...HEAD
 [3.0.4]: https://github.com/lumeland/lume/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/lumeland/lume/compare/v3.0.1...v3.0.2
