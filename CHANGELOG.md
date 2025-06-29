@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.5] - Unreleased
 ### Changed
 - Unify browsers support accross several plugins like `postcss`, `highlightningcss` or `esbuild`.
+- Remove access request to env variables [#765]
 
 ### Fixed
 - Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss` and some icons.
@@ -169,6 +170,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#755]: https://github.com/lumeland/lume/issues/755
 [#757]: https://github.com/lumeland/lume/issues/757
 [#761]: https://github.com/lumeland/lume/issues/761
+[#765]: https://github.com/lumeland/lume/issues/765
 
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...HEAD
 [3.0.4]: https://github.com/lumeland/lume/compare/v3.0.3...v3.0.4

@@ -1,30 +1,16 @@
 const envVars = new Map<string, string>();
 
 export function setEnv(name: string, value: string) {
-  // Deno Deploy doesn't support permissions.requestSync
-  // https://github.com/denoland/deploy_feedback/issues/527
-  if (Deno.permissions.querySync?.({ name: "env" }).state === "granted") {
+  if (allowedEnvVars()) {
     Deno.env.set(name, value);
-  } else {
-    envVars.set(name, value);
   }
+  envVars.set(name, value);
 }
 
 export function env<T>(name: string): T | undefined {
-  if (envVars.has(name)) {
-    return envVars.get(name) as T;
-  }
-
-  // Deno Deploy doesn't support permissions.requestSync
-  // https://github.com/denoland/deploy_feedback/issues/527
-  const allowed = !Deno.permissions.requestSync ||
-    Deno.permissions.requestSync({ name: "env" }).state === "granted";
-
-  if (!allowed) {
-    return undefined;
-  }
-
-  const value = envVars.has(name) ? envVars.get(name) : Deno.env.get(name);
+  const value = allowedEnvVars()
+    ? envVars.get(name) ?? Deno.env.get(name)
+    : envVars.get(name);
 
   if (typeof value === "undefined") {
     return undefined;
@@ -44,4 +30,12 @@ export function env<T>(name: string): T | undefined {
     default:
       return value as T;
   }
+}
+
+let allowed: boolean | undefined;
+function allowedEnvVars(): boolean {
+  if (allowed === undefined) {
+    allowed = Deno.permissions.querySync?.({ name: "env" }).state === "granted";
+  }
+  return allowed;
 }
