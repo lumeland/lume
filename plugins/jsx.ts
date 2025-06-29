@@ -1,4 +1,4 @@
-import { isComponent, renderComponent } from "../deps/ssx.ts";
+import { renderComponent } from "../deps/ssx.ts";
 import loader from "../core/loaders/module.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -55,8 +55,8 @@ export class JsxEngine implements Engine {
     const result = typeof content === "function"
       ? await content({ ...data, children }, this.helpers)
       : content;
-    // deno-lint-ignore no-explicit-any
-    return isComponent(result) ? renderComponent(result as any) : result;
+
+    return renderComponent(result);
   }
 
   addHelper(name: string, fn: Helper) {
