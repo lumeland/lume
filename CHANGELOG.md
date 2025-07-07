@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Remove access request to env variables [#765]
 
 ### Fixed
+- `decap_cms`: prevent to apply a layout to the generated admin page.
 - Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss` and some icons.
 
 ## [3.0.4] - 2025-06-13
@@ -31,7 +32,6 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Sitemap plugin mangles already existing robots.txt file [#761]
 - The Lume bar is less invasive and hidden by default.
 - Updated dependencies: `std`, `terser`, `esbuild`, `tailwindcss`, `xml`, `sass`, `postcss`, `unocss`, `vento`, `satori`, `decap-cms`, `lume-bar` and some icons.
-- `decap_cms`: prevent to apply a layout to the generated admin page.
 - Redirects plugin with Netlify: append new redirects to the existing file instead of override the content.
 
 ## [3.0.2] - 2025-05-23
