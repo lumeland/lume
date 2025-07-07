@@ -195,6 +195,7 @@ local_backend: false
         "media_folder",
         "public_folder",
       ],
+      layout: "undefined",
       mergedKeys: [
         "tags",
       ],
