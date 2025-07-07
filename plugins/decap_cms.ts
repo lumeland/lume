@@ -92,6 +92,7 @@ export function decapCMS(userOptions?: Options) {
     site.page({
       url: posix.join(options.path, "index.html"),
       unlisted: true,
+      layout: undefined,
       content: `
       <!DOCTYPE html>
       <html lang="en">
