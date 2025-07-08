@@ -26,7 +26,7 @@ export const defaults: Options = {
   favicons: [
     {
       url: "/favicon.ico",
-      size: [48],
+      size: [32],
       rel: "icon",
       format: "ico",
     },

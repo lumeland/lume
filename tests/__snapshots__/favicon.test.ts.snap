@@ -139,10 +139,10 @@ snapshot[`favicon plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(1389)",
+    content: "Uint8Array(924)",
     data: {
       basename: "favicon",
-      content: "Uint8Array(1389)",
+      content: "Uint8Array(924)",
       page: [
         "src",
         "data",
@@ -200,7 +200,7 @@ snapshot[`favicon plugin 3`] = `
     content: '<!DOCTYPE html>
 <html><head>
     <title>Hello world</title>
-  <link rel="icon" sizes="48x48" href="/favicon.ico">
+  <link rel="icon" sizes="32x32" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml">
 </head>

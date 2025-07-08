@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Changed
 - Unify browsers support accross several plugins like `postcss`, `highlightningcss` or `esbuild`.
 - Remove access request to env variables [#765]
+- `favicon`: Changed the default favicon.ico file size from 48x48 to 32x32.
 
 ### Fixed
 - `decap_cms`: prevent to apply a layout to the generated admin page.
