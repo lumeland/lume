@@ -14,7 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `decap_cms`: prevent to apply a layout to the generated admin page.
-- Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss` and some icons.
+- Updated dependencies: `svgo`, `terser`, `postcss`, `decap-cms`, `unocss`, `deno_dom`, `std`, `tailwindcsss` and some icons.
 
 ## [3.0.4] - 2025-06-13
 ### Fixed
