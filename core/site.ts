@@ -662,7 +662,6 @@ export default class Site {
 
   /** Reload some files that might be changed */
   async update(files?: Set<string>): Promise<void> {
-    this.watcher?.pause();
     this.debugBar?.clear();
     this.debugBar?.startMeasure("build");
 
@@ -730,7 +729,6 @@ export default class Site {
       pages,
       staticFiles,
     });
-    this.watcher?.resume();
   }
 
   /**

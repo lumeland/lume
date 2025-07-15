@@ -58,7 +58,8 @@ async function build({ type, config, serve }: BuildOptions) {
       return;
     }
 
-    return site.update(files);
+    watcher.pause();
+    return site.update(files).finally(() => watcher.resume());
   });
 
   watcher.addEventListener("error", (event) => {
