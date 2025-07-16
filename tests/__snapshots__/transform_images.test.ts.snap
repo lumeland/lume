@@ -115,7 +115,7 @@ snapshot[`Image transform plugin 2`] = `[]`;
 snapshot[`Image transform plugin 3`] = `
 [
   {
-    content: "Uint8Array(428)",
+    content: "Uint8Array(427)",
     data: {
       basename: "lume",
       mergedKeys: [
