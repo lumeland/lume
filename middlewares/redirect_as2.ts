@@ -1,61 +1,39 @@
 import type { Middleware } from "../core/server.ts";
 
-export interface Data {
+export interface Options {
+  /**
+   * Rewrite URL function
+   * `(url: URL, host: string) => URL | undefined | void`
+   */
+  rewriteUrl: RewriteUrl;
+
   /**
    * User domain.
-   * @default
-   * ```ts
-   * new URL(req.url).host
-   * ```
-   * @example
-   * ```ts
-   * site.options.location.host
-   * ```
+   * @default `URL(req.url).host`
    */
-  host?: URL["host"];
-}
-export interface Options extends Data {
-  /**
-   * Rewrite URL function.
-   * @param url req.url
-   * @returns Rewritten URLs or empty
-   */
-  rewriteUrl: (url: URL, data: Data) => Promise<URL> | URL | undefined | void;
-  /**
-   * User domain.
-   * @default
-   * ```ts
-   * new URL(req.url).host
-   * ```
-   * @example
-   * ```ts
-   * site.options.location.host
-   * ```
-   */
-  host?: URL["host"];
+  host?: string;
 }
 
-export const hatsu =
-  (instance: URL["host"]): Options["rewriteUrl"] => (url, data) => {
-    const { pathname } = url;
-    const host = data.host ?? url.host;
-    if (url.pathname === "/") {
-      return new URL(`https://${instance}/users/${host}`);
-    } else {
-      return new URL(
-        `https://${host}${pathname}`,
-        `https://${instance}/posts/`,
-      );
-    }
-  };
+type RewriteUrl = (
+  url: URL,
+  host?: string,
+) => Promise<URL> | URL | undefined | void;
+
+export const hatsu = (instance: string): RewriteUrl => (url, host) => {
+  const { pathname } = url;
+  host ??= url.host;
+  return url.pathname === "/"
+    ? new URL(`https://${instance}/users/${host}`)
+    : new URL(`https://${host}${pathname}`, `https://${instance}/posts/`);
+};
 
 export const bridgyFed =
-  (instance: URL["host"] = "fed.brid.gy"): Options["rewriteUrl"] =>
-  (url, data) => {
+  (instance = "fed.brid.gy"): RewriteUrl => (url, host) => {
     const { pathname } = url;
-    const host = data.host ?? url.host;
-    if (pathname === "/") return new URL(`https://${instance}/${host}`);
-    else return new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
+    host ??= url.host;
+    return pathname === "/"
+      ? new URL(`https://${instance}/${host}`)
+      : new URL(`https://${host}${pathname}`, `https://${instance}/r/`);
   };
 
 export function redirectAS2(options: Options): Middleware {
@@ -68,10 +46,10 @@ export function redirectAS2(options: Options): Middleware {
         'application/ld+json; profile="http://www.w3.org/ns/activitystreams"',
       ].some((type) => (accept.includes(type)))
     ) {
-      const dest = await options.rewriteUrl(new URL(req.url), {
-        host: options.host,
-      });
-      if (dest) return Response.redirect(dest);
+      const dest = await options.rewriteUrl(new URL(req.url), options.host);
+      if (dest) {
+        return Response.redirect(dest);
+      }
     }
 
     return await next(req);

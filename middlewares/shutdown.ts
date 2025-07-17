@@ -1,11 +1,17 @@
 import type { Middleware } from "../core/server.ts";
 
-interface Options {
+export interface Options {
+  /** The path to the shutdown page */
   page: string;
+
+  /**
+   * The time in seconds to retry after.
+   * @default 60 * 60 * 24 (24 hours)
+   */
   retryAfter: number;
 }
 
-const defaults: Options = {
+export const defaults: Options = {
   page: "/503.html",
   retryAfter: 60 * 60 * 24, // 24 hours
 };
