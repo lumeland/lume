@@ -139,7 +139,13 @@ export function katex(userOptions?: Options) {
           });
 
         if (options.options.delimiters) {
-          renderMathInElement(document.body, options.options);
+          try {
+            renderMathInElement(document.body, options.options);
+          } catch (cause) {
+            log.error(
+              `[katex plugin] Failed to render math in ${page.outputPath}: ${cause}`,
+            );
+          }
         }
       }
     });
