@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.6] - Unreleased
 ### Fixed
 - `jsx` plugin: Support `precompile` option [#770]
+- `katex` plugin: Catch Katex errors when delimiters are allowed
 
 ## [3.0.5] - 2025-07-17
 ### Changed
