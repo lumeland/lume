@@ -1,4 +1,4 @@
-@import "npm:modern-normalize@2.0.0";
+@import "npm:modern-normalize@2.0.0/modern-normalize.css";
 
 .text {
   font-family: var(--font-family);
