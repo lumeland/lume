@@ -56,7 +56,7 @@ export class JsxEngine implements Engine {
       ? await content({ ...data, children }, this.helpers)
       : content;
 
-    return renderComponent(result);
+    return typeof result === "string" ? result : renderComponent(result);
   }
 
   addHelper(name: string, fn: Helper) {

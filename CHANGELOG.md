@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.6] - Unreleased
+### Fixed
+- `jsx` plugin: Support `precompile` option [#770]
+
 ## [3.0.5] - 2025-07-17
 ### Changed
 - Unify browsers support accross several plugins like `postcss`, `highlightningcss` or `esbuild`.
@@ -174,7 +178,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#757]: https://github.com/lumeland/lume/issues/757
 [#761]: https://github.com/lumeland/lume/issues/761
 [#765]: https://github.com/lumeland/lume/issues/765
+[#770]: https://github.com/lumeland/lume/issues/770
 
+[3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...HEAD
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/lumeland/lume/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...v3.0.3
