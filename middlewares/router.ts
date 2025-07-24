@@ -22,7 +22,7 @@ interface RouteDefinition {
 export interface Options {
   /** The base path to use for the router */
   basePath?: string;
-  /** Set to true to make trailing slash optional */
+  /** Set to false to make trailing slash optional */
   strict?: boolean;
 }
 
