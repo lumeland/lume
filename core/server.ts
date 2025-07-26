@@ -160,7 +160,7 @@ export async function serveFile(
     }
 
     // Serve the static file
-    return await fixServeFile(request, file);
+    return await fixServeFile(request, file, info);
   } catch {
     try {
       // Exists a HTML file with this name?
@@ -178,8 +178,12 @@ export async function serveFile(
   }
 }
 
-async function fixServeFile(request: Request, path: string): Promise<Response> {
-  const response = await httpServeFile(request, path);
+async function fixServeFile(
+  request: Request,
+  path: string,
+  fileInfo?: Deno.FileInfo,
+): Promise<Response> {
+  const response = await httpServeFile(request, path, { fileInfo });
 
   // Fix for https://github.com/lumeland/lume/issues/734
   if (response.headers.get("content-type") === "application/rss+xml") {

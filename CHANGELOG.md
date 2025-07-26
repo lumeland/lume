@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.6] - Unreleased
 ### Fixed
+- Optimized file server by removing a `Deno.stat` call.
 - `jsx` plugin: Support `precompile` option [#770]
 - `katex` plugin: Catch Katex errors when delimiters are allowed
 
