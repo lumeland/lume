@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Optimized file server by removing a `Deno.stat` call.
 - `jsx` plugin: Support `precompile` option [#770]
 - `katex` plugin: Catch Katex errors when delimiters are allowed
+- Updated dependencies: `std`, `satori`, `vento`, `decap-cms`, `ssx`, and some icons.
 
 ## [3.0.5] - 2025-07-17
 ### Changed
