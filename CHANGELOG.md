@@ -7,11 +7,14 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.6] - Unreleased
+### Changed
+- `esbuild` plugin: use `jsr:@deno/loader` official package instead of `@luca/esbuild-deno-loader`.
+
 ### Fixed
 - Optimized file server by removing a `Deno.stat` call.
 - `jsx` plugin: Support `precompile` option [#770]
 - `katex` plugin: Catch Katex errors when delimiters are allowed
-- Updated dependencies: `std`, `satori`, `vento`, `decap-cms`, `ssx`, and some icons.
+- Updated dependencies: `std`, `satori`, `vento`, `decap-cms`, `esbuild`, `ssx`, and some icons.
 
 ## [3.0.5] - 2025-07-17
 ### Changed

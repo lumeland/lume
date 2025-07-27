@@ -1,3 +1,9 @@
+import {
+  MediaType,
+  RequestedModuleType,
+  ResolutionMode,
+  Workspace,
+} from "../deps/deno_loader.ts";
 import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
@@ -6,12 +12,12 @@ import { browsers, versionString } from "../core/utils/browsers.ts";
 import {
   build,
   BuildOptions,
-  denoPlugins,
+  Loader,
   Metafile,
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, join, posix } from "../deps/path.ts";
+import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
@@ -79,19 +85,21 @@ export function esbuild(userOptions?: Options) {
     };
 
     const basePath = options.options.absWorkingDir || site.src();
-    const configPath = options.denoConfig
-      ? site.root(options.denoConfig)
-      : undefined;
+    let configPath: string | undefined;
 
+    // Use deno.json to configure esbuild options
     try {
-      const denoConfig = configPath ?? site.root("deno.json");
-      const content = Deno.readTextFileSync(denoConfig);
+      const denoJson = options.denoConfig
+        ? site.root(options.denoConfig)
+        : site.root("deno.json");
+
+      const content = Deno.readTextFileSync(denoJson);
       const config = JSON.parse(content);
       const { compilerOptions } = config;
 
-      if (compilerOptions?.jsxImportSource) {
-        options.options.jsxImportSource = compilerOptions.jsxImportSource;
-      }
+      options.options.jsxImportSource ??= compilerOptions.jsxImportSource;
+      options.options.jsx ??= compilerOptions.jsx;
+      configPath = denoJson;
     } catch {
       // deno.json doesn't exist.
     }
@@ -129,8 +137,18 @@ export function esbuild(userOptions?: Options) {
       buildOptions.plugins!.push(
         {
           name: "lume-loader",
-          setup(build) {
-            build.onResolve({ filter: /.*/ }, ({ kind, path, resolveDir }) => {
+          async setup(build) {
+            const workspace = new Workspace({
+              configPath,
+              nodeConditions: build.initialOptions.conditions,
+            });
+
+            const loader = await workspace.createLoader({
+              entrypoints: entryPoints.map((ep) => ep.in),
+            });
+
+            build.onResolve({ filter: /.*/ }, ({ kind, path, importer }) => {
+              // Entry points are already loaded by Lume
               if (kind === "entry-point") {
                 const entryPoint = entryPoints.find((entry) =>
                   entry.in === path
@@ -138,46 +156,86 @@ export function esbuild(userOptions?: Options) {
 
                 return {
                   path,
+                  namespace: "file",
                   pluginData: { entryPoint },
                 };
               }
 
-              if (
-                kind === "import-statement" && path.startsWith(".") &&
-                resolveDir
-              ) {
-                return {
-                  path: join(resolveDir, path),
-                };
+              // Other imports are resolved by Deno loader
+              const mode = kind === "require-call" || kind === "require-resolve"
+                ? ResolutionMode.Require
+                : ResolutionMode.Import;
+
+              const res = loader.resolve(path, importer, mode);
+
+              let namespace: string | undefined;
+              if (res.startsWith("file:")) {
+                namespace = "file";
+              } else if (res.startsWith("http:")) {
+                namespace = "http";
+              } else if (res.startsWith("https:")) {
+                namespace = "https";
+              } else if (res.startsWith("npm:")) {
+                namespace = "npm";
+              } else if (res.startsWith("jsr:")) {
+                namespace = "jsr";
+              } else if (res.startsWith("data:")) {
+                namespace = "data";
               }
+
+              const resolved = res.startsWith("file:") ? fromFileUrl(res) : res;
+
+              return {
+                path: resolved,
+                namespace,
+              };
             });
 
-            build.onLoad({ filter: /.*/ }, async ({ path, pluginData }) => {
-              if (pluginData?.entryPoint) {
+            build.onLoad(
+              { filter: /.*/ },
+              async ({ path, pluginData, namespace, with: withAttr }) => {
+                // If the file is an entry point, return its content
+                if (pluginData?.entryPoint) {
+                  return {
+                    contents: pluginData.entryPoint.content,
+                    loader: getLoader(path),
+                  };
+                }
+
+                // If it's a file, check if it's already loaded by Lume
+                if (namespace === "file") {
+                  const src = normalizePath(path, basePath);
+                  const entry = site.fs.entries.get(src);
+
+                  if (entry) {
+                    const { content } = await entry.getContent(textLoader);
+
+                    return {
+                      contents: content,
+                      loader: getLoader(path),
+                    };
+                  }
+                }
+
+                // Load the module with the Deno loader
+                const url = namespace === "file"
+                  ? toFileUrl(path).toString()
+                  : path;
+
+                // Load the file from the workspace's loader
+                const moduleType = getModuleType(withAttr);
+                const res = await loader.load(url, moduleType);
+                if (res.kind === "external") {
+                  return null;
+                }
                 return {
-                  contents: pluginData.entryPoint.content,
-                  loader: getLoader(path),
+                  contents: res.code,
+                  loader: mediaToLoader(res.mediaType),
                 };
-              }
-
-              // Load the file from the site
-              const src = normalizePath(path, basePath);
-              const entry = site.fs.entries.get(src);
-
-              if (entry) {
-                const { content } = await entry.getContent(textLoader);
-
-                return {
-                  contents: content,
-                  loader: getLoader(path),
-                };
-              }
-            });
+              },
+            );
           },
         },
-        ...denoPlugins({
-          configPath,
-        }),
       );
 
       const { outputFiles, metafile, warnings, errors } = await build(
@@ -423,6 +481,53 @@ function getLoader(path: string) {
       return "json";
     default:
       return "js";
+  }
+}
+
+function mediaToLoader(type: MediaType): Loader {
+  switch (type) {
+    case MediaType.Jsx:
+      return "jsx";
+    case MediaType.JavaScript:
+    case MediaType.Mjs:
+    case MediaType.Cjs:
+      return "js";
+    case MediaType.TypeScript:
+    case MediaType.Mts:
+    case MediaType.Dmts:
+    case MediaType.Dcts:
+      return "ts";
+    case MediaType.Tsx:
+      return "tsx";
+    case MediaType.Css:
+      return "css";
+    case MediaType.Json:
+      return "json";
+    case MediaType.Html:
+      return "default";
+    case MediaType.Sql:
+      return "default";
+    case MediaType.Wasm:
+      return "binary";
+    case MediaType.SourceMap:
+      return "json";
+    case MediaType.Unknown:
+      return "default";
+    default:
+      return "default";
+  }
+}
+
+function getModuleType(withArgs: Record<string, string>): RequestedModuleType {
+  switch (withArgs.type) {
+    case "text":
+      return RequestedModuleType.Text;
+    case "bytes":
+      return RequestedModuleType.Bytes;
+    case "json":
+      return RequestedModuleType.Json;
+    default:
+      return RequestedModuleType.Default;
   }
 }
 
