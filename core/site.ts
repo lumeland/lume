@@ -618,6 +618,7 @@ export default class Site {
     this.debugBar?.startMeasure("build");
 
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
       return;
     }
 
@@ -633,6 +634,7 @@ export default class Site {
     this.debugBar?.endMeasure("scan", "[Loading] Scan source folder");
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
       return;
     }
 
@@ -644,6 +646,7 @@ export default class Site {
 
     // Stop if the build is cancelled
     if (await this.#buildPages(_pages) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
       return;
     }
 
@@ -666,6 +669,7 @@ export default class Site {
     this.debugBar?.startMeasure("build");
 
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
       return;
     }
 
@@ -698,6 +702,7 @@ export default class Site {
     );
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
       return;
     }
 
@@ -709,6 +714,7 @@ export default class Site {
     this.files.splice(0, this.files.length, ..._staticFiles);
 
     if (await this.#buildPages(_pages) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
       return;
     }
 
