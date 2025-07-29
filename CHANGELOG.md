@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.6] - Unreleased
+### Added
+- New `idle` event, triggered when the `build` or `update` process has finished or stopped.
+
 ### Changed
 - `esbuild` plugin: use `jsr:@deno/loader` official package instead of `@luca/esbuild-deno-loader`.
 

@@ -619,6 +619,7 @@ export default class Site {
 
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -635,6 +636,7 @@ export default class Site {
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -647,6 +649,7 @@ export default class Site {
     // Stop if the build is cancelled
     if (await this.#buildPages(_pages) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -661,6 +664,7 @@ export default class Site {
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
     this.debugBar?.endMeasure("build", "Site generated");
+    this.dispatchEvent({ type: "idle" });
   }
 
   /** Reload some files that might be changed */
@@ -670,6 +674,7 @@ export default class Site {
 
     if (await this.dispatchEvent({ type: "beforeUpdate", files }) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -703,6 +708,7 @@ export default class Site {
 
     if (await this.dispatchEvent({ type: "afterLoad" }) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -715,6 +721,7 @@ export default class Site {
 
     if (await this.#buildPages(_pages) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -735,6 +742,7 @@ export default class Site {
       pages,
       staticFiles,
     });
+    this.dispatchEvent({ type: "idle" });
   }
 
   /**
@@ -1203,6 +1211,8 @@ export type SiteEventMap = {
   beforeSave: {};
   // deno-lint-ignore ban-types
   afterStartServer: {};
+  // deno-lint-ignore ban-types
+  idle: {};
 };
 
 export interface LoadPagesOptions {
