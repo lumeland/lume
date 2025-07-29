@@ -18,6 +18,7 @@ Deno.test("Plugins list in init", () => {
     "json_ld",
     "reading_info",
     "relations",
+    "lume_cms",
     "mdx",
     "metas",
     "multilanguage",
