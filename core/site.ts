@@ -1049,15 +1049,14 @@ export default class Site {
     const root = this.options.server.root || this.dest();
     this.server = new Server({ root, port, hostname });
 
-    this.server.use(notFound({
-      root,
-      page404,
-      directoryIndex: true,
-    }));
-
-    if (middlewares) {
-      this.server.use(...middlewares);
-    }
+    this.server.use(
+      ...middlewares,
+      notFound({
+        root,
+        page404,
+        directoryIndex: true,
+      }),
+    );
 
     return this.server;
   }
