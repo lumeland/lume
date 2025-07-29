@@ -169,9 +169,7 @@ export function esbuild(userOptions?: Options) {
               const res = loader.resolve(path, importer, mode);
 
               let namespace: string | undefined;
-              if (res.startsWith("file:")) {
-                namespace = "file";
-              } else if (res.startsWith("http:")) {
+              if (res.startsWith("http:")) {
                 namespace = "http";
               } else if (res.startsWith("https:")) {
                 namespace = "https";
@@ -181,6 +179,8 @@ export function esbuild(userOptions?: Options) {
                 namespace = "jsr";
               } else if (res.startsWith("data:")) {
                 namespace = "data";
+              } else {
+                namespace = "file";
               }
 
               const resolved = res.startsWith("file:") ? fromFileUrl(res) : res;
