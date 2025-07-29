@@ -121,7 +121,7 @@ export function esbuild(userOptions?: Options) {
           out = out.slice(1); // This prevents Esbuild to generate urls with _.._/_.._/
         }
 
-        entryPoints.push({ in: filename, out, content });
+        entryPoints.push({ in: toFileUrl(filename).toString(), out, content });
       });
 
       const buildOptions: BuildOptions = {
@@ -155,7 +155,7 @@ export function esbuild(userOptions?: Options) {
                 );
 
                 return {
-                  path,
+                  path: path.startsWith("file:") ? fromFileUrl(path) : path,
                   namespace: "file",
                   pluginData: { entryPoint },
                 };
@@ -169,7 +169,9 @@ export function esbuild(userOptions?: Options) {
               const res = loader.resolve(path, importer, mode);
 
               let namespace: string | undefined;
-              if (res.startsWith("http:")) {
+              if (res.startsWith("file:")) {
+                namespace = "file";
+              } else if (res.startsWith("http:")) {
                 namespace = "http";
               } else if (res.startsWith("https:")) {
                 namespace = "https";
@@ -179,8 +181,6 @@ export function esbuild(userOptions?: Options) {
                 namespace = "jsr";
               } else if (res.startsWith("data:")) {
                 namespace = "data";
-              } else {
-                namespace = "file";
               }
 
               const resolved = res.startsWith("file:") ? fromFileUrl(res) : res;
