@@ -1,4 +1,9 @@
-import { ParsingOptions, read, utils } from "../deps/sheetjs.ts";
+import {
+  ParsingOptions,
+  read,
+  utils,
+  type WorkSheet,
+} from "../deps/sheetjs.ts";
 import { merge } from "../core/utils/object.ts";
 import loadText from "../core/loaders/text.ts";
 import loadBinary from "../core/loaders/binary.ts";
@@ -23,6 +28,12 @@ export const defaults: Options = {
   options: {},
 };
 
+function sheetToJson(sheet: WorkSheet) {
+  return utils.sheet_to_json(sheet, {
+    UTC: true,
+  });
+}
+
 /**
  * A plugin to load Excel, Numbers, and CSV files
  * @see https://lume.land/plugins/sheets/
@@ -44,13 +55,13 @@ export function sheets(userOptions?: Options) {
     // Return only the first sheet
     if (options.sheets === "first" || wb.SheetNames.length === 1) {
       const sheet = wb.Sheets[wb.SheetNames[0]];
-      return utils.sheet_to_json(sheet) as unknown as RawData;
+      return sheetToJson(sheet) as unknown as RawData;
     }
 
     // Return all sheets by name
     const sheets: Record<string, unknown[]> = {};
     wb.SheetNames.forEach((name) => {
-      sheets[name] = utils.sheet_to_json(wb.Sheets[name]);
+      sheets[name] = sheetToJson(wb.Sheets[name]);
     });
 
     return { content: sheets };
