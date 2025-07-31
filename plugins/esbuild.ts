@@ -144,6 +144,7 @@ export function esbuild(userOptions?: Options) {
             });
 
             const loader = await workspace.createLoader();
+            await loader.addEntrypoints(entryPoints.map((ep) => ep.in));
 
             build.onResolve(
               { filter: /.*/ },
