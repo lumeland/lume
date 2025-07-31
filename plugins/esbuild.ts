@@ -143,53 +143,57 @@ export function esbuild(userOptions?: Options) {
               nodeConditions: build.initialOptions.conditions,
             });
 
-            const loader = await workspace.createLoader({
-              entrypoints: entryPoints.map((ep) => ep.in),
-            });
+            const loader = await workspace.createLoader();
 
-            build.onResolve({ filter: /.*/ }, ({ kind, path, importer }) => {
-              // Entry points are already loaded by Lume
-              if (kind === "entry-point") {
-                const entryPoint = entryPoints.find((entry) =>
-                  entry.in === path
-                );
+            build.onResolve(
+              { filter: /.*/ },
+              async ({ kind, path, importer }) => {
+                // Entry points are already loaded by Lume
+                if (kind === "entry-point") {
+                  const entryPoint = entryPoints.find((entry) =>
+                    entry.in === path
+                  );
+
+                  return {
+                    path: path.startsWith("file:") ? fromFileUrl(path) : path,
+                    namespace: "file",
+                    pluginData: { entryPoint },
+                  };
+                }
+
+                // Other imports are resolved by Deno loader
+                const mode =
+                  kind === "require-call" || kind === "require-resolve"
+                    ? ResolutionMode.Require
+                    : ResolutionMode.Import;
+
+                const res = await loader.resolve(path, importer, mode);
+
+                let namespace: string | undefined;
+                if (res.startsWith("file:")) {
+                  namespace = "file";
+                } else if (res.startsWith("http:")) {
+                  namespace = "http";
+                } else if (res.startsWith("https:")) {
+                  namespace = "https";
+                } else if (res.startsWith("npm:")) {
+                  namespace = "npm";
+                } else if (res.startsWith("jsr:")) {
+                  namespace = "jsr";
+                } else if (res.startsWith("data:")) {
+                  namespace = "data";
+                }
+
+                const resolved = res.startsWith("file:")
+                  ? fromFileUrl(res)
+                  : res;
 
                 return {
-                  path: path.startsWith("file:") ? fromFileUrl(path) : path,
-                  namespace: "file",
-                  pluginData: { entryPoint },
+                  path: resolved,
+                  namespace,
                 };
-              }
-
-              // Other imports are resolved by Deno loader
-              const mode = kind === "require-call" || kind === "require-resolve"
-                ? ResolutionMode.Require
-                : ResolutionMode.Import;
-
-              const res = loader.resolve(path, importer, mode);
-
-              let namespace: string | undefined;
-              if (res.startsWith("file:")) {
-                namespace = "file";
-              } else if (res.startsWith("http:")) {
-                namespace = "http";
-              } else if (res.startsWith("https:")) {
-                namespace = "https";
-              } else if (res.startsWith("npm:")) {
-                namespace = "npm";
-              } else if (res.startsWith("jsr:")) {
-                namespace = "jsr";
-              } else if (res.startsWith("data:")) {
-                namespace = "data";
-              }
-
-              const resolved = res.startsWith("file:") ? fromFileUrl(res) : res;
-
-              return {
-                path: resolved,
-                namespace,
-              };
-            });
+              },
+            );
 
             build.onLoad(
               { filter: /.*/ },

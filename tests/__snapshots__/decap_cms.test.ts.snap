@@ -157,7 +157,7 @@ local_backend: false
         <title>Admin</title>
       </head>
       <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </body>
       </html>
       ',
@@ -172,7 +172,7 @@ local_backend: false
         <title>Admin</title>
       </head>
       <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </body>
       </html>
       ',
@@ -185,7 +185,7 @@ local_backend: false
         <title>Admin</title>
       </head>
       <body>
-        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.2/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </body>
       </html>
       ',
