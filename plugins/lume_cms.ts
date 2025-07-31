@@ -37,6 +37,9 @@ export function lumeCMS(userOptions?: Options) {
       cms.options.site!.url = site.url("/", true);
     }
 
+    // Set the base path for the CMS
+    cms.options.basePath = basePath;
+
     // Configure the src storage
     cms.storage("src");
     cms.options.root = site.src();
@@ -91,22 +94,22 @@ export function lumeCMS(userOptions?: Options) {
     };
     site.options.server.middlewares.push(middleware);
 
-    // Set the CMS tab in the debugbar
-    const panel = site.debugBar?.collection("Lume CMS");
-    if (panel) {
-      panel.icon = "pencil-simple";
-      panel.items.push({
-        title:
-          `CMS running at <a href="${baseUrl}" target="_blank">${basePath}</a>`,
-        actions: [
+    // Show the CMS in the debugbar
+    site.process(() => {
+      const item = site.debugBar?.buildItem(
+        `[Lume CMS] CMS running at <a href="${baseUrl}" target="_blank">${baseUrl}</a>`,
+      );
+      if (item) {
+        item.actions = [
           {
             text: "Edit content",
+            icon: "pencil-simple",
             onclick:
-              `document.location.href = "${baseUrl}?edit=" + decodeURIComponent(document.location)`,
+              `window.open("${baseUrl}?edit=" + decodeURIComponent(document.location), "_top");`,
           },
-        ],
-      });
-    }
+        ];
+      }
+    });
   };
 }
 
