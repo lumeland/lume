@@ -9,23 +9,27 @@ type Cms = any; // Replace with actual CMS type
 
 export interface Options {
   /** The CMS instance */
-  cms?: Cms;
+  cms: Cms;
 
   /** The path to the CMS */
   basePath?: string;
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults: Partial<Options> = {
   basePath: "/admin",
 };
 
 /**
  * A plugin to use LumeCMS
  */
-export function lumeCMS(userOptions?: Options) {
+export function lumeCMS(userOptions: Options) {
   const options = merge(defaults, userOptions);
   const { cms, basePath } = options;
+
+  if (!cms) {
+    throw new Error("LumeCMS requires a CMS instance");
+  }
 
   return (site: Site) => {
     // Enable drafts previews in the CMS
@@ -95,7 +99,7 @@ export function lumeCMS(userOptions?: Options) {
     site.options.server.middlewares.push(middleware);
 
     // Show the CMS in the debugbar
-    site.process(() => {
+    function showCMS() {
       const item = site.debugBar?.buildItem(
         `[Lume CMS] CMS running at <a href="${baseUrl}" target="_blank">${baseUrl}</a>`,
       );
@@ -109,7 +113,9 @@ export function lumeCMS(userOptions?: Options) {
           },
         ];
       }
-    });
+    }
+    site.addEventListener("beforeBuild", showCMS);
+    site.addEventListener("beforeUpdate", showCMS);
   };
 }
 

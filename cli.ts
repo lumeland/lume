@@ -143,6 +143,11 @@ const lume = new Command()
     "Start a live-reloading web server and watch changes.",
   )
   .option(
+    "--cms",
+    "Run LumeCMS.",
+    { depends: ["serve"] },
+  )
+  .option(
     "-p, --port <port:number>",
     "The port where the server runs.",
     { default: 3000 },
@@ -161,9 +166,9 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(async ({ config, serve, watch }) => {
+  .action(async ({ config, serve, watch, cms }) => {
     const { build } = await import("./cli/build.ts");
-    build(config, serve, watch);
+    build(config, serve, watch, cms);
   })
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)

@@ -1,13 +1,15 @@
-import { buildSite } from "./utils.ts";
+import { buildSite, createSite } from "./utils.ts";
 
 /** Build the website and optionally watch changes and serve the site */
-export function build(
+export async function build(
   config: string | undefined,
   serve?: boolean,
   watch?: boolean,
+  cms?: boolean,
 ) {
   if (!serve && !watch) {
-    buildSite(config);
+    const site = await createSite(config);
+    await buildSite(site);
     return;
   }
 
@@ -32,6 +34,7 @@ export function build(
       type,
       config,
       serve,
+      cms,
     });
 
     worker.onmessage = (event) => {

@@ -41,9 +41,7 @@ export async function createSite(config?: string): Promise<Site> {
 }
 
 /** Create a site intance and build it */
-export async function buildSite(config?: string): Promise<Site> {
-  const site = await createSite(config);
-
+export async function buildSite(site: Site): Promise<void> {
   performance.mark("start");
   await site.build();
   performance.mark("end");
@@ -55,6 +53,4 @@ export async function buildSite(config?: string): Promise<Site> {
   log.info(
     `  <gray>${total} files generated in ${duration.toFixed(2)} seconds</gray>`,
   );
-
-  return site;
 }

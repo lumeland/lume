@@ -76,6 +76,12 @@ export default class Server {
     return this;
   }
 
+  /** Register one or more middlewares at the beginning of the list */
+  useFirst(...middleware: Middleware[]) {
+    this.middlewares.unshift(...middleware);
+    return this;
+  }
+
   /** Add a listener to an event */
   addEventListener(
     type: ServerEventType,
