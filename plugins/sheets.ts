@@ -1,6 +1,7 @@
 import {
   ParsingOptions,
   read,
+  Sheet2JSONOpts,
   utils,
   type WorkSheet,
 } from "../deps/sheetjs.ts";
@@ -18,21 +19,27 @@ export interface Options {
   /** Return the first sheet only or all sheets if the document have more */
   sheets?: "first" | "auto";
 
-  /** Options passed to Sheetjs */
+  /**
+   * Parsing options passed to Sheetjs
+   * @see https://docs.sheetjs.com/docs/api/parse-options#parsing-options
+   */
   options?: ParsingOptions;
+
+  /**
+   * Options passed to `utils.sheet_to_json`
+   * @see https://docs.sheetjs.com/docs/api/utilities/array#array-output
+   */
+  outputOptions?: Sheet2JSONOpts;
 }
 
 export const defaults: Options = {
   extensions: [".xlsx", ".numbers", ".csv"],
   sheets: "auto",
   options: {},
-};
-
-function sheetToJson(sheet: WorkSheet) {
-  return utils.sheet_to_json(sheet, {
+  outputOptions: {
     UTC: true,
-  });
-}
+  },
+};
 
 /**
  * A plugin to load Excel, Numbers, and CSV files
@@ -40,6 +47,10 @@ function sheetToJson(sheet: WorkSheet) {
  */
 export function sheets(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+
+  function sheetToJson(sheet: WorkSheet) {
+    return utils.sheet_to_json(sheet, options.outputOptions);
+  }
 
   async function loader(path: string): Promise<RawData> {
     const type = path.endsWith(".csv") ? "string" : "array";

@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New `idle` event, triggered when the `build` or `update` process has finished or stopped.
 - New flag `--cms` for `deno task serve` to run the new experimental version of LumeCMS.
+- `sheets` plugin: New option `outputOptions` to configure the output of the data.
 
 ### Changed
 - `esbuild` plugin: use `jsr:@deno/loader` official package instead of `@luca/esbuild-deno-loader`.
@@ -17,10 +18,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Optimized file server by removing a `Deno.stat` call.
-- `jsx` plugin: Support `precompile` option [#770]
+- `jsx` plugin: Support `precompile` option [#770].
 - `katex` plugin: Catch Katex errors when delimiters are allowed
 - Updated dependencies: `std`, `satori`, `vento`, `decap-cms`, `esbuild`, `ssx`, `lume-bar`, `deno-dom`, and some icons.
-- Fixed bug with date handling in the `sheets` plugin.
+- Fixed bug with date handling in the `sheets` plugin [#772].
 
 ## [3.0.5] - 2025-07-17
 ### Changed
@@ -191,6 +192,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#761]: https://github.com/lumeland/lume/issues/761
 [#765]: https://github.com/lumeland/lume/issues/765
 [#770]: https://github.com/lumeland/lume/issues/770
+[#772]: https://github.com/lumeland/lume/issues/772
 
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...HEAD
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...v3.0.5
