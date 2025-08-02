@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New `idle` event, triggered when the `build` or `update` process has finished or stopped.
 - New flag `--cms` for `deno task serve` to run the new experimental version of LumeCMS.
 - `sheets` plugin: New option `outputOptions` to configure the output of the data.
+- `prism` plugin: New `autoloadLanguages` option to load automatically the languages on demand.
 
 ### Changed
 - `esbuild` plugin: use `jsr:@deno/loader` official package instead of `@luca/esbuild-deno-loader`.

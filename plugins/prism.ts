@@ -1,4 +1,5 @@
 import Prism, { themesPath } from "../deps/prism.ts";
+import initAutoload from "../deps/prism-autoload/autoload.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
@@ -10,6 +11,13 @@ import type { Page } from "../core/file.ts";
 export interface Options {
   /** The css selector to apply prism */
   cssSelector?: string;
+
+  /**
+   * Whether to autoload languages when necessary.
+   * If true, the autoloader plugin will be used and it will automatically load the
+   * languages used in the page when they are not already loaded.
+   */
+  autoloadLanguages?: boolean;
 
   /**
    * The theme or themes to download
@@ -32,6 +40,7 @@ interface Theme {
 // Default options
 export const defaults: Options = {
   cssSelector: "pre code",
+  autoloadLanguages: false,
 };
 
 /**
@@ -41,6 +50,10 @@ export const defaults: Options = {
 export function prism(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
+  if (options.autoloadLanguages) {
+    initAutoload();
+  }
+
   return (site: Site) => {
     if (site._data.codeHighlight) {
       log.error(
@@ -48,6 +61,7 @@ export function prism(userOptions?: Options) {
       );
     }
     site._data.codeHighlight = "prism";
+
     site.process([".html"], function processPrism(pages) {
       for (const page of pages) {
         prism(page);
