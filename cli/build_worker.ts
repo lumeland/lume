@@ -63,7 +63,11 @@ async function build({ type, config, serve, cms }: BuildOptions) {
     site.options.watcher.include.push(fromFileUrl(_cms));
   }
 
-  await buildSite(site);
+  try {
+    await buildSite(site);
+  } catch (error) {
+    console.error(Deno.inspect(error, { colors: true }));
+  }
 
   // Start the watcher
   const watcher = site.getWatcher();
