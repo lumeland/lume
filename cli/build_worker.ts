@@ -2,8 +2,8 @@ import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
-import { getConfigFile } from "../core/utils/lume_config.ts";
-import { fromFileUrl, toFileUrl } from "../deps/path.ts";
+import { resolveConfigFile } from "../core/utils/lume_config.ts";
+import { fromFileUrl } from "../deps/path.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
 import noCache from "../middlewares/no_cache.ts";
@@ -36,33 +36,37 @@ async function build({ type, config, serve, cms }: BuildOptions) {
   // Set the live reload environment variable to add hash to the URLs in the module loader
   setEnv("LUME_LIVE_RELOAD", "true");
 
-  const site = await createSite(config);
+  const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
+  const site = await createSite(_config);
 
-  // Set the CMS environment variable if requested
+  // Setup LumeCMS
+  let _cms: URL | undefined;
   if (cms) {
-    const cmsConfig = await getConfigFile(undefined, ["_cms.ts", "_cms.js"]);
+    _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
-    if (!cmsConfig) {
+    if (!_cms) {
       throw new Error("CMS config file not found");
     }
 
-    const mod = await import(toFileUrl(cmsConfig).href);
-
-    // Add the CMS config file to the watcher
-    site.options.watcher.include.push(cmsConfig);
+    const mod = await import(_cms.toString());
     site.use(lumeCMS({ cms: mod.default }));
+  }
+
+  // Include the config files to the watcher
+  const reloadFiles: string[] = [];
+  if (_config) {
+    reloadFiles.push(normalizePath(fromFileUrl(_config), site.root()));
+    site.options.watcher.include.push(fromFileUrl(_config));
+  }
+  if (_cms) {
+    reloadFiles.push(normalizePath(fromFileUrl(_cms), site.root()));
+    site.options.watcher.include.push(fromFileUrl(_cms));
   }
 
   await buildSite(site);
 
   // Start the watcher
   const watcher = site.getWatcher();
-  const _config = normalizePath(
-    fromFileUrl(site._data.configFile as string),
-    site.root(),
-  );
-
-  const mustReload = (files: Set<string>): boolean => files.has(_config);
 
   watcher.addEventListener("change", (event) => {
     const files = event.files!;
@@ -72,12 +76,14 @@ async function build({ type, config, serve, cms }: BuildOptions) {
       log.info(`- <gray>${file}</gray>`);
     });
 
-    if (mustReload(files)) {
+    // If the config files have changed, reload the build process
+    if (reloadFiles.some((file) => files.has(file))) {
       log.info("Reloading the site...");
       postMessage({ type: "reload" });
       return;
     }
 
+    // Pause the while updating the site
     watcher.pause();
     return site.update(files).finally(() => watcher.resume());
   });

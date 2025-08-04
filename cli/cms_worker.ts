@@ -1,8 +1,7 @@
 import { adapter } from "../deps/cms.ts";
 import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
-import { toFileUrl } from "../deps/path.ts";
-import { getConfigFile } from "../core/utils/lume_config.ts";
+import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { setEnv } from "../core/utils/env.ts";
@@ -27,13 +26,13 @@ interface CMSOptions {
 }
 
 async function build({ type, config }: CMSOptions) {
-  const cmsConfig = await getConfigFile(undefined, ["_cms.ts", "_cms.js"]);
+  const _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
-  if (!cmsConfig) {
+  if (!_cms) {
     throw new Error("CMS config file not found");
   }
 
-  const mod = await import(toFileUrl(cmsConfig).href);
+  const mod = await import(_cms.href);
 
   if (!mod.default) {
     throw new Error("CMS instance is not found");
@@ -44,27 +43,28 @@ async function build({ type, config }: CMSOptions) {
   setEnv("LUME_CMS", "true");
   setEnv("LUME_LIVE_RELOAD", "true");
 
-  const site = await createSite(config);
+  const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
+  const site = await createSite(_config);
 
-  // Add the CMS config file to the watcher
-  site.options.watcher.include.push(cmsConfig);
+  // Include the config files to the watcher
+  const reloadFiles: string[] = [];
+  if (_config) {
+    reloadFiles.push(normalizePath(fromFileUrl(_config), site.root()));
+    site.options.watcher.include.push(fromFileUrl(_config));
+  }
+  if (_cms) {
+    reloadFiles.push(normalizePath(fromFileUrl(_cms), site.root()));
+    site.options.watcher.include.push(fromFileUrl(_cms));
+  }
 
   const cms = mod.default;
   const app = await adapter({ site, cms });
   const { port, hostname, open } = site.options.server;
   const { basePath } = cms.options;
 
-  const _cms = normalizePath(cmsConfig, site.root());
-  const _config = normalizePath(
-    fromFileUrl(site._data.configFile as string),
-    site.root(),
-  );
-
-  const mustReload = (files: Set<string>): boolean =>
-    files.has(_config) || files.has(_cms);
-
   site.addEventListener("beforeUpdate", (ev) => {
-    if (mustReload(ev.files)) {
+    // If the config files have changed, reload the build process
+    if (reloadFiles.some((file) => ev.files.has(file))) {
       log.info("Reloading the site...");
       postMessage({ type: "reload" });
       return;

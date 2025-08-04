@@ -1,3 +1,6 @@
+import { toFileUrl } from "../../deps/path.ts";
+import { isUrl } from "./path.ts";
+
 /** A list of the available plugins not installed by default and sorted */
 export const pluginNames = [
   // Order doesn't matter, but should be first
@@ -71,22 +74,28 @@ export const pluginNames = [
   "gzip",
 ];
 
-/** Returns the _config file of a site */
-export async function getConfigFile(
-  path?: string,
-  defaultPaths: string[] = ["_config.js", "_config.ts"],
-): Promise<string | undefined> {
-  if (path) {
+/** Resolve a configuration file */
+export async function resolveConfigFile(
+  defaultPaths: string[],
+  customPath?: string,
+): Promise<URL | undefined> {
+  if (customPath) {
+    if (isUrl(customPath)) {
+      return new URL(customPath);
+    }
+
     try {
-      return await Deno.realPath(path);
+      const file = await Deno.realPath(customPath);
+      return toFileUrl(file);
     } catch {
-      throw new Error(`Config file not found (${path})`);
+      throw new Error(`Config file not found (${customPath})`);
     }
   }
 
   for (const path of defaultPaths) {
     try {
-      return await Deno.realPath(path);
+      const file = await Deno.realPath(path);
+      return toFileUrl(file);
     } catch {
       // Ignore
     }

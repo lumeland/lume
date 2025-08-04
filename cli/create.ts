@@ -4,6 +4,7 @@ import { ensureDir } from "../deps/fs.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 import { isUrl } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
+import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./utils.ts";
 
 import type Site from "../core/site.ts";
@@ -16,7 +17,8 @@ export async function create(
 ) {
   // deno-lint-ignore no-explicit-any
   let fn: any;
-  const site = await createSite(config);
+  const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
+  const site = await createSite(_config);
 
   try {
     const mod = name.startsWith(".")
