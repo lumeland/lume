@@ -54,14 +54,15 @@ export function lumeCMS(userOptions: Options) {
     cms.options.data = data;
 
     // Set the preview URL function
-    const previewURL = (
+    cms.options.previewURL ??= function previewURL(
       path: string,
+      data: unknown,
       hasChanged?: boolean,
-    ): undefined | string | Promise<string | undefined> => {
+    ): undefined | string | Promise<string | undefined> {
       if (hasChanged) {
         return new Promise((resolve) => {
           site.addEventListener("idle", () => {
-            resolve(previewURL(path));
+            resolve(previewURL(path, data));
           }, { once: true });
         });
       }
@@ -72,19 +73,17 @@ export function lumeCMS(userOptions: Options) {
         }
       }
     };
-    cms.options.previewURL = previewURL;
 
     //Set the source path directory
-    const sourcePath = (url: string): string | undefined => {
+    cms.options.sourcePath ??= (url: string): string | undefined => {
       const { pathname } = new URL(url);
 
       for (const page of site.pages) {
         if (page.data.url === pathname) {
-          return page.src.entry?.src;
+          return page.src.entry?.path;
         }
       }
     };
-    cms.options.sourcePath = sourcePath;
 
     // Middleware to handle CMS requests
     const router = cms.init();
