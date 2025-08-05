@@ -80,6 +80,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
       remarkPlugins: this.options.remarkPlugins,
       rehypePlugins: this.options.rehypePlugins,
       remarkRehypeOptions: this.options.rehypeOptions,
+      stylePropertyNameCase: "css",
     });
 
     const destructure = `{${Object.keys(data!).join(",")}}`;
