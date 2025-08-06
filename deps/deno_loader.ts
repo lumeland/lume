@@ -1,1 +1,1 @@
-export * from "jsr:@deno/loader@0.3.3";
+export * from "jsr:@deno/loader@0.3.4";
