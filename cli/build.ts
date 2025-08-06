@@ -1,3 +1,4 @@
+import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { buildSite, createSite } from "./utils.ts";
 
 /** Build the website and optionally watch changes and serve the site */
@@ -8,7 +9,11 @@ export async function build(
   cms?: boolean,
 ) {
   if (!serve && !watch) {
-    const site = await createSite(config);
+    const _config = await resolveConfigFile(
+      ["_config.ts", "_config.js"],
+      config,
+    );
+    const site = await createSite(_config);
     await buildSite(site);
     return;
   }
