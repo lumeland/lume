@@ -18,6 +18,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Middlewares configured in the `server.middlewares` option are registered before the dev middlewares.
 - `--watch` and `--serve` modes don't exit if there's an error on build.
 - `mdx` plugin: Now `stylePropertyNameCase` option is fixed to "css", ensuring generated HTML always uses kebab-case inline styles.
+- Local server: when the port is not explicitly set and the default `3000` is in use, Lume will use the next available port (from `3001` to `3010`).
 
 ### Fixed
 - Optimized file server by removing a `Deno.stat` call.

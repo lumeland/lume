@@ -32,3 +32,21 @@ export async function openBrowser(url: string): Promise<void> {
     stderr: "inherit",
   }).output();
 }
+
+export function getFreePort(port: number, limit: number): number {
+  try {
+    const listener = Deno.listen({ port });
+    listener.close();
+    return port;
+  } catch (error) {
+    if (error instanceof Deno.errors.AddrInUse) {
+      if (port >= limit) {
+        throw new Error(`No free port found in the range ${port} to ${limit}`);
+      }
+
+      return getFreePort(port + 1, limit);
+    }
+
+    throw error;
+  }
+}

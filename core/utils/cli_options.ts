@@ -1,4 +1,6 @@
 import { parseArgs } from "../../deps/cli.ts";
+import { getFreePort } from "./net.ts";
+
 import type { DeepPartial } from "./object.ts";
 import type { SiteOptions } from "../site.ts";
 
@@ -41,7 +43,7 @@ export function getOptionsFromCli(
       port = options.server.port;
       location.port = port.toString();
     } else {
-      port = location.protocol === "https:" ? 443 : 3000;
+      port = location.protocol === "https:" ? 443 : getFreePort(3000, 3010);
       location.port = port.toString();
     }
 
