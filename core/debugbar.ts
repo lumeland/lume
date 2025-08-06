@@ -117,7 +117,7 @@ export default class DebugBar {
   }
 }
 
-type BuildContext = "fatal" | "error" | "warn" | "info";
+type BuildContext = "fatal" | "error" | "warn" | "info" | "lume cms";
 
 /** Build collection created automatically by Lume */
 function buildCollection(): Collection {
@@ -137,6 +137,9 @@ function buildCollection(): Collection {
       },
       info: {
         background: "info",
+      },
+      "lume cms": {
+        background: "yellow",
       },
     },
     items: [],

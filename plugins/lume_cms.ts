@@ -77,7 +77,6 @@ export function lumeCMS(userOptions: Options) {
     //Set the source path directory
     cms.options.sourcePath ??= (url: string): string | undefined => {
       const { pathname } = new URL(url);
-
       for (const page of site.pages) {
         if (page.data.url === pathname) {
           return page.src.entry?.path;
@@ -100,7 +99,8 @@ export function lumeCMS(userOptions: Options) {
     // Show the CMS in the debugbar
     function showCMS() {
       const item = site.debugBar?.buildItem(
-        `[Lume CMS] CMS running at <a href="${baseUrl}" target="_blank">${baseUrl}</a>`,
+        `CMS running at <a href="${baseUrl}" target="_blank">${baseUrl}</a>`,
+        "lume cms",
       );
       if (item) {
         item.actions = [
