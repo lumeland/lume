@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `esbuild` plugin: use `jsr:@deno/loader` official package instead of `@luca/esbuild-deno-loader`.
 - Middlewares configured in the `server.middlewares` option are registered before the dev middlewares.
 - `--watch` and `--serve` modes don't exit if there's an error on build.
+- `mdx` plugin: Now `stylePropertyNameCase` option is fixed to "css", ensuring generated HTML always uses kebab-case inline styles.
 
 ### Fixed
 - Optimized file server by removing a `Deno.stat` call.
