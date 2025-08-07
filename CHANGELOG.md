@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.0.6] - Unreleased
+## [3.0.6] - 2025-08-07
 ### Added
 - New `idle` event, triggered when the `build` or `update` process has finished or stopped.
 - New flag `--cms` for `deno task serve` to run the new experimental version of LumeCMS.
@@ -199,7 +199,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#770]: https://github.com/lumeland/lume/issues/770
 [#772]: https://github.com/lumeland/lume/issues/772
 
-[3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...HEAD
+[3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/lumeland/lume/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/lumeland/lume/compare/v3.0.2...v3.0.3
