@@ -68,8 +68,8 @@ export function lumeCMS(userOptions: Options) {
       }
 
       for (const page of site.pages) {
-        if (page.src.entry?.src === path) {
-          return site.url(page.outputPath, true);
+        if (page.src.entry?.path === path) {
+          return site.url(page.data.url, true);
         }
       }
     };

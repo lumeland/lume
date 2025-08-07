@@ -139,7 +139,7 @@ function buildCollection(): Collection {
         background: "info",
       },
       "lume cms": {
-        background: "yellow",
+        background: "lightgreen",
       },
     },
     items: [],
