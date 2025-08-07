@@ -629,7 +629,7 @@ First article
 <a href="/">Go to index</a></p>
 </body></html>',
     data: {
-      basename: "third%20article",
+      basename: "third article",
       children: '<!-- deno-fmt-ignore-file -->
 <p>Third article</p>
 <p><a href="./article-2.md">Go to second</a>
