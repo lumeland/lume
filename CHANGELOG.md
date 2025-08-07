@@ -26,6 +26,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `katex` plugin: Catch Katex errors when delimiters are allowed
 - Updated dependencies: `std`, `satori`, `vento`, `decap-cms`, `esbuild`, `ssx`, `lume-bar`, `deno-dom`, `unocss` and some icons.
 - Fixed bug with date handling in the `sheets` plugin [#772].
+- Don't urlencode the `basename` variable.
 
 ## [3.0.5] - 2025-07-17
 ### Changed

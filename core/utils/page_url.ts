@@ -18,10 +18,10 @@ export function getBasename(url: string): string {
   }
 
   if (url.endsWith("/")) {
-    return posix.basename(url);
+    return decodeURI(posix.basename(url));
   }
 
-  return posix.basename(url, getExtension(url));
+  return decodeURI(posix.basename(url, getExtension(url)));
 }
 
 /** Returns the final URL assigned to a page */
