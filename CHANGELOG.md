@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.7] - Unreleased
+### Added
+- `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
+
 ## [3.0.6] - 2025-08-07
 ### Added
 - New `idle` event, triggered when the `build` or `update` process has finished or stopped.
@@ -199,6 +203,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#770]: https://github.com/lumeland/lume/issues/770
 [#772]: https://github.com/lumeland/lume/issues/772
 
+[3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...HEAD
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/lumeland/lume/compare/v3.0.3...v3.0.4
