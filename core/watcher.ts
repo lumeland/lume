@@ -62,18 +62,6 @@ export default class FSWatcher implements Watcher {
     this.options = options;
   }
 
-  /** Pause the watcher */
-  pause() {
-    this.paused = true;
-    return this;
-  }
-
-  /** Resume the watcher */
-  resume() {
-    this.paused = false;
-    return this;
-  }
-
   /** Add a listener to an event */
   addEventListener(
     type: WatchEventType,
@@ -100,8 +88,8 @@ export default class FSWatcher implements Watcher {
     await this.dispatchEvent({ type: "start" });
 
     const callback = async () => {
-      // If the watcher is paused, reschedule the callback
-      if (this.paused) {
+      // If the callback is already running, debounce the next call
+      if (runningCallback) {
         clearTimeout(timer);
         setTimeout(callback, debounce ?? 100);
         return;
@@ -128,11 +116,11 @@ export default class FSWatcher implements Watcher {
         }
       } catch (err) {
         await this.dispatchEvent({ type: "error", error: err as Error });
+      } finally {
+        runningCallback = false;
       }
 
-      runningCallback = false;
-
-      // New changes detected while processing
+      // New changes detected while running the callback
       if (changes.size) {
         callback();
       }
@@ -159,7 +147,7 @@ export default class FSWatcher implements Watcher {
 
       paths.forEach((path) => changes.add(normalizePath(relative(root, path))));
 
-      // Only start if processing queue is not already running
+      // Only run the callback if it is not already running
       if (!runningCallback) {
         // Debounce
         clearTimeout(timer);

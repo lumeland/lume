@@ -87,9 +87,7 @@ async function build({ type, config, serve, cms }: BuildOptions) {
       return;
     }
 
-    // Pause the while updating the site
-    watcher.pause();
-    return site.update(files).finally(() => watcher.resume());
+    return site.update(files);
   });
 
   watcher.addEventListener("error", (event) => {
