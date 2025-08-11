@@ -53,8 +53,8 @@ export function lumeCMS(userOptions: Options) {
     data.site = site;
     cms.options.data = data;
 
-    // Set the preview URL function
-    cms.options.previewURL ??= function previewURL(
+    // Set the function to return the preview URL
+    cms.options.previewUrl ??= function previewUrl(
       path: string,
       data: unknown,
       hasChanged?: boolean,
@@ -62,7 +62,7 @@ export function lumeCMS(userOptions: Options) {
       if (hasChanged) {
         return new Promise((resolve) => {
           site.addEventListener("idle", () => {
-            resolve(previewURL(path, data));
+            resolve(previewUrl(path, data));
           }, { once: true });
         });
       }
