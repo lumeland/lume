@@ -248,17 +248,9 @@ export default class Site {
       env<boolean>("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
-      const debugBar = new DebugBar({
-        url: typeof initDebugBar === "string" ? initDebugBar : undefined,
-      });
-      this.debugBar = debugBar;
-      log.collection = debugBar.collection("Build");
-
-      debugBar.addEventListener("lume:drafts", (event) => {
-        const showDrafts = event.data.value ?? "false";
-        setEnv("LUME_DRAFTS", String(showDrafts));
-        this.update();
-      });
+      this.initDebugBar(
+        typeof initDebugBar === "string" ? initDebugBar : undefined,
+      );
     }
 
     // Create the fetch function for `deno serve`
@@ -271,6 +263,25 @@ export default class Site {
 
       return fetchServer.handle(request, info);
     };
+  }
+
+  /** Initialize the debug bar */
+  initDebugBar(url?: string): this {
+    if (this.debugBar) {
+      throw new Error("DebugBar is already initialized");
+    }
+
+    const debugBar = new DebugBar({ url });
+    this.debugBar = debugBar;
+    log.collection = debugBar.collection("Build");
+
+    debugBar.addEventListener("lume:drafts", (event) => {
+      const showDrafts = event.data.value ?? "false";
+      setEnv("LUME_DRAFTS", String(showDrafts));
+      this.update();
+    });
+
+    return this;
   }
 
   /**

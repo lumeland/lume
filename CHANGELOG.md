@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.7] - Unreleased
 ### Added
 - `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
+- `site.initDebugBar()` to initialize manually the `debugBar`.
 
 ### Fixed
 - Updated dependencies: `bar`, `unocss`, and some plugins.
