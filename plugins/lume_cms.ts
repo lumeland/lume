@@ -37,8 +37,8 @@ export function lumeCMS(userOptions: Options) {
     setEnv("LUME_CMS", "true");
 
     // Set the site URL if it's not set
-    if (!cms.options.site?.url) {
-      cms.options.site!.url = site.url("/", true);
+    if (!cms.options.site.url) {
+      cms.options.site.url = site.url("/", true);
     }
 
     // Set the base path for the CMS
