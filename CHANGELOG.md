@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
 
+### Fixed
+- Updated dependencies: `bar`, `unocss`, and some plugins.
+
 ## [3.0.6] - 2025-08-07
 ### Added
 - New `idle` event, triggered when the `build` or `update` process has finished or stopped.
