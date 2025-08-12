@@ -12,11 +12,15 @@ import type { Page } from "../core/file.ts";
 export interface Options {
   /** List of extra attributes to copy if replacing the element */
   copyAttributes?: (string | RegExp)[];
+
+  /** Whether to include the `sourceURL=inline:...` pragma in the inlined content */
+  sourceURL?: boolean;
 }
 
 // Default options
 export const defaults: Options = {
   copyAttributes: [/^data-/],
+  sourceURL: false,
 };
 
 const cache = new Map();
@@ -70,8 +74,6 @@ export function inline(userOptions?: Options) {
     }
 
     function getContent(path: string, asDataUrl = false) {
-      // Ensure the path starts with "/"
-      path = posix.join("/", path);
       const id = JSON.stringify([path, asDataUrl]);
 
       if (!cache.has(id)) {
@@ -81,13 +83,9 @@ export function inline(userOptions?: Options) {
       return cache.get(id);
     }
 
-    async function readContent(path: string, asDataUrl: boolean) {
-      const url = posix.join(
-        "/",
-        posix.relative(site.options.location.pathname, path),
-      );
-
-      const content = await getFileContent(site, url, asDataUrl);
+    async function readContent(url: string, asDataUrl: boolean) {
+      const path = getPath(site.options.location.pathname, url);
+      const content = await getFileContent(site, path, asDataUrl);
 
       // Return the raw content or undefined if the file is not found
       if (!asDataUrl || !content) {
@@ -131,7 +129,7 @@ export function inline(userOptions?: Options) {
     }
 
     async function inlineStyles(url: string, element: Element) {
-      const path = posix.resolve(url, element.getAttribute("href")!);
+      const path = getPath(url, element.getAttribute("href")!);
       const style = element.ownerDocument!.createElement("style");
 
       migrateAttributes(element, style, ["id", "class", "nonce", "title"]);
@@ -140,6 +138,9 @@ export function inline(userOptions?: Options) {
         let content = await getContent(path);
         if (element.hasAttribute("media")) {
           content = `@media ${element.getAttribute("media")} { ${content} }`;
+        }
+        if (options.sourceURL) {
+          content += `\n/*# sourceURL=inline:${path} */`;
         }
         style.innerHTML = content;
         element.replaceWith(style);
@@ -151,10 +152,14 @@ export function inline(userOptions?: Options) {
     }
 
     async function inlineScript(url: string, element: Element) {
-      const path = posix.resolve(url, element.getAttribute("src")!);
+      const path = getPath(url, element.getAttribute("src")!);
 
       try {
-        element.textContent = await getContent(path);
+        let content = await getContent(path);
+        if (options.sourceURL) {
+          content += `\n//# sourceURL=inline:${path}`;
+        }
+        element.textContent = content;
         element.removeAttribute("src");
       } catch (cause: any) {
         log.error(
@@ -164,7 +169,7 @@ export function inline(userOptions?: Options) {
     }
 
     async function inlineSrc(url: string, element: Element) {
-      const path = posix.resolve(url, element.getAttribute("src")!);
+      const path = getPath(url, element.getAttribute("src")!);
       const ext = posix.extname(path);
 
       try {
@@ -215,7 +220,7 @@ export function inline(userOptions?: Options) {
     }
 
     async function inlineHref(url: string, element: Element) {
-      const path = posix.resolve(url, element.getAttribute("href")!);
+      const path = getPath(url, element.getAttribute("href")!);
 
       try {
         element.setAttribute("href", await getContent(path, true));
@@ -241,6 +246,10 @@ async function getFileContent(
   }
 
   return content;
+}
+
+function getPath(baseUrl: string, url: string): string {
+  return posix.join("/", posix.resolve(baseUrl, url));
 }
 
 export default inline;

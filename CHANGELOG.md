@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.7] - Unreleased
 ### Added
 - `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
+- `inline` plugin: New option `sourceURL` to add the `sourceURL=inline:...` pragma to inlined JS and CSS files [#779].
 - `site.initDebugBar()` to initialize manually the `debugBar`.
 
 ### Fixed
@@ -206,6 +207,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#765]: https://github.com/lumeland/lume/issues/765
 [#770]: https://github.com/lumeland/lume/issues/770
 [#772]: https://github.com/lumeland/lume/issues/772
+[#779]: https://github.com/lumeland/lume/issues/779
 
 [3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...HEAD
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6

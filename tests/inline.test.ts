@@ -16,3 +16,20 @@ Deno.test("inline plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("inline plugin (sourceURL)", async (t) => {
+  const site = getSite({
+    src: "inline",
+  });
+
+  site.use(inline({
+    copyAttributes: ["custom", /^data-/, /^@/],
+    sourceURL: true,
+  }));
+
+  site.add([".svg", ".js", ".png"]);
+  site.add("favicon.png", "favicon2.png");
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
