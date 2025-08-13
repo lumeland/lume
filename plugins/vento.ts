@@ -1,4 +1,9 @@
-import { autotrim, engine } from "../deps/vento.ts";
+import {
+  autotrim,
+  engine,
+  stringifyContext,
+  VentoError,
+} from "../deps/vento.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
@@ -117,8 +122,26 @@ export class VentoEngine implements Engine {
     data?: Record<string, unknown>,
     filename?: string,
   ) {
-    const result = await this.engine.runString(content, data, filename);
-    return result.content;
+    try {
+      const result = await this.engine.runString(content, data, filename);
+      return result.content;
+    } catch (error) {
+      if (error instanceof VentoError) {
+        const context = await error.getContext();
+        if (context) {
+          const errorMessage = stringifyContext(context, {
+            error: (string) => `<red>${string}</red>`,
+            dim: (string) => `<gray>${string}</gray>`,
+            number: (num) => `<yellow>${num}</yellow>`,
+          });
+          log.error(errorMessage);
+          return;
+        }
+      }
+      throw new Error(
+        `Error rendering Vento template in file ${filename}: ${error}`,
+      );
+    }
   }
 
   addHelper(name: string, fn: Helper, options: HelperOptions) {
@@ -193,7 +216,7 @@ export function vento(userOptions?: Options) {
 /** Vento tag to render a component */
 function compTag(
   env: Environment,
-  code: string,
+  [, code]: Token,
   output: string,
   tokens: Token[],
 ): string | undefined {
@@ -227,14 +250,8 @@ function compTag(
   const tmpOutput = `__content_${tokens.length}`;
   compiled.push("{");
   compiled.push(`let ${tmpOutput} = ""`);
-  compiled.push(...env.compileTokens(tokens, tmpOutput, ["/comp"]));
+  compiled.push(...env.compileTokens(tokens, tmpOutput, "/comp"));
 
-  if (tokens.length && (tokens[0][0] !== "tag" || tokens[0][1] !== "/comp")) {
-    log.fatal(`[vento plugin] Missing closing tag for component "${comp}"`);
-    throw new Error(`Missing closing tag for component tag: ${code}`);
-  }
-
-  tokens.shift();
   compiled.push(
     `${output} += await comp.${comp}({...${
       args || "{}"
