@@ -10,7 +10,7 @@ export type DeepPartial<T> = T extends object ? {
 /** Check if the argument passed is a plain object */
 export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return typeof obj === "object" && obj !== null &&
-    obj.constructor === objectConstructor &&
+    (obj.constructor === objectConstructor || obj.constructor === undefined) &&
     // @ts-ignore: Check if the argument passed is a SSX element
     obj[ssxElement] !== true &&
     // @ts-ignore: Check if the argument passed is a Page.data object

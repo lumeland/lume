@@ -13,7 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `site.initDebugBar()` to initialize manually the `debugBar`.
 
 ### Fixed
-- Updated dependencies: `bar`, `unocss`, and some plugins.
+- Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader` and some plugins.
 
 ## [3.0.6] - 2025-08-07
 ### Added
