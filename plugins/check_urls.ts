@@ -372,5 +372,7 @@ function outputConsole(notFound: Map<string, Set<string>>) {
 
 function checkAnchor(id: string, content: string): boolean {
   // Fast way to check if the anchor exists in the content
-  return content.includes(`id="${id}"`);
+  return content.includes(`id="${id}"`) ||
+    content.includes(`id=${id}`) ||
+    content.includes(`id='${id}'`);
 }
