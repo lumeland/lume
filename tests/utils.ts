@@ -37,11 +37,15 @@ class TestWriter implements Writer {
 export function getSite(
   options: DeepPartial<SiteOptions> = {},
   pluginOptions = {},
+  write = false,
 ): Site {
   options.cwd = getPath("assets");
 
   const site = lume(options, pluginOptions, false);
-  site.writer = new TestWriter();
+
+  if (!write) {
+    site.writer = new TestWriter();
+  }
 
   return site;
 }

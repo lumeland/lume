@@ -21,6 +21,9 @@ export interface Options {
   /** True to check external links */
   external?: boolean;
 
+  /** True to check anchors */
+  anchors?: boolean;
+
   /** To output the list to a json file */
   output?: string | ((notFoundUrls: Map<string, Set<string>>) => void);
 }
@@ -53,7 +56,7 @@ export default function (userOptions?: Options) {
     return !url ||
       options.ignore?.includes(url) ||
       url.startsWith("?") ||
-      url.startsWith("#");
+      (url.startsWith("#") && !options.anchors);
   }
 
   return (site: Site) => {
@@ -65,33 +68,38 @@ export default function (userOptions?: Options) {
       site.options.watcher.ignore.push(options.output);
     }
 
-    function scan(url: string, pageUrl: URL): void {
+    /** Save the URL in the urls map or ignore it */
+    function saveOrIgnore(url: string, pageUrl: URL): void {
       if (ignore(url)) { // ignore empty, hash, search, etc
         return;
       }
 
       const fullUrl = new URL(url, pageUrl);
 
-      // External links
-      if (fullUrl.origin !== pageUrl.origin) {
-        if (options.external) {
-          fullUrl.hash = "";
-          saveRef(urls, url, pageUrl.pathname);
-        }
+      // Internal link
+      if (fullUrl.origin === pageUrl.origin) {
+        const url = options.anchors
+          ? fullUrl.pathname + fullUrl.hash
+          : fullUrl.pathname;
+
+        saveUrl(url, pageUrl.pathname);
         return;
       }
 
-      saveRef(urls, fullUrl.pathname, pageUrl.pathname);
+      // External link
+      if (options.external) {
+        if (!options.anchors) {
+          fullUrl.hash = "";
+        }
+        saveUrl(fullUrl.toString(), pageUrl.pathname);
+      }
     }
 
-    function saveRef(
-      map: Map<string, Set<string>>,
-      href: string,
-      pageUrl: string,
-    ) {
-      const ref = map.get(href) || new Set();
+    /** Save the URL in the urls map */
+    function saveUrl(href: string, pageUrl: string) {
+      const ref = urls.get(href) || new Set();
       ref.add(pageUrl);
-      map.set(href, ref);
+      urls.set(href, ref);
     }
 
     // Search for redirect URLs non-strict mode
@@ -122,19 +130,19 @@ export default function (userOptions?: Options) {
           for (const { attribute, value } of searchLinks(document)) {
             if (attribute === "srcset" || attribute === "imagesrcset") {
               for (const [url] of parseSrcset(value)) {
-                scan(url, pageURL);
+                saveOrIgnore(url, pageURL);
               }
               continue;
             }
 
-            scan(value, pageURL);
+            saveOrIgnore(value, pageURL);
           }
         }
       },
     );
 
     async function checkUrls(): Promise<void> {
-      const strict = options.strict;
+      const { strict, anchors } = options;
       const notFound = new Map<string, Set<string>>();
       const dest = site.dest();
 
@@ -144,7 +152,7 @@ export default function (userOptions?: Options) {
         urls,
         async ([url, refs]) => {
           if (url.startsWith("http")) {
-            if (!await checkExternalUrl(url)) {
+            if (!await checkExternalUrl(url, anchors)) {
               notFound.set(url, refs);
             }
             return;
@@ -157,7 +165,7 @@ export default function (userOptions?: Options) {
             }
           }
 
-          if (!checkInternalUrl(url, dest, strict)) {
+          if (!checkInternalUrl(url, dest, strict, anchors)) {
             notFound.set(url, refs);
           }
         },
@@ -218,6 +226,7 @@ function checkInternalUrl(
   url: string,
   dest: string,
   strict: boolean,
+  anchors: boolean,
 ): boolean {
   const cached = cacheInternalUrls.get(url);
 
@@ -226,21 +235,44 @@ function checkInternalUrl(
   }
 
   let result = false;
+  let [path, id] = url.split("#");
+  path = decodeURIComponentSafe(path);
 
-  if (url.endsWith("/")) {
+  // It's a folder
+  if (path.endsWith("/")) {
     try {
-      Deno.statSync(join(dest, decodeURIComponentSafe(url), "index.html"));
-      result = true;
+      const filePath = join(dest, path, "index.html");
+      Deno.statSync(filePath);
+
+      // Check if the anchor exists in the index.html file
+      if (id && anchors) {
+        result = checkAnchor(id, Deno.readTextFileSync(filePath));
+      } else {
+        result = true;
+      }
     } catch {
       // Ignore error
     }
+    // It's a file
   } else {
     try {
-      Deno.statSync(join(dest, decodeURIComponentSafe(url)));
-      result = true;
+      const filePath = join(dest, path);
+      Deno.statSync(filePath);
+
+      // Check if the anchor exists in the HTML file
+      if (id && anchors && filePath.endsWith(".html")) {
+        result = checkAnchor(id, Deno.readTextFileSync(filePath));
+      } else {
+        result = true;
+      }
     } catch {
       if (!strict) {
-        result = checkInternalUrl(join(url, "/index.html"), dest, true);
+        result = checkInternalUrl(
+          join(url, "/index.html"),
+          dest,
+          true,
+          anchors,
+        );
       }
     }
   }
@@ -254,25 +286,45 @@ const headers = {
   Accept: "text/html,*/*;q=0.8",
 };
 
-function checkExternalUrl(url: string): Promise<boolean> {
-  let result = cacheExternalUrls.get(url);
+function checkExternalUrl(fullUrl: string, anchors: boolean): Promise<boolean> {
+  const cached = cacheExternalUrls.get(fullUrl);
 
-  if (!result) {
-    result = fetch(url, {
-      method: "HEAD",
-      headers,
-    }).then((response) => {
-      if (response.status !== 404) {
-        return true;
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  const [url, id] = fullUrl.split("#");
+
+  if (!id) {
+    anchors = false; // If no anchor, don't check it
+  }
+
+  const request = new Request(url, {
+    method: anchors ? "GET" : "HEAD",
+    headers,
+  });
+
+  const result: Promise<boolean> = fetch(request).then((response) => {
+    // Response is OK
+    if (response.status !== 404) {
+      if (anchors) {
+        return response.text().then((content) => {
+          return checkAnchor(id, content);
+        });
       }
-      // Retry again with GET method (some servers don't support HEAD)
+      return true;
+    }
+
+    // Retry again with GET method (some servers don't support HEAD)
+    if (request.method !== "GET") {
       return fetch(url, { method: "GET", headers }).then((response) =>
         response.status !== 404
       );
-    }).catch(() => false);
-    cacheExternalUrls.set(url, result);
-  }
+    }
+    return false;
+  }).catch(() => false);
 
+  cacheExternalUrls.set(fullUrl, result);
   return result;
 }
 
@@ -316,4 +368,9 @@ function outputConsole(notFound: Map<string, Set<string>>) {
     }
   }
   console.log("");
+}
+
+function checkAnchor(id: string, content: string): boolean {
+  // Fast way to check if the anchor exists in the content
+  return content.includes(`id="${id}"`);
 }

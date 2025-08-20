@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.7] - Unreleased
 ### Added
+- `check_urls` plugin: New option `anchors` to check the URL hash.
 - `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
 - `inline` plugin: New option `sourceURL` to add the `sourceURL=inline:...` pragma to inlined JS and CSS files [#779].
 - `site.initDebugBar()` to initialize manually the `debugBar`.

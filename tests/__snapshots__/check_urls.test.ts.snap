@@ -69,3 +69,26 @@ snapshot[`check_urls plugin (strict mode) 1`] = `
   },
 ]
 `;
+
+snapshot[`check_urls plugin (anchor mode) 1`] = `
+[
+  {
+    pages: [
+      "/",
+    ],
+    url: "/page1/#non-existing",
+  },
+  {
+    pages: [
+      "/",
+    ],
+    url: "/page2",
+  },
+  {
+    pages: [
+      "/",
+    ],
+    url: "/page2/",
+  },
+]
+`;
