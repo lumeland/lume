@@ -15,7 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Issues running `site.build()` multiple times in the same process.
-- Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader` and some plugins.
+- Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader`, `sass`, `xml`, `magic-string` and some plugins.
 
 ## [3.0.6] - 2025-08-07
 ### Added
