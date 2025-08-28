@@ -53,15 +53,16 @@ export default class FS {
   options: Options;
   entries = new Map<string, Entry>();
   remoteFiles = new Map<string, string>();
-  tree: Entry;
+  tree?: Entry;
 
   constructor(options: Options) {
     this.options = options;
-    this.tree = new Entry("", "/", "directory", options.root);
-    this.entries.set("/", this.tree);
   }
 
   init() {
+    this.tree = new Entry("", "/", "directory", this.options.root);
+    this.entries.clear();
+    this.entries.set("/", this.tree);
     this.#walkFs(this.tree);
     this.#walkRemote();
   }
@@ -196,7 +197,10 @@ export default class FS {
 
   addEntry(data: { path: string; type?: EntryType; src?: string }): Entry {
     const pieces = data.path.split("/").filter((p) => p);
-    let parent = this.tree;
+    let parent = this.tree as Entry;
+    if (!parent) {
+      throw new Error("FS not initialized");
+    }
 
     if (!data.src) {
       data.src = posix.join(this.options.root, data.path);

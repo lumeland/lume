@@ -1,6 +1,6 @@
 import { assertStrictEquals as equals } from "../../deps/assert.ts";
 import Scopes from "../../core/scopes.ts";
-import FS from "../../core/fs.ts";
+import FS, { Entry } from "../../core/fs.ts";
 
 Deno.test("Scripts", async (t) => {
   const scopes = new Scopes();
@@ -11,6 +11,7 @@ Deno.test("Scripts", async (t) => {
     root: "/",
   });
 
+  fs.tree = new Entry("", "/", "directory", "/");
   fs.addEntry({ path: "/file1.foo", type: "file" });
   fs.addEntry({ path: "/file2.bar", type: "file" });
   fs.addEntry({ path: "/file3.css", type: "file" });
