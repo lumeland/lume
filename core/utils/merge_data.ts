@@ -24,6 +24,8 @@ export function mergeData(...datas: DataToMerge[]): DataToMerge {
       ...current.mergedKeys,
     };
 
+    data.mergedKeys = mergedKeys;
+
     for (const [key, type] of Object.entries(mergedKeys)) {
       switch (type) {
         case "stringArray":
