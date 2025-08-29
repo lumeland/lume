@@ -192,6 +192,7 @@ snapshot[`Layouts 3`] = `
       date: [],
       layout: "layout-2.vto",
       mergedKeys: [
+        "tags",
         "css_file",
       ],
       page: [
