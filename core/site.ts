@@ -5,6 +5,7 @@ import { env, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
+import { getFiles } from "./utils/cdn.ts";
 
 import FS from "./fs.ts";
 import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
@@ -553,10 +554,28 @@ export default class Site {
     }
 
     // Remote files
-    if (from.startsWith("npm:")) {
-      from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
-    } else if (from.startsWith("gh:")) {
-      from = from.replace("gh:", "https://cdn.jsdelivr.net/gh/");
+    if (from.startsWith("npm:") || from.startsWith("gh:")) {
+      // It's a pattern
+      if (from.includes("*")) {
+        const specifier = from;
+        this.addEventListener("beforeBuild", async () => {
+          const files = await getFiles(specifier);
+          for (const [name, url] of files) {
+            const dest = typeof to === "function"
+              ? () => (to as Destination)(name)
+              : posix.join(to ?? "", name);
+            this.#addOrCopy(url, dest, copy);
+          }
+        });
+        return;
+      }
+
+      // Copy only the main file
+      if (from.startsWith("npm:")) {
+        from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+      } else {
+        from = from.replace("gh:", "https://cdn.jsdelivr.net/gh/");
+      }
     }
 
     if (isUrl(from)) {

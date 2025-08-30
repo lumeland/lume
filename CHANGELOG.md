@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `inline` plugin: New option `sourceURL` to add the `sourceURL=inline:...` pragma to inlined JS and CSS files [#779].
 - `site.initDebugBar()` to initialize manually the `debugBar`.
 - `gh:` specifier for `add()` and `copy()`, to use files from GitHub repositories.
+- Allow to download several files from a GitHub or NPM package using glob patterns. For example `site.add("npm:ventojs/**")`.
 
 ### Fixed
 - Issues running `site.build()` multiple times in the same process.
