@@ -555,6 +555,8 @@ export default class Site {
     // Remote files
     if (from.startsWith("npm:")) {
       from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+    } else if (from.startsWith("gh:")) {
+      from = from.replace("gh:", "https://cdn.jsdelivr.net/gh/");
     }
 
     if (isUrl(from)) {

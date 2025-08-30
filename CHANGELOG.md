@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `filter_pages` plugin: New option `beforeRender` to filter the pages before is rendered.
 - `inline` plugin: New option `sourceURL` to add the `sourceURL=inline:...` pragma to inlined JS and CSS files [#779].
 - `site.initDebugBar()` to initialize manually the `debugBar`.
+- `gh:` specifier for `add()` and `copy()`, to use files from GitHub repositories.
 
 ### Fixed
 - Issues running `site.build()` multiple times in the same process.
