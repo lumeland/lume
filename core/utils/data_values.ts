@@ -93,5 +93,5 @@ function queryCss(query: string, document?: Document) {
     return document?.querySelector(query)?.getAttribute(name);
   }
 
-  return document?.querySelector(query)?.innerHTML;
+  return document?.querySelector(query)?.textContent;
 }

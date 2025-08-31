@@ -18,6 +18,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Issues running `site.build()` multiple times in the same process.
 - `mergedKeys` key is not merged.
+- Use `textContent` instead of `innerHTML` to get values using CSS selectors
+  by some plugins like metas [#782]
 - Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader`, `sass`, `xml`, `magic-string`, `satori`, `mdx` and some icons.
 
 ## [3.0.6] - 2025-08-07
@@ -213,6 +215,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#770]: https://github.com/lumeland/lume/issues/770
 [#772]: https://github.com/lumeland/lume/issues/772
 [#779]: https://github.com/lumeland/lume/issues/779
+[#782]: https://github.com/lumeland/lume/issues/782
 
 [3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...HEAD
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6
