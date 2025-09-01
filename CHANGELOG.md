@@ -20,7 +20,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `mergedKeys` key is not merged.
 - Use `textContent` instead of `innerHTML` to get values using CSS selectors
   by some plugins like metas [#782]
-- Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader`, `sass`, `xml`, `magic-string`, `satori`, `mdx` and some icons.
+- Updated [Vento to v2](https://lume.land/blog/posts/vento-2/).
+- Updated dependencies: `bar`, `unocss`, `tailwindcss`, `esbuild`, `std`, `deno/loader`, `sass`, `xml`, `magic-string`, `satori`, `mdx`, `pagefind` and some icons.
 
 ## [3.0.6] - 2025-08-07
 ### Added

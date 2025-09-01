@@ -1,5 +1,5 @@
-export * as pagefind from "npm:pagefind@1.3.0";
-export type { CustomRecord } from "npm:pagefind@1.3.0";
+export * as pagefind from "npm:pagefind@1.4.0";
+export type { CustomRecord } from "npm:pagefind@1.4.0";
 
 export interface TranslationsOptions {
   /** English default: "Search" */
