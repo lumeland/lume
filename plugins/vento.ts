@@ -1,7 +1,7 @@
 import {
   autotrim,
   engine,
-  stringifyContext,
+  stringifyError,
   VentoError,
 } from "../deps/vento.ts";
 import { posix } from "../deps/path.ts";
@@ -129,7 +129,7 @@ export class VentoEngine implements Engine {
       if (error instanceof VentoError) {
         const context = await error.getContext();
         if (context) {
-          const errorMessage = stringifyContext(context, {
+          const errorMessage = stringifyError(context, {
             error: (string) => `<red>${string}</red>`,
             dim: (string) => `<gray>${string}</gray>`,
             number: (num) => `<yellow>${num}</yellow>`,
