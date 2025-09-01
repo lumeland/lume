@@ -19,7 +19,7 @@ Deno.test(
 );
 
 Deno.test(
-  "Pagefind plugin with global variable",
+  "Pagefind plugin with global variable & playground",
   { ignore: Deno.build.os !== "darwin" },
   async (t) => {
     const site = getSite({
@@ -30,6 +30,7 @@ Deno.test(
       ui: {
         globalVariable: "pagefind",
       },
+      indexing: { writePlayground: true },
     }));
 
     await build(site);
