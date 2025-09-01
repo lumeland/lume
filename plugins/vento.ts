@@ -1,9 +1,4 @@
-import {
-  autotrim,
-  engine,
-  stringifyError,
-  VentoError,
-} from "../deps/vento.ts";
+import { autotrim, engine, stringifyError, VentoError } from "../deps/vento.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
