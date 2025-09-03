@@ -142,7 +142,7 @@ async function build({ type, config, serve, cms }: BuildOptions) {
     return response;
   });
 
-  server.use(
+  server.useFirst(
     reload({
       watcher: new SiteWatcher(site),
       basepath: site.options.location.pathname,

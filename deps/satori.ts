@@ -1,4 +1,4 @@
-export { default } from "npm:satori@0.18.1";
-export * from "npm:satori@0.18.1";
+export { default } from "npm:satori@0.18.2";
+export * from "npm:satori@0.18.2";
 export const fontsSpecifier =
   "https://cdn.jsdelivr.net/npm/@xz/fonts@1.0.2/serve/src";

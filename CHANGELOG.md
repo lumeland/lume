@@ -6,6 +6,11 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.8] - Unreleased
+### Fixed
+- Make sure development middlewares are registered at the begining.
+- Updated dependencies: `terser`, `sass`, `satori` and some icons.
+
 ## [3.0.7] - 2025-09-02
 ### Added
 - `check_urls` plugin: New option `anchors` to check the URL hash.
@@ -218,6 +223,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#779]: https://github.com/lumeland/lume/issues/779
 [#782]: https://github.com/lumeland/lume/issues/782
 
+[3.0.8]: https://github.com/lumeland/lume/compare/v3.0.7...HEAD
 [3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/lumeland/lume/compare/v3.0.4...v3.0.5
