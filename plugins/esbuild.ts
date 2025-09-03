@@ -21,6 +21,7 @@ import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
+import { isBuiltin } from "node:module";
 
 import type Site from "../core/site.ts";
 
@@ -124,6 +125,8 @@ export function esbuild(userOptions?: Options) {
         entryPoints.push({ in: toFileUrl(filename).toString(), out, content });
       });
 
+      const externals = (options.options.external ?? []).map(externalToRegex);
+
       const buildOptions: BuildOptions = {
         ...options.options,
         write: false,
@@ -159,6 +162,23 @@ export function esbuild(userOptions?: Options) {
                     path: path.startsWith("file:") ? fromFileUrl(path) : path,
                     namespace: "file",
                     pluginData: { entryPoint },
+                  };
+                }
+
+                if (isBuiltin(path)) {
+                  log.warn(
+                    `[esbuild plugin] "${path}", imported by ${importer} is a Node.js built-in module and won't work in the browser.`,
+                  );
+                  return {
+                    path,
+                    external: true,
+                  };
+                }
+
+                if (externals.some((reg) => reg.test(path))) {
+                  return {
+                    path,
+                    external: true,
                   };
                 }
 
@@ -534,6 +554,15 @@ function getModuleType(withArgs: Record<string, string>): RequestedModuleType {
     default:
       return RequestedModuleType.Default;
   }
+}
+
+function externalToRegex(external: string): RegExp {
+  return new RegExp(
+    "^" + external.replace(/[-/\\^$+?.()|[\]{}]/g, "\\$&").replace(
+      /\*/g,
+      ".*",
+    ) + "$",
+  );
 }
 
 export default esbuild;
