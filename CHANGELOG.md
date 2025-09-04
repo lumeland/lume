@@ -10,7 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - `esbuild` plugin: Handle external and node built-in modules.
 - Make sure development middlewares are registered at the begining.
-- Updated dependencies: `terser`, `sass`, `satori` and some icons.
+- Updated dependencies: `terser`, `sass`, `satori`, `std` and some icons.
 
 ## [3.0.7] - 2025-09-02
 ### Added
