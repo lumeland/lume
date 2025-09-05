@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.9] - Unreleased
 ### Fixed
 - `esbuild` plugin: Handle alias option.
+- Updated dependencies: `vento`, `tailwindcss`.
 
 ## [3.0.8] - 2025-09-04
 ### Fixed
