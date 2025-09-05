@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.9] - Unreleased
+### Fixed
+- `esbuild` plugin: Handle alias option.
+
 ## [3.0.8] - 2025-09-04
 ### Fixed
 - `esbuild` plugin: Handle external and node built-in modules.
@@ -224,6 +228,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#779]: https://github.com/lumeland/lume/issues/779
 [#782]: https://github.com/lumeland/lume/issues/782
 
+[3.0.9]: https://github.com/lumeland/lume/compare/v3.0.8...HEAD
 [3.0.8]: https://github.com/lumeland/lume/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/lumeland/lume/compare/v3.0.5...v3.0.6

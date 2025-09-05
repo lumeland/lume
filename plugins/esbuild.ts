@@ -165,6 +165,11 @@ export function esbuild(userOptions?: Options) {
                   };
                 }
 
+                const aliased = buildOptions.alias?.[path];
+                if (aliased) {
+                  return;
+                }
+
                 if (isBuiltin(path)) {
                   log.warn(
                     `[esbuild plugin] "${path}", imported by ${importer} is a Node.js built-in module and won't work in the browser.`,
