@@ -10,7 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - `esbuild` plugin: Handle alias option.
 - `esbuild` plugin: Handle `json` files imported without `with { type: "json" }` attribute.
-- Updated dependencies: `vento`, `tailwindcss`.
+- Updated dependencies: `vento`, `tailwindcss`, `sass` and some icons.
 
 ## [3.0.8] - 2025-09-04
 ### Fixed
