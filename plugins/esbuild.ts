@@ -14,6 +14,7 @@ import {
   BuildOptions,
   Loader,
   Metafile,
+  OnResolveArgs,
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
@@ -149,77 +150,91 @@ export function esbuild(userOptions?: Options) {
             const loader = await workspace.createLoader();
             await loader.addEntrypoints(entryPoints.map((ep) => ep.in));
 
-            build.onResolve(
-              { filter: /.*/ },
-              async ({ kind, path, importer }) => {
-                // Entry points are already loaded by Lume
-                if (kind === "entry-point") {
-                  const entryPoint = entryPoints.find((entry) =>
-                    entry.in === path
-                  );
-
-                  return {
-                    path: path.startsWith("file:") ? fromFileUrl(path) : path,
-                    namespace: "file",
-                    pluginData: { entryPoint },
-                  };
-                }
-
-                const aliased = buildOptions.alias?.[path];
-                if (aliased) {
-                  return;
-                }
-
-                if (isBuiltin(path)) {
-                  log.warn(
-                    `[esbuild plugin] "${path}", imported by ${importer} is a Node.js built-in module and won't work in the browser.`,
-                  );
-                  return {
-                    path,
-                    external: true,
-                  };
-                }
-
-                if (externals.some((reg) => reg.test(path))) {
-                  return {
-                    path,
-                    external: true,
-                  };
-                }
-
-                // Other imports are resolved by Deno loader
-                const mode =
-                  kind === "require-call" || kind === "require-resolve"
-                    ? ResolutionMode.Require
-                    : ResolutionMode.Import;
-
-                const res = await loader.resolve(path, importer, mode);
-
-                let namespace: string | undefined;
-                if (res.startsWith("file:")) {
-                  namespace = "file";
-                } else if (res.startsWith("http:")) {
-                  namespace = "http";
-                } else if (res.startsWith("https:")) {
-                  namespace = "https";
-                } else if (res.startsWith("npm:")) {
-                  namespace = "npm";
-                } else if (res.startsWith("jsr:")) {
-                  namespace = "jsr";
-                } else if (res.startsWith("data:")) {
-                  namespace = "data";
-                }
-
-                const resolved = res.startsWith("file:")
-                  ? fromFileUrl(res)
-                  : res;
+            async function onResolve(
+              { kind, path, importer, ...rest }: OnResolveArgs,
+            ) {
+              // Entry points are already loaded by Lume
+              if (kind === "entry-point") {
+                const entryPoint = entryPoints.find((entry) =>
+                  entry.in === path
+                );
 
                 return {
-                  path: resolved,
-                  namespace,
+                  path: path.startsWith("file:") ? fromFileUrl(path) : path,
+                  namespace: "file",
+                  pluginData: { entryPoint },
                 };
-              },
-            );
+              }
+
+              // Handle path aliases defined in build options
+              const aliased = buildOptions.alias?.[path];
+              if (aliased) {
+                if (aliased.startsWith(".")) {
+                  return onResolve({
+                    kind,
+                    path: site.root(aliased),
+                    importer,
+                    ...rest,
+                  });
+                }
+                return onResolve({
+                  kind,
+                  path: aliased,
+                  importer: site.root(),
+                  ...rest,
+                });
+              }
+
+              // Handle node built-in modules
+              if (isBuiltin(path)) {
+                log.warn(
+                  `[esbuild plugin] "${path}", imported by ${importer} is a Node.js built-in module and won't work in the browser.`,
+                );
+                return {
+                  path,
+                  external: true,
+                };
+              }
+
+              // Handle external modules defined in build options
+              if (externals.some((reg) => reg.test(path))) {
+                return {
+                  path,
+                  external: true,
+                };
+              }
+
+              // Other imports are resolved by Deno loader
+              const mode = kind === "require-call" || kind === "require-resolve"
+                ? ResolutionMode.Require
+                : ResolutionMode.Import;
+
+              const res = await loader.resolve(path, importer, mode);
+
+              let namespace: string | undefined;
+              if (res.startsWith("file:")) {
+                namespace = "file";
+              } else if (res.startsWith("http:")) {
+                namespace = "http";
+              } else if (res.startsWith("https:")) {
+                namespace = "https";
+              } else if (res.startsWith("npm:")) {
+                namespace = "npm";
+              } else if (res.startsWith("jsr:")) {
+                namespace = "jsr";
+              } else if (res.startsWith("data:")) {
+                namespace = "data";
+              }
+
+              const resolved = res.startsWith("file:") ? fromFileUrl(res) : res;
+
+              return {
+                path: resolved,
+                namespace,
+              };
+            }
+
+            build.onResolve({ filter: /.*/ }, onResolve);
 
             build.onLoad(
               { filter: /.*/ },
@@ -237,6 +252,7 @@ export function esbuild(userOptions?: Options) {
                   const src = normalizePath(path, basePath);
                   const entry = site.fs.entries.get(src);
 
+                  // Return the content loaded by Lume
                   if (entry) {
                     const { content } = await entry.getContent(textLoader);
 
@@ -252,8 +268,14 @@ export function esbuild(userOptions?: Options) {
                   ? toFileUrl(path).toString()
                   : path;
 
+                // If the file is a JSON, force the module type to JSON
+                // this is needed because some npm packages import JSON files
+                // without the `with { type: "json" }` attribute
+                const moduleType = path.endsWith(".json")
+                  ? RequestedModuleType.Json
+                  : getModuleType(withAttr);
+
                 // Load the file from the workspace's loader
-                const moduleType = getModuleType(withAttr);
                 const res = await loader.load(url, moduleType);
                 if (res.kind === "external") {
                   return null;
