@@ -423,9 +423,7 @@ snapshot[`Sitemap plugin 3`] = `
     },
   },
   {
-    content: "User-agent: *
-Allow: /
-
+    content: "
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
@@ -1200,9 +1198,7 @@ snapshot[`Sitemap plugin with a multilanguage plugin 3`] = `
     },
   },
   {
-    content: "User-agent: *
-Allow: /
-
+    content: "
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
@@ -1873,9 +1869,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
     },
   },
   {
-    content: "User-agent: *
-Allow: /
-
+    content: "
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
@@ -2252,9 +2246,7 @@ snapshot[`Sitemap plugin with redirects plugin 3`] = `
     },
   },
   {
-    content: "User-agent: *
-Allow: /
-
+    content: "
 Sitemap: https://example.com/sitemap.xml",
     data: {
       basename: "robots",
