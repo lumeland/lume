@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.9] - Unreleased
+### Added
+- `sourceURL` pragma to the live update script inlined in the HTML pages.
+
 ### Fixed
 - `esbuild` plugin: Handle alias option.
 - `esbuild` plugin: Handle `json` files imported without `with { type: "json" }` attribute.

@@ -116,7 +116,7 @@ export function reload(options: Options): Middleware {
       const source =
         `${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status}, "${
           debugBar?.url || ""
-        }");`;
+        }");\n/*# sourceURL=inline:lume-live-reload.js */;`;
       const integrity = await computeSourceIntegrity(source);
 
       // Add live reload script and pass initial revision
