@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `sourceURL` pragma to the live update script inlined in the HTML pages.
 
 ### Fixed
+- Replaced `svg2png-wasm` dependency with `resvg-js`.
 - `sitemap` plugin: Don't add the `User-agent` rule to `robots.txt`.
 - `esbuild` plugin: Handle alias option.
 - `esbuild` plugin: Handle `json` files imported without `with { type: "json" }` attribute.
