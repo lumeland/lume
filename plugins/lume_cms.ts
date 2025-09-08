@@ -94,7 +94,12 @@ export function lumeCMS(userOptions: Options) {
       }
       return next(request);
     };
-    site.options.server.middlewares.push(middleware);
+
+    // Ensure the CMS middleware is the first one to be executed
+    const server = site.getServer();
+    server.addEventListener("start", () => {
+      server.useFirst(middleware);
+    }, { once: true });
 
     // Show the CMS in the debugbar
     function showCMS() {
