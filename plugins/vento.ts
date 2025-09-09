@@ -1,4 +1,10 @@
-import { autotrim, engine, stringifyError, VentoError } from "../deps/vento.ts";
+import {
+  autotrim,
+  engine,
+  SourceError,
+  stringifyError,
+  VentoError,
+} from "../deps/vento.ts";
 import { posix } from "../deps/path.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
@@ -209,12 +215,16 @@ export function vento(userOptions?: Options) {
 }
 
 /** Vento tag to render a component */
+const COMP_TAG = /^comp\s+([\w.]+)(?:\s+([\s\S]+[^/]))?(?:\s+(\/))?$/;
+
 function compTag(
   env: Environment,
-  [, code]: Token,
+  token: Token,
   output: string,
   tokens: Token[],
 ): string | undefined {
+  const [, code, position] = token;
+
   // Components are always async
   // so convert automatically {{ comp.whatever }} to {{ await comp.whatever }}
   if (code.startsWith("comp.")) {
@@ -227,12 +237,9 @@ function compTag(
     return;
   }
 
-  const match = code.match(
-    /^comp\s+([\w.]+)(?:\s+([\s\S]+[^/]))?(?:\s+(\/))?$/,
-  );
-
+  const match = code?.match(COMP_TAG);
   if (!match) {
-    throw new Error(`Invalid component tag: ${code}`);
+    throw new SourceError("Invalid comp tag", position);
   }
 
   const [_, comp, args, closed] = match;
@@ -241,20 +248,19 @@ function compTag(
     return `${output} += await comp.${comp}(${args || ""});`;
   }
 
-  const compiled: string[] = [];
-  const tmpOutput = `__content_${tokens.length}`;
-  compiled.push("{");
-  compiled.push(`let ${tmpOutput} = ""`);
-  compiled.push(...env.compileTokens(tokens, tmpOutput, "/comp"));
+  const compiledFilters = env.compileFilters(tokens, "__slots.content");
+  const { dataVarname } = env.options;
+  return `${output} += (await (async () => {
+    const __slots = { content: "" };
+    ${env.compileTokens(tokens, "__slots.content", "/comp").join("\n")}
+    __slots.content = __env.utils.safeString(${compiledFilters});
 
-  compiled.push(
-    `${output} += await comp.${comp}({...${
-      args || "{}"
-    }, content: ${tmpOutput}});`,
-  );
-  compiled.push("}");
-
-  return compiled.join("\n");
+    return await comp.${comp}({
+      ...${dataVarname},
+      ...__slots,
+      ...${args || "{}"}
+    });
+  })());`;
 }
 
 export default vento;

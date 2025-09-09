@@ -142,6 +142,17 @@ snapshot[`build a site with vento 3`] = `
 <section class="container">
   <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
+
+  <a href="https://example.com" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+  <a href="HTTPS://EXAMPLE.COM" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
 </section>
 
 <A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
@@ -173,6 +184,17 @@ Título
 <section class="container">
   <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
 
+
+  <a href="https://example.com" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+  <a href="HTTPS://EXAMPLE.COM" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
 </section>
 
 <A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
@@ -199,6 +221,15 @@ CUSTOM FILTER
 
 {{ comp container }}
   {{ comp button {href, content: "Go to Lume"} /}}
+
+  {{ comp button }}
+    {{ slot href }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
+  {{ comp button }}
+    {{ slot href |> toUpperCase }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
 {{ /comp }}
 
 {{ comp.button({href, content: "Go to Lume"}) |> toUpperCase }}

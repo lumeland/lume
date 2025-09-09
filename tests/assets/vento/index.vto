@@ -15,6 +15,15 @@ layout: layout.vto
 
 {{ comp container }}
   {{ comp button {href, content: "Go to Lume"} /}}
+
+  {{ comp button }}
+    {{ slot href }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
+  {{ comp button }}
+    {{ slot href |> toUpperCase }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
 {{ /comp }}
 
 {{ comp.button({href, content: "Go to Lume"}) |> toUpperCase }}

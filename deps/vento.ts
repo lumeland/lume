@@ -1,6 +1,7 @@
 export { default as engine } from "https://deno.land/x/vento@v2.0.1/mod.ts";
 export { default as autotrim } from "https://deno.land/x/vento@v2.0.1/plugins/auto_trim.ts";
 export {
+  SourceError,
   stringifyError,
   VentoError,
 } from "https://deno.land/x/vento@v2.0.1/core/errors.ts";
