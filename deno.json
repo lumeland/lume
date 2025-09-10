@@ -46,6 +46,9 @@
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts"
   },
   "lint": {
+    "rules": {
+      "exclude": ["no-import-prefix"]
+    },
     "plugins": [
       "./lint.ts"
     ]
