@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `sitemap` plugin: Don't add the `User-agent` rule to `robots.txt`.
 - `esbuild` plugin: Handle alias option.
 - `esbuild` plugin: Handle `json` files imported without `with { type: "json" }` attribute.
+- Type changes introduced in Deno 2.5.0
 - Updated dependencies: `vento`, `tailwindcss`, `sass`, `satori`, `unocss` and some icons.
 
 ## [3.0.8] - 2025-09-04

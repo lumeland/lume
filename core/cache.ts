@@ -53,7 +53,7 @@ export default class Cache {
   }
 
   /** Get the content from the cache folder as Uint8Array */
-  async getBytes(key: unknown[]): Promise<Uint8Array | undefined> {
+  async getBytes(key: unknown[]): Promise<Uint8Array<ArrayBuffer> | undefined> {
     try {
       return Deno.readFileSync(await this.getPath(key));
     } catch {

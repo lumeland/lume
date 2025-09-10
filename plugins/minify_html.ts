@@ -59,7 +59,9 @@ export function minifyHTML(userOptions?: Options) {
       for (const page of pages) {
         try {
           const content = page.bytes;
-          page.bytes = minify(content, options.options);
+          page.bytes = minify(content, options.options) as Uint8Array<
+            ArrayBuffer
+          >;
           if (item) {
             item.items ??= [];
             const old = content.length;

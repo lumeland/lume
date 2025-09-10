@@ -109,13 +109,13 @@ export class Page<D extends Data = Data> {
   }
 
   /** The content of this page as bytes */
-  get bytes(): Uint8Array {
+  get bytes(): Uint8Array<ArrayBuffer> {
     return this.content instanceof Uint8Array
       ? this.content
       : encoder.encode(this.content || "");
   }
 
-  set bytes(bytes: Uint8Array) {
+  set bytes(bytes: Uint8Array<ArrayBuffer>) {
     this.content = bytes;
   }
 
@@ -160,7 +160,7 @@ export class StaticFile<D extends Data = Data> {
   async toPage(): Promise<Page> {
     const { content } = await this.src.entry.getContent(binaryLoader);
     const page = Page.create(this.data, this.src);
-    page.content = content as Uint8Array;
+    page.content = content as Uint8Array<ArrayBuffer>;
     page.isCopy = this.isCopy;
     return page;
   }
@@ -193,7 +193,7 @@ export interface Src {
 }
 
 /** The .content property for a Page */
-export type Content = Uint8Array | string;
+export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
 export interface RawData {

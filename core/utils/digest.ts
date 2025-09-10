@@ -10,7 +10,10 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
     message = encoder.encode(message);
   }
 
-  const hash = await crypto.subtle.digest("SHA-1", message);
+  const hash = await crypto.subtle.digest(
+    "SHA-1",
+    message as Uint8Array<ArrayBuffer>,
+  );
   return decoder.decode(hash);
 }
 
@@ -20,6 +23,9 @@ export async function md5(message: string | Uint8Array): Promise<string> {
     message = encoder.encode(message);
   }
 
-  const hash = await crypto.subtle.digest("MD5", message);
+  const hash = await crypto.subtle.digest(
+    "MD5",
+    message as Uint8Array<ArrayBuffer>,
+  );
   return encodeHex(hash);
 }

@@ -992,7 +992,7 @@ export default class Site {
     if (entry) {
       const { content } = await entry.getContent(binaryLoader);
       const page = Page.create({ url }, { entry });
-      page.content = content as Uint8Array;
+      page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
       return page;
     }
