@@ -1,8 +1,8 @@
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import date from "../plugins/date.ts";
-import { gl } from "npm:date-fns/locale/gl";
-import { pt } from "npm:date-fns/locale/pt";
+import { gl } from "npm:date-fns@4.1.0/locale/gl";
+import { pt } from "npm:date-fns@4.1.0/locale/pt";
 
 const date0 = new Date(0);
 

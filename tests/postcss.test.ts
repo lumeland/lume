@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { assert } from "../deps/assert.ts";
 import postcss from "../plugins/postcss.ts";
-import nano from "npm:cssnano";
+import nano from "npm:cssnano@7.1.1";
 
 Deno.test("Postcss plugin", async (t) => {
   const site = getSite({
