@@ -112,7 +112,7 @@ export class Page<D extends Data = Data> {
   get bytes(): Uint8Array<ArrayBuffer> {
     return this.content instanceof Uint8Array
       ? this.content
-      : encoder.encode(this.content || "");
+      : encoder.encode(this.content || "") as Uint8Array<ArrayBuffer>;
   }
 
   set bytes(bytes: Uint8Array<ArrayBuffer>) {
