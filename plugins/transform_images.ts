@@ -194,7 +194,7 @@ async function transform(
     ? { pages: -1 }
     : {};
 
-  const image = await create(content, ops);
+  const image = create(content, ops);
 
   for (const [name, args] of Object.entries(transformation)) {
     switch (name) {

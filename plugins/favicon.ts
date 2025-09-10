@@ -158,12 +158,12 @@ async function buildIco(
 
   if (format === "ico") {
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
-    const img = await create(content);
+    const img = create(content);
     image = await sharpsToIco(
       ...size.map((size) => img.clone().resize(size, size, resizeOptions)),
     );
   } else {
-    image = await (await create(content))
+    image = await create(content)
       .resize(size[0], size[0])
       .toFormat(format)
       .toBuffer();

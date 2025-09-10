@@ -12,13 +12,13 @@ export async function sharpsToIco(...images: sharp.Sharp[]) {
   return icoEndec.encode(buffers.map((buffer: any) => buffer.buffer));
 }
 
-export async function create(
+export function create(
   content: Uint8Array | string,
   config: sharp.SharpOptions = {},
-): Promise<sharp.Sharp> {
+): sharp.Sharp {
   // It's a SVG
   if (typeof content === "string") {
-    return sharp(await toPng(content));
+    return sharp(toPng(content));
   }
 
   return sharp(content, config);
