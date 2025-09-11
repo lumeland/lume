@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.542.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.544.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -186,7 +186,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.17.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.18.0/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {
