@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.0.10] - Unreleased
 ### Fixed
 - `icons` plugin: clear the plugin list on update.
+- Updated dependencies: `vento` and some icons.
 
 ## [3.0.9] - 2025-09-11
 ### Added
