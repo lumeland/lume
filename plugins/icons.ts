@@ -52,6 +52,8 @@ export function icons(userOptions?: Options) {
         page.content = content.replace(commentRegexp, ""); // Remove comment
       }
     });
+
+    site.addEventListener("beforeUpdate", () => icons.clear());
   };
 }
 

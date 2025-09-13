@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.10] - Unreleased
+### Fixed
+- `icons` plugin: clear the plugin list on update.
+
 ## [3.0.9] - 2025-09-11
 ### Added
 - `sourceURL` pragma to the live update script inlined in the HTML pages.
@@ -237,6 +241,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#779]: https://github.com/lumeland/lume/issues/779
 [#782]: https://github.com/lumeland/lume/issues/782
 
+[3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...HEAD
 [3.0.9]: https://github.com/lumeland/lume/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/lumeland/lume/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/lumeland/lume/compare/v3.0.6...v3.0.7
