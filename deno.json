@@ -26,7 +26,7 @@
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
-      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.7.0/bin.ts"
+      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.7.1/bin.ts"
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
@@ -47,7 +47,9 @@
   },
   "lint": {
     "rules": {
-      "exclude": ["no-import-prefix"]
+      "exclude": [
+        "no-import-prefix"
+      ]
     },
     "plugins": [
       "./lint.ts"
