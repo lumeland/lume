@@ -163,7 +163,7 @@ snapshot[`Image transform plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(15039)",
+    content: "Uint8Array(15279)",
     data: {
       basename: "lume",
       mergedKeys: [
