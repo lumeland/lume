@@ -36,6 +36,8 @@ export default function lume(
 
   // Ignore some files by the watcher
   site.options.watcher.ignore.push("/deno.lock");
+  site.options.watcher.ignore.push("/deno.json");
+  site.options.watcher.ignore.push("/deno.jsonc");
   site.options.watcher.ignore.push("/node_modules/.deno");
   site.options.watcher.ignore.push("/.git");
   site.options.watcher.ignore.push("/_cache");
