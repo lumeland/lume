@@ -166,6 +166,11 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
+  .option(
+    "--proxied",
+    "If defined, the server's hostname and port options can be different to the location.",
+    { depends: ["serve"] },
+  )
   .action(async ({ config, serve, watch, cms }) => {
     const { build } = await import("./cli/build.ts");
     build(config, serve, watch, cms);

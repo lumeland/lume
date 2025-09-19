@@ -9,7 +9,7 @@ export function getOptionsFromCli(
 ): DeepPartial<SiteOptions> {
   const cli = parseArgs(Deno.args, {
     string: ["src", "dest", "location", "port", "hostname"],
-    boolean: ["serve", "open"],
+    boolean: ["serve", "open", "proxied"],
     alias: { serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
@@ -36,25 +36,33 @@ export function getOptionsFromCli(
 
     if (cli.port) {
       port = parseInt(cli.port);
-      location.port = port.toString();
-    } else if (location.port) {
+      if (!cli.proxied) {
+        location.port = port.toString();
+      }
+    } else if (location.port && !cli.proxied) {
       port = parseInt(location.port);
     } else if (options.server?.port) {
       port = options.server.port;
-      location.port = port.toString();
-    } else {
+      if (!cli.proxied) {
+        location.port = port.toString();
+      }
+    } else if (!cli.proxied) {
       port = location.protocol === "https:" ? 443 : getFreePort(3000, 3010);
       location.port = port.toString();
+    } else {
+      port = 3000;
     }
 
     if (cli.hostname) {
       hostname = cli.hostname;
-      location.hostname = hostname;
-    } else if (options.server?.hostname && !cli.location) {
+      if (!cli.proxied) {
+        location.hostname = hostname;
+      }
+    } else if (options.server?.hostname && !cli.location && !cli.proxied) {
       hostname = options.server.hostname;
       location.hostname = hostname;
     } else {
-      hostname = location.hostname;
+      hostname = cli.proxied ? "localhost" : location.hostname;
     }
   } else {
     location = cli.location

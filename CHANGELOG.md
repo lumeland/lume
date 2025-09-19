@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.10] - Unreleased
+### Added
+- New flag `--proxied`, combined with `--serve` to use a location with a different hostname and port than the server's hostname and port.
+
 ### Fixed
 - `icons` plugin: clear the plugin list on update.
 - Updated dependencies: `vento`, `satori`, `sharp`, `esbuild` and some icons.
