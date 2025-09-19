@@ -32,6 +32,8 @@ export function getOptionsFromCli(
   if (serveMode) {
     location = cli.location
       ? new URL(cli.location)
+      : cli.proxied
+      ? (options.location as URL | undefined) || new URL("http://localhost")
       : new URL("http://localhost");
 
     if (cli.port) {
