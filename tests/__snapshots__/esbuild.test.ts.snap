@@ -126,7 +126,6 @@ snapshot[`esbuild plugin with JSX 1`] = `
   ],
   src: [
     "/",
-    "/deno.json",
     "/index.page.jsx",
     "/main.jsx",
   ],
