@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { setEnv } from "../core/utils/env.ts";
 
+import basicAuth from "../middlewares/basic_auth.ts";
 import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
 
@@ -100,6 +101,26 @@ export function lumeCMS(userOptions: Options) {
     server.addEventListener("start", () => {
       server.useFirst(middleware);
     }, { once: true });
+
+    // Protect the whole site when using the CMS
+    if (cms.options.auth?.method === "basic") {
+      const users: [string, string][] = Object.entries(cms.options.auth.users)
+        .map(([user, password]) => {
+          if (typeof password === "string") {
+            return [user, password];
+          }
+          if (
+            password && typeof password === "object" && "password" in password
+          ) {
+            return [user, password.password as string];
+          }
+          throw new Error(`Invalid password for user ${user}`);
+        });
+
+      server.useFirst(basicAuth({
+        users: Object.fromEntries(users),
+      }));
+    }
 
     // Show the CMS in the debugbar
     function showCMS() {
