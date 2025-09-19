@@ -50,7 +50,7 @@ export function getOptionsFromCli(
       port = location.protocol === "https:" ? 443 : getFreePort(3000, 3010);
       location.port = port.toString();
     } else {
-      port = 3000;
+      port = 8000;
     }
 
     if (cli.hostname) {
