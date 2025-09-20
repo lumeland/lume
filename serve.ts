@@ -25,51 +25,12 @@ export function getServeHandler(): Deno.ServeHandler {
 
     // Start the server on the first request
     if (!process?.ready) {
-      const body = new BodyStream();
-      body.message(`
-        <html><head><title>Starting...</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script>setInterval(() => window.scroll({top:document.documentElement.scrollHeight,behavior:"instant"}), 10);</script>
-        <style>
-        body {
-          font-family: sans-serif;
-          margin: 0;
-          padding: 2rem;
-          box-sizing: border-box;
-          display: grid;
-          grid-template-columns: minmax(0, 800px);
-          align-content: center;
-          justify-content: center;
-          min-height: 100vh
-        }
-        pre {
-          overflow-x: auto;
-        }
-        </style></head><body><pre><samp>Initializing. Please wait...`);
-
-      startServer(url, body).then(() => {
-        if (process?.error) {
-          body.message("Error starting the server");
-          body.close();
-          process = undefined;
-          return;
-        }
-        body.message("</pre></samp><script>location.reload()</script>");
-        body.close();
-      });
-      return new Response(body.body, {
-        status: 200,
-        headers: {
-          "Content-Type": "text/html",
-          "Transfer-Encoding": "chunked",
-        },
-      });
+      return startServer(url);
     }
 
     // Close the server after 2 hours of inactivity
     clearTimeout(timeout);
-    timeout = setTimeout(closeServer, 2 * 60 * 60 * 1000);
+    timeout = setTimeout(closeServerProcess, 2 * 60 * 60 * 1000);
 
     // Forward the request to the server
     url.port = port;
@@ -91,14 +52,63 @@ export function getServeHandler(): Deno.ServeHandler {
 
     // Close the server if the response header tells us to
     if (response.headers.get("X-Lume-CMS") === "reload") {
-      closeServer();
+      closeServerProcess();
+      const url = response.headers.get("Location") || request.url;
+      return startServer(new URL(url));
     }
 
     return response;
   };
 
-  // Start the server
-  async function startServer(location: URL, body: BodyStream): Promise<void> {
+  function startServer(url: URL): Response {
+    const body = new BodyStream();
+    body.message(`
+      <html><head><title>Initializing...</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script>setInterval(() => window.scroll({top:document.documentElement.scrollHeight,behavior:"instant"}), 10);</script>
+      <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: minmax(0, 800px);
+        align-content: center;
+        justify-content: center;
+        min-height: 100vh
+      }
+      pre {
+        overflow-x: auto;
+      }
+      </style></head><body><pre><samp>Initializing. Please wait...`);
+
+    startProcess(url, body).then(() => {
+      if (process?.error) {
+        body.message("Error starting the server");
+        body.close();
+        process = undefined;
+        return;
+      }
+      const { pathname, search, hash } = url;
+      body.message(
+        `</pre></samp>
+        <script>location.replace("${pathname + search + hash}")</script>`,
+      );
+      body.close();
+    });
+    return new Response(body.body, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/html",
+        "Transfer-Encoding": "chunked",
+      },
+    });
+  }
+
+  // Start the server process
+  async function startProcess(location: URL, body: BodyStream): Promise<void> {
     if (process?.ready === false) {
       return;
     }
@@ -133,7 +143,7 @@ export function getServeHandler(): Deno.ServeHandler {
       if (process && status.success === false && status.signal !== "SIGTERM") {
         process!.error = true;
       } else {
-        closeServer();
+        closeServerProcess();
       }
     });
 
@@ -165,8 +175,8 @@ export function getServeHandler(): Deno.ServeHandler {
     }
   }
 
-  // Close the server
-  function closeServer() {
+  // Close the server process
+  function closeServerProcess() {
     try {
       process?.process.kill();
     } catch {
