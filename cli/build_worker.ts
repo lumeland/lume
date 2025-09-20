@@ -165,14 +165,13 @@ function getWaitResponse(url: string): Response {
     <body>
     <p>The site is being rebuilt. This page will reload automatically when it's ready.</p>
     <script type="module">
-      let timeout = 0;
+      const timeout = 1000;
       while (true) {
         try {
           await fetch("${url}");
           document.location = "${url}";
           break;
         } catch {
-          timeout = Math.min(timeout + 1000, 10000);
           await new Promise((resolve) => setTimeout(resolve, timeout));
         }
       }
@@ -181,7 +180,10 @@ function getWaitResponse(url: string): Response {
     </html>`,
     {
       status: 200,
-      headers: { "content-type": "text/html" },
+      headers: {
+        "Content-Type": "text/html",
+        "X-Lume-CMS": "reload",
+      },
     },
   );
 }
