@@ -130,7 +130,7 @@ export function getServeHandler(): Deno.ServeHandler {
     };
 
     process.process.status.then((status) => {
-      if (status.success === false && status.signal !== "SIGTERM") {
+      if (process && status.success === false && status.signal !== "SIGTERM") {
         process!.error = true;
       } else {
         closeServer();

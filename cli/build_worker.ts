@@ -128,19 +128,21 @@ async function build({ type, config, serve, cms }: BuildOptions) {
   }
 
   // Add the reload middleware
-  server.useFirst(async (request, next) => {
-    const response = await next(request);
+  server.addEventListener("start", () => {
+    server.useFirst(async (request, next) => {
+      const response = await next(request);
 
-    // Reload if the response header tells us to
-    if (response.headers.get("X-Lume-CMS") === "reload") {
-      log.info("Reloading the site...");
-      const url = response.headers.get("Location") || request.url;
-      postMessage({ type: "reload" });
-      return getWaitResponse(url);
-    }
+      // Reload if the response header tells us to
+      if (response.headers.get("X-Lume-CMS") === "reload") {
+        log.info("Reloading the site...");
+        const url = response.headers.get("Location") || request.url;
+        postMessage({ type: "reload" });
+        return getWaitResponse(url);
+      }
 
-    return response;
-  });
+      return response;
+    });
+  }, { once: true });
 
   server.useFirst(
     reload({
