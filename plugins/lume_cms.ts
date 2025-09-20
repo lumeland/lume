@@ -70,7 +70,7 @@ export function lumeCMS(userOptions: Options) {
 
       for (const page of site.pages) {
         if (page.src.entry?.path === path) {
-          return site.url(page.data.url, true);
+          return site.url(page.data.url);
         }
       }
     };
