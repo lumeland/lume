@@ -1,6 +1,6 @@
 import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
-import { setEnv } from "../core/utils/env.ts";
+import { env, setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { fromFileUrl } from "../deps/path.ts";
@@ -128,11 +128,12 @@ async function build({ type, config, serve, cms }: BuildOptions) {
   }
 
   // Add the reload middleware
+  const proxied = env<boolean>("LUME_PROXIED");
   server.useFirst(async (request, next) => {
     const response = await next(request);
 
     // Reload if the response header tells us to
-    if (response.headers.get("X-Lume-CMS") === "reload") {
+    if (response.headers.get("X-Lume-CMS") === "reload" && !proxied) {
       log.info("Reloading the site...");
       const url = response.headers.get("Location") || request.url;
       postMessage({ type: "reload" });

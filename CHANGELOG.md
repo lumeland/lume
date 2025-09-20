@@ -8,7 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.10] - Unreleased
 ### Added
-- New flag `--proxied` combined with `--serve` to use a location with a different hostname and port to the server's hostname and port.
+- New env variable `LUME_PROXIED` to use a location with a different hostname and port to the server's hostname and port.
 - Ignore `deno.json` and `deno.jsonc` files by the watcher.
 
 ### Fixed

@@ -1,5 +1,6 @@
 import { parseArgs } from "../../deps/cli.ts";
 import { getFreePort } from "./net.ts";
+import { env } from "./env.ts";
 
 import type { DeepPartial } from "./object.ts";
 import type { SiteOptions } from "../site.ts";
@@ -9,7 +10,7 @@ export function getOptionsFromCli(
 ): DeepPartial<SiteOptions> {
   const cli = parseArgs(Deno.args, {
     string: ["src", "dest", "location", "port", "hostname"],
-    boolean: ["serve", "open", "proxied"],
+    boolean: ["serve", "open"],
     alias: { serve: "s", port: "p", open: "o" },
     ["--"]: true,
   });
@@ -30,25 +31,26 @@ export function getOptionsFromCli(
   let location: URL;
 
   if (serveMode) {
+    const proxied = env<boolean>("LUME_PROXIED");
     location = cli.location
       ? new URL(cli.location)
-      : cli.proxied
+      : proxied
       ? (options.location as URL | undefined) || new URL("http://localhost")
       : new URL("http://localhost");
 
     if (cli.port) {
       port = parseInt(cli.port);
-      if (!cli.proxied) {
+      if (!proxied) {
         location.port = port.toString();
       }
-    } else if (location.port && !cli.proxied) {
+    } else if (location.port && !proxied) {
       port = parseInt(location.port);
     } else if (options.server?.port) {
       port = options.server.port;
-      if (!cli.proxied) {
+      if (!proxied) {
         location.port = port.toString();
       }
-    } else if (!cli.proxied) {
+    } else if (!proxied) {
       port = location.protocol === "https:" ? 443 : getFreePort(3000, 3010);
       location.port = port.toString();
     } else {
@@ -57,14 +59,14 @@ export function getOptionsFromCli(
 
     if (cli.hostname) {
       hostname = cli.hostname;
-      if (!cli.proxied) {
+      if (!proxied) {
         location.hostname = hostname;
       }
-    } else if (options.server?.hostname && !cli.location && !cli.proxied) {
+    } else if (options.server?.hostname && !cli.location && !proxied) {
       hostname = options.server.hostname;
       location.hostname = hostname;
     } else {
-      hostname = cli.proxied ? "localhost" : location.hostname;
+      hostname = proxied ? "localhost" : location.hostname;
     }
   } else {
     location = cli.location
