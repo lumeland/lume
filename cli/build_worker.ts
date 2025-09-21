@@ -185,6 +185,7 @@ function getWaitResponse(url: string): Response {
       headers: {
         "Content-Type": "text/html",
         "X-Lume-CMS": "reload",
+        "X-Lume-Location": url,
       },
     },
   );
