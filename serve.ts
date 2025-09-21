@@ -64,13 +64,14 @@ export function getServeHandler(): Deno.ServeHandler {
   function startServer(url: URL): Response {
     const body = new BodyStream();
     body.message(`
-      <html><head><title>Initializing...</title>
+      <html><head>
       <meta charset="utf-8">
+      <title>Agarde…</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script>setInterval(() => window.scroll({top:document.documentElement.scrollHeight,behavior:"instant"}), 10);</script>
       <style>
       body {
-        font-family: sans-serif;
+        font-family: system-ui, sans-serif;
         margin: 0;
         padding: 2rem;
         box-sizing: border-box;
@@ -83,7 +84,7 @@ export function getServeHandler(): Deno.ServeHandler {
       pre {
         overflow-x: auto;
       }
-      </style></head><body><pre><samp>Initializing. Please wait...`);
+      </style></head><body><pre><samp>Please wait…\n`);
 
     startProcess(url, body).then(() => {
       if (process?.error) {
@@ -147,8 +148,6 @@ export function getServeHandler(): Deno.ServeHandler {
         closeServerProcess();
       }
     });
-
-    body.chunk("Building the site...");
 
     if (showTerminal) {
       body.readStd(process.process.stdout);

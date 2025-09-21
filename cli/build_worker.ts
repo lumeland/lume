@@ -161,12 +161,27 @@ function getWaitResponse(url: string): Response {
   return new Response(
     `<html>
     <head>
-      <title>Rebuilding site…</title>
-      <style>body{font-family:sans-serif;margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh}</style>
+      <meta charset="utf-8">
+      <title>Agarde…</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: minmax(0, 800px);
+        align-content: center;
+        justify-content: center;
+        min-height: 100vh
+      }
+      </style>
     </head>
     <body>
-    <p>The site is being rebuilt. This page will reload automatically when it's ready.</p>
+    <pre><samp>Please wait…\n</samp></pre>
     <script type="module">
+      const samp = document.querySelector("samp");
       const timeout = 1000;
       while (true) {
         try {
@@ -174,6 +189,7 @@ function getWaitResponse(url: string): Response {
           document.location = "${url}";
           break;
         } catch {
+          samp.textContent += ".";
           await new Promise((resolve) => setTimeout(resolve, timeout));
         }
       }
