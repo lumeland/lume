@@ -52,7 +52,7 @@ export function getServeHandler(): Deno.ServeHandler {
 
     // Close the server if the response header tells us to
     if (response.headers.get("X-Lume-CMS") === "reload") {
-      closeServerProcess();
+      await closeServerProcess();
       const url = response.headers.get("Location") || request.url;
       return startServer(new URL(url));
     }
@@ -176,9 +176,12 @@ export function getServeHandler(): Deno.ServeHandler {
   }
 
   // Close the server process
-  function closeServerProcess() {
+  async function closeServerProcess() {
     try {
-      process?.process.kill();
+      if (process) {
+        process.process.kill();
+        await process.process.output();
+      }
     } catch {
       // The process is already dead
     }
