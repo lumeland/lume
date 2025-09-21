@@ -55,7 +55,7 @@ export function getServeHandler(): Deno.ServeHandler {
       await closeServerProcess();
       const url = response.headers.get("X-Lume-Location") ||
         response.headers.get("Location") || request.url;
-      return startServer(new URL(url));
+      return startServer(new URL(url, request.url));
     }
 
     return response;
