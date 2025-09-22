@@ -84,7 +84,10 @@ export function inline(userOptions?: Options) {
     }
 
     async function readContent(url: string, asDataUrl: boolean) {
-      const path = getPath(site.options.location.pathname, url);
+      const { pathname } = site.options.location;
+      const path = url.startsWith(pathname)
+        ? posix.join("/", url.slice(pathname.length))
+        : url;
       const content = await getFileContent(site, path, asDataUrl);
 
       // Return the raw content or undefined if the file is not found
