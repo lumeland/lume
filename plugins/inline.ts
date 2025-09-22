@@ -174,11 +174,13 @@ export function inline(userOptions?: Options) {
 
       try {
         if (ext === ".svg") {
+          console.log({ path });
           const content = await getContent(path);
+          console.log({ content });
           const div = element.ownerDocument!.createElement("div");
           div.innerHTML = content;
           const svg = div.firstElementChild;
-
+          console.log({ svg });
           if (svg) {
             const width = parseInt(element.getAttribute("width") || "0");
             const height = parseInt(element.getAttribute("height") || "0");
