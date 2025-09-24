@@ -70,7 +70,6 @@ export function tailwindCSS(userOptions?: Options) {
           site,
           file,
         );
-
         const compiler = await compile(content, {
           from: filename,
           async loadModule(id, base, resourceHint) {
@@ -120,6 +119,11 @@ export function tailwindCSS(userOptions?: Options) {
               id = id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
               const content = await readFile(id);
               return { content, path: id, base };
+            }
+
+            // If the path is relative, and no base is provided, use the CSS file location as base
+            if (!base && id.startsWith(".")) {
+              base = dirname(filename);
             }
 
             const path = resolveInclude(id, options.includes || "", base);
