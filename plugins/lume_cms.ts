@@ -125,7 +125,7 @@ export function lumeCMS(userOptions: Options) {
     // Show the CMS in the debugbar
     function showCMS() {
       const item = site.debugBar?.buildItem(
-        `CMS running at <a href="${baseUrl}" target="_blank">${baseUrl}</a>`,
+        `CMS running at <a href="${baseUrl}">${baseUrl}</a>`,
         "lume cms",
       );
       if (item) {
