@@ -627,7 +627,7 @@ snapshot[`icons plugin 3`] = `
     },
   },
   {
-    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M6 12h12m-6 6V6"/></svg>',
+    content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M6 12h12m-6 6V6"/></svg>',
     data: {
       basename: "add-duotone",
       page: [

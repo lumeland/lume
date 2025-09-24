@@ -15,7 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - `inline` plugin: Error when basePath plugin is used before.
 - `icons` plugin: clear the plugin list on update.
-- Updated dependencies: `vento`, `satori`, `sharp`, `esbuild`, `deno-loader`, `sass` and some icons.
+- Updated dependencies: `vento`, `satori`, `sharp`, `esbuild`, `deno-loader`, `sass`, `unocss` and some icons.
 
 ## [3.0.9] - 2025-09-11
 ### Added
