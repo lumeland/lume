@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.11] - Unreleased
+### Fixed
+- `tailwind` plugin: Support to import styles from npm. (i.e. `npm:npm:tw-animate-css`)
+
 ## [3.0.10] - 2025-09-24
 ### Added
 - New env variable `LUME_PROXIED` to use a location with a different hostname and port to the server's hostname and port.
@@ -248,6 +252,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#779]: https://github.com/lumeland/lume/issues/779
 [#782]: https://github.com/lumeland/lume/issues/782
 
+[3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...HEAD
 [3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/lumeland/lume/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/lumeland/lume/compare/v3.0.7...v3.0.8

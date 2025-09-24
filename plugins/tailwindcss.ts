@@ -115,6 +115,13 @@ export function tailwindCSS(userOptions?: Options) {
               }
             }
 
+            // Support npm: prefix to load from npm CDN (ex: npm:tw-animate-css)
+            if (id.startsWith("npm:")) {
+              id = id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+              const content = await readFile(id);
+              return { content, path: id, base };
+            }
+
             const path = resolveInclude(id, options.includes || "", base);
             const content = await site.getContent(path, false);
 
