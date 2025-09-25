@@ -54,18 +54,13 @@ export function isFromCdn(specifier: string): boolean {
 }
 
 export function getFile(specifier: string): string {
-  const result = parseNpm(specifier) || parseGh(specifier);
-  if (!result) {
+  if (specifier.startsWith("npm:")) {
+    return specifier.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+  } else if (specifier.startsWith("gh:")) {
+    return specifier.replace("gh:", "https://cdn.jsdelivr.net/gh/");
+  } else {
     throw new Error(`Invalid specifier: ${specifier}`);
   }
-
-  const [type, name, version, filename] = result;
-
-  if (filename.includes("*")) {
-    throw new Error(`Specifier must not contain glob pattern: ${specifier}`);
-  }
-
-  return `https://cdn.jsdelivr.net/${type}/${name}@${version}${filename}`;
 }
 
 export async function getVersion(
