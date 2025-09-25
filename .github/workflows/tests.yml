@@ -33,6 +33,8 @@ jobs:
         run: deno lint
 
       - name: Run tests
+        # https://github.com/denoland/deno/issues/30831
+        if: matrix.os != 'ubuntu-latest' && matrix.deno_version != 'lts'
         run: deno task test
 
       - name: Test upgrade
