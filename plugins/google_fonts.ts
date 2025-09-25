@@ -114,10 +114,11 @@ interface FontFace {
 }
 
 function extractFontFaces(css: string, name: string): FontFace[] {
-  const fontFaces = css.match(/\/\*[^*]+\*\/[\s]+@font-face {[^}]+}/g) || [];
+  const fontFaces = css.match(/(\/\*[^*]+\*\/)?[\s]+@font-face {[^}]+}/g) || [];
 
+  let unnamedSubsetId = 1;
   return fontFaces.map((fontFace) => {
-    const subset = fontFace.match(/\/\* ([^*]+) \*\//)?.[1];
+    let subset = fontFace.match(/\/\* ([^*]+) \*\//)?.[1];
     let family = fontFace.match(/font-family: '([^']+)'/)?.[1];
     const style = fontFace.match(/font-style: ([^;]+);/)?.[1];
     const weight = fontFace.match(/font-weight: ([^;]+);/)?.[1];
@@ -125,7 +126,12 @@ function extractFontFaces(css: string, name: string): FontFace[] {
     const src = fontFace.match(/src: url\('?([^']+)'?\)/)?.[1];
     const range = fontFace.match(/unicode-range: ([^;]+);/)?.[1];
 
-    if (!family || !style || !weight || !src || !range || !subset) {
+    if (!subset) {
+      subset = `[${unnamedSubsetId}]`;
+      unnamedSubsetId++;
+    }
+
+    if (!family || !style || !weight || !src || !range) {
       throw new Error("Invalid font-face");
     }
 
