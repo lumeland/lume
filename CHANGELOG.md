@@ -8,8 +8,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.11] - Unreleased
 ### Fixed
-- `tailwind` plugin: Support to import styles from npm. (i.e. `npm:npm:tw-animate-css`)
+- `tailwind` plugin: Support to import styles from npm. (i.e. `@import "npm:tw-animate-css"`)
 - `tailwind` plugin: Imports with relative paths don't work.
+- Updated dependencies.
 
 ## [3.0.10] - 2025-09-24
 ### Added
