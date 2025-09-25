@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.0.11] - Unreleased
+### Added
+- Support for `gh:` specifiers in Lightningcss, Postcss and Tailwindcss.
+
 ### Fixed
 - `tailwind` plugin: Support to import styles from npm. (i.e. `@import "npm:tw-animate-css"`)
 - `tailwind` plugin: Imports with relative paths don't work.

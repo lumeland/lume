@@ -11,6 +11,7 @@ import { readFile } from "../core/utils/read.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Features, transform } from "../deps/lightningcss.ts";
+import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
@@ -115,8 +116,8 @@ export function tailwindCSS(userOptions?: Options) {
             }
 
             // Support npm: prefix to load from npm CDN (ex: npm:tw-animate-css)
-            if (id.startsWith("npm:")) {
-              id = id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+            if (isFromCdn(id)) {
+              id = getFile(id);
               const content = await readFile(id);
               return { content, path: id, base };
             }

@@ -5,7 +5,7 @@ import { env, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
-import { getFiles } from "./utils/cdn.ts";
+import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
 
 import FS from "./fs.ts";
 import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
@@ -553,8 +553,8 @@ export default class Site {
       return;
     }
 
-    // Remote files
-    if (from.startsWith("npm:") || from.startsWith("gh:")) {
+    // Remote files from NPM or GitHub CDN
+    if (isFromCdn(from)) {
       // It's a pattern
       if (from.includes("*")) {
         const specifier = from;
@@ -571,11 +571,7 @@ export default class Site {
       }
 
       // Copy only the main file
-      if (from.startsWith("npm:")) {
-        from = from.replace("npm:", "https://cdn.jsdelivr.net/npm/");
-      } else {
-        from = from.replace("gh:", "https://cdn.jsdelivr.net/gh/");
-      }
+      from = getFile(from);
     }
 
     if (isUrl(from)) {

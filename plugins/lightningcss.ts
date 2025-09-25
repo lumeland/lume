@@ -9,6 +9,7 @@ import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
 import { log } from "../core/utils/log.ts";
 import { browsers, version } from "../core/utils/browsers.ts";
+import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type { Item } from "../deps/debugbar.ts";
 import type Site from "../core/site.ts";
@@ -164,8 +165,8 @@ export function lightningCSS(userOptions?: Options) {
           ...options.options,
           resolver: {
             resolve(id: string, from: string) {
-              if (id.startsWith("npm:")) {
-                return id.replace("npm:", "https://cdn.jsdelivr.net/npm/");
+              if (isFromCdn(id)) {
+                return getFile(id);
               }
               return resolveInclude(id, includes, posix.dirname(from));
             },

@@ -49,6 +49,25 @@ export async function getFiles(
   return fileMap;
 }
 
+export function isFromCdn(specifier: string): boolean {
+  return specifier.startsWith("npm:") || specifier.startsWith("gh:");
+}
+
+export function getFile(specifier: string): string {
+  const result = parseNpm(specifier) || parseGh(specifier);
+  if (!result) {
+    throw new Error(`Invalid specifier: ${specifier}`);
+  }
+
+  const [type, name, version, filename] = result;
+
+  if (filename.includes("*")) {
+    throw new Error(`Specifier must not contain glob pattern: ${specifier}`);
+  }
+
+  return `https://cdn.jsdelivr.net/${type}/${name}@${version}${filename}`;
+}
+
 export async function getVersion(
   type: PackageType,
   name: string,

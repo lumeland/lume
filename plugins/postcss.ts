@@ -8,6 +8,7 @@ import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
 import { browsers, versionString } from "../core/utils/browsers.ts";
+import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
@@ -149,7 +150,7 @@ function configureImport(site: Site, includes: string) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
-      if (id.startsWith("npm:")) {
+      if (isFromCdn(id)) {
         return "/" + id;
       }
 
@@ -158,8 +159,8 @@ function configureImport(site: Site, includes: string) {
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
-      if (file.startsWith("/npm:")) {
-        const url = file.replace("/npm:", "https://cdn.jsdelivr.net/npm/");
+      if (file.startsWith("/") && isFromCdn(file.slice(1))) {
+        const url = getFile(file.slice(1));
         return await readFile(url);
       }
 
