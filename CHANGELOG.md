@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.0.12] - Unreleased
+### Fixed
+- `feed` plugin: revert changes introduced in 3.0.7 (Use `textContent` instead of `innerHTML` to get values using CSS selectors).
+
 ## [3.0.11] - 2025-09-25
 ### Added
 - Support for `gh:` specifiers in Lightningcss, Postcss and Tailwindcss.
@@ -259,6 +263,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#782]: https://github.com/lumeland/lume/issues/782
 [#785]: https://github.com/lumeland/lume/issues/785
 
+[3.0.12]: https://github.com/lumeland/lume/compare/v3.0.11...HEAD
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/lumeland/lume/compare/v3.0.8...v3.0.9
