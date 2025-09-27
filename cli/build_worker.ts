@@ -32,7 +32,7 @@ interface BuildOptions {
   cms?: boolean;
 }
 
-async function build({ type, config, serve, cms }: BuildOptions) {
+async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   // Set the live reload environment variable to add hash to the URLs in the module loader
   setEnv("LUME_LIVE_RELOAD", "true");
 
@@ -41,15 +41,17 @@ async function build({ type, config, serve, cms }: BuildOptions) {
 
   // Setup LumeCMS
   let _cms: URL | undefined;
-  if (cms) {
+  // deno-lint-ignore no-explicit-any
+  let cms: any;
+
+  if (loadCms) {
     _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
-    if (!_cms) {
-      throw new Error("CMS config file not found");
+    if (_cms) {
+      const mod = await import(_cms.toString());
+      cms = mod.default;
+      site.use(lumeCMS({ cms }));
     }
-
-    const mod = await import(_cms.toString());
-    site.use(lumeCMS({ cms: mod.default }));
   }
 
   // Include the config files to the watcher
@@ -108,11 +110,25 @@ async function build({ type, config, serve, cms }: BuildOptions) {
     if (type === "build") {
       const ipAddr = localIp();
 
-      log.info("  Server started at:");
+      log.info("\n  Server started at:");
       log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
 
       if (ipAddr) {
         log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
+      }
+
+      if (cms) {
+        log.info("\n  LumeCMS started at:");
+        const { basePath } = cms.options;
+        log.info(
+          `  <green>http://${hostname}:${port}${basePath}</green> (local)`,
+        );
+
+        if (ipAddr) {
+          log.info(
+            `  <green>http://${ipAddr}:${port}${basePath}</green> (network)`,
+          );
+        }
       }
 
       if (open) {
@@ -137,7 +153,7 @@ async function build({ type, config, serve, cms }: BuildOptions) {
         log.info("Reloading the site...");
         const url = response.headers.get("Location") || request.url;
         postMessage({ type: "reload" });
-        return getWaitResponse(url);
+        return createWaitResponse(url);
       }
 
       return response;
@@ -157,7 +173,7 @@ async function build({ type, config, serve, cms }: BuildOptions) {
   server.start();
 }
 
-function getWaitResponse(url: string): Response {
+function createWaitResponse(url: string): Response {
   return new Response(
     `<html>
     <head>

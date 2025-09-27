@@ -68,46 +68,6 @@ const run = new Command()
     await run(config, scripts);
   });
 
-const cms = new Command()
-  .description("Run Lume CMS.")
-  .option(
-    "--config <config:string>",
-    "The config file path.",
-  )
-  .option(
-    "--src <src:string>",
-    "The source directory for your site.",
-    { default: "./" },
-  )
-  .option(
-    "--dest <dest:string>",
-    "The build destination.",
-    { default: "_site" },
-  )
-  .option(
-    "--location <location>",
-    "The URL location of the site.",
-    { default: "http://localhost" },
-  )
-  .option(
-    "-p, --port <port:number>",
-    "The port where the server runs.",
-    { default: 3000 },
-  )
-  .option(
-    "--hostname <hostname>",
-    "The hostname where the server runs.",
-    { default: "localhost" },
-  )
-  .option(
-    "-o, --open",
-    "Open the CMS in a browser.",
-  )
-  .action(async ({ config }) => {
-    const { runCms } = await import("./cli/cms.ts");
-    runCms(config);
-  });
-
 const lume = new Command()
   .name("🔥lume")
   .version(() => getCurrentVersion())
@@ -143,19 +103,19 @@ const lume = new Command()
     "Start a live-reloading web server and watch changes.",
   )
   .option(
-    "--cms",
-    "Run LumeCMS.",
+    "--no-cms",
+    "Don't start LumeCMS if _cms.ts file is detected.",
     { depends: ["serve"] },
   )
   .option(
     "-p, --port <port:number>",
     "The port where the server runs.",
-    { default: 3000 },
+    { default: 3000, depends: ["serve"] },
   )
   .option(
     "--hostname <hostname>",
     "The hostname where the server runs.",
-    { default: "localhost" },
+    { default: "localhost", depends: ["serve"] },
   )
   .option(
     "-o, --open",
@@ -178,7 +138,6 @@ const lume = new Command()
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)
   .command("run <script...>", run)
-  .command("cms", cms)
   .command("completions", new CompletionsCommand());
 
 try {
