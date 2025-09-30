@@ -19,6 +19,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Removed
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
 
+### Fixed
+- Updated dependencies: `decap_cms`, `lightningcss`.
+
+
 ## [3.0.12] - Unreleased
 ### Fixed
 - `feed` plugin: revert changes introduced in 3.0.7 (Use `textContent` instead of `innerHTML` to get values using CSS selectors).

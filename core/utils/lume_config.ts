@@ -63,6 +63,7 @@ export const pluginNames = [
   // Assets in HTML
   "inline",
   "sri",
+  "validate_html",
 
   // Generate files with URLs
   "feed",
