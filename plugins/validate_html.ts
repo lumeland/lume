@@ -43,14 +43,18 @@ export const defaults: Config = {
   },
 };
 
-export default function (userOptions?: Config) {
+export function validateHtml(userOptions?: Config) {
   const options = merge(defaults, userOptions);
-  const htmlvalidate = new HtmlValidate(options);
+  const htmlvalidate = new HtmlValidate({
+    plugins: options.plugins,
+    rules: options.rules,
+    extends: options.extends,
+  });
 
   return (site: Lume.Site) => {
-    site.process([".html"], validateHtml);
+    site.process([".html"], processValidateHtml);
 
-    async function validateHtml(pages: Lume.Page[]) {
+    async function processValidateHtml(pages: Lume.Page[]) {
       const reports: Set<Report> = new Set();
       for (const page of pages) {
         const report = await htmlvalidate.validateString(
@@ -75,11 +79,6 @@ export default function (userOptions?: Config) {
       if (report) {
         report.icon = "file-html";
         report.empty = "No HTML errors found! 🎉";
-        // report.contexts = {
-        //   "broken link": {
-        //     background: "error",
-        //   },
-        // };
 
         for (const result of merged.results) {
           report.items.push({
@@ -103,8 +102,6 @@ export default function (userOptions?: Config) {
             ],
           });
         }
-
-        console.log(report.items);
       }
     }
   };
@@ -147,3 +144,5 @@ function escapeHtml(text: string) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
 }
+
+export default validateHtml;

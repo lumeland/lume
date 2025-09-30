@@ -1,0 +1,12 @@
+export const snapshot = {};
+
+snapshot[`validate HTML plugin 1`] = `
+[
+  {
+    messages: [
+      "no-implicit-button-type",
+    ],
+    url: "/",
+  },
+]
+`;
