@@ -58,6 +58,7 @@ Deno.test("Plugins list in init", () => {
     "transform_images",
     "inline",
     "sri",
+    "validate_html",
     "feed",
     "sitemap",
     "minify_html",
