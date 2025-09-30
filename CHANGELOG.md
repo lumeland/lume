@@ -7,6 +7,14 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.0] - Unreleased
+### Added
+- `site.remote()` function that works like `site.remoteFile()` but allows an array of glob patterns for `npm:` and `gh:`.  
+  For example:
+  ```js
+  site.remote("_includes/styles/animate", "npm:animate.css@4.1.1/source", ["/**/*.css"]);
+  ```
+  `site.remoteFile()` is now an alias of `site.remote()`.
+
 ### Removed
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
 

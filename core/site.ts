@@ -557,9 +557,12 @@ export default class Site {
     if (isFromCdn(from)) {
       // It's a pattern
       if (from.includes("*")) {
-        const specifier = from;
+        const pos = from.indexOf("*");
+        const specifier = from.slice(0, pos);
+        const patterns = [from.slice(pos)];
+
         this.addEventListener("beforeBuild", async () => {
-          const files = await getFiles(specifier);
+          const files = await getFiles(specifier, patterns);
           for (const [name, url] of files) {
             const dest = typeof to === "function"
               ? () => (to as Destination)(name)
@@ -630,10 +633,50 @@ export default class Site {
     return this;
   }
 
+  /** Define remote fallback files for missing local files */
+  remote(filename: string, url: string, paths?: string[]): this {
+    // Single file
+    if (!paths) {
+      this.fs.remoteFiles.set(
+        posix.join("/", filename),
+        isFromCdn(url) ? getFile(url) : url,
+      );
+      return this;
+    }
+
+    // Multiple files from CDN or filesystem
+    if (isFromCdn(url) || url.startsWith("file:")) {
+      return this.addEventListener("beforeBuild", async () => {
+        const files = await getFiles(url, paths);
+        for (const [path, url] of files.entries()) {
+          this.fs.remoteFiles.set(
+            posix.join("/", filename, path),
+            url,
+          );
+        }
+      });
+    }
+
+    const { pathname } = new URL(url);
+    if (pathname.includes("*")) {
+      throw new Error(
+        `It's not possible to use wildcards in remote URL paths ("${url}"). Use npm: or gh: specifiers instead.`,
+      );
+    }
+
+    for (const path of paths) {
+      this.fs.remoteFiles.set(
+        posix.join("/", filename, path),
+        new URL(posix.join(pathname, path), url).href,
+      );
+    }
+
+    return this;
+  }
+
   /** Define a remote fallback for a missing local file */
   remoteFile(filename: string, url: string): this {
-    this.fs.remoteFiles.set(posix.join("/", filename), url);
-    return this;
+    return this.remote(filename, url);
   }
 
   /** Clear the dest directory and any cache */
