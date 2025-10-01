@@ -18,6 +18,7 @@ const orderMatter = new Set([
   "transform_images",
   "inline",
   "base_path",
+  "feed",
 ]);
 
 const validOrder = pluginNames
