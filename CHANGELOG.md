@@ -8,8 +8,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.0] - Unreleased
 ### Added
-- Detect `form[action]` values by `modify_urls`, `base_path`, `check_urls` and `relative_urls` plugins.
 - New plugin `validate_html`.
+- New plugin `partytown`.
+- Detect `form[action]` values by `modify_urls`, `base_path`, `check_urls` and `relative_urls` plugins.
 - `site.remote()` function that works like `site.remoteFile()` but allows an array of glob patterns for `npm:` and `gh:`.  
   For example:
   ```js

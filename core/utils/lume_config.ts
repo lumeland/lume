@@ -31,6 +31,7 @@ export const pluginNames = [
   "filter_pages",
   "redirects",
   "icons",
+  "partytown",
 
   // CSS + JS + source maps
   "esbuild",

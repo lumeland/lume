@@ -34,6 +34,7 @@ Deno.test("Plugins list in init", () => {
     "filter_pages",
     "redirects",
     "icons",
+    "partytown",
     "esbuild",
     "terser",
     "katex",
