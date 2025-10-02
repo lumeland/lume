@@ -101,7 +101,7 @@ export function katex(userOptions?: Options) {
           site.page({ content, url });
         }),
       );
-    });
+    }, { once: true });
 
     // Output the CSS file
     site.process(async function processKatexCss() {
