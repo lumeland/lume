@@ -80,7 +80,7 @@ export function googleFonts(userOptions: Options) {
 
         cssCode += generateCss(fontFaces, relativePath);
       }
-    });
+    }, { once: true });
 
     // Output the CSS file
     site.process(async function processGoogleFonts() {

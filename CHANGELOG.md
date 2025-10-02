@@ -22,6 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
 
 ### Fixed
+- Plugins `katex` and `google_fonts` fails when running `site.build()` multiple times.
 - Updated dependencies: `decap_cms`, `lightningcss`.
 
 
