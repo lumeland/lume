@@ -147,7 +147,7 @@ export const catalogs: Catalog[] = [
     id: "sargam",
     name: capitalize,
     src:
-      "https://cdn.jsdelivr.net/npm/sargam-icons@1.5.0/Icons/{variant}/si_{name}.svg",
+      "https://cdn.jsdelivr.net/npm/sargam-icons@1.5.1/Icons/{variant}/si_{name}.svg",
     variants: [
       { id: "duotone", path: "Duotone" },
       { id: "fill", path: "Fill" },
