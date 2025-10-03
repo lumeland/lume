@@ -11,7 +11,7 @@ Deno.test("inline plugin", async (t) => {
     copyAttributes: ["custom", /^data-/, /^@/],
   }));
 
-  site.add([".svg", ".js", ".png"]);
+  site.add([".svg", ".js", ".png", ".css"]);
   site.add("favicon.png", "favicon2.png");
 
   await build(site);

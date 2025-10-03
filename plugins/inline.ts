@@ -5,6 +5,7 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { contentType } from "../deps/media_types.ts";
+import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
@@ -24,6 +25,9 @@ export const defaults: Options = {
 };
 
 const cache = new Map();
+const XML_DECLARATION_REGEX = /<\?xml[\s\S]*?\?>/;
+const COMMENT_REGEX = /<!--[\s\S]*?-->/g;
+const LINE_BREAK_REGEX = /\r?\n/g;
 
 /**
  * A plugin to inline the HTML assets,
@@ -34,7 +38,7 @@ export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process([".html"], function processInline(pages) {
+    site.process([".html", ".css"], function processInline(pages) {
       return concurrent(pages, inline);
     });
 
@@ -43,6 +47,36 @@ export function inline(userOptions?: Options) {
     const selector = `[inline]`;
 
     async function inline(page: Page) {
+      if (page.outputPath.endsWith(".css")) {
+        page.text = await walkUrls(
+          page.text,
+          async (url, type) => {
+            if (type !== "url") {
+              return url;
+            }
+
+            const [path, query] = url.split("?", 2);
+
+            if (!query) {
+              return url;
+            }
+
+            const queryParams = new URLSearchParams(query);
+
+            if (!queryParams.has("inline")) {
+              return url;
+            }
+
+            // Remove the inline query param to get the real file
+            queryParams.delete("inline");
+            const newQuery = queryParams.toString();
+            url = newQuery ? `${path}?${newQuery}` : path;
+            return await getContent(url, true);
+          },
+        );
+        return;
+      }
+
       const templateElements = Array.from(
         page.document.querySelectorAll("template"),
       ).flatMap((template) =>
@@ -102,6 +136,20 @@ export function inline(userOptions?: Options) {
       if (!type) {
         log.warn(`[Inline plugin] Unknown file format ${path}`);
         return;
+      }
+
+      if (url.endsWith(".svg")) {
+        const text = typeof content === "string"
+          ? content
+          : new TextDecoder().decode(content);
+        const code = text
+          .replace(XML_DECLARATION_REGEX, "")
+          .replaceAll(COMMENT_REGEX, "")
+          .replaceAll("#", "%23")
+          .replaceAll(LINE_BREAK_REGEX, "")
+          .trim();
+
+        return `data:${type};charset=UTF-8,${code}`;
       }
 
       return `data:${type};base64,${encodeBase64(content)}`;
