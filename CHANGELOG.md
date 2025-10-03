@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   site.remote("_includes/styles/animate", "npm:animate.css@4.1.1/source", ["/**/*.css"]);
   ```
   `site.remoteFile()` is now an alias of `site.remote()`.
+- `inline` plugin: Add support for CSS. For example `url("/image.png?inline")`.
 
 ### Removed
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
