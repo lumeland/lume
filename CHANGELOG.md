@@ -6,6 +6,28 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.1.0] - Unreleased
+### Added
+- New plugin `validate_html`.
+- New plugin `partytown`.
+- Detect `form[action]` values by `modify_urls`, `base_path`, `check_urls` and `relative_urls` plugins.
+- `site.remote()` function that works like `site.remoteFile()` but allows an array of glob patterns for `npm:` and `gh:`.  
+  For example:
+  ```js
+  site.remote("_includes/styles/animate", "npm:animate.css@4.1.1/source", ["/**/*.css"]);
+  ```
+  `site.remoteFile()` is now an alias of `site.remote()`.
+- `inline` plugin: Add support for CSS. For example `url("/image.png?inline")`.
+- `picture` plugin: Allow to crop images by setting the width and height dimmensions. For example: `200x400`.
+
+### Removed
+- `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
+
+### Fixed
+- Plugins `katex` and `google_fonts` fails when running `site.build()` multiple times.
+- Updated dependencies: `decap_cms`, `lightningcss`, `tailwindcss` and some icons.
+
+
 ## [3.0.12] - Unreleased
 ### Fixed
 - `feed` plugin: revert changes introduced in 3.0.7 (Use `textContent` instead of `innerHTML` to get values using CSS selectors).
@@ -264,6 +286,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#785]: https://github.com/lumeland/lume/issues/785
 
 [3.0.12]: https://github.com/lumeland/lume/compare/v3.0.11...HEAD
+[3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...HEAD
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...v3.0.10
 [3.0.9]: https://github.com/lumeland/lume/compare/v3.0.8...v3.0.9

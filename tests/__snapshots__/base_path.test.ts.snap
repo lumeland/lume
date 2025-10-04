@@ -143,6 +143,7 @@ snapshot[`base_path plugin 3`] = `
   </picture>
   <video poster="/blog/image.jpeg"></video>
   <script id="script-1" src="/blog/script.js"></script>
+  <form action="/blog/action.php"></form>
 
 </body></html>',
     data: {
@@ -170,6 +171,7 @@ snapshot[`base_path plugin 3`] = `
   </picture>
   <video poster="/image.jpeg"></video>
   <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
 </body>
 </html>',
       content: '<!DOCTYPE html>
@@ -195,6 +197,7 @@ snapshot[`base_path plugin 3`] = `
   </picture>
   <video poster="/image.jpeg"></video>
   <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
 </body>
 </html>',
       date: [],

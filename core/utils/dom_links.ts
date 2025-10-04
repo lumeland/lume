@@ -10,6 +10,7 @@ const selectors = {
   poster: "video[poster]",
   srcset: "[srcset]",
   imagesrcset: "[imagesrcset]",
+  action: "form[action]",
 };
 
 export function* searchLinks(document: Document): Iterable<Link> {

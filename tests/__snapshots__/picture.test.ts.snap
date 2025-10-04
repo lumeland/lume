@@ -154,6 +154,9 @@ snapshot[`picture plugin 3`] = `
   <!-- This image will be converted to a picture -->
   <picture><source srcset="/kevin%20schmid%20unsplash-300w.avif 300w, /kevin%20schmid%20unsplash-300w@2.avif 600w" type="image/avif" sizes="600px"><source srcset="/kevin%20schmid%20unsplash-300w.webp 300w, /kevin%20schmid%20unsplash-300w@2.webp 600w" type="image/webp" sizes="600px"><img src="/kevin%20schmid%20unsplash-300w.jpg" sizes="600px" srcset="/kevin%20schmid%20unsplash-300w@2.jpg 600w"></picture>
 
+  <!-- This image will be converted to a square picture -->
+  <picture><source srcset="/kevin%20schmid%20unsplash-300x300.avif, /kevin%20schmid%20unsplash-300x300@2.avif 2x" type="image/avif"><source srcset="/kevin%20schmid%20unsplash-300x300.webp, /kevin%20schmid%20unsplash-300x300@2.webp 2x" type="image/webp"><img src="/kevin%20schmid%20unsplash-300x300.jpg" srcset="/kevin%20schmid%20unsplash-300x300@2.jpg 2x"></picture>
+
 
 </body></html>\`,
     data: {
@@ -194,6 +197,9 @@ snapshot[`picture plugin 3`] = `
 
   <!-- This image will be converted to a picture -->
   <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2" sizes="600px">
+
+  <!-- This image will be converted to a square picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300x300@2">
 </body>
 </html>
 \`,
@@ -233,6 +239,9 @@ snapshot[`picture plugin 3`] = `
 
   <!-- This image will be converted to a picture -->
   <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2" sizes="600px">
+
+  <!-- This image will be converted to a square picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300x300@2">
 </body>
 </html>
 \`,

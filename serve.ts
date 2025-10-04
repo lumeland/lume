@@ -128,7 +128,6 @@ export function getServeHandler(): Deno.ServeHandler {
         "task",
         "lume",
         "--serve",
-        "--cms",
         `--port=${port}`,
         `--hostname=${hostname}`,
         `--location=${location.origin}`,

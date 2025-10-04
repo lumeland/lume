@@ -31,6 +31,7 @@ export const pluginNames = [
   "filter_pages",
   "redirects",
   "icons",
+  "partytown",
 
   // CSS + JS + source maps
   "esbuild",
@@ -63,6 +64,7 @@ export const pluginNames = [
   // Assets in HTML
   "inline",
   "sri",
+  "validate_html",
 
   // Generate files with URLs
   "feed",
