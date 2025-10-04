@@ -8,6 +8,7 @@ import type Site from "../core/site.ts";
 
 interface SourceFormat {
   width?: number;
+  height?: number;
   scales: Record<string, number>;
   format: string;
 }
@@ -95,7 +96,9 @@ export function picture(userOptions?: Options) {
       for (const page of filesAndPages) {
         const path = page.outputPath;
 
-        for (const { paths, width, scales, format } of transforms.values()) {
+        for (
+          const { paths, width, height, scales, format } of transforms.values()
+        ) {
           if (!paths.includes(path)) {
             continue;
           }
@@ -110,7 +113,9 @@ export function picture(userOptions?: Options) {
           for (const [suffix, scale] of Object.entries(scales)) {
             if (width) {
               transformImages.push({
-                resize: width * scale,
+                resize: height
+                  ? [width * scale, height * scale]
+                  : width * scale,
                 suffix,
                 format,
               });
@@ -295,19 +300,23 @@ export function picture(userOptions?: Options) {
       }
 
       for (const size of sizes) {
-        const [width, scales] = parseSize(size);
+        const [width, height, scales] = parseSize(size);
 
         for (const format of formats) {
-          const key = `${width}:${format}`;
+          const key = `${width}:${height}${format}`;
           const sourceFormat = {
             width,
+            height,
             format,
             scales: {} as Record<string, number>,
           };
           sourceFormats.push(sourceFormat);
 
           for (const scale of scales) {
-            const suffix = `-${width}w${scale === 1 ? "" : `@${scale}`}`;
+            const scaleSuffix = scale === 1 ? "" : `@${scale}`;
+            const suffix = height
+              ? `-${width}x${height}${scaleSuffix}`
+              : `-${width}w${scaleSuffix}`;
             sourceFormat.scales[suffix] = scale;
           }
 
@@ -333,14 +342,14 @@ export function picture(userOptions?: Options) {
   };
 }
 
-function parseSize(size: string): [number, number[]] {
-  const match = size.match(/^(\d+)(@([\d.,]+))?$/);
+function parseSize(size: string): [number, number | undefined, number[]] {
+  const match = size.match(/^(\d+)(x(\d+))?(@([\d.,]+))?$/);
 
   if (!match) {
     throw new Error(`Invalid size: ${size}`);
   }
 
-  const [, width, , scales] = match;
+  const [, width, , height, , scales] = match;
 
   // Use a Set to avoid duplicates
   const sizes = new Set<number>([1]);
@@ -348,6 +357,7 @@ function parseSize(size: string): [number, number[]] {
 
   return [
     parseInt(width),
+    height ? parseInt(height) : undefined,
     [...sizes.values()],
   ];
 }
