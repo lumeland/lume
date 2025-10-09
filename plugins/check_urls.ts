@@ -1,6 +1,5 @@
 import { merge } from "../core/utils/object.ts";
 import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
-import { gray, green, red } from "../deps/colors.ts";
 import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { log } from "../core/utils/log.ts";
@@ -25,7 +24,7 @@ export interface Options {
   anchors?: boolean;
 
   /** To output the list to a json file */
-  output?: false | string | ((notFoundUrls: Map<string, Set<string>>) => void);
+  output?: string | ((notFoundUrls: Map<string, Set<string>>) => void);
 }
 
 /** Default options */
@@ -177,7 +176,7 @@ export default function (userOptions?: Options) {
         output(notFound);
       } else if (typeof output === "string") {
         outputFile(notFound, output);
-      } else if (output !== false) {
+      } else {
         outputConsole(notFound);
       }
 
@@ -344,31 +343,24 @@ function outputFile(
   Deno.writeTextFileSync(file, content);
 
   if (notFound.size === 0) {
-    log.info("No broken links found!");
-  } else {
-    log.info(
-      `⛓️‍💥 ${notFound.size} broken links saved to <gray>${file}</gray>`,
-    );
+    log.info("[check_urls plugin] No broken links found!");
+    return;
   }
+
+  log.warn(
+    `[check_urls plugin] ${notFound.size} broken links saved to <gray>${file}</gray>`,
+  );
 }
 
 function outputConsole(notFound: Map<string, Set<string>>) {
   if (notFound.size === 0) {
-    console.log(green("All links are OK!"));
+    log.info("[check_urls plugin] No broken links found!");
     return;
   }
 
-  console.log("");
-  console.log(`${notFound.size} broken link(s):`);
-  for (const [url, refs] of notFound) {
-    console.log("");
-    console.log("⛓️‍💥", red(url));
-    console.log("   Found in:");
-    for (const ref of refs) {
-      console.log(`   ${gray(ref)}`);
-    }
-  }
-  console.log("");
+  log.warn(
+    `[check_urls plugin] ${notFound.size} broken link(s) found. Setup an output file or check the debug bar.`,
+  );
 }
 
 function checkAnchor(id: string, content: string): boolean {

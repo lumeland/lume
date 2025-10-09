@@ -1,4 +1,3 @@
-import { green } from "../deps/colors.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { validateSEO } from "./seo/mod.ts";
@@ -113,36 +112,42 @@ function outputFile(
   reports: Map<string, ErrorMessage[]>,
   file: string,
 ) {
+  const json = [];
+
+  for (const [url, errors] of reports.entries()) {
+    json.push({
+      url,
+      errors: errors.map(getMessage),
+    });
+  }
+
   const content = JSON.stringify(
-    reports,
+    json,
     null,
     2,
   );
+
   Deno.writeTextFileSync(file, content);
 
   if (reports.size === 0) {
-    log.info("No SEO errors found!");
-  } else {
-    log.info(
-      `⛓️‍💥 ${reports.size} SEO errors saved to <gray>${file}</gray>`,
-    );
+    log.info("[seo plugin] No errors found!");
+    return;
   }
+
+  log.warn(
+    `[seo plugin] ${reports.size} SEO error(s) saved to <gray>${file}</gray>`,
+  );
 }
 
 function outputConsole(reports: Map<string, ErrorMessage[]>) {
   if (reports.size === 0) {
-    console.log(green("[validateHTML] Validation successful!"));
+    log.info("[seo plugin] No errors found!");
     return;
   }
 
-  for (const [url, errors] of reports.entries()) {
-    console.error(url);
-    for (const error of errors) {
-      const { title } = getMessage(error);
-      console.error(" - " + title);
-    }
-    console.error("");
-  }
+  log.warn(
+    `[seo plugin] ${reports.size} SEO error(s) found. Setup an output file or check the debug bar.`,
+  );
 }
 
 const errors = messages as Record<string, string>;
