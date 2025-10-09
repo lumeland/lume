@@ -29,10 +29,11 @@ export interface Config {
   rules?: ConfigData["rules"];
 
   /** Customize the report output */
-  output?: string | ((report: Report) => void);
+  output?: false | string | ((report: Report) => void);
 }
 
 export const defaults: Config = {
+  output: false,
   extends: ["html-validate:recommended", "html-validate:document"],
   rules: {
     "doctype-style": "off",
@@ -67,11 +68,12 @@ export function validateHtml(userOptions?: Config) {
       const merged = Reporter.merge(Array.from(reports.values()));
 
       // Output
-      if (typeof options.output === "function") {
-        options.output(merged);
-      } else if (typeof options.output === "string") {
-        outputFile(merged, options.output);
-      } else {
+      const { output } = options;
+      if (typeof output === "function") {
+        output(merged);
+      } else if (typeof output === "string") {
+        outputFile(merged, output);
+      } else if (output !== false) {
         outputConsole(merged);
       }
 

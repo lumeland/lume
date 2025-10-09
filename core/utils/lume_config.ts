@@ -69,6 +69,7 @@ export const pluginNames = [
   // Generate files with URLs
   "feed",
   "sitemap",
+  "seo",
 
   // Final minification and compression
   "minify_html",

@@ -25,7 +25,7 @@ export interface Options {
   anchors?: boolean;
 
   /** To output the list to a json file */
-  output?: string | ((notFoundUrls: Map<string, Set<string>>) => void);
+  output?: false | string | ((notFoundUrls: Map<string, Set<string>>) => void);
 }
 
 /** Default options */
@@ -172,11 +172,12 @@ export default function (userOptions?: Options) {
       );
 
       // Output
-      if (typeof options.output === "function") {
-        options.output(notFound);
-      } else if (typeof options.output === "string") {
-        outputFile(notFound, options.output);
-      } else {
+      const { output } = options;
+      if (typeof output === "function") {
+        output(notFound);
+      } else if (typeof output === "string") {
+        outputFile(notFound, output);
+      } else if (output !== false) {
         outputConsole(notFound);
       }
 
