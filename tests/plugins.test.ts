@@ -1,7 +1,9 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { pluginNames } from "../core/utils/lume_config.ts";
 
-const totalPlugins = Array.from(Deno.readDirSync("plugins")).length;
+const totalPlugins = Array.from(Deno.readDirSync("plugins"))
+  .filter((entry) => entry.isFile && entry.name.endsWith(".ts"))
+  .length;
 
 Deno.test("Plugins list in init", () => {
   equals(pluginNames.length, totalPlugins - 9);
@@ -62,6 +64,7 @@ Deno.test("Plugins list in init", () => {
     "validate_html",
     "feed",
     "sitemap",
+    "seo",
     "minify_html",
     "brotli",
     "gzip",

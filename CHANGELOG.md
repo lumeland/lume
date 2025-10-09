@@ -19,6 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   `site.remoteFile()` is now an alias of `site.remote()`.
 - `inline` plugin: Add support for CSS. For example `url("/image.png?inline")`.
 - `picture` plugin: Allow to crop images by setting the width and height dimmensions. For example: `200x400`.
+- `check_urls` plugin: Add `output: false` to don't print the result in the terminal.
 
 ### Removed
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.

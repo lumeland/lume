@@ -12,47 +12,46 @@ const commonWords = new Set<string>(enCommonWords);
 
 export interface Config {
   /** Customize the report output */
-  output?: string | ((reports: Map<string, ErrorMessage[]>) => void);
+  output?: false | string | ((reports: Map<string, ErrorMessage[]>) => void);
 
   /** A query to filter the pages to validate */
   query?: string;
 
-  /** Options for SEO validation per language */
-  options?: Record<string, SeoOptions>;
+  /** Options for SEO validation */
+  options?: SeoOptions;
 }
 
 export const defaults: Config = {
+  output: false,
   options: {
-    en: {
-      commonWords,
-      title: {
-        maxCommonWords: 45,
-        max: 80,
-        unit: "grapheme",
-      },
-      h1: {
-        maxCommonWords: 45,
-        max: 80,
-        unit: "grapheme",
-      },
-      description: {
-        maxCommonWords: 55,
-        min: 1,
-        max: 2,
-        unit: "sentence",
-      },
-      headingsOrder: true,
-      imgAlt: {
-        min: 2,
-        max: 1500,
-        unit: "character",
-      },
-      body: {
-        maxCommonWords: 42,
-        min: 1500,
-        max: 30000,
-        unit: "word",
-      },
+    commonWords,
+    title: {
+      maxCommonWords: 45,
+      max: 80,
+      unit: "grapheme",
+    },
+    h1: {
+      maxCommonWords: 45,
+      max: 80,
+      unit: "grapheme",
+    },
+    description: {
+      maxCommonWords: 55,
+      min: 1,
+      max: 2,
+      unit: "sentence",
+    },
+    headingsOrder: true,
+    imgAlt: {
+      min: 2,
+      max: 1500,
+      unit: "character",
+    },
+    body: {
+      maxCommonWords: 42,
+      min: 1500,
+      max: 30000,
+      unit: "word",
     },
   },
 };
@@ -67,16 +66,11 @@ export function SEO(userOptions?: Config) {
       const pages = site.search.pages(options.query);
       const reports: Map<string, ErrorMessage[]> = new Map();
       for (const page of pages) {
-        const lang = page.lang ?? "en";
-        const optionsLang = options.options?.[lang];
-        if (!optionsLang) {
-          continue;
-        }
         const errors = validateSEO(
           page.page.document,
           page.url,
-          lang,
-          optionsLang,
+          page.lang ?? "en",
+          options.options,
         );
         if (errors.length) {
           reports.set(page.url, errors);
@@ -84,11 +78,12 @@ export function SEO(userOptions?: Config) {
       }
 
       // Output
-      if (typeof options.output === "function") {
-        options.output(reports);
-      } else if (typeof options.output === "string") {
-        outputFile(reports, options.output);
-      } else {
+      const { output } = options;
+      if (typeof output === "function") {
+        output(reports);
+      } else if (typeof output === "string") {
+        outputFile(reports, output);
+      } else if (output !== false) {
         outputConsole(reports);
       }
 
