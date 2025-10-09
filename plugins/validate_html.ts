@@ -1,11 +1,9 @@
 import {
   ConfigData,
-  formatterFactory,
   HtmlValidate,
   Report,
   Reporter,
 } from "../deps/html_validate.ts";
-import { green } from "../deps/colors.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
@@ -29,11 +27,10 @@ export interface Config {
   rules?: ConfigData["rules"];
 
   /** Customize the report output */
-  output?: false | string | ((report: Report) => void);
+  output?: string | ((report: Report) => void);
 }
 
 export const defaults: Config = {
-  output: false,
   extends: ["html-validate:recommended", "html-validate:document"],
   rules: {
     "doctype-style": "off",
@@ -121,23 +118,22 @@ function outputFile(
   Deno.writeTextFileSync(file, content);
 
   if (reports.valid) {
-    log.info("No HTML errors found!");
-  } else {
-    log.info(
-      `⛓️‍💥 ${reports.errorCount} validation errors saved to <gray>${file}</gray>`,
-    );
+    log.info("[validate_html plugin] No HTML errors found!");
+    return;
   }
+  log.warn(
+    `[validate_html plugin] ${reports.errorCount} HTML error(s) saved to <gray>${file}</gray>`,
+  );
 }
 
 function outputConsole(reports: Report) {
   if (reports.valid) {
-    console.log(green("[validateHTML] Validation successful!"));
+    log.info("[validate_html plugin] No HTML errors found!");
     return;
   }
-
-  const format = formatterFactory("text");
-  console.error("[validateHTML]:\n" + format(reports.results));
-  console.error("");
+  log.warn(
+    `[validate_html plugin] ${reports.errorCount} HTML error(s) found. Setup an output file or check the debug bar.`,
+  );
 }
 
 function escapeHtml(text: string) {
