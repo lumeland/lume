@@ -17,6 +17,8 @@
   "TITLE_TOO_SHORT": "[TITLE] Length ({count} {unit}s) is less than minimum ({min})",
   "TITLE_TOO_LONG": "[TITLE] Length ({count} {unit}(s)) exceeds maximum ({max})",
   "TITLE_COMMON_WORDS": "[TITLE] The number of common words ({count}) exceeds the maximum ({maxCommonWords})",
+  "DUPLICATE_TITLE": "[TITLE] This title is duplicated in other pages",
+  "DUPLICATE_DESCRIPTION": "[DESCRIPTION] The meta-description is duplicated in other pages",
   "DESCRIPTION_MISSING": "[DESCRIPTION] No meta-description found in document",
   "DESCRIPTION_TOO_SHORT": "[DESCRIPTION] The length ({count} {unit}s) is less than minimum ({min})",
   "DESCRIPTION_TOO_LONG": "[DESCRIPTION] The length ({count} {unit}(s)) exceeds maximum ({max})",

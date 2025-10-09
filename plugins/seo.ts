@@ -1,11 +1,12 @@
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import { validateSEO } from "./seo/mod.ts";
+import { refresh, validatePage } from "./seo/mod.ts";
 import { Options as SeoOptions } from "./seo/mod.ts";
 import messages from "./seo/messages.json" with { type: "json" };
 import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 
 import type { ErrorMessage } from "./seo/mod.ts";
+import { Item } from "../deps/debugbar.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 
@@ -41,6 +42,8 @@ export const defaults: Config = {
       unit: "sentence",
     },
     headingsOrder: true,
+    duplicateTitles: true,
+    duplicateDescription: true,
     imgAlt: {
       min: 2,
       max: 1500,
@@ -64,8 +67,9 @@ export function SEO(userOptions?: Config) {
     function processSEO() {
       const pages = site.search.pages(options.query);
       const reports: Map<string, ErrorMessage[]> = new Map();
+      refresh();
       for (const page of pages) {
-        const errors = validateSEO(
+        const errors = validatePage(
           page.page.document,
           page.url,
           page.lang ?? "en",
@@ -82,7 +86,7 @@ export function SEO(userOptions?: Config) {
         output(reports);
       } else if (typeof output === "string") {
         outputFile(reports, output);
-      } else if (output !== false) {
+      } else {
         outputConsole(reports);
       }
 
@@ -154,20 +158,26 @@ const errors = messages as Record<string, string>;
 interface Message {
   title: string;
   text?: string;
+  items?: Item[];
 }
 function getMessage(error: ErrorMessage): Message {
   if (typeof error === "string") {
     return { title: errors[error] ?? error };
   }
 
-  const { msg, text, ...params } = error;
+  const { msg, text, items, ...params } = error;
   const template = errors[msg] ?? msg;
 
   const title = template.replace(
     /\{(\w+)\}/g,
     (match, key) => String(params[key] ?? match),
   );
-  return { title, text };
+
+  return {
+    title,
+    text,
+    items: items?.map((item) => ({ title: item })),
+  };
 }
 
 export default SEO;
