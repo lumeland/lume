@@ -1,6 +1,7 @@
 export type ErrorMessage = string | {
   msg: string;
   text?: string;
+  items?: string[];
   [key: string]: unknown;
 };
 
@@ -9,6 +10,8 @@ export interface Options {
   title?: Rules | false;
   h1?: Rules | false;
   headingsOrder?: boolean;
+  duplicateTitles?: boolean;
+  duplicateDescription?: boolean;
   description?: Rules | false;
   url?: Rules | false;
   imgAlt?: Rules | false;
@@ -37,7 +40,15 @@ export interface Rules {
   maxCommonWords?: number;
 }
 
-export function validateSEO(
+const titles = new Map<string, string[]>(); // title -> url[]
+const descriptions = new Map<string, string[]>(); // description -> url[]
+
+export function refresh() {
+  titles.clear();
+  descriptions.clear();
+}
+
+export function validatePage(
   document: Document,
   pageUrl: string,
   lang: string = "en",
@@ -64,6 +75,14 @@ export function validateSEO(
 
   if (options.title) {
     results.push(...title(document, lang, options.title, commonWords));
+  }
+
+  if (options.duplicateTitles) {
+    results.push(...duplicateTitles(document, pageUrl));
+  }
+
+  if (options.duplicateDescription) {
+    results.push(...duplicateDescription(document, pageUrl));
   }
 
   if (options.description) {
@@ -152,6 +171,52 @@ function headingOrder(document: Document): ErrorMessage[] {
     previousLevel = currentLevel;
   }
   return results;
+}
+
+function duplicateTitles(document: Document, pageUrl: string): ErrorMessage[] {
+  const rawTitle = document.title;
+
+  if (rawTitle) {
+    const key = rawTitle?.toLowerCase().trim() || "";
+    const items = titles.get(key);
+    if (items) {
+      items.push(pageUrl);
+      return [{
+        msg: "DUPLICATE_TITLE",
+        text: rawTitle,
+        items,
+      }];
+    }
+    titles.set(key, [pageUrl]);
+  }
+
+  return [];
+}
+
+function duplicateDescription(
+  document: Document,
+  pageUrl: string,
+): ErrorMessage[] {
+  const descriptionElement = document.querySelector(
+    'meta[name="description"]',
+  );
+  const rawDescription = descriptionElement?.getAttribute("content");
+
+  if (rawDescription) {
+    const key = rawDescription?.toLowerCase().trim() || "";
+    const items = descriptions.get(key);
+    if (items) {
+      items.push(pageUrl);
+      return [{
+        msg: "DUPLICATE_DESCRIPTION",
+        text: rawDescription,
+        items,
+      }];
+    }
+    descriptions.set(key, [pageUrl]);
+  }
+
+  return [];
 }
 
 function imgAlt(
