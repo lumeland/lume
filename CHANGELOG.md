@@ -22,6 +22,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Changed
 - `check_urls` plugin: broken links details are no longer shown in the console. Use the debug bar or export to a file to see the details.
+- Switch from `deno.land/x` to `jsdelivr`.
 
 ### Removed
 - `cms` command. LumeCMS is automatically initialized if the file `_cms.ts` or `_cms.js` is detected. Use `--no-cms` option to disable it.
