@@ -1,12 +1,13 @@
 const res = await fetch(
-  `https://cdn.deno.land/lume_init/meta/versions.json`,
+  "https://data.jsdelivr.com/v1/package/gh/lumeland/init",
 );
-const versions = await res.json();
+const data = await res.json();
+const version = data.versions.unshift();
 const { run } = await import(
-  `https://deno.land/x/lume_init@${versions.latest}/mod.ts`
+  `https://cdn.jsdelivr.net/gh/lumeland/init@${version}/mod.ts`
 );
 const { default: upgrade } = await import(
-  `https://deno.land/x/lume_init@${versions.latest}/upgrade.ts`
+  `https://cdn.jsdelivr.net/gh/lumeland/init@${version}/upgrade.ts`
 );
 
 export { run, upgrade };
