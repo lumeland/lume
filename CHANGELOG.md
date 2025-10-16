@@ -29,7 +29,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Plugins `katex` and `google_fonts` fails when running `site.build()` multiple times.
-- Updated dependencies: `std`, `katex`, `html-validate`, `unocss`, `decap_cms`, `lightningcss`, `tailwindcss`, `vento`, `deno-loader` and some icons.
+- Updated dependencies: `std`, `katex`, `html-validate`, `unocss`, `decap_cms`, `lightningcss`, `tailwindcss`, `vento`, `deno-loader`, `eta` and some icons.
 
 
 ## [3.0.12] - Unreleased
