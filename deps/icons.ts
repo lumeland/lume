@@ -220,6 +220,17 @@ export const catalogs: Catalog[] = [
     src:
       "https://cdn.jsdelivr.net/gh/radix-ui/icons@bde33b13aa5848555f5512ac12155930fb4beb7d/packages/radix-icons/icons/{name}.svg",
   },
+  {
+    // https://ionic.io/ionicons
+    id: "ionicons",
+    src:
+      "https://cdn.jsdelivr.net/npm/ionicons@8.0.13/dist/svg/{name}{variant}.svg",
+    variants: [
+      { id: "outline", path: "-outline" },
+      { id: "filled", path: "" },
+      { id: "sharp", path: "-sharp" },
+    ],
+  },
 ];
 
 function capitalize(s: string) {

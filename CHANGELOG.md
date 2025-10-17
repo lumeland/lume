@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.1.1] - Unreleased
+### Added
+- Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
+
 ## [3.1.0] - 2025-10-17
 ### Added
 - New plugin `validate_html`.
@@ -285,6 +289,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#782]: https://github.com/lumeland/lume/issues/782
 [#785]: https://github.com/lumeland/lume/issues/785
 
+[3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...HEAD
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...v3.0.10
