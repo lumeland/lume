@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.1] - Unreleased
 ### Added
 - Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
+- `site.remote()` allow a string as the third argument.
 
 ### Fixed
 - Ensure url pathname is normalized in `serveFile` #789

@@ -634,7 +634,7 @@ export default class Site {
   }
 
   /** Define remote fallback files for missing local files */
-  remote(filename: string, url: string, paths?: string[]): this {
+  remote(filename: string, url: string, paths?: string | string[]): this {
     // Single file
     if (!paths) {
       this.fs.remoteFiles.set(
@@ -643,6 +643,8 @@ export default class Site {
       );
       return this;
     }
+
+    paths = Array.isArray(paths) ? paths : [paths];
 
     // Multiple files from CDN or filesystem
     if (isFromCdn(url) || url.startsWith("file:")) {

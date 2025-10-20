@@ -6,16 +6,37 @@ export type ErrorMessage = string | {
 };
 
 export interface Options {
+  /** Common words to check against */
   commonWords?: Set<string>;
+
+  /** Rules for title validation */
   title?: Rules | false;
+
+  /** Rules for H1 validation */
   h1?: Rules | false;
+
+  /** Validate that headings are in a proper order */
   headingsOrder?: boolean;
+
+  /** Check that page titles are not duplicated */
   duplicateTitles?: boolean;
+
+  /** Check that page descriptions are not duplicated */
   duplicateDescription?: boolean;
+
+  /** Rules for description validation */
   description?: Rules | false;
+
+  /** Rules for URL validation */
   url?: Rules | false;
+
+  /** Rules for image alt text validation */
   imgAlt?: Rules | false;
+
+  /** Rules for image title text validation */
   imgTitle?: Rules | false;
+
+  /** Rules for body content validation */
   body?: Rules | false;
 }
 
