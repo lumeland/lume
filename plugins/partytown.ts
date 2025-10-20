@@ -4,6 +4,10 @@ import type { PartytownConfig } from "../deps/partytown.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
+  /**
+   * Custom Partytown configuration
+   * @link https://partytown.qwik.dev/configuration/
+   */
   options?: PartytownConfig;
 }
 
