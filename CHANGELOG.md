@@ -11,7 +11,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
 
 ### Fixed
-- Ensure url pathname is normalized in `serveFile`
+- Ensure url pathname is normalized in `serveFile` #789
+- Updated some icons.
 
 ## [3.1.0] - 2025-10-17
 ### Added
