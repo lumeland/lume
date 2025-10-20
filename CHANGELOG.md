@@ -7,7 +7,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [2.5.4] - 2025-10-20
 ### Fixed
-- Ensure url pathname is normalized in `serveFile`
+- Ensure url pathname is normalized in `serveFile`.
+- Types updated to Deno 2.5.
+- Lint rules introduced in recent versions of Deno.
 
 ## [2.5.3] - 2025-03-13
 ### Added
