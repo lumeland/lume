@@ -70,7 +70,7 @@ export function favicon(userOptions?: Options) {
       site.options.watcher.ignore.push(cacheFolder);
     }
 
-    async function getContent(): Promise<Uint8Array | string> {
+    async function getContent(): Promise<Uint8Array<ArrayBuffer> | string> {
       const content = options.input.endsWith(".svg")
         ? await site.getContent(options.input, textLoader)
         : await site.getContent(options.input, binLoader);
@@ -152,7 +152,7 @@ function addIcon(document: Document, attributes: Record<string, string>) {
 }
 
 async function buildIco(
-  content: Uint8Array | string,
+  content: Uint8Array<ArrayBuffer> | string,
   format: keyof sharp.FormatEnum | "ico",
   size: number[],
   cache?: Cache,
@@ -165,7 +165,7 @@ async function buildIco(
     }
   }
 
-  let image: Uint8Array;
+  let image: Uint8Array<ArrayBuffer>;
 
   if (format === "ico") {
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
@@ -177,7 +177,7 @@ async function buildIco(
     image = await (await create(content))
       .resize(size[0], size[0])
       .toFormat(format)
-      .toBuffer();
+      .toBuffer() as Uint8Array<ArrayBuffer>;
   }
 
   if (cache) {

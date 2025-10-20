@@ -18,9 +18,9 @@ export default class Cache {
   }
 
   async set(
-    content: string | Uint8Array,
+    content: string | Uint8Array<ArrayBuffer>,
     key: unknown,
-    result: string | Uint8Array,
+    result: string | Uint8Array<ArrayBuffer>,
   ): Promise<void> {
     const [dir, file] = await paths(content, key);
 
@@ -34,7 +34,7 @@ export default class Cache {
   }
 
   async getFile(
-    content: Uint8Array | string,
+    content: Uint8Array<ArrayBuffer> | string,
     key: unknown,
   ): Promise<string> {
     const [dir, file] = await paths(content, key);
@@ -43,9 +43,9 @@ export default class Cache {
   }
 
   async get(
-    content: Uint8Array | string,
+    content: Uint8Array<ArrayBuffer> | string,
     key: unknown,
-  ): Promise<Uint8Array | undefined> {
+  ): Promise<Uint8Array<ArrayBuffer> | undefined> {
     try {
       return await Deno.readFile(await this.getFile(content, key));
     } catch {
@@ -67,7 +67,7 @@ export default class Cache {
 }
 
 function paths(
-  content: string | Uint8Array,
+  content: string | Uint8Array<ArrayBuffer>,
   key: unknown,
 ): Promise<[string, string]> {
   return Promise.all([

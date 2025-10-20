@@ -116,7 +116,7 @@ export function transformImages(userOptions?: Partial<Options>) {
         return;
       }
 
-      const content = page.content as Uint8Array | string;
+      const content = page.content as Uint8Array<ArrayBuffer> | string;
       const transformations = removeDuplicatedTransformations(
         getTransformations(transData),
       );

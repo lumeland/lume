@@ -8434,36 +8434,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(1040)",
-    data: {
-      basename: "jp-font-normal-700-[2]",
-      content: "Uint8Array(1040)",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "asset",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/fonts/jp-font-normal-700-%5B2%5D.woff2",
-    },
-    src: {
-      asset: true,
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: "Uint8Array(11672)",
+    content: "Uint8Array(11608)",
     data: {
       basename: "jp-font-normal-700-latin",
-      content: "Uint8Array(11672)",
+      content: "Uint8Array(11608)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8940,17 +8914,6 @@ snapshot[`Use a placeholder 3`] = `
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   font-display: swap;
 }
-/* [2] */
-@font-face {
-  font-family: "jp-font";
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: normal;
-  src: url("fonts/jp-font-normal-700-[2].woff2") format("woff2");
-  unicode-range: U+ffd7, U+ffda-ffdc, U+ffe0-ffe2, U+ffe4, U+ffe6, U+ffe8-ffee, U+1f100-1f10c, U+1f110-1f16c, U+1f170-1f1ac, U+1f200-1f202, U+1f210-1f234;
-  font-display: swap;
-}
-
 /* latin */
 @font-face {
   font-family: "jp-font";

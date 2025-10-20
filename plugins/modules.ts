@@ -47,7 +47,7 @@ export class ModuleEngine implements Engine {
   renderComponent(content: unknown, data: Record<string, unknown>): string {
     return typeof content === "function"
       ? content(data, this.helpers)
-      : content;
+      : content as string;
   }
 
   addHelper(name: string, fn: Helper) {

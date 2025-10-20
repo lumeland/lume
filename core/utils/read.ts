@@ -11,12 +11,12 @@ const useCache = env<boolean>("LUME_NOCACHE") !== true;
 export async function read(
   path: string,
   isBinary: boolean,
-): Promise<Uint8Array | string>;
+): Promise<Uint8Array<ArrayBuffer> | string>;
 export async function read(
   path: string,
   isBinary: true,
   init?: RequestInit,
-): Promise<Uint8Array>;
+): Promise<Uint8Array<ArrayBuffer>>;
 export async function read(
   path: string,
   isBinary: false,
@@ -26,7 +26,7 @@ export async function read(
   path: string,
   isBinary: boolean,
   init?: RequestInit,
-): Promise<string | Uint8Array> {
+): Promise<string | Uint8Array<ArrayBuffer>> {
   if (!isUrl(path)) {
     if (path.startsWith("data:")) {
       const response = await fetch(path);

@@ -152,7 +152,7 @@ export interface Src {
 }
 
 /** The .content property for a Page */
-export type Content = Uint8Array | string;
+export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
 export interface RawData {

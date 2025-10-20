@@ -848,7 +848,7 @@ export default class Site {
   async getContent(
     file: string,
     loader: Loader,
-  ): Promise<string | Uint8Array | undefined> {
+  ): Promise<string | Uint8Array<ArrayBuffer> | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
 
@@ -872,14 +872,14 @@ export default class Site {
     if (staticFile) {
       return (await staticFile.src.entry.getContent(loader)).content as
         | string
-        | Uint8Array;
+        | Uint8Array<ArrayBuffer>;
     }
 
     // Read the source files directly
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        return (await entry.getContent(loader)).content as string | Uint8Array;
+        return (await entry.getContent(loader)).content as string | Uint8Array<ArrayBuffer>;
       }
     } catch {
       // Ignore error

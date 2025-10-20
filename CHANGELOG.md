@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [2.5.4] - 2025-10-20
+### Fixed
+- Ensure url pathname is normalized in `serveFile`
+
 ## [2.5.3] - 2025-03-13
 ### Added
 - `picture` plugin: Support for `<source>` elements.
@@ -741,6 +745,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#733]: https://github.com/lumeland/lume/issues/733
 [#735]: https://github.com/lumeland/lume/issues/735
 
+[2.5.4]: https://github.com/lumeland/lume/compare/v2.5.3...v2.5.4
 [2.5.3]: https://github.com/lumeland/lume/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/lumeland/lume/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/lumeland/lume/compare/v2.5.0...v2.5.1
