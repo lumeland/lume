@@ -10,6 +10,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
 
+### Fixed
+- Ensure url pathname is normalized in `serveFile`
+
 ## [3.1.0] - 2025-10-17
 ### Added
 - New plugin `validate_html`.
