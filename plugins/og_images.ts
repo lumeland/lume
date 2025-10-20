@@ -124,7 +124,9 @@ export function ogImages(userOptions?: Options) {
       }
 
       const svg = await satori(jsx, satoriOptions);
-      const content = await (await create(svg)).toBuffer() as Uint8Array<ArrayBuffer>;
+      const content = await (await create(svg)).toBuffer() as Uint8Array<
+        ArrayBuffer
+      >;
 
       if (cache) {
         await cache.set(new Uint8Array(), jsx, content);

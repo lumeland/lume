@@ -879,7 +879,9 @@ export default class Site {
     try {
       const entry = this.fs.entries.get(file);
       if (entry) {
-        return (await entry.getContent(loader)).content as string | Uint8Array<ArrayBuffer>;
+        return (await entry.getContent(loader)).content as
+          | string
+          | Uint8Array<ArrayBuffer>;
       }
     } catch {
       // Ignore error
