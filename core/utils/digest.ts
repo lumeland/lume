@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { crypto } from "../../deps/crypto.ts";
 import { encodeHex } from "../../deps/hex.ts";
 
@@ -6,7 +7,7 @@ const encoder = new TextEncoder();
 
 /** Digest a message using SHA-1 algorithm */
 export async function sha1(
-  message: string | Uint8Array<ArrayBuffer>,
+  message: string | Uint8Array<any>,
 ): Promise<string> {
   if (typeof message === "string") {
     message = encoder.encode(message);
@@ -18,7 +19,7 @@ export async function sha1(
 
 /** Digest a message using MD5 algorithm */
 export async function md5(
-  message: string | Uint8Array<ArrayBuffer>,
+  message: string | Uint8Array<any>,
 ): Promise<string> {
   if (typeof message === "string") {
     message = encoder.encode(message);
