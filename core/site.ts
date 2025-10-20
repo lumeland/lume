@@ -1156,9 +1156,6 @@ export interface SiteOptions {
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
 
-  /** Whether the site is in preview mode */
-  preview?: boolean;
-
   /** The default includes path */
   includes: string;
 
