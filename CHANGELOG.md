@@ -6,13 +6,13 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.1.1] - Unreleased
+## [3.1.1] - 2025-10-20
 ### Added
 - Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
 - `site.remote()` allow a string as the third argument.
 
 ### Fixed
-- Ensure url pathname is normalized in `serveFile` #789
+- Ensure url pathname is normalized in `serveFile` [#789]
 - Updated some icons.
 
 ## [3.1.0] - 2025-10-17
@@ -293,8 +293,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#779]: https://github.com/lumeland/lume/issues/779
 [#782]: https://github.com/lumeland/lume/issues/782
 [#785]: https://github.com/lumeland/lume/issues/785
+[#789]: https://github.com/lumeland/lume/issues/789
 
-[3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...HEAD
+[3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
 [3.0.10]: https://github.com/lumeland/lume/compare/v3.0.9...v3.0.10
