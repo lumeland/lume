@@ -186,7 +186,7 @@ function headingOrder(document: Document): ErrorMessage[] {
       results.push({
         msg: "HEADING_ORDER",
         heading: heading.tagName,
-        text: heading.textContent,
+        text: heading.textContent ?? undefined,
       });
     }
     previousLevel = currentLevel;
