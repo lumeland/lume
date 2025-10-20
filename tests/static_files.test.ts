@@ -1,4 +1,5 @@
-import { assertSiteSnapshot, build, getSite } from "./utils.ts";
+import { assertSiteSnapshot, build, getSite, runRequest } from "./utils.ts";
+import { assertEquals } from "../deps/assert.ts";
 
 Deno.test("Copy static files", async (t) => {
   const site = getSite({
@@ -32,4 +33,20 @@ Deno.test("Copy static files", async (t) => {
 
   await build(site);
   await assertSiteSnapshot(t, site);
+});
+
+Deno.test("Ensure file doesn't resolve outside root", async () => {
+  const site = getSite({
+    src: "static_files",
+  });
+
+  const server = site.getServer();
+
+  const response = await runRequest(
+    server,
+    new Request("http://localhost/..%2fno.txt"),
+  );
+
+  await response.body?.cancel();
+  assertEquals(response.status, 404);
 });
