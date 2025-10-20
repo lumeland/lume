@@ -31,5 +31,12 @@
   },
   "imports": {
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.1/"
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-import-prefix"
+      ]
+    }
   }
 }
