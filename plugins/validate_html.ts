@@ -50,36 +50,47 @@ export function validateHtml(userOptions?: Config) {
   });
 
   return (site: Lume.Site) => {
+    let reports: Report | undefined;
     site.process([".html"], processValidateHtml);
 
+    function output() {
+      if (!reports) {
+        return;
+      }
+
+      const { output } = options;
+      if (typeof output === "function") {
+        output(reports);
+      } else if (typeof output === "string") {
+        outputFile(reports, output);
+      } else if (output !== false) {
+        outputConsole(reports);
+      }
+    }
+
+    site.addEventListener("afterUpdate", output);
+    site.addEventListener("afterBuild", output);
+
     async function processValidateHtml(pages: Lume.Page[]) {
-      const reports: Set<Report> = new Set();
+      reports = undefined;
+      const pageReports: Set<Report> = new Set();
+
       for (const page of pages) {
         const report = await htmlvalidate.validateString(
           page.text,
           page.data.url,
         );
-        reports.add(report);
+        pageReports.add(report);
       }
 
-      const merged = Reporter.merge(Array.from(reports.values()));
-
-      // Output
-      const { output } = options;
-      if (typeof output === "function") {
-        output(merged);
-      } else if (typeof output === "string") {
-        outputFile(merged, output);
-      } else if (output !== false) {
-        outputConsole(merged);
-      }
+      reports = Reporter.merge(Array.from(pageReports.values()));
 
       const report = site.debugBar?.collection("HTML validator");
       if (report) {
         report.icon = "file-html";
         report.empty = "No HTML errors found! 🎉";
 
-        for (const result of merged.results) {
+        for (const result of reports.results) {
           report.items.push({
             title: result.filePath!,
             items: Array.from(result.messages).map((message) => {

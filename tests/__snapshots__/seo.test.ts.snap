@@ -1,0 +1,13 @@
+export const snapshot = {};
+
+snapshot[`SEO plugin 1`] = `
+[
+  {
+    messages: [
+      "DESCRIPTION_MISSING",
+      "BODY_TOO_SHORT",
+    ],
+    url: "/",
+  },
+]
+`;

@@ -62,12 +62,29 @@ export function SEO(userOptions?: Config) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {
+    const reports: Map<string, ErrorMessage[]> = new Map();
+
     site.process(processSEO);
 
+    function output() {
+      // Output
+      const { output } = options;
+      if (typeof output === "function") {
+        output(reports);
+      } else if (typeof output === "string") {
+        outputFile(reports, output);
+      } else {
+        outputConsole(reports);
+      }
+    }
+
+    site.addEventListener("afterUpdate", output);
+    site.addEventListener("afterBuild", output);
+
     function processSEO() {
-      const pages = site.search.pages(options.query);
-      const reports: Map<string, ErrorMessage[]> = new Map();
+      reports.clear();
       refresh();
+      const pages = site.search.pages(options.query);
       for (const page of pages) {
         const errors = validatePage(
           page.page.document,
@@ -78,16 +95,6 @@ export function SEO(userOptions?: Config) {
         if (errors.length) {
           reports.set(page.url, errors);
         }
-      }
-
-      // Output
-      const { output } = options;
-      if (typeof output === "function") {
-        output(reports);
-      } else if (typeof output === "string") {
-        outputFile(reports, output);
-      } else {
-        outputConsole(reports);
       }
 
       const report = site.debugBar?.collection("SEO");

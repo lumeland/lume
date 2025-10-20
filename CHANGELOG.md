@@ -6,6 +6,12 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.1.2] - Unreleased
+### Fixed
+- Ensure console output for validate_html and seo plugins are after the build process.
+- Added missing tests for SEO plugin.
+- Added export-ignore paths to `.gitattributes`.
+
 ## [3.1.1] - 2025-10-20
 ### Added
 - Plugin `icons`: added [Ionicons catalog](https://ionic.io/ionicons)
@@ -295,6 +301,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#785]: https://github.com/lumeland/lume/issues/785
 [#789]: https://github.com/lumeland/lume/issues/789
 
+[3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...HEAD
 [3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
