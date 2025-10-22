@@ -10,7 +10,7 @@ import { Item } from "../deps/debugbar.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 
-export interface Config {
+export interface Options {
   /** Customize the report output */
   output?: false | string | ((reports: Map<string, ErrorMessage[]>) => void);
 
@@ -21,7 +21,7 @@ export interface Config {
   options?: SeoOptions;
 }
 
-export const defaults: Config = {
+export const defaults: Options = {
   output: false,
   options: {
     commonWords,
@@ -58,7 +58,7 @@ export const defaults: Config = {
   },
 };
 
-export function SEO(userOptions?: Config) {
+export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {

@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Ensure console output for validate_html and seo plugins are after the build process.
 - `run` command.
 - Added missing tests for SEO plugin.
+- Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.
 - Added export-ignore paths to `.gitattributes`.
 
 ## [3.1.1] - 2025-10-20

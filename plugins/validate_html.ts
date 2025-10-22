@@ -7,7 +7,7 @@ import {
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
-export interface Config {
+export interface Options {
   /**
    * List of plugins to load
    * @link https://html-validate.org/usage/#plugins
@@ -30,7 +30,7 @@ export interface Config {
   output?: string | ((report: Report) => void);
 }
 
-export const defaults: Config = {
+export const defaults: Options = {
   extends: ["html-validate:recommended", "html-validate:document"],
   rules: {
     "doctype-style": "off",
@@ -41,7 +41,7 @@ export const defaults: Config = {
   },
 };
 
-export function validateHtml(userOptions?: Config) {
+export function validateHtml(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   const htmlvalidate = new HtmlValidate({
     plugins: options.plugins,
