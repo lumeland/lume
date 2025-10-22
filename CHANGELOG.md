@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Added missing tests for SEO plugin.
 - Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.
 - Added export-ignore paths to `.gitattributes`.
+- Updated dependencies: `deno-loader`, `tailwindcss`.
 
 ## [3.1.1] - 2025-10-20
 ### Added
