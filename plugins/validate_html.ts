@@ -10,19 +10,19 @@ import { log } from "../core/utils/log.ts";
 export interface Options {
   /**
    * List of plugins to load
-   * @link https://html-validate.org/usage/#plugins
+   * @see https://html-validate.org/usage/#plugins
    */
   plugins?: ConfigData["plugins"];
 
   /**
    * List of configuration presets to extend.
-   * @link https://html-validate.org/usage/#extends
+   * @see https://html-validate.org/usage/#extends
    */
   extends?: string[];
 
   /**
    * Rules configuration
-   * @link https://html-validate.org/usage/#rules
+   * @see https://html-validate.org/usage/#rules
    */
   rules?: ConfigData["rules"];
 

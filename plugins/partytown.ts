@@ -6,7 +6,7 @@ import type Site from "../core/site.ts";
 export interface Options {
   /**
    * Custom Partytown configuration
-   * @link https://partytown.qwik.dev/configuration/
+   * @see https://partytown.qwik.dev/configuration/
    */
   options?: PartytownConfig;
 }
