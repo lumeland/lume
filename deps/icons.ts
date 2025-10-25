@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.546.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.548.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -147,7 +147,7 @@ export const catalogs: Catalog[] = [
     id: "sargam",
     name: capitalize,
     src:
-      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.4/Icons/{variant}/si_{name}.svg",
+      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.5/Icons/{variant}/si_{name}.svg",
     variants: [
       { id: "duotone", path: "Duotone" },
       { id: "fill", path: "Fill" },

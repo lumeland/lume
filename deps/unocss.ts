@@ -8,6 +8,6 @@ export {
 export { presetWind3 } from "npm:@unocss/preset-wind3@66.5.4";
 export { default as transformerVariantGroup } from "npm:@unocss/transformer-variant-group@66.5.4";
 export { default as transformerDirectives } from "npm:@unocss/transformer-directives@66.5.4";
-export { default as MagicString } from "npm:magic-string@0.30.19";
+export { default as MagicString } from "npm:magic-string@0.30.21";
 
 export const resetUrl = "https://cdn.jsdelivr.net/npm/@unocss/reset@66.5.4";
