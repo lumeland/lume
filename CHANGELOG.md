@@ -7,13 +7,19 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.2] - Unreleased
+### Added
+- `search.file()` to search for a single file.
+
+### Changed
+- Cache results of `search.files()`.
+
 ### Fixed
-- Ensure console output for validate_html and seo plugins are after the build process.
+- Ensure console output for validate_html and seo plugins is shown after the build process.
 - `run` command.
 - Added missing tests for SEO plugin.
 - Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.
 - Added export-ignore paths to `.gitattributes`.
-- `site.remote()`: support commit SHA
+- `site.remote()`: support commit SHA for GitHub versions.
 - Updated dependencies: `deno-loader`, `tailwindcss`, `html-validate`, `magic-string`, `minify-html` and some icons.
 
 ## [3.1.1] - 2025-10-20

@@ -26,6 +26,7 @@ export default class Searcher {
   #files: StaticFile[];
   #sourceData: Map<string, Partial<Data>>;
   #cache = new Map<string, Data[]>();
+  #cacheFiles = new Map<string, string[]>();
   #filters: Filter[];
 
   constructor(options: Options) {
@@ -38,6 +39,7 @@ export default class Searcher {
   /** Clear the cache (used after a change in watch mode) */
   deleteCache() {
     this.#cache.clear();
+    this.#cacheFiles.clear();
   }
 
   /**
@@ -78,19 +80,12 @@ export default class Searcher {
 
   /** Search files using a glob */
   files(globOrRegexp?: RegExp | string): string[] {
-    const files = this.#files.map((file) => file.outputPath);
-    const pages = this.#pages.map((page) => page.outputPath);
-    const allFiles = [...files, ...pages];
+    return this.#searchFiles(globOrRegexp);
+  }
 
-    if (!globOrRegexp) {
-      return allFiles;
-    }
-
-    const regexp = typeof globOrRegexp === "string"
-      ? globToRegExp(globOrRegexp)
-      : globOrRegexp;
-
-    return allFiles.filter((file) => regexp.test(file));
+  /** Search a single file using a glob */
+  file(globOrRegexp?: RegExp | string): string | undefined {
+    return this.#searchFiles(globOrRegexp)[0];
   }
 
   /** Returns all values from the same key of a search */
@@ -153,6 +148,30 @@ export default class Searcher {
     result.sort(buildSort(sort));
     this.#cache.set(id, result);
     return [...result] as (Data & T)[];
+  }
+
+  #searchFiles(globOrRegexp?: RegExp | string): string[] {
+    const id = typeof globOrRegexp === "string"
+      ? globOrRegexp
+      : globOrRegexp?.source || "";
+
+    if (this.#cacheFiles.has(id)) {
+      return [...this.#cacheFiles.get(id)!];
+    }
+
+    const files = this.#files.map((file) => file.outputPath);
+    const pages = this.#pages.map((page) => page.outputPath);
+    let result: string[] = [...files, ...pages];
+
+    if (typeof globOrRegexp === "string") {
+      const regexp = globToRegExp(globOrRegexp);
+      result = result.filter((file) => regexp.test(file));
+    } else if (globOrRegexp instanceof RegExp) {
+      result = result.filter((file) => globOrRegexp.test(file));
+    }
+
+    this.#cacheFiles.set(id, result);
+    return [...result];
   }
 }
 
