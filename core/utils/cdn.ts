@@ -119,6 +119,11 @@ export async function getVersion(
   name: string,
   version: string,
 ): Promise<string | undefined> {
+  // Check if the version is a hash (commit SHA)
+  if (type === "gh" && /^[0-9a-f]{7,40}$/.test(version)) {
+    return version;
+  }
+  // Fetch versions from jsDelivr API
   const url = `https://data.jsdelivr.com/v1/package/${type}/${name}`;
   const res = await fetch(url);
   if (!res.ok) {
