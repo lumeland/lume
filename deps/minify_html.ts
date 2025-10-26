@@ -1,4 +1,4 @@
-export { minify } from "jsr:/@minify-html/deno@0.16.4";
+export { minify } from "jsr:@minify-html/deno@0.18.1";
 
 export interface Options {
   /** Do not minify DOCTYPEs. Minified DOCTYPEs may not be spec compliant. */
