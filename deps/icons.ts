@@ -147,7 +147,7 @@ export const catalogs: Catalog[] = [
     id: "sargam",
     name: capitalize,
     src:
-      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.5/Icons/{variant}/si_{name}.svg",
+      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.6/Icons/{variant}/si_{name}.svg",
     variants: [
       { id: "duotone", path: "Duotone" },
       { id: "fill", path: "Fill" },
@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.312/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.313/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
