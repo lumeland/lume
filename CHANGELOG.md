@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Changed
 - Cache results of `search.files()`.
+- LumeCMS: Don't enable draft previews by default.
 
 ### Fixed
 - Ensure console output for validate_html and seo plugins is shown after the build process.

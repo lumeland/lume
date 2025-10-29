@@ -33,8 +33,6 @@ export function lumeCMS(userOptions: Options) {
   }
 
   return (site: Site) => {
-    // Enable drafts previews in the CMS
-    setEnv("LUME_DRAFTS", "true");
     setEnv("LUME_CMS", "true");
 
     // Set the site URL if it's not set
