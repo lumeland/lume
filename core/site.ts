@@ -831,28 +831,31 @@ export default class Site {
     let draftPages = 0;
     const [_pages, _staticFiles] = await this.source.build((_, page) => {
       if (page?.data.draft) {
-        draftPages++;
+        ++draftPages;
       }
       return !page?.data.draft || showDrafts === true;
     }, filters);
 
-    const item = this.debugBar?.endMeasure(
+    this.debugBar?.endMeasure(
       "load",
       `[Loading] ${_pages.length} pages and ${_staticFiles.length} static files`,
     );
 
-    if (item && draftPages > 0) {
-      item.details = showDrafts
-        ? `${draftPages} draft included`
-        : `${draftPages} draft hidden`;
+    if (draftPages > 0) {
+      const item = this.debugBar?.buildItem();
 
-      item.actions = [{
-        text: showDrafts ? "Hide drafts" : "Show drafts",
-        data: {
-          type: "lume:drafts",
-          value: !showDrafts,
-        },
-      }];
+      if (item) {
+        item.title = showDrafts
+          ? `${draftPages} draft pages rendered`
+          : `${draftPages} draft pages skipped`;
+        item.actions = [{
+          text: showDrafts ? "Skip draft pages" : "Include draft pages",
+          data: {
+            type: "lume:drafts",
+            value: !showDrafts,
+          },
+        }];
+      }
     }
 
     return [_pages, _staticFiles];
