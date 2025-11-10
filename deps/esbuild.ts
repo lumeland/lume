@@ -1,1 +1,1 @@
-export * from "https://cdn.jsdelivr.net/gh/esbuild/deno-esbuild@0.25.12/mod.js";
+export * from "https://cdn.jsdelivr.net/gh/esbuild/deno-esbuild@0.27.0/mod.js";
