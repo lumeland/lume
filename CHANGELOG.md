@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Ensure console output for validate_html and seo plugins is shown after the build process.
+- Ensure `metas` plugin is registered after `og_images`.
 - `run` command.
 - Added missing tests for SEO plugin.
 - Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.

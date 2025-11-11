@@ -17,7 +17,6 @@ export const pluginNames = [
   "relations",
   "lume_cms",
   "mdx",
-  "metas",
   "multilanguage",
   "nav",
   "nunjucks",
@@ -62,6 +61,7 @@ export const pluginNames = [
   "transform_images",
 
   // Assets in HTML
+  "metas",
   "inline",
   "sri",
   "validate_html",
