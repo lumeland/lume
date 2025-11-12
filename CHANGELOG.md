@@ -9,6 +9,15 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.2] - Unreleased
 ### Added
 - `search.file()` to search for a single file.
+- `favicon` plugin: The `input` option allows an object with different files per size. Example:
+  ```ts
+  site.use(favicon({
+    input: {
+      16: "favicon.svg",
+      180: "big-favicon.svg"
+    }
+  }))
+  ```
 
 ### Changed
 - Cache results of `search.files()`.

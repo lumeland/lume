@@ -11,7 +11,7 @@ export interface Options {
    * The input file to generate the favicons
    * Accepted formats are SVG, PNG, JPG, GIF, BMP, TIFF, WEBP
    */
-  input?: string;
+  input?: string | Record<number, string>;
 
   /**
    * The generated favicons
@@ -52,29 +52,44 @@ export interface Favicon {
  */
 export function favicon(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+  const input = typeof options.input === "string"
+    ? { 16: options.input }
+    : options.input;
 
   return (site: Site) => {
-    async function getContent(): Promise<Uint8Array | string | undefined> {
-      const content = options.input.endsWith(".svg")
-        ? await site.getContent(options.input, false)
-        : await site.getContent(options.input, true);
+    async function getContent(
+      file: string,
+    ): Promise<Uint8Array | string | undefined> {
+      const content = file.endsWith(".svg")
+        ? await site.getContent(file, false)
+        : await site.getContent(file, true);
 
       if (!content) {
-        log.warn(`[favicon plugin] Input file not found: ${options.input}`);
+        log.warn(`[favicon plugin] Input file not found: ${file}`);
       }
 
       return content;
     }
 
     site.process(async function processFaviconImages(_, pages) {
-      const content = await getContent();
+      const contents: Record<number, Uint8Array | string> = {};
 
-      if (!content) {
+      for (const [size, file] of Object.entries(input)) {
+        const fileContent = await getContent(file);
+
+        if (fileContent) {
+          contents[Number(size)] = fileContent;
+        }
+      }
+
+      if (!Object.keys(contents).length) {
         return;
       }
 
       const { cache } = site;
       for (const favicon of options.favicons) {
+        const content = getBestContent(contents, favicon.size);
+
         pages.push(
           Page.create({
             url: favicon.url,
@@ -89,24 +104,31 @@ export function favicon(userOptions?: Options) {
       }
 
       // Add the svg favicon
-      if (
-        options.input.endsWith(".svg") &&
-        !site.pages.find((page) => page.data.url === options.input) &&
-        !site.files.find((file) => file.outputPath === options.input)
-      ) {
-        site.pages.push(
-          Page.create({
-            url: options.input,
-            content: await site.getContent(
-              options.input,
-              false,
-            ),
-          }),
-        );
+      const svg = Object.entries(input)
+        .find(([, file]) => file.endsWith(".svg"));
+      if (svg) {
+        const size = Number(svg[0]);
+        const url = input[size];
+        const content = contents[size];
+        if (
+          !site.pages.find((page) => page.data.url === url) &&
+          !site.files.find((file) => file.outputPath === url)
+        ) {
+          site.pages.push(
+            Page.create({
+              url,
+              content,
+            }),
+          );
+        }
       }
     });
 
     site.process([".html"], function processFaviconPages(pages) {
+      const svg = Object.entries(input)
+        .find(([, file]) => file.endsWith(".svg"));
+      const svgUrl = svg ? input[Number(svg[0])] : null;
+
       for (const page of pages) {
         const { document } = page;
 
@@ -118,11 +140,11 @@ export function favicon(userOptions?: Options) {
           });
         }
 
-        if (options.input.endsWith(".svg")) {
+        if (svgUrl) {
           addIcon(document, {
             rel: "icon",
             sizes: "any",
-            href: site.url(options.input),
+            href: site.url(svgUrl),
             type: "image/svg+xml",
           });
         }
@@ -174,6 +196,24 @@ async function buildIco(
   }
 
   return image;
+}
+
+function getBestContent(
+  content: Record<number, Uint8Array | string>,
+  sizes: number[],
+): Uint8Array | string {
+  const size = Math.min(...sizes);
+  const availableSizes = Object.keys(content).map(Number);
+
+  // Find the closest size available
+  let bestSize = availableSizes[0];
+  for (const s of availableSizes) {
+    if (s <= size && s > bestSize) {
+      bestSize = s;
+    }
+  }
+
+  return content[bestSize];
 }
 
 export default favicon;
