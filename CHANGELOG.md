@@ -32,6 +32,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.
 - Added export-ignore paths to `.gitattributes`.
 - `site.remote()`: support commit SHA for GitHub versions.
+- Don't prompt for the CMS login credentials in local development to access to the site.
 - Updated dependencies: `deno-loader`, `tailwindcss`, `html-validate`, `magic-string`, `minify-html`, `sass`, `esbuild`, `terser`, `sharp`, `decap-cms`, `unocss`, `eta` and some icons.
 
 ## [3.1.1] - 2025-10-20

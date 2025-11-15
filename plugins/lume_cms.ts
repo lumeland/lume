@@ -14,6 +14,9 @@ export interface Options {
 
   /** The path to the CMS */
   basePath?: string;
+
+  /** Protect the whole site using the CMS credentials */
+  protectSite?: boolean;
 }
 
 // Default options
@@ -101,7 +104,7 @@ export function lumeCMS(userOptions: Options) {
     }, { once: true });
 
     // Protect the whole site when using the CMS
-    if (cms.options.auth?.method === "basic") {
+    if (options.protectSite && cms.options.auth?.method === "basic") {
       const users: [string, string][] = Object.entries(cms.options.auth.users)
         .map(([user, password]) => {
           if (typeof password === "string") {

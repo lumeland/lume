@@ -54,9 +54,13 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
     if (_cms) {
+      const isProduction = env<boolean>("LUME_PROXIED");
       const mod = await import(_cms.toString());
       cms = mod.default;
-      site.use(lumeCMS({ cms }));
+      site.use(lumeCMS({
+        cms,
+        protectSite: isProduction,
+      }));
     }
   }
 
