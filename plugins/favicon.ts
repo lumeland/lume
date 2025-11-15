@@ -176,16 +176,19 @@ async function buildIco(
     }
   }
 
+  const svgOptions = {
+    fitTo: { mode: "width", value: Math.max(...size) },
+  } as const;
   let image: Uint8Array;
 
   if (format === "ico") {
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
-    const img = create(content);
+    const img = create(content, undefined, svgOptions);
     image = await sharpsToIco(
       ...size.map((size) => img.clone().resize(size, size, resizeOptions)),
     );
   } else {
-    image = await create(content)
+    image = await create(content, undefined, svgOptions)
       .resize(size[0], size[0])
       .toFormat(format)
       .toBuffer();
