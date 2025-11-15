@@ -121,10 +121,10 @@ snapshot[`favicon plugin 2`] = `[]`;
 snapshot[`favicon plugin 3`] = `
 [
   {
-    content: "Uint8Array(8443)",
+    content: "Uint8Array(1904)",
     data: {
       basename: "apple-touch-icon",
-      content: "Uint8Array(8443)",
+      content: "Uint8Array(1904)",
       page: [
         "src",
         "data",
@@ -139,10 +139,10 @@ snapshot[`favicon plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(924)",
+    content: "Uint8Array(467)",
     data: {
       basename: "favicon",
-      content: "Uint8Array(924)",
+      content: "Uint8Array(467)",
       page: [
         "src",
         "data",
