@@ -23,11 +23,13 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Cache results of `search.files()`.
 - `LUME_DRAFTS` environment variable is true by default with `--serve | -s`.
 
+### Removed
+- `run` command code. It didn't work for a while and it's better to run Deno tasks.
+
 ### Fixed
 - Ensure console output for validate_html and seo plugins is shown after the build process.
 - Ensure `metas` plugin is registered after `og_images`.
 - `favicon` plugin: scale the SVG icons before render to PNG.
-- `run` command.
 - Added missing tests for SEO plugin.
 - Renamed `Config` interface of `seo` and `validate_html` plugins to `Options`.
 - Added export-ignore paths to `.gitattributes`.

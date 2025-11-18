@@ -30,44 +30,6 @@ const create = new Command()
     await create(config, name, args);
   });
 
-const run = new Command()
-  .description("Run one or more scripts from the config file.")
-  .example(
-    "lume run deploy",
-    "Runs the `deploy` script.",
-  )
-  .example(
-    "lume run deploy --config=_config.ts",
-    "Runs the `deploy` script from the _config.ts file.",
-  )
-  .example(
-    "lume run build deploy",
-    "Runs the `build` and `deploy` scripts.",
-  )
-  .option(
-    "--config <config:string>",
-    "The config file path.",
-  )
-  .option(
-    "--src <src:string>",
-    "The source directory for your site.",
-    { default: "./" },
-  )
-  .option(
-    "--dest <dest:string>",
-    "The build destination.",
-    { default: "_site" },
-  )
-  .option(
-    "--location <location>",
-    "The URL location of the site.",
-    { default: "http://localhost" },
-  )
-  .action(async ({ config }, ...scripts) => {
-    const { run } = await import("./cli/run.ts");
-    await run(config, scripts);
-  });
-
 const lume = new Command()
   .name("🔥lume")
   .version(() => getCurrentVersion())
@@ -137,7 +99,6 @@ const lume = new Command()
   })
   .command("new <archetype> [arguments...]", create)
   .command("upgrade", upgrade)
-  .command("run <script...>", run)
   .command("completions", new CompletionsCommand());
 
 try {
