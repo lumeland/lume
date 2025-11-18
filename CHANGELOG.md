@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.1.2] - Unreleased
+## [3.1.2] - 2025-11-18
 ### Added
 - `search.file()` to search for a single file.
 - `favicon` plugin: The `input` option allows an object with different files per size. Example:
@@ -326,7 +326,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#785]: https://github.com/lumeland/lume/issues/785
 [#789]: https://github.com/lumeland/lume/issues/789
 
-[3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...HEAD
+[3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
 [3.0.11]: https://github.com/lumeland/lume/compare/v3.0.10...v3.0.11
