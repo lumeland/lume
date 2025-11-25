@@ -157,11 +157,11 @@ export async function serveFile(
     const info = await Deno.stat(file);
 
     if (info.isDirectory) {
-      const query = url.search;
+      const search = url.search;
       return new Response(null, {
         status: 301,
         headers: {
-          location: posix.join(pathname, "/") + query,
+          location: posix.join(pathname, "/") + search,
         },
       });
     }
