@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- Append search to redirect in `/core/server.ts` if path matches directory
+
 ## [3.1.2] - 2025-11-18
 ### Added
 - `search.file()` to search for a single file.
