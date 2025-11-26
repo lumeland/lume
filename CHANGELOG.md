@@ -6,9 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [Unreleased]
+## [3.1.3] - Unreleased
 ### Fixed
-- Append search to redirect in `/core/server.ts` if path matches directory
+- Append search to redirect in `/core/server.ts` if path matches directory [#796].
+- Updated dependencies: `deno-loader`, `sass`, `xml`, `unocss` and icons.
 
 ## [3.1.2] - 2025-11-18
 ### Added
@@ -329,7 +330,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#782]: https://github.com/lumeland/lume/issues/782
 [#785]: https://github.com/lumeland/lume/issues/785
 [#789]: https://github.com/lumeland/lume/issues/789
+[#796]: https://github.com/lumeland/lume/issues/796
 
+[3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...HEAD
 [3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
