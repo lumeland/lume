@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.3] - Unreleased
 ### Fixed
 - Append search to redirect in `/core/server.ts` if path matches directory [#796].
+- Import `esbuild` dependency from `npm` to avoid permissions issues [#795].
 - Updated dependencies: `deno-loader`, `sass`, `xml`, `unocss` and icons.
 
 ## [3.1.2] - 2025-11-18
@@ -330,6 +331,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#782]: https://github.com/lumeland/lume/issues/782
 [#785]: https://github.com/lumeland/lume/issues/785
 [#789]: https://github.com/lumeland/lume/issues/789
+[#795]: https://github.com/lumeland/lume/issues/795
 [#796]: https://github.com/lumeland/lume/issues/796
 
 [3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...HEAD
