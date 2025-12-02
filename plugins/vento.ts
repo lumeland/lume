@@ -249,14 +249,13 @@ function compTag(
   }
 
   const compiledFilters = env.compileFilters(tokens, "__slots.content");
-  const { dataVarname } = env.options;
+
   return `${output} += (await (async () => {
     const __slots = { content: "" };
     ${env.compileTokens(tokens, "__slots.content", "/comp").join("\n")}
     __slots.content = __env.utils.safeString(${compiledFilters});
 
     return await comp.${comp}({
-      ...${dataVarname},
       ...__slots,
       ...${args || "{}"}
     });

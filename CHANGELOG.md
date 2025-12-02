@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Append search to redirect in `/core/server.ts` if path matches directory [#796].
 - Import `esbuild` dependency from `npm` to avoid permissions issues [#795].
 - Updated dependencies: `deno-loader`, `sass`, `xml`, `unocss` and icons.
+- Vento components shouldn't inherit the page's data [#797].
 
 ## [3.1.2] - 2025-11-18
 ### Added
@@ -333,6 +334,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#789]: https://github.com/lumeland/lume/issues/789
 [#795]: https://github.com/lumeland/lume/issues/795
 [#796]: https://github.com/lumeland/lume/issues/796
+[#797]: https://github.com/lumeland/lume/issues/797
 
 [3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...HEAD
 [3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...v3.1.2
