@@ -51,6 +51,7 @@ export default class Server {
   middlewares: Middleware[] = [];
   #server?: Deno.HttpServer;
   fetch: Deno.ServeHandler;
+  waitHandler?: (request: Request) => Promise<Response>;
 
   constructor(options: Partial<Options> = {}) {
     this.options = merge(defaults, options);
@@ -123,6 +124,10 @@ export default class Server {
     request: Request,
     info: Deno.ServeHandlerInfo,
   ): Promise<Response> {
+    if (this.waitHandler) {
+      return this.waitHandler(request);
+    }
+
     const middlewares = [...this.middlewares];
 
     const next: RequestHandler = async (
