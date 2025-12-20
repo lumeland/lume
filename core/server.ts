@@ -49,9 +49,9 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Required<Options>;
   middlewares: Middleware[] = [];
-  #server?: Deno.HttpServer;
   fetch: Deno.ServeHandler;
-  waitHandler?: (request: Request) => Promise<Response>;
+  #server?: Deno.HttpServer;
+  #waiting = false;
 
   constructor(options: Partial<Options> = {}) {
     this.options = merge(defaults, options);
@@ -98,13 +98,28 @@ export default class Server {
     return this.events.dispatchEvent(event);
   }
 
+  /** Start the server in waiting mode */
+  wait() {
+    this.#waiting = true;
+    this.start();
+  }
+
   /** Start the server */
   start(signal?: Deno.ServeOptions["signal"]) {
-    this.#server = Deno.serve({
-      ...this.options,
-      signal,
-      onListen: () => this.dispatchEvent({ type: "start" }),
-    }, this.handle.bind(this));
+    if (!this.#server) {
+      this.#server = Deno.serve({
+        ...this.options,
+        signal,
+        onListen: () => {
+          if (!this.#waiting) {
+            this.dispatchEvent({ type: "start" });
+          }
+        },
+      }, this.handle.bind(this));
+    } else if (this.#waiting) {
+      this.#waiting = false;
+      this.dispatchEvent({ type: "start" });
+    }
   }
 
   /** Stops the server */
@@ -124,8 +139,8 @@ export default class Server {
     request: Request,
     info: Deno.ServeHandlerInfo,
   ): Promise<Response> {
-    if (this.waitHandler) {
-      return this.waitHandler(request);
+    if (this.#waiting) {
+      return this.handleWait(request.url);
     }
 
     const middlewares = [...this.middlewares];
@@ -143,6 +158,59 @@ export default class Server {
     };
 
     return await next(request);
+  }
+
+  handleWait(url: string): Response {
+    return new Response(
+      `<html>
+      <head>
+        <meta charset="utf-8">
+        <title>Agarde…</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {
+          font-family: system-ui, sans-serif;
+          margin: 0;
+          padding: 2rem;
+          box-sizing: border-box;
+          display: grid;
+          grid-template-columns: minmax(0, 800px);
+          align-content: center;
+          justify-content: center;
+          min-height: 100vh
+        }
+        </style>
+      </head>
+      <body>
+      <pre><samp>Please wait…\n</samp></pre>
+      <script type="module">
+        const samp = document.querySelector("samp");
+        const timeout = 1000;
+        while (true) {
+          try {
+            const response = await fetch("${url}");
+            if (response.headers.get("X-Lume-CMS") !== "reload") {
+              const url = response.headers.get("Location") || "${url}";
+              document.location = url;
+              break;
+            }
+          } catch {}
+
+          samp.textContent += ".";
+          await new Promise((resolve) => setTimeout(resolve, timeout));
+        }
+      </script>
+      </body>
+      </html>`,
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "text/html",
+          "X-Lume-CMS": "reload",
+          "X-Lume-Location": url,
+        },
+      },
+    );
   }
 }
 
