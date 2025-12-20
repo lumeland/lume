@@ -50,8 +50,8 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   // Start the server and show the wait page while building the first time
   if (serve) {
     server = site.getServer();
-    server.waitHandler = (request) => Promise.resolve(createWaitResponse(request.url));
-    server.start();
+    server.wait();
+    log.info("Web server started...");
   }
   await new Promise((resolve) => setTimeout(resolve, 10000));
 
@@ -125,9 +125,59 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   // Start the local server
   const { port, hostname, open } = site.options.server;
 
+  server.addEventListener("start", () => {
+    if (type === "build") {
+      const ipAddr = localIp();
+
+      log.info("\n  Server started at:");
+      log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
+
+      if (ipAddr) {
+        log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
+      }
+
+      if (cms) {
+        log.info("\n  LumeCMS started at:");
+        const { basePath } = cms.options;
+        log.info(
+          `  <green>http://${hostname}:${port}${basePath}</green> (local)`,
+        );
+
+        if (ipAddr) {
+          log.info(
+            `  <green>http://${ipAddr}:${port}${basePath}</green> (network)`,
+          );
+        }
+      }
+
+      if (open) {
+        openBrowser(`http://${hostname}:${port}/`);
+      }
+    }
+
+    site.dispatchEvent({ type: "afterStartServer" });
+  });
+
   if (log.level < 5) {
     server.use(logger());
   }
+
+  // Add the reload middleware
+  server.addEventListener("start", () => {
+    server.useFirst(async (request, next) => {
+      const response = await next(request);
+
+      // Reload if the response header tells us to
+      if (response.headers.get("X-Lume-CMS") === "reload") {
+        log.info("Reloading the site...");
+        const url = response.headers.get("Location") || request.url;
+        postMessage({ type: "reload" });
+        return server.handleWait(url);
+      }
+
+      return response;
+    });
+  }, { once: true });
 
   server.useFirst(
     reload({
@@ -139,102 +189,5 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     noCors(),
   );
 
-  // Add the reload middleware
-  server.useFirst(async (request, next) => {
-    const response = await next(request);
-
-    // Reload if the response header tells us to
-    if (response.headers.get("X-Lume-CMS") === "reload") {
-      log.info("Reloading the site...");
-      const url = response.headers.get("Location") || request.url;
-      postMessage({ type: "reload" });
-      return createWaitResponse(url);
-    }
-
-    return response;
-  });
-
-  if (type === "build") {
-    const ipAddr = localIp();
-
-    log.info("\n  Server started at:");
-    log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
-
-    if (ipAddr) {
-      log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
-    }
-
-    if (cms) {
-      log.info("\n  LumeCMS started at:");
-      const { basePath } = cms.options;
-      log.info(
-        `  <green>http://${hostname}:${port}${basePath}</green> (local)`,
-      );
-
-      if (ipAddr) {
-        log.info(
-          `  <green>http://${ipAddr}:${port}${basePath}</green> (network)`,
-        );
-      }
-    }
-
-    if (open) {
-      openBrowser(`http://${hostname}:${port}/`);
-    }
-  }
-
-  site.dispatchEvent({ type: "afterStartServer" });
-  server.waitHandler = undefined;
-}
-
-function createWaitResponse(url: string): Response {
-  return new Response(
-    `<html>
-    <head>
-      <meta charset="utf-8">
-      <title>Agarde…</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <style>
-      body {
-        font-family: system-ui, sans-serif;
-        margin: 0;
-        padding: 2rem;
-        box-sizing: border-box;
-        display: grid;
-        grid-template-columns: minmax(0, 800px);
-        align-content: center;
-        justify-content: center;
-        min-height: 100vh
-      }
-      </style>
-    </head>
-    <body>
-    <pre><samp>Please wait…\n</samp></pre>
-    <script type="module">
-      const samp = document.querySelector("samp");
-      const timeout = 1000;
-      while (true) {
-        try {
-          const response = await fetch("${url}");
-          if (response.headers.get("X-Lume-CMS") !== "reload") {
-            document.location = "${url}";
-            break;
-          }
-        } catch {}
-
-        samp.textContent += ".";
-        await new Promise((resolve) => setTimeout(resolve, timeout));
-      }
-    </script>
-    </body>
-    </html>`,
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "text/html",
-        "X-Lume-CMS": "reload",
-        "X-Lume-Location": url,
-      },
-    },
-  );
+  server.start();
 }
