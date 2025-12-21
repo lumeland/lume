@@ -1,10 +1,8 @@
 import { parseArgs } from "./deps/cli.ts";
-import { stripAnsiCode } from "./deps/colors.ts";
 
 // Capture flags to pass to the server
 const flags = parseArgs(Deno.args, {
   string: ["port", "hostname"],
-  boolean: ["show-terminal"],
   default: {
     port: "3000",
     hostname: "localhost",
@@ -13,7 +11,7 @@ const flags = parseArgs(Deno.args, {
 });
 
 export function getServeHandler(): Deno.ServeHandler {
-  const { port, hostname, "show-terminal": showTerminal } = flags;
+  const { port, hostname } = flags;
 
   let process:
     | { process: Deno.ChildProcess; ready: boolean; error: boolean }
@@ -61,56 +59,25 @@ export function getServeHandler(): Deno.ServeHandler {
     return response;
   };
 
-  function startServer(url: URL): Response {
-    const body = new BodyStream();
-    body.message(`
-      <html><head>
-      <meta charset="utf-8">
-      <title>Agarde…</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <script>setInterval(() => window.scroll({top:document.documentElement.scrollHeight,behavior:"instant"}), 10);</script>
-      <style>
-      body {
-        font-family: system-ui, sans-serif;
-        margin: 0;
-        padding: 2rem;
-        box-sizing: border-box;
-        display: grid;
-        grid-template-columns: minmax(0, 800px);
-        align-content: center;
-        justify-content: center;
-        min-height: 100vh
-      }
-      pre {
-        overflow-x: auto;
-      }
-      </style></head><body><pre><samp>Please wait…\n`);
+  async function startServer(url: URL): Promise<Response> {
+    await startProcess(url);
 
-    startProcess(url, body).then(() => {
-      if (process?.error) {
-        body.message("Error starting the server");
-        body.close();
-        process = undefined;
-        return;
-      }
-      const { pathname, search, hash } = url;
-      body.message(
-        `</pre></samp>
-        <script>location.replace("${pathname + search + hash}")</script>`,
-      );
-      body.close();
-    });
-    return new Response(body.body, {
+    if (process?.error) {
+      process = undefined;
+      return new Response("Error starting the server", { status: 500 });
+    }
+
+    const body = `<head><meta http-equiv="refresh" content="0"></head>`;
+    return new Response(body, {
       status: 200,
       headers: {
         "Content-Type": "text/html",
-        "Transfer-Encoding": "chunked",
       },
     });
   }
 
   // Start the server process
-  async function startProcess(location: URL, body: BodyStream): Promise<void> {
+  async function startProcess(location: URL): Promise<void> {
     if (process?.ready === false) {
       return;
     }
@@ -122,8 +89,8 @@ export function getServeHandler(): Deno.ServeHandler {
         ...Deno.env.toObject(),
         LUME_PROXIED: "true",
       },
-      stdout: showTerminal ? "piped" : "inherit",
-      stderr: showTerminal ? "piped" : "inherit",
+      stdout: "inherit",
+      stderr: "inherit",
       args: [
         "task",
         "lume",
@@ -148,20 +115,11 @@ export function getServeHandler(): Deno.ServeHandler {
       }
     });
 
-    if (showTerminal) {
-      body.readStd(process.process.stdout);
-      body.readStd(process.process.stderr);
-    }
-
     // Wait for the server to start
     const timeout = 1000;
     while (true) {
       if (process.error) {
         return;
-      }
-
-      if (!showTerminal) {
-        body.chunk(".");
       }
 
       try {
@@ -208,64 +166,3 @@ export function getServeHandler(): Deno.ServeHandler {
 export default {
   fetch: getServeHandler(),
 };
-
-class BodyStream {
-  #timer: number | undefined = undefined;
-  #chunks: string[] = [];
-  #body: ReadableStream | undefined;
-  #closed = false;
-
-  get body() {
-    return this.#body;
-  }
-
-  constructor() {
-    this.#body = new ReadableStream({
-      start: (controller) => {
-        this.#timer = setInterval(() => {
-          try {
-            while (this.#chunks.length > 0) {
-              const message = this.#chunks.shift();
-              controller.enqueue(new TextEncoder().encode(message));
-            }
-          } catch {
-            // The stream controller cannot close or enqueue
-          }
-          if (this.#closed) {
-            clearInterval(this.#timer);
-            try {
-              controller.close();
-            } catch {
-              // The stream controller cannot close or enqueue
-            }
-          }
-        }, 100);
-      },
-      cancel: () => {
-        this.close();
-      },
-    });
-  }
-
-  readStd(stream: ReadableStream) {
-    stream.pipeThrough(new TextDecoderStream()).pipeTo(
-      new WritableStream({
-        write: (chunk) => {
-          this.chunk(stripAnsiCode(chunk));
-        },
-      }),
-    );
-  }
-
-  chunk(message: string) {
-    this.#chunks.push(message);
-  }
-
-  message(message: string) {
-    this.chunk(message + "\n");
-  }
-
-  close() {
-    this.#closed = true;
-  }
-}

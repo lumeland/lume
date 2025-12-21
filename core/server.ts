@@ -189,7 +189,7 @@ export default class Server {
         while (true) {
           try {
             const response = await fetch("${url}");
-            if (response.headers.get("X-Lume-CMS") !== "reload") {
+            if (response.headers.get("X-Lume-CMS") !== "wait") {
               const url = response.headers.get("Location") || "${url}";
               document.location = url;
               break;
@@ -206,7 +206,7 @@ export default class Server {
         status: 200,
         headers: {
           "Content-Type": "text/html",
-          "X-Lume-CMS": "reload",
+          "X-Lume-CMS": "wait",
           "X-Lume-Location": url,
         },
       },
