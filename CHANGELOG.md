@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.3] - Unreleased
+### Changed
+- The dev server starts before the build, displaying a waiting screen until the build is complete.
+
 ### Fixed
 - Append search to redirect in `/core/server.ts` if path matches directory [#796].
 - Import `esbuild` dependency from `npm` to avoid permissions issues [#795].
