@@ -12,7 +12,8 @@ import reload from "../middlewares/reload.ts";
 import { buildSite, createSite } from "./utils.ts";
 import { initLocalStorage } from "./missing_worker_apis.ts";
 import lumeCMS from "../plugins/lume_cms.ts";
-import type Server from "../core/server.ts";
+import { parseArgs } from "../deps/cli.ts";
+import Server from "../core/server.ts";
 
 addEventListener("message", (event) => {
   const { type } = event.data;
@@ -34,6 +35,8 @@ interface BuildOptions {
 }
 
 async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
+  let server: Server | undefined;
+
   // Set the live reload environment variable to add hash to the URLs in the module loader
   setEnv("LUME_LIVE_RELOAD", "true");
 
@@ -43,15 +46,40 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     setEnv("LUME_DRAFTS", "true");
   }
 
+  // Start the server before loading the site to reduce downtime
+  if (serve) {
+    const cli = parseArgs(Deno.args, {
+      string: ["port", "hostname"],
+      alias: { serve: "s", port: "p" },
+    });
+
+    // Only start the server if a port is specified (because it might be changed in the _config file)
+    if (cli.port) {
+      server = new Server({
+        port: parseInt(cli.port),
+        hostname: cli.hostname,
+      });
+      server.wait();
+      log.info("Web server started...");
+    }
+  }
+
   const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
   const site = await createSite(_config);
-  let server: Server | undefined;
 
   // Start the server and show the wait page while building the first time
   if (serve) {
-    server = site.getServer();
-    server.wait();
-    log.info("Web server started...");
+    if (!server) {
+      server = site.getServer();
+      server.wait();
+      log.info("Web server started...");
+    } else {
+      // Swap the servers to keep the middlewares and options
+      const tmp = site.getServer();
+      site.server = server;
+      server.middlewares = tmp.middlewares;
+      server.options = tmp.options;
+    }
   }
   await new Promise((resolve) => setTimeout(resolve, 10000));
 
