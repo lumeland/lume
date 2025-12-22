@@ -21,8 +21,6 @@ export const defaults: Options = {
   catalogs,
 };
 
-const commentRegexp = /<!--[\s\S]*?-->/;
-
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
@@ -49,7 +47,7 @@ export function icons(userOptions?: Options) {
       for (const [file, url] of icons) {
         const content = await readFile(url);
         const page = await site.getOrCreatePage(file);
-        page.content = content.replace(commentRegexp, ""); // Remove comment
+        page.content = processSvg(content);
       }
     });
 
@@ -126,4 +124,24 @@ function getVariant(
   }
 
   return typeof variant === "string" ? { id: variant, path: variant } : variant;
+}
+
+const commentRegexp = /<!--[\s\S]*?-->/;
+
+function processSvg(code: string): string {
+  // Remove comment
+  code = code.replace(commentRegexp, "");
+
+  // Ensure viewBox is defined
+  if (!code.includes(" viewBox=")) {
+    const width = code.match(/\swidth="(\d+)"/);
+    const height = code.match(/\sheight="(\d+)"/);
+
+    if (width && height) {
+      const viewBox = `viewBox="0 0 ${width[1]} ${height[1]}"`;
+      code = code.replace("<svg ", `<svg ${viewBox}`);
+    }
+  }
+
+  return code;
 }
