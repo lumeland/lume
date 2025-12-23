@@ -620,7 +620,6 @@ Make elements with the HTML hidden attribute stay hidden by default.
 .text-sm{font-size:0.875rem;line-height:1.25rem;}
 .text-xl{font-size:1.25rem;line-height:1.75rem;}
 .text-xs{font-size:0.75rem;line-height:1rem;}
-.text-blue-900{--un-text-opacity:1;color:rgb(30 58 138 / var(--un-text-opacity));}
 .text-gray-500{--un-text-opacity:1;color:rgb(107 114 128 / var(--un-text-opacity));}
 .text-gray-700{--un-text-opacity:1;color:rgb(55 65 81 / var(--un-text-opacity));}
 .text-gray-800{--un-text-opacity:1;color:rgb(31 41 55 / var(--un-text-opacity));}
@@ -671,7 +670,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
 .lg\\\\:text-base{font-size:1rem;line-height:1.5rem;}
 }</style></head>
 <body class=\\"font-sans antialiased bg-gray-100 text-gray-700\\">
-    <div class=\\"h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6\\">Free shipping on all orders over £50</div>
+    <div class=\\"h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6\\">Free shipping on all orders over £50</div>
     <div class=\\"h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white\\">
         <div>
             <a href=\\"/\\" class=\\"lowercase font-normal text-xl\\">essential</a>
@@ -919,6 +918,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
     </div>
     <div class=\\"bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12\\">©2021 design by novolio. images by unsplash</div>
 
+
 </body></html>",
     data: {
       basename: "",
@@ -934,7 +934,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -1182,7 +1182,8 @@ Make elements with the HTML hidden attribute stay hidden by default.
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       content: \`<!doctype html>
 <html lang="en">
 <head>
@@ -1195,7 +1196,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -1443,7 +1444,8 @@ Make elements with the HTML hidden attribute stay hidden by default.
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
@@ -1596,7 +1598,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -1844,6 +1846,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 
+
 </body></html>\`,
     data: {
       basename: "",
@@ -1859,7 +1862,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -2107,7 +2110,8 @@ snapshot[`Unocss plugin (css file) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       content: \`<!doctype html>
 <html lang="en">
 <head>
@@ -2120,7 +2124,7 @@ snapshot[`Unocss plugin (css file) 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -2368,7 +2372,8 @@ snapshot[`Unocss plugin (css file) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
@@ -2910,7 +2915,6 @@ Make elements with the HTML hidden attribute stay hidden by default.
 .text-sm{font-size:0.875rem;line-height:1.25rem;}
 .text-xl{font-size:1.25rem;line-height:1.75rem;}
 .text-xs{font-size:0.75rem;line-height:1rem;}
-.text-blue-900{--un-text-opacity:1;color:rgb(30 58 138 / var(--un-text-opacity));}
 .text-gray-500{--un-text-opacity:1;color:rgb(107 114 128 / var(--un-text-opacity));}
 .text-gray-700{--un-text-opacity:1;color:rgb(55 65 81 / var(--un-text-opacity));}
 .text-gray-800{--un-text-opacity:1;color:rgb(31 41 55 / var(--un-text-opacity));}
@@ -3358,6 +3362,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 
+
 </body></html>\`,
     data: {
       basename: "",
@@ -3373,7 +3378,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -3621,7 +3626,8 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       content: \`<!doctype html>
 <html lang="en">
 <head>
@@ -3634,7 +3640,7 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -3882,7 +3888,8 @@ snapshot[`Unocss plugin (with transformers) 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
@@ -4490,6 +4497,7 @@ snapshot[`Unocss with placeholder 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 
+
 </body></html>\`,
     data: {
       basename: "",
@@ -4505,7 +4513,7 @@ snapshot[`Unocss with placeholder 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -4753,7 +4761,8 @@ snapshot[`Unocss with placeholder 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       content: \`<!doctype html>
 <html lang="en">
 <head>
@@ -4766,7 +4775,7 @@ snapshot[`Unocss with placeholder 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -5014,7 +5023,8 @@ snapshot[`Unocss with placeholder 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
