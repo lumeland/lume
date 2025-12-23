@@ -1061,6 +1061,7 @@ snapshot[`gzip plugin with options 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 
+
 </body></html>\`,
     data: {
       basename: "",
@@ -1076,7 +1077,7 @@ snapshot[`gzip plugin with options 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -1324,7 +1325,8 @@ snapshot[`gzip plugin with options 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       content: \`<!doctype html>
 <html lang="en">
 <head>
@@ -1337,7 +1339,7 @@ snapshot[`gzip plugin with options 3`] = `
     <link href="/styles.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased bg-gray-100 text-gray-700">
-    <div class="h-8 z-10 relative bg-blue-100 text-blue-900 text-xs text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
+    <div class="h-8 z-10 relative bg-blue-100 text-(blue-900 xs) text-center tracking-wider flex items-center justify-center px-6">Free shipping on all orders over £50</div>
     <div class="h-24 z-40 relative container mx-auto px-6 flex items-center justify-between text-white">
         <div>
             <a href="/" class="lowercase font-normal text-xl">essential</a>
@@ -1585,7 +1587,8 @@ snapshot[`gzip plugin with options 3`] = `
     </div>
     <div class="bg-gray-200 text-gray-500 text-sm lg:text-base text-center font-heading font-light tracking-widest uppercase p-12">©2021 design by novolio. images by unsplash</div>
 </body>
-</html>\`,
+</html>
+\`,
       date: [],
       mergedKeys: [
         "tags",
