@@ -139,7 +139,7 @@ function processSvg(code: string): string {
 
     if (width && height) {
       const viewBox = `viewBox="0 0 ${width[1]} ${height[1]}"`;
-      code = code.replace("<svg ", `<svg ${viewBox}`);
+      code = code.replace("<svg ", `<svg ${viewBox} `);
     }
   }
 
