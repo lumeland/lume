@@ -140,7 +140,7 @@ export default class Server {
     info: Deno.ServeHandlerInfo,
   ): Promise<Response> {
     if (this.#waiting) {
-      return this.handleWait(request.url);
+      return this.handleWait();
     }
 
     const middlewares = [...this.middlewares];
@@ -160,12 +160,12 @@ export default class Server {
     return await next(request);
   }
 
-  handleWait(url: string): Response {
+  handleWait(url?: string): Response {
     return new Response(
       `<html>
       <head>
         <meta charset="utf-8">
-        <title>Agarde…</title>
+        <title>Por favor, agarde - Please wait</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
         body {
@@ -182,15 +182,15 @@ export default class Server {
         </style>
       </head>
       <body>
-      <pre><samp>Please wait…\n</samp></pre>
+      <pre><samp>Por favor, agarde - Please wait\n</samp></pre>
       <script type="module">
         const samp = document.querySelector("samp");
         const timeout = 1000;
         while (true) {
           try {
-            const response = await fetch("${url}");
+            const url = ${url ? `"${url}"` : "document.location"};
+            const response = await fetch(url);
             if (response.headers.get("X-Lume-CMS") !== "wait") {
-              const url = response.headers.get("Location") || "${url}";
               document.location = url;
               break;
             }
@@ -207,7 +207,6 @@ export default class Server {
         headers: {
           "Content-Type": "text/html",
           "X-Lume-CMS": "wait",
-          "X-Lume-Location": url,
         },
       },
     );
