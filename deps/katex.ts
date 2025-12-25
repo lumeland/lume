@@ -1,6 +1,6 @@
-import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.25";
+import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.27";
 
-export const assetsUrl = "https://cdn.jsdelivr.net/npm/katex@0.16.25/dist";
+export const assetsUrl = "https://cdn.jsdelivr.net/npm/katex@0.16.27/dist";
 
 export { katex };
 

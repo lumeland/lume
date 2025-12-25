@@ -1877,7 +1877,7 @@ c = \\\\pm\\\\sqrt{a^2 + b^2}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.16.25";
+  content: "0.16.27";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers

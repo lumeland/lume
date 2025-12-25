@@ -1,1 +1,1 @@
-export * from "jsr:@std/streams@1.0.14";
+export * from "jsr:@std/streams@1.0.16";

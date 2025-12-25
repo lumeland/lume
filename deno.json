@@ -30,7 +30,7 @@
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
-      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.10/cli.ts' update"
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.11/cli.ts' update"
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
@@ -43,7 +43,7 @@
   "imports": {
     "lume/": "./",
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.2/",
-    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts"
+    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.14/jsx-runtime.ts"
   },
   "lint": {
     "rules": {

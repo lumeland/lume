@@ -13,7 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Append search to redirect in `/core/server.ts` if path matches directory [#796].
 - Import `esbuild` dependency from `npm` to avoid permissions issues [#795].
-- Updated dependencies: `deno-loader`, `sass`, `xml`, `unocss` and icons.
+- Updated dependencies: `deno-loader`, `sass`, `xml`, `unocss`, `std`, `katex`, `html-validate`, `bar`, `eta`, `vento`, `autoprefixer`, `tailwindcss`, `esbuild`, `ssx` and icons.
 - Vento components shouldn't inherit the page's data [#797].
 - `icons` plugin: ensure the SVG code includes the `viewBox` attribute.
 - `unocss` plugin: process HTML files with UnoCSS transformers.

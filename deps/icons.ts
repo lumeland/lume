@@ -33,55 +33,55 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.555.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-100",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-200",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-300",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-400",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-500",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-600",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-700",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.40.0/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.40.2/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
@@ -116,13 +116,13 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.2.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.35.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.36.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
@@ -147,7 +147,7 @@ export const catalogs: Catalog[] = [
     id: "sargam",
     name: capitalize,
     src:
-      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.6/Icons/{variant}/si_{name}.svg",
+      "https://cdn.jsdelivr.net/npm/sargam-icons@1.6.7/Icons/{variant}/si_{name}.svg",
     variants: [
       { id: "duotone", path: "Duotone" },
       { id: "fill", path: "Fill" },
@@ -175,7 +175,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.315/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.316/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
@@ -186,7 +186,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.21.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.21.1/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {
