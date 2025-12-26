@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Vento components shouldn't inherit the page's data [#797].
 - `icons` plugin: ensure the SVG code includes the `viewBox` attribute.
 - `unocss` plugin: process HTML files with UnoCSS transformers.
+- `resvg` dependency works offline.
 
 ## [3.1.2] - 2025-11-18
 ### Added
