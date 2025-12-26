@@ -51,6 +51,9 @@ export async function build(
 
     worker.onmessage = (event) => {
       switch (event.data.type) {
+        case "exit":
+          return Deno.exit(0);
+
         case "reload":
           init();
           break;

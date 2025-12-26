@@ -197,9 +197,9 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
 
       // Reload if the response header tells us to
       if (response.headers.get("X-Lume-CMS") === "reload") {
-        log.info("Reloading the site...");
+        log.info("Exiting process...");
         const url = response.headers.get("Location") || request.url;
-        postMessage({ type: "reload" });
+        postMessage({ type: "exit" });
         return server.handleWait(url);
       }
 
