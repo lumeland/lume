@@ -110,13 +110,13 @@ export const catalogs: Catalog[] = [
   {
     // https://remixicon.com/
     id: "remix",
-    src: "https://cdn.jsdelivr.net/npm/remixicon@4.7.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/remixicon@4.8.0/icons/{name}.svg",
     name: capitalize,
   },
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.2.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.3.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
