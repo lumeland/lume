@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.1.3] - Unreleased
+## [3.1.3] - 2025-12-30
 ### Changed
 - The dev server starts before the build, displaying a waiting screen until the build is complete.
 
@@ -342,7 +342,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#796]: https://github.com/lumeland/lume/issues/796
 [#797]: https://github.com/lumeland/lume/issues/797
 
-[3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...HEAD
+[3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...v3.1.2
 [3.1.1]: https://github.com/lumeland/lume/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/lumeland/lume/compare/v3.0.11...v3.1.0
