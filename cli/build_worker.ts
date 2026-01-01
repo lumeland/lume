@@ -81,7 +81,6 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
       server.options = tmp.options;
     }
   }
-  await new Promise((resolve) => setTimeout(resolve, 10000));
 
   // Setup LumeCMS
   let _cms: URL | undefined;
