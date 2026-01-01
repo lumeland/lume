@@ -129,7 +129,7 @@ export const catalogs: Catalog[] = [
     // https://mynaui.com/icons
     id: "myna",
     src:
-      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.3.9/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@mynaui/icons@0.4.2/{variant}/{name}.svg",
     variants: [
       { id: "regular", path: "icons" },
       { id: "solid", path: "icons-solid" },
