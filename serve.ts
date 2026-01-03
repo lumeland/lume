@@ -1,5 +1,12 @@
 import { parseArgs } from "./deps/cli.ts";
 
+/**
+ * This module implements an HTTP server that starts a Lume server
+ * and proxies requests to it.
+ *
+ * You use it by running: deno serve -A lume/serve.ts
+ */
+
 // Capture flags to pass to the server
 const flags = parseArgs(Deno.args, {
   string: ["port", "hostname"],

@@ -46,7 +46,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     setEnv("LUME_DRAFTS", "true");
   }
 
-  // Start the server before loading the site to reduce downtime
+  // Start the server before loading the site to reduce uptime
   if (serve) {
     const cli = parseArgs(Deno.args, {
       string: ["port", "hostname"],
@@ -91,12 +91,13 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
     if (_cms) {
-      const isProduction = env<boolean>("LUME_PROXIED");
+      // Extend the auth config to the whole site in proxy mode
+      const protectSite = env<boolean>("LUME_PROXIED");
       const mod = await import(_cms.toString());
       cms = mod.default;
       site.use(lumeCMS({
         cms,
-        protectSite: isProduction,
+        protectSite,
       }));
     }
   }

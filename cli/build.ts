@@ -27,11 +27,6 @@ export async function build(
     let type = "build";
 
     if (worker) {
-      // If the server is proxied just exit. It will be restarted by the parent process
-      if (isProxied) {
-        Deno.exit(0);
-      }
-
       type = "rebuild";
       worker.terminate();
     }
@@ -55,6 +50,10 @@ export async function build(
           return Deno.exit(0);
 
         case "reload":
+          // If the server is proxied just exit. It will be restarted by the parent process
+          if (worker && isProxied) {
+            return Deno.exit(0);
+          }
           init();
           break;
 
