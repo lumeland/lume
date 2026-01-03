@@ -56,7 +56,7 @@ const defaults: SiteOptions = {
   location: new URL("http://localhost"),
   prettyUrls: true,
   server: {
-    port: 3000,
+    port: 80,
     hostname: "localhost",
     open: false,
     page404: "/404.html",
