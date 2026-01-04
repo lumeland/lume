@@ -14,9 +14,6 @@ export interface Options {
 
   /** The path to the CMS */
   basePath?: string;
-
-  /** Protect the whole site using the CMS credentials */
-  protectSite?: boolean;
 }
 
 // Default options
@@ -103,8 +100,10 @@ export function lumeCMS(userOptions: Options) {
       server.useFirst(middleware);
     }, { once: true });
 
-    // Protect the whole site when using the CMS
-    if (options.protectSite && cms.options.auth?.method === "basic") {
+    // Protect the whole site when using the CMS on production
+    const isProduction = site.options.location.hostname !== "localhost";
+    const hasAuth = cms.options.auth?.method === "basic";
+    if (isProduction && hasAuth) {
       const users: [string, string][] = Object.entries(cms.options.auth.users)
         .map(([user, password]) => {
           if (typeof password === "string") {

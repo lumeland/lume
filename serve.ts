@@ -92,10 +92,7 @@ export function getServeHandler(): Deno.ServeHandler {
     console.log(`Start proxied server on port ${port}`);
 
     const command = new Deno.Command(Deno.execPath(), {
-      env: {
-        ...Deno.env.toObject(),
-        LUME_PROXIED: "true",
-      },
+      env: Deno.env.toObject(),
       stdout: "inherit",
       stderr: "inherit",
       args: [

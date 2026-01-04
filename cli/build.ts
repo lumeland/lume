@@ -1,6 +1,5 @@
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { buildSite, createSite } from "./utils.ts";
-import { env } from "../core/utils/env.ts";
 
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
@@ -19,7 +18,6 @@ export async function build(
     return;
   }
 
-  const isProxied = env<boolean>("LUME_PROXIED");
   const workerUrl = import.meta.resolve("./build_worker.ts");
   let worker: Worker;
 
@@ -50,10 +48,6 @@ export async function build(
           return Deno.exit(0);
 
         case "reload":
-          // If the server is proxied just exit. It will be restarted by the parent process
-          if (worker && isProxied) {
-            return Deno.exit(0);
-          }
           init();
           break;
 

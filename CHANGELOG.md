@@ -9,7 +9,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.5] - Unreleased
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
-- `LUME_PROXIED` environment variable no longer affects to the hostname, port and location detection.
+- LumeCMS plugin: protect the whole site when the location is not `localhost`.
+
+### Removed
+- `LUME_PROXIED` environment variable is no longer needed.
 
 ## [3.1.4] - 2026-01-01
 ### Fixed

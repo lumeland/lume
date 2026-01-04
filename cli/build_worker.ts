@@ -91,14 +91,9 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
 
     if (_cms) {
-      // Extend the auth config to the whole site in proxy mode
-      const protectSite = env<boolean>("LUME_PROXIED");
-      const mod = await import(_cms.toString());
+      const mod = await import(_cms.href);
       cms = mod.default;
-      site.use(lumeCMS({
-        cms,
-        protectSite,
-      }));
+      site.use(lumeCMS({ cms }));
     }
   }
 
