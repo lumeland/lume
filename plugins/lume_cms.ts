@@ -101,7 +101,7 @@ export function lumeCMS(userOptions: Options) {
     }, { once: true });
 
     // Protect the whole site when using the CMS on production
-    const isProduction = site.options.location.hostname !== "localhost";
+    const isProduction = !isLocalhost(site.options.location.hostname);
     const hasAuth = cms.options.auth?.method === "basic";
     if (isProduction && hasAuth) {
       const users: [string, string][] = Object.entries(cms.options.auth.users)
@@ -145,3 +145,11 @@ export function lumeCMS(userOptions: Options) {
 }
 
 export default lumeCMS;
+
+function isLocalhost(hostname: string): boolean {
+  return (
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname === "::1"
+  );
+}
