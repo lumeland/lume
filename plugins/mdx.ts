@@ -5,7 +5,7 @@ import { join, toFileUrl } from "../deps/path.ts";
 import { renderComponent } from "../deps/ssx.ts";
 
 import type Site from "../core/site.ts";
-import type { Engine } from "../core/renderer.ts";
+import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
@@ -55,6 +55,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Required<Options>;
   includes: string;
+  helpers: Record<string, Helper> = {};
 
   constructor(baseUrl: string, options: Required<Options>) {
     this.baseUrl = baseUrl;
@@ -82,6 +83,8 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
       remarkRehypeOptions: this.options.rehypeOptions,
       stylePropertyNameCase: "css",
     });
+    data ||= {};
+    data.helpers = this.helpers;
 
     const destructure = `{${Object.keys(data!).join(",")}}`;
     const code = result.toString()
@@ -104,7 +107,9 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     return renderComponent(body);
   }
 
-  addHelper() {}
+  addHelper(name: string, fn: Helper, _options: HelperOptions) {
+    this.helpers[name] = fn;
+  }
 }
 
 /**
