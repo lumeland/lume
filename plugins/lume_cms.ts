@@ -6,7 +6,7 @@ import basicAuth from "../middlewares/basic_auth.ts";
 import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
 import type CMS from "lume/cms/core/cms.ts";
-import type Storage from "lume/cms/types.ts";
+import type { Storage } from "lume/cms/types.ts";
 
 export interface Options {
   /** The CMS instance */
