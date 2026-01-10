@@ -116,13 +116,13 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.3.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.4.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.36.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.36.1/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {

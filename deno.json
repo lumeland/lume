@@ -26,7 +26,7 @@
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
-      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.7.1/bin.ts"
+      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v2.8.0/bin.ts"
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
@@ -42,7 +42,7 @@
   ],
   "imports": {
     "lume/": "./",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.4/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.9/",
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.14/jsx-runtime.ts"
   },
   "lint": {
