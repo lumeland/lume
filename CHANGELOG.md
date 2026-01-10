@@ -9,10 +9,16 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.5] - Unreleased
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
-- LumeCMS plugin: protect the whole site when the location is not `localhost`.
+- LumeCMS plugin:
+  - Protect the whole site only when the location is not `localhost`.
+  - Now it's mandatory that the CMS is registered in the import map as `lume/cms/`.
+  - The `src` storage can be overwriten in the `_cms.ts` file.
 
 ### Removed
 - `LUME_PROXIED` environment variable is no longer needed.
+
+### Fixed
+- LumeCMS: Ensure `previewUrl` is only applied for changes in the `src` storage.
 
 ## [3.1.4] - 2026-01-01
 ### Fixed
