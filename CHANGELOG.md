@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.5] - Unreleased
+### Added
+- `katex` plugin: add support for `mhchem` extension
+
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
 - LumeCMS plugin: protect the whole site when the location is not `localhost`.

@@ -11,6 +11,11 @@ c = \pm\sqrt{a^2 + b^2}
     \,d\xi
 </div>
 
+<div class="language-math">
+% \ce and \pu functions are added by the mhchem extension
+C_p[\ce{H2O(l)}] = \pu{75.3 J // mol K}
+</div>
+
 <div id="test">
   This is some text $math \frac12$ other text $\unsupported$
   <span class="blue">
