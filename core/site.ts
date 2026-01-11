@@ -202,7 +202,7 @@ export default class Site {
       files: this.files,
       sourceData: source.data,
       filters: [
-        (data: Data) => data.page.outputPath.endsWith(".html") ?? false, // only html pages
+        (data: Data) => data.page.isHTML,
         filter404page(server.page404), // not the 404 page
       ],
     });

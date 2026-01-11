@@ -9,6 +9,7 @@ import type { Entry } from "./fs.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
+const URL_IS_HTML = /(\/|\.x?html?)$/;
 
 /** A page of the site */
 export class Page<D extends Data = Data> {
@@ -62,6 +63,11 @@ export class Page<D extends Data = Data> {
     page.data = data;
 
     return page;
+  }
+
+  /** To check if the page is HTML */
+  get isHTML(): boolean {
+    return URL_IS_HTML.test(this.data.url);
   }
 
   /** Returns the output path of this page */
