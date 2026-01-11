@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.5] - Unreleased
+### Added
+- `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
+
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
 - LumeCMS plugin:
