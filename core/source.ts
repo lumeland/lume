@@ -437,7 +437,7 @@ export default class Source {
   }
 
   /** Load a folder's _data and merge it with the parent data  */
-  async #loadDirData(dir: Entry, parentData: RawData): Promise<Partial<Data>> {
+  async #loadDirData(dir: Entry, parentData: Partial<Data>): Promise<Partial<Data>> {
     // Parse the directory's basename
     const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
