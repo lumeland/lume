@@ -540,7 +540,7 @@ export default class Source {
       page.data.page = page;
 
       // Prevent running the layout if the page is an asset
-      if (!data.layout && !page.outputPath.endsWith(".html")) {
+      if (!data.layout && !page.isHTML) {
         delete page.data.layout;
       }
 
