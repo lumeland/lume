@@ -1,16 +1,16 @@
 import { merge } from "../core/utils/object.ts";
 import { setEnv } from "../core/utils/env.ts";
+import { Fs } from "lume/cms/storage/fs.ts";
 
 import basicAuth from "../middlewares/basic_auth.ts";
 import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
-
-// deno-lint-ignore no-explicit-any
-type Cms = any; // Replace with actual CMS type
+import type CMS from "lume/cms/core/cms.ts";
+import type { Storage } from "lume/cms/types.ts";
 
 export interface Options {
   /** The CMS instance */
-  cms: Cms;
+  cms: CMS;
 
   /** The path to the CMS */
   basePath?: string;
@@ -43,9 +43,13 @@ export function lumeCMS(userOptions: Options) {
     // Set the base path for the CMS
     cms.options.basePath = basePath;
 
-    // Configure the src storage
-    cms.storage("src");
-    cms.options.root = site.src();
+    // Configure the src storage (only if not set)
+    const root = site.src();
+    const src = new Fs({ root });
+    if (cms.storages.get("src") === undefined) {
+      cms.storage("src", src);
+    }
+    cms.options.root = root;
 
     // Store the Site instance in the CMS
     const data = cms.options.data ?? {};
@@ -56,12 +60,17 @@ export function lumeCMS(userOptions: Options) {
     cms.options.previewUrl ??= function previewUrl(
       path: string,
       data: unknown,
+      storage: Storage,
       hasChanged?: boolean,
     ): undefined | string | Promise<string | undefined> {
+      if (storage !== src) {
+        return;
+      }
+
       if (hasChanged) {
         return new Promise((resolve) => {
           site.addEventListener("idle", () => {
-            resolve(previewUrl(path, data));
+            resolve(previewUrl(path, data, storage));
           }, { once: true });
         });
       }
@@ -102,9 +111,10 @@ export function lumeCMS(userOptions: Options) {
 
     // Protect the whole site when using the CMS on production
     const isProduction = !isLocalhost(site.options.location.hostname);
-    const hasAuth = cms.options.auth?.method === "basic";
-    if (isProduction && hasAuth) {
-      const users: [string, string][] = Object.entries(cms.options.auth.users)
+    const { auth } = cms.options;
+
+    if (isProduction && auth?.method === "basic") {
+      const users: [string, string][] = Object.entries(auth.users)
         .map(([user, password]) => {
           if (typeof password === "string") {
             return [user, password];

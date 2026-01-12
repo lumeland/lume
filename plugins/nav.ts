@@ -139,8 +139,8 @@ export class Nav {
     for (const data of dataPages) {
       const url = data.page?.outputPath;
       const parts = url.split("/")
-        .filter((part) => part !== "" && part !== "index.html")
-        .map((part) => part.endsWith(".html") ? part.slice(0, -5) : part);
+        .filter(filterIndex)
+        .map(cleanHTMLExtension);
 
       let current = nav;
       let path = "";
@@ -312,6 +312,16 @@ function convert(
     : undefined;
 
   return data;
+}
+
+const HTML_EXTENSION = /\.x?html?$/;
+function cleanHTMLExtension(path: string): string {
+  return path.replace(HTML_EXTENSION, "");
+}
+
+const INDEX_HTML = /index\.x?html?$/;
+function filterIndex(path: string): boolean {
+  return path !== "" && !INDEX_HTML.test(path);
 }
 
 export default nav;

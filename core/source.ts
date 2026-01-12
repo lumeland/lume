@@ -437,11 +437,15 @@ export default class Source {
   }
 
   /** Load a folder's _data and merge it with the parent data  */
-  async #loadDirData(dir: Entry, parentData: RawData): Promise<Partial<Data>> {
+  async #loadDirData(
+    dir: Entry,
+    parentData: Partial<Data>,
+  ): Promise<Partial<Data>> {
     // Parse the directory's basename
     const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
       this.basenameParsers,
+      parentData,
     );
 
     // Load _data files
@@ -536,7 +540,7 @@ export default class Source {
       page.data.page = page;
 
       // Prevent running the layout if the page is an asset
-      if (!data.layout && !page.outputPath.endsWith(".html")) {
+      if (!data.layout && !page.isHTML) {
         delete page.data.layout;
       }
 
@@ -564,6 +568,7 @@ export default class Source {
     const { basename, ...parsedData } = runBasenameParsers(
       entry.name.slice(0, -ext.length),
       this.basenameParsers,
+      dirData,
     );
 
     // Create the page
@@ -611,7 +616,10 @@ export type Destination = (path: string) => string;
 
 export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
-export type BasenameParser = (filename: string) => RawData | undefined;
+export type BasenameParser = (
+  filename: string,
+  parentData: Partial<Data>,
+) => RawData | undefined;
 
 /** Merge the cascade components */
 function mergeComponents(...components: Components[]): Components {
@@ -638,11 +646,12 @@ function mergeComponents(...components: Components[]): Components {
 function runBasenameParsers(
   basename: string,
   basenameParsers: BasenameParser[],
+  parentData: Partial<Data>,
 ): RawData {
   const data: RawData = { basename };
 
   for (const parser of basenameParsers) {
-    const res = parser(basename);
+    const res = parser(basename, parentData);
     if (res === undefined) {
       continue;
     }

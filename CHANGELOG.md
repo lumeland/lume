@@ -9,13 +9,23 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.5] - Unreleased
 ### Added
 - `katex` plugin: add support for `mhchem` extension
+- `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
+- Pages with extensions `.xhtml`, `.xhtm`and `.htm` are considered HTML pages.
 
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
-- LumeCMS plugin: protect the whole site when the location is not `localhost`.
+- LumeCMS plugin:
+  - Protect the whole site only when the location is not `localhost`.
+  - Now it's mandatory that the CMS is registered in the import map as `lume/cms/`.
+  - The `src` storage can be overwriten in the `_cms.ts` file.
+- Pages defined with `site.page({ url: "foo", content: (data) => "..." })` uses automatically `js` as the template engine.
 
 ### Removed
 - `LUME_PROXIED` environment variable is no longer needed.
+
+### Fixed
+- LumeCMS: Ensure `previewUrl` is only applied for changes in the `src` storage.
+- Updated dependencies: `@deno/loader`, `sass`, `decap` and some icons.
 
 ## [3.1.4] - 2026-01-01
 ### Fixed

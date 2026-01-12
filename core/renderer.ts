@@ -137,7 +137,7 @@ export default class Renderer {
           newPage.data.date = getPageDate(newPage);
 
           // Prevent running the layout if the page is not HTML
-          if (!data.layout && !newPage.outputPath.endsWith(".html")) {
+          if (!data.layout && !newPage.isHTML) {
             delete newPage.data.layout;
           }
           generatedPages.push(newPage);
@@ -211,6 +211,12 @@ export default class Renderer {
     filename: string,
     isLayout = false,
   ): Promise<T> {
+    /** site.page({ url: "foo", content: (data) => "..." }) */
+    if (
+      filename === "" && !data.templateEngine && typeof content === "function"
+    ) {
+      data.templateEngine = "js";
+    }
     const engines = this.#getEngine(filename, data, isLayout);
 
     if (engines) {
