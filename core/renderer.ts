@@ -211,6 +211,12 @@ export default class Renderer {
     filename: string,
     isLayout = false,
   ): Promise<T> {
+    /** site.page({ url: "foo", content: (data) => "..." }) */
+    if (
+      filename === "" && !data.templateEngine && typeof content === "function"
+    ) {
+      data.templateEngine = "js";
+    }
     const engines = this.#getEngine(filename, data, isLayout);
 
     if (engines) {

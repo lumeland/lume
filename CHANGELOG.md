@@ -17,6 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Protect the whole site only when the location is not `localhost`.
   - Now it's mandatory that the CMS is registered in the import map as `lume/cms/`.
   - The `src` storage can be overwriten in the `_cms.ts` file.
+- Pages defined with `site.page({ url: "foo", content: (data) => "..." })` uses automatically `js` as the template engine.
 
 ### Removed
 - `LUME_PROXIED` environment variable is no longer needed.
