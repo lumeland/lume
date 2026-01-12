@@ -55,7 +55,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Required<Options>;
   includes: string;
-  helpers: Record<string, Helper> = {};
+  filters: Record<string, Helper> = {};
 
   constructor(baseUrl: string, options: Required<Options>) {
     this.baseUrl = baseUrl;
@@ -84,7 +84,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
       stylePropertyNameCase: "css",
     });
     data ||= {};
-    data.helpers = this.helpers;
+    data.filters = this.filters;
 
     const destructure = `{${Object.keys(data!).join(",")}}`;
     const code = result.toString()
@@ -108,7 +108,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
   }
 
   addHelper(name: string, fn: Helper, _options: HelperOptions) {
-    this.helpers[name] = fn;
+    this.filters[name] = fn;
   }
 }
 
