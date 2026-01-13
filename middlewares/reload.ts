@@ -113,15 +113,24 @@ export function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
-      const source =
-        `${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status}, "${
-          debugBar?.url || ""
-        }");\n/*# sourceURL=inline:lume-live-reload.js */;`;
+      let source = `
+        ${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status}, "${
+        debugBar?.url || ""
+      }");\n/*# sourceURL=inline:lume-live-reload.js */; `;
+
+      if (request.url.endsWith(".xhtml")) {
+        source = `//<![CDATA[\n${source}\n//]]>`;
+      }
       const integrity = await computeSourceIntegrity(source);
 
       // Add live reload script and pass initial revision
-      body +=
-        `<script type="module" id="lume-live-reload" integrity="${integrity}">${source};</script>`;
+      const code =
+        `<script type="module" id="lume-live-reload" integrity="${integrity}">${source}</script>`;
+      if (body.includes("</body>")) {
+        body = body.replace("</body>", `${code}</body>`);
+      } else {
+        body += code;
+      }
 
       const { status, statusText, headers } = response;
 

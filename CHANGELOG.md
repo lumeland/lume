@@ -10,7 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - `katex` plugin: add support for `mhchem` extension
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
-- Pages with extensions `.xhtml`, `.xhtm`and `.htm` are considered HTML pages.
+- Support for `.xhtml`, `.xhtm`and `.htm` pages (to build ebooks).
 
 ### Changed
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
@@ -19,6 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - Now it's mandatory that the CMS is registered in the import map as `lume/cms/`.
   - The `src` storage can be overwriten in the `_cms.ts` file.
 - Pages defined with `site.page({ url: "foo", content: (data) => "..." })` uses automatically `js` as the template engine.
+- The `server.root` option is always relative to the dest folder.
 
 ### Removed
 - `LUME_PROXIED` environment variable is no longer needed.

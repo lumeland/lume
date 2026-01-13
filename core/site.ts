@@ -1122,7 +1122,7 @@ export default class Site {
     }
 
     const { port, hostname, page404, middlewares } = this.options.server;
-    const root = this.options.server.root || this.dest();
+    const root = this.dest(this.options.server.root ?? "");
     this.server = new Server({ root, port, hostname });
 
     this.server.use(
