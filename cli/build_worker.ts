@@ -11,7 +11,6 @@ import noCors from "../middlewares/no_cors.ts";
 import reload from "../middlewares/reload.ts";
 import { buildSite, createSite } from "./utils.ts";
 import { initLocalStorage } from "./missing_worker_apis.ts";
-import lumeCMS from "../plugins/lume_cms.ts";
 import { parseArgs } from "../deps/cli.ts";
 import Server from "../core/server.ts";
 
@@ -93,6 +92,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     if (_cms) {
       const mod = await import(_cms.href);
       cms = mod.default;
+      const { lumeCMS } = await import("../plugins/lume_cms.ts");
       site.use(lumeCMS({ cms }));
     }
   }
