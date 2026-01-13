@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.1.5] - Unreleased
 ### Added
+- `katex` plugin: add support for `mhchem` extension
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
 - Pages with extensions `.xhtml`, `.xhtm`and `.htm` are considered HTML pages.
 
