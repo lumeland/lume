@@ -269,8 +269,8 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
     return menu;
   }
 
-  if (part.endsWith(".html") && parts.length === 0) {
-    part = part.slice(0, -5);
+  if (parts.length === 0) {
+    part = cleanHTMLExtension(part);
   }
 
   if (menu.children?.length) {
