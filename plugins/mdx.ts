@@ -107,8 +107,10 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
     return renderComponent(body);
   }
 
-  addHelper(name: string, fn: Helper, _options: HelperOptions) {
-    this.filters[name] = fn;
+  addHelper(name: string, fn: Helper, options: HelperOptions) {
+    if (options.type === "filter") {
+      this.filters[name] = fn;
+    }
   }
 }
 
