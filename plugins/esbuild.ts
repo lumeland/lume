@@ -4,7 +4,11 @@ import {
   ResolutionMode,
   Workspace,
 } from "../deps/deno_loader.ts";
-import { getPathAndExtension, isAbsolutePath, normalizePath } from "../core/utils/path.ts";
+import {
+  getPathAndExtension,
+  isAbsolutePath,
+  normalizePath,
+} from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
@@ -18,13 +22,20 @@ import {
   OutputFile,
   stop,
 } from "../deps/esbuild.ts";
-import { extname, fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import {
+  extname,
+  fromFileUrl,
+  posix,
+  SEPARATOR,
+  toFileUrl,
+} from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
 import { isBuiltin } from "node:module";
 
 import type Site from "../core/site.ts";
+import { specifier } from "../deps/debugbar.ts";
 
 export interface Options {
   /** File extensions to bundle */
@@ -211,9 +222,10 @@ export function esbuild(userOptions?: Options) {
 
               // Ensure that we're dealing with a specifier, not a standard
               // file path. This is needed for Windows paths.
-              const specifier = isAbsolutePath(path)
+              const specifier = SEPARATOR === "\\" && isAbsolutePath(path)
                 ? toFileUrl(path).href
                 : path;
+
               const res = await loader.resolve(specifier, importer, mode);
 
               let namespace: string | undefined;
