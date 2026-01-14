@@ -4,7 +4,7 @@ import {
   ResolutionMode,
   Workspace,
 } from "../deps/deno_loader.ts";
-import { getPathAndExtension, normalizePath } from "../core/utils/path.ts";
+import { getPathAndExtension, isAbsolutePath, normalizePath } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
@@ -209,7 +209,12 @@ export function esbuild(userOptions?: Options) {
                 ? ResolutionMode.Require
                 : ResolutionMode.Import;
 
-              const res = await loader.resolve(path, importer, mode);
+              // Ensure that we're dealing with a specifier, not a standard
+              // file path. This is needed for Windows paths.
+              const specifier = isAbsolutePath(path)
+                ? toFileUrl(path).href
+                : path;
+              const res = await loader.resolve(specifier, importer, mode);
 
               let namespace: string | undefined;
               if (res.startsWith("file:")) {
