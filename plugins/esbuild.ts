@@ -209,7 +209,12 @@ export function esbuild(userOptions?: Options) {
                 ? ResolutionMode.Require
                 : ResolutionMode.Import;
 
-              const res = await loader.resolve(path, importer, mode);
+              // Ensure that we're dealing with a specifier, not a standard
+              // file path. This is needed for Windows paths.
+              const specifier = /^\w:[\\/]/i.test(path)
+                ? toFileUrl(path).href
+                : path;
+              const res = await loader.resolve(specifier, importer, mode);
 
               let namespace: string | undefined;
               if (res.startsWith("file:")) {
