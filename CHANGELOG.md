@@ -27,6 +27,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - LumeCMS: Ensure `previewUrl` is only applied for changes in the `src` storage.
 - Updated dependencies: `@deno/loader`, `sass`, `decap` and some icons.
+- Fix esbuild plugin resolution erroring with Windows style file paths [#807], [#808]
 
 ## [3.1.4] - 2026-01-01
 ### Fixed
@@ -369,6 +370,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#796]: https://github.com/lumeland/lume/issues/796
 [#797]: https://github.com/lumeland/lume/issues/797
 [#803]: https://github.com/lumeland/lume/issues/803
+[#807]: https://github.com/lumeland/lume/issues/807
+[#808]: https://github.com/lumeland/lume/issues/808
 
 [3.1.5]: https://github.com/lumeland/lume/compare/v3.1.4...HEAD
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
