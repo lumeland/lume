@@ -35,7 +35,6 @@ import textLoader from "../core/loaders/text.ts";
 import { isBuiltin } from "node:module";
 
 import type Site from "../core/site.ts";
-import { specifier } from "../deps/debugbar.ts";
 
 export interface Options {
   /** File extensions to bundle */
