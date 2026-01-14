@@ -9,7 +9,7 @@ import type { Entry } from "./fs.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
-const URL_IS_HTML = /(\/|\.x?html?)$/;
+const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
 export class Page<D extends Data = Data> {

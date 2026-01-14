@@ -604,7 +604,7 @@ export default class Source {
     page.data.page = page;
 
     // Prevent running the layout if the page is not HTML
-    if (!pageData.layout && !page.outputPath.endsWith(".html")) {
+    if (!pageData.layout && !page.isHTML) {
       delete page.data.layout;
     }
 

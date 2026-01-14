@@ -113,10 +113,11 @@ export function reload(options: Options): Middleware {
         result = await reader.read();
       }
 
-      let source = `
-        ${reloadClient}; liveReload(${revision}, "${options.basepath}", ${response.status}, "${
+      let source = `${reloadClient};
+      liveReload(${revision}, "${options.basepath}", ${response.status}, "${
         debugBar?.url || ""
-      }");\n/*# sourceURL=inline:lume-live-reload.js */; `;
+      }");
+      /*# sourceURL=inline:lume-live-reload.js */; `;
 
       if (request.url.endsWith(".xhtml")) {
         source = `//<![CDATA[\n${source}\n//]]>`;

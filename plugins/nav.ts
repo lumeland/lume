@@ -314,12 +314,12 @@ function convert(
   return data;
 }
 
-const HTML_EXTENSION = /\.x?html?$/;
+const HTML_EXTENSION = /\.x?html$/;
 function cleanHTMLExtension(path: string): string {
   return path.replace(HTML_EXTENSION, "");
 }
 
-const INDEX_HTML = /index\.x?html?$/;
+const INDEX_HTML = /index\.x?html$/;
 function filterIndex(path: string): boolean {
   return path !== "" && !INDEX_HTML.test(path);
 }

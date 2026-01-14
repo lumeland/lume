@@ -161,7 +161,7 @@ export default class Renderer {
             const content = await this.#renderPage(page);
 
             // Save the children to render the layout later
-            if (page.data.layout || page.outputPath.endsWith(".html")) {
+            if (page.data.layout || page.isHTML) {
               page.data.children = content;
               renderedPages.push(page);
             } else {
