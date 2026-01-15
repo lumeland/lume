@@ -1,5 +1,5 @@
 import { posix } from "../../deps/path.ts";
-import { getExtension, normalizePath } from "./path.ts";
+import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
 import type { Data, Page, RawData } from "../file.ts";
@@ -18,10 +18,10 @@ export function getBasename(url: string): string {
   }
 
   if (url.endsWith("/")) {
-    return decodeURI(posix.basename(url));
+    return decodeURIComponentSafe(posix.basename(url));
   }
 
-  return decodeURI(posix.basename(url, getExtension(url)));
+  return decodeURIComponentSafe(posix.basename(url, getExtension(url)));
 }
 
 /** Returns the final URL assigned to a page */
@@ -103,7 +103,7 @@ function getDefaultUrl(
 
 /** Remove the /index.html part if exist and replace spaces */
 function normalizeUrl(url: string): string {
-  url = encodeURI(url);
+  url = encodeURIComponent(url);
 
   if (url.endsWith("/index.html")) {
     return url.slice(0, -10);

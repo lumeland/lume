@@ -104,6 +104,7 @@ export function resolveInclude(
 
 /**
  * decodeURI() can't decode the `%` character, as it is used in any encoded character
+ * @author [Why does decodeURIComponent('%') lock up my browser?](https://stackoverflow.com/a/54310080/3416774)
  */
 export function decodeURIComponentSafe(path: string): string {
   return decodeURIComponent(path.replace(/%(?![0-9a-fA-F]+)/g, "%25"));
