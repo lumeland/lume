@@ -13,8 +13,10 @@ export interface Options {
   /** The css selector to apply katex */
   cssSelector?: string;
 
-  /** The CSS file to output the CSS styles */
-  cssFile?: string;
+  /** The CSS file to output the CSS styles.
+   * Set to `false` to disable saving the CSS and font files.
+   */
+  cssFile?: false | string;
 
   /** The folder to save the fonts */
   fontsFolder?: string;
@@ -70,46 +72,48 @@ export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    let cssCode = "";
-    const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
-    const fontsFolder = posix.join(
-      "/",
-      options.fontsFolder || site.options.fontsFolder,
-    );
-
-    const relativePath = posix.relative(
-      posix.dirname(cssFile),
-      posix.join(fontsFolder),
-    );
-
-    // Download the fonts and generate the CSS
-    site.addEventListener("beforeBuild", async () => {
-      const css = await readFile(`${assetsUrl}/katex.css`);
-      const fonts = new Map<string, string>();
-
-      // Fix the urls in the CSS file
-      cssCode = await walkUrls(css, (url) => {
-        const file = posix.basename(url);
-        fonts.set(`${assetsUrl}/${url}`, posix.join("/", fontsFolder, file));
-        return posix.join(relativePath, file);
-      });
-
-      // Download the fonts
-      await Promise.all(
-        Array.from(fonts).map(async ([src, url]) => {
-          const content = await read(src, true);
-          site.page({ content, url });
-        }),
+    if (options.cssFile !== false) {
+      let cssCode = "";
+      const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
+      const fontsFolder = posix.join(
+        "/",
+        options.fontsFolder || site.options.fontsFolder,
       );
-    }, { once: true });
 
-    // Output the CSS file
-    site.process(async function processKatexCss() {
-      const page = await site.getOrCreatePage(cssFile);
-      page.text = insertContent(page.text, cssCode, options.placeholder);
-    });
+      const relativePath = posix.relative(
+        posix.dirname(cssFile),
+        posix.join(fontsFolder),
+      );
 
-    // Process the html pages and output the CSS file
+      // Download the fonts and generate the CSS
+      site.addEventListener("beforeBuild", async () => {
+        const css = await readFile(`${assetsUrl}/katex.css`);
+        const fonts = new Map<string, string>();
+
+        // Fix the urls in the CSS file
+        cssCode = await walkUrls(css, (url) => {
+          const file = posix.basename(url);
+          fonts.set(`${assetsUrl}/${url}`, posix.join("/", fontsFolder, file));
+          return posix.join(relativePath, file);
+        });
+
+        // Download the fonts
+        await Promise.all(
+          Array.from(fonts).map(async ([src, url]) => {
+            const content = await read(src, true);
+            site.page({ content, url });
+          }),
+        );
+      }, { once: true });
+
+      // Output the CSS file
+      site.process(async function processKatexCss() {
+        const page = await site.getOrCreatePage(cssFile);
+        page.text = insertContent(page.text, cssCode, options.placeholder);
+      });
+    }
+
+    // Process the html pages
     site.process([".html"], function processKatex(pages) {
       for (const page of pages) {
         const { document } = page;
