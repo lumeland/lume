@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.1.5] - Unreleased
 ### Added
 - `katex` plugin: add support for `mhchem` extension
+- `katex` plugin: Allow not downloading CSS and font assets for KaTeX plugin [#810]
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
 - Support for `.xhtml` pages (required to build ebooks).
 
@@ -372,6 +373,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#803]: https://github.com/lumeland/lume/issues/803
 [#807]: https://github.com/lumeland/lume/issues/807
 [#808]: https://github.com/lumeland/lume/issues/808
+[#810]: https://github.com/lumeland/lume/issues/810
 
 [3.1.5]: https://github.com/lumeland/lume/compare/v3.1.4...HEAD
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
