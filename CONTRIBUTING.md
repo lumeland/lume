@@ -51,3 +51,42 @@ process:
   as the local Lume path.
 - Run `lume local` in your project folder to update the `lume/` import to the
   local path.
+
+## Changelog
+
+Lume has a CHANGELOG.md file to document all changes for each version. The file
+follows the specs defined at [Keep a Changelog](https://keepachangelog.com/).
+
+Please, document your changes in the latest unreleased version inside one of the
+allowed sections (Added, Changes, Removed, Fixed). Create the section it if
+doesn't exist. Include the identifier of the issues and/or pull request at the
+end: (i.e. `- Fixed URL generation #123`). Then run `deno task changelog` to
+format the file and generate the links to GitHub.
+
+## Testing
+
+Run `deno task test` to run all Lume tests. If you only want to run a single
+file, run `deno task test [path]`. For example
+`deno task test tests/esbuild.test.ts`.
+
+The tests consist on a bunch of miniwebsites that are build and the result must
+match with the previous **snapshot**.
+
+### Example with `icons` test
+
+Let's see the test file for the icons plugin at `tests/icons.test.ts`:
+
+- `getSite` returns a `Site` instance with the `src` folder configured to the
+  `icons` folder (resolved to `tests/assets/icons`).
+- Then, we can configure the site. For this test, we import and register the
+  `icons` plugin.
+- The function `build(site)` builds the site without writing the files on disk
+  but saving result on memory.
+- Finally, we use the function `assertSiteSnapshot` to check if the result
+  matches with the **snapshot**.
+- The snapshots, stored in the `tests/__snapshots__` folder, contains an array
+  with the generated content of all pages and other info that we want to check.
+  If the new content doesn't match with the snapshot, the tests fail.
+- If you make some changes that generate a different output:
+  - Fix your changes to generate the same expected output.
+  - Or run `deno task test:update` to update the snapshot with the new output.
