@@ -901,7 +901,11 @@ export default class Site {
 
       if (path.endsWith(".js")) {
         this.debugBar?.startMeasure("components-js");
-        const page = await this.getOrCreatePage(path);
+        // https://github.com/lumeland/lume/issues/659
+        const existingFile = this.search.file(
+          path.replace(/.js$/, "{.js,.ts}"),
+        );
+        const page = await this.getOrCreatePage(existingFile || path);
         page.text = insertContent(
           page.text,
           await compileJS(path, entries, this.fs.entries),

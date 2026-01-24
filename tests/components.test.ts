@@ -5,6 +5,7 @@ import eta from "../plugins/eta.ts";
 import pug from "../plugins/pug.ts";
 import jsx from "../plugins/jsx.ts";
 import nunjucks from "../plugins/nunjucks.ts";
+import esbuild from "../plugins/esbuild.ts";
 
 Deno.test("Components", async (t) => {
   const site = getSite({
@@ -178,6 +179,18 @@ Deno.test("Components interoperability", async (t) => {
   });
 
   site.use(jsx());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
+Deno.test("Components with esbuild", async (t) => {
+  const site = getSite({
+    src: "components",
+  });
+
+  site.use(esbuild());
+  site.add([".ts"]);
 
   await build(site);
   await assertSiteSnapshot(t, site);
