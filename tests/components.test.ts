@@ -184,14 +184,19 @@ Deno.test("Components interoperability", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("Components with esbuild", async (t) => {
-  const site = getSite({
-    src: "components",
-  });
+// Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
+Deno.test(
+  "Components with esbuild",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "components",
+    });
 
-  site.use(esbuild());
-  site.add([".ts"]);
+    site.use(esbuild());
+    site.add([".ts"]);
 
-  await build(site);
-  await assertSiteSnapshot(t, site);
-});
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);
