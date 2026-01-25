@@ -27,7 +27,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - LumeCMS: Ensure `previewUrl` is only applied for changes in the `src` storage.
-- Updated dependencies: `@deno/loader`, `sass`, `decap`, `html-validate`, `remove-markdown`, `satori`, `terser`, `unocss` and some icons.
+- Updated dependencies: `@deno/loader`, `std`, `sass`, `decap`, `html-validate`, `remove-markdown`, `satori`, `terser`, `unocss`, `lightningcss`, `purgecss` and some icons.
 - Esbuild plugin resolution erroring with Windows style file paths [#807], [#808].
 - Conflict with _component scripts and script.ts file [#659]
 
