@@ -9,7 +9,7 @@ import { parseArgs } from "./deps/cli.ts";
 
 // Capture flags to pass to the server
 const flags = parseArgs(Deno.args, {
-  string: ["port", "hostname"],
+  string: ["port", "hostname", "location"],
   default: {
     port: "3000",
     hostname: "localhost",
@@ -101,7 +101,7 @@ export function getServeHandler(): Deno.ServeHandler {
         "--serve",
         `--port=${port}`,
         `--hostname=${hostname}`,
-        `--location=${location.origin}`,
+        `--location=${flags.location || location.origin}`,
       ],
     });
 
