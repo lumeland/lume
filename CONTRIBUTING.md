@@ -90,3 +90,5 @@ Let's see the test file for the icons plugin at `tests/icons.test.ts`:
 - If you make some changes that generate a different output:
   - Fix your changes to generate the same expected output.
   - Or run `deno task test:update` to update the snapshot with the new output.
+  - Or run `deno task test tests/icons.test.ts -- --upate` to update the
+    snapshot of this test file.
