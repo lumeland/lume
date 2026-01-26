@@ -105,6 +105,7 @@ snapshot[`Sitemap plugin 1`] = `
   src: [
     "/",
     "/404.md",
+    "/50% of 2 is 1.md",
     "/_data.yml",
     "/favicon.png",
     "/images",
@@ -171,6 +172,42 @@ snapshot[`Sitemap plugin 3`] = `
     src: {
       ext: ".md",
       path: "/404",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+    data: {
+      basename: "50% of 2 is 1",
+      children: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+      content: "To check this: https://github.com/lumeland/lume/pull/809",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/50% of 2 is 1/",
+    },
+    src: {
+      ext: ".md",
+      path: "/50% of 2 is 1",
       remote: undefined,
     },
   },
@@ -445,6 +482,10 @@ Sitemap: https://example.com/sitemap.xml",
 <?xml-stylesheet type="text/xsl" href="/sitemap-style.xml"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/50% of 2 is 1/</loc>
+    <lastmod>2026-01-26T19:27:11.889Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
@@ -474,6 +515,10 @@ Sitemap: https://example.com/sitemap.xml",
       content: '<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap-style.xml"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/50% of 2 is 1/</loc>
+    <lastmod>2026-01-26T19:27:11.889Z</lastmod>
+  </url>
   <url>
     <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
@@ -1592,6 +1637,7 @@ snapshot[`Sitemap plugin with filter_pages plugin 1`] = `
   src: [
     "/",
     "/404.md",
+    "/50% of 2 is 1.md",
     "/_data.yml",
     "/favicon.png",
     "/images",
@@ -1658,6 +1704,42 @@ snapshot[`Sitemap plugin with filter_pages plugin 3`] = `
     src: {
       ext: ".md",
       path: "/404",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+    data: {
+      basename: "50% of 2 is 1",
+      children: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+      content: "To check this: https://github.com/lumeland/lume/pull/809",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/50% of 2 is 1/",
+    },
+    src: {
+      ext: ".md",
+      path: "/50% of 2 is 1",
       remote: undefined,
     },
   },
@@ -1890,6 +1972,10 @@ Sitemap: https://example.com/sitemap.xml",
     content: '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/50% of 2 is 1/</loc>
+    <lastmod>2026-01-26T19:27:11.889Z</lastmod>
+  </url>
+  <url>
     <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>
   </url>
@@ -1914,6 +2000,10 @@ Sitemap: https://example.com/sitemap.xml",
       basename: "sitemap",
       content: '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://example.com/50% of 2 is 1/</loc>
+    <lastmod>2026-01-26T19:27:11.889Z</lastmod>
+  </url>
   <url>
     <loc>https://example.com/overrided-page2/</loc>
     <lastmod>2020-06-21T00:00:00.000Z</lastmod>

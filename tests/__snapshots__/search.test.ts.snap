@@ -67,6 +67,7 @@ snapshot[`Sort by two locale fields 1`] = `'function (a, b) { return (a.order ==
 snapshot[`Test the file searcher 1`] = `
 [
   "/404.html",
+  "/50% of 2 is 1/index.html",
   "/favicon.png",
   "/overrided-page2/index.html",
   "/page5/index.html",

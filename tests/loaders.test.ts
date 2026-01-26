@@ -41,7 +41,7 @@ Deno.test("ignored draft pages on dev=false", async () => {
 
   await build(site);
 
-  assertStrictEquals(site.pages.length, 8);
+  assertStrictEquals(site.pages.length, 9);
 });
 
 Deno.test("textLoader with frontmatter containing just a comment", async () => {

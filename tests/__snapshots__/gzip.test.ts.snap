@@ -126,6 +126,7 @@ snapshot[`gzip plugin 1`] = `
   src: [
     "/",
     "/404.md",
+    "/50% of 2 is 1.md",
     "/_data.yml",
     "/favicon.png",
     "/images",
@@ -214,6 +215,60 @@ snapshot[`gzip plugin 3`] = `
         "isCopy",
       ],
       url: "/404.html.gz",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+    data: {
+      basename: "50% of 2 is 1",
+      children: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+      content: "To check this: https://github.com/lumeland/lume/pull/809",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(0)",
+      url: "/50% of 2 is 1/",
+    },
+    src: {
+      ext: ".md",
+      path: "/50% of 2 is 1",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(87)",
+    data: {
+      basename: "index",
+      content: "Uint8Array(87)",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/50% of 2 is 1/index.html.gz",
     },
     src: {
       ext: "",

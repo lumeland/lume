@@ -111,6 +111,7 @@ snapshot[`Load the pages of a site 1`] = `
   src: [
     "/",
     "/404.md",
+    "/50% of 2 is 1.md",
     "/_data.yml",
     "/favicon.png",
     "/images",
@@ -190,6 +191,42 @@ snapshot[`Load the pages of a site 3`] = `
     src: {
       ext: ".md",
       path: "/404",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+    data: {
+      basename: "50% of 2 is 1",
+      children: "<p>To check this: https://github.com/lumeland/lume/pull/809</p>
+",
+      content: "To check this: https://github.com/lumeland/lume/pull/809",
+      date: [],
+      imagick: "Array(1)",
+      mergedKeys: [
+        "tags",
+        "metas",
+        "imagick",
+      ],
+      metas: [
+        "title",
+        "description",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      site: "Default site name",
+      tags: "Array(1)",
+      url: "/50% of 2 is 1/",
+    },
+    src: {
+      ext: ".md",
+      path: "/50% of 2 is 1",
       remote: undefined,
     },
   },
