@@ -1,4 +1,4 @@
-import { getPathAndExtension } from "../core/utils/path.ts";
+import { getExtension, getPathAndExtension } from "../core/utils/path.ts";
 import { filesToPages } from "../core/file.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { merge } from "../core/utils/object.ts";
@@ -51,7 +51,7 @@ const supportedExtensions = new Set([
 ]);
 
 const filter = (fileOrPage: Page | StaticFile) =>
-  supportedExtensions.has(fileOrPage.src.ext) &&
+  supportedExtensions.has(getExtension(fileOrPage.outputPath)) &&
   !!fileOrPage.data.transformImages;
 
 export type Format =
