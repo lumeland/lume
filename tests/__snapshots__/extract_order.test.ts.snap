@@ -1,0 +1,1183 @@
+export const snapshot = {};
+
+snapshot[`extract_order plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/1.install",
+    "/1.install/1.foo.md",
+    "/1.install/2.aaa.md",
+    "/1.install/3.bbb",
+    "/1.install/3.bbb/1.zzz.md",
+    "/1.install/3.bbb/2.aaa.md",
+    "/1.install/3.bbb/index.md",
+    "/1.install/index.md",
+    "/2.about.md",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`extract_order plugin 2`] = `[]`;
+
+snapshot[`extract_order plugin 3`] = `
+[
+  {
+    content: "<h1>2</h1>
+",
+    data: {
+      basename: "about",
+      children: "<h1>2</h1>
+",
+      content: "# 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/about/",
+    },
+    src: {
+      ext: ".md",
+      path: "/2.about",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>1 - # 1.1</li>
+  <li>1 - # 1.0</li>
+  <li>1 - # 1.3.1</li>
+  <li>2 - # 1.3.2</li>
+  <li>2 - # 1.2</li>
+  <li>2 - # 2</li>
+  <li>3 - # 1.3</li>
+</ul>
+',
+    data: {
+      basename: "",
+      children: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>1 - # 1.1</li>
+  <li>1 - # 1.0</li>
+  <li>1 - # 1.3.1</li>
+  <li>2 - # 1.3.2</li>
+  <li>2 - # 1.2</li>
+  <li>2 - # 2</li>
+  <li>3 - # 1.3</li>
+</ul>
+',
+      content: '<ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.2</h1>
+",
+    data: {
+      basename: "aaa",
+      children: "<h1>1.2</h1>
+",
+      content: "# 1.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.2</h1>
+",
+    data: {
+      basename: "aaa",
+      children: "<h1>1.3.2</h1>
+",
+      content: "# 1.3.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3</h1>
+",
+    data: {
+      basename: "bbb",
+      children: "<h1>1.3</h1>
+",
+      content: "# 1.3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "3",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.1</h1>
+",
+    data: {
+      basename: "zzz",
+      children: "<h1>1.3.1</h1>
+",
+      content: "# 1.3.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/zzz/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/1.zzz",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.1</h1>
+",
+    data: {
+      basename: "foo",
+      children: "<h1>1.1</h1>
+",
+      content: "# 1.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/foo/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/1.foo",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.0</h1>
+",
+    data: {
+      basename: "install",
+      children: "<h1>1.0</h1>
+",
+      content: "# 1.0
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/index",
+      remote: undefined,
+    },
+  },
+]
+`;
+
+snapshot[`extract_order plugin (cascade mode) 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/1.install",
+    "/1.install/1.foo.md",
+    "/1.install/2.aaa.md",
+    "/1.install/3.bbb",
+    "/1.install/3.bbb/1.zzz.md",
+    "/1.install/3.bbb/2.aaa.md",
+    "/1.install/3.bbb/index.md",
+    "/1.install/index.md",
+    "/2.about.md",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`extract_order plugin (cascade mode) 2`] = `[]`;
+
+snapshot[`extract_order plugin (cascade mode) 3`] = `
+[
+  {
+    content: "<h1>2</h1>
+",
+    data: {
+      basename: "about",
+      children: "<h1>2</h1>
+",
+      content: "# 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "02",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/about/",
+    },
+    src: {
+      ext: ".md",
+      path: "/2.about",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>01 - # 1.0</li>
+  <li>0101 - # 1.1</li>
+  <li>0102 - # 1.2</li>
+  <li>0103 - # 1.3</li>
+  <li>010301 - # 1.3.1</li>
+  <li>010302 - # 1.3.2</li>
+  <li>02 - # 2</li>
+</ul>
+',
+    data: {
+      basename: "",
+      children: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>01 - # 1.0</li>
+  <li>0101 - # 1.1</li>
+  <li>0102 - # 1.2</li>
+  <li>0103 - # 1.3</li>
+  <li>010301 - # 1.3.1</li>
+  <li>010302 - # 1.3.2</li>
+  <li>02 - # 2</li>
+</ul>
+',
+      content: '<ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.2</h1>
+",
+    data: {
+      basename: "aaa",
+      children: "<h1>1.2</h1>
+",
+      content: "# 1.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "0102",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.2</h1>
+",
+    data: {
+      basename: "aaa",
+      children: "<h1>1.3.2</h1>
+",
+      content: "# 1.3.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "010302",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3</h1>
+",
+    data: {
+      basename: "bbb",
+      children: "<h1>1.3</h1>
+",
+      content: "# 1.3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "0103",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.1</h1>
+",
+    data: {
+      basename: "zzz",
+      children: "<h1>1.3.1</h1>
+",
+      content: "# 1.3.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "010301",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/bbb/zzz/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/1.zzz",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.1</h1>
+",
+    data: {
+      basename: "foo",
+      children: "<h1>1.1</h1>
+",
+      content: "# 1.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "0101",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/foo/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/1.foo",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.0</h1>
+",
+    data: {
+      basename: "install",
+      children: "<h1>1.0</h1>
+",
+      content: "# 1.0
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "01",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/index",
+      remote: undefined,
+    },
+  },
+]
+`;
+
+snapshot[`extract_order plugin (keep basename) 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/1.install",
+    "/1.install/1.foo.md",
+    "/1.install/2.aaa.md",
+    "/1.install/3.bbb",
+    "/1.install/3.bbb/1.zzz.md",
+    "/1.install/3.bbb/2.aaa.md",
+    "/1.install/3.bbb/index.md",
+    "/1.install/index.md",
+    "/2.about.md",
+    "/index.vto",
+  ],
+}
+`;
+
+snapshot[`extract_order plugin (keep basename) 2`] = `[]`;
+
+snapshot[`extract_order plugin (keep basename) 3`] = `
+[
+  {
+    content: "<h1>1.1</h1>
+",
+    data: {
+      basename: "1.foo",
+      children: "<h1>1.1</h1>
+",
+      content: "# 1.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/1.foo/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/1.foo",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.2</h1>
+",
+    data: {
+      basename: "2.aaa",
+      children: "<h1>1.2</h1>
+",
+      content: "# 1.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/2.aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.1</h1>
+",
+    data: {
+      basename: "1.zzz",
+      children: "<h1>1.3.1</h1>
+",
+      content: "# 1.3.1
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/3.bbb/1.zzz/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/1.zzz",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3.2</h1>
+",
+    data: {
+      basename: "2.aaa",
+      children: "<h1>1.3.2</h1>
+",
+      content: "# 1.3.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/3.bbb/2.aaa/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/2.aaa",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.3</h1>
+",
+    data: {
+      basename: "3.bbb",
+      children: "<h1>1.3</h1>
+",
+      content: "# 1.3
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "3",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/3.bbb/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/3.bbb/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.0</h1>
+",
+    data: {
+      basename: "1.install",
+      children: "<h1>1.0</h1>
+",
+      content: "# 1.0
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "1",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/1.install/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>2</h1>
+",
+    data: {
+      basename: "2.about",
+      children: "<h1>2</h1>
+",
+      content: "# 2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/2.about/",
+    },
+    src: {
+      ext: ".md",
+      path: "/2.about",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>1 - # 1.1</li>
+  <li>1 - # 1.0</li>
+  <li>1 - # 1.3.1</li>
+  <li>2 - # 1.3.2</li>
+  <li>2 - # 1.2</li>
+  <li>2 - # 2</li>
+  <li>3 - # 1.3</li>
+</ul>
+',
+    data: {
+      basename: "",
+      children: '<ul>
+  <li> - <ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul></li>
+  <li>1 - # 1.1</li>
+  <li>1 - # 1.0</li>
+  <li>1 - # 1.3.1</li>
+  <li>2 - # 1.3.2</li>
+  <li>2 - # 1.2</li>
+  <li>2 - # 2</li>
+  <li>3 - # 1.3</li>
+</ul>
+',
+      content: '<ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+]
+`;

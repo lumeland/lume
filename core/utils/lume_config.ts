@@ -11,6 +11,7 @@ export const pluginNames = [
   "fff",
   "eta",
   "extract_date",
+  "extract_order",
   "jsx",
   "json_ld",
   "reading_info",
