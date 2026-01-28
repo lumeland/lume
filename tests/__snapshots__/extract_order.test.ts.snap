@@ -106,7 +106,7 @@ snapshot[`extract_order plugin 1`] = `
     "/",
     "/1.install",
     "/1.install/1.foo.md",
-    "/1.install/2.bbb.md",
+    "/1.install/2.ccc.md",
     "/1.install/3.bbb",
     "/1.install/3.bbb/1.zzz.md",
     "/1.install/3.bbb/2.aaa.md",
@@ -272,36 +272,6 @@ snapshot[`extract_order plugin 3`] = `
     },
   },
   {
-    content: "<h1>1.2</h1>
-",
-    data: {
-      basename: "bbb",
-      children: "<h1>1.2</h1>
-",
-      content: "# 1.2
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      order: "2",
-      page: [
-        "src",
-        "data",
-        "isCopy",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/install/bbb/",
-    },
-    src: {
-      ext: ".md",
-      path: "/1.install/2.bbb",
-      remote: undefined,
-    },
-  },
-  {
     content: "<h1>1.3.1</h1>
 ",
     data: {
@@ -328,6 +298,36 @@ snapshot[`extract_order plugin 3`] = `
     src: {
       ext: ".md",
       path: "/1.install/3.bbb/1.zzz",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.2</h1>
+",
+    data: {
+      basename: "ccc",
+      children: "<h1>1.2</h1>
+",
+      content: "# 1.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "2",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/ccc/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/2.ccc",
       remote: undefined,
     },
   },
@@ -500,7 +500,7 @@ snapshot[`extract_order plugin (cascade mode) 1`] = `
     "/",
     "/1.install",
     "/1.install/1.foo.md",
-    "/1.install/2.bbb.md",
+    "/1.install/2.ccc.md",
     "/1.install/3.bbb",
     "/1.install/3.bbb/1.zzz.md",
     "/1.install/3.bbb/2.aaa.md",
@@ -666,36 +666,6 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
     },
   },
   {
-    content: "<h1>1.2</h1>
-",
-    data: {
-      basename: "bbb",
-      children: "<h1>1.2</h1>
-",
-      content: "# 1.2
-",
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      order: "0102",
-      page: [
-        "src",
-        "data",
-        "isCopy",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/install/bbb/",
-    },
-    src: {
-      ext: ".md",
-      path: "/1.install/2.bbb",
-      remote: undefined,
-    },
-  },
-  {
     content: "<h1>1.3.1</h1>
 ",
     data: {
@@ -722,6 +692,36 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
     src: {
       ext: ".md",
       path: "/1.install/3.bbb/1.zzz",
+      remote: undefined,
+    },
+  },
+  {
+    content: "<h1>1.2</h1>
+",
+    data: {
+      basename: "ccc",
+      children: "<h1>1.2</h1>
+",
+      content: "# 1.2
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      order: "0102",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/install/ccc/",
+    },
+    src: {
+      ext: ".md",
+      path: "/1.install/2.ccc",
       remote: undefined,
     },
   },
@@ -894,7 +894,7 @@ snapshot[`extract_order plugin (keep basename) 1`] = `
     "/",
     "/1.install",
     "/1.install/1.foo.md",
-    "/1.install/2.bbb.md",
+    "/1.install/2.ccc.md",
     "/1.install/3.bbb",
     "/1.install/3.bbb/1.zzz.md",
     "/1.install/3.bbb/2.aaa.md",
@@ -944,7 +944,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
     content: "<h1>1.2</h1>
 ",
     data: {
-      basename: "2.bbb",
+      basename: "2.ccc",
       children: "<h1>1.2</h1>
 ",
       content: "# 1.2
@@ -962,11 +962,11 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       paginate: "paginate",
       search: [],
       tags: "Array(0)",
-      url: "/1.install/2.bbb/",
+      url: "/1.install/2.ccc/",
     },
     src: {
       ext: ".md",
-      path: "/1.install/2.bbb",
+      path: "/1.install/2.ccc",
       remote: undefined,
     },
   },
