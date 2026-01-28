@@ -74,6 +74,7 @@ export const pluginNames = [
 
   // Final minification and compression
   "minify_html",
+  "epub",
   "brotli",
   "gzip",
 ];

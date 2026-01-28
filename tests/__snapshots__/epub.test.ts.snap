@@ -1,0 +1,481 @@
+export const snapshot = {};
+
+snapshot[`epub plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_data.yml",
+    "/_includes",
+    "/_includes/base.vto",
+    "/css",
+    "/css/core.css",
+    "/index.md",
+    "/page1.md",
+    "/page2.md",
+  ],
+}
+`;
+
+snapshot[`epub plugin 2`] = `[]`;
+
+snapshot[`epub plugin 3`] = `
+[
+  {
+    content: "Uint8Array(3754)",
+    data: {
+      basename: "book",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/book.epub",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en-US" unique-identifier="uid" dir="ltr">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="uid">urn:uuid:00000000-0000-0000-0000-000000000000</dc:identifier>
+    <dc:date>2026-01-08T19:00:00.000Z</dc:date>
+    <dc:rights>All rights reserved</dc:rights>
+    <dc:publisher id="publisher">Unknown</dc:publisher>
+    <dc:title id="title">Untitled</dc:title>
+    <dc:subtitle id="subtitle"/>
+    <dc:description id="description"/>
+    <dc:language>en-US</dc:language>
+    <link rel="dcterms:conformsTo" href="http://idpf.org/epub/a11y/accessibility-20170105.html#wcag-aa"/>
+    <meta property="file-as" refines="#publisher">Unknown</meta>
+    <meta property="a11y:certifiedBy"/>
+    <meta property="schema:accessMode">textual</meta>
+    <meta property="schema:accessModeSufficient">textual</meta>
+    <meta property="rendition:layout">reflowable</meta>
+    <meta property="rendition:flow">scrolled-doc</meta>
+    <meta name="cover"/>
+  </metadata>
+  <manifest>
+    <item id="index.xhtml" href="index.xhtml" media-type="application/xhtml+xml"/>
+    <item id="page1-index.xhtml" href="page1/index.xhtml" media-type="application/xhtml+xml"/>
+    <item id="page2-index.xhtml" href="page2/index.xhtml" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="index.xhtml"/>
+    <itemref idref="page1-index.xhtml"/>
+    <itemref idref="page2-index.xhtml"/>
+  </spine>
+</package>',
+    data: {
+      basename: "content",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/epub/content.opf",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang=""
+  xmlns:epub="http://www.idpf.org/2007/ops"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta
+      name="keywords"
+      content="Cryptocurrency,Cryptocurrencies,Blockchain,Bitcoin,Bitcoin Cash,Monero,Ethereum,BTC,BCH,XMR,ETH,ICO,Crypto"
+    />
+  </head>
+  <body>
+    <p>Ola mundo</p>
+
+  </body>
+</html>
+',
+    data: {
+      basename: "",
+      children: "<p>Ola mundo</p>
+",
+      content: "Ola mundo",
+      date: [],
+      layout: "base.vto",
+      manifestItem: [
+        "id",
+        "href",
+        "mediaType",
+        "index",
+        "properties",
+      ],
+      mergedKeys: [
+        "tags",
+      ],
+      metadata: [
+        "title",
+        "identifier",
+        "publisher",
+        "rights",
+        "date",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/epub/index.xhtml",
+    },
+    src: {
+      ext: ".md",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang=""
+  xmlns:epub="http://www.idpf.org/2007/ops"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>This is the page 1</title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta
+      name="keywords"
+      content="Cryptocurrency,Cryptocurrencies,Blockchain,Bitcoin,Bitcoin Cash,Monero,Ethereum,BTC,BCH,XMR,ETH,ICO,Crypto"
+    />
+  </head>
+  <body>
+    <p>Hello, world</p>
+
+  </body>
+</html>
+',
+    data: {
+      basename: "page1",
+      children: "<p>Hello, world</p>
+",
+      content: "Hello, world",
+      date: [],
+      layout: "base.vto",
+      manifestItem: [
+        "id",
+        "href",
+        "mediaType",
+        "index",
+        "properties",
+      ],
+      mergedKeys: [
+        "tags",
+      ],
+      metadata: [
+        "title",
+        "identifier",
+        "publisher",
+        "rights",
+        "date",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the page 1",
+      url: "/epub/page1/index.xhtml",
+    },
+    src: {
+      ext: ".md",
+      path: "/page1",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  lang=""
+  xmlns:epub="http://www.idpf.org/2007/ops"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>This is the page 2</title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta
+      name="keywords"
+      content="Cryptocurrency,Cryptocurrencies,Blockchain,Bitcoin,Bitcoin Cash,Monero,Ethereum,BTC,BCH,XMR,ETH,ICO,Crypto"
+    />
+  </head>
+  <body>
+    <p>Hello, world (page 2)</p>
+
+  </body>
+</html>
+',
+    data: {
+      basename: "page2",
+      children: "<p>Hello, world (page 2)</p>
+",
+      content: "Hello, world (page 2)",
+      date: [],
+      layout: "base.vto",
+      manifestItem: [
+        "id",
+        "href",
+        "mediaType",
+        "index",
+        "properties",
+      ],
+      mergedKeys: [
+        "tags",
+      ],
+      metadata: [
+        "title",
+        "identifier",
+        "publisher",
+        "rights",
+        "date",
+      ],
+      nav: [],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      title: "This is the page 2",
+      url: "/epub/page2/index.xhtml",
+    },
+    src: {
+      ext: ".md",
+      path: "/page2",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:uid" content="urn:uuid:00000000-0000-0000-0000-000000000000"/>
+    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+    <meta name="cover"/>
+  </head>
+  <docTitle>
+    <text>Untitled</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="page1-index.xhtml" playOrder="1" class="h1">
+      <navLabel>
+        <text>This is the page 1</text>
+      </navLabel>
+      <content src="page1/index.xhtml"/>
+    </navPoint>
+    <navPoint id="page2-index.xhtml" playOrder="2" class="h1">
+      <navLabel>
+        <text>This is the page 2</text>
+      </navLabel>
+      <content src="page2/index.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>',
+    data: {
+      basename: "toc",
+      manifestItem: [
+        "id",
+        "href",
+        "mediaType",
+        "index",
+        "properties",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/epub/toc.ncx",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0">
+  <rootfiles>
+    <rootfile full-path="epub/content.opf" media-type="application/oebps-package+xml"/>
+  </rootfiles>
+</container>',
+    data: {
+      basename: "container",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/META-INF/container.xml",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "application/epub+zip",
+    data: {
+      basename: "mimetype",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/mimetype",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+]
+`;

@@ -67,6 +67,7 @@ Deno.test("Plugins list in init", () => {
     "sitemap",
     "seo",
     "minify_html",
+    "epub",
     "brotli",
     "gzip",
   ]);
