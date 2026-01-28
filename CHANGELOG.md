@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.1.5] - Unreleased
+## [3.2.0] - Unreleased
 ### Added
 - `katex` plugin: add support for `mhchem` extension
 - `katex` plugin: Allow not downloading CSS and font assets for KaTeX plugin [#810]
@@ -382,7 +382,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#810]: https://github.com/lumeland/lume/issues/810
 [#813]: https://github.com/lumeland/lume/issues/813
 
-[3.1.5]: https://github.com/lumeland/lume/compare/v3.1.4...HEAD
+[3.2.0]: https://github.com/lumeland/lume/compare/v3.1.4...HEAD
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
 [3.1.3]: https://github.com/lumeland/lume/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/lumeland/lume/compare/v3.1.1...v3.1.2
