@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Support for `.xhtml` pages (required to build ebooks).
 
 ### Changed
+- `date` plugin: if no language is specified to the filter, use the current page language. If it's not defined, use the default language.
 - Simplified the logic to detect the hostname, port and location in `--serve` mode.
 - LumeCMS plugin:
   - Protect the whole site only when the location is not `localhost`.

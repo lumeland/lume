@@ -1,0 +1,214 @@
+export const snapshot = {};
+
+snapshot[`date plugin filter 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/default.vto",
+    "/en.vto",
+    "/gl.vto",
+  ],
+}
+`;
+
+snapshot[`date plugin filter 2`] = `[]`;
+
+snapshot[`date plugin filter 3`] = `
+[
+  {
+    content: "Hoy es 28 de enero de 2026
+",
+    data: {
+      basename: "default",
+      children: "Hoy es 28 de enero de 2026
+",
+      content: 'Hoy es {{ date |> date("HUMAN_DATE") }}
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/default/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/default",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Today is January 28th, 2026
+Hoxe é 28 de xaneiro 2026
+",
+    data: {
+      basename: "en",
+      children: "Today is January 28th, 2026
+Hoxe é 28 de xaneiro 2026
+",
+      content: 'Today is {{ date |> date("HUMAN_DATE") }}
+Hoxe é {{ date |> date("HUMAN_DATE", "gl") }}
+',
+      date: [],
+      lang: "en",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/en/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/en",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Hoxe é 28 de xaneiro 2026
+Today is January 28th, 2026
+",
+    data: {
+      basename: "gl",
+      children: "Hoxe é 28 de xaneiro 2026
+Today is January 28th, 2026
+",
+      content: 'Hoxe é {{ date |> date("HUMAN_DATE") }}
+Today is {{ date |> date("HUMAN_DATE", "en") }}
+',
+      date: [],
+      lang: "gl",
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/gl/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/gl",
+      remote: undefined,
+    },
+  },
+]
+`;

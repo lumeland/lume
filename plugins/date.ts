@@ -6,6 +6,7 @@ import {
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
+import type { HelperThis } from "../core/renderer.ts";
 import type { Locale } from "../deps/date.ts";
 
 export interface Options {
@@ -42,9 +43,10 @@ export function date(userOptions?: Options) {
     site.filter("date", filter);
 
     function filter(
+      this: HelperThis | void,
       date: string | Date,
       pattern = "DATE",
-      lang = defaultLocale,
+      lang?: string,
     ): string | undefined {
       if (!date) {
         return;
@@ -56,8 +58,9 @@ export function date(userOptions?: Options) {
         date = new Date(date);
       }
 
-      const patt = options.formats[pattern] || pattern;
+      lang ??= this?.data?.lang ?? defaultLocale;
       const locale = lang ? options.locales[lang] : undefined;
+      const patt = options.formats[pattern] || pattern;
 
       if (pattern === "HUMAN_SINCE") {
         return formatDistanceToNow(date, { locale });

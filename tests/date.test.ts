@@ -1,8 +1,11 @@
+import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import { assert, assertStrictEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 import date from "../plugins/date.ts";
 import { gl } from "npm:date-fns@4.1.0/locale/gl";
 import { pt } from "npm:date-fns@4.1.0/locale/pt";
+import { enUS } from "npm:date-fns@4.1.0/locale/en-US";
+import { es } from "npm:date-fns@4.1.0/locale/es";
 
 const date0 = new Date(0);
 
@@ -73,4 +76,17 @@ Deno.test("date plugin with custom locale", async () => {
     format(date0, "HUMAN_DATETIME", "pt"),
     "1 de janeiro de 1970 às 00:00:00 GMT+0",
   );
+});
+
+Deno.test("date plugin filter", async (t) => {
+  const site = getSite({
+    src: "date",
+  });
+
+  site.use(date({
+    locales: { es, gl, en: enUS },
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
 });
