@@ -1,0 +1,12 @@
+Filter
+
+<a href="{{ "/" |> relativeUrl }}">Index</a>
+<a href="{{ "about-us" |> relativeUrl }}">About</a>
+<a href="{{ "./about-us/contact" |> relativeUrl }}">Contact</a>
+<a href="{{ "/about-us/contact" |> relativeUrl("/about-us/contact/other/") }}">Contact 2</a>
+<a href="{{ "/about-us/contact" |> relativeUrl }}">Contact 3</a>
+<a href="{{ "about-us/presentation" |> relativeUrl }}">Presentation</a>
+<a href="{{ "?ignored=true" |> relativeUrl }}">Ignored</a>
+<a href="{{ "#ignored" |> relativeUrl }}">Ignored</a>
+<a href="{{ "https://ignored.com" |> relativeUrl }}">Ignored</a>
+<a href="{{ "//ignored.com" |> relativeUrl }}">Ignored</a>

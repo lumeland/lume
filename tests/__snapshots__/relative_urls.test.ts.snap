@@ -114,6 +114,7 @@ snapshot[`relative_url plugin 1`] = `
     "/about-us/contact.md",
     "/about-us/index.md",
     "/about-us/presentation.md",
+    "/filter.vto",
     "/index.md",
     "/styles.css",
   ],
@@ -262,6 +263,69 @@ snapshot[`relative_url plugin 3`] = `
     src: {
       ext: ".md",
       path: "/about-us/presentation",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head></head><body>Filter
+
+<a href="..">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="../about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+</body></html>',
+    data: {
+      basename: "filter",
+      children: 'Filter
+
+<a href="..">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="../about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+',
+      content: 'Filter
+
+<a href="{{ "/" |> relativeUrl }}">Index</a>
+<a href="{{ "about-us" |> relativeUrl }}">About</a>
+<a href="{{ "./about-us/contact" |> relativeUrl }}">Contact</a>
+<a href="{{ "/about-us/contact" |> relativeUrl("/about-us/contact/other/") }}">Contact 2</a>
+<a href="{{ "/about-us/contact" |> relativeUrl }}">Contact 3</a>
+<a href="{{ "about-us/presentation" |> relativeUrl }}">Presentation</a>
+<a href="{{ "?ignored=true" |> relativeUrl }}">Ignored</a>
+<a href="{{ "#ignored" |> relativeUrl }}">Ignored</a>
+<a href="{{ "https://ignored.com" |> relativeUrl }}">Ignored</a>
+<a href="{{ "//ignored.com" |> relativeUrl }}">Ignored</a>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filter/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/filter",
       remote: undefined,
     },
   },
@@ -486,6 +550,7 @@ snapshot[`relative_url plugin when pretty urls disabled 1`] = `
     "/about-us/contact.md",
     "/about-us/index.md",
     "/about-us/presentation.md",
+    "/filter.vto",
     "/index.md",
     "/styles.css",
   ],
@@ -634,6 +699,69 @@ snapshot[`relative_url plugin when pretty urls disabled 3`] = `
     src: {
       ext: ".md",
       path: "/about-us/presentation",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html><head></head><body>Filter
+
+<a href=".">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+</body></html>',
+    data: {
+      basename: "filter",
+      children: 'Filter
+
+<a href=".">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+',
+      content: 'Filter
+
+<a href="{{ "/" |> relativeUrl }}">Index</a>
+<a href="{{ "about-us" |> relativeUrl }}">About</a>
+<a href="{{ "./about-us/contact" |> relativeUrl }}">Contact</a>
+<a href="{{ "/about-us/contact" |> relativeUrl("/about-us/contact/other/") }}">Contact 2</a>
+<a href="{{ "/about-us/contact" |> relativeUrl }}">Contact 3</a>
+<a href="{{ "about-us/presentation" |> relativeUrl }}">Presentation</a>
+<a href="{{ "?ignored=true" |> relativeUrl }}">Ignored</a>
+<a href="{{ "#ignored" |> relativeUrl }}">Ignored</a>
+<a href="{{ "https://ignored.com" |> relativeUrl }}">Ignored</a>
+<a href="{{ "//ignored.com" |> relativeUrl }}">Ignored</a>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/filter.html",
+    },
+    src: {
+      ext: ".vto",
+      path: "/filter",
       remote: undefined,
     },
   },
