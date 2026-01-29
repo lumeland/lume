@@ -1,5 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { filesToPages } from "../core/file.ts";
+import navPlugin from "./nav.ts";
 import type { Nav, NavData } from "./nav.ts";
 
 import {
@@ -44,18 +45,13 @@ export default function (userOptions?: Options) {
   return (site: Lume.Site) => {
     const metadata = options.metadata as Metadata;
     site.data("metadata", metadata);
-    let nav: Nav;
+    let nav: Nav | undefined = site.scopedData.get("/")?.nav as Nav;
 
-    // Get the nav helper
-    site.addEventListener("beforeBuild", () => {
+    // Install automatically the nav plugin if it's missing
+    if (!nav) {
+      site.use(navPlugin());
       nav = site.scopedData.get("/")?.nav as Nav;
-
-      if (!nav) {
-        throw new Error(
-          "Nav plugin is required to create the EPUB content.opf file.",
-        );
-      }
-    });
+    }
 
     // Convert all .html URLs to .xhtml
     site.preprocess((pages) => {

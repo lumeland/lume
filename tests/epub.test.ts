@@ -1,5 +1,4 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import nav from "../plugins/nav.ts";
 import epub from "../plugins/epub.ts";
 
 Deno.test(
@@ -10,7 +9,6 @@ Deno.test(
       src: "epub",
     });
 
-    site.use(nav());
     site.use(epub({
       outputPages: true,
       metadata: {
