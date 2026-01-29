@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { filesToPages } from "../core/file.ts";
 import navPlugin from "./nav.ts";
 import type { Nav, NavData } from "./nav.ts";
+import type Site from "../core/site.ts";
 
 import {
   createContainer,
@@ -42,7 +43,7 @@ export const defaults: Options = {
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     const metadata = options.metadata as Metadata;
     site.data("metadata", metadata);
     let nav: Nav | undefined = site.scopedData.get("/")?.nav as Nav;
