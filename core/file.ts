@@ -83,7 +83,7 @@ export class Page<D extends Data = Data> {
       return "(generated)";
     }
 
-    return this.src.path + this.src.ext;
+    return this.src.entry?.path ?? this.src.path + this.src.ext;
   }
 
   /** The content of this page */
@@ -182,7 +182,7 @@ export class StaticFile<D extends Data = Data> {
       return "(generated)";
     }
 
-    return this.src.path + this.src.ext;
+    return this.src.entry.path;
   }
 }
 

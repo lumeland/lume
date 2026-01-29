@@ -38,7 +38,10 @@ export default function imageSize() {
       // It's a file
       const file = site.files.find((file) => file.data.url === path);
       if (file) {
-        using fs = await Deno.open(site.src(file.sourcePath), {
+        if (file.src.entry.flags.has("remote")) {
+          log.warn(`[image-size] Remote files not supported yet ${path}`);
+        }
+        using fs = await Deno.open(file.src.entry.src, {
           read: true,
           write: false,
         });
