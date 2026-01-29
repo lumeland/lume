@@ -60,6 +60,7 @@ export const pluginNames = [
   "svgo",
   "picture",
   "transform_images",
+  "image_size",
 
   // Assets in HTML
   "metas",

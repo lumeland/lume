@@ -59,6 +59,7 @@ Deno.test("Plugins list in init", () => {
     "svgo",
     "picture",
     "transform_images",
+    "image_size",
     "metas",
     "inline",
     "sri",

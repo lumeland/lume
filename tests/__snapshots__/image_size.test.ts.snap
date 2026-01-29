@@ -1,0 +1,196 @@
+export const snapshot = {};
+
+snapshot[`ImageSize plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      ext: ".html",
+    },
+  ],
+  src: [
+    "/",
+    "/fire.jpg",
+    "/index.vto",
+    "/lume.PNG",
+  ],
+}
+`;
+
+snapshot[`ImageSize plugin 2`] = `
+[
+  {
+    entry: "/fire.jpg",
+    flags: [],
+    outputPath: "/fire.jpg",
+  },
+  {
+    entry: "/lume.PNG",
+    flags: [],
+    outputPath: "/lume.PNG",
+  },
+]
+`;
+
+snapshot[`ImageSize plugin 3`] = `
+[
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size</title>
+</head>
+<body>
+    <img src="/fire.jpg" width="640" height="959">
+    <img src="./lume.PNG" width="500" height="500">
+
+
+</body></html>',
+    data: {
+      basename: "",
+      children: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size</title>
+</head>
+<body>
+    <img src="/fire.jpg" image-size>
+    <img src="./lume.PNG" image-size>
+</body>
+</html>
+',
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size</title>
+</head>
+<body>
+    <img src="/fire.jpg" image-size>
+    <img src="./lume.PNG" image-size>
+</body>
+</html>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+]
+`;
