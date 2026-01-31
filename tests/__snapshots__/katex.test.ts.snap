@@ -1890,7 +1890,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.16.27";
+  content: "0.16.28";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers

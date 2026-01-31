@@ -1,7 +1,7 @@
-import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.27";
-import "npm:katex@0.16.27/contrib/mhchem";
+import katex, { type KatexOptions as BaseOptions } from "npm:katex@0.16.28";
+import "npm:katex@0.16.28/contrib/mhchem";
 
-export const assetsUrl = "https://cdn.jsdelivr.net/npm/katex@0.16.27/dist";
+export const assetsUrl = "https://cdn.jsdelivr.net/npm/katex@0.16.28/dist";
 
 export { katex };
 

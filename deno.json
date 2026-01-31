@@ -42,7 +42,7 @@
   ],
   "imports": {
     "lume/": "./",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.12/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.13/",
     "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.14/jsx-runtime.ts"
   },
   "lint": {
