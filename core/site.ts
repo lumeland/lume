@@ -32,7 +32,7 @@ import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
 import type { Data, RawData, StaticFile } from "./file.ts";
-import type { Engine, Helper, HelperOptions } from "./renderer.ts";
+import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
 import type { Extensions } from "./utils/path.ts";
@@ -435,12 +435,12 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper, async = false): this {
+  filter(name: string, filter: Helper<HelperThis>, async = false): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper, options: HelperOptions): this {
+  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }

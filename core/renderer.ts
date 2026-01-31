@@ -53,7 +53,7 @@ export default class Renderer {
   }
 
   /** Register a new helper used by the template engines */
-  addHelper(name: string, fn: Helper, options: HelperOptions) {
+  addHelper(name: string, fn: Helper<HelperThis>, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
@@ -372,7 +372,7 @@ export interface HelperThis {
 }
 
 // deno-lint-ignore no-explicit-any
-export type Helper = (this: HelperThis | void, ...args: any[]) => any;
+export type Helper<T = any> = (this: T | void, ...args: any[]) => any;
 
 /** The options for a template helper */
 export interface HelperOptions {
