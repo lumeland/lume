@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
 - `relativeUrls` plugin: add `relativeUrl` filter.
 - Support for `.xhtml` pages (required to build ebooks).
+- Support for `.mjs` as the extension of _component scripts' output file.
 
 ### Changed
 - `date` plugin: if no language is specified to the filter, use the current page language. If it's not defined, use the default language.
