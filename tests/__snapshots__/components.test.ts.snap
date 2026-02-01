@@ -716,3 +716,231 @@ snapshot[`Components with esbuild 3`] = `
   },
 ]
 `;
+
+snapshot[`Components with .mjs script output 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/_components",
+    "/_components/eta_button.eta",
+    "/_components/header",
+    "/_components/header/comp.vto",
+    "/_components/header/script.js",
+    "/_components/header/style.css",
+    "/_components/inherit.njk",
+    "/_components/jsx_button.jsx",
+    "/_components/njk_button.njk",
+    "/_components/not_inherit.njk",
+    "/_components/vento_button.vto",
+    "/_data.yml",
+    "/index.vto",
+    "/script.ts",
+    "/subfolder",
+    "/subfolder/_components",
+    "/subfolder/_components/innerButton.js",
+    "/subfolder/_components/pug_button.pug",
+    "/subfolder/_components/ts_button.ts",
+    "/subfolder/index.njk",
+  ],
+}
+`;
+
+snapshot[`Components with .mjs script output 2`] = `[]`;
+
+snapshot[`Components with .mjs script output 3`] = `
+[
+  {
+    content: 'index
+
+<header id="header" class="header">
+  <h1>Hello world</h1>
+</header>
+
+<header id="header" class="header">
+  <h1>foo</h1>
+</header>
+',
+    data: {
+      basename: "",
+      children: 'index
+
+<header id="header" class="header">
+  <h1>Hello world</h1>
+</header>
+
+<header id="header" class="header">
+  <h1>foo</h1>
+</header>
+',
+      comp: [
+        "_components",
+        "_proxies",
+      ],
+      content: 'index
+
+{{ comp header { title: "Hello world" } /}}
+{{ comp header /}}',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      text: "Hello from _data.yml",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '// fs:/_components/header/script.js
+document.getElementById("header")?.addEventListener("click", function() {
+  alert("Header clicked");
+});
+',
+    data: {
+      basename: "script",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/script.mjs",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: ".header {
+  background-color: pink;
+}
+",
+    data: {
+      basename: "style",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/style.css",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+]
+`;

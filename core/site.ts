@@ -899,11 +899,11 @@ export default class Site {
         continue;
       }
 
-      if (path.endsWith(".js")) {
+      if (path.endsWith(".js") || path.endsWith(".mjs")) {
         this.debugBar?.startMeasure("components-js");
         // https://github.com/lumeland/lume/issues/659
         const existingFile = this.search.file(
-          path.replace(/.js$/, "{.js,.ts}"),
+          path.replace(/.m?js$/, "{.mjs,.js,.ts}"),
         );
         const page = await this.getOrCreatePage(existingFile || path);
         page.text = insertContent(
