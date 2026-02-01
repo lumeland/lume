@@ -63,6 +63,13 @@ export default function (userOptions?: Options) {
       }
     });
 
+    // Ensure all xhtml pages have correct syntax
+    site.process([".xhtml"], (pages) => {
+      for (const page of pages) {
+        page.document;
+      }
+    });
+
     // Generate the EPUB
     site.process(async () => {
       // Load all static files to include them in the file
