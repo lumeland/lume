@@ -1,0 +1,179 @@
+export const snapshot = {};
+
+snapshot[`replace plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      ext: ".html",
+    },
+  ],
+  src: [
+    "/",
+    "/index.vto",
+    "/other.vto",
+  ],
+}
+`;
+
+snapshot[`replace plugin 2`] = `[]`;
+
+snapshot[`replace plugin 3`] = `
+[
+  {
+    content: "LUME is a awesome static site generator
+",
+    data: {
+      basename: "",
+      children: "Lume is a static site generator
+",
+      content: "Lume is a static site generator
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: "There are many awesome static site generators
+",
+    data: {
+      basename: "other",
+      children: "There are many static site generators
+",
+      content: "There are many static site generators
+",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/other/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/other",
+      remote: undefined,
+    },
+  },
+]
+`;
