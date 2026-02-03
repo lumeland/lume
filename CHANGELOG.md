@@ -42,6 +42,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Allow `%` character in filenames [#809]
 - The property `sourcePath` of pages and files was wrongly returning the extension in lowercase, even if the original filename is in uppercase.
 - Make `this` type of `Lume.Helpers` compatible with consuming from an object (`helpers.foo()`).
+- When adding remote files from npm/github/jsdelivr, paths starting with `/*` are now correctly parsed.
 
 ## [3.1.4] - 2026-01-01
 ### Fixed
