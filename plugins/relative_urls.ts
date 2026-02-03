@@ -48,3 +48,17 @@ export function relativeUrls() {
 }
 
 export default relativeUrls;
+
+/** Extends Helpers interface */
+declare global {
+  namespace Lume {
+    export interface Helpers {
+      /** @see https://lume.land/plugins/relative_urls/ */
+      relativeUrl: (
+        this: HelperThis | void,
+        url: string,
+        from?: string,
+      ) => string;
+    }
+  }
+}
