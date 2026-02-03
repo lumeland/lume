@@ -19,6 +19,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `relativeUrls` plugin: add `relativeUrl` filter.
 - Support for `.xhtml` pages (required to build ebooks).
 - Support for `.mjs` as the extension of _component scripts' output file.
+- `remark` plugin: add `mdRemark` filter.
 
 ### Changed
 - `date` plugin: if no language is specified to the filter, use the current page language. If it's not defined, use the default language.
@@ -42,7 +43,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Allow `%` character in filenames [#809]
 - The property `sourcePath` of pages and files was wrongly returning the extension in lowercase, even if the original filename is in uppercase.
 - Make `this` type of `Lume.Helpers` compatible with consuming from an object (`helpers.foo()`).
-- Add missing types for helper functions to Lume global namespace
+- Add missing types for helper functions to Lume global namespace.
 
 ## [3.1.4] - 2026-01-01
 ### Fixed
