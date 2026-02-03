@@ -66,6 +66,7 @@ const defaults: SiteOptions = {
     ignore: [],
     debounce: 100,
     include: [],
+    dependencies: {},
   },
   components: {},
 };
@@ -1114,6 +1115,7 @@ export default class Site {
       paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
+      dependencies: this.options.watcher.dependencies,
     });
 
     return this.watcher;
@@ -1236,6 +1238,9 @@ export interface WatcherOptions {
 
   /** Extra files and folders to watch (ouside the src folder) */
   include: string[];
+
+  /** Manual dependencies not detected by the watcher */
+  dependencies: Record<string, string[]>;
 }
 
 /** The options to configure the components */

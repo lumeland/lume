@@ -18,6 +18,9 @@ export interface Options {
 
   /** The debounce waiting time */
   debounce?: number;
+
+  /** File dependencies */
+  dependencies: Record<string, string[]>;
 }
 
 /** Custom events for server */
@@ -79,7 +82,7 @@ export default class FSWatcher implements Watcher {
 
   /** Start the file watcher */
   async start() {
-    const { root, paths, ignore, debounce } = this.options;
+    const { root, paths, ignore, debounce, dependencies } = this.options;
     const watcher = Deno.watchFs([root, ...paths ?? []]);
     const changes = new Set<string>();
     let timer = 0;
@@ -145,7 +148,21 @@ export default class FSWatcher implements Watcher {
         continue;
       }
 
-      paths.forEach((path) => changes.add(normalizePath(relative(root, path))));
+      paths.forEach((path) => {
+        const normalized = normalizePath(relative(root, path));
+        changes.add(normalized);
+
+        // The file has dependencies
+        for (const [file, deps] of Object.entries(dependencies ?? {})) {
+          const isDependent = deps.some((dep) =>
+            normalizePath(dep) === normalized
+          );
+
+          if (isDependent) {
+            changes.add(normalizePath(file));
+          }
+        }
+      });
 
       // Only run the callback if it is not already running
       if (!runningCallback) {

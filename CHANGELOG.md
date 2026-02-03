@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin `image_size` to generate automatically the `width` and `height` attributes of `img` elements.
 - New plugin `extract_order` to extract the `order` property from the filename. (i.e. `23.hello-world.md`)
 - New plugin `replace` to perform basic replacements in the pages.
+- New `watcher.dependencies` option to map manual dependencies.
 - `katex` plugin: add support for `mhchem` extension
 - `katex` plugin: Allow not downloading CSS and font assets for KaTeX plugin [#810]
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
