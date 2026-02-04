@@ -13,12 +13,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - New plugin `extract_order` to extract the `order` property from the filename. (i.e. `23.hello-world.md`)
 - New plugin `replace` to perform basic replacements in the pages.
 - New `watcher.dependencies` option to map manual dependencies.
-- `katex` plugin: add support for `mhchem` extension
+- `katex` plugin: add support for `mhchem` extension [#805].
 - `katex` plugin: Allow not downloading CSS and font assets for KaTeX plugin [#810]
 - `parseBasename` functions accept a second argument with the parent data object, useful for aggregated values. For example to parse the full date in `/posts/2024/06/21/hello-world.md`.
 - `relativeUrls` plugin: add `relativeUrl` filter.
 - Support for `.xhtml` pages (required to build ebooks).
-- Support for `.mjs` as the extension of _component scripts' output file.
+- Support for `.mjs` as the extension of _component scripts' output file [#815].
 - `remark` plugin: add `mdRemark` filter.
 
 ### Changed
@@ -43,8 +43,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Allow `%` character in filenames [#809]
 - The property `sourcePath` of pages and files was wrongly returning the extension in lowercase, even if the original filename is in uppercase.
 - Make `this` type of `Lume.Helpers` compatible with consuming from an object (`helpers.foo()`).
-- When adding remote files from npm/github/jsdelivr, paths starting with `/*` are now correctly parsed.
-- Add missing types for helper functions to Lume global namespace.
+- When adding remote files from npm/github/jsdelivr, paths starting with `/*` are now correctly parsed [#818].
+- Add missing types for helper functions to Lume global namespace [#817].
 
 ## [3.1.4] - 2026-01-01
 ### Fixed
@@ -388,11 +388,15 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#796]: https://github.com/lumeland/lume/issues/796
 [#797]: https://github.com/lumeland/lume/issues/797
 [#803]: https://github.com/lumeland/lume/issues/803
+[#805]: https://github.com/lumeland/lume/issues/805
 [#807]: https://github.com/lumeland/lume/issues/807
 [#808]: https://github.com/lumeland/lume/issues/808
 [#809]: https://github.com/lumeland/lume/issues/809
 [#810]: https://github.com/lumeland/lume/issues/810
 [#813]: https://github.com/lumeland/lume/issues/813
+[#815]: https://github.com/lumeland/lume/issues/815
+[#817]: https://github.com/lumeland/lume/issues/817
+[#818]: https://github.com/lumeland/lume/issues/818
 
 [3.2.0]: https://github.com/lumeland/lume/compare/v3.1.4...HEAD
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
