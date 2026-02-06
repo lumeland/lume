@@ -51,6 +51,8 @@ export async function create(
     const archetype = fn(...args) as Archetype;
     await saveArchetype(site, archetype);
   }
+
+  log.output();
 }
 
 async function saveArchetype(site: Site, archetype: Archetype) {

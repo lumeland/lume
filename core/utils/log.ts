@@ -54,6 +54,7 @@ const logFormats: Record<string, (str: string) => string> = {
 class Logger {
   #level: number;
   #collection: Collection | undefined;
+  #logs: Map<number, Set<string>> = new Map();
 
   constructor(level: LevelName) {
     this.#level = severity[level];
@@ -67,7 +68,7 @@ class Logger {
     return this.#level;
   }
 
-  #log(msg: string, level: number): void {
+  #log(msg: string, level: number): true | undefined {
     if (level >= severity.FATAL) {
       msg = `<Red>FATAL</Red> ${msg}`;
     } else if (level >= severity.ERROR) {
@@ -81,33 +82,61 @@ class Logger {
       (all, name, content) => logFormats[name]?.(content) ?? all,
     );
 
-    if (level >= severity.ERROR) {
-      return console.error(msg);
+    if (level <= severity.INFO) {
+      console.log(msg);
+      return;
     }
 
-    if (level >= severity.WARN) {
-      return console.warn(msg);
+    const logs = this.#logs.get(level) ?? new Set();
+    this.#logs.set(level, logs);
+    if (!logs.has(msg)) {
+      logs.add(msg);
+      return true;
     }
+  }
 
-    console.log(msg);
+  output() {
+    for (const level of Object.values(severity)) {
+      const messages = this.#logs.get(level);
+
+      if (!messages) {
+        continue;
+      }
+
+      if (level >= severity.ERROR) {
+        messages.forEach((msg) => console.error(msg));
+        continue;
+      }
+
+      if (level >= severity.WARN) {
+        messages.forEach((msg) => console.warn(msg));
+        continue;
+      }
+
+      messages.forEach((msg) => console.log(msg));
+    }
+    this.#logs.clear();
   }
 
   fatal(msg: string, items?: string[] | Item[]): void {
-    this.#bar(msg, "fatal", items);
-    this.#log(msg, severity.FATAL);
+    if (this.#log(msg, severity.FATAL) || items) {
+      this.#bar(msg, "fatal", items);
+    }
   }
 
   error(msg: string, items?: string[] | Item[]): void {
     if (this.#level < severity.FATAL) {
-      this.#bar(msg, "error", items);
-      this.#log(msg, severity.ERROR);
+      if (this.#log(msg, severity.ERROR) || items) {
+        this.#bar(msg, "error", items);
+      }
     }
   }
 
   warn(msg: string, items?: string[] | Item[]): void {
     if (this.#level < severity.ERROR) {
-      this.#bar(msg, "warn", items);
-      this.#log(msg, severity.WARN);
+      if (this.#log(msg, severity.WARN) || items) {
+        this.#bar(msg, "warn", items);
+      }
     }
   }
 

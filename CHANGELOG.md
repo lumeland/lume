@@ -30,6 +30,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - The `src` storage can be overwriten in the `_cms.ts` file.
 - Pages defined with `site.page({ url: "foo", content: (data) => "..." })` uses automatically `js` as the template engine.
 - The `server.root` option is always relative to the dest folder.
+- Capture `warn`, `error` and `fatal` logs to output at the end of the build.
 
 ### Removed
 - `LUME_PROXIED` environment variable is no longer needed.
