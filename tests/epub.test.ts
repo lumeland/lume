@@ -10,7 +10,7 @@ Deno.test(
     });
 
     site.use(epub({
-      outputPages: true,
+      outputUncompressed: true,
       metadata: {
         date: new Date("2026-01-08T19:00:00"),
       },

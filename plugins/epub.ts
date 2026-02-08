@@ -22,7 +22,7 @@ export interface Options {
   output?: string;
 
   /** Set true to output also the pages (for debuging purposes) */
-  outputPages?: boolean;
+  outputUncompressed?: boolean;
 
   /** Metadata of the book */
   metadata?: Partial<Metadata>;
@@ -30,7 +30,7 @@ export interface Options {
 
 export const defaults: Options = {
   output: "/book.epub",
-  outputPages: false,
+  outputUncompressed: false,
   metadata: {
     title: "Untitled",
     identifier: "urn:uuid:00000000-0000-0000-0000-000000000000",
@@ -145,7 +145,7 @@ export default function (userOptions?: Options) {
       }
 
       // Remove all pages from the site
-      if (!options.outputPages) {
+      if (!options.outputUncompressed) {
         site.pages.splice(0, site.pages.length);
       }
 
