@@ -3,7 +3,10 @@ import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
+  /** File extensions to process */
   extensions?: Extensions;
+
+  /** Replacements to perform. The key is the placeholder and the value the new value */
   replacements: Record<string, string | ((text: string) => string)>;
 }
 
