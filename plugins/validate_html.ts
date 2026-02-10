@@ -50,9 +50,29 @@ export function validateHtml(userOptions?: Options) {
   });
 
   return (site: Lume.Site) => {
+    let reports: Report | undefined;
     site.process([".html"], processValidateHtml);
 
+    function output() {
+      if (!reports) {
+        return;
+      }
+
+      const { output } = options;
+      if (typeof output === "function") {
+        output(reports);
+      } else if (typeof output === "string") {
+        outputFile(reports, output);
+      } else if (output !== false) {
+        outputConsole(reports);
+      }
+    }
+
+    site.addEventListener("afterUpdate", output);
+    site.addEventListener("afterBuild", output);
+
     async function processValidateHtml(pages: Lume.Page[]) {
+      reports = undefined;
       const pageReports: Set<Report> = new Set();
 
       for (const page of pages) {
@@ -63,7 +83,7 @@ export function validateHtml(userOptions?: Options) {
         pageReports.add(report);
       }
 
-      const reports = Reporter.merge(Array.from(pageReports.values()));
+      reports = Reporter.merge(Array.from(pageReports.values()));
 
       const report = site.debugBar?.collection("HTML validator");
       if (report) {
@@ -92,16 +112,6 @@ export function validateHtml(userOptions?: Options) {
             ],
           });
         }
-      }
-
-      const { output } = options;
-
-      if (typeof output === "function") {
-        output(reports);
-      } else if (typeof output === "string") {
-        outputFile(reports, output);
-      } else if (output !== false) {
-        outputConsole(reports);
       }
     }
   };

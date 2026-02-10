@@ -9,6 +9,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.2.1] - Unreleased
 ### Fixed
 - LumeCMS: preview url detection.
+- SEO plugin: revert change in 3.2.0 to ensure the custom output is exported after build or update.
+- Validate HTML plugin: revert change in 3.2.0 to ensure the custom output is exported after build or update.
 
 ## [3.2.0] - 2026-02-09
 ### Added
