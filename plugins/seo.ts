@@ -66,11 +66,24 @@ export function SEO(userOptions?: Options) {
 
     site.process(processSEO);
 
+    function output() {
+      // Output
+      const { output } = options;
+      if (typeof output === "function") {
+        output(reports);
+      } else if (typeof output === "string") {
+        outputFile(reports, output);
+      } else {
+        outputConsole(reports);
+      }
+    }
+
+    site.addEventListener("afterUpdate", output);
+    site.addEventListener("afterBuild", output);
+
     function processSEO() {
       reports.clear();
       refresh();
-
-      // Check SEO
       const pages = site.search.pages(options.query);
       for (const page of pages) {
         const errors = validatePage(
@@ -84,7 +97,6 @@ export function SEO(userOptions?: Options) {
         }
       }
 
-      // Output to debug bar
       const report = site.debugBar?.collection("SEO");
       if (report) {
         report.icon = "list-magnifying-glass";
@@ -102,16 +114,6 @@ export function SEO(userOptions?: Options) {
             ],
           });
         }
-      }
-
-      // Output
-      const { output } = options;
-      if (typeof output === "function") {
-        output(reports);
-      } else if (typeof output === "string") {
-        outputFile(reports, output);
-      } else {
-        outputConsole(reports);
       }
     }
   };
