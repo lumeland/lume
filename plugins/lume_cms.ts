@@ -1,8 +1,9 @@
 import { merge } from "../core/utils/object.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { Fs } from "lume/cms/storage/fs.ts";
-
 import basicAuth from "../middlewares/basic_auth.ts";
+import { posix } from "../deps/path.ts";
+
 import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
 import type CMS from "lume/cms/core/cms.ts";
@@ -60,17 +61,20 @@ export function lumeCMS(userOptions: Options) {
     cms.options.previewUrl ??= function previewUrl(
       path: string,
       data: unknown,
+      hasChanged: boolean,
       storage: Storage,
-      hasChanged?: boolean,
     ): undefined | string | Promise<string | undefined> {
-      if (storage !== src) {
+      if (
+        !(storage instanceof Fs) ||
+        !posix.join(storage.root, storage.path).startsWith(root)
+      ) {
         return;
       }
 
       if (hasChanged) {
         return new Promise((resolve) => {
           site.addEventListener("idle", () => {
-            resolve(previewUrl(path, data, storage));
+            resolve(previewUrl(path, data, false, storage));
           }, { once: true });
         });
       }
