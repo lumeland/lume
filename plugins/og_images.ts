@@ -53,6 +53,11 @@ export function ogImages(userOptions?: Options) {
 
       for (const page of pages) {
         const { data } = page;
+
+        if (data.metas?.image) {
+          continue;
+        }
+
         const layout = data.openGraphLayout;
 
         if (!layout) {
