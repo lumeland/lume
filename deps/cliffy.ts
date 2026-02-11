@@ -1,1 +1,1 @@
-export * from "https://cdn.jsdelivr.net/gh/c4spar/deno-cliffy@0.25.7/mod.ts";
+export * from "jsr:@cliffy/command@1.0.0";

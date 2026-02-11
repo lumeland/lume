@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.2.2] - Unreleased
+### Fixed
+- Updated dependencies: `cliffy`.
+
 ## [3.2.1] - 2026-02-10
 ### Fixed
 - LumeCMS: the preview url wasn't detected.
@@ -406,6 +410,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#817]: https://github.com/lumeland/lume/issues/817
 [#818]: https://github.com/lumeland/lume/issues/818
 
+[3.2.2]: https://github.com/lumeland/lume/compare/v3.2.1...HEAD
 [3.2.1]: https://github.com/lumeland/lume/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/lumeland/lume/compare/v3.1.4...v3.2.0
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
