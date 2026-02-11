@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## Unreleased
+### Added
+- `json_ld` plugin: allow customizing they way JSON-LD data is used inside pages
+
 ## [3.2.1] - 2026-02-10
 ### Fixed
 - LumeCMS: the preview url wasn't detected.
