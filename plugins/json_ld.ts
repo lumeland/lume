@@ -170,11 +170,35 @@ function isEmpty(v: unknown) {
   return v === undefined || v === null || v === "";
 }
 
+export interface Options {
+  /**
+   * The function executed on each HTML page file to inject the JSON-LD
+   * data into the document. It receives the Page object and the assembled
+   * JSON-LD string as its arguments.
+   *
+   * By default a <script> tag with the data is inserted into <head>.
+   */
+  renderFn: (page: Page, jsonLdData: string) => void;
+}
+
+export const defaults: Options = {
+  renderFn: (page, jsonLdData) => {
+    const { document } = page;
+    const script = document.createElement("script");
+    script.setAttribute("type", "application/ld+json");
+    script.textContent = jsonLdData;
+    document.head.appendChild(script);
+    document.head.appendChild(document.createTextNode("\n"));
+  },
+};
+
 /**
  * A plugin to insert structured JSON-LD data for SEO and social media
  * @see https://lume.land/plugins/json_ld/
  */
-export function jsonLd() {
+export function jsonLd(userOptions?: Options) {
+  const options = Object.assign({}, defaults, userOptions || {});
+
   return (site: Site) => {
     site.mergeKey("jsonLd", "object");
     site.process([".html"], function processJsonLd(pages) {
@@ -188,7 +212,7 @@ export function jsonLd() {
         return;
       }
 
-      const { document, data } = page;
+      const { data } = page;
 
       // Recursive function to traverse and process JSON-LD data
       function traverse(key: string | undefined, value: unknown): unknown {
@@ -235,11 +259,7 @@ export function jsonLd() {
         if (jsonLdData["@context"] === undefined) {
           jsonLdData["@context"] = "https://schema.org";
         }
-        const script = document.createElement("script");
-        script.setAttribute("type", "application/ld+json");
-        script.textContent = JSON.stringify(jsonLdData);
-        document.head.appendChild(script);
-        document.head.appendChild(document.createTextNode("\n"));
+        options.renderFn(page, JSON.stringify(jsonLdData));
       }
     }
   };
