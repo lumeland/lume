@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.2] - Unreleased
+### Added
+- Redirect middleware: `copySearchParams` option.
+
 ### Fixed
 - Updated dependencies: `cliffy`.
 
