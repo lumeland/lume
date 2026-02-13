@@ -19,7 +19,7 @@ export default function replace(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, (pages) => {
+    site.process(options.extensions, function processReplace(pages) {
       const entries = Object.entries(options.replacements);
 
       for (const page of pages) {

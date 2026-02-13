@@ -30,7 +30,7 @@ export function partytown(userOptions?: Options) {
     const src = options.options.debug ? `${lib}/**/*.js` : `${lib}/*.js`;
 
     site.add(src, dest);
-    site.process([".html"], (pages) => {
+    site.process([".html"], function processPartytown(pages) {
       for (const page of pages) {
         const script = page.document.createElement("script");
         script.textContent = snippet;

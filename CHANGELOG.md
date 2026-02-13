@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Redirect middleware: `copySearchParams` option.
 
 ### Fixed
+- Added names to some processor functions to show up in the debug bar.
 - Updated dependencies: `cliffy`.
 
 ## [3.2.1] - 2026-02-10

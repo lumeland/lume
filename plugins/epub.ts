@@ -64,14 +64,14 @@ export default function (userOptions?: Options) {
     });
 
     // Ensure all xhtml pages have correct syntax
-    site.process([".xhtml"], (pages) => {
+    site.process([".xhtml"], function processXHTML(pages) {
       for (const page of pages) {
         page.document;
       }
     });
 
     // Generate the EPUB
-    site.process(async () => {
+    site.process(async function processEpub() {
       // Load all static files to include them in the file
       await filesToPages(
         site.files,
