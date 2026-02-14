@@ -11,6 +11,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Redirect middleware: `copySearchParams` option.
 
 ### Fixed
+- `transform_images` plugin incorrectly deduplicates when format is an object [#823]
 - Added names to some processor functions to show up in the debug bar.
 - Updated dependencies: `cliffy`.
 
@@ -413,6 +414,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#815]: https://github.com/lumeland/lume/issues/815
 [#817]: https://github.com/lumeland/lume/issues/817
 [#818]: https://github.com/lumeland/lume/issues/818
+[#823]: https://github.com/lumeland/lume/issues/823
 
 [3.2.2]: https://github.com/lumeland/lume/compare/v3.2.1...HEAD
 [3.2.1]: https://github.com/lumeland/lume/compare/v3.2.0...v3.2.1

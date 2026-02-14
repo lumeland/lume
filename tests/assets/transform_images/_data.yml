@@ -9,7 +9,7 @@ transformImages:
   - format:
     - format: jpg
       progressive: true
-    - webp
+    - format: webp
   - format: png
   - format: jpg
     suffix: -never

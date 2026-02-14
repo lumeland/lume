@@ -277,7 +277,8 @@ function removeDuplicatedTransformations(
 
   for (const transformation of transformations) {
     const { format, suffix, matches } = transformation;
-    const key = `${format}:${suffix ?? ""}${matches ?? ""}`;
+    const formatKey = typeof format === "string" ? format : format?.format;
+    const key = `${formatKey}:${suffix ?? ""}${matches ?? ""}`;
     result.set(key, transformation);
   }
 
