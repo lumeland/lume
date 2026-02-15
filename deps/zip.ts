@@ -1,1 +1,1 @@
-export { BlobReader, BlobWriter, ZipWriter } from "jsr:@zip-js/zip-js@2.8.19";
+export { BlobReader, BlobWriter, ZipWriter } from "jsr:@zip-js/zip-js@2.8.20";
