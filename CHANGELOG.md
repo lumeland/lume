@@ -9,6 +9,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [3.2.2] - Unreleased
 ### Added
 - Redirect middleware: `copySearchParams` option.
+- `json_ld` plugin: `insert` options to control whether to place the JSON-LD data into pages.
 
 ### Fixed
 - `transform_images` plugin incorrectly deduplicates when format is an object [#823]

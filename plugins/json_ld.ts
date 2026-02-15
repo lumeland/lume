@@ -170,11 +170,24 @@ function isEmpty(v: unknown) {
   return v === undefined || v === null || v === "";
 }
 
+export interface Options {
+  /**
+   * Decide whether the JSON-LD data will be inserted into each HTML page's <head>
+   * section.
+   *
+   * If `false`, the plugin simply exports the computed JSON-LD object to `jsonLdData`
+   * page data.
+   */
+  insert: boolean;
+}
+
 /**
  * A plugin to insert structured JSON-LD data for SEO and social media
  * @see https://lume.land/plugins/json_ld/
  */
-export function jsonLd() {
+export function jsonLd(userOptions?: Options) {
+  const insert = userOptions?.insert ?? true;
+
   return (site: Site) => {
     site.mergeKey("jsonLd", "object");
     site.process([".html"], function processJsonLd(pages) {
@@ -235,11 +248,16 @@ export function jsonLd() {
         if (jsonLdData["@context"] === undefined) {
           jsonLdData["@context"] = "https://schema.org";
         }
-        const script = document.createElement("script");
-        script.setAttribute("type", "application/ld+json");
-        script.textContent = JSON.stringify(jsonLdData);
-        document.head.appendChild(script);
-        document.head.appendChild(document.createTextNode("\n"));
+
+        if (insert) {
+          const script = document.createElement("script");
+          script.setAttribute("type", "application/ld+json");
+          script.textContent = JSON.stringify(jsonLdData);
+          document.head.appendChild(script);
+          document.head.appendChild(document.createTextNode("\n"));
+        } else {
+          page.data.jsonLdData = jsonLdData;
+        }
       }
     }
   };
