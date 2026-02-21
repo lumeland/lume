@@ -79,7 +79,10 @@ export async function read(
     // ignore
   }
 
-  const response = await fetch(url, init);
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(1000 * 10), // 10s
+    ...init,
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to fetch "${url}"`);
