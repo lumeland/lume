@@ -114,10 +114,10 @@ snapshot[`Download a font from Google fonts 2`] = `[]`;
 snapshot[`Download a font from Google fonts 3`] = `
 [
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-100-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -139,10 +139,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-100-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -164,10 +164,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-100-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -189,10 +189,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-100-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -214,10 +214,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-100-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -239,10 +239,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-100-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -264,10 +264,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-100-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -289,10 +289,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-100-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -314,10 +314,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-100-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -339,10 +339,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-300-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -364,10 +364,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-300-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -389,10 +389,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-300-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -414,10 +414,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-300-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -439,10 +439,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-300-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -464,10 +464,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-300-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -489,10 +489,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-300-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -514,10 +514,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-300-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -539,10 +539,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-300-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -564,10 +564,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-400-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -589,10 +589,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-400-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -614,10 +614,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-400-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -639,10 +639,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-400-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -664,10 +664,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-400-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -689,10 +689,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-400-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -714,10 +714,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-400-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -739,10 +739,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-400-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -764,10 +764,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-400-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -789,10 +789,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-500-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -814,10 +814,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-500-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -839,10 +839,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-500-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -864,10 +864,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-500-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -889,10 +889,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-500-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -914,10 +914,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-500-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -939,10 +939,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-500-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -964,10 +964,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-500-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -989,10 +989,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-500-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1014,10 +1014,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-700-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1039,10 +1039,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-700-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1064,10 +1064,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-700-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1089,10 +1089,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-700-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1114,10 +1114,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-700-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1139,10 +1139,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-700-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1164,10 +1164,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-700-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1189,10 +1189,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-700-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1214,10 +1214,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-700-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1239,10 +1239,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "roboto-100-italic-900-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1264,10 +1264,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "roboto-100-italic-900-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1289,10 +1289,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "roboto-100-italic-900-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1314,10 +1314,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "roboto-100-italic-900-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1339,10 +1339,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "roboto-100-italic-900-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1364,10 +1364,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "roboto-100-italic-900-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1389,10 +1389,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "roboto-100-italic-900-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1414,10 +1414,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "roboto-100-italic-900-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1439,10 +1439,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "roboto-100-italic-900-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1464,10 +1464,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-100-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1489,10 +1489,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-100-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1514,10 +1514,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-100-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1539,10 +1539,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-100-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1564,10 +1564,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-100-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1589,10 +1589,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-100-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1614,10 +1614,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-100-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1639,10 +1639,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-100-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1664,10 +1664,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-100-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1689,10 +1689,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-300-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1714,10 +1714,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-300-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1739,10 +1739,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-300-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1764,10 +1764,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-300-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1789,10 +1789,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-300-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1814,10 +1814,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-300-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1839,10 +1839,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-300-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1864,10 +1864,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-300-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1889,10 +1889,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-300-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1914,10 +1914,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-400-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1939,10 +1939,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-400-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1964,10 +1964,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-400-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -1989,10 +1989,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-400-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2014,10 +2014,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-400-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2039,10 +2039,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-400-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2064,10 +2064,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-400-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2089,10 +2089,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-400-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2114,10 +2114,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-400-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2139,10 +2139,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-500-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2164,10 +2164,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-500-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2189,10 +2189,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-500-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2214,10 +2214,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-500-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2239,10 +2239,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-500-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2264,10 +2264,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-500-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2289,10 +2289,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-500-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2314,10 +2314,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-500-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2339,10 +2339,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-500-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2364,10 +2364,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-700-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2389,10 +2389,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-700-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2414,10 +2414,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-700-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2439,10 +2439,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-700-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2464,10 +2464,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-700-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2489,10 +2489,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-700-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2514,10 +2514,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-700-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2539,10 +2539,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-700-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2564,10 +2564,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-700-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2589,10 +2589,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "roboto-100-normal-900-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2614,10 +2614,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "roboto-100-normal-900-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2639,10 +2639,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "roboto-100-normal-900-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2664,10 +2664,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "roboto-100-normal-900-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2689,10 +2689,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "roboto-100-normal-900-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2714,10 +2714,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "roboto-100-normal-900-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2739,10 +2739,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "roboto-100-normal-900-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2764,10 +2764,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "roboto-100-normal-900-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -2789,10 +2789,10 @@ snapshot[`Download a font from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "roboto-100-normal-900-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4159,10 +4159,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-100-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4184,10 +4184,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-100-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4209,10 +4209,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-100-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4234,10 +4234,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-100-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4259,10 +4259,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-100-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4284,10 +4284,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-100-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4309,10 +4309,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-100-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4334,10 +4334,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-100-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4359,10 +4359,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-100-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4384,10 +4384,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-300-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4409,10 +4409,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-300-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4434,10 +4434,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-300-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4459,10 +4459,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-300-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4484,10 +4484,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-300-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4509,10 +4509,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-300-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4534,10 +4534,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-300-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4559,10 +4559,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-300-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4584,10 +4584,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-300-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4609,10 +4609,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-400-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4634,10 +4634,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-400-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4659,10 +4659,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-400-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4684,10 +4684,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-400-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4709,10 +4709,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-400-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4734,10 +4734,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-400-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4759,10 +4759,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-400-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4784,10 +4784,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-400-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4809,10 +4809,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-400-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4834,10 +4834,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-500-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4859,10 +4859,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-500-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4884,10 +4884,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-500-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4909,10 +4909,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-500-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4934,10 +4934,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-500-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4959,10 +4959,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-500-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -4984,10 +4984,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-500-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5009,10 +5009,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-500-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5034,10 +5034,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-500-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5059,10 +5059,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-700-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5084,10 +5084,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-700-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5109,10 +5109,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-700-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5134,10 +5134,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-700-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5159,10 +5159,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-700-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5184,10 +5184,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-700-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5209,10 +5209,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-700-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5234,10 +5234,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-700-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5259,10 +5259,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-700-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5284,10 +5284,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34520)",
+    content: "Uint8Array(35396)",
     data: {
       basename: "ui-font-100-italic-900-cyrillic-ext",
-      content: "Uint8Array(34520)",
+      content: "Uint8Array(35396)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5309,10 +5309,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(20600)",
+    content: "Uint8Array(21576)",
     data: {
       basename: "ui-font-100-italic-900-cyrillic",
-      content: "Uint8Array(20600)",
+      content: "Uint8Array(21576)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5334,10 +5334,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1732)",
+    content: "Uint8Array(1720)",
     data: {
       basename: "ui-font-100-italic-900-greek-ext",
-      content: "Uint8Array(1732)",
+      content: "Uint8Array(1720)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5359,10 +5359,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(15248)",
+    content: "Uint8Array(15108)",
     data: {
       basename: "ui-font-100-italic-900-greek",
-      content: "Uint8Array(15248)",
+      content: "Uint8Array(15108)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5384,10 +5384,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(23680)",
+    content: "Uint8Array(26784)",
     data: {
       basename: "ui-font-100-italic-900-latin-ext",
-      content: "Uint8Array(23680)",
+      content: "Uint8Array(26784)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5409,10 +5409,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-900-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5434,10 +5434,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(39340)",
+    content: "Uint8Array(40192)",
     data: {
       basename: "ui-font-100-italic-900-math",
-      content: "Uint8Array(39340)",
+      content: "Uint8Array(40192)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5459,10 +5459,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18448)",
+    content: "Uint8Array(18484)",
     data: {
       basename: "ui-font-100-italic-900-symbols",
-      content: "Uint8Array(18448)",
+      content: "Uint8Array(18484)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5484,10 +5484,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(10136)",
+    content: "Uint8Array(11604)",
     data: {
       basename: "ui-font-100-italic-900-vietnamese",
-      content: "Uint8Array(10136)",
+      content: "Uint8Array(11604)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5509,10 +5509,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-100-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5534,10 +5534,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-100-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5559,10 +5559,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-100-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5584,10 +5584,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-100-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5609,10 +5609,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-100-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5634,10 +5634,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-100-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5659,10 +5659,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-100-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5684,10 +5684,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-100-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5709,10 +5709,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-100-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5734,10 +5734,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-300-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5759,10 +5759,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-300-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5784,10 +5784,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-300-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5809,10 +5809,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-300-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5834,10 +5834,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-300-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5859,10 +5859,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-300-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5884,10 +5884,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-300-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5909,10 +5909,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-300-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5934,10 +5934,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-300-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5959,10 +5959,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-400-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -5984,10 +5984,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-400-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6009,10 +6009,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-400-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6034,10 +6034,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-400-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6059,10 +6059,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-400-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6084,10 +6084,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-400-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6109,10 +6109,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-400-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6134,10 +6134,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-400-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6159,10 +6159,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-400-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6184,10 +6184,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-500-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6209,10 +6209,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-500-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6234,10 +6234,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-500-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6259,10 +6259,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-500-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6284,10 +6284,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-500-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6309,10 +6309,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-500-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6334,10 +6334,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-500-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6359,10 +6359,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-500-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6384,10 +6384,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-500-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6409,10 +6409,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-700-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6434,10 +6434,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-700-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6459,10 +6459,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-700-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6484,10 +6484,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-700-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6509,10 +6509,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-700-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6534,10 +6534,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-700-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6559,10 +6559,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-700-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6584,10 +6584,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-700-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6609,10 +6609,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-700-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6634,10 +6634,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(30416)",
+    content: "Uint8Array(31472)",
     data: {
       basename: "ui-font-100-normal-900-cyrillic-ext",
-      content: "Uint8Array(30416)",
+      content: "Uint8Array(31472)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6659,10 +6659,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(18852)",
+    content: "Uint8Array(19624)",
     data: {
       basename: "ui-font-100-normal-900-cyrillic",
-      content: "Uint8Array(18852)",
+      content: "Uint8Array(19624)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6684,10 +6684,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(1580)",
+    content: "Uint8Array(1632)",
     data: {
       basename: "ui-font-100-normal-900-greek-ext",
-      content: "Uint8Array(1580)",
+      content: "Uint8Array(1632)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6709,10 +6709,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(14052)",
+    content: "Uint8Array(13984)",
     data: {
       basename: "ui-font-100-normal-900-greek",
-      content: "Uint8Array(14052)",
+      content: "Uint8Array(13984)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6734,10 +6734,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(21440)",
+    content: "Uint8Array(24444)",
     data: {
       basename: "ui-font-100-normal-900-latin-ext",
-      content: "Uint8Array(21440)",
+      content: "Uint8Array(24444)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6759,10 +6759,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-900-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6784,10 +6784,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(35600)",
+    content: "Uint8Array(36292)",
     data: {
       basename: "ui-font-100-normal-900-math",
-      content: "Uint8Array(35600)",
+      content: "Uint8Array(36292)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6809,10 +6809,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(16548)",
+    content: "Uint8Array(16692)",
     data: {
       basename: "ui-font-100-normal-900-symbols",
-      content: "Uint8Array(16548)",
+      content: "Uint8Array(16692)",
       date: [],
       mergedKeys: [
         "tags",
@@ -6834,10 +6834,10 @@ snapshot[`Download and rename fonts from Google fonts 3`] = `
     },
   },
   {
-    content: "Uint8Array(9276)",
+    content: "Uint8Array(10572)",
     data: {
       basename: "ui-font-100-normal-900-vietnamese",
-      content: "Uint8Array(9276)",
+      content: "Uint8Array(10572)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8264,10 +8264,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-100-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8289,10 +8289,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-300-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8314,10 +8314,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-400-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8339,10 +8339,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-500-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8364,10 +8364,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-700-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8389,10 +8389,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(38560)",
+    content: "Uint8Array(41748)",
     data: {
       basename: "ui-font-100-italic-900-latin",
-      content: "Uint8Array(38560)",
+      content: "Uint8Array(41748)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8414,10 +8414,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-100-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8439,10 +8439,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-300-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8464,10 +8464,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-400-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8489,10 +8489,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-500-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8514,10 +8514,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-700-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",
@@ -8539,10 +8539,10 @@ snapshot[`Use a placeholder 3`] = `
     },
   },
   {
-    content: "Uint8Array(34668)",
+    content: "Uint8Array(37520)",
     data: {
       basename: "ui-font-100-normal-900-latin",
-      content: "Uint8Array(34668)",
+      content: "Uint8Array(37520)",
       date: [],
       mergedKeys: [
         "tags",

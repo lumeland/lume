@@ -14,6 +14,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `transform_images` plugin incorrectly deduplicates when format is an object [#823]
+- `extract_order` plugin: convert the order to number if cascade option is disabled.
 - Added names to some processor functions to show up in the debug bar.
 - Updated dependencies: `cliffy`, `zip-js`, `markdown-it` and some icons.
 
