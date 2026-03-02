@@ -19,8 +19,15 @@ export default function replace(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, function processReplace(pages) {
-      const entries = Object.entries(options.replacements);
+    const { extensions, replacements } = options;
+
+    // Hook to add or modify replacements
+    site.hooks.replace = (newValues) => {
+      Object.assign(replacements, newValues);
+    };
+
+    site.process(extensions, function processReplace(pages) {
+      const entries = Object.entries(replacements);
 
       for (const page of pages) {
         let content = page.text;
