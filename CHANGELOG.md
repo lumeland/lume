@@ -17,7 +17,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `transform_images` plugin incorrectly deduplicates when format is an object [#823]
 - `extract_order` plugin: convert the order to number if cascade option is disabled.
 - Added names to some processor functions to show up in the debug bar.
-- Updated dependencies: `cliffy`, `zip-js`, `markdown-it`, `std`, `katex`, `html-validate`, `autoprefixer`, `tailwind`, `vento`, `decap`, `satori`, `unocss` and some icons.
+- Updated dependencies: `cliffy`, `zip-js`, `markdown-it`, `std`, `katex`, `html-validate`, `autoprefixer`, `tailwind`, `vento`, `decap`, `satori`, `unocss`, `svgo`, `deno/loader`, `satori` and some icons.
 
 ## [3.2.1] - 2026-02-10
 ### Fixed

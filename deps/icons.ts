@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.576.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@0.577.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -122,7 +122,7 @@ export const catalogs: Catalog[] = [
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.38.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.39.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {

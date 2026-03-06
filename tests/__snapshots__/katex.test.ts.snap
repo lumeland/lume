@@ -1891,7 +1891,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.16.33";
+  content: "0.16.37";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers
@@ -2073,6 +2073,10 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
 }
 .katex .mspace {
   display: inline-block;
+}
+.katex .smash {
+  display: inline;
+  line-height: 0;
 }
 .katex .llap,
 .katex .rlap,
