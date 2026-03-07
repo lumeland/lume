@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.2] - Unreleased
 ### Added
+- New `site.removePage` to make easier to remove files or pages during the build.
 - Redirect middleware: `copySearchParams` option.
 - New `replace` hook to update or add new replacements to the `replace` plugin.
 - Abort the fetch of remote files after 10s.

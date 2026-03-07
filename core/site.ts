@@ -31,7 +31,7 @@ import notFound from "../middlewares/not_found.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import type { Data, RawData, StaticFile } from "./file.ts";
+import { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
@@ -1014,6 +1014,42 @@ export default class Site {
     }
 
     return absolute ? this.options.location.origin + path : path;
+  }
+
+  removePage(file: StaticFile): StaticFile | undefined;
+  removePage(page: Page): Page | undefined;
+  removePage(
+    urlOrPage: string | Page | StaticFile,
+  ): Page | StaticFile | undefined {
+    if (typeof urlOrPage === "string") {
+      const url = urlOrPage;
+
+      // It's a page
+      let index = this.pages.findIndex((page) => page.data.url === url);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+
+      // It's a static file
+      index = this.files.findIndex((f) => f.outputPath === url);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof Page) {
+      const index = this.pages.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof StaticFile) {
+      const index = this.files.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
   }
 
   async getOrCreatePage(url: string): Promise<Page> {
