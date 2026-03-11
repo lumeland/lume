@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.2.2] - Unreleased
+## [3.2.2] - 2026-03-11
 ### Added
 - New `site.removePage` to make easier to remove files or pages during the build.
 - Redirect middleware: `copySearchParams` option.
@@ -421,7 +421,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#818]: https://github.com/lumeland/lume/issues/818
 [#823]: https://github.com/lumeland/lume/issues/823
 
-[3.2.2]: https://github.com/lumeland/lume/compare/v3.2.1...HEAD
+[3.2.2]: https://github.com/lumeland/lume/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/lumeland/lume/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/lumeland/lume/compare/v3.1.4...v3.2.0
 [3.1.4]: https://github.com/lumeland/lume/compare/v3.1.3...v3.1.4
