@@ -110,6 +110,8 @@ snapshot[`ImageSize plugin 1`] = `
     "/fire.jpg",
     "/index.vto",
     "/lume.PNG",
+    "/subfolder",
+    "/subfolder/index.vto",
   ],
 }
 `;
@@ -189,6 +191,67 @@ snapshot[`ImageSize plugin 3`] = `
     src: {
       ext: ".vto",
       path: "/index",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size subpage</title>
+</head>
+<body>
+    <img src="/fire.jpg" width="640" height="959">
+    <img src="../lume.PNG" width="500" height="500">
+
+
+</body></html>',
+    data: {
+      basename: "subfolder",
+      children: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size subpage</title>
+</head>
+<body>
+    <img src="/fire.jpg" image-size>
+    <img src="../lume.PNG" image-size>
+</body>
+</html>
+',
+      content: '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image size subpage</title>
+</head>
+<body>
+    <img src="/fire.jpg" image-size>
+    <img src="../lume.PNG" image-size>
+</body>
+</html>
+',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/subfolder/",
+    },
+    src: {
+      ext: ".vto",
+      path: "/subfolder/index",
       remote: undefined,
     },
   },
