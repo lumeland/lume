@@ -67,7 +67,7 @@ export default function imageSize() {
             continue;
           }
 
-          const size = await getImageSize(posix.join(basePath, src));
+          const size = await getImageSize(posix.resolve(basePath, src));
 
           if (size) {
             img.setAttribute("width", size.width.toString());
