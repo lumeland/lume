@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.2.3] - 2026-03-11
+### Fixed
+- `image_size` plugin was unable to extract image dimensions in some cases due to faulty path resolution.
+
 ## [3.2.2] - 2026-03-11
 ### Added
 - New `site.removePage` to make easier to remove files or pages during the build.
