@@ -76,7 +76,7 @@ export function prism(userOptions?: Options) {
       for (
         const { name, cssFile = site.options.cssFile, placeholder } of themes
       ) {
-        site.process(async () => {
+        site.process(async function processPrismTheme() {
           const cssCode = await readFile(getCssUrl(name));
           const page = await site.getOrCreatePage(cssFile);
           page.text = insertContent(page.text, cssCode, placeholder);

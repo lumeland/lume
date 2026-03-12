@@ -1,4 +1,4 @@
-import { Command, CompletionsCommand } from "./deps/cliffy.ts";
+import { Command } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
 
 const upgrade = new Command()
@@ -93,8 +93,7 @@ const lume = new Command()
     build(config, serve, watch, cms);
   })
   .command("new <archetype> [arguments...]", create)
-  .command("upgrade", upgrade)
-  .command("completions", new CompletionsCommand());
+  .command("upgrade", upgrade);
 
 try {
   await lume.parse(Deno.args);

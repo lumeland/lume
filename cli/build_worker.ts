@@ -117,7 +117,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   // Start the watcher
   const watcher = site.getWatcher();
 
-  watcher.addEventListener("change", (event) => {
+  watcher.addEventListener("change", async (event) => {
     const files = event.files!;
 
     log.info("Changes detected:");
@@ -128,11 +128,13 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     // If the config files have changed, reload the build process
     if (reloadFiles.some((file) => files.has(file))) {
       log.info("Reloading the site...");
+      log.output();
       postMessage({ type: "reload" });
       return;
     }
 
-    return site.update(files);
+    await site.update(files);
+    log.output();
   });
 
   watcher.addEventListener("error", (event) => {
@@ -213,4 +215,5 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   );
 
   server.start();
+  log.output();
 }

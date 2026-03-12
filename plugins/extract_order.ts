@@ -38,7 +38,7 @@ export function extractOrder(userOptions?: Options) {
           basename = name;
         }
 
-        return { order, basename };
+        return { order: Number(order), basename };
       }
     });
   };

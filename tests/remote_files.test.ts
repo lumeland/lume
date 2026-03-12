@@ -28,6 +28,7 @@ Deno.test("render remote files", {
   site.add(new URL("./styles2.css", base).href);
   site.add(new URL("./styles2.css", base).href, "/styles/");
   site.add("npm:normalize.css@8.0.1/normalize.css");
+  site.add("npm:milligram@1.4.1/**/*.min.css", "/milligram");
   site.remoteFile(
     "_includes/remote-style.css",
     new URL("./remote-style.css", base).href,

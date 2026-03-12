@@ -137,7 +137,7 @@ export async function getVersion(
   return found ? format(found) : undefined;
 }
 
-const NPM = /^npm:(@[^/]+\/)?([^@/]+)(@([^/]+))?(\/.+)?$/;
+const NPM = /^npm:(@[^/]+\/)?([^@/]+)(@([^/]+))?(\/.*)?$/;
 function parseNpm(
   specifier: string,
 ): [PackageType, string, string, string] | undefined {
@@ -156,7 +156,7 @@ function parseNpm(
   ];
 }
 
-const GITHUB = /^gh:([^/]+\/[^/@]+)(@([^/]+))?(\/.+)?$/;
+const GITHUB = /^gh:([^/]+\/[^/@]+)(@([^/]+))?(\/.*)?$/;
 function parseGh(
   specifier: string,
 ): [PackageType, string, string, string] | undefined {

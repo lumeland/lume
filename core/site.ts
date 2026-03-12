@@ -31,8 +31,8 @@ import notFound from "../middlewares/not_found.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import type { Data, RawData, StaticFile } from "./file.ts";
-import type { Engine, Helper, HelperOptions } from "./renderer.ts";
+import { Data, RawData, StaticFile } from "./file.ts";
+import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
 import type { Extensions } from "./utils/path.ts";
@@ -66,6 +66,7 @@ const defaults: SiteOptions = {
     ignore: [],
     debounce: 100,
     include: [],
+    dependencies: {},
   },
   components: {},
 };
@@ -435,12 +436,12 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper, async = false): this {
+  filter(name: string, filter: Helper<HelperThis>, async = false): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper, options: HelperOptions): this {
+  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -899,11 +900,11 @@ export default class Site {
         continue;
       }
 
-      if (path.endsWith(".js")) {
+      if (path.endsWith(".js") || path.endsWith(".mjs")) {
         this.debugBar?.startMeasure("components-js");
         // https://github.com/lumeland/lume/issues/659
         const existingFile = this.search.file(
-          path.replace(/.js$/, "{.js,.ts}"),
+          path.replace(/.m?js$/, "{.mjs,.js,.ts}"),
         );
         const page = await this.getOrCreatePage(existingFile || path);
         page.text = insertContent(
@@ -1015,6 +1016,42 @@ export default class Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
+  removePage(file: StaticFile): StaticFile | undefined;
+  removePage(page: Page): Page | undefined;
+  removePage(
+    urlOrPage: string | Page | StaticFile,
+  ): Page | StaticFile | undefined {
+    if (typeof urlOrPage === "string") {
+      const url = urlOrPage;
+
+      // It's a page
+      let index = this.pages.findIndex((page) => page.data.url === url);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+
+      // It's a static file
+      index = this.files.findIndex((f) => f.outputPath === url);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof Page) {
+      const index = this.pages.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof StaticFile) {
+      const index = this.files.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
+  }
+
   async getOrCreatePage(url: string): Promise<Page> {
     url = normalizePath(url);
 
@@ -1114,6 +1151,7 @@ export default class Site {
       paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
+      dependencies: this.options.watcher.dependencies,
     });
 
     return this.watcher;
@@ -1236,6 +1274,9 @@ export interface WatcherOptions {
 
   /** Extra files and folders to watch (ouside the src folder) */
   include: string[];
+
+  /** Manual dependencies not detected by the watcher */
+  dependencies: Record<string, string[]>;
 }
 
 /** The options to configure the components */

@@ -371,6 +371,10 @@ declare global {
     export interface Helpers {
       /** @see https://lume.land/plugins/nunjucks/ */
       njk: (string: string, data?: Record<string, unknown>) => Promise<string>;
+
+      /** @see https://lume.land/plugins/nunjucks/ */
+      // deno-lint-ignore no-explicit-any
+      await: (value: any) => Promise<any>;
     }
   }
 }

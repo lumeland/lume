@@ -92,5 +92,10 @@ declare global {
        */
       readingInfo: ReadingInfo;
     }
+
+    export interface Helpers {
+      /** @see https://lume.land/plugins/reading_info/ */
+      readingInfo: (content?: string, lang?: string) => ReadingInfo;
+    }
   }
 }

@@ -1,0 +1,22 @@
+name: Mirror Code to Codeberg
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Mirror to Codeberg
+        uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: git@codeberg.org:lume/lume.git
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.MIRROR_CODEBERG_SSH_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"

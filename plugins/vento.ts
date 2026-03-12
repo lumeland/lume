@@ -263,3 +263,13 @@ function compTag(
 }
 
 export default vento;
+
+/** Extends Helpers interface */
+declare global {
+  namespace Lume {
+    export interface Helpers {
+      /** @see https://lume.land/plugins/vento/ */
+      vto: (string: string, data?: Record<string, unknown>) => Promise<string>;
+    }
+  }
+}

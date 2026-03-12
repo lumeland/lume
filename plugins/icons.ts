@@ -145,3 +145,13 @@ function processSvg(code: string): string {
 
   return code;
 }
+
+/** Extends Helpers interface */
+declare global {
+  namespace Lume {
+    export interface Helpers {
+      /** @see https://lume.land/plugins/icons/ */
+      icon: (key: string, catalogId: string, rest?: string) => string;
+    }
+  }
+}

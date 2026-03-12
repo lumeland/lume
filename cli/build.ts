@@ -1,3 +1,4 @@
+import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { buildSite, createSite } from "./utils.ts";
 
@@ -15,6 +16,7 @@ export async function build(
     );
     const site = await createSite(_config);
     await buildSite(site);
+    log.output();
     return;
   }
 

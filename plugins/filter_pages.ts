@@ -31,10 +31,10 @@ export function filterPages(userOptions: Options) {
   const processMethod = options.beforeRender ? "preprocess" : "process";
 
   return (site: Site) => {
-    site[processMethod](function processFilterPages(pages, allPages) {
+    site[processMethod](function processFilterPages(pages) {
       for (const page of pages) {
         if (!options.fn(page)) {
-          allPages.splice(allPages.indexOf(page), 1);
+          site.removePage(page);
         }
       }
     });

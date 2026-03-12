@@ -200,3 +200,17 @@ Deno.test(
     await assertSiteSnapshot(t, site);
   },
 );
+
+Deno.test(
+  "Components with .mjs script output",
+  { sanitizeOps: false, sanitizeResources: false },
+  async (t) => {
+    const site = getSite({
+      src: "components",
+      jsFile: "script.mjs",
+    });
+
+    await build(site);
+    await assertSiteSnapshot(t, site);
+  },
+);

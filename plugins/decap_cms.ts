@@ -109,7 +109,7 @@ export function decapCMS(userOptions?: Options) {
     });
 
     // Create the configuration file
-    site.process((_, allPages) => {
+    site.process(function processDecapCMS(_, allPages) {
       const config = site.source.data.get("/")?.[options.configKey] as
         | Record<string, unknown>
         | undefined;

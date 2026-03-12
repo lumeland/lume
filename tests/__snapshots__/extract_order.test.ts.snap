@@ -135,7 +135,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",
@@ -224,7 +224,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",
@@ -254,7 +254,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "3",
+      order: 3,
       page: [
         "src",
         "data",
@@ -284,7 +284,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -314,7 +314,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",
@@ -344,7 +344,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -374,7 +374,7 @@ snapshot[`extract_order plugin 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -529,7 +529,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "02",
+      order: 2,
       page: [
         "src",
         "data",
@@ -553,13 +553,13 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
   <li>{{ page.order }} - {{ page.content.trim() }}</li>
   {{ /for }}
 </ul></li>
-  <li>01 - # 1.0</li>
-  <li>0101 - # 1.1</li>
-  <li>0102 - # 1.2</li>
-  <li>0103 - # 1.3</li>
-  <li>010301 - # 1.3.1</li>
-  <li>010302 - # 1.3.2</li>
-  <li>02 - # 2</li>
+  <li>1 - # 1.0</li>
+  <li>2 - # 2</li>
+  <li>101 - # 1.1</li>
+  <li>102 - # 1.2</li>
+  <li>103 - # 1.3</li>
+  <li>10301 - # 1.3.1</li>
+  <li>10302 - # 1.3.2</li>
 </ul>
 ',
     data: {
@@ -570,13 +570,13 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
   <li>{{ page.order }} - {{ page.content.trim() }}</li>
   {{ /for }}
 </ul></li>
-  <li>01 - # 1.0</li>
-  <li>0101 - # 1.1</li>
-  <li>0102 - # 1.2</li>
-  <li>0103 - # 1.3</li>
-  <li>010301 - # 1.3.1</li>
-  <li>010302 - # 1.3.2</li>
-  <li>02 - # 2</li>
+  <li>1 - # 1.0</li>
+  <li>2 - # 2</li>
+  <li>101 - # 1.1</li>
+  <li>102 - # 1.2</li>
+  <li>103 - # 1.3</li>
+  <li>10301 - # 1.3.1</li>
+  <li>10302 - # 1.3.2</li>
 </ul>
 ',
       content: '<ul>
@@ -618,7 +618,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "010302",
+      order: 10302,
       page: [
         "src",
         "data",
@@ -648,7 +648,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "0103",
+      order: 103,
       page: [
         "src",
         "data",
@@ -678,7 +678,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "010301",
+      order: 10301,
       page: [
         "src",
         "data",
@@ -708,7 +708,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "0102",
+      order: 102,
       page: [
         "src",
         "data",
@@ -738,7 +738,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "0101",
+      order: 101,
       page: [
         "src",
         "data",
@@ -768,7 +768,7 @@ snapshot[`extract_order plugin (cascade mode) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "01",
+      order: 1,
       page: [
         "src",
         "data",
@@ -923,7 +923,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -953,7 +953,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",
@@ -983,7 +983,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -1013,7 +1013,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",
@@ -1043,7 +1043,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "3",
+      order: 3,
       page: [
         "src",
         "data",
@@ -1073,7 +1073,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "1",
+      order: 1,
       page: [
         "src",
         "data",
@@ -1103,7 +1103,7 @@ snapshot[`extract_order plugin (keep basename) 3`] = `
       mergedKeys: [
         "tags",
       ],
-      order: "2",
+      order: 2,
       page: [
         "src",
         "data",

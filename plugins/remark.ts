@@ -135,6 +135,7 @@ export function remark(userOptions?: Options) {
 
     // Register the filter
     site.filter("md", filter as Helper, true);
+    site.filter("mdRemark", filter as Helper, true);
 
     async function filter(content: string): Promise<string> {
       return (await remarkEngine.render(content)).trim();
@@ -143,3 +144,13 @@ export function remark(userOptions?: Options) {
 }
 
 export default remark;
+
+/** Extends Helpers interface */
+declare global {
+  namespace Lume {
+    export interface Helpers {
+      /** @see https://lume.land/plugins/remark/ */
+      mdRemark: (content: string) => Promise<string>;
+    }
+  }
+}

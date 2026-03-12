@@ -62,7 +62,7 @@ export function reload(options: Options): Middleware {
   watcher.start();
 
   return async (request, next) => {
-    // Is a websocket
+    // It's a websocket
     if (request.headers.get("upgrade") === "websocket") {
       const { socket, response } = Deno.upgradeWebSocket(request);
 
@@ -100,45 +100,46 @@ export function reload(options: Options): Middleware {
       return response;
     }
 
-    // Insert live-reload script in the body
-    if (response.headers.get("content-type")?.includes("html")) {
-      const reader = response.body.getReader();
-
-      let body = "";
-      let result = await reader.read();
-      const decoder = new TextDecoder();
-
-      while (!result.done) {
-        body += decoder.decode(result.value);
-        result = await reader.read();
-      }
-
-      let source = `${reloadClient};
-      liveReload(${revision}, "${options.basepath}", ${response.status}, "${
-        debugBar?.url || ""
-      }");
-      /*# sourceURL=inline:lume-live-reload.js */; `;
-
-      if (request.url.endsWith(".xhtml")) {
-        source = `//<![CDATA[\n${source}\n//]]>`;
-      }
-      const integrity = await computeSourceIntegrity(source);
-
-      // Add live reload script and pass initial revision
-      const code =
-        `<script type="module" id="lume-live-reload" integrity="${integrity}">${source}</script>`;
-      if (body.includes("</body>")) {
-        body = body.replace("</body>", `${code}</body>`);
-      } else {
-        body += code;
-      }
-
-      const { status, statusText, headers } = response;
-
-      return new Response(body, { status, statusText, headers });
+    // It's not a HTML response
+    if (!response.headers.get("content-type")?.includes("html")) {
+      return response;
     }
 
-    return response;
+    // Insert live-reload script in the body
+    const reader = response.body.getReader();
+
+    let body = "";
+    let result = await reader.read();
+    const decoder = new TextDecoder();
+
+    while (!result.done) {
+      body += decoder.decode(result.value);
+      result = await reader.read();
+    }
+
+    let source = `${reloadClient};
+    liveReload(${revision}, "${options.basepath}", ${response.status}, "${
+      debugBar?.url || ""
+    }");
+    /*# sourceURL=inline:lume-live-reload.js */; `;
+
+    if (request.url.endsWith(".xhtml")) {
+      source = `//<![CDATA[\n${source}\n//]]>`;
+    }
+    const integrity = await computeSourceIntegrity(source);
+
+    // Add live reload script and pass initial revision
+    const code =
+      `<script type="module" id="lume-live-reload" integrity="${integrity}">${source}</script>`;
+    if (body.includes("</body>")) {
+      body = body.replace("</body>", `${code}</body>`);
+    } else {
+      body += code;
+    }
+
+    const { status, statusText, headers } = response;
+
+    return new Response(body, { status, statusText, headers });
   };
 }
 
