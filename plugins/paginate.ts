@@ -30,6 +30,12 @@ export interface PaginationInfo {
   /** The total number of elements */
   totalResults: number;
 
+  /** The url of the first page */
+  first: string | null;
+
+  /** The url of the last page */
+  last: string | null;
+
   /** The url of the previous page */
   previous: string | null;
 
@@ -117,6 +123,8 @@ export function createPaginator(defaults: PaginateOptions): Paginator {
           page,
           totalPages,
           totalResults,
+          first: page > 1 ? options.url(1) : null,
+          last: totalPages > page ? options.url(totalPages) : null,
           previous: page > 1 ? options.url(page - 1) : null,
           next: totalPages > page ? options.url(page + 1) : null,
         },
