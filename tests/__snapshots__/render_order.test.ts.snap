@@ -678,7 +678,7 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: '{"page":1,"totalPages":3,"totalResults":11,"first":null,"last":"./page-3/index.html","previous":null,"next":"./page-2/index.html"}',
+    content: '{"page":1,"totalPages":3,"totalResults":11,"first":"./page-1/index.html","last":"./page-3/index.html","previous":null,"next":"./page-2/index.html"}',
     data: {
       basename: "page-1",
       children: "undefined",
@@ -754,7 +754,7 @@ snapshot[`render order property 3`] = `
     },
   },
   {
-    content: '{"page":3,"totalPages":3,"totalResults":11,"first":"./page-1/index.html","last":null,"previous":"./page-2/index.html","next":null}',
+    content: '{"page":3,"totalPages":3,"totalResults":11,"first":"./page-1/index.html","last":"./page-3/index.html","previous":"./page-2/index.html","next":null}',
     data: {
       basename: "page-3",
       children: "undefined",
