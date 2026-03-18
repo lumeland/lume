@@ -283,12 +283,6 @@ function getAuthor(
   }
 }
 
-function getAuthors(author?: Author): Author[] | undefined {
-  if (author) {
-    return [author];
-  }
-}
-
 function fixUrls(base: URL, html: string): string {
   return html.replaceAll(
     /\s(href|src)="([^"]+)"/g,
@@ -385,7 +379,7 @@ function generateJson(data: FeedData, file: string): string {
       data.hubs.map((hub) => ({ "type": "WebSub", "url": hub })),
     description: data.description,
     language: data.lang,
-    authors: getAuthors(data.author),
+    authors: data.author ? [data.author] : undefined,
     icon: data.image,
     favicon: data.icon,
     items: data.items.map((item) => ({
@@ -393,7 +387,7 @@ function generateJson(data: FeedData, file: string): string {
       url: item.url,
       title: item.title,
       language: item.lang,
-      authors: getAuthors(item.author),
+      authors: item.author ? [item.author] : undefined,
       content_html: item.content,
       date_published: item.published.toISOString(),
       date_modified: item.updated?.toISOString(),
