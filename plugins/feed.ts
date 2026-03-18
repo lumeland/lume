@@ -283,6 +283,12 @@ function getAuthor(
   }
 }
 
+function getAuthors(author?: Author): Author[] | undefined {
+  if (author) {
+    return [author];
+  }
+}
+
 function fixUrls(base: URL, html: string): string {
   return html.replaceAll(
     /\s(href|src)="([^"]+)"/g,
@@ -371,24 +377,26 @@ function generateRss(
 
 function generateJson(data: FeedData, file: string): string {
   const feed = {
-    version: "https://jsonfeed.org/version/1",
+    version: "https://jsonfeed.org/version/1.1",
     title: data.title,
     home_page_url: data.url,
     feed_url: file,
     hubs: data.hubs &&
-      data.hubs.map((hub) => ({ "type": "WebSub", "feed_url": hub })),
+      data.hubs.map((hub) => ({ "type": "WebSub", "url": hub })),
     description: data.description,
-    author: data.author,
+    language: data.lang,
+    authors: getAuthors(data.author),
     icon: data.image,
     favicon: data.icon,
     items: data.items.map((item) => ({
       id: item.url,
       url: item.url,
       title: item.title,
-      author: item.author,
+      language: item.lang,
+      authors: getAuthors(item.author),
       content_html: item.content,
-      date_published: item.published.toUTCString(),
-      date_modified: item.updated?.toUTCString(),
+      date_published: item.published.toISOString(),
+      date_modified: item.updated?.toISOString(),
       image: item.image,
     })),
   };
