@@ -179,6 +179,78 @@ snapshot[`RSS plugin 3`] = `
     },
   },
   {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+    data: {
+      basename: "feed",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "feed.atom",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
     data: {
       basename: "feed",
@@ -456,6 +528,80 @@ snapshot[`RSS plugin with array function 3`] = `
     },
   },
   {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/feed-style.xml"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed1.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed1.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+    data: {
+      basename: "feed1",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/feed-style.xml"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed1.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed1.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "feed1.atom",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
     data: {
       basename: "feed1",
@@ -546,6 +692,78 @@ snapshot[`RSS plugin with array function 3`] = `
         "isCopy",
       ],
       url: "feed1.rss",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed2.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed2.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+    data: {
+      basename: "feed2",
+      content: '<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://example.com/feed2.atom</id>
+  <title>My RSS Feed</title>
+  <updated>2020-01-01T00:00:00.000Z</updated>
+  <link href="https://example.com/" rel="alternate" type="text/html"/>
+  <link href="https://example.com/feed2.atom" rel="self" type="application/atom+xml"/>
+  <link href="https://example.com/hub1" rel="hub"/>
+  <link href="https://example.com/hub2" rel="hub"/>
+  <generator>https://lume.land</generator>
+  <author>
+    <name>Laura Rubio</name>
+  </author>
+  <icon>https://example.com/icon.svg</icon>
+  <logo>https://example.com/image.png</logo>
+  <entry xml:lang="gl">
+    <id>https://example.com/page5/</id>
+    <title>PAGE 5</title>
+    <updated>1979-06-21T23:45:00.000Z</updated>
+    <published>1979-06-21T23:45:00.000Z</published>
+    <link href="https://example.com/page5/" rel="alternate" type="text/html"/>
+    <author>
+      <name>Óscar</name>
+      <uri>https://oscarotero.com</uri>
+    </author>
+    <content type="html">Content of Page 5</content>
+  </entry>
+</feed>',
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "feed2.atom",
     },
     src: {
       ext: "",
