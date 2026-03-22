@@ -9,7 +9,7 @@ Deno.test("RSS plugin", async (t) => {
 
   site.use(
     feed({
-      output: ["feed.json", "feed.rss"],
+      output: ["feed.json", "feed.rss", "feed.atom"],
       info: {
         published: new Date("2020-01-01"),
         generator: "https://lume.land",
@@ -46,7 +46,7 @@ Deno.test("RSS plugin with array function", async (t) => {
 
   site.use(
     feed(() => [{
-      output: ["feed1.json", "feed1.rss"],
+      output: ["feed1.json", "feed1.rss", "feed1.atom"],
       stylesheet: "/feed-style.xml",
       info: {
         published: new Date("2020-01-01"),
@@ -66,7 +66,7 @@ Deno.test("RSS plugin with array function", async (t) => {
         authorUrl: "=author.url",
       },
     }, {
-      output: ["feed2.json", "feed2.rss"],
+      output: ["feed2.json", "feed2.rss", "feed2.atom"],
       info: {
         published: new Date("2020-01-01"),
         generator: "https://lume.land",
