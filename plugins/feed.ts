@@ -169,7 +169,7 @@ export interface FeedItem {
 const defaultGenerator = getGenerator();
 
 /**
- * A plugin to generate RSS and JSON feeds
+ * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
 export function feed(
@@ -262,6 +262,15 @@ export function feed(
               );
               break;
 
+            case "atom":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateAtom(feed, file, options.stylesheet),
+                }),
+              );
+              break;
+
             default:
               log.error(`[feed plugin] Input output format: ${filename}`);
           }
@@ -305,7 +314,13 @@ function generateRss(
       "@xmlns:atom": "http://www.w3.org/2005/Atom",
       "@xmlns:sy": "http://purl.org/rss/1.0/modules/syndication/",
       "@xmlns:slash": "http://purl.org/rss/1.0/modules/slash/",
-      "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0",
+      ...(
+        data.image !== undefined ||
+          data.icon !== undefined ||
+          data.color !== undefined
+          ? { "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0" }
+          : {}
+      ),
       "@version": "2.0",
       channel: {
         title: data.title,
@@ -396,6 +411,94 @@ function generateJson(data: FeedData, file: string): string {
   };
 
   return JSON.stringify(clean(feed));
+}
+
+function generateAtom(
+  data: FeedData,
+  file: string,
+  stylesheet?: string,
+): string {
+  const feed: stringifyable = {
+    "@version": "1.0",
+    "@encoding": "UTF-8",
+    feed: {
+      "@xmlns": "http://www.w3.org/2005/Atom",
+      ...(
+        data.image !== undefined ||
+          data.icon !== undefined ||
+          data.color !== undefined
+          ? { "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0" }
+          : {}
+      ),
+      "@xml:lang": data.lang,
+      id: file,
+      title: data.title,
+      subtitle: data.description,
+      updated: data.published.toISOString(),
+      link: [
+        {
+          "@href": data.url,
+          "@rel": "alternate",
+          "@type": "text/html",
+        },
+        {
+          "@href": file,
+          "@rel": "self",
+          "@type": "application/atom+xml",
+        },
+        ...(data.hubs ?? []).map((hub) => ({
+          "@href": hub,
+          "@rel": "hub",
+        })),
+      ],
+      generator: data.generator,
+      author: {
+        name: data.author?.name,
+        uri: data.author?.url,
+      },
+      icon: data.icon,
+      logo: data.image,
+      "webfeeds:cover": {
+        "@image": data.image,
+      },
+      "webfeeds:logo": data.icon,
+      "webfeeds:accentColor": data.color,
+      entry: data.items.map((item) => ({
+        "@xml:lang": item.lang !== data.lang ? item.lang : undefined,
+        id: item.url,
+        title: item.title,
+        updated: item.updated?.toISOString(),
+        published: item.published.toISOString(),
+        link: {
+          "@href": item.url,
+          "@rel": "alternate",
+          "@type": "text/html",
+        },
+        author: {
+          name: item.author?.name,
+          uri: item.author?.url,
+        },
+        summary: item.description,
+        content: item.content
+          ? {
+            "@type": "html",
+            "#text": item.content,
+          }
+          : undefined,
+      })),
+    },
+  };
+
+  if (stylesheet) {
+    feed["#instructions"] = {
+      "xml-stylesheet": {
+        "@type": "text/xsl",
+        "@href": stylesheet,
+      },
+    };
+  }
+
+  return stringify(clean(feed));
 }
 
 /** Remove undefined values of an object recursively */
