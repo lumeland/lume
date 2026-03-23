@@ -80,7 +80,7 @@ export class FSWriter implements Writer {
       const [previousCount, previousSourcePath, previousHash] = previous;
 
       if (previousCount === this.#saveCount) {
-        throw new Error(
+        log.error(
           `The pages ${sourcePath} and ${previousSourcePath} have the same output path "${outputPath}". Use distinct 'url' values to resolve the conflict.`,
         );
       }

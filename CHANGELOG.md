@@ -11,6 +11,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `paginate.first` and `paginate.last` properties to get the first and last page of the pagination.
 - `feed` plugin: upgrade JSON output to JSON Feed 1.1.
 
+### Fixed
+- Duplicated pages throws an error instead of using the `log.error` helper.
+
 ## [3.2.3] - 2026-03-11
 ### Fixed
 - `image_size` plugin was unable to extract image dimensions in some cases due to faulty path resolution.
