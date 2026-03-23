@@ -44,31 +44,3 @@ export function getZonedDateTime(
     return Temporal.PlainDateTime.from(date).toZonedDateTime(timezone);
   }
 }
-
-/**
- * Thanks to https://meiert.com/blog/eleventy-git-last-modified/
- */
-export function getGitLastModified(path = "."): Map<string, string> {
-  const dates = new Map<string, string>();
-  const args = ["log", "-1", "--format=%at", "--", path];
-  const { stdout, success } = new Deno.Command("git", { args }).outputSync();
-  if (!success) {
-    return dates;
-  }
-  let currentDate: string | undefined;
-  const str = new TextDecoder().decode(stdout);
-  for (const line of str.split("\n")) {
-    const text = line.trim();
-
-    if (text.startsWith("DATE:")) {
-      currentDate = text.slice(5).trim();
-    } else if (text && currentDate) {
-      // First commits, last modification
-      if (!dates.has(text)) {
-        dates.set(text, currentDate);
-      }
-    }
-  }
-
-  return dates;
-}
