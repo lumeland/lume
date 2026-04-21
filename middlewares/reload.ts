@@ -112,10 +112,14 @@ export function reload(options: Options): Middleware {
     let result = await reader.read();
     const decoder = new TextDecoder();
 
+    // Use streaming mode so multi-byte UTF-8 sequences that straddle chunk
+    // boundaries are decoded correctly instead of being replaced with U+FFFD.
     while (!result.done) {
-      body += decoder.decode(result.value);
+      body += decoder.decode(result.value, { stream: true });
       result = await reader.read();
     }
+    // Flush any remaining state from the decoder.
+    body += decoder.decode();
 
     let source = `${reloadClient};
     liveReload(${revision}, "${options.basepath}", ${response.status}, "${
