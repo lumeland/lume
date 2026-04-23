@@ -1,19 +1,24 @@
 import { assert, assertEquals } from "../deps/assert.ts";
 import { reload } from "../middlewares/reload.ts";
-import type { Watcher } from "../core/watcher.ts";
+import type { Watcher, WatchEvent, WatchEventType } from "../core/watcher.ts";
+import type { EventListener, EventOptions } from "../core/events.ts";
 
 // Minimal Watcher stub. The reload middleware only calls `addEventListener`
-// and `start` during construction, so we return a no-op implementation.
-function mockWatcher(): Watcher {
-  return {
-    addEventListener() {
-      return this;
-    },
-    async dispatchEvent() {
-      return true;
-    },
-    async start() {},
-  } as Watcher;
+// and `start` during construction, so these are no-op implementations.
+class MockWatcher implements Watcher {
+  addEventListener(
+    _type: WatchEventType,
+    _listener: EventListener<WatchEvent>,
+    _options?: EventOptions,
+  ): this {
+    return this;
+  }
+  dispatchEvent(_event: WatchEvent): Promise<boolean> {
+    return Promise.resolve(true);
+  }
+  start(): Promise<void> {
+    return Promise.resolve();
+  }
 }
 
 Deno.test(
@@ -43,22 +48,14 @@ Deno.test(
       headers: { "content-type": "text/html; charset=utf-8" },
     });
 
-    // Silence the middleware's console.log during watcher.start().
-    const originalLog = console.log;
-    console.log = () => {};
-    let middleware;
-    try {
-      middleware = reload({
-        watcher: mockWatcher(),
-        basepath: "/",
-      });
-    } finally {
-      console.log = originalLog;
-    }
+    const middleware = reload({
+      watcher: new MockWatcher(),
+      basepath: "/",
+    });
 
     const response = await middleware(
       new Request("http://localhost/"),
-      async () => upstream,
+      () => Promise.resolve(upstream),
       {} as Deno.ServeHandlerInfo,
     );
 
