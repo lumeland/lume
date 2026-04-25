@@ -7,6 +7,13 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.5] - Unreleased
+### Added
+- `robots` plugin: support rule grouping
+- `robots` plugin: support Content-Signal rule
+
+### Changed
+- `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline
+
 ### Fixed
 - Don't break the build if a loader throws an error.
 - `google_fonts` plugin ignores display parameter [#834]
