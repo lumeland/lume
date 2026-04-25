@@ -80,7 +80,7 @@ export function sitemap(userOptions?: Options) {
       const robots = await site.getOrCreatePage("/robots.txt");
       robots.text = `${robots.text}\nSitemap: ${
         site.url(options.filename, true)
-      }`;
+      }\n`;
     });
 
     function generateSitemap(pages: Data[]): string {

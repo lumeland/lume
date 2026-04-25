@@ -101,7 +101,8 @@ export function robots(userOptions?: Partial<Options>) {
               }: ${value}`
             )
             .join("\n")
-        ).join("\n\n");
+        ).join("\n\n") +
+        "\n";
     });
   };
 }
