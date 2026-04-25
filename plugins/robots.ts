@@ -19,6 +19,8 @@ type Rule = {
   sitemap?: string;
   /** Clean-param */
   cleanParam?: string;
+  /** Content-signal */
+  contentSignal?: string;
 };
 
 const ruleSort = [
