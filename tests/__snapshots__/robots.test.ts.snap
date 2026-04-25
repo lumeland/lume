@@ -461,7 +461,8 @@ snapshot[`Robots plugin 3`] = `
   },
   {
     content: "User-agent: *
-Allow: /",
+Allow: /
+",
     data: {
       basename: "robots",
       page: [
@@ -941,10 +942,9 @@ snapshot[`Robots plugin with allow 3`] = `
   },
   {
     content: "User-agent: Googlebot
-Allow: /
-
 User-agent: Bingbot
-Allow: /",
+Allow: /
+",
     data: {
       basename: "robots",
       page: [
@@ -1427,7 +1427,8 @@ snapshot[`Robots plugin with disallow 3`] = `
 Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /",
+Disallow: /
+",
     data: {
       basename: "robots",
       page: [
@@ -1912,7 +1913,13 @@ Allow: /
 User-agent: *
 Disallow: /admin
 
-Sitemap: https://example.com/sitemap.xml",
+User-agent: MistralAI-User
+User-agent: ChatGPT-User
+Disallow: /img
+Disallow: /assets
+
+Sitemap: https://example.com/sitemap.xml
+",
     data: {
       basename: "robots",
       page: [

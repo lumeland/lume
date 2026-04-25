@@ -4,19 +4,19 @@ import type Site from "../core/site.ts";
 
 type Rule = {
   /** User-agent */
-  userAgent?: string;
+  userAgent?: string[] | string;
   /** Crawl-delay */
   crawlDelay?: string;
   /** Disallow */
-  disallow?: string;
+  disallow?: string[] | string;
   /** Disavow */
   disavow?: string;
   /** Allow */
-  allow?: string;
+  allow?: string[] | string;
   /** Host */
   host?: string;
   /** Sitemap */
-  sitemap?: string;
+  sitemap?: string[] | string;
   /** Clean-param */
   cleanParam?: string;
   /** Content-signal */
@@ -71,19 +71,13 @@ export function robots(userOptions?: Partial<Options>) {
         ? [options.disallow]
         : options.disallow;
 
-      allow?.forEach((userAgent) =>
-        rules.push({
-          userAgent,
-          allow: "/",
-        })
-      );
+      if (allow && allow.length > 0) {
+        rules.push({ userAgent: allow, allow: "/" });
+      }
 
-      disallow?.forEach((userAgent) =>
-        rules.push({
-          userAgent,
-          disallow: "/",
-        })
-      );
+      if (disallow && disallow.length > 0) {
+        rules.push({ userAgent: disallow, disallow: "/" });
+      }
 
       rules.push(...(options.rules ?? []));
 
@@ -98,11 +92,12 @@ export function robots(userOptions?: Partial<Options>) {
               ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB)
             )
             .map(([key, value]) =>
-              `${key.charAt(0).toUpperCase()}${
-                key.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
-              }: ${value}`
-            )
-            .join("\n")
+              (typeof value === "string" ? [value] : value).map((item) =>
+                `${key.charAt(0).toUpperCase()}${
+                  key.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
+                }: ${item}`
+              ).join("\n")
+            ).join("\n")
         ).join("\n\n") +
         "\n";
     });

@@ -61,6 +61,10 @@ Deno.test("Robots plugin with custom rules", async (t) => {
         disallow: "/admin",
       },
       {
+        userAgent: ["MistralAI-User", "ChatGPT-User"],
+        disallow: ["/img", "/assets"],
+      },
+      {
         sitemap: new URL("/sitemap.xml", site.options.location).href,
       },
     ],
