@@ -245,6 +245,7 @@ export function feed(
             case "rss":
             case "feed":
             case "xml":
+            case "html":
               site.pages.push(
                 Page.create({
                   url: filename,

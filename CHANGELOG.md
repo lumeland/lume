@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - `robots` plugin: support rule grouping
 - `robots` plugin: support Content-Signal rule
+- `feed` plugin: Allow `html` extension for pretty URL #839
 
 ### Changed
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline
