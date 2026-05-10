@@ -155,6 +155,9 @@ export function esbuild(userOptions?: Options) {
             const workspace = new Workspace({
               configPath,
               nodeConditions: build.initialOptions.conditions,
+              platform: options.options.platform === "browser"
+                ? "browser"
+                : "node",
             });
 
             const loader = await workspace.createLoader();
