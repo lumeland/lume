@@ -10,7 +10,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - `robots` plugin: support rule grouping
 - `robots` plugin: support Content-Signal rule
-- `feed` plugin: Allow `html` extension for pretty URL #839
+- `feed` plugin: Allow `html` extension for pretty URL [#839]
+- `feed` plugin: New `info.self` option to customize the `self` url [#839]
 
 ### Changed
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline
@@ -456,6 +457,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#830]: https://github.com/lumeland/lume/issues/830
 [#831]: https://github.com/lumeland/lume/issues/831
 [#834]: https://github.com/lumeland/lume/issues/834
+[#839]: https://github.com/lumeland/lume/issues/839
 
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4

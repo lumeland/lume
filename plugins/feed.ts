@@ -50,6 +50,13 @@ export interface FeedInfoOptions {
   /** The feed description */
   description?: string;
 
+  /**
+   * The canonical url of the feed file.
+   * Useful if you have different feeds with the same content and want to priorize one.
+   * @default The output file
+   */
+  self?: string;
+
   /** The feed language */
   lang?: string;
 
@@ -142,6 +149,7 @@ export interface Author {
 export interface FeedData {
   title: string;
   url: string;
+  self?: string;
   description: string;
   published: Date;
   lang: string;
@@ -206,6 +214,7 @@ export function feed(
           lang: getDataValue(rootData, info.lang),
           hubs: info.hubs,
           url: site.url("", true),
+          self: getDataValue(rootData, info.self),
           generator: info.generator === true
             ? defaultGenerator
             : info.generator || undefined,
@@ -238,14 +247,10 @@ export function feed(
         };
 
         for (const filename of output) {
-          const format = getExtension(filename).slice(1);
           const file = site.url(filename, true);
 
-          switch (format) {
-            case "rss":
-            case "feed":
-            case "xml":
-            case "html":
+          switch (getMimeType(filename)) {
+            case "application/rss+xml":
               site.pages.push(
                 Page.create({
                   url: filename,
@@ -254,7 +259,7 @@ export function feed(
               );
               break;
 
-            case "json":
+            case "application/feed+json":
               site.pages.push(
                 Page.create({
                   url: filename,
@@ -263,7 +268,7 @@ export function feed(
               );
               break;
 
-            case "atom":
+            case "application/atom+xml":
               site.pages.push(
                 Page.create({
                   url: filename,
@@ -305,6 +310,7 @@ function generateRss(
   file: string,
   stylesheet?: string,
 ): string {
+  const self = data.self ?? file;
   const feed: stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
@@ -328,9 +334,9 @@ function generateRss(
         link: data.url,
         "atom:link": [
           {
-            "@href": file,
+            "@href": self,
             "@rel": "self",
-            "@type": "application/rss+xml",
+            "@type": getMimeType(self) ?? "application/rss+xml",
           },
           ...(data.hubs ?? []).map((hub) => ({
             "@href": hub,
@@ -390,7 +396,7 @@ function generateJson(data: FeedData, file: string): string {
     version: "https://jsonfeed.org/version/1.1",
     title: data.title,
     home_page_url: data.url,
-    feed_url: file,
+    feed_url: data.self ?? file,
     hubs: data.hubs &&
       data.hubs.map((hub) => ({ "type": "WebSub", "url": hub })),
     description: data.description,
@@ -419,6 +425,7 @@ function generateAtom(
   file: string,
   stylesheet?: string,
 ): string {
+  const self = data.self ?? file;
   const feed: stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
@@ -443,9 +450,9 @@ function generateAtom(
           "@type": "text/html",
         },
         {
-          "@href": file,
+          "@href": self,
           "@rel": "self",
-          "@type": "application/atom+xml",
+          "@type": getMimeType(self) ?? "application/atom+xml",
         },
         ...(data.hubs ?? []).map((hub) => ({
           "@href": hub,
@@ -537,6 +544,22 @@ function toDate(date?: string | number | Date): Date | undefined {
     return;
   }
   return parseDate(date);
+}
+
+function getMimeType(filename: string): string | undefined {
+  const format = getExtension(filename).slice(1);
+
+  switch (format) {
+    case "rss":
+    case "feed":
+    case "xml":
+    case "html":
+      return "application/rss+xml";
+    case "atom":
+      return "application/atom+xml";
+    case "json":
+      return "application/feed+json"
+  }
 }
 
 export default feed;
