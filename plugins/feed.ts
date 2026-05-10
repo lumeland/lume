@@ -246,6 +246,10 @@ export function feed(
           }),
         };
 
+        if (feed.self) {
+          feed.self = site.url(feed.self, true);
+        }
+
         for (const filename of output) {
           const file = site.url(filename, true);
 
@@ -558,7 +562,7 @@ function getMimeType(filename: string): string | undefined {
     case "atom":
       return "application/atom+xml";
     case "json":
-      return "application/feed+json"
+      return "application/feed+json";
   }
 }
 
