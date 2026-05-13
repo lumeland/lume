@@ -109,6 +109,7 @@ snapshot[`ImageSize plugin 1`] = `
     "/",
     "/fire.jpg",
     "/index.vto",
+    "/logo.png",
     "/lume.PNG",
     "/subfolder",
     "/subfolder/index.vto",
@@ -122,6 +123,13 @@ snapshot[`ImageSize plugin 2`] = `
     entry: "/fire.jpg",
     flags: [],
     outputPath: "/fire.jpg",
+  },
+  {
+    entry: "/logo.png",
+    flags: [
+      "remote",
+    ],
+    outputPath: "/logo.png",
   },
   {
     entry: "/lume.PNG",
@@ -143,6 +151,9 @@ snapshot[`ImageSize plugin 3`] = `
 <body>
     <img src="/fire.jpg" width="640" height="959">
     <img src="./lume.PNG" width="500" height="500">
+    <img src="https://lume.land/logo.png" image-size="">
+    <img src="/logo.png" width="500" height="500">
+    <img image-size="">
 
 
 </body></html>',
@@ -158,6 +169,9 @@ snapshot[`ImageSize plugin 3`] = `
 <body>
     <img src="/fire.jpg" image-size>
     <img src="./lume.PNG" image-size>
+    <img src="https://lume.land/logo.png" image-size>
+    <img src="/logo.png" image-size>
+    <img image-size>
 </body>
 </html>
 ',
@@ -171,6 +185,9 @@ snapshot[`ImageSize plugin 3`] = `
 <body>
     <img src="/fire.jpg" image-size>
     <img src="./lume.PNG" image-size>
+    <img src="https://lume.land/logo.png" image-size>
+    <img src="/logo.png" image-size>
+    <img image-size>
 </body>
 </html>
 ',

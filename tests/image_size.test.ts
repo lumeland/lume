@@ -8,6 +8,7 @@ Deno.test("ImageSize plugin", async (t) => {
 
   site.add("/");
   site.use(imageSize());
+  site.remoteFile("/logo.png", "https://lume.land/logo.png");
 
   await build(site);
   await assertSiteSnapshot(t, site);

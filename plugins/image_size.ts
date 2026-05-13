@@ -6,6 +6,8 @@ import { posix } from "../deps/path.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
+import { read } from "../core/utils/read.ts";
+import { isUrl } from "../core/utils/path.ts";
 
 interface Dimmensions {
   width: number;
@@ -39,7 +41,10 @@ export default function imageSize() {
       const file = site.files.find((file) => file.data.url === path);
       if (file) {
         if (file.src.entry.flags.has("remote")) {
-          log.warn(`[image-size] Remote files not supported yet ${path}`);
+          const data = await read(file.src.entry.src, true);
+          const dimmensions = imageDimensionsFromData(data);
+          sizes.set(path, dimmensions);
+          return dimmensions;
         }
         using fs = await Deno.open(file.src.entry.src, {
           read: true,
@@ -63,6 +68,13 @@ export default function imageSize() {
           if (!src) {
             log.warn(
               `[image-size] Image without src attribute in ${page.data.url}`,
+            );
+            continue;
+          }
+
+          if (isUrl(src)) {
+            log.warn(
+              `[image-size] External URL (${src}) not allowed in ${page.data.url}`,
             );
             continue;
           }
