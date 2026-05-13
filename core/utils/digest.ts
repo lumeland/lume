@@ -1,5 +1,3 @@
-import { encodeHex } from "../../deps/hex.ts";
-
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 
@@ -26,5 +24,5 @@ export async function md5(message: string | Uint8Array): Promise<string> {
     "MD5",
     message as Uint8Array<ArrayBuffer>,
   );
-  return encodeHex(hash);
+  return new Uint8Array(hash).toHex();
 }
