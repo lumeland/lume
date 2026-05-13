@@ -1,4 +1,3 @@
-import { crypto } from "../../deps/crypto.ts";
 import { encodeHex } from "../../deps/hex.ts";
 
 const decoder = new TextDecoder();
