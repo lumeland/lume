@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
-import { compress } from "../deps/brotli.ts";
+import { concurrent } from "../core/utils/concurrent.ts";
+import { toArrayBuffer } from "../deps/streams.ts";
 
 import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
@@ -8,17 +9,11 @@ import type Site from "../core/site.ts";
 export interface Options {
   /** File extensions to compress */
   extensions?: Extensions;
-
-  /**
-   * Quality param between 0 and 11 (11 is the smallest but takes the longest to encode)
-   */
-  quality?: number;
 }
 
 // Default options
 export const defaults: Options = {
   extensions: [".html", ".css", ".js", ".mjs", ".svg", ".json", ".xml", ".txt"],
-  quality: 6,
 };
 
 /**
@@ -28,20 +23,25 @@ export function brotli(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(options.extensions, function processBrotli(pages, allPages) {
-      for (const page of pages) {
-        const compressedContent = compress(
-          page.bytes,
-          undefined,
-          options.quality,
-        );
+    site.process(
+      options.extensions,
+      function processBrotli(pages, allPages) {
+        return concurrent(pages, async (page: Page) => {
+          const contentStream = ReadableStream.from([page.bytes]);
+          const compressedStream = contentStream.pipeThrough(
+            new CompressionStream("brotli"),
+          );
+          const compressedArrayBuffer = await toArrayBuffer(compressedStream);
+          const compressedContent = new Uint8Array(compressedArrayBuffer);
 
-        allPages.push(Page.create({
-          url: page.outputPath + ".br",
-          content: compressedContent,
-        }));
-      }
-    });
+          const compressedPage = Page.create({
+            url: page.outputPath + ".br",
+            content: compressedContent,
+          });
+          allPages.push(compressedPage);
+        });
+      },
+    );
   };
 }
 

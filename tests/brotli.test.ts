@@ -15,20 +15,3 @@ Deno.test("brotli plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
-
-Deno.test("brotli plugin with options", async (t) => {
-  const site = getSite({
-    src: "normal",
-  });
-
-  site.add([".png", ".css", ".json"]);
-
-  site.use(brotli({
-    extensions: [".css"],
-    quality: 1,
-  }));
-  site.use(extractDate());
-
-  await build(site);
-  await assertSiteSnapshot(t, site);
-});

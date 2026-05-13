@@ -15,7 +15,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `image_size` plugin: Support for remote files.
 
 ### Changed
+- `brotli` plugin: Replace `deno_brotli` dependency with Deno native support.
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838]
+
+### Removed
+- `quality` option of the `brotli` plugin.
 
 ### Fixed
 - `google_fonts` plugin: don't ignore the display parameter [#834]
