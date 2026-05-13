@@ -15,7 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `image_size` plugin: Support for remote files.
 
 ### Changed
-- `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline
+- `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838]
 
 ### Fixed
 - `google_fonts` plugin: don't ignore the display parameter [#834]
@@ -459,6 +459,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#830]: https://github.com/lumeland/lume/issues/830
 [#831]: https://github.com/lumeland/lume/issues/831
 [#834]: https://github.com/lumeland/lume/issues/834
+[#838]: https://github.com/lumeland/lume/issues/838
 [#839]: https://github.com/lumeland/lume/issues/839
 
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
