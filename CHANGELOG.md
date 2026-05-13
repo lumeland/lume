@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Changed
 - `brotli` plugin: Replace `deno_brotli` dependency with Deno native support.
+- Removed `@std/encoding/base64` dependency and use native `Uint8Array.toBase64()` method.
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838]
 
 ### Removed

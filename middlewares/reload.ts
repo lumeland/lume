@@ -1,5 +1,3 @@
-import { encodeBase64 } from "../deps/base64.ts";
-
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
 
@@ -150,7 +148,8 @@ export function reload(options: Options): Middleware {
 async function computeSourceIntegrity(source: string) {
   const bytes = new TextEncoder().encode(source);
   const hash = await crypto.subtle.digest("SHA-384", bytes);
-  return `sha384-${encodeBase64(hash)}`;
+  const base64 = new Uint8Array(hash).toBase64();
+  return `sha384-${base64}`;
 }
 
 export default reload;

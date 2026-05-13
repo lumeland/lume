@@ -1,6 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
 import { posix } from "../deps/path.ts";
-import { encodeBase64 } from "../deps/base64.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
@@ -152,7 +151,11 @@ export function inline(userOptions?: Options) {
         return `data:${type};charset=UTF-8,${code}`;
       }
 
-      return `data:${type};base64,${encodeBase64(content)}`;
+      const base64 = typeof content === "string"
+        ? new TextEncoder().encode(content).toBase64()
+        : content.toBase64();
+
+      return `data:${type};base64,${base64}`;
     }
 
     function migrateAttributes(

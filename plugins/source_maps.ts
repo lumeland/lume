@@ -3,7 +3,6 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { encodeBase64 } from "../deps/base64.ts";
 import { Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
@@ -73,9 +72,9 @@ export function sourceMaps(userOptions?: Options) {
 
       // Inline the source map in the output file
       if (options.inline) {
-        const url = `data:application/json;charset=utf-8;base64,${
-          encodeBase64(JSON.stringify(sourceMap))
-        }`;
+        const base64 = new TextEncoder().encode(JSON.stringify(sourceMap))
+          .toBase64();
+        const url = `data:application/json;charset=utf-8;base64,${base64}`;
         file.content += addSourceMap(file.outputPath, url);
         return;
       }
