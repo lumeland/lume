@@ -11,6 +11,7 @@ import type { Page, StaticFile } from "../core/file.ts";
 export interface Options {
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
+  /** Limit number of images processed concurrently. Uses global concurrency limit if not set. */
   concurrency?: number;
 }
 
