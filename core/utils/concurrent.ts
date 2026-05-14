@@ -1,8 +1,13 @@
+import { env } from "./env.ts";
+
+const limitEnv = env<string>("LUME_CONCURRENCY");
+const limitDefault = limitEnv !== undefined && !Number.isNaN(+limitEnv) ? +limitEnv : 200;
+
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(
   iterable: AsyncIterable<Type> | Iterable<Type>,
   iteratorFn: (arg: Type) => Promise<unknown>,
-  limit = 200,
+  limit = limitDefault,
 ) {
   const executing: Promise<unknown>[] = [];
 
