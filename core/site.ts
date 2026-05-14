@@ -1,7 +1,7 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
-import { env, setEnv } from "./utils/env.ts";
+import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
@@ -241,13 +241,13 @@ export default class Site {
     this.fs.options.ignore = this.options.watcher.ignore;
 
     // Initialize the cache if LUME_NOCACHE is not enabled
-    if (env<boolean>("LUME_NOCACHE") !== true) {
+    if (envBoolean("LUME_NOCACHE") !== true) {
       this.cache = new Cache({ folder: this.root("_cache") });
     }
 
     // Initialize the debug bar
     const initDebugBar = this.options.server.debugBar ??
-      env<boolean>("LUME_LIVE_RELOAD");
+      envBoolean("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
       this.initDebugBar(
@@ -828,7 +828,7 @@ export default class Site {
   ): Promise<[Page[], StaticFile[]]> {
     // Get the site content
     this.debugBar?.startMeasure("load");
-    const showDrafts = env<boolean>("LUME_DRAFTS");
+    const showDrafts = envBoolean("LUME_DRAFTS");
     let draftPages = 0;
     const [_pages, _staticFiles] = await this.source.build((_, page) => {
       if (page?.data.draft) {

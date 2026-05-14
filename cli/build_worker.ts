@@ -1,6 +1,6 @@
 import { log } from "../core/utils/log.ts";
 import { localIp, openBrowser } from "../core/utils/net.ts";
-import { env, setEnv } from "../core/utils/env.ts";
+import { envBoolean, setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { fromFileUrl } from "../deps/path.ts";
@@ -40,7 +40,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   setEnv("LUME_LIVE_RELOAD", "true");
 
   // Show draft pages in development mode (if not set already)
-  const showDrafts = env<boolean | undefined>("LUME_DRAFTS");
+  const showDrafts = envBoolean("LUME_DRAFTS");
   if (showDrafts === undefined) {
     setEnv("LUME_DRAFTS", "true");
   }
