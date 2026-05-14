@@ -1,6 +1,4 @@
 import { Entry } from "./fs.ts";
-import { bundleAsync } from "../deps/lightningcss.ts";
-import { build, stop } from "../deps/esbuild.ts";
 import textLoader from "./loaders/text.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
@@ -230,6 +228,7 @@ export async function compileCSS(
     `@import "${path}";`
   ).join("\n");
 
+  const { bundleAsync } = await import("../deps/lightningcss.ts");
   const { code } = await bundleAsync({
     filename,
     sourceMap: false,
@@ -267,6 +266,7 @@ export async function compileJS(
   const mainCode = Array.from(imports.keys()).map((path) => `import "${path}";`)
     .join("\n");
 
+  const { build, stop } = await import("../deps/esbuild.ts");
   const { outputFiles } = await build({
     bundle: true,
     entryPoints: [filename],

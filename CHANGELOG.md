@@ -13,8 +13,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: Allow `html` extension for pretty URL [#839]
 - `feed` plugin: New `info.self` option to customize the `self` url [#839]
 - `image_size` plugin: Support for remote files.
-- New `LUME_CONCURRENCY` env var to define a custom global concurrency limit.
-- `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel.
+- New `LUME_CONCURRENCY` env var to define a custom global concurrency limit [#843].
+- `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel [#843].
 
 ### Changed
 - `brotli` plugin: Replace `deno_brotli` dependency with Deno native support.
@@ -470,6 +470,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#834]: https://github.com/lumeland/lume/issues/834
 [#838]: https://github.com/lumeland/lume/issues/838
 [#839]: https://github.com/lumeland/lume/issues/839
+[#843]: https://github.com/lumeland/lume/issues/843
 
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4

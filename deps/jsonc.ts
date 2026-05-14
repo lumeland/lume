@@ -1,1 +1,1 @@
-export * from "jsr:@std/jsonc@1.0.2";
+export { parse } from "jsr:@std/jsonc@1.0.2/parse";
