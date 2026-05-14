@@ -1,8 +1,8 @@
 import { isUrl } from "./path.ts";
-import { env } from "./env.ts";
+import { envBoolean } from "./env.ts";
 import { tokens } from "./tokens.ts";
 
-const useCache = env<boolean>("LUME_NOCACHE") !== true;
+const useCache = envBoolean("LUME_NOCACHE") !== true;
 
 /**
  * Read a local or remote file and return its content.

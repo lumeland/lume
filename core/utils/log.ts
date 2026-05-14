@@ -24,7 +24,7 @@ const severity = {
 type LevelName = keyof typeof severity;
 
 // Get the log level from the environment variable LUME_LOGS
-const level = env<LevelName>("LUME_LOGS")?.toUpperCase() as
+const level = env("LUME_LOGS")?.toUpperCase() as
   | LevelName
   | undefined ?? "INFO";
 

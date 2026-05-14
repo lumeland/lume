@@ -7,10 +7,14 @@ export function setEnv(name: string, value: string) {
   envVars.set(name, value);
 }
 
-export function env<T>(name: string): T | undefined {
-  const value = allowedEnvVars()
+export function env(name: string): string | undefined {
+  return allowedEnvVars()
     ? envVars.get(name) ?? Deno.env.get(name)
     : envVars.get(name);
+}
+
+export function envBoolean(name: string): boolean | undefined {
+  const value = env(name);
 
   if (typeof value === "undefined") {
     return undefined;
@@ -20,16 +24,27 @@ export function env<T>(name: string): T | undefined {
     case "true":
     case "on":
     case "1":
-      return true as T;
+      return true;
 
     case "false":
     case "off":
     case "0":
-      return false as T;
+      return false;
 
     default:
-      return value as T;
+      return undefined;
   }
+}
+
+export function envNumber(name: string): number | undefined {
+  const value = env(name);
+
+  if (typeof value === "undefined") {
+    return undefined;
+  }
+
+  const valueNum = +value;
+  return Number.isNaN(valueNum) ? undefined : valueNum;
 }
 
 let allowed: boolean | undefined;

@@ -1,10 +1,7 @@
-import { env } from "./env.ts";
+import { envNumber } from "./env.ts";
 
-const limitEnv = env<string | boolean>("LUME_CONCURRENCY");
-const limitDefault =
-  limitEnv !== undefined && !Number.isNaN(+limitEnv) && +limitEnv >= 1
-    ? +limitEnv
-    : 200;
+const limitEnv = envNumber("LUME_CONCURRENCY");
+const limitDefault = limitEnv !== undefined && limitEnv >= 1 ? limitEnv : 200;
 
 /** Run a callback concurrently with all the elements of an Iterable */
 export async function concurrent<Type>(

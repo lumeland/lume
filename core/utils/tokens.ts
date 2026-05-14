@@ -1,7 +1,7 @@
 import { env } from "./env.ts";
 
 const tokens = new Map<string, string>();
-const denoAuthTokens = env<string>("DENO_AUTH_TOKENS");
+const denoAuthTokens = env("DENO_AUTH_TOKENS");
 if (denoAuthTokens) {
   const authTokens = denoAuthTokens.split(";");
   for (const token of authTokens) {
