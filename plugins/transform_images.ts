@@ -11,6 +11,7 @@ import type { Page, StaticFile } from "../core/file.ts";
 export interface Options {
   /** Custom transform functions */
   functions: Record<string, TransformationFunction>;
+  concurrency?: number;
 }
 
 export type TransformationFunction = (
@@ -108,6 +109,7 @@ export function transformImages(userOptions?: Partial<Options>) {
         await concurrent(
           files,
           (page) => processPage(page, allPages),
+          options.concurrency,
         );
       },
     );
