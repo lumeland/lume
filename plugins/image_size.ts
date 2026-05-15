@@ -23,10 +23,22 @@ export default function imageSize() {
     site.addEventListener("beforeUpdate", () => sizes.clear());
 
     async function getImageSize(
-      path: string,
+      filePath: string,
+      basePath: string,
     ): Promise<Dimmensions | undefined> {
+      const pathIsUrl = isUrl(filePath);
+      const path = pathIsUrl ? filePath : posix.resolve(basePath, filePath);
+
       if (sizes.has(path)) {
         return sizes.get(path);
+      }
+
+      // It's an URL
+      if (pathIsUrl) {
+        const data = await read(path, true);
+        const dimmensions = imageDimensionsFromData(data);
+        sizes.set(path, dimmensions);
+        return dimmensions;
       }
 
       // It's a loaded page
@@ -72,14 +84,7 @@ export default function imageSize() {
             continue;
           }
 
-          if (isUrl(src)) {
-            log.warn(
-              `[image-size] External URL (${src}) not allowed in ${page.data.url}`,
-            );
-            continue;
-          }
-
-          const size = await getImageSize(posix.resolve(basePath, src));
+          const size = await getImageSize(src, basePath);
 
           if (size) {
             img.setAttribute("width", size.width.toString());

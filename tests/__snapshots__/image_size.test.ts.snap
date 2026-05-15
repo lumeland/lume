@@ -151,7 +151,7 @@ snapshot[`ImageSize plugin 3`] = `
 <body>
     <img src="/fire.jpg" width="640" height="959">
     <img src="./lume.PNG" width="500" height="500">
-    <img src="https://lume.land/logo.png" image-size="">
+    <img src="https://lume.land/logo.png" width="500" height="500">
     <img src="/logo.png" width="500" height="500">
     <img image-size="">
 
