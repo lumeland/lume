@@ -1,10 +1,11 @@
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
-
-import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { merge } from "./utils/object.ts";
+import { cwd } from "../deps/runtime.ts";
+
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
@@ -16,7 +17,7 @@ export interface Options extends Deno.ServeOptions {
 }
 
 export const defaults: Options = {
-  root: `${Deno.cwd()}/_site`,
+  root: `${cwd()}/_site`,
   port: 8000,
   serveFile,
 };

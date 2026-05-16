@@ -1,3 +1,4 @@
+import { args } from "./deps/runtime.ts";
 import { parseArgs } from "./deps/cli.ts";
 
 /**
@@ -8,7 +9,7 @@ import { parseArgs } from "./deps/cli.ts";
  */
 
 // Capture flags to pass to the server
-const flags = parseArgs(Deno.args, {
+const flags = parseArgs(args(), {
   string: ["port", "hostname", "location"],
   default: {
     port: "3000",

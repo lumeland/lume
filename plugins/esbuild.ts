@@ -32,7 +32,7 @@ import {
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 import textLoader from "../core/loaders/text.ts";
-import { isBuiltin } from "node:module";
+import { isBuiltin, readTextFileSync } from "../deps/runtime.ts";
 
 import type Site from "../core/site.ts";
 
@@ -105,7 +105,7 @@ export function esbuild(userOptions?: Options) {
         ? site.root(options.denoConfig)
         : site.root("deno.json");
 
-      const content = Deno.readTextFileSync(denoJson);
+      const content = readTextFileSync(denoJson);
       const config = JSON.parse(content);
       const { compilerOptions } = config;
 

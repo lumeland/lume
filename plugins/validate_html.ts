@@ -6,6 +6,7 @@ import {
 } from "../deps/html_validate.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
+import { writeTextFileSync } from "../deps/runtime.ts";
 
 export interface Options {
   /**
@@ -126,7 +127,7 @@ function outputFile(
     null,
     2,
   );
-  Deno.writeTextFileSync(file, content);
+  writeTextFileSync(file, content);
 
   if (reports.valid) {
     log.info("[validate_html plugin] No HTML errors found!");

@@ -27,6 +27,7 @@ import Server from "./server.ts";
 import Cache from "./cache.ts";
 import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
+import { cwd } from "../deps/runtime.ts";
 
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
@@ -44,7 +45,7 @@ import type { MergeStrategy } from "./utils/merge_data.ts";
 
 /** Default options of the site */
 const defaults: SiteOptions = {
-  cwd: Deno.cwd(),
+  cwd: cwd(),
   src: "./",
   dest: "./_site",
   emptyDest: true,
