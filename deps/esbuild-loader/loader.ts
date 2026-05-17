@@ -32,11 +32,12 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
       const options = build.initialOptions;
       const externals = (options.external ?? []).map(externalToRegex);
       const basePath = options.absWorkingDir || site.src();
-
       const workspace = new Workspace({
         configPath,
         nodeConditions: options.conditions,
-        platform: options.platform === "browser" ? "browser" : "node",
+        platform: options.platform
+          ? options.platform === "browser" ? "browser" : "node"
+          : "browser",
       });
 
       const loader = await workspace.createLoader();
