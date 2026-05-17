@@ -4,6 +4,14 @@ import { concurrent } from "./utils/concurrent.ts";
 import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
+import {
+  readFileSync,
+  remove,
+  removeSync,
+  writeFile,
+  writeFileSync,
+  writeTextFile,
+} from "../deps/runtime.ts";
 
 import type { Page, StaticFile } from "./file.ts";
 
@@ -96,8 +104,8 @@ export class FSWriter implements Writer {
     await ensureDir(posix.dirname(filename));
 
     content instanceof Uint8Array
-      ? await Deno.writeFile(filename, content)
-      : await Deno.writeTextFile(filename, content);
+      ? await writeFile(filename, content)
+      : await writeTextFile(filename, content);
 
     return true;
   }
@@ -138,13 +146,13 @@ export class FSWriter implements Writer {
       await ensureDir(posix.dirname(pathTo));
 
       if (entry.flags.has("remote")) {
-        await Deno.writeFile(
+        await writeFile(
           pathTo,
           (await entry.getContent(binaryLoader)).content as Uint8Array,
         );
       } else {
         // Copy file https://github.com/denoland/deno/issues/19425
-        Deno.writeFileSync(pathTo, Deno.readFileSync(entry.src));
+        writeFileSync(pathTo, readFileSync(entry.src));
       }
       log.info(
         `🔥 ${file.outputPath} <- <gray>${
@@ -175,7 +183,7 @@ export class FSWriter implements Writer {
         try {
           const outputPath = posix.join(this.dest, file);
           this.#outputs.delete(outputPath.toLowerCase());
-          await Deno.remove(outputPath);
+          await remove(outputPath);
 
           // Remove empty directories
           removeEmptyDirectory(outputPath, this.dest);
@@ -192,7 +200,7 @@ function removeEmptyDirectory(path: string, base: string) {
 
   try {
     if (dir !== base) {
-      Deno.removeSync(dir);
+      removeSync(dir);
       // Check if the parent directory is also empty
       removeEmptyDirectory(dir, base);
     }

@@ -1,10 +1,11 @@
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
-
-import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { merge } from "./utils/object.ts";
+import { cwd, stat } from "../deps/runtime.ts";
+
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
@@ -16,7 +17,7 @@ export interface Options extends Deno.ServeOptions {
 }
 
 export const defaults: Options = {
-  root: `${Deno.cwd()}/_site`,
+  root: `${cwd()}/_site`,
   port: 8000,
   serveFile,
 };
@@ -226,7 +227,7 @@ export async function serveFile(
     const file = path.endsWith("/") ? path + "index.html" : path;
 
     // Redirect /example to /example/
-    const info = await Deno.stat(file);
+    const info = await stat(file);
 
     if (info.isDirectory) {
       const search = url.search;
@@ -239,12 +240,12 @@ export async function serveFile(
     }
 
     // Serve the static file
-    return await fixServeFile(request, file, info);
+    return await httpServeFile(request, file, info);
   } catch {
     try {
       // Exists a HTML file with this name?
       if (!posix.extname(path)) {
-        return await fixServeFile(request, path + ".html");
+        return await httpServeFile(request, path + ".html");
       }
     } catch {
       // Continue
@@ -255,19 +256,4 @@ export async function serveFile(
       { status: 404 },
     );
   }
-}
-
-async function fixServeFile(
-  request: Request,
-  path: string,
-  fileInfo?: Deno.FileInfo,
-): Promise<Response> {
-  const response = await httpServeFile(request, path, { fileInfo });
-
-  // Fix for https://github.com/lumeland/lume/issues/734
-  if (response.headers.get("content-type") === "application/rss+xml") {
-    response.headers.set("content-type", "application/xml");
-  }
-
-  return response;
 }

@@ -1,4 +1,5 @@
 import { toFileUrl } from "../../deps/path.ts";
+import { realPath } from "../../deps/runtime.ts";
 import { isUrl } from "./path.ts";
 
 /** A list of the available plugins not installed by default and sorted */
@@ -92,7 +93,7 @@ export async function resolveConfigFile(
     }
 
     try {
-      const file = await Deno.realPath(customPath);
+      const file = await realPath(customPath);
       return toFileUrl(file);
     } catch {
       throw new Error(`Config file not found (${customPath})`);
@@ -101,7 +102,7 @@ export async function resolveConfigFile(
 
   for (const path of defaultPaths) {
     try {
-      const file = await Deno.realPath(path);
+      const file = await realPath(path);
       return toFileUrl(file);
     } catch {
       // Ignore

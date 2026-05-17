@@ -1,7 +1,9 @@
+import { networkInterfaces, OS, os } from "../../deps/runtime.ts";
+
 export function localIp(): string | undefined {
   // Try/catch for https://github.com/denoland/deno/issues/25420
   try {
-    for (const info of Deno.networkInterfaces()) {
+    for (const info of networkInterfaces()) {
       if (info.family !== "IPv4" || info.address.startsWith("127.")) {
         continue;
       }
@@ -14,7 +16,7 @@ export function localIp(): string | undefined {
 }
 
 export async function openBrowser(url: string): Promise<void> {
-  const commands: Record<typeof Deno.build.os, string> = {
+  const commands: Record<OS, string> = {
     darwin: "open",
     linux: "xdg-open",
     freebsd: "xdg-open",
@@ -26,7 +28,7 @@ export async function openBrowser(url: string): Promise<void> {
     android: "xdg-open",
   };
 
-  await new Deno.Command(commands[Deno.build.os], {
+  await new Deno.Command(commands[os()], {
     args: [url],
     stdout: "inherit",
     stderr: "inherit",
