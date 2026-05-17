@@ -80,6 +80,11 @@ function allowedEnvVars(): boolean {
   }
   return allowed;
 }
+
+export function allEnvVars() {
+  return Deno.env.toObject();
+}
+
 export function env(name: string) {
   return allowedEnvVars()
     ? envVars.get(name) ?? Deno.env.get(name)
@@ -93,7 +98,7 @@ export function setEnv(name: string, value: string) {
   envVars.set(name, value);
 }
 
-interface DirEntry {
+export interface DirEntry {
   isDirectory: boolean;
   isFile: boolean;
   isSymlink: boolean;
@@ -106,4 +111,31 @@ export function readDir(path: string): AsyncIterable<DirEntry> {
 
 export function readDirSync(path: string): IteratorObject<DirEntry> {
   return Deno.readDirSync(path);
+}
+
+export function realPath(path: string): Promise<string> {
+  return Deno.realPath(path);
+}
+
+export function realPathSync(path: string): string {
+  return Deno.realPathSync(path);
+}
+
+export interface FileInfo {
+  isFile: boolean;
+  isDirectory: boolean;
+  isSymlink: boolean;
+  size: number;
+  mtime: Date | null;
+  atime: Date | null;
+  ctime: Date | null;
+  birthtime: Date | null;
+}
+
+export function stat(path: string): Promise<FileInfo> {
+  return Deno.stat(path);
+}
+
+export function statSync(path: string): FileInfo {
+  return Deno.statSync(path);
 }
