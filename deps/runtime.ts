@@ -139,3 +139,35 @@ export function stat(path: string): Promise<FileInfo> {
 export function statSync(path: string): FileInfo {
   return Deno.statSync(path);
 }
+
+export type OS =
+  | "darwin"
+  | "linux"
+  | "freebsd"
+  | "netbsd"
+  | "aix"
+  | "solaris"
+  | "illumos"
+  | "windows"
+  | "android";
+
+export function os(): OS {
+  return Deno.build.os;
+}
+
+export function execPath() {
+  return Deno.execPath();
+}
+
+export function memoryUsage(): number {
+  return Deno.memoryUsage().rss;
+}
+
+export interface NetworkInterfaceInfo {
+  family: "IPv4" | "IPv6";
+  address: string;
+}
+
+export function networkInterfaces(): NetworkInterfaceInfo[] {
+  return Deno.networkInterfaces();
+}

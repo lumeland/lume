@@ -1,4 +1,4 @@
-import { cwd } from "../deps/runtime.ts";
+import { cwd, os } from "../deps/runtime.ts";
 import { log } from "./utils/log.ts";
 
 export interface Options {
@@ -93,7 +93,7 @@ export default class Scripts {
 
 /** Returns the shell arguments for the current platform */
 function shArgs(script: string) {
-  return Deno.build.os === "windows"
+  return os() === "windows"
     ? ["PowerShell.exe", "-Command", script]
     : ["/usr/bin/env", "bash", "-c", script];
 }
