@@ -39,6 +39,7 @@ export const defaults: Options = {
       image.rotate(degrees);
     },
   },
+  concurrency: 10
 };
 const supportedExtensions = new Set([
   ".jpg",
