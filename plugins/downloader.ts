@@ -1,10 +1,10 @@
-import type Site from "lume/core/site.ts";
+import type Site from "../core/site.ts";
 
-import { merge } from "lume/core/utils/object.ts";
-import { isUrl } from "lume/core/utils/path.ts";
-import { read } from "lume/core/utils/read.ts";
-import { posix } from "lume/deps/path.ts";
-import modifyUrls from "lume/plugins/modify_urls.ts";
+import { merge } from "../core/utils/object.ts";
+import { isUrl } from "../core/utils/path.ts";
+import { read } from "../core/utils/read.ts";
+import { posix } from "../deps/path.ts";
+import modifyUrls from "../plugins/modify_urls.ts";
 
 export interface Options {
   /** Domains to download images from */
