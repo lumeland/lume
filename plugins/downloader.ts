@@ -44,7 +44,7 @@ export function downloader(userOptions?: Partial<Options>) {
         return path;
       }
 
-      const content = await read(path, true);
+      const content = await read(pathAndQuery, true);
       const filename = posix.basename(pathAndQuery);
       const hash = await crypto.subtle.digest("SHA-1", content);
       const hashHex = new Uint8Array(hash).toHex();
