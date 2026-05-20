@@ -17,7 +17,7 @@ export interface Options {
   selector: string;
 
   /** Attribute to use as selector. Unlike with `selector`, it's possible to assign the attribute a value to manually define a target file name. */
-  attribute?: string;
+  attribute: string;
 }
 
 export const defaults: Options = {
@@ -40,7 +40,7 @@ export function downloader(userOptions?: Partial<Options>) {
         !isUrl(path) ||
         !pathAndQuery ||
         !options.origins.includes(new URL(path).host) ||
-        (element && !element.matches(options.selector))
+        (element && options.selector && !element.matches(options.selector))
       ) {
         return path;
       }
