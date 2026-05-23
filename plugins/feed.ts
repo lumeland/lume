@@ -246,7 +246,7 @@ export function feed(
               updated: toDate(getDataValue(data, items.updated)),
               content: fixedContent,
               lang: getDataValue(data, items.lang),
-              categories: getDataValue(data, items.categories),
+              categories: toStringArray(getDataValue(data, items.categories)),
               image,
             };
           }),
@@ -547,6 +547,14 @@ function clean(obj: Record<string, unknown>): Record<string, unknown> {
       })
       .filter(([, value]) => value !== undefined),
   );
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!value) {
+    return [];
+  }
+  const array = Array.isArray(value) ? value : [value];
+  return array.map((v) => typeof v === 'string' ? v : v.toString());
 }
 
 function toDate(date?: string | number | Date): Date | undefined {
