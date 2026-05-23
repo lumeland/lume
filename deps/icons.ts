@@ -234,7 +234,8 @@ export const catalogs: Catalog[] = [
   {
     // https://thesvg.org/
     id: "thesvg",
-    src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@3.1.0/public/icons/{name}/{variant}.svg",
+    src:
+      "https://cdn.jsdelivr.net/gh/glincker/thesvg@3.1.0/public/icons/{name}/{variant}.svg",
     variants: [
       "default",
       "mono",
@@ -244,7 +245,7 @@ export const catalogs: Catalog[] = [
       "wordmarkLight",
       "wordmarkDark",
     ],
-  }
+  },
 ];
 
 function capitalize(s: string) {

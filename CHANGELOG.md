@@ -26,6 +26,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838].
 
 ### Removed
+- Support for Deno 2.5.x & 2.6.x
+
+### Removed
 - `quality` option of the `brotli` plugin.
 
 ### Fixed
