@@ -3,6 +3,11 @@ const res = await fetch(
 );
 const data = await res.json();
 const version = data.versions.shift();
+
+if (typeof version !== "string" || !/^v?\d+\.\d+\.\d+/.test(version)) {
+  throw new Error(`Invalid version: ${version}`);
+}
+
 const { run } = await import(
   `https://cdn.jsdelivr.net/gh/lumeland/init@${version}/mod.ts`
 );
