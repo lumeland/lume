@@ -168,7 +168,7 @@ snapshot[`RSS plugin 3`] = `
       paginate: "paginate",
       published: "1979-06-21T23:45:00.000Z",
       search: [],
-      tags: "Array(0)",
+      tags: "Array(2)",
       title: "Page **5**",
       url: "/page5/",
     },
@@ -208,6 +208,8 @@ snapshot[`RSS plugin 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
     data: {
@@ -241,6 +243,8 @@ snapshot[`RSS plugin 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
       page: [
@@ -257,10 +261,10 @@ snapshot[`RSS plugin 3`] = `
     },
   },
   {
-    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
     data: {
       basename: "feed",
-      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
       page: [
         "src",
         "data",
@@ -301,6 +305,8 @@ snapshot[`RSS plugin 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
@@ -334,6 +340,8 @@ snapshot[`RSS plugin 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
@@ -523,7 +531,7 @@ snapshot[`RSS plugin with array function 3`] = `
       paginate: "paginate",
       published: "1979-06-21T23:45:00.000Z",
       search: [],
-      tags: "Array(0)",
+      tags: "Array(2)",
       title: "Page **5**",
       url: "/page5/",
     },
@@ -564,6 +572,8 @@ snapshot[`RSS plugin with array function 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
     data: {
@@ -598,6 +608,8 @@ snapshot[`RSS plugin with array function 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
       page: [
@@ -614,10 +626,10 @@ snapshot[`RSS plugin with array function 3`] = `
     },
   },
   {
-    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
     data: {
       basename: "feed1",
-      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed1.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
       page: [
         "src",
         "data",
@@ -659,6 +671,8 @@ snapshot[`RSS plugin with array function 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
@@ -693,6 +707,8 @@ snapshot[`RSS plugin with array function 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
@@ -741,6 +757,8 @@ snapshot[`RSS plugin with array function 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
     data: {
@@ -774,6 +792,8 @@ snapshot[`RSS plugin with array function 3`] = `
       <uri>https://oscarotero.com</uri>
     </author>
     <content type="html">Content of Page 5</content>
+    <category term="tag1"/>
+    <category term="tag2"/>
   </entry>
 </feed>',
       page: [
@@ -790,10 +810,10 @@ snapshot[`RSS plugin with array function 3`] = `
     },
   },
   {
-    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+    content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
     data: {
       basename: "feed2",
-      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
+      content: '{"version":"https://jsonfeed.org/version/1.1","title":"My RSS Feed","home_page_url":"https://example.com/","feed_url":"https://example.com/feed2.json","hubs":[{"type":"WebSub","url":"https://example.com/hub1"},{"type":"WebSub","url":"https://example.com/hub2"}],"language":"en","authors":[{"name":"Laura Rubio"}],"icon":"https://example.com/image.png","favicon":"https://example.com/icon.svg","items":[{"id":"https://example.com/page5/","url":"https://example.com/page5/","title":"PAGE 5","language":"gl","authors":[{"name":"Óscar","url":"https://oscarotero.com"}],"content_html":"Content of Page 5","tags":["tag1","tag2"],"date_published":"1979-06-21T23:45:00.000Z","date_modified":"1979-06-21T23:45:00.000Z"}]}',
       page: [
         "src",
         "data",
@@ -834,6 +854,8 @@ snapshot[`RSS plugin with array function 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
@@ -867,6 +889,8 @@ snapshot[`RSS plugin with array function 3`] = `
         <uri>https://oscarotero.com</uri>
       </author>
       <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <category>tag1</category>
+      <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
