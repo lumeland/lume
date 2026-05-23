@@ -98,6 +98,9 @@ export interface FeedItemOptions {
   /** The item content */
   content?: string | ((data: Data) => string | undefined);
 
+  /** The item categories */
+  categories?: string | ((data: Data) => string[] | undefined);
+
   /** The item language */
   lang?: string | ((data: Data) => string | undefined);
 
@@ -137,6 +140,7 @@ export const defaults: Options = {
     description: "=description",
     published: "=date",
     content: "=children",
+    categories: "=tags",
     lang: "=lang",
   },
 };
@@ -169,6 +173,7 @@ export interface FeedItem {
   published: Date;
   updated?: Date;
   content: string;
+  categories?: string[];
   lang: string;
   image?: string;
   author?: Author;
@@ -241,6 +246,7 @@ export function feed(
               updated: toDate(getDataValue(data, items.updated)),
               content: fixedContent,
               lang: getDataValue(data, items.lang),
+              categories: getDataValue(data, items.categories),
               image,
             };
           }),
@@ -373,6 +379,7 @@ function generateRss(
           },
           description: item.description,
           "content:encoded": cdata(item.content),
+          category: item.categories,
           pubDate: item.published.toUTCString(),
           "atom:updated": item.updated?.toISOString(),
           meta: item.image
@@ -415,6 +422,7 @@ function generateJson(data: FeedData, file: string): string {
       language: item.lang,
       authors: item.author ? [item.author] : undefined,
       content_html: item.content,
+      tags: item.categories,
       date_published: item.published.toISOString(),
       date_modified: item.updated?.toISOString(),
       image: item.image,
@@ -497,6 +505,7 @@ function generateAtom(
             "#text": item.content,
           }
           : undefined,
+        category: item.categories?.map((category) => ({ "@term": category })),
       })),
     },
   };
