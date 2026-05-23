@@ -25,11 +25,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed `@std/crypto` dependency because it's not needed.
 - Replaced some `@std` imports with `node:*` API to reduce the number of external dependencies.
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838].
+- Move the Lume debug bar to this repo.
 
 ### Removed
 - Support for Deno 2.5.x & 2.6.x
-
-### Removed
 - `quality` option of the `brotli` plugin.
 
 ### Fixed
@@ -477,6 +476,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#838]: https://github.com/lumeland/lume/issues/838
 [#839]: https://github.com/lumeland/lume/issues/839
 [#843]: https://github.com/lumeland/lume/issues/843
+[#848]: https://github.com/lumeland/lume/issues/848
 
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4
