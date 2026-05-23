@@ -35,7 +35,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `google_fonts` plugin: don't ignore the display parameter [#834]
 - `esbuild` plugin: configure the `platform` option of the Deno loader to "browser".
 - Don't break the build if a loader throws an error.
-- Updated dependencies: `std`, `cliffy`, `pagefind`, `postcss`, `autoprefixer`, `html-validate`, `decap-cms`, `tailwindcss`, `terser` and some icons.
+- Updated dependencies: `std`, `cliffy`, `pagefind`, `postcss`, `autoprefixer`, `html-validate`, `decap-cms`, `tailwindcss`, `terser`, `sass`, `remove-markdown`, `image-dimensions`, `katex`, `date-fns`, `partytown`, `markdown-it-attrs` and some icons.
 
 ## [3.2.4] - 2026-04-10
 ### Added
