@@ -171,3 +171,57 @@ export interface NetworkInterfaceInfo {
 export function networkInterfaces(): NetworkInterfaceInfo[] {
   return Deno.networkInterfaces();
 }
+
+export async function runCommand(
+  cmd: string,
+  args?: string[],
+  cwd?: string,
+): Promise<boolean> {
+  const command = new Deno.Command(cmd, {
+    args,
+    stdout: "inherit",
+    stderr: "inherit",
+    cwd,
+  });
+
+  const output = await command.output();
+  return output.success;
+}
+
+export function runCommandSyncAndGetStdout(
+  cmd: string,
+  args?: string[],
+): string | undefined {
+  const { stdout, success } = new Deno.Command(cmd, { args }).outputSync();
+
+  if (!success) {
+    return;
+  }
+  return new TextDecoder().decode(stdout);
+}
+
+export function portIsFree(port: number): boolean {
+  try {
+    const listener = Deno.listen({ port });
+    listener.close();
+    return true;
+  } catch (error) {
+    if (error instanceof Deno.errors.AddrInUse) {
+      return false;
+    }
+
+    throw error;
+  }
+}
+
+export async function callReadableStream<R>(
+  file: string,
+  cb: (stream: ReadableStream<Uint8Array>) => R,
+): Promise<R> {
+  using fs = await Deno.open(file, {
+    read: true,
+    write: false,
+  });
+
+  return await cb(fs.readable);
+}

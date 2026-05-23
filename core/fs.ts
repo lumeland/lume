@@ -102,18 +102,16 @@ export default class FS {
 
     try {
       entry.getInfo();
-    } catch (error) {
+    } catch {
       // Remove if it doesn't exist
-      if (error instanceof Deno.errors.NotFound) {
-        const src = this.remoteFiles.get(path);
-        if (src) {
-          entry.flags.add("remote");
-          entry.src = src;
-          return;
-        }
-        this.removeEntry(path);
-        return exist;
+      const src = this.remoteFiles.get(path);
+      if (src) {
+        entry.flags.add("remote");
+        entry.src = src;
+        return;
       }
+      this.removeEntry(path);
+      return exist;
     }
 
     // New directory, walk it

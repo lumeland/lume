@@ -1,4 +1,4 @@
-import { cwd, os } from "../deps/runtime.ts";
+import { cwd, os, runCommand } from "../deps/runtime.ts";
 import { log } from "./utils/log.ts";
 
 export interface Options {
@@ -79,15 +79,7 @@ export default class Scripts {
     const args = shArgs(script);
     const cmd = args.shift()!;
 
-    const command = new Deno.Command(cmd, {
-      args,
-      stdout: "inherit",
-      stderr: "inherit",
-      cwd: this.cwd,
-    });
-
-    const output = await command.output();
-    return output.success;
+    return await runCommand(cmd, args, this.cwd);
   }
 }
 
