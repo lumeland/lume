@@ -8,8 +8,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.5] - Unreleased
 ### Added
-- `robots` plugin: support rule grouping
-- `robots` plugin: support Content-Signal rule
+- `robots` plugin: support rule grouping [#838]
+- `robots` plugin: support Content-Signal rule [#838]
 - `feed` plugin: Allow `html` extension for pretty URL [#839]
 - `feed` plugin: New `info.self` option to customize the `self` url [#839]
 - `feed` plugin: Add `items.categories` support, defaults to `"=tags"` [#848]

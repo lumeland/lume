@@ -1892,13 +1892,14 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.16.45";
+  content: "0.17.0";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers
    Found at: http://a11yproject.com/posts/how-to-hide-content/ */
   position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
   padding: 0;
   border: 0;
   height: 1px;
@@ -2126,7 +2127,9 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
 .katex .sqrt > .root {
   /* These values are taken from the definition of \`\\\\r@@t\`,
    \`\\\\mkern 5mu\` and \`\\\\mkern -10mu\`. */
+  /* stylelint-disable-next-line declaration-property-value-no-unknown */
   margin-left: 0.2777777778em;
+  /* stylelint-disable-next-line declaration-property-value-no-unknown */
   margin-right: -0.5555555556em;
 }
 .katex .sizing.reset-size1.size1,
