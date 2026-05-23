@@ -6,7 +6,7 @@ import messages from "./seo/messages.json" with { type: "json" };
 import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 
 import type { ErrorMessage } from "./seo/mod.ts";
-import { Item } from "../deps/debugbar.ts";
+import { Item } from "../core/debugbar.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 
