@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `robots` plugin: support Content-Signal rule
 - `feed` plugin: Allow `html` extension for pretty URL [#839]
 - `feed` plugin: New `info.self` option to customize the `self` url [#839]
+- `feed` plugin: Add `items.categories` support, defaults to `"=tags"` [#848]
 - `image_size` plugin: Support for remote files and external URLs.
 - New `LUME_CONCURRENCY` env var to define a custom global concurrency limit [#843].
 - `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel (10 by default) [#843].
