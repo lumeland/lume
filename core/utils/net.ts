@@ -14,6 +14,11 @@ export function localIp(): string | undefined {
 }
 
 export async function openBrowser(url: string): Promise<void> {
+  const parsed = new URL(url);
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    throw new Error(`Invalid URL protocol: ${parsed.protocol}`);
+  }
+
   const commands: Record<typeof Deno.build.os, string> = {
     darwin: "open",
     linux: "xdg-open",
