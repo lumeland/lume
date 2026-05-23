@@ -231,6 +231,20 @@ export const catalogs: Catalog[] = [
       { id: "sharp", path: "-sharp" },
     ],
   },
+  {
+    // https://thesvg.org/
+    id: "thesvg",
+    src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@3.1.0/public/icons/{name}/{variant}.svg",
+    variants: [
+      "default",
+      "mono",
+      "light",
+      "dark",
+      "wordmark",
+      "wordmarkLight",
+      "wordmarkDark",
+    ],
+  }
 ];
 
 function capitalize(s: string) {
