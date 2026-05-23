@@ -8,13 +8,15 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.5] - Unreleased
 ### Added
-- `robots` plugin: support rule grouping
-- `robots` plugin: support Content-Signal rule
+- `robots` plugin: support rule grouping [#838]
+- `robots` plugin: support Content-Signal rule [#838]
 - `feed` plugin: Allow `html` extension for pretty URL [#839]
 - `feed` plugin: New `info.self` option to customize the `self` url [#839]
+- `feed` plugin: Add `items.categories` support, defaults to `"=tags"` [#848]
 - `image_size` plugin: Support for remote files and external URLs.
+- `icons` plugin: Add icons from theSVG.
 - New `LUME_CONCURRENCY` env var to define a custom global concurrency limit [#843].
-- `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel [#843].
+- `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel (10 by default) [#843].
 
 ### Changed
 - `brotli` plugin: Replace `deno_brotli` dependency with Deno native support.
@@ -23,8 +25,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Removed `@std/crypto` dependency because it's not needed.
 - Replaced some `@std` imports with `node:*` API to reduce the number of external dependencies.
 - `robots` and `sitemap` plugins: the generated `robots.txt` content will always end with a newline [#838].
+- Move the Lume debug bar to this repo.
 
 ### Removed
+- Support for Deno 2.5.x & 2.6.x
 - `quality` option of the `brotli` plugin.
 
 ### Fixed
@@ -472,6 +476,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#838]: https://github.com/lumeland/lume/issues/838
 [#839]: https://github.com/lumeland/lume/issues/839
 [#843]: https://github.com/lumeland/lume/issues/843
+[#848]: https://github.com/lumeland/lume/issues/848
 
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4

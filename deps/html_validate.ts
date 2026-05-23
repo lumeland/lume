@@ -1,1 +1,1 @@
-export * from "npm:html-validate@10.15.0";
+export * from "npm:html-validate@11.2.0";

@@ -7,7 +7,7 @@ import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 import { writeTextFileSync } from "../deps/runtime.ts";
 
 import type { ErrorMessage } from "./seo/mod.ts";
-import type { Item } from "../deps/debugbar.ts";
+import type { Item } from "../core/debugbar.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 

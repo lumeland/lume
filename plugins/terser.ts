@@ -8,7 +8,7 @@ import { bytes, percentage } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
-import type { Item } from "../deps/debugbar.ts";
+import type { Item } from "../core/debugbar.ts";
 
 export interface Options {
   /** File extensions to minify */

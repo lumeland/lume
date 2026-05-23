@@ -29,6 +29,7 @@ export function brotli(userOptions?: Options) {
         return concurrent(pages, async (page: Page) => {
           const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
+            // @ts-ignore: https://github.com/denoland/deno/issues/34324
             new CompressionStream("brotli"),
           );
           const compressedArrayBuffer = await toArrayBuffer(compressedStream);

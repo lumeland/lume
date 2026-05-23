@@ -85,7 +85,7 @@ export default class FSWatcher implements Watcher {
     const { root, paths, ignore, debounce, dependencies } = this.options;
     const watcher = Deno.watchFs([root, ...paths ?? []]);
     const changes = new Set<string>();
-    let timer = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
 
     await this.dispatchEvent({ type: "start" });

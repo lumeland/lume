@@ -11,7 +11,7 @@ import { log } from "../core/utils/log.ts";
 import { browsers, version } from "../core/utils/browsers.ts";
 import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
-import type { Item } from "../deps/debugbar.ts";
+import type { Item } from "../core/debugbar.ts";
 import type Site from "../core/site.ts";
 import type {
   BundleAsyncOptions,

@@ -12,7 +12,7 @@ import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type Site from "../core/site.ts";
 import type { SourceMap } from "./source_maps.ts";
-import type { Item } from "../deps/debugbar.ts";
+import type { Item } from "../core/debugbar.ts";
 
 export interface Options {
   /**
