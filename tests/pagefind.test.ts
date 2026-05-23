@@ -3,7 +3,7 @@ import pagefind from "../plugins/pagefind.ts";
 
 Deno.test(
   "Pagefind plugin",
-  { ignore: Deno.build.os !== "darwin" },
+  { ignore: Deno.build.os !== "darwin", sanitizeResources: false },
   async (t) => {
     const site = getSite({
       src: "pagefind",
@@ -20,7 +20,7 @@ Deno.test(
 
 Deno.test(
   "Pagefind plugin with global variable & playground",
-  { ignore: Deno.build.os !== "darwin" },
+  { ignore: Deno.build.os !== "darwin", sanitizeResources: false },
   async (t) => {
     const site = getSite({
       src: "pagefind",
