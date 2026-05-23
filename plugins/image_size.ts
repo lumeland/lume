@@ -9,7 +9,6 @@ import { isUrl } from "../core/utils/path.ts";
 import { callReadableStream } from "../deps/runtime.ts";
 
 import type Site from "../core/site.ts";
-import { stream } from "../deps/sheetjs.ts";
 
 interface Dimmensions {
   width: number;
