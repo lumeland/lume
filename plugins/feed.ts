@@ -554,7 +554,7 @@ function toStringArray(value: unknown): string[] {
     return [];
   }
   const array = Array.isArray(value) ? value : [value];
-  return array.map((v) => typeof v === 'string' ? v : v.toString());
+  return array.map((v) => typeof v === "string" ? v : v.toString());
 }
 
 function toDate(date?: string | number | Date): Date | undefined {
