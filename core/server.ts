@@ -3,17 +3,19 @@ import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { merge } from "./utils/object.ts";
-import { cwd, stat } from "../deps/runtime.ts";
+import { cwd, serve, stat } from "../deps/runtime.ts";
 
+import type { RTServer } from "../deps/runtime.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
-export interface Options extends Deno.ServeOptions {
+export interface Options {
   /** The root path */
   root: string;
   port?: number;
   hostname?: string;
   serveFile?: (root: string, request: Request) => Promise<Response>;
+  signal?: AbortSignal;
 }
 
 export const defaults: Options = {
@@ -22,11 +24,24 @@ export const defaults: Options = {
   serveFile,
 };
 
+export interface NetAddress {
+  transport: "tcp" | "udp";
+  hostname: string;
+  port: number;
+}
+
+export interface HandlerInfo {
+  /** The remote address of the connection. */
+  remoteAddr: NetAddress;
+  /** The completion promise */
+  completed: Promise<void>;
+}
+
 export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
   req: Request,
   next: RequestHandler,
-  info: Deno.ServeHandlerInfo,
+  info: HandlerInfo,
 ) => Promise<Response>;
 
 /** Custom events for server */
@@ -50,8 +65,8 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Required<Options>;
   middlewares: Middleware[] = [];
-  fetch: Deno.ServeHandler;
-  #server?: Deno.HttpServer;
+  fetch: (request: Request, info: HandlerInfo) => Promise<Response>;
+  #server?: RTServer;
   #waiting = false;
 
   constructor(options: Partial<Options> = {}) {
@@ -62,13 +77,13 @@ export default class Server {
     }
 
     // Create the fetch function for `deno serve`
-    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+    this.fetch = (request: Request, info: HandlerInfo) => {
       return this.handle(request, info);
     };
   }
 
   /** The local address this server is listening on. */
-  get addr(): Deno.Addr | undefined {
+  get addr(): NetAddress | undefined {
     return this.#server?.addr;
   }
 
@@ -106,17 +121,18 @@ export default class Server {
   }
 
   /** Start the server */
-  start(signal?: Deno.ServeOptions["signal"]) {
+  start(signal?: AbortSignal) {
     if (!this.#server) {
-      this.#server = Deno.serve({
+      this.#server = serve({
         ...this.options,
+        handler: this.handle.bind(this),
         signal,
         onListen: () => {
           if (!this.#waiting) {
             this.dispatchEvent({ type: "start" });
           }
         },
-      }, this.handle.bind(this));
+      });
     } else if (this.#waiting) {
       this.#waiting = false;
       this.dispatchEvent({ type: "start" });
@@ -138,7 +154,7 @@ export default class Server {
   /** Handle a http request event */
   async handle(
     request: Request,
-    info: Deno.ServeHandlerInfo,
+    info: HandlerInfo,
   ): Promise<Response> {
     if (this.#waiting) {
       return this.handleWait();

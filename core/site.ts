@@ -38,7 +38,7 @@ import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
 import type { Extensions } from "./utils/path.ts";
 import type { Writer } from "./writer.ts";
-import type { Middleware } from "./server.ts";
+import type { HandlerInfo, Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
@@ -147,7 +147,7 @@ export default class Site {
   /** The static files to be copied are stored here */
   readonly files: StaticFile[] = [];
 
-  fetch: Deno.ServeHandler;
+  fetch: (request: Request, info: HandlerInfo) => Promise<Response>;
 
   watcher?: FSWatcher;
   server?: Server;
@@ -259,7 +259,7 @@ export default class Site {
     // Create the fetch function for `deno serve`
     let fetchServer: Server | undefined;
 
-    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+    this.fetch = (request: Request, info: HandlerInfo) => {
       if (!fetchServer) {
         fetchServer = this.getServer();
       }

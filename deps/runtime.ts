@@ -266,3 +266,33 @@ export function upgradeWebSocket(request: Request) {
   const { socket, response } = Deno.upgradeWebSocket(request);
   return { socket, response };
 }
+
+interface NetAddress {
+  transport: "tcp" | "udp";
+  hostname: string;
+  port: number;
+}
+
+interface HandlerInfo {
+  remoteAddr: NetAddress;
+  completed: Promise<void>;
+}
+
+export interface RTServer {
+  shutdown(): void;
+  addr: NetAddress;
+}
+
+export interface ServerOptions {
+  hostname?: string;
+  port?: number;
+  signal?: AbortSignal;
+  handler: (request: Request, info: HandlerInfo) => Promise<Response>;
+  onListen?: () => void;
+}
+
+export function serve(options: ServerOptions): RTServer {
+  const { handler, ...other } = options;
+
+  return Deno.serve(other, handler);
+}
