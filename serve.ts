@@ -23,7 +23,7 @@ export function getServeHandler(): Deno.ServeHandler {
   let process:
     | { process: Deno.ChildProcess; ready: boolean; error: boolean }
     | undefined;
-  let timeout: number | undefined;
+  let timeout: ReturnType<typeof setTimeout> | undefined = undefined;
 
   return async function (request: Request): Promise<Response> {
     const url = new URL(request.url);
