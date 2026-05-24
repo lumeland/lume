@@ -1,10 +1,5 @@
-export { posix, sep as SEPARATOR } from "node:path";
-export { basename, dirname, extname, join, relative } from "node:path";
-export { globToRegExp } from "jsr:@std/path@1.1.4/glob-to-regexp";
-export {
-  fileURLToPath as fromFileUrl,
-  pathToFileURL as toFileUrl,
-} from "node:url";
+export { SEPARATOR, basename, dirname, extname, join, relative, globToRegExp, fromFileUrl, toFileUrl } from "https://cdn.jsdelivr.net/gh/oscarotero/std@1.3.4/path/mod.ts";
+export * as posix from "https://cdn.jsdelivr.net/gh/oscarotero/std@1.3.4/path/posix/mod.ts";
 
 // posix.dirname
 // posix.join

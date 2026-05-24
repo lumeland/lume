@@ -1,6 +1,10 @@
-export { default as markdownIt } from "npm:markdown-it@14.1.1";
-export { default as markdownItAttrs } from "npm:markdown-it-attrs@4.5.0";
-export { default as markdownItDeflist } from "npm:markdown-it-deflist@3.0.0";
+// export { default as markdownIt } from "npm:markdown-it@14.1.1";
+// export { default as markdownItAttrs } from "npm:markdown-it-attrs@4.5.0";
+// export { default as markdownItDeflist } from "npm:markdown-it-deflist@3.0.0";
+
+export const markdownIt = {};
+export const markdownItAttrs = {};
+export const markdownItDeflist = {};
 
 export interface MarkdownItOptions {
   /** Set `true` to enable HTML tags in source */

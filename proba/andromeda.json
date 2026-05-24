@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "lume/": "../"
+  },
+  "tasks": {
+    "build": {
+      "command": "andromeda run _build.ts"
+    }
+  }
+}
