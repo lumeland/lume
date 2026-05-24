@@ -6,7 +6,12 @@ import { isUrl } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./utils.ts";
-import { cwd, writeFile, writeTextFile } from "../deps/runtime.ts";
+import {
+  cwd,
+  ErrorFileAlreadyExists,
+  writeFile,
+  writeTextFile,
+} from "../deps/runtime.ts";
 
 import type Site from "../core/site.ts";
 
@@ -102,7 +107,7 @@ async function saveFile(path: string, content: string | Uint8Array) {
 
     log.info(`✔️ Created file: <gray>${path}</gray>`);
   } catch (error) {
-    if (error instanceof Deno.errors.AlreadyExists) {
+    if (error instanceof ErrorFileAlreadyExists) {
       log.warn(`⚠️ File already exists: <gray>${path}</gray>`);
     } else {
       throw error;

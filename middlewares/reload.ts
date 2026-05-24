@@ -1,5 +1,6 @@
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
+import { upgradeWebSocket } from "../deps/runtime.ts";
 
 import type { Middleware } from "../core/server.ts";
 import type { Watcher } from "../core/watcher.ts";
@@ -62,7 +63,7 @@ export function reload(options: Options): Middleware {
   return async (request, next) => {
     // It's a websocket
     if (request.headers.get("upgrade") === "websocket") {
-      const { socket, response } = Deno.upgradeWebSocket(request);
+      const { socket, response } = upgradeWebSocket(request);
 
       socket.onopen = () => {
         // Browser was in the process of being reloaded. Notify

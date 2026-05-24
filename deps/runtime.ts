@@ -1,5 +1,7 @@
 export { isBuiltin } from "node:module";
 
+export class ErrorFileAlreadyExists extends Error {}
+
 export function args() {
   return Deno.args;
 }
@@ -21,7 +23,14 @@ export function writeFile(
   content: Uint8Array,
   createNew = false,
 ) {
-  return Deno.writeFile(path, content, { createNew });
+  try {
+    return Deno.writeFile(path, content, { createNew });
+  } catch (cause) {
+    if (cause instanceof Deno.errors.AlreadyExists) {
+      throw new ErrorFileAlreadyExists(cause.message, { cause });
+    }
+    throw cause;
+  }
 }
 
 export function writeTextFile(
@@ -29,7 +38,14 @@ export function writeTextFile(
   content: string,
   createNew = false,
 ) {
-  return Deno.writeTextFile(path, content, { createNew });
+  try {
+    return Deno.writeTextFile(path, content, { createNew });
+  } catch (cause) {
+    if (cause instanceof Deno.errors.AlreadyExists) {
+      throw new ErrorFileAlreadyExists(cause.message, { cause });
+    }
+    throw cause;
+  }
 }
 
 export function writeFileSync(
@@ -224,4 +240,29 @@ export async function callReadableStream<R>(
   });
 
   return await cb(fs.readable);
+}
+
+export class FileWatcher {
+  #watcher: Deno.FsWatcher;
+
+  constructor(watcher: Deno.FsWatcher) {
+    this.#watcher = watcher;
+  }
+  close(): void {
+    this.#watcher.close();
+  }
+  async *[Symbol.asyncIterator]() {
+    for await (const event of this.#watcher) {
+      yield event.paths;
+    }
+  }
+}
+
+export function watchFiles(paths: string[]) {
+  return new FileWatcher(Deno.watchFs(paths));
+}
+
+export function upgradeWebSocket(request: Request) {
+  const { socket, response } = Deno.upgradeWebSocket(request);
+  return { socket, response };
 }
