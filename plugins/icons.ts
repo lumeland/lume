@@ -15,9 +15,6 @@ export interface Options {
   /** The sprite file where icons will be saved */
   spriteFile?: string;
 
-  /** Default mode when using the `icon` filter */
-  defaultMode?: "single" | "sprite";
-
   /** The catalogs to use */
   catalogs?: Catalog[];
 }
@@ -25,7 +22,6 @@ export interface Options {
 export const defaults: Options = {
   folder: "/icons",
   spriteFile: "/icons.svg",
-  defaultMode: "single",
   catalogs,
 };
 
@@ -36,9 +32,8 @@ export function icons(userOptions?: Options) {
     const iconFiles = new Map<string, string>();
     const iconSprite = new Map<string, string>();
 
-    site.filter("icon", icon.bind(undefined, options.defaultMode === "sprite"));
-    site.filter("iconSingle", icon.bind(undefined, false));
-    site.filter("iconSprite", icon.bind(undefined, true));
+    site.filter("icon", icon.bind(undefined, false));
+    site.filter("spriteIcon", icon.bind(undefined, true));
 
     function icon(
       sprite: boolean,
