@@ -45,26 +45,20 @@ export function icons(userOptions?: Options) {
       const url = iconUrl(catalog, name, variant);
       let file;
 
-      if (!options.file) {
-        file = iconPath(options.folder, catalog, name, variant);
-        icons.set(file, url);
-      } else {
+      if (options.file) {
         const id = iconId(catalog, name, variant);
         icons.set(id, url);
         file = `${options.file}#${id}`;
+      } else {
+        file = iconPath(options.folder, catalog, name, variant);
+        icons.set(file, url);
       }
 
       return file;
     }
 
     site.process(async function processIcons() {
-      if (!options.file) {
-        for (const [file, url] of icons) {
-          const content = await readFile(url);
-          const page = await site.getOrCreatePage(file);
-          page.content = processSvg(content);
-        }
-      } else {
+      if (options.file) {
         let sprite =
           `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n`;
 
@@ -77,6 +71,12 @@ export function icons(userOptions?: Options) {
 
         const page = await site.getOrCreatePage(options.file);
         page.content = sprite;
+      } else {
+        for (const [file, url] of icons) {
+          const content = await readFile(url);
+          const page = await site.getOrCreatePage(file);
+          page.content = processSvg(content);
+        }
       }
     });
 
