@@ -114,6 +114,117 @@ snapshot[`icons plugin 2`] = `[]`;
 snapshot[`icons plugin 3`] = `
 [
   {
+    content: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<symbol id="phosphor-acorn-regular" viewBox="0 0 256 256" fill="currentColor"><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></symbol>
+<symbol id="phosphor-acorn-duotone" viewBox="0 0 256 256" fill="currentColor"><path d="M216,112v16c0,53-88,88-88,112,0-24-88-59-88-112V112Z" opacity="0.2"/><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></symbol>
+<symbol id="simpleicons-facebook" role="img" viewBox="0 0 24 24"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+<symbol id="heroicons-face-smile-outline" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/>
+</symbol>
+<symbol id="material-10k-filled" viewBox="0 0 24 24"><path d="M10 10.5h1.5v3H10zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 15H6v-4.5H4.5V9h3v6zm5.5-1c0 .55-.45 1-1 1H9.5c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1H12c.55 0 1 .45 1 1v4zm6.5 1h-1.75L16 12.75V15h-1.5V9H16v2.25L17.75 9h1.75l-2.25 3 2.25 3z"/></symbol>
+<symbol id="material-100-10k-outlined" viewBox="0 -960 960 960"><path d="M294-376h25v-208H214v25h80v183Zm114 0h93q11.15 0 18.58-7.42Q527-390.85 527-402v-156q0-11.15-7.42-18.58Q512.15-584 501-584h-93q-12.02 0-19.01 7.42Q382-569.15 382-558v156q0 11.15 6.99 18.58Q395.98-376 408-376Zm-1-25v-158h95v158h-95Zm184 25h25v-96l102 96h40L642-482l116-102h-38l-104 94v-94h-25v208ZM226-172q-22.77 0-38.39-15.61Q172-203.23 172-226v-508q0-22.78 15.61-38.39Q203.23-788 226-788h508q22.78 0 38.39 15.61T788-734v508q0 22.77-15.61 38.39Q756.78-172 734-172H226Zm0-22h508q12 0 22-10t10-22v-508q0-12-10-22t-22-10H226q-12 0-22 10t-10 22v508q0 12 10 22t22 10Zm-32-572v572-572Z"/></symbol>
+<symbol id="material-200-10k-outlined" viewBox="0 -960 960 960"><path d="M292.15-372.31h30.77v-215.38H206.15v30.77h86v184.61Zm115.39 0h95.54q11.81 0 19.71-7.9t7.9-19.71v-159.93q0-11.91-7.9-19.88-7.9-7.96-19.71-7.96h-95.54q-12.49 0-20.05 7.96-7.57 7.97-7.57 19.88v159.93q0 11.81 7.57 19.71 7.56 7.9 20.05 7.9Zm3.15-30.77v-153.84h89.23v153.84h-89.23Zm177.77 30.77h30.77v-94.61l97.85 94.61h46L648-481.54l115.08-106.15h-44.46l-99.39 93.07v-93.07h-30.77v215.38ZM215.38-160q-23.05 0-39.22-16.16Q160-192.33 160-215.38v-529.24q0-23.05 16.16-39.22Q192.33-800 215.38-800h529.24q23.05 0 39.22 16.16Q800-767.67 800-744.62v529.24q0 23.05-16.16 39.22Q767.67-160 744.62-160H215.38Zm0-30.77h529.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-529.24q0-9.23-7.69-16.92-7.69-7.69-16.92-7.69H215.38q-9.23 0-16.92 7.69-7.69 7.69-7.69 16.92v529.24q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69Zm-24.61-578.46v578.46-578.46Z"/></symbol>
+<symbol id="material-300-10k-outlined" viewBox="0 -960 960 960"><path d="M289.08-366.15h40.38v-227.7H193.08v40.39h96v187.31Zm117.69 0h99.77q12.92 0 21.61-8.7 8.7-8.69 8.7-21.61v-166.46q0-13.18-8.7-22.05-8.69-8.88-21.61-8.88h-99.77q-13.26 0-21.78 8.88-8.53 8.87-8.53 22.05v166.46q0 12.92 8.53 21.61 8.52 8.7 21.78 8.7Zm10.08-40.39v-146.92h79.61v146.92h-79.61Zm167.38 40.39h40.38v-92.31l90.93 92.31h56L658-480.77l113.54-113.08h-55.23l-91.7 91.54v-91.54h-40.38v227.7ZM197.69-140q-23.53 0-40.61-17.08T140-197.69v-564.62q0-23.53 17.08-40.61T197.69-820h564.62q23.53 0 40.61 17.08T820-762.31v564.62q0 23.53-17.08 40.61T762.31-140H197.69Zm0-45.39h564.62q4.61 0 8.46-3.84 3.84-3.85 3.84-8.46v-564.62q0-4.61-3.84-8.46-3.85-3.84-8.46-3.84H197.69q-4.61 0-8.46 3.84-3.84 3.85-3.84 8.46v564.62q0 4.61 3.84 8.46 3.85 3.84 8.46 3.84Zm-12.3-589.22v589.22-589.22Z"/></symbol>
+<symbol id="material-400-10k-outlined" viewBox="0 -960 960 960"><path d="M286-360h50v-240H180v50h106v190Zm120 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm157 50h50v-90l84 90h66L668-480l112-120h-66l-84 90v-90h-50v240ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Z"/></symbol>
+<symbol id="material-500-10k-outlined" viewBox="0 -960 960 960"><path d="M287.2-360h50v-240H182.15v50H287.2v190Zm118.8 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm155.33 50h50v-90l84 90h65.52L666.33-480l111.52-120h-65.52l-84 90v-90h-50v240ZM182.15-114.02q-27.6 0-47.86-20.27-20.27-20.26-20.27-47.86v-595.7q0-27.7 20.27-48.03 20.26-20.34 47.86-20.34h595.7q27.7 0 48.03 20.34 20.34 20.33 20.34 48.03v595.7q0 27.6-20.34 47.86-20.33 20.27-48.03 20.27h-595.7Zm0-68.13h595.7v-595.7h-595.7v595.7Zm0-595.7v595.7-595.7Z"/></symbol>
+<symbol id="material-600-10k-outlined" viewBox="0 -960 960 960"><path d="M288.83-360h50v-240H185.09v50h103.74v190ZM406-360h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm153.04 50h50v-90l84 90h64.87L664.04-480l110.87-120h-64.87l-84 90v-90h-50v240ZM185.09-105.87q-32.51 0-55.87-23.35-23.35-23.36-23.35-55.87v-589.82q0-32.74 23.35-56.26 23.36-23.53 55.87-23.53h589.82q32.74 0 56.26 23.53 23.53 23.52 23.53 56.26v589.82q0 32.51-23.53 55.87-23.52 23.35-56.26 23.35H185.09Zm0-79.22h589.82v-589.82H185.09v589.82Zm0-589.82v589.82-589.82Z"/></symbol>
+<symbol id="material-700-10k-outlined" viewBox="0 -960 960 960"><path d="M291-360h50v-240H189v50h102v190Zm115 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm150 50h50v-90l84 90h64L661-480l110-120h-64l-84 90v-90h-50v240ZM189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h582q39.46 0 67.23 27.77Q866-810.46 866-771v582q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-582H189v582Zm0-582v582-582Z"/></symbol>
+<symbol id="lucide-alarm-clock" class="lucide lucide-alarm-clock"   
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round">
+  <circle cx="12" cy="13" r="8" />
+  <path d="M12 9v4l2 2" />
+  <path d="M5 3 2 6" />
+  <path d="m22 6-3-3" />
+  <path d="M6.38 18.7 4 21" />
+  <path d="M17.64 18.67 20 21" />
+</symbol>
+<symbol id="tabler-alien-filled" viewBox="0 0 24 24"
+  fill="currentColor"
+  class="icon icon-tabler icons-tabler-filled icon-tabler-alien">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+  <path d="M12.004 2c4.942 0 8.288 2.503 8.85 6.444a12.884 12.884 0 0 1 -2.163 9.308a11.794 11.794 0 0 1 -3.51 3.356c-1.982 1.19 -4.376 1.19 -6.373 -.008a11.763 11.763 0 0 1 -3.489 -3.34a12.808 12.808 0 0 1 -2.171 -9.306c.564 -3.95 3.91 -6.454 8.856 -6.454zm1.913 14.6a1 1 0 0 0 -1.317 -.517l-.146 .055a1.5 1.5 0 0 1 -1.054 -.055l-.11 -.04a1 1 0 0 0 -.69 1.874a3.5 3.5 0 0 0 2.8 0a1 1 0 0 0 .517 -1.317zm-5.304 -6.39a1 1 0 0 0 -1.32 1.497l2 2l.094 .083a1 1 0 0 0 1.32 -1.497l-2 -2zm8.094 .083a1 1 0 0 0 -1.414 0l-2 2l-.083 .094a1 1 0 0 0 1.497 1.32l2 -2l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+</symbol>
+<symbol id="mingcute-arrow/arrows_left_fill" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0h24ZM12.594 23.258l-.012.002-.071.035-.02.004-.014-.004-.071-.036c-.01-.003-.019 0-.024.006l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.016-.018Zm.264-.113-.014.002-.184.093-.01.01-.003.011.018.43.005.012.008.008.201.092c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.003-.011.018-.43-.003-.012-.01-.01-.184-.092Z"/><path fill="#09244B" d="M12.06 5.94a1.5 1.5 0 0 1 0 2.12L8.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Zm6 0a1.5 1.5 0 0 1 0 2.12L14.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Z"/></g></symbol>
+<symbol id="remix-arrows/arrow-up-fill" viewBox="0 0 24 24" fill="currentColor"><path d="M13 12V20H11V12H4L12 4L20 12H13Z"/></symbol>
+<symbol id="bootstrap-0-circle" fill="currentColor" class="bi bi-0-circle" viewBox="0 0 16 16">
+  <path d="M7.988 12.158c-1.851 0-2.941-1.57-2.941-3.99V7.84c0-2.408 1.101-3.996 2.965-3.996 1.857 0 2.935 1.57 2.935 3.996v.328c0 2.408-1.101 3.99-2.959 3.99M8 4.951c-1.008 0-1.629 1.09-1.629 2.895v.31c0 1.81.627 2.895 1.629 2.895s1.623-1.09 1.623-2.895v-.31c0-1.8-.621-2.895-1.623-2.895"/>
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8"/>
+</symbol>
+<symbol id="myna-a-arrow-down-regular" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 13.667 7 7l-2.5 6.667m5 0L10.75 17M9.5 13.667h-5M3.25 17l1.25-3.333M17.25 7.5v9m3.5-3.5-3.5 3.5-3.5-3.5"/></symbol>
+<symbol id="iconoir-check-regular" stroke-width="1.5" viewBox="0 0 24 24" fill="none">
+<path d="M5 13L9 17L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="sargam-add-duotone" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M6 12h12m-6 6V6"/></symbol>
+<symbol id="boxicons-sushi-regular" viewBox="0 0 24 24"><path d="M12 2C7.51 2 4 4.2 4 7v10c0 2.8 3.51 5 8 5s8-2.2 8-5V7c0-2.8-3.51-5-8-5zm0 18c-3.54 0-6-1.58-6-3v-6.67A10.52 10.52 0 0 0 12 12a10.52 10.52 0 0 0 6-1.67V17c0 1.42-2.46 3-6 3zm0-10c-3.54 0-6-1.58-6-3s2.46-3 6-3 6 1.58 6 3-2.46 3-6 3z"/><ellipse cx="12" cy="7" rx="3" ry="1.71"/></symbol>
+<symbol id="ant-account-book-filled" viewBox="64 64 896 896" focusable="false"><path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zM648.3 426.8l-87.7 161.1h45.7c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4v29.7h63.4c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4V752c0 5.5-4.5 10-10 10h-41.3c-5.5 0-10-4.5-10-10v-51.8h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h63.1v-29.7h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h45.2l-88-161.1c-2.6-4.8-.9-10.9 4-13.6 1.5-.8 3.1-1.2 4.8-1.2h46c3.8 0 7.2 2.1 8.9 5.5l72.9 144.3 73.2-144.3a10 10 0 018.9-5.5h45c5.5 0 10 4.5 10 10 .1 1.7-.3 3.3-1.1 4.8z" /></symbol>
+<symbol id="fluent-access_time_20-outlined" viewBox="0 0 20 20"><path d="M6.99 8.6A.5.5 0 0 1 6 8.4a1.29 1.29 0 0 1 .07-.24 2 2 0 0 1 .25-.46c.26-.35.71-.7 1.42-.7A1.7 1.7 0 0 1 9.5 8.75c0 .35-.07.65-.2.9a1.8 1.8 0 0 1-.51.6c-.16.11-.33.22-.48.3l-.06.04c-.17.1-.3.19-.42.29-.4.34-.66.7-.77 1.12H9a.5.5 0 0 1 0 1H6.5a.5.5 0 0 1-.5-.5c0-1.01.47-1.77 1.17-2.38.2-.16.4-.29.57-.4l.06-.03.38-.24a.8.8 0 0 0 .23-.26c.05-.1.09-.23.09-.44a.8.8 0 0 0-.19-.53.7.7 0 0 0-.56-.22.7.7 0 0 0-.61.3 1 1 0 0 0-.15.3ZM11 7c.28 0 .5.22.5.5V10H13V7.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0V11h-2a.5.5 0 0 1-.5-.5v-3c0-.28.22-.5.5-.5Zm-1-5a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z"/></symbol>
+<symbol id="octicons-comment-24" viewBox="0 0 24 24"><path d="M1.5 4.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v12.5a1.75 1.75 0 0 1-1.75 1.75h-9.69l-3.573 3.573A1.458 1.458 0 0 1 5 21.043V18.5H3.25a1.75 1.75 0 0 1-1.75-1.75ZM3.25 4a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 .75.75v3.19l3.72-3.72a.749.749 0 0 1 .53-.22h10a.25.25 0 0 0 .25-.25V4.25a.25.25 0 0 0-.25-.25Z"/></symbol>
+<symbol id="openmoji-E046-color" viewBox="0 0 72 72">
+  <g id="color">
+    <rect x="11" y="11" rx="3" width="50" height="50" fill="#61b2e4"/>
+    <rect x="20" y="30" width="6" height="21" fill="#fff"/>
+    <circle cx="23" cy="22" r="3.5" fill="#fff"/>
+    <path fill="#fff" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
+  </g>
+  <g id="line">
+    <rect x="11" y="11" rx="3" width="50" height="50" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    <rect x="20" y="30" width="6" height="21" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <circle cx="23" cy="22" r="3.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
+  </g>
+</symbol>
+<symbol id="feather-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></symbol>
+<symbol id="fontawesome-bell-regular" aria-hidden="true" focusable="false" data-prefix="far" data-icon="bell" class="svg-inline--fa fa-bell" role="img"  viewBox="0 0 448 512"><path fill="currentColor" d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path></symbol>
+<symbol id="cssgg-add" viewBox="0 0 24 24"
+  fill="none">
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
+    fill="currentColor"
+  />
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M13 7C13 6.44772 12.5523 6 12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7Z"
+    fill="currentColor"
+  />
+</symbol>
+<symbol id="radix-angle" viewBox="0 0 15 15" fill="none">
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M8.8914 2.1937C9.1158 2.35464 9.16725 2.66701 9.00631 2.89141L2.47388 12H13.5C13.7761 12 14 12.2239 14 12.5C14 12.7762 13.7761 13 13.5 13H1.5C1.31254 13 1.14082 12.8952 1.0552 12.7284C0.969578 12.5616 0.984438 12.361 1.09369 12.2086L8.19369 2.30862C8.35462 2.08422 8.667 2.03277 8.8914 2.1937ZM11.1 6.50001C11.1 6.22387 11.3238 6.00001 11.6 6.00001C11.8761 6.00001 12.1 6.22387 12.1 6.50001C12.1 6.77615 11.8761 7.00001 11.6 7.00001C11.3238 7.00001 11.1 6.77615 11.1 6.50001ZM10.4 4.00001C10.1239 4.00001 9.90003 4.22387 9.90003 4.50001C9.90003 4.77615 10.1239 5.00001 10.4 5.00001C10.6762 5.00001 10.9 4.77615 10.9 4.50001C10.9 4.22387 10.6762 4.00001 10.4 4.00001ZM12.1 8.50001C12.1 8.22387 12.3238 8.00001 12.6 8.00001C12.8761 8.00001 13.1 8.22387 13.1 8.50001C13.1 8.77615 12.8761 9.00001 12.6 9.00001C12.3238 9.00001 12.1 8.77615 12.1 8.50001ZM13.4 10C13.1239 10 12.9 10.2239 12.9 10.5C12.9 10.7761 13.1239 11 13.4 11C13.6762 11 13.9 10.7761 13.9 10.5C13.9 10.2239 13.6762 10 13.4 10Z"
+    fill="currentColor"
+  />
+</symbol>
+<symbol id="ionicons-accessibility-outline" viewBox="0 0 512 512" class="ionicon"><circle cx="256" cy="56" r="40" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" d="M204.23 274.44c2.9-18.06 4.2-35.52-.5-47.59-4-10.38-12.7-16.19-23.2-20.15L88 176.76c-12-4-23.21-10.7-24-23.94-1-17 14-28 29-24 0 0 88 31.14 163 31.14s162-31 162-31c18-5 30 9 30 23.79 0 14.21-11 19.21-24 23.94l-88 31.91c-8 3-21 9-26 18.18-6 10.75-5 29.53-2.1 47.59l5.9 29.63 37.41 163.9c2.8 13.15-6.3 25.44-19.4 27.74S308 489 304.12 476.28l-37.56-115.93q-2.71-8.34-4.8-16.87L256 320l-5.3 21.65q-2.52 10.35-5.8 20.48L208 476.18c-4 12.85-14.5 21.75-27.6 19.46s-22.4-15.59-19.46-27.74l37.39-163.83Z"/></symbol>
+<symbol id="thesvg-github-default" viewBox="0 0 1024 1024" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill="#181717"/>
+</symbol>
+<symbol id="thesvg-github-light" viewBox="0 0 1024 1024"    fill="none"><path fill="#1b1f23" fill-rule="evenodd" d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28s87.04 5.76 128 17.28c97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0" clip-rule="evenodd"/></symbol>
+</svg>',
+    data: {
+      basename: "icons",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/icons.svg",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: '<svg viewBox="64 64 896 896" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zM648.3 426.8l-87.7 161.1h45.7c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4v29.7h63.4c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4V752c0 5.5-4.5 10-10 10h-41.3c-5.5 0-10-4.5-10-10v-51.8h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h63.1v-29.7h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h45.2l-88-161.1c-2.6-4.8-.9-10.9 4-13.6 1.5-.8 3.1-1.2 4.8-1.2h46c3.8 0 7.2 2.1 8.9 5.5l72.9 144.3 73.2-144.3a10 10 0 018.9-5.5h45c5.5 0 10 4.5 10 10 .1 1.7-.3 3.3-1.1 4.8z" /></svg>',
     data: {
       basename: "account-book-filled",
@@ -743,6 +854,42 @@ snapshot[`icons plugin 3`] = `
 </head>
 <body>
   <img src="/icons/phosphor/acorn-regular.svg">
+
+  <svg><use href="/icons.svg#phosphor-acorn-regular" /></svg>
+  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
+  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
+  <svg><use href="/icons.svg#simpleicons-facebook" /></svg>
+  <svg><use href="/icons.svg#heroicons-face-smile-outline" /></svg>
+  <svg><use href="/icons.svg#material-10k-filled" /></svg>
+  <svg><use href="/icons.svg#material-100-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-200-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-300-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-400-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-500-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-600-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-700-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#lucide-alarm-clock" /></svg>
+  <svg><use href="/icons.svg#tabler-alien-filled" /></svg>
+  <svg><use href="/icons.svg#mingcute-arrow/arrows_left_fill" /></svg>
+  <svg><use href="/icons.svg#remix-arrows/arrow-up-fill" /></svg>
+  <svg><use href="/icons.svg#bootstrap-0-circle" /></svg>
+  <svg><use href="/icons.svg#myna-a-arrow-down-regular" /></svg>
+  <svg><use href="/icons.svg#iconoir-check-regular" /></svg>
+  <svg><use href="/icons.svg#sargam-add-duotone" /></svg>
+  <svg><use href="/icons.svg#boxicons-sushi-regular" /></svg>
+  <svg><use href="/icons.svg#ant-account-book-filled" /></svg>
+  <svg><use href="/icons.svg#fluent-access_time_20-outlined" /></svg>
+  <svg><use href="/icons.svg#octicons-comment-24" /></svg>
+  <svg><use href="/icons.svg#openmoji-E046-color" /></svg>
+  <svg><use href="/icons.svg#feather-activity" /></svg>
+  <svg><use href="/icons.svg#fontawesome-bell-regular" /></svg>
+  <svg><use href="/icons.svg#cssgg-add" /></svg>
+  <svg><use href="/icons.svg#radix-angle" /></svg>
+  <svg><use href="/icons.svg#ionicons-accessibility-outline" /></svg>
+  <svg><use href="/icons.svg#thesvg-github-default" /></svg>
+  <svg><use href="/icons.svg#thesvg-github-light" /></svg>
+
+  <img src="/icons/phosphor/acorn-regular.svg">
   <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/simpleicons/facebook.svg">
@@ -789,6 +936,42 @@ snapshot[`icons plugin 3`] = `
 </head>
 <body>
   <img src="/icons/phosphor/acorn-regular.svg">
+
+  <svg><use href="/icons.svg#phosphor-acorn-regular" /></svg>
+  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
+  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
+  <svg><use href="/icons.svg#simpleicons-facebook" /></svg>
+  <svg><use href="/icons.svg#heroicons-face-smile-outline" /></svg>
+  <svg><use href="/icons.svg#material-10k-filled" /></svg>
+  <svg><use href="/icons.svg#material-100-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-200-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-300-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-400-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-500-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-600-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#material-700-10k-outlined" /></svg>
+  <svg><use href="/icons.svg#lucide-alarm-clock" /></svg>
+  <svg><use href="/icons.svg#tabler-alien-filled" /></svg>
+  <svg><use href="/icons.svg#mingcute-arrow/arrows_left_fill" /></svg>
+  <svg><use href="/icons.svg#remix-arrows/arrow-up-fill" /></svg>
+  <svg><use href="/icons.svg#bootstrap-0-circle" /></svg>
+  <svg><use href="/icons.svg#myna-a-arrow-down-regular" /></svg>
+  <svg><use href="/icons.svg#iconoir-check-regular" /></svg>
+  <svg><use href="/icons.svg#sargam-add-duotone" /></svg>
+  <svg><use href="/icons.svg#boxicons-sushi-regular" /></svg>
+  <svg><use href="/icons.svg#ant-account-book-filled" /></svg>
+  <svg><use href="/icons.svg#fluent-access_time_20-outlined" /></svg>
+  <svg><use href="/icons.svg#octicons-comment-24" /></svg>
+  <svg><use href="/icons.svg#openmoji-E046-color" /></svg>
+  <svg><use href="/icons.svg#feather-activity" /></svg>
+  <svg><use href="/icons.svg#fontawesome-bell-regular" /></svg>
+  <svg><use href="/icons.svg#cssgg-add" /></svg>
+  <svg><use href="/icons.svg#radix-angle" /></svg>
+  <svg><use href="/icons.svg#ionicons-accessibility-outline" /></svg>
+  <svg><use href="/icons.svg#thesvg-github-default" /></svg>
+  <svg><use href="/icons.svg#thesvg-github-light" /></svg>
+
+  <img src="/icons/phosphor/acorn-regular.svg">
   <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/phosphor/acorn-duotone.svg">
   <img src="/icons/simpleicons/facebook.svg">
@@ -832,75 +1015,75 @@ snapshot[`icons plugin 3`] = `
   <title>Document</title>
 </head>
 <body>
-  {{ if it.sprite }}
-  <svg><use href="{{ "acorn" |> icon("phosphor") }}" /></svg>
-  <svg><use href="{{ "acorn" |> icon("phosphor", "duotone") }}" /></svg>
-  <svg><use href="{{ "acorn:duotone" |> icon("phosphor") }}" /></svg>
-  <svg><use href="{{ "facebook" |> icon("simpleicons") }}" /></svg>
-  <svg><use href="{{ "face-smile" |> icon("heroicons") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-100") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-200") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-300") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-400") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-500") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-600") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-700") }}" /></svg>
-  <svg><use href="{{ "alarm-clock" |> icon("lucide") }}" /></svg>
-  <svg><use href="{{ "alien" |> icon("tabler") }}" /></svg>
-  <svg><use href="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}" /></svg>
-  <svg><use href="{{ "arrows/arrow-up-fill" |> icon("remix") }}" /></svg>
-  <svg><use href="{{ "0-circle" |> icon("bootstrap") }}" /></svg>
-  <svg><use href="{{ "a-arrow-down" |> icon("myna") }}" /></svg>
-  <svg><use href="{{ "check" |> icon("iconoir") }}" /></svg>
-  <svg><use href="{{ "add" |> icon("sargam") }}" /></svg>
-  <svg><use href="{{ "sushi" |> icon("boxicons") }}" /></svg>
-  <svg><use href="{{ "account-book" |> icon("ant") }}" /></svg>
-  <svg><use href="{{ "access_time_20" |> icon("fluent") }}" /></svg>
-  <svg><use href="{{ "comment" |> icon("octicons") }}" /></svg>
-  <svg><use href="{{ "E046" |> icon("openmoji") }}" /></svg>
-  <svg><use href="{{ "activity" |> icon("feather") }}" /></svg>
-  <svg><use href="{{ "bell" |> icon("fontawesome") }}" /></svg>
-  <svg><use href="{{ "add" |> icon("cssgg") }}" /></svg>
-  <svg><use href="{{ "angle" |> icon("radix") }}" /></svg>
-  <svg><use href="{{ "accessibility" |> icon("ionicons") }}" /></svg>
-  <svg><use href="{{ "github" |> icon("thesvg") }}" /></svg>
-  <svg><use href="{{ "github:light" |> icon("thesvg") }}" /></svg>
-  {{ else }}
-  <img src="{{ "acorn" |> icon("phosphor") }}">
-  <img src="{{ "acorn" |> icon("phosphor", "duotone") }}">
-  <img src="{{ "acorn:duotone" |> icon("phosphor") }}">
-  <img src="{{ "facebook" |> icon("simpleicons") }}">
-  <img src="{{ "face-smile" |> icon("heroicons") }}">
-  <img src="{{ "10k" |> icon("material") }}">
-  <img src="{{ "10k" |> icon("material-100") }}">
-  <img src="{{ "10k" |> icon("material-200") }}">
-  <img src="{{ "10k" |> icon("material-300") }}">
-  <img src="{{ "10k" |> icon("material-400") }}">
-  <img src="{{ "10k" |> icon("material-500") }}">
-  <img src="{{ "10k" |> icon("material-600") }}">
-  <img src="{{ "10k" |> icon("material-700") }}">
-  <img src="{{ "alarm-clock" |> icon("lucide") }}">
-  <img src="{{ "alien" |> icon("tabler") }}">
-  <img src="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}">
-  <img src="{{ "arrows/arrow-up-fill" |> icon("remix") }}">
-  <img src="{{ "0-circle" |> icon("bootstrap") }}">
-  <img src="{{ "a-arrow-down" |> icon("myna") }}">
-  <img src="{{ "check" |> icon("iconoir") }}">
-  <img src="{{ "add" |> icon("sargam") }}">
-  <img src="{{ "sushi" |> icon("boxicons") }}">
-  <img src="{{ "account-book" |> icon("ant") }}">
-  <img src="{{ "access_time_20" |> icon("fluent") }}">
-  <img src="{{ "comment" |> icon("octicons") }}">
-  <img src="{{ "E046" |> icon("openmoji") }}">
-  <img src="{{ "activity" |> icon("feather") }}">
-  <img src="{{ "bell" |> icon("fontawesome") }}">
-  <img src="{{ "add" |> icon("cssgg") }}">
-  <img src="{{ "angle" |> icon("radix") }}">
-  <img src="{{ "accessibility" |> icon("ionicons") }}">
-  <img src="{{ "github" |> icon("thesvg") }}">
-  <img src="{{ "github:light" |> icon("thesvg") }}">
-  {{ /if }}
+  <img src="{{ "acorn" |> iconSingle("phosphor") }}">
+
+  <svg><use href="{{ "acorn" |> iconSprite("phosphor") }}" /></svg>
+  <svg><use href="{{ "acorn" |> iconSprite("phosphor", "duotone") }}" /></svg>
+  <svg><use href="{{ "acorn:duotone" |> iconSprite("phosphor") }}" /></svg>
+  <svg><use href="{{ "facebook" |> iconSprite("simpleicons") }}" /></svg>
+  <svg><use href="{{ "face-smile" |> iconSprite("heroicons") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-100") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-200") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-300") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-400") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-500") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-600") }}" /></svg>
+  <svg><use href="{{ "10k" |> iconSprite("material-700") }}" /></svg>
+  <svg><use href="{{ "alarm-clock" |> iconSprite("lucide") }}" /></svg>
+  <svg><use href="{{ "alien" |> iconSprite("tabler") }}" /></svg>
+  <svg><use href="{{ "arrow/arrows_left_fill" |> iconSprite("mingcute") }}" /></svg>
+  <svg><use href="{{ "arrows/arrow-up-fill" |> iconSprite("remix") }}" /></svg>
+  <svg><use href="{{ "0-circle" |> iconSprite("bootstrap") }}" /></svg>
+  <svg><use href="{{ "a-arrow-down" |> iconSprite("myna") }}" /></svg>
+  <svg><use href="{{ "check" |> iconSprite("iconoir") }}" /></svg>
+  <svg><use href="{{ "add" |> iconSprite("sargam") }}" /></svg>
+  <svg><use href="{{ "sushi" |> iconSprite("boxicons") }}" /></svg>
+  <svg><use href="{{ "account-book" |> iconSprite("ant") }}" /></svg>
+  <svg><use href="{{ "access_time_20" |> iconSprite("fluent") }}" /></svg>
+  <svg><use href="{{ "comment" |> iconSprite("octicons") }}" /></svg>
+  <svg><use href="{{ "E046" |> iconSprite("openmoji") }}" /></svg>
+  <svg><use href="{{ "activity" |> iconSprite("feather") }}" /></svg>
+  <svg><use href="{{ "bell" |> iconSprite("fontawesome") }}" /></svg>
+  <svg><use href="{{ "add" |> iconSprite("cssgg") }}" /></svg>
+  <svg><use href="{{ "angle" |> iconSprite("radix") }}" /></svg>
+  <svg><use href="{{ "accessibility" |> iconSprite("ionicons") }}" /></svg>
+  <svg><use href="{{ "github" |> iconSprite("thesvg") }}" /></svg>
+  <svg><use href="{{ "github:light" |> iconSprite("thesvg") }}" /></svg>
+
+  <img src="{{ "acorn" |> iconSingle("phosphor") }}">
+  <img src="{{ "acorn" |> iconSingle("phosphor", "duotone") }}">
+  <img src="{{ "acorn:duotone" |> iconSingle("phosphor") }}">
+  <img src="{{ "facebook" |> iconSingle("simpleicons") }}">
+  <img src="{{ "face-smile" |> iconSingle("heroicons") }}">
+  <img src="{{ "10k" |> iconSingle("material") }}">
+  <img src="{{ "10k" |> iconSingle("material-100") }}">
+  <img src="{{ "10k" |> iconSingle("material-200") }}">
+  <img src="{{ "10k" |> iconSingle("material-300") }}">
+  <img src="{{ "10k" |> iconSingle("material-400") }}">
+  <img src="{{ "10k" |> iconSingle("material-500") }}">
+  <img src="{{ "10k" |> iconSingle("material-600") }}">
+  <img src="{{ "10k" |> iconSingle("material-700") }}">
+  <img src="{{ "alarm-clock" |> iconSingle("lucide") }}">
+  <img src="{{ "alien" |> iconSingle("tabler") }}">
+  <img src="{{ "arrow/arrows_left_fill" |> iconSingle("mingcute") }}">
+  <img src="{{ "arrows/arrow-up-fill" |> iconSingle("remix") }}">
+  <img src="{{ "0-circle" |> iconSingle("bootstrap") }}">
+  <img src="{{ "a-arrow-down" |> iconSingle("myna") }}">
+  <img src="{{ "check" |> iconSingle("iconoir") }}">
+  <img src="{{ "add" |> iconSingle("sargam") }}">
+  <img src="{{ "sushi" |> iconSingle("boxicons") }}">
+  <img src="{{ "account-book" |> iconSingle("ant") }}">
+  <img src="{{ "access_time_20" |> iconSingle("fluent") }}">
+  <img src="{{ "comment" |> iconSingle("octicons") }}">
+  <img src="{{ "E046" |> iconSingle("openmoji") }}">
+  <img src="{{ "activity" |> iconSingle("feather") }}">
+  <img src="{{ "bell" |> iconSingle("fontawesome") }}">
+  <img src="{{ "add" |> iconSingle("cssgg") }}">
+  <img src="{{ "angle" |> iconSingle("radix") }}">
+  <img src="{{ "accessibility" |> iconSingle("ionicons") }}">
+  <img src="{{ "github" |> iconSingle("thesvg") }}">
+  <img src="{{ "github:light" |> iconSingle("thesvg") }}">
 </body>
 </html>
 ',
@@ -915,426 +1098,6 @@ snapshot[`icons plugin 3`] = `
       ],
       paginate: "paginate",
       search: [],
-      sprite: false,
-      tags: "Array(0)",
-      url: "/",
-    },
-    src: {
-      ext: ".vto",
-      path: "/index",
-      remote: undefined,
-    },
-  },
-]
-`;
-
-snapshot[`icons plugin (sprite mode) 1`] = `
-{
-  formats: [
-    {
-      engines: 0,
-      ext: ".page.toml",
-      isPage: true,
-      loader: [AsyncFunction: toml],
-    },
-    {
-      engines: 1,
-      ext: ".page.ts",
-      isPage: true,
-      loader: [AsyncFunction: module],
-    },
-    {
-      engines: 1,
-      ext: ".page.js",
-      isPage: true,
-      loader: [AsyncFunction: module],
-    },
-    {
-      engines: 0,
-      ext: ".page.jsonc",
-      isPage: true,
-      loader: [AsyncFunction: json],
-    },
-    {
-      engines: 0,
-      ext: ".page.json",
-      isPage: true,
-      loader: [AsyncFunction: json],
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engines: 0,
-      ext: ".json",
-      loader: [AsyncFunction: json],
-    },
-    {
-      dataLoader: [AsyncFunction: json],
-      engines: 0,
-      ext: ".jsonc",
-      loader: [AsyncFunction: json],
-    },
-    {
-      engines: 1,
-      ext: ".md",
-      isPage: true,
-      loader: [AsyncFunction: text],
-    },
-    {
-      engines: 1,
-      ext: ".markdown",
-      isPage: true,
-      loader: [AsyncFunction: text],
-    },
-    {
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".js",
-      loader: [AsyncFunction: module],
-    },
-    {
-      dataLoader: [AsyncFunction: module],
-      engines: 1,
-      ext: ".ts",
-      loader: [AsyncFunction: module],
-    },
-    {
-      engines: 1,
-      ext: ".vento",
-      isPage: true,
-      loader: [AsyncFunction: text],
-    },
-    {
-      engines: 1,
-      ext: ".vto",
-      isPage: true,
-      loader: [AsyncFunction: text],
-    },
-    {
-      dataLoader: [AsyncFunction: toml],
-      engines: 0,
-      ext: ".toml",
-      loader: [AsyncFunction: toml],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: 0,
-      ext: ".yaml",
-      isPage: true,
-      loader: [AsyncFunction: yaml],
-    },
-    {
-      dataLoader: [AsyncFunction: yaml],
-      engines: 0,
-      ext: ".yml",
-      isPage: true,
-      loader: [AsyncFunction: yaml],
-    },
-  ],
-  src: [
-    "/",
-    "/index.vto",
-  ],
-}
-`;
-
-snapshot[`icons plugin (sprite mode) 2`] = `[]`;
-
-snapshot[`icons plugin (sprite mode) 3`] = `
-[
-  {
-    content: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<symbol id="phosphor-acorn-regular" viewBox="0 0 256 256" fill="currentColor"><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></symbol>
-<symbol id="phosphor-acorn-duotone" viewBox="0 0 256 256" fill="currentColor"><path d="M216,112v16c0,53-88,88-88,112,0-24-88-59-88-112V112Z" opacity="0.2"/><path d="M232,104a56.06,56.06,0,0,0-56-56H136a24,24,0,0,1,24-24,8,8,0,0,0,0-16,40,40,0,0,0-40,40H80a56.06,56.06,0,0,0-56,56,16,16,0,0,0,8,13.83V128c0,35.53,33.12,62.12,59.74,83.49C103.66,221.07,120,234.18,120,240a8,8,0,0,0,16,0c0-5.82,16.34-18.93,28.26-28.51C190.88,190.12,224,163.53,224,128V117.83A16,16,0,0,0,232,104ZM80,64h96a40.06,40.06,0,0,1,40,40H40A40,40,0,0,1,80,64Zm74.25,135c-10.62,8.52-20,16-26.25,23.37-6.25-7.32-15.63-14.85-26.25-23.37C77.8,179.79,48,155.86,48,128v-8H208v8C208,155.86,178.2,179.79,154.25,199Z"/></symbol>
-<symbol id="simpleicons-facebook" role="img" viewBox="0 0 24 24"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
-<symbol id="heroicons-face-smile-outline" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/>
-</symbol>
-<symbol id="material-10k-filled" viewBox="0 0 24 24"><path d="M10 10.5h1.5v3H10zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 15H6v-4.5H4.5V9h3v6zm5.5-1c0 .55-.45 1-1 1H9.5c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1H12c.55 0 1 .45 1 1v4zm6.5 1h-1.75L16 12.75V15h-1.5V9H16v2.25L17.75 9h1.75l-2.25 3 2.25 3z"/></symbol>
-<symbol id="material-100-10k-outlined" viewBox="0 -960 960 960"><path d="M294-376h25v-208H214v25h80v183Zm114 0h93q11.15 0 18.58-7.42Q527-390.85 527-402v-156q0-11.15-7.42-18.58Q512.15-584 501-584h-93q-12.02 0-19.01 7.42Q382-569.15 382-558v156q0 11.15 6.99 18.58Q395.98-376 408-376Zm-1-25v-158h95v158h-95Zm184 25h25v-96l102 96h40L642-482l116-102h-38l-104 94v-94h-25v208ZM226-172q-22.77 0-38.39-15.61Q172-203.23 172-226v-508q0-22.78 15.61-38.39Q203.23-788 226-788h508q22.78 0 38.39 15.61T788-734v508q0 22.77-15.61 38.39Q756.78-172 734-172H226Zm0-22h508q12 0 22-10t10-22v-508q0-12-10-22t-22-10H226q-12 0-22 10t-10 22v508q0 12 10 22t22 10Zm-32-572v572-572Z"/></symbol>
-<symbol id="material-200-10k-outlined" viewBox="0 -960 960 960"><path d="M292.15-372.31h30.77v-215.38H206.15v30.77h86v184.61Zm115.39 0h95.54q11.81 0 19.71-7.9t7.9-19.71v-159.93q0-11.91-7.9-19.88-7.9-7.96-19.71-7.96h-95.54q-12.49 0-20.05 7.96-7.57 7.97-7.57 19.88v159.93q0 11.81 7.57 19.71 7.56 7.9 20.05 7.9Zm3.15-30.77v-153.84h89.23v153.84h-89.23Zm177.77 30.77h30.77v-94.61l97.85 94.61h46L648-481.54l115.08-106.15h-44.46l-99.39 93.07v-93.07h-30.77v215.38ZM215.38-160q-23.05 0-39.22-16.16Q160-192.33 160-215.38v-529.24q0-23.05 16.16-39.22Q192.33-800 215.38-800h529.24q23.05 0 39.22 16.16Q800-767.67 800-744.62v529.24q0 23.05-16.16 39.22Q767.67-160 744.62-160H215.38Zm0-30.77h529.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92v-529.24q0-9.23-7.69-16.92-7.69-7.69-16.92-7.69H215.38q-9.23 0-16.92 7.69-7.69 7.69-7.69 16.92v529.24q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69Zm-24.61-578.46v578.46-578.46Z"/></symbol>
-<symbol id="material-300-10k-outlined" viewBox="0 -960 960 960"><path d="M289.08-366.15h40.38v-227.7H193.08v40.39h96v187.31Zm117.69 0h99.77q12.92 0 21.61-8.7 8.7-8.69 8.7-21.61v-166.46q0-13.18-8.7-22.05-8.69-8.88-21.61-8.88h-99.77q-13.26 0-21.78 8.88-8.53 8.87-8.53 22.05v166.46q0 12.92 8.53 21.61 8.52 8.7 21.78 8.7Zm10.08-40.39v-146.92h79.61v146.92h-79.61Zm167.38 40.39h40.38v-92.31l90.93 92.31h56L658-480.77l113.54-113.08h-55.23l-91.7 91.54v-91.54h-40.38v227.7ZM197.69-140q-23.53 0-40.61-17.08T140-197.69v-564.62q0-23.53 17.08-40.61T197.69-820h564.62q23.53 0 40.61 17.08T820-762.31v564.62q0 23.53-17.08 40.61T762.31-140H197.69Zm0-45.39h564.62q4.61 0 8.46-3.84 3.84-3.85 3.84-8.46v-564.62q0-4.61-3.84-8.46-3.85-3.84-8.46-3.84H197.69q-4.61 0-8.46 3.84-3.84 3.85-3.84 8.46v564.62q0 4.61 3.84 8.46 3.85 3.84 8.46 3.84Zm-12.3-589.22v589.22-589.22Z"/></symbol>
-<symbol id="material-400-10k-outlined" viewBox="0 -960 960 960"><path d="M286-360h50v-240H180v50h106v190Zm120 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm157 50h50v-90l84 90h66L668-480l112-120h-66l-84 90v-90h-50v240ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Z"/></symbol>
-<symbol id="material-500-10k-outlined" viewBox="0 -960 960 960"><path d="M287.2-360h50v-240H182.15v50H287.2v190Zm118.8 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm155.33 50h50v-90l84 90h65.52L666.33-480l111.52-120h-65.52l-84 90v-90h-50v240ZM182.15-114.02q-27.6 0-47.86-20.27-20.27-20.26-20.27-47.86v-595.7q0-27.7 20.27-48.03 20.26-20.34 47.86-20.34h595.7q27.7 0 48.03 20.34 20.34 20.33 20.34 48.03v595.7q0 27.6-20.34 47.86-20.33 20.27-48.03 20.27h-595.7Zm0-68.13h595.7v-595.7h-595.7v595.7Zm0-595.7v595.7-595.7Z"/></symbol>
-<symbol id="material-600-10k-outlined" viewBox="0 -960 960 960"><path d="M288.83-360h50v-240H185.09v50h103.74v190ZM406-360h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm153.04 50h50v-90l84 90h64.87L664.04-480l110.87-120h-64.87l-84 90v-90h-50v240ZM185.09-105.87q-32.51 0-55.87-23.35-23.35-23.36-23.35-55.87v-589.82q0-32.74 23.35-56.26 23.36-23.53 55.87-23.53h589.82q32.74 0 56.26 23.53 23.53 23.52 23.53 56.26v589.82q0 32.51-23.53 55.87-23.52 23.35-56.26 23.35H185.09Zm0-79.22h589.82v-589.82H185.09v589.82Zm0-589.82v589.82-589.82Z"/></symbol>
-<symbol id="material-700-10k-outlined" viewBox="0 -960 960 960"><path d="M291-360h50v-240H189v50h102v190Zm115 0h104q14.03 0 23.51-9.49Q543-378.98 543-393v-173q0-14.45-9.49-24.22Q524.03-600 510-600H406q-14.02 0-23.51 9.78Q373-580.45 373-566v173q0 14.02 9.49 23.51Q391.98-360 406-360Zm17-50v-140h70v140h-70Zm150 50h50v-90l84 90h64L661-480l110-120h-64l-84 90v-90h-50v240ZM189-95q-39.05 0-66.53-27.47Q95-149.95 95-189v-582q0-39.46 27.47-67.23Q149.95-866 189-866h582q39.46 0 67.23 27.77Q866-810.46 866-771v582q0 39.05-27.77 66.53Q810.46-95 771-95H189Zm0-94h582v-582H189v582Zm0-582v582-582Z"/></symbol>
-<symbol id="lucide-alarm-clock" class="lucide lucide-alarm-clock"   
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round">
-  <circle cx="12" cy="13" r="8" />
-  <path d="M12 9v4l2 2" />
-  <path d="M5 3 2 6" />
-  <path d="m22 6-3-3" />
-  <path d="M6.38 18.7 4 21" />
-  <path d="M17.64 18.67 20 21" />
-</symbol>
-<symbol id="tabler-alien-filled" viewBox="0 0 24 24"
-  fill="currentColor"
-  class="icon icon-tabler icons-tabler-filled icon-tabler-alien">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-  <path d="M12.004 2c4.942 0 8.288 2.503 8.85 6.444a12.884 12.884 0 0 1 -2.163 9.308a11.794 11.794 0 0 1 -3.51 3.356c-1.982 1.19 -4.376 1.19 -6.373 -.008a11.763 11.763 0 0 1 -3.489 -3.34a12.808 12.808 0 0 1 -2.171 -9.306c.564 -3.95 3.91 -6.454 8.856 -6.454zm1.913 14.6a1 1 0 0 0 -1.317 -.517l-.146 .055a1.5 1.5 0 0 1 -1.054 -.055l-.11 -.04a1 1 0 0 0 -.69 1.874a3.5 3.5 0 0 0 2.8 0a1 1 0 0 0 .517 -1.317zm-5.304 -6.39a1 1 0 0 0 -1.32 1.497l2 2l.094 .083a1 1 0 0 0 1.32 -1.497l-2 -2zm8.094 .083a1 1 0 0 0 -1.414 0l-2 2l-.083 .094a1 1 0 0 0 1.497 1.32l2 -2l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
-</symbol>
-<symbol id="mingcute-arrow/arrows_left_fill" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0h24ZM12.594 23.258l-.012.002-.071.035-.02.004-.014-.004-.071-.036c-.01-.003-.019 0-.024.006l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.016-.018Zm.264-.113-.014.002-.184.093-.01.01-.003.011.018.43.005.012.008.008.201.092c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.003-.011.018-.43-.003-.012-.01-.01-.184-.092Z"/><path fill="#09244B" d="M12.06 5.94a1.5 1.5 0 0 1 0 2.12L8.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Zm6 0a1.5 1.5 0 0 1 0 2.12L14.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Z"/></g></symbol>
-<symbol id="remix-arrows/arrow-up-fill" viewBox="0 0 24 24" fill="currentColor"><path d="M13 12V20H11V12H4L12 4L20 12H13Z"/></symbol>
-<symbol id="bootstrap-0-circle" fill="currentColor" class="bi bi-0-circle" viewBox="0 0 16 16">
-  <path d="M7.988 12.158c-1.851 0-2.941-1.57-2.941-3.99V7.84c0-2.408 1.101-3.996 2.965-3.996 1.857 0 2.935 1.57 2.935 3.996v.328c0 2.408-1.101 3.99-2.959 3.99M8 4.951c-1.008 0-1.629 1.09-1.629 2.895v.31c0 1.81.627 2.895 1.629 2.895s1.623-1.09 1.623-2.895v-.31c0-1.8-.621-2.895-1.623-2.895"/>
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8"/>
-</symbol>
-<symbol id="myna-a-arrow-down-regular" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 13.667 7 7l-2.5 6.667m5 0L10.75 17M9.5 13.667h-5M3.25 17l1.25-3.333M17.25 7.5v9m3.5-3.5-3.5 3.5-3.5-3.5"/></symbol>
-<symbol id="iconoir-check-regular" stroke-width="1.5" viewBox="0 0 24 24" fill="none">
-<path d="M5 13L9 17L19 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</symbol>
-<symbol id="sargam-add-duotone" fill="none" viewBox="0 0 24 24"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M6 12h12m-6 6V6"/></symbol>
-<symbol id="boxicons-sushi-regular" viewBox="0 0 24 24"><path d="M12 2C7.51 2 4 4.2 4 7v10c0 2.8 3.51 5 8 5s8-2.2 8-5V7c0-2.8-3.51-5-8-5zm0 18c-3.54 0-6-1.58-6-3v-6.67A10.52 10.52 0 0 0 12 12a10.52 10.52 0 0 0 6-1.67V17c0 1.42-2.46 3-6 3zm0-10c-3.54 0-6-1.58-6-3s2.46-3 6-3 6 1.58 6 3-2.46 3-6 3z"/><ellipse cx="12" cy="7" rx="3" ry="1.71"/></symbol>
-<symbol id="ant-account-book-filled" viewBox="64 64 896 896" focusable="false"><path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zM648.3 426.8l-87.7 161.1h45.7c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4v29.7h63.4c5.5 0 10 4.5 10 10v21.3c0 5.5-4.5 10-10 10h-63.4V752c0 5.5-4.5 10-10 10h-41.3c-5.5 0-10-4.5-10-10v-51.8h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h63.1v-29.7h-63.1c-5.5 0-10-4.5-10-10v-21.3c0-5.5 4.5-10 10-10h45.2l-88-161.1c-2.6-4.8-.9-10.9 4-13.6 1.5-.8 3.1-1.2 4.8-1.2h46c3.8 0 7.2 2.1 8.9 5.5l72.9 144.3 73.2-144.3a10 10 0 018.9-5.5h45c5.5 0 10 4.5 10 10 .1 1.7-.3 3.3-1.1 4.8z" /></symbol>
-<symbol id="fluent-access_time_20-outlined" viewBox="0 0 20 20"><path d="M6.99 8.6A.5.5 0 0 1 6 8.4a1.29 1.29 0 0 1 .07-.24 2 2 0 0 1 .25-.46c.26-.35.71-.7 1.42-.7A1.7 1.7 0 0 1 9.5 8.75c0 .35-.07.65-.2.9a1.8 1.8 0 0 1-.51.6c-.16.11-.33.22-.48.3l-.06.04c-.17.1-.3.19-.42.29-.4.34-.66.7-.77 1.12H9a.5.5 0 0 1 0 1H6.5a.5.5 0 0 1-.5-.5c0-1.01.47-1.77 1.17-2.38.2-.16.4-.29.57-.4l.06-.03.38-.24a.8.8 0 0 0 .23-.26c.05-.1.09-.23.09-.44a.8.8 0 0 0-.19-.53.7.7 0 0 0-.56-.22.7.7 0 0 0-.61.3 1 1 0 0 0-.15.3ZM11 7c.28 0 .5.22.5.5V10H13V7.5a.5.5 0 0 1 1 0v5a.5.5 0 0 1-1 0V11h-2a.5.5 0 0 1-.5-.5v-3c0-.28.22-.5.5-.5Zm-1-5a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z"/></symbol>
-<symbol id="octicons-comment-24" viewBox="0 0 24 24"><path d="M1.5 4.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v12.5a1.75 1.75 0 0 1-1.75 1.75h-9.69l-3.573 3.573A1.458 1.458 0 0 1 5 21.043V18.5H3.25a1.75 1.75 0 0 1-1.75-1.75ZM3.25 4a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 .75.75v3.19l3.72-3.72a.749.749 0 0 1 .53-.22h10a.25.25 0 0 0 .25-.25V4.25a.25.25 0 0 0-.25-.25Z"/></symbol>
-<symbol id="openmoji-E046-color" viewBox="0 0 72 72">
-  <g id="color">
-    <rect x="11" y="11" rx="3" width="50" height="50" fill="#61b2e4"/>
-    <rect x="20" y="30" width="6" height="21" fill="#fff"/>
-    <circle cx="23" cy="22" r="3.5" fill="#fff"/>
-    <path fill="#fff" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
-  </g>
-  <g id="line">
-    <rect x="11" y="11" rx="3" width="50" height="50" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
-    <rect x="20" y="30" width="6" height="21" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <circle cx="23" cy="22" r="3.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m42.5 35c-2.209 0-4 1.168-4 4.5v11.5h-6v-21h6v2.21h-0.0016a7.981 7.981 0 0 1 6.002-2.71c4.418 0 8 3.3 8 9v12.5h-6v-11.5c0-3.332-1.791-4.5-4-4.5"/>
-  </g>
-</symbol>
-<symbol id="feather-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></symbol>
-<symbol id="fontawesome-bell-regular" aria-hidden="true" focusable="false" data-prefix="far" data-icon="bell" class="svg-inline--fa fa-bell" role="img"  viewBox="0 0 448 512"><path fill="currentColor" d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path></symbol>
-<symbol id="cssgg-add" viewBox="0 0 24 24"
-  fill="none">
-  <path
-    fill-rule="evenodd"
-    clip-rule="evenodd"
-    d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
-    fill="currentColor"
-  />
-  <path
-    fill-rule="evenodd"
-    clip-rule="evenodd"
-    d="M13 7C13 6.44772 12.5523 6 12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7Z"
-    fill="currentColor"
-  />
-</symbol>
-<symbol id="radix-angle" viewBox="0 0 15 15" fill="none">
-  <path
-    fill-rule="evenodd"
-    clip-rule="evenodd"
-    d="M8.8914 2.1937C9.1158 2.35464 9.16725 2.66701 9.00631 2.89141L2.47388 12H13.5C13.7761 12 14 12.2239 14 12.5C14 12.7762 13.7761 13 13.5 13H1.5C1.31254 13 1.14082 12.8952 1.0552 12.7284C0.969578 12.5616 0.984438 12.361 1.09369 12.2086L8.19369 2.30862C8.35462 2.08422 8.667 2.03277 8.8914 2.1937ZM11.1 6.50001C11.1 6.22387 11.3238 6.00001 11.6 6.00001C11.8761 6.00001 12.1 6.22387 12.1 6.50001C12.1 6.77615 11.8761 7.00001 11.6 7.00001C11.3238 7.00001 11.1 6.77615 11.1 6.50001ZM10.4 4.00001C10.1239 4.00001 9.90003 4.22387 9.90003 4.50001C9.90003 4.77615 10.1239 5.00001 10.4 5.00001C10.6762 5.00001 10.9 4.77615 10.9 4.50001C10.9 4.22387 10.6762 4.00001 10.4 4.00001ZM12.1 8.50001C12.1 8.22387 12.3238 8.00001 12.6 8.00001C12.8761 8.00001 13.1 8.22387 13.1 8.50001C13.1 8.77615 12.8761 9.00001 12.6 9.00001C12.3238 9.00001 12.1 8.77615 12.1 8.50001ZM13.4 10C13.1239 10 12.9 10.2239 12.9 10.5C12.9 10.7761 13.1239 11 13.4 11C13.6762 11 13.9 10.7761 13.9 10.5C13.9 10.2239 13.6762 10 13.4 10Z"
-    fill="currentColor"
-  />
-</symbol>
-<symbol id="ionicons-accessibility-outline" viewBox="0 0 512 512" class="ionicon"><circle cx="256" cy="56" r="40" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" d="M204.23 274.44c2.9-18.06 4.2-35.52-.5-47.59-4-10.38-12.7-16.19-23.2-20.15L88 176.76c-12-4-23.21-10.7-24-23.94-1-17 14-28 29-24 0 0 88 31.14 163 31.14s162-31 162-31c18-5 30 9 30 23.79 0 14.21-11 19.21-24 23.94l-88 31.91c-8 3-21 9-26 18.18-6 10.75-5 29.53-2.1 47.59l5.9 29.63 37.41 163.9c2.8 13.15-6.3 25.44-19.4 27.74S308 489 304.12 476.28l-37.56-115.93q-2.71-8.34-4.8-16.87L256 320l-5.3 21.65q-2.52 10.35-5.8 20.48L208 476.18c-4 12.85-14.5 21.75-27.6 19.46s-22.4-15.59-19.46-27.74l37.39-163.83Z"/></symbol>
-<symbol id="thesvg-github-default" viewBox="0 0 1024 1024" fill="none">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill="#181717"/>
-</symbol>
-<symbol id="thesvg-github-light" viewBox="0 0 1024 1024"    fill="none"><path fill="#1b1f23" fill-rule="evenodd" d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28s87.04 5.76 128 17.28c97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0" clip-rule="evenodd"/></symbol>
-</svg>',
-    data: {
-      basename: "icons",
-      page: [
-        "src",
-        "data",
-        "isCopy",
-      ],
-      url: "/icons.svg",
-    },
-    src: {
-      ext: "",
-      path: "",
-      remote: undefined,
-    },
-  },
-  {
-    content: '<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <svg><use href="/icons.svg#phosphor-acorn-regular" /></svg>
-  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
-  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
-  <svg><use href="/icons.svg#simpleicons-facebook" /></svg>
-  <svg><use href="/icons.svg#heroicons-face-smile-outline" /></svg>
-  <svg><use href="/icons.svg#material-10k-filled" /></svg>
-  <svg><use href="/icons.svg#material-100-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-200-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-300-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-400-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-500-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-600-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-700-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#lucide-alarm-clock" /></svg>
-  <svg><use href="/icons.svg#tabler-alien-filled" /></svg>
-  <svg><use href="/icons.svg#mingcute-arrow/arrows_left_fill" /></svg>
-  <svg><use href="/icons.svg#remix-arrows/arrow-up-fill" /></svg>
-  <svg><use href="/icons.svg#bootstrap-0-circle" /></svg>
-  <svg><use href="/icons.svg#myna-a-arrow-down-regular" /></svg>
-  <svg><use href="/icons.svg#iconoir-check-regular" /></svg>
-  <svg><use href="/icons.svg#sargam-add-duotone" /></svg>
-  <svg><use href="/icons.svg#boxicons-sushi-regular" /></svg>
-  <svg><use href="/icons.svg#ant-account-book-filled" /></svg>
-  <svg><use href="/icons.svg#fluent-access_time_20-outlined" /></svg>
-  <svg><use href="/icons.svg#octicons-comment-24" /></svg>
-  <svg><use href="/icons.svg#openmoji-E046-color" /></svg>
-  <svg><use href="/icons.svg#feather-activity" /></svg>
-  <svg><use href="/icons.svg#fontawesome-bell-regular" /></svg>
-  <svg><use href="/icons.svg#cssgg-add" /></svg>
-  <svg><use href="/icons.svg#radix-angle" /></svg>
-  <svg><use href="/icons.svg#ionicons-accessibility-outline" /></svg>
-  <svg><use href="/icons.svg#thesvg-github-default" /></svg>
-  <svg><use href="/icons.svg#thesvg-github-light" /></svg>
-</body>
-</html>
-',
-    data: {
-      basename: "",
-      children: '<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <svg><use href="/icons.svg#phosphor-acorn-regular" /></svg>
-  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
-  <svg><use href="/icons.svg#phosphor-acorn-duotone" /></svg>
-  <svg><use href="/icons.svg#simpleicons-facebook" /></svg>
-  <svg><use href="/icons.svg#heroicons-face-smile-outline" /></svg>
-  <svg><use href="/icons.svg#material-10k-filled" /></svg>
-  <svg><use href="/icons.svg#material-100-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-200-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-300-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-400-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-500-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-600-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#material-700-10k-outlined" /></svg>
-  <svg><use href="/icons.svg#lucide-alarm-clock" /></svg>
-  <svg><use href="/icons.svg#tabler-alien-filled" /></svg>
-  <svg><use href="/icons.svg#mingcute-arrow/arrows_left_fill" /></svg>
-  <svg><use href="/icons.svg#remix-arrows/arrow-up-fill" /></svg>
-  <svg><use href="/icons.svg#bootstrap-0-circle" /></svg>
-  <svg><use href="/icons.svg#myna-a-arrow-down-regular" /></svg>
-  <svg><use href="/icons.svg#iconoir-check-regular" /></svg>
-  <svg><use href="/icons.svg#sargam-add-duotone" /></svg>
-  <svg><use href="/icons.svg#boxicons-sushi-regular" /></svg>
-  <svg><use href="/icons.svg#ant-account-book-filled" /></svg>
-  <svg><use href="/icons.svg#fluent-access_time_20-outlined" /></svg>
-  <svg><use href="/icons.svg#octicons-comment-24" /></svg>
-  <svg><use href="/icons.svg#openmoji-E046-color" /></svg>
-  <svg><use href="/icons.svg#feather-activity" /></svg>
-  <svg><use href="/icons.svg#fontawesome-bell-regular" /></svg>
-  <svg><use href="/icons.svg#cssgg-add" /></svg>
-  <svg><use href="/icons.svg#radix-angle" /></svg>
-  <svg><use href="/icons.svg#ionicons-accessibility-outline" /></svg>
-  <svg><use href="/icons.svg#thesvg-github-default" /></svg>
-  <svg><use href="/icons.svg#thesvg-github-light" /></svg>
-</body>
-</html>
-',
-      content: '<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  {{ if it.sprite }}
-  <svg><use href="{{ "acorn" |> icon("phosphor") }}" /></svg>
-  <svg><use href="{{ "acorn" |> icon("phosphor", "duotone") }}" /></svg>
-  <svg><use href="{{ "acorn:duotone" |> icon("phosphor") }}" /></svg>
-  <svg><use href="{{ "facebook" |> icon("simpleicons") }}" /></svg>
-  <svg><use href="{{ "face-smile" |> icon("heroicons") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-100") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-200") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-300") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-400") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-500") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-600") }}" /></svg>
-  <svg><use href="{{ "10k" |> icon("material-700") }}" /></svg>
-  <svg><use href="{{ "alarm-clock" |> icon("lucide") }}" /></svg>
-  <svg><use href="{{ "alien" |> icon("tabler") }}" /></svg>
-  <svg><use href="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}" /></svg>
-  <svg><use href="{{ "arrows/arrow-up-fill" |> icon("remix") }}" /></svg>
-  <svg><use href="{{ "0-circle" |> icon("bootstrap") }}" /></svg>
-  <svg><use href="{{ "a-arrow-down" |> icon("myna") }}" /></svg>
-  <svg><use href="{{ "check" |> icon("iconoir") }}" /></svg>
-  <svg><use href="{{ "add" |> icon("sargam") }}" /></svg>
-  <svg><use href="{{ "sushi" |> icon("boxicons") }}" /></svg>
-  <svg><use href="{{ "account-book" |> icon("ant") }}" /></svg>
-  <svg><use href="{{ "access_time_20" |> icon("fluent") }}" /></svg>
-  <svg><use href="{{ "comment" |> icon("octicons") }}" /></svg>
-  <svg><use href="{{ "E046" |> icon("openmoji") }}" /></svg>
-  <svg><use href="{{ "activity" |> icon("feather") }}" /></svg>
-  <svg><use href="{{ "bell" |> icon("fontawesome") }}" /></svg>
-  <svg><use href="{{ "add" |> icon("cssgg") }}" /></svg>
-  <svg><use href="{{ "angle" |> icon("radix") }}" /></svg>
-  <svg><use href="{{ "accessibility" |> icon("ionicons") }}" /></svg>
-  <svg><use href="{{ "github" |> icon("thesvg") }}" /></svg>
-  <svg><use href="{{ "github:light" |> icon("thesvg") }}" /></svg>
-  {{ else }}
-  <img src="{{ "acorn" |> icon("phosphor") }}">
-  <img src="{{ "acorn" |> icon("phosphor", "duotone") }}">
-  <img src="{{ "acorn:duotone" |> icon("phosphor") }}">
-  <img src="{{ "facebook" |> icon("simpleicons") }}">
-  <img src="{{ "face-smile" |> icon("heroicons") }}">
-  <img src="{{ "10k" |> icon("material") }}">
-  <img src="{{ "10k" |> icon("material-100") }}">
-  <img src="{{ "10k" |> icon("material-200") }}">
-  <img src="{{ "10k" |> icon("material-300") }}">
-  <img src="{{ "10k" |> icon("material-400") }}">
-  <img src="{{ "10k" |> icon("material-500") }}">
-  <img src="{{ "10k" |> icon("material-600") }}">
-  <img src="{{ "10k" |> icon("material-700") }}">
-  <img src="{{ "alarm-clock" |> icon("lucide") }}">
-  <img src="{{ "alien" |> icon("tabler") }}">
-  <img src="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}">
-  <img src="{{ "arrows/arrow-up-fill" |> icon("remix") }}">
-  <img src="{{ "0-circle" |> icon("bootstrap") }}">
-  <img src="{{ "a-arrow-down" |> icon("myna") }}">
-  <img src="{{ "check" |> icon("iconoir") }}">
-  <img src="{{ "add" |> icon("sargam") }}">
-  <img src="{{ "sushi" |> icon("boxicons") }}">
-  <img src="{{ "account-book" |> icon("ant") }}">
-  <img src="{{ "access_time_20" |> icon("fluent") }}">
-  <img src="{{ "comment" |> icon("octicons") }}">
-  <img src="{{ "E046" |> icon("openmoji") }}">
-  <img src="{{ "activity" |> icon("feather") }}">
-  <img src="{{ "bell" |> icon("fontawesome") }}">
-  <img src="{{ "add" |> icon("cssgg") }}">
-  <img src="{{ "angle" |> icon("radix") }}">
-  <img src="{{ "accessibility" |> icon("ionicons") }}">
-  <img src="{{ "github" |> icon("thesvg") }}">
-  <img src="{{ "github:light" |> icon("thesvg") }}">
-  {{ /if }}
-</body>
-</html>
-',
-      date: [],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "isCopy",
-      ],
-      paginate: "paginate",
-      search: [],
-      sprite: true,
       tags: "Array(0)",
       url: "/",
     },
