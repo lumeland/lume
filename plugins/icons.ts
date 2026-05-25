@@ -10,26 +10,26 @@ export type { Catalog, Variant };
 
 export interface Options {
   /** The folder where the icons will be saved */
-  folder: string;
+  folder?: string;
 
   /** The sprite file where icons will be saved */
-  sprite: string;
+  spriteFile?: string;
 
   /** Default mode when using the `icon` filter */
-  defaultMode: "single" | "sprite";
+  defaultMode?: "single" | "sprite";
 
   /** The catalogs to use */
-  catalogs: Catalog[];
+  catalogs?: Catalog[];
 }
 
 export const defaults: Options = {
   folder: "/icons",
-  sprite: "/icons.svg",
+  spriteFile: "/icons.svg",
   defaultMode: "single",
   catalogs,
 };
 
-export function icons(userOptions?: Partial<Options>) {
+export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -61,7 +61,7 @@ export function icons(userOptions?: Partial<Options>) {
       if (sprite) {
         const id = iconId(catalog, name, variant);
         iconSprite.set(id, url);
-        file = `${options.sprite}#${id}`;
+        file = `${options.spriteFile}#${id}`;
       } else {
         file = iconPath(options.folder, catalog, name, variant);
         iconFiles.set(file, url);
@@ -84,7 +84,7 @@ export function icons(userOptions?: Partial<Options>) {
 
         sprite += "</svg>";
 
-        const page = await site.getOrCreatePage(options.sprite);
+        const page = await site.getOrCreatePage(options.spriteFile);
         page.content = sprite;
       }
 
