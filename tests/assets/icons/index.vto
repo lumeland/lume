@@ -6,6 +6,41 @@
   <title>Document</title>
 </head>
 <body>
+  {{ if it.sprite }}
+  <svg><use href="{{ "acorn" |> icon("phosphor") }}" /></svg>
+  <svg><use href="{{ "acorn" |> icon("phosphor", "duotone") }}" /></svg>
+  <svg><use href="{{ "acorn:duotone" |> icon("phosphor") }}" /></svg>
+  <svg><use href="{{ "facebook" |> icon("simpleicons") }}" /></svg>
+  <svg><use href="{{ "face-smile" |> icon("heroicons") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-100") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-200") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-300") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-400") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-500") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-600") }}" /></svg>
+  <svg><use href="{{ "10k" |> icon("material-700") }}" /></svg>
+  <svg><use href="{{ "alarm-clock" |> icon("lucide") }}" /></svg>
+  <svg><use href="{{ "alien" |> icon("tabler") }}" /></svg>
+  <svg><use href="{{ "arrow/arrows_left_fill" |> icon("mingcute") }}" /></svg>
+  <svg><use href="{{ "arrows/arrow-up-fill" |> icon("remix") }}" /></svg>
+  <svg><use href="{{ "0-circle" |> icon("bootstrap") }}" /></svg>
+  <svg><use href="{{ "a-arrow-down" |> icon("myna") }}" /></svg>
+  <svg><use href="{{ "check" |> icon("iconoir") }}" /></svg>
+  <svg><use href="{{ "add" |> icon("sargam") }}" /></svg>
+  <svg><use href="{{ "sushi" |> icon("boxicons") }}" /></svg>
+  <svg><use href="{{ "account-book" |> icon("ant") }}" /></svg>
+  <svg><use href="{{ "access_time_20" |> icon("fluent") }}" /></svg>
+  <svg><use href="{{ "comment" |> icon("octicons") }}" /></svg>
+  <svg><use href="{{ "E046" |> icon("openmoji") }}" /></svg>
+  <svg><use href="{{ "activity" |> icon("feather") }}" /></svg>
+  <svg><use href="{{ "bell" |> icon("fontawesome") }}" /></svg>
+  <svg><use href="{{ "add" |> icon("cssgg") }}" /></svg>
+  <svg><use href="{{ "angle" |> icon("radix") }}" /></svg>
+  <svg><use href="{{ "accessibility" |> icon("ionicons") }}" /></svg>
+  <svg><use href="{{ "github" |> icon("thesvg") }}" /></svg>
+  <svg><use href="{{ "github:light" |> icon("thesvg") }}" /></svg>
+  {{ else }}
   <img src="{{ "acorn" |> icon("phosphor") }}">
   <img src="{{ "acorn" |> icon("phosphor", "duotone") }}">
   <img src="{{ "acorn:duotone" |> icon("phosphor") }}">
@@ -39,5 +74,6 @@
   <img src="{{ "accessibility" |> icon("ionicons") }}">
   <img src="{{ "github" |> icon("thesvg") }}">
   <img src="{{ "github:light" |> icon("thesvg") }}">
+  {{ /if }}
 </body>
 </html>

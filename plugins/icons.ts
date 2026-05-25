@@ -163,9 +163,9 @@ const commentRegexp = /<!--[\s\S]*?-->/;
 
 function processSvg(code: string, id?: string): string {
   // Remove comment
-  code = code.replace(commentRegexp, "");
+  code = code.replace(commentRegexp, "").trim();
 
-  let [start] = code.match(/<svg(\s+\w+="[^"]*")*\s*>/) ?? [];
+  let [start] = code.match(/^<svg((?:\s+[\w-]+="[^"]*")*)\s*>/) ?? [];
 
   if (!start) {
     return code;
@@ -180,15 +180,15 @@ function processSvg(code: string, id?: string): string {
 
     if (width && height) {
       const viewBox = `viewBox="0 0 ${width[1]} ${height[1]}"`;
-      start = start.replace("<svg ", `<svg ${viewBox} `);
+      start = start.replace(/^<svg\s+/, `<svg ${viewBox} `);
     }
   }
 
   if (id) {
     // ID is set, therefore `<symbol>` is generated.
 
-    start = start.replaceAll(/\s(xmlns|id|width|height)="[^"]*"/g, "");
-    start = start.replace(/^<svg /, `<symbol id="${id}" `);
+    start = start.replaceAll(/\s+(xmlns|id|width|height)="[^"]*"/g, " ");
+    start = start.replace(/^<svg\s+/, `<symbol id="${id}" `);
 
     code = `${start}${code.slice(startLen)}`;
     code = code.replace(/<\/svg>\s*$/, "</symbol>");
