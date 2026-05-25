@@ -224,6 +224,9 @@ declare global {
     export interface Helpers {
       /** @see https://lume.land/plugins/icons/ */
       icon: (key: string, catalogId: string, rest?: string) => string;
+
+      /** @see https://lume.land/plugins/icons/ */
+      spriteIcon: (key: string, catalogId: string, rest?: string) => string;
     }
   }
 }
