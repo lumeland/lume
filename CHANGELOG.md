@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.2.6] - Unreleased
+## [3.2.6] - 2026-05-25
 ### Fixed
 - Revert removal of `@std/crypto` dependency because it's needed for MD5.
 
@@ -484,7 +484,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#848]: https://github.com/lumeland/lume/issues/848
 [#851]: https://github.com/lumeland/lume/issues/851
 
-[3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...HEAD
+[3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...v3.2.5
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4
 [3.2.3]: https://github.com/lumeland/lume/compare/v3.2.2...v3.2.3
