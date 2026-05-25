@@ -1,3 +1,4 @@
+import { cwd, os, runCommand } from "../deps/runtime.ts";
 import { log } from "./utils/log.ts";
 
 export interface Options {
@@ -17,7 +18,7 @@ export default class Scripts {
   scripts = new Map<string, ScriptOrFunction[]>();
 
   constructor(options: Options = {}) {
-    this.cwd = options.cwd || Deno.cwd();
+    this.cwd = options.cwd || cwd();
   }
 
   /** Register one or more scripts under a specific name */
@@ -78,21 +79,13 @@ export default class Scripts {
     const args = shArgs(script);
     const cmd = args.shift()!;
 
-    const command = new Deno.Command(cmd, {
-      args,
-      stdout: "inherit",
-      stderr: "inherit",
-      cwd: this.cwd,
-    });
-
-    const output = await command.output();
-    return output.success;
+    return await runCommand(cmd, args, this.cwd);
   }
 }
 
 /** Returns the shell arguments for the current platform */
 function shArgs(script: string) {
-  return Deno.build.os === "windows"
+  return os() === "windows"
     ? ["PowerShell.exe", "-Command", script]
     : ["/usr/bin/env", "bash", "-c", script];
 }

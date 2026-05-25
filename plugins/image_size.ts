@@ -4,10 +4,11 @@ import {
 } from "../deps/image_dimmensions.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "../core/utils/log.ts";
-
-import type Site from "../core/site.ts";
 import { read } from "../core/utils/read.ts";
 import { isUrl } from "../core/utils/path.ts";
+import { callReadableStream } from "../deps/runtime.ts";
+
+import type Site from "../core/site.ts";
 
 interface Dimmensions {
   width: number;
@@ -58,11 +59,10 @@ export default function imageSize() {
           sizes.set(path, dimmensions);
           return dimmensions;
         }
-        using fs = await Deno.open(file.src.entry.src, {
-          read: true,
-          write: false,
-        });
-        const dimmensions = await imageDimensionsFromStream(fs.readable);
+        const dimmensions = await callReadableStream(
+          file.src.entry.src,
+          (stream) => imageDimensionsFromStream(stream),
+        );
         sizes.set(path, dimmensions);
         return dimmensions;
       }

@@ -1,7 +1,15 @@
+import {
+  networkInterfaces,
+  OS,
+  os,
+  portIsFree,
+  runCommand,
+} from "../../deps/runtime.ts";
+
 export function localIp(): string | undefined {
   // Try/catch for https://github.com/denoland/deno/issues/25420
   try {
-    for (const info of Deno.networkInterfaces()) {
+    for (const info of networkInterfaces()) {
       if (info.family !== "IPv4" || info.address.startsWith("127.")) {
         continue;
       }
@@ -14,7 +22,7 @@ export function localIp(): string | undefined {
 }
 
 export async function openBrowser(url: string): Promise<void> {
-  const commands: Record<typeof Deno.build.os, string> = {
+  const commands: Record<OS, string> = {
     darwin: "open",
     linux: "xdg-open",
     freebsd: "xdg-open",
@@ -26,27 +34,15 @@ export async function openBrowser(url: string): Promise<void> {
     android: "xdg-open",
   };
 
-  await new Deno.Command(commands[Deno.build.os], {
-    args: [url],
-    stdout: "inherit",
-    stderr: "inherit",
-  }).output();
+  await runCommand(commands[os()], [url]);
 }
 
 export function getFreePort(port: number, limit: number): number {
-  try {
-    const listener = Deno.listen({ port });
-    listener.close();
-    return port;
-  } catch (error) {
-    if (error instanceof Deno.errors.AddrInUse) {
-      if (port >= limit) {
-        throw new Error(`No free port found in the range ${port} to ${limit}`);
-      }
-
-      return getFreePort(port + 1, limit);
+  for (; port <= limit; ++port) {
+    if (portIsFree(port)) {
+      return port;
     }
-
-    throw error;
   }
+
+  throw new Error(`No free port found in the range ${port} to ${limit}`);
 }

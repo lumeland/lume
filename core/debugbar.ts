@@ -1,5 +1,6 @@
 import { bytes, duration } from "./utils/format.ts";
 import Events, { Event, EventListener, EventOptions } from "./events.ts";
+import { memoryUsage } from "../deps/runtime.ts";
 
 export interface Options {
   /**
@@ -97,8 +98,7 @@ export default class DebugBar {
       item = this.#measureItem;
       item.title = title;
       item.icon = "clock";
-      const memory = Deno.memoryUsage();
-      item.details = `${duration(measure.duration)} / ${bytes(memory.rss)}`;
+      item.details = `${duration(measure.duration)} / ${bytes(memoryUsage())}`;
     } else if (measure.duration >= 1) {
       item = {
         title: title,

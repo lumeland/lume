@@ -1,5 +1,6 @@
 import { Command } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
+import { args, exit, inspect } from "./deps/runtime.ts";
 
 const upgrade = new Command()
   .description("Upgrade your Lume executable to the latest version.")
@@ -96,8 +97,8 @@ const lume = new Command()
   .command("upgrade", upgrade);
 
 try {
-  await lume.parse(Deno.args);
+  await lume.parse(args());
 } catch (error) {
-  console.error(Deno.inspect(error, { colors: true }));
-  Deno.exit(1);
+  console.error(inspect(error));
+  exit(1);
 }

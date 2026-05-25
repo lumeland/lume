@@ -1,5 +1,6 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "../core/utils/object.ts";
+import { cwd, readDir, readFile } from "../deps/runtime.ts";
 
 import type { Middleware } from "../core/server.ts";
 
@@ -13,7 +14,7 @@ export interface Options {
 }
 
 export const defaults: Options = {
-  root: `${Deno.cwd()}/_site`,
+  root: `${cwd()}/_site`,
   page404: "/404.html",
   directoryIndex: false,
 };
@@ -35,7 +36,7 @@ export function notFound(userOptions?: Partial<Options>): Middleware {
       headers.set("content-type", "text/html; charset=utf-8");
 
       try {
-        const body = await Deno.readFile(join(root, page404));
+        const body = await readFile(join(root, page404));
         return new Response(body, { status, headers });
       } catch {
         if (directoryIndex) {
@@ -60,7 +61,7 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
     `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><use xlink:href="#icon-file"></use></svg>`;
 
   try {
-    for await (const info of Deno.readDir(join(root, file))) {
+    for await (const info of readDir(join(root, file))) {
       info.isDirectory
         ? folders.push([`${info.name}/`, `${folderIcon} ${info.name}/`])
         : files.push([
@@ -72,7 +73,7 @@ async function getDirectoryIndex(root: string, file: string): Promise<string> {
     // It's not a directory, so scan the parent directory
     try {
       const base = posix.dirname(file);
-      for await (const info of Deno.readDir(join(root, base))) {
+      for await (const info of readDir(join(root, base))) {
         info.isDirectory
           ? folders.push([
             posix.join(base, `${info.name}/`),
