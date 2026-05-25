@@ -40,7 +40,12 @@ export function icons(userOptions?: Partial<Options>) {
     site.filter("iconSingle", icon.bind(undefined, false));
     site.filter("iconSprite", icon.bind(undefined, true));
 
-    function icon(sprite: boolean, key: string, catalogId: string, rest?: string) {
+    function icon(
+      sprite: boolean,
+      key: string,
+      catalogId: string,
+      rest?: string,
+    ) {
       const catalog = options.catalogs.find((c) => c.id === catalogId);
 
       if (!catalog) {
