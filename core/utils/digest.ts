@@ -1,3 +1,5 @@
+import { crypto } from "../../deps/crypto.ts";
+
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 
