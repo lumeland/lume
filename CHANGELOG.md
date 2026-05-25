@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: Add `items.categories` support, defaults to `"=tags"` [#848]
 - `image_size` plugin: Support for remote files and external URLs.
 - `icons` plugin: Add icons from theSVG.
+- `icons` plugin: Add `file` option to generate an SVG spritesheet.
 - New `LUME_CONCURRENCY` env var to define a custom global concurrency limit [#843].
 - `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel (10 by default) [#843].
 
