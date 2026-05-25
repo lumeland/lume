@@ -12,6 +12,9 @@ export interface Options {
   /** The folder where the icons will be saved */
   folder?: string;
 
+  /** The sprite file where icons will be saved */
+  file?: string;
+
   /** The catalogs to use */
   catalogs?: Catalog[];
 }
@@ -26,6 +29,7 @@ export function icons(userOptions?: Options) {
 
   return (site: Site) => {
     const icons = new Map<string, string>();
+
     site.filter("icon", icon);
 
     function icon(key: string, catalogId: string, rest?: string) {
@@ -37,17 +41,42 @@ export function icons(userOptions?: Options) {
       }
 
       const [name, variant] = getNameAndVariant(catalog, key, rest);
-      const file = iconPath(options.folder, catalog, name, variant);
+
       const url = iconUrl(catalog, name, variant);
-      icons.set(file, url);
+      let file;
+
+      if (!options.file) {
+        file = iconPath(options.folder, catalog, name, variant);
+        icons.set(file, url);
+      } else {
+        const id = iconId(catalog, name, variant);
+        icons.set(id, url);
+        file = `${options.file}#${id}`;
+      }
+
       return file;
     }
 
     site.process(async function processIcons() {
-      for (const [file, url] of icons) {
-        const content = await readFile(url);
-        const page = await site.getOrCreatePage(file);
-        page.content = processSvg(content);
+      if (!options.file) {
+        for (const [file, url] of icons) {
+          const content = await readFile(url);
+          const page = await site.getOrCreatePage(file);
+          page.content = processSvg(content);
+        }
+      } else {
+        let sprite =
+          `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n`;
+
+        for (const [id, url] of icons) {
+          const icon = await readFile(url);
+          sprite += `${processSvg(icon, id)}\n`;
+        }
+
+        sprite += "</svg>";
+
+        const page = await site.getOrCreatePage(options.file);
+        page.content = sprite;
       }
     });
 
@@ -56,6 +85,10 @@ export function icons(userOptions?: Options) {
 }
 
 export default icons;
+
+function iconId(catalog: Catalog, name: string, variant?: Variant): string {
+  return `${catalog.id}-${name}${variant ? `-${variant.id}` : ""}`;
+}
 
 function iconPath(
   folder: string,
@@ -91,9 +124,9 @@ function getNameAndVariant(
     return [name, undefined];
   }
 
-  const found = catalog.variants.find((v) => {
-    return typeof v === "string" ? v === variant : v.id === variant;
-  });
+  const found = catalog.variants.find((v) =>
+    typeof v === "string" ? v === variant : v.id === variant
+  );
 
   if (!found) {
     log.warn(
@@ -128,19 +161,39 @@ function getVariant(
 
 const commentRegexp = /<!--[\s\S]*?-->/;
 
-function processSvg(code: string): string {
+function processSvg(code: string, id?: string): string {
   // Remove comment
   code = code.replace(commentRegexp, "");
 
+  let [start] = code.match(/<svg(\s+\w+="[^"]*")*\s*>/) ?? [];
+
+  if (!start) {
+    return code;
+  }
+
+  const startLen = start.length;
+
   // Ensure viewBox is defined
-  if (!code.includes(" viewBox=")) {
-    const width = code.match(/\swidth="(\d+)"/);
-    const height = code.match(/\sheight="(\d+)"/);
+  if (!start.includes(" viewBox=")) {
+    const width = start.match(/\swidth="(\d+)"/);
+    const height = start.match(/\sheight="(\d+)"/);
 
     if (width && height) {
       const viewBox = `viewBox="0 0 ${width[1]} ${height[1]}"`;
-      code = code.replace("<svg ", `<svg ${viewBox} `);
+      start = start.replace("<svg ", `<svg ${viewBox} `);
     }
+  }
+
+  if (id) {
+    // ID is set, therefore `<symbol>` is generated.
+
+    start = start.replaceAll(/\s(xmlns|id|width|height)="[^"]*"/g, "");
+    start = start.replace(/^<svg /, `<symbol id="${id}" `);
+
+    code = `${start}${code.slice(startLen)}`;
+    code = code.replace(/<\/svg>\s*$/, "</symbol>");
+  } else {
+    code = `${start}${code.slice(startLen)}`;
   }
 
   return code;
