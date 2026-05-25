@@ -187,7 +187,10 @@ function processSvg(code: string, id?: string): string {
   if (id) {
     // ID is set, therefore `<symbol>` is generated.
 
-    start = start.replaceAll(/\s+(xmlns|version|id|width|height)="[^"]*"/g, " ");
+    start = start.replaceAll(
+      /\s+(xmlns|version|id|width|height)="[^"]*"/g,
+      " ",
+    );
     start = start.replace(/^<svg\s+/, `<symbol id="${id}" `);
     start = start.replace(/\s*>$/, ">");
 
