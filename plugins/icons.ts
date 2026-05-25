@@ -10,29 +10,37 @@ export type { Catalog, Variant };
 
 export interface Options {
   /** The folder where the icons will be saved */
-  folder?: string;
+  folder: string;
 
   /** The sprite file where icons will be saved */
-  file?: string;
+  sprite: string;
+
+  /** Default mode when using the `icon` filter without mode */
+  defaultMode: "single" | "sprite";
 
   /** The catalogs to use */
-  catalogs?: Catalog[];
+  catalogs: Catalog[];
 }
 
 export const defaults: Options = {
   folder: "/icons",
+  sprite: "/icons.svg",
+  defaultMode: "single",
   catalogs,
 };
 
-export function icons(userOptions?: Options) {
+export function icons(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const icons = new Map<string, string>();
+    const iconFiles = new Map<string, string>();
+    const iconSprite = new Map<string, string>();
 
-    site.filter("icon", icon);
+    site.filter("icon", icon.bind(undefined, options.defaultMode === "sprite"));
+    site.filter("iconSingle", icon.bind(undefined, false));
+    site.filter("iconSprite", icon.bind(undefined, true));
 
-    function icon(key: string, catalogId: string, rest?: string) {
+    function icon(sprite: boolean, key: string, catalogId: string, rest?: string) {
       const catalog = options.catalogs.find((c) => c.id === catalogId);
 
       if (!catalog) {
@@ -45,42 +53,49 @@ export function icons(userOptions?: Options) {
       const url = iconUrl(catalog, name, variant);
       let file;
 
-      if (options.file) {
+      if (sprite) {
         const id = iconId(catalog, name, variant);
-        icons.set(id, url);
-        file = `${options.file}#${id}`;
+        iconSprite.set(id, url);
+        file = `${options.sprite}#${id}`;
       } else {
         file = iconPath(options.folder, catalog, name, variant);
-        icons.set(file, url);
+        iconFiles.set(file, url);
       }
 
       return file;
     }
 
     site.process(async function processIcons() {
-      if (options.file) {
+      // Generate icon sprite
+
+      if (iconSprite.size) {
         let sprite =
           `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n`;
 
-        for (const [id, url] of icons) {
+        for (const [id, url] of iconSprite) {
           const icon = await readFile(url);
           sprite += `${processSvg(icon, id)}\n`;
         }
 
         sprite += "</svg>";
 
-        const page = await site.getOrCreatePage(options.file);
+        const page = await site.getOrCreatePage(options.sprite);
         page.content = sprite;
-      } else {
-        for (const [file, url] of icons) {
-          const content = await readFile(url);
-          const page = await site.getOrCreatePage(file);
-          page.content = processSvg(content);
-        }
+      }
+
+      // Generate icon files
+
+      for (const [file, url] of iconFiles) {
+        const content = await readFile(url);
+        const page = await site.getOrCreatePage(file);
+        page.content = processSvg(content);
       }
     });
 
-    site.addEventListener("beforeUpdate", () => icons.clear());
+    site.addEventListener("beforeUpdate", () => {
+      iconSprite.clear();
+      iconFiles.clear();
+    });
   };
 }
 
