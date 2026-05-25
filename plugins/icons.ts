@@ -15,7 +15,7 @@ export interface Options {
   /** The sprite file where icons will be saved */
   sprite: string;
 
-  /** Default mode when using the `icon` filter without mode */
+  /** Default mode when using the `icon` filter */
   defaultMode: "single" | "sprite";
 
   /** The catalogs to use */
