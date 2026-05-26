@@ -6,6 +6,25 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.2.7] - Unreleased
+### Changed
+- The `merge` utility function changed the types to better reflect its returned type.
+  This change only affects to plugin creators.
+  For now on, the default options object must be declared with `satisfies`.
+  You can learn more about this change here: [#853].
+  ```ts
+  // Old way
+  export const defaults: Options = {};
+
+  // New way
+  export const defaults = {} satisfies Options;
+
+  const options = merge(defaults, userOptions);
+  ```
+
+### Fixed
+- `icons` plugin: Added missing type for `spriteIcon` helper [#852].
+
 ## [3.2.6] - 2026-05-25
 ### Fixed
 - Revert removal of `@std/crypto` dependency because it's needed for MD5.
@@ -483,7 +502,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#843]: https://github.com/lumeland/lume/issues/843
 [#848]: https://github.com/lumeland/lume/issues/848
 [#851]: https://github.com/lumeland/lume/issues/851
+[#852]: https://github.com/lumeland/lume/issues/852
+[#853]: https://github.com/lumeland/lume/issues/853
 
+[3.2.7]: https://github.com/lumeland/lume/compare/v3.2.6...HEAD
 [3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...v3.2.5
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4
