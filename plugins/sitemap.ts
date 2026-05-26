@@ -47,14 +47,14 @@ export interface SitemapItemsOptions {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   filename: "/sitemap.xml",
   query: "unlisted!=true",
   sort: "url=asc",
   items: {
     lastmod: "=date",
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to generate a sitemap.xml from page files after build

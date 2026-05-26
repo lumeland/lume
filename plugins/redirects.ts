@@ -19,10 +19,10 @@ type OutputStrategy = (
   site: Site,
 ) => Promise<void> | void;
 
-export const defaults: Options = {
+export const defaults = {
   output: "html",
   defaultStatus: 301,
-};
+} satisfies Options;
 
 /** Predefined output strategies */
 const outputs: Record<string, OutputStrategy> = {

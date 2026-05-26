@@ -5,21 +5,21 @@ import type { Middleware } from "../core/server.ts";
 
 export interface Options {
   /** The root folder to look for the 404 page */
-  root: string;
+  root?: string;
   /** The path to the 404 page */
-  page404: string;
+  page404?: string;
   /** Show the directory index if the page404 is not found */
   directoryIndex?: boolean;
 }
 
-export const defaults: Options = {
+export const defaults = {
   root: `${Deno.cwd()}/_site`,
   page404: "/404.html",
   directoryIndex: false,
-};
+} satisfies Options;
 
 /** Show a 404 page */
-export function notFound(userOptions?: Partial<Options>): Middleware {
+export function notFound(userOptions?: Options): Middleware {
   const options = merge(defaults, userOptions);
   let { root, page404, directoryIndex } = options;
 

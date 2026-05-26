@@ -32,7 +32,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".md", ".markdown"],
   options: {
     html: true,
@@ -40,7 +40,7 @@ export const defaults: Options = {
   plugins: [],
   rules: {},
   useDefaultPlugins: true,
-};
+} satisfies Options;
 
 const defaultPlugins = [
   markdownItAttrs,

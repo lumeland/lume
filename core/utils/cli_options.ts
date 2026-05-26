@@ -1,12 +1,11 @@
 import { parseArgs } from "../../deps/cli.ts";
 import { getFreePort } from "./net.ts";
 
-import type { DeepPartial } from "./object.ts";
 import type { SiteOptions } from "../site.ts";
 
 export function getOptionsFromCli(
-  options: DeepPartial<SiteOptions>,
-): DeepPartial<SiteOptions> {
+  options: SiteOptions,
+): SiteOptions {
   const cli = parseArgs(Deno.args, {
     string: ["src", "dest", "location", "port", "hostname"],
     boolean: ["serve", "open"],

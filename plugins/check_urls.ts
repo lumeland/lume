@@ -28,12 +28,13 @@ export interface Options {
 }
 
 /** Default options */
-export const defaults: Options = {
+export const defaults = {
   strict: false,
   throw: false,
   ignore: [],
   external: false,
-};
+  anchors: false,
+} satisfies Options;
 
 const cacheExternalUrls = new Map<string, Promise<boolean>>();
 const cacheInternalUrls = new Map<string, boolean>();
@@ -53,7 +54,7 @@ export default function (userOptions?: Options) {
     }
 
     return !url ||
-      options.ignore?.includes(url) ||
+      options.ignore.includes(url) ||
       url.startsWith("?") ||
       (url.startsWith("#") && !options.anchors);
   }

@@ -4,22 +4,22 @@ import { serveFile as httpServeFile } from "../deps/http.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
-import { merge } from "./utils/object.ts";
+import { Merge, merge } from "./utils/object.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
   /** The root path */
-  root: string;
+  root?: string;
   port?: number;
   hostname?: string;
   serveFile?: (root: string, request: Request) => Promise<Response>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   root: `${Deno.cwd()}/_site`,
   port: 8000,
   serveFile,
-};
+} satisfies Options;
 
 export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
@@ -47,13 +47,13 @@ export type ServerEventType =
 
 export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
-  options: Required<Options>;
+  options: Merge<Options, typeof defaults>;
   middlewares: Middleware[] = [];
   fetch: Deno.ServeHandler;
   #server?: Deno.HttpServer;
   #waiting = false;
 
-  constructor(options: Partial<Options> = {}) {
+  constructor(options?: Options) {
     this.options = merge(defaults, options);
 
     if (this.options.hostname === "localhost") {

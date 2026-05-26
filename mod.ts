@@ -10,7 +10,6 @@ import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
 
-import type { DeepPartial } from "./core/utils/object.ts";
 import type { SiteOptions } from "./core/site.ts";
 
 export interface PluginOptions {
@@ -24,7 +23,7 @@ export interface PluginOptions {
 }
 
 export default function lume(
-  options: DeepPartial<SiteOptions> = {},
+  options: SiteOptions = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
 ): Site {
@@ -32,7 +31,7 @@ export default function lume(
     getOptionsFromCli(options);
   }
 
-  const site = new Site(options as Partial<SiteOptions>);
+  const site = new Site(options);
 
   // Ignore some files by the watcher
   site.options.watcher.ignore.push("/deno.lock");

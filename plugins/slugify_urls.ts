@@ -15,10 +15,10 @@ export interface Options extends SlugifierOptions {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".html"],
   ...slugifierDefaults,
-};
+} satisfies Options;
 
 /**
  * A plugin to slugify all URLs, replacing non-URL-safe characters

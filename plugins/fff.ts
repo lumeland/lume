@@ -16,8 +16,8 @@ export interface Options {
    * The list of presets to apply
    * @see https://fff.js.org/concepts/flavor-transform.html#fff-transform-preset
    */
-  presets: FFFTransformPreset[];
-  strict: false | StrictPresetOptions;
+  presets?: FFFTransformPreset[];
+  strict?: false | StrictPresetOptions;
   /** To convert the generic `date` field to one of these values */
   date?: "created" | "updated" | "published";
   /** Get the date from the git history */
@@ -26,16 +26,16 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   presets: [],
   strict: false,
-};
+} satisfies Options;
 
 /**
  * A plugin to transform frontmatter using FFF
  * @see https://lume.land/plugins/fff/
  */
-export function fff(userOptions?: Partial<Options>) {
+export function fff(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

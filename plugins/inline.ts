@@ -18,10 +18,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   copyAttributes: [/^data-/],
   sourceURL: false,
-};
+} satisfies Options;
 
 const cache = new Map();
 const XML_DECLARATION_REGEX = /<\?xml[\s\S]*?\?>/;

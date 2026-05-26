@@ -30,14 +30,14 @@ export interface Options {
   proxyCommand?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   local: undefined,
   path: "/admin/",
   configKey: "decap_cms",
   extraHTML: "",
   proxyCommand:
     `deno run --allow-read --allow-net=0.0.0.0 --allow-write --allow-env ${serverUrl}`,
-};
+} satisfies Options;
 
 /**
  * A plugin to use Decap CMS in Lume easily

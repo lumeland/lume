@@ -36,7 +36,7 @@ const ruleSort = [
 
 export interface Options {
   /** The robots.txt file name */
-  filename: string;
+  filename?: string;
 
   /** User-agent to allow */
   allow?: string[] | string;
@@ -49,17 +49,17 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   filename: "/robots.txt",
   allow: "*",
-};
+} satisfies Options;
 
 /**
  * A plugin to generate a robots.txt after build
  * @see https://lume.land/plugins/robots/
  */
-export function robots(userOptions?: Partial<Options>) {
-  const options: Options = merge(defaults, userOptions);
+export function robots(userOptions?: Options) {
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     site.process(async function processRobots() {

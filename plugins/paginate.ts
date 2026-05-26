@@ -1,4 +1,4 @@
-import { merge } from "../core/utils/object.ts";
+import { Merge, merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 
@@ -62,11 +62,12 @@ export interface Options {
   options?: PaginateOptions;
 }
 
-export const defaults: Options = {
+export const defaults = {
   options: {
     size: 10,
+    url: () => "", // Will be overwritten
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to paginate pages
@@ -87,8 +88,10 @@ export function paginate(userOptions?: Options) {
   };
 }
 
+type CreatePaginatorOptions = Merge<Options, typeof defaults>["options"];
+
 /** Create a paginator function */
-export function createPaginator(defaults: PaginateOptions): Paginator {
+export function createPaginator(defaults: CreatePaginatorOptions): Paginator {
   return function paginate<T>(
     results: T[],
     userOptions: Partial<PaginateOptions> = {},

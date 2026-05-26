@@ -21,7 +21,7 @@ export interface Options {
   options?: SeoOptions;
 }
 
-export const defaults: Options = {
+export const defaults = {
   output: false,
   options: {
     commonWords,
@@ -56,7 +56,7 @@ export const defaults: Options = {
       unit: "word",
     },
   },
-};
+} satisfies Options;
 
 export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);

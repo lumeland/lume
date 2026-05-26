@@ -19,10 +19,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".js", ".ts"],
   pageSubExtension: ".page",
-};
+} satisfies Options;
 
 /** Template engine to render js/ts files */
 export class ModuleEngine implements Engine {

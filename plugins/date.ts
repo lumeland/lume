@@ -18,7 +18,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   locales: {},
   formats: {
     ATOM: "yyyy-MM-dd'T'HH:mm:ssXXX",
@@ -28,7 +28,7 @@ export const defaults: Options = {
     HUMAN_DATE: "PPP",
     HUMAN_DATETIME: "PPPppp",
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to format Date values

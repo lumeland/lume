@@ -57,7 +57,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".vento", ".vto"],
   autoTrim: true,
   options: {
@@ -65,7 +65,7 @@ export const defaults: Options = {
     useWith: true,
     autoescape: false,
   },
-};
+} satisfies Options;
 
 class LumeLoader implements Loader {
   fs: FS;

@@ -17,9 +17,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   languages: [],
-};
+} satisfies Options;
 
 /**
  * A plugin to create multilanguage websites

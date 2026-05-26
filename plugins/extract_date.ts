@@ -9,9 +9,9 @@ export interface Options {
   remove?: boolean;
 }
 
-export const defaults: Options = {
+export const defaults = {
   remove: true,
-};
+} satisfies Options;
 
 /**
  * A plugin to extract the date from the files and folders paths

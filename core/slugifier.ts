@@ -21,7 +21,7 @@ export interface Options {
   stopWords?: string[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   lowercase: true,
   alphanumeric: true,
   separator: "-",
@@ -36,7 +36,7 @@ export const defaults: Options = {
     "œ": "oe",
   },
   stopWords: [],
-};
+} satisfies Options;
 
 export default function createSlugifier(
   userOptions?: Options,

@@ -30,7 +30,7 @@ export interface Options {
   output?: string | ((report: Report) => void);
 }
 
-export const defaults: Options = {
+export const defaults = {
   extends: ["html-validate:recommended", "html-validate:document"],
   rules: {
     "doctype-style": "off",
@@ -39,7 +39,7 @@ export const defaults: Options = {
     "void-style": "warn",
     "require-sri": ["error", { target: "crossorigin" }],
   },
-};
+} satisfies Options;
 
 export function validateHtml(userOptions?: Options) {
   const options = merge(defaults, userOptions);

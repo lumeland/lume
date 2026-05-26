@@ -9,10 +9,10 @@ export interface Options {
   cascade?: boolean;
 }
 
-export const defaults: Options = {
+export const defaults = {
   remove: true,
   cascade: false,
-};
+} satisfies Options;
 
 const ORDER_REGEX = /(\d+)\.(.+)/;
 

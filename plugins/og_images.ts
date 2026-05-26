@@ -23,13 +23,13 @@ export interface Options {
   options?: Partial<SatoriOptions>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   options: {
     width: 1200,
     height: 600,
     fonts: [],
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to generate Open Graph images for your pages

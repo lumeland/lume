@@ -2,7 +2,6 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import Server from "../core/server.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
-import { DeepPartial } from "../core/utils/object.ts";
 
 import type { Writer } from "../core/writer.ts";
 import type { default as Site, SiteOptions } from "../core/site.ts";
@@ -35,7 +34,7 @@ class TestWriter implements Writer {
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
-  options: DeepPartial<SiteOptions> = {},
+  options: SiteOptions = {},
   pluginOptions = {},
   write = false,
 ): Site {
