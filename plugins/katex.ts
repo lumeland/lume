@@ -34,7 +34,7 @@ export interface Options {
   options?: KatexOptions;
 }
 
-export const defaults: Options = {
+export const defaults = {
   cssSelector: ".language-math",
   options: {
     strict: true,
@@ -62,7 +62,7 @@ export const defaults: Options = {
     ignoredClasses: [],
     macros: {},
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to render math equations using katex

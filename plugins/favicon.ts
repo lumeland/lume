@@ -21,7 +21,7 @@ export interface Options {
   favicons?: Favicon[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   input: "/favicon.svg",
   favicons: [
     {
@@ -37,7 +37,7 @@ export const defaults: Options = {
       format: "png",
     },
   ],
-};
+} satisfies Options;
 
 export interface Favicon {
   url: string;

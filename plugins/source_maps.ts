@@ -16,10 +16,10 @@ export interface Options {
   sourceContent?: boolean;
 }
 
-export const defaults: Options = {
+export const defaults = {
   inline: false,
   sourceContent: true,
-};
+} satisfies Options;
 
 /**
  * A plugin to manage source maps

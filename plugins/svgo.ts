@@ -13,7 +13,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {};
+export const defaults = {} satisfies Options;
 
 /**
  * A plugin to load all SVG files and minify them using SVGO

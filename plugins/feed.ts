@@ -114,7 +114,7 @@ export interface FeedItemOptions {
   authorUrl?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   /** The output filenames */
   output: "/feed.rss",
 
@@ -143,7 +143,7 @@ export const defaults: Options = {
     categories: "=tags",
     lang: "=lang",
   },
-};
+} satisfies Options;
 
 export interface Author {
   name?: string;

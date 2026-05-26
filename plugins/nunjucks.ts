@@ -35,11 +35,11 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".njk"],
   options: {},
   plugins: {},
-};
+} satisfies Options;
 
 /** Template engine to render Nunjucks files */
 export class NunjucksEngine implements Engine {

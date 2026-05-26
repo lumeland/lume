@@ -18,9 +18,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Partial<Options> = {
+export const defaults = {
   basePath: "/admin",
-};
+} satisfies Partial<Options>;
 
 /**
  * A plugin to use LumeCMS

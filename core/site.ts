@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { merge } from "./utils/object.ts";
+import { Merge, merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
@@ -43,7 +43,7 @@ import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 
 /** Default options of the site */
-const defaults: SiteOptions = {
+const defaults = {
   cwd: Deno.cwd(),
   src: "./",
   dest: "./_site",
@@ -69,14 +69,14 @@ const defaults: SiteOptions = {
     dependencies: {},
   },
   components: {},
-};
+} satisfies SiteOptions;
 
 /**
  * This is the heart of Lume,
  * it contains everything needed to build the site
  */
 export default class Site {
-  options: SiteOptions;
+  options: Merge<SiteOptions, typeof defaults>;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
   _data: Record<string, unknown> = {};
@@ -151,7 +151,7 @@ export default class Site {
   watcher?: FSWatcher;
   server?: Server;
 
-  constructor(options: Partial<SiteOptions> = {}) {
+  constructor(options?: SiteOptions) {
     this.options = merge(defaults, options);
 
     const src = this.src();
@@ -1192,46 +1192,46 @@ export interface ResolveOptions {
 /** The options to configure the site build */
 export interface SiteOptions {
   /** The path of the current working directory */
-  cwd: string;
+  cwd?: string;
 
   /** The path of the site source */
-  src: string;
+  src?: string;
 
   /** The path of the built destination */
-  dest: string;
+  dest?: string;
 
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
 
   /** The default includes path */
-  includes: string;
+  includes?: string;
 
   /** The default css file */
-  cssFile: string;
+  cssFile?: string;
 
   /** The default js file */
-  jsFile: string;
+  jsFile?: string;
 
   /** The default folder for fonts */
-  fontsFolder: string;
+  fontsFolder?: string;
 
   /** The site location (used to generate final urls) */
-  location: URL;
+  location?: URL;
 
   /** Set true to generate pretty urls (`/about-me/`) */
-  prettyUrls: boolean;
+  prettyUrls?: boolean;
 
   /** Set true to don't consider two urls the equal if the only difference is the case */
-  caseSensitiveUrls: boolean;
+  caseSensitiveUrls?: boolean;
 
   /** The local server options */
-  server: ServerOptions;
+  server?: ServerOptions;
 
   /** The local watcher options */
-  watcher: WatcherOptions;
+  watcher?: WatcherOptions;
 
   /** The components options */
-  components: ComponentsOptions;
+  components?: ComponentsOptions;
 }
 
 /** The options to configure the local server */
@@ -1243,16 +1243,16 @@ export interface ServerOptions {
   root?: string;
 
   /** The port to listen on */
-  port: number;
+  port?: number;
 
   /** The hostname to listen on */
-  hostname: string;
+  hostname?: string;
 
   /** To open the server in a browser */
-  open: boolean;
+  open?: boolean;
 
   /** The file to serve on 404 error */
-  page404: string;
+  page404?: string;
 
   /**
    * Whether to use the debug bar or not
@@ -1261,22 +1261,22 @@ export interface ServerOptions {
   debugBar?: string | boolean;
 
   /** Optional for the server */
-  middlewares: Middleware[];
+  middlewares?: Middleware[];
 }
 
 /** The options to configure the local watcher */
 export interface WatcherOptions {
   /** Paths to ignore by the watcher */
-  ignore: (string | ((path: string) => boolean))[];
+  ignore?: (string | ((path: string) => boolean))[];
 
   /** The interval in milliseconds to check for changes */
-  debounce: number;
+  debounce?: number;
 
   /** Extra files and folders to watch (ouside the src folder) */
-  include: string[];
+  include?: string[];
 
   /** Manual dependencies not detected by the watcher */
-  dependencies: Record<string, string[]>;
+  dependencies?: Record<string, string[]>;
 }
 
 /** The options to configure the components */

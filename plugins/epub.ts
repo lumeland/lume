@@ -28,7 +28,7 @@ export interface Options {
   metadata?: Partial<Metadata>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   output: "/book.epub",
   outputUncompressed: false,
   metadata: {
@@ -38,7 +38,7 @@ export const defaults: Options = {
     rights: "All rights reserved",
     date: new Date(),
   },
-};
+} satisfies Options;
 
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);

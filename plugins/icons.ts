@@ -19,11 +19,11 @@ export interface Options {
   catalogs?: Catalog[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   folder: "/icons",
   spriteFile: "/icons.svg",
   catalogs,
-};
+} satisfies Options;
 
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);

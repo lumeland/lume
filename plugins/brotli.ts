@@ -12,9 +12,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".html", ".css", ".js", ".mjs", ".svg", ".json", ".xml", ".txt"],
-};
+} satisfies Options;
 
 /**
  * A plugin to compress files with brotli

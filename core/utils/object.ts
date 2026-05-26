@@ -17,18 +17,30 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
     obj !== obj.page?.data;
 }
 
+/** TypeScript helper to deep merge an optiosn object with some defaults */
+export type Merge<T, D extends Partial<T>> = T extends unknown[] ? T
+  : T extends object ?
+      & T
+      & {
+        // deno-lint-ignore ban-types
+        [K in keyof T & keyof D]: D[K] extends {} ? Merge<T[K], D[K]> : unknown;
+      }
+  // deno-lint-ignore ban-types
+  : D extends {} ? NonNullable<T>
+  : T;
+
 /**
  * Merge two objects recursively.
  * It's used to merge user options with default options.
  */
-export function merge<Type>(
-  defaults: Type,
+export function merge<Type, Def extends Partial<Type>>(
+  defaults: Def,
   user?: Type,
-): Required<Type> {
+): Merge<Type, Def> {
   const merged = { ...defaults };
 
   if (!user) {
-    return merged as unknown as Required<Type>;
+    return merged as unknown as Merge<Type, Def>;
   }
 
   for (const [key, value] of Object.entries(user)) {
@@ -47,5 +59,5 @@ export function merge<Type>(
     merged[key] = value;
   }
 
-  return merged as unknown as Required<Type>;
+  return merged as unknown as Merge<Type, Def>;
 }

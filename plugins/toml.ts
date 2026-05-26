@@ -12,10 +12,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".toml"],
   pageSubExtension: ".page",
-};
+} satisfies Options;
 
 /**
  * A plugin to load TOML data files and pages

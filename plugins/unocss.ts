@@ -59,7 +59,7 @@ export interface Options {
   reset?: false | "tailwind" | "tailwind-compat" | "eric-meyer";
 }
 
-export const defaults: Options = {
+export const defaults = {
   options: {
     presets: [presetWind3],
   },
@@ -68,7 +68,7 @@ export const defaults: Options = {
     transformerDirectives(),
   ],
   reset: false,
-};
+} satisfies Options;
 
 /**
  * A plugin to generate CSS using UnoCSS

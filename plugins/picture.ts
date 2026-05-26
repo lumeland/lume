@@ -23,9 +23,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   order: ["avif", "webp", "png", "jpg"],
-};
+} satisfies Options;
 
 /**
  * A plugin to transform images to different formats and sizes

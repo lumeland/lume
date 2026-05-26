@@ -1,5 +1,5 @@
 import loader from "../core/loaders/text.ts";
-import { merge } from "../core/utils/object.ts";
+import { Merge, merge } from "../core/utils/object.ts";
 import { compile, remarkGfm } from "../deps/mdx.ts";
 import { join, toFileUrl } from "../deps/path.ts";
 import { renderComponent } from "../deps/ssx.ts";
@@ -41,10 +41,11 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".mdx"],
   useDefaultPlugins: true,
-};
+  includes: "", // Will be overwritten
+} satisfies Options;
 
 const remarkDefaultPlugins = [
   remarkGfm,
@@ -53,11 +54,11 @@ const remarkDefaultPlugins = [
 /** Template engine to render Markdown files with Remark */
 export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
-  options: Required<Options>;
+  options: Merge<Options, typeof defaults>;
   includes: string;
   filters: Record<string, Helper> = {};
 
-  constructor(baseUrl: string, options: Required<Options>) {
+  constructor(baseUrl: string, options: Merge<Options, typeof defaults>) {
     this.baseUrl = baseUrl;
     this.options = options;
     this.includes = options.includes;

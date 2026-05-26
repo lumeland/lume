@@ -28,12 +28,12 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".html"],
   idKey: "id",
   typeKey: "type",
   foreignKeys: {},
-};
+} satisfies Options;
 
 /**
  * A plugin to create relations between pages

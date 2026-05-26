@@ -11,9 +11,9 @@ export interface Options {
   order?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   order: "basename=asc-locale",
-};
+} satisfies Options;
 
 /**
  * A plugin to generate a navigation tree and breadcrumbs
