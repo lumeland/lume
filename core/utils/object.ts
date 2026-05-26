@@ -12,7 +12,8 @@ export function isPlainObject(obj: unknown): obj is Record<string, unknown> {
 }
 
 /** TypeScript helper to deep merge an optiosn object with some defaults */
-export type Merge<T, D extends Partial<T>> = T extends unknown[] ? T
+export type Merge<T, D extends Partial<T>> = T extends RegExp | URL | unknown[]
+  ? T
   : T extends object ?
       & T
       & {
