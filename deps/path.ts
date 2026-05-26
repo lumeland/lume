@@ -1,6 +1,6 @@
 export { posix, sep as SEPARATOR } from "node:path";
 export { basename, dirname, extname, join, relative } from "node:path";
-export { globToRegExp } from "jsr:@std/path@1.1.4/glob-to-regexp";
+export { globToRegExp } from "jsr:@std/path@1.1.5/glob-to-regexp";
 export {
   fileURLToPath as fromFileUrl,
   pathToFileURL as toFileUrl,
