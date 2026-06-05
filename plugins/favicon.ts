@@ -71,7 +71,7 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.process(async function processFaviconImages(_, pages) {
+    site.process(async function processFaviconImages() {
       const contents: Record<number, Uint8Array | string> = {};
 
       for (const [size, file] of Object.entries(input)) {
@@ -88,18 +88,19 @@ export function favicon(userOptions?: Options) {
 
       const { cache } = site;
       for (const favicon of options.favicons) {
+        const page = await site.getOrCreatePage(favicon.url);
+
+        if (page.content) {
+          continue;
+        }
+
         const content = getBestContent(contents, favicon.size);
 
-        pages.push(
-          Page.create({
-            url: favicon.url,
-            content: await buildIco(
-              content,
-              favicon.format as keyof sharp.FormatEnum,
-              favicon.size,
-              cache,
-            ),
-          }),
+        page.bytes = await buildIco(
+          content,
+          favicon.format as keyof sharp.FormatEnum,
+          favicon.size,
+          cache,
         );
       }
 
@@ -167,7 +168,7 @@ async function buildIco(
   format: keyof sharp.FormatEnum | "ico",
   size: number[],
   cache?: Cache,
-): Promise<Uint8Array> {
+): Promise<Uint8Array<ArrayBuffer>> {
   if (cache) {
     const result = await cache.getBytes([content, format, size]);
 
@@ -179,7 +180,7 @@ async function buildIco(
   const svgOptions = {
     fitTo: { mode: "width", value: Math.max(...size) },
   } as const;
-  let image: Uint8Array;
+  let image: Uint8Array<ArrayBuffer>;
 
   if (format === "ico") {
     const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
@@ -191,7 +192,7 @@ async function buildIco(
     image = await create(content, undefined, svgOptions)
       .resize(size[0], size[0])
       .toFormat(format)
-      .toBuffer();
+      .toBuffer() as Uint8Array<ArrayBuffer>;
   }
 
   if (cache) {

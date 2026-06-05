@@ -21,6 +21,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
   const options = merge(defaults, userOptions);
   ```
+- `favicon` plugin: Don't override favicons added explicitly with `site.add()` or `site.copy()`.
 
 ### Fixed
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].
