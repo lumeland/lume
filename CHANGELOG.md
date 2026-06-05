@@ -7,6 +7,10 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.7] - Unreleased
+### New
+- Predefined archetypes for common code scaffolds
+  - `plugin` to create a Lume plugin in the local folder `_plugins/[name].ts`.
+
 ### Changed
 - The `merge` utility function changed the types to better reflect its returned type.
   This change only affects to plugin creators.

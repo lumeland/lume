@@ -9,6 +9,8 @@ import { createSite } from "./utils.ts";
 
 import type Site from "../core/site.ts";
 
+const lumeArchetypes = ["plugin"];
+
 /** Run an archetype */
 export async function create(
   config: string | undefined,
@@ -21,14 +23,7 @@ export async function create(
   const site = await createSite(_config);
 
   try {
-    const mod = name.startsWith(".")
-      ? await import(toFileUrl(join(Deno.cwd(), name)).href)
-      : isUrl(name)
-      ? await import(name)
-      : await Promise.any([
-        import(toFileUrl(site.src(`_archetypes/${name}.ts`)).href),
-        import(toFileUrl(site.src(`_archetypes/${name}.js`)).href),
-      ]);
+    const mod = await loadArchetype(site, name);
 
     if (mod?.default) {
       fn = mod.default;
@@ -48,8 +43,10 @@ export async function create(
       await saveArchetype(site, archetype);
     }
   } else {
-    const archetype = fn(...args) as Archetype;
-    await saveArchetype(site, archetype);
+    const archetype = fn(...args) as Archetype | undefined;
+    if (archetype) {
+      await saveArchetype(site, archetype);
+    }
   }
 
   log.output();
@@ -107,6 +104,25 @@ async function saveFile(path: string, content: string | Uint8Array) {
       throw error;
     }
   }
+}
+
+async function loadArchetype(site: Site, name: string) {
+  if (lumeArchetypes.includes(name)) {
+    return await import(`../archetypes/${name}.ts`);
+  }
+
+  if (name.startsWith(".")) {
+    return await import(toFileUrl(join(Deno.cwd(), name)).href);
+  }
+
+  if (isUrl(name)) {
+    return await import(name);
+  }
+
+  return await Promise.any([
+    import(toFileUrl(site.src(`_archetypes/${name}.ts`)).href),
+    import(toFileUrl(site.src(`_archetypes/${name}.js`)).href),
+  ]);
 }
 
 /** Definition used to create a new Page */
