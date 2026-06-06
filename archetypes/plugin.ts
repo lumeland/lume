@@ -1,16 +1,18 @@
 import { log } from "../core/utils/log.ts";
 import { toCamelCase, toSnakeCase } from "../deps/text.ts";
+import type { Archetype } from "../cli/create.ts";
 
-export default function (name: string) {
+export default (function (name: string) {
   if (!name) {
-    log.error("Missing plugin name. Run 'deno task new plugin plugin-name");
+    log.error("Missing name argument. Run 'deno task new plugin {name}");
     return;
   }
 
   const filename = toSnakeCase(name);
-  const pluginName = toCamelCase(name);
+  const fnName = toCamelCase(name);
 
   return {
+    base: "root",
     path: `/_plugins/${filename}.ts`,
     content: `import { merge } from "lume/core/utils/object.ts";
 
@@ -22,15 +24,14 @@ export interface Options {
 export const defaults = {
 } satisfies Options;
 
-/** ${name} plugin */
-export function ${pluginName}(userOptions?: Options) {
+export function ${fnName}(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Lume.Site) => {
-  }
-}
-
-export default ${pluginName};
-`,
   };
 }
+
+export default ${fnName};
+`,
+  };
+}) satisfies Archetype;
