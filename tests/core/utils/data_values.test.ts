@@ -9,6 +9,7 @@ Deno.test("Test getDataValue() function", async (t) => {
   site.use(metas());
   site.process([".html"], async (pages) => {
     for (const page of pages) {
+      // deno-lint-ignore no-explicit-any
       const { data } = page as any;
       if (!data.cover) continue;
 
