@@ -139,7 +139,7 @@ export function getManifest(data: Data, metadata: Metadata): ManifestItem {
     id,
     href,
     mediaType,
-    index: data.index ?? true,
+    index: data.index !== undefined ? !!data.index : true,
     properties,
   };
 }

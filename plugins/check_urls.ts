@@ -111,7 +111,7 @@ export default function (userOptions?: Options) {
               for (const oldUrl of page.data.oldUrl) {
                 redirects.add(oldUrl);
               }
-            } else {
+            } else if (typeof page.data.oldUrl === "string") {
               redirects.add(page.data.oldUrl);
             }
           }

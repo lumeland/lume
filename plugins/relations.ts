@@ -132,13 +132,13 @@ export function relations(userOptions: Options) {
           rel: Data,
           data: Data,
           foreignKey?: string,
-          id?: string,
+          id?: string | number,
           type?: string,
           relationKey?: string,
           pluralRelationKey?: string,
         ): boolean {
           if (foreignKey && type && id && data[foreignKey]) {
-            const relId = data[foreignKey] as string | string[];
+            const relId = data[foreignKey] as string | number | (string | number)[];
 
             // The foreign key contain an array
             if (Array.isArray(relId)) {
@@ -179,9 +179,9 @@ export function relations(userOptions: Options) {
 
   function getRelationInfo(
     data: Data,
-  ): [string?, string?, string?, string?, string?, RelationFilter?] {
+  ): [string?, string?, (string | number)?, string?, string?, RelationFilter?] {
     const type = data[options.typeKey];
-    if (!type) {
+    if (typeof type !== "string") {
       return [];
     }
 
@@ -191,13 +191,15 @@ export function relations(userOptions: Options) {
     }
 
     if (typeof foreignKey === "string") {
-      return [type, foreignKey, data[options.idKey], type, type];
+      const id = data[options.idKey];
+      return [type, foreignKey, typeof id === "string" || typeof id === "number" ? id : undefined, type, type];
     }
 
+    const id = data[foreignKey.idKey || options.idKey];
     return [
       type,
       foreignKey.foreignKey,
-      data[foreignKey.idKey || options.idKey],
+      typeof id === "string" || typeof id === "number" ? id : undefined,
       foreignKey.relationKey || type,
       foreignKey.pluralRelationKey || foreignKey.relationKey || type,
       foreignKey.filter,

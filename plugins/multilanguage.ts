@@ -237,8 +237,8 @@ export function multilanguage(userOptions: Options) {
       }
 
       // Merge the language data with the page data
-      if (override) {
-        overrideData(data, override);
+      if (typeof override === "object" && override) {
+        overrideData(data, override as Data);
       }
     }
 

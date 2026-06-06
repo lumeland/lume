@@ -142,42 +142,46 @@ export async function assertSiteSnapshot(
     const isSourceMap = page.outputPath.endsWith(".map");
     return {
       data: Object.fromEntries(
-        Object.entries(page.data).map(([key, value]) => {
-          switch (typeof value) {
-            case "string":
-              if (isSourceMap && key === "content") {
-                return [key, normalizeSourceMap(value)];
-              }
-              return [key, normalizeValue(value, options)];
-            case "undefined":
-              return [key, normalizeValue(value, options)];
-            case "number":
-            case "boolean":
-              return [key, value];
-            case "object":
-              if (value === null) {
-                return [key, null];
-              }
-              if (Array.isArray(value) || value instanceof Uint8Array) {
+        Object.entries(page.data).map(
+          (
+            [key, value],
+          ): [string, string | number | boolean | null | string[]] => {
+            switch (typeof value) {
+              case "string":
+                if (isSourceMap && key === "content") {
+                  return [key, normalizeSourceMap(value)];
+                }
                 return [key, normalizeValue(value, options)];
-              }
-              if (value instanceof Map || value instanceof Set) {
-                return [
-                  key,
-                  [...value.keys()].sort((a, b) => a.localeCompare(b)),
-                ];
-              }
-              return [key, Object.keys(value)];
-            case "function":
-              return [key, value.name];
-            case "symbol":
-              return [key, value.toString()];
-            case "bigint":
-              return [key, `${value}n`];
-            default:
-              throw new Error(`Unknown type "${typeof value}"`);
-          }
-        }).sort((a, b) => a[0].localeCompare(b[0])),
+              case "undefined":
+                return [key, normalizeValue(value, options)];
+              case "number":
+              case "boolean":
+                return [key, value];
+              case "object":
+                if (value === null) {
+                  return [key, null];
+                }
+                if (Array.isArray(value) || value instanceof Uint8Array) {
+                  return [key, normalizeValue(value, options)];
+                }
+                if (value instanceof Map || value instanceof Set) {
+                  return [
+                    key,
+                    [...value.keys()].sort((a, b) => a.localeCompare(b)),
+                  ];
+                }
+                return [key, Object.keys(value)];
+              case "function":
+                return [key, value.name];
+              case "symbol":
+                return [key, value.toString()];
+              case "bigint":
+                return [key, `${value}n`];
+              default:
+                throw new Error(`Unknown type "${typeof value}"`);
+            }
+          },
+        ).sort((a, b) => a[0].localeCompare(b[0])),
       ),
       content: isSourceMap
         ? normalizeSourceMap(page.content as string)

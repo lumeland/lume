@@ -233,8 +233,7 @@ export interface RawData {
   /** To configure how some data keys will be merged with the parent */
   mergedKeys?: Record<string, MergeStrategy>;
 
-  // deno-lint-ignore no-explicit-any
-  [index: string]: any;
+  [index: string]: unknown;
 }
 
 /** The data of a page/folder once loaded and processed */

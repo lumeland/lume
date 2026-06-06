@@ -45,8 +45,7 @@ export interface MetaData {
   generator?: string | boolean | ((data: Data) => string | boolean | undefined);
 
   /** Other meta tags */
-  // deno-lint-ignore no-explicit-any
-  [name: string]: any;
+  [name: string]: unknown;
 }
 
 const defaultGenerator = getGenerator();

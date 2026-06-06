@@ -20,8 +20,7 @@ declare global {
 
     /** The page data */
     export interface Data extends PageData {
-      // deno-lint-ignore no-explicit-any
-      [index: string]: any;
+      [index: string]: unknown;
     }
 
     /** The page helpers */

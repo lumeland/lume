@@ -98,11 +98,12 @@ export default function (userOptions?: Options) {
       // Create the toc.ncx file
       const tocNcxPage = await site.getOrCreatePage("/toc.ncx");
       tocNcxPage.content = createTocNcx(metadata, menu, files);
-      tocNcxPage.data.manifestItem = getManifest(
+      const manifestItem = getManifest(
         tocNcxPage.data,
         metadata,
       );
-      files.push(tocNcxPage.data.manifestItem);
+      tocNcxPage.data.manifestItem = manifestItem;
+      files.push(manifestItem);
 
       // Create the content.opf file
       const contentOpfPage = await site.getOrCreatePage("/content.opf");

@@ -55,7 +55,7 @@ export function ogImages(userOptions?: Options) {
         const { data } = page;
         const layout = data.openGraphLayout;
 
-        if (!layout) {
+        if (typeof layout !== "string") {
           continue;
         }
 
@@ -86,11 +86,15 @@ export function ogImages(userOptions?: Options) {
 
         allPages.push(Page.create({ url, content }));
 
-        if (!data.metas) {
-          data.metas = {};
+        let metas: Record<string, unknown>;
+
+        if (typeof data.metas === "object" && data.metas) {
+          metas = data.metas as Record<string, unknown>;
+        } else {
+          metas = data.metas = {};
         }
 
-        data.metas.image = url;
+        metas.image = url;
       }
     });
 

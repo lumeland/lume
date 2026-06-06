@@ -76,8 +76,7 @@ export interface Transformation {
   suffix?: string;
   format?: Format | Format[] | FormatOptions | FormatOptions[];
   matches?: RegExp | string;
-  // deno-lint-ignore no-explicit-any
-  [key: string]: any;
+  [key: string]: unknown;
 }
 interface SingleTransformation extends Transformation {
   format?: Format | FormatOptions;
