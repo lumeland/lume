@@ -43,8 +43,14 @@ Deno.test("FFF plugin", async (t) => {
 
   // images (string media) => image (object media)
   const image = pages.find((page) => page.src.path === "/image")!;
-  assertEquals((image.data.image as Record<string, unknown>).alt, "FFF Image Test");
-  assertEquals((image.data.image as Record<string, unknown>).src, "/my-image.png");
+  assertEquals(
+    (image.data.image as Record<string, unknown>).alt,
+    "FFF Image Test",
+  );
+  assertEquals(
+    (image.data.image as Record<string, unknown>).src,
+    "/my-image.png",
+  );
   // getGitDate
   assertEquals(!!image.data.created, true);
   assertEquals(!!image.data.updated, true);

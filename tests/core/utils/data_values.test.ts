@@ -16,7 +16,11 @@ Deno.test("Test getDataValue() function", async (t) => {
 
       await t.step(
         "Data query: =",
-        () => equals(getDataValue(data, (data.metas as Record<string, unknown>).image), data.cover),
+        () =>
+          equals(
+            getDataValue(data, (data.metas as Record<string, unknown>).image),
+            data.cover,
+          ),
       );
 
       await t.step(

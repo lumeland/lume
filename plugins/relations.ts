@@ -138,7 +138,10 @@ export function relations(userOptions: Options) {
           pluralRelationKey?: string,
         ): boolean {
           if (foreignKey && type && id && data[foreignKey]) {
-            const relId = data[foreignKey] as string | number | (string | number)[];
+            const relId = data[foreignKey] as
+              | string
+              | number
+              | (string | number)[];
 
             // The foreign key contain an array
             if (Array.isArray(relId)) {
@@ -192,7 +195,13 @@ export function relations(userOptions: Options) {
 
     if (typeof foreignKey === "string") {
       const id = data[options.idKey];
-      return [type, foreignKey, typeof id === "string" || typeof id === "number" ? id : undefined, type, type];
+      return [
+        type,
+        foreignKey,
+        typeof id === "string" || typeof id === "number" ? id : undefined,
+        type,
+        type,
+      ];
     }
 
     const id = data[foreignKey.idKey || options.idKey];
