@@ -61,7 +61,7 @@ export default function (userOptions?: Options) {
 
   return (site: Site) => {
     const urls = new Map<string, Set<string>>(); // All URLs found
-    const redirects = new Set<string>(); // All URLs that redirect
+    const redirects = new Set<unknown>(); // All URLs that redirect
 
     // Ignore the ouput file to avoid infinite build loop
     if (typeof options.output === "string") {
@@ -111,7 +111,7 @@ export default function (userOptions?: Options) {
               for (const oldUrl of page.data.oldUrl) {
                 redirects.add(oldUrl);
               }
-            } else if (typeof page.data.oldUrl === "string") {
+            } else {
               redirects.add(page.data.oldUrl);
             }
           }

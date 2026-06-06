@@ -55,7 +55,7 @@ export function ogImages(userOptions?: Options) {
         const { data } = page;
         const layout = data.openGraphLayout;
 
-        if (typeof layout !== "string") {
+        if (typeof layout !== "string" || !layout) {
           continue;
         }
 
