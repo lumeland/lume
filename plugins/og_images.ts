@@ -61,7 +61,9 @@ export function ogImages(userOptions?: Options) {
         }
 
         if (typeof layout !== "string") {
-          log.warn(`[og_images] Expected 'openGraphLayout' to be a string. Skipping page.`);
+          log.warn(
+            `[og_images] Expected 'openGraphLayout' to be a string. Skipping page.`,
+          );
           continue;
         }
 
