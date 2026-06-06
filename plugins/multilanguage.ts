@@ -229,7 +229,7 @@ export function multilanguage(userOptions: Options) {
       }
 
       // Get the language data
-      const override = data[lang];
+      const override = data[lang] as Data | undefined;
 
       // Remove all language data from the page data
       for (const key of options.languages) {
@@ -237,8 +237,8 @@ export function multilanguage(userOptions: Options) {
       }
 
       // Merge the language data with the page data
-      if (typeof override === "object" && override) {
-        overrideData(data, override as Data);
+      if (override) {
+        overrideData(data, override);
       }
     }
 
