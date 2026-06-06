@@ -8,6 +8,7 @@ import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 
 import "../types.ts";
+import { log } from "../core/utils/log.ts";
 
 export interface Options {
   /**
@@ -55,7 +56,12 @@ export function ogImages(userOptions?: Options) {
         const { data } = page;
         const layout = data.openGraphLayout;
 
-        if (typeof layout !== "string" || !layout) {
+        if (!layout) {
+          continue;
+        }
+
+        if (typeof layout !== "string") {
+          log.warn(`[og_images] Expected 'openGraphLayout' to be a string. Skipping page.`);
           continue;
         }
 
