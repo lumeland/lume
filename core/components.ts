@@ -332,7 +332,7 @@ async function getEntryContent(entry?: Entry | string): Promise<string> {
 }
 
 export interface ProxyComponents {
-  (props?: Record<string, unknown>): unknown;
+  (props?: Record<string, unknown>): string | object | Promise<string | object>;
   [key: string]: ProxyComponents;
 }
 
