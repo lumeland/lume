@@ -4,6 +4,7 @@ import type { Loader } from "./core/fs.ts";
 import type { default as Site, Plugin } from "./core/site.ts";
 import type { Archetype } from "./cli/create.ts";
 import type { Middleware, RequestHandler } from "./core/server.ts";
+import type { OmitIndexSignature } from "./core/utils/types.ts";
 
 declare global {
   namespace Lume {
@@ -20,8 +21,11 @@ declare global {
 
     /** The page data */
     export interface Data extends PageData {
-      [index: string]: unknown;
+      [index: string]: any;
     }
+
+    /** The page data */
+    export type DataStrict = OmitIndexSignature<Data> & Record<string, unknown>;
 
     /** The page helpers */
     export interface Helpers {
