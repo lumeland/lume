@@ -63,7 +63,7 @@ Deno.test("Components", async (t) => {
   await t.step("Nunjucks components", async () => {
     const result = await comp.njk_button({ text: "Hello world" });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="button_njk">Hello world</button>`,
     );
   });
@@ -74,7 +74,7 @@ Deno.test("Components", async (t) => {
       className: "custom",
     });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="custom">Hello world</button>`,
     );
   });
@@ -82,18 +82,18 @@ Deno.test("Components", async (t) => {
   await t.step("Vento components", async () => {
     const result = await comp.vento_button({ text: "Hello world" });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="button_vto">Hello world</button>`,
     );
   });
 
   await t.step("Inherit and not inherit data for components", async () => {
     assertEquals(
-      (await comp.inherit()).toString().trim(),
+      (await comp.inherit()).trim(),
       `<p>Inherit: Hello from _data.yml</p>`,
     );
     assertEquals(
-      (await comp.not_inherit()).toString().trim(),
+      (await comp.not_inherit()).trim(),
       `<p>Not inherit: </p>`,
     );
   });
@@ -101,7 +101,7 @@ Deno.test("Components", async (t) => {
   await t.step("Module components", async () => {
     const result = await subcomp.ts_button({ text: "Hello world" });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="button_ts">Hello world</button>`,
     );
   });
@@ -109,7 +109,7 @@ Deno.test("Components", async (t) => {
   await t.step("Eta components", async () => {
     const result = await comp.eta_button({ text: "Hello world" });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="button_eta">Hello world</button>`,
     );
   });
@@ -117,7 +117,7 @@ Deno.test("Components", async (t) => {
   await t.step("Pug components", async () => {
     const result = await subcomp.pug_button({ text: "Hello world" });
     assertEquals(
-      result.toString().trim(),
+      result.trim(),
       `<button class="button_pug">Hello world</button>`,
     );
   });
