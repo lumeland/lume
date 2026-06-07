@@ -2,7 +2,7 @@ import satori, { fontsSpecifier, SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
-import { merge } from "../core/utils/object.ts";
+import { isPlainObject, merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
@@ -96,8 +96,8 @@ export function ogImages(userOptions?: Options) {
 
         let metas: Record<string, unknown>;
 
-        if (typeof data.metas === "object" && data.metas) {
-          metas = data.metas as Record<string, unknown>;
+        if (isPlainObject(data.metas)) {
+          metas = data.metas;
         } else {
           metas = data.metas = {};
         }
