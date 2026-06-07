@@ -2,13 +2,13 @@ import satori, { fontsSpecifier, SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
+import { log } from "../core/utils/log.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 
 import "../types.ts";
-import { log } from "../core/utils/log.ts";
 
 export interface Options {
   /**
