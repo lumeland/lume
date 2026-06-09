@@ -2,49 +2,59 @@ import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Data as PageData, Page } from "../core/file.ts";
 
 export interface MetaData {
   /** The type of the site default is website */
-  type?: string | ((data: Data) => string | undefined);
+  type?: string | ((data: Lume.Data) => string | undefined);
 
   /** The name of the site */
-  site?: string | ((data: Data) => string | undefined);
+  site?: string | ((data: Lume.Data) => string | undefined);
 
   /** The title of the page */
-  title?: string | ((data: Data) => string | undefined);
+  title?: string | ((data: Lume.Data) => string | undefined);
 
   /** The page language */
-  lang?: string | ((data: Data) => string | undefined);
+  lang?: string | ((data: Lume.Data) => string | undefined);
 
   /** The description of the page */
-  description?: string | ((data: Data) => string | undefined);
+  description?: string | ((data: Lume.Data) => string | undefined);
 
   /** The image of the page */
-  image?: string | ((data: Data) => string | undefined);
+  image?: string | ((data: Lume.Data) => string | undefined);
 
   /** The icon of the site */
-  icon?: string | ((data: Data) => string | undefined);
+  icon?: string | ((data: Lume.Data) => string | undefined);
 
   /** The page keywords */
-  keywords?: string[] | ((data: Data) => string[] | undefined);
+  keywords?: string[] | ((data: Lume.Data) => string[] | undefined);
 
   /** The twitter username */
-  twitter?: string | ((data: Data) => string | undefined);
+  twitter?: string | ((data: Lume.Data) => string | undefined);
 
   /** The fediverse username (for author attribution) */
-  fediverse?: string | ((data: Data) => string | undefined);
+  fediverse?: string | ((data: Lume.Data) => string | undefined);
 
   /** The color theme */
-  color?: string | string[] | ((data: Data) => string | string[] | undefined);
+  color?:
+    | string
+    | string[]
+    | ((data: Lume.Data) => string | string[] | undefined);
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
-  robots?: string | boolean | ((data: Data) => string | boolean | undefined);
+  robots?:
+    | string
+    | boolean
+    | ((data: Lume.Data) => string | boolean | undefined);
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
-  generator?: string | boolean | ((data: Data) => string | boolean | undefined);
+  generator?:
+    | string
+    | boolean
+    | ((data: Lume.Data) => string | boolean | undefined);
 
   /** Other meta tags */
+  // deno-lint-ignore no-explicit-any
   [name: string]: unknown;
 }
 
@@ -250,7 +260,7 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface Data extends PageData {
       /**
        * Meta elements
        * @see https://lume.land/plugins/metas/
