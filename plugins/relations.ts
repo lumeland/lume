@@ -1,9 +1,15 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Data as PageData, Page } from "../core/file.ts";
 
-type RelationFilter = (data1: Data, data2: Data) => boolean;
+declare global {
+  namespace Lume {
+    export interface Data extends PageData {}
+  }
+}
+
+type RelationFilter = (data1: Lume.Data, data2: Lume.Data) => boolean;
 
 interface ForeignKeyOptions {
   foreignKey: string;
@@ -47,7 +53,7 @@ export function relations(userOptions: Options) {
 
     function processRelations(pages1: Page[], pages: Page[]) {
       pages1.forEach((page1) => {
-        const data1 = page1.data;
+        const data1 = page1.data as Lume.Data;
         const [
           type1,
           foreignKey1,
@@ -68,9 +74,9 @@ export function relations(userOptions: Options) {
             return;
           }
 
-          const data2 = page2.data;
+          const data2 = page2.data as Lume.Data;
 
-          if (filter1 && !filter1(data1, page2.data)) {
+          if (filter1 && !filter1(data1, data2)) {
             return;
           }
 
@@ -83,7 +89,7 @@ export function relations(userOptions: Options) {
             filter2,
           ] = getRelationInfo(data2);
 
-          if (filter2 && !filter2(data2, page1.data)) {
+          if (filter2 && !filter2(data2, data1)) {
             return;
           }
 
@@ -129,8 +135,8 @@ export function relations(userOptions: Options) {
         }
 
         function relate(
-          rel: Data,
-          data: Data,
+          rel: PageData,
+          data: PageData,
           foreignKey?: string,
           id?: unknown,
           type?: string,
@@ -159,8 +165,12 @@ export function relations(userOptions: Options) {
           return false;
         }
 
-        function saveMultipleRelation(rel: Data, data: Data, type: string) {
-          const relData = (data[type] || []) as Data[];
+        function saveMultipleRelation(
+          rel: PageData,
+          data: PageData,
+          type: string,
+        ) {
+          const relData = (data[type] || []) as PageData[];
 
           if (!relData.includes(rel)) {
             relData.push(rel);
@@ -178,7 +188,7 @@ export function relations(userOptions: Options) {
   };
 
   function getRelationInfo(
-    data: Data,
+    data: PageData,
   ): [string?, string?, unknown?, string?, string?, RelationFilter?] {
     const type = data[options.typeKey];
     if (typeof type !== "string") {
