@@ -8,8 +8,14 @@ import { log } from "../core/utils/log.ts";
 import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data as PageData } from "../core/file.ts";
 import type { stringifyable } from "../deps/xml.ts";
+
+declare global {
+  namespace Lume {
+    export interface Data extends PageData {}
+  }
+}
 
 export interface Options {
   /** The output filenames */
@@ -84,28 +90,28 @@ export interface FeedInfoOptions {
 
 export interface FeedItemOptions {
   /** The item title */
-  title?: string | ((data: Data) => string | undefined);
+  title?: string | ((data: Lume.Data) => string | undefined);
 
   /** The item description */
-  description?: string | ((data: Data) => string | undefined);
+  description?: string | ((data: Lume.Data) => string | undefined);
 
   /** The item published date */
-  published?: string | ((data: Data) => Date | undefined);
+  published?: string | ((data: Lume.Data) => Date | undefined);
 
   /** The item updated date */
-  updated?: string | ((data: Data) => Date | undefined);
+  updated?: string | ((data: Lume.Data) => Date | undefined);
 
   /** The item content */
-  content?: string | ((data: Data) => string | undefined);
+  content?: string | ((data: Lume.Data) => string | undefined);
 
   /** The item categories */
-  categories?: string | ((data: Data) => string[] | undefined);
+  categories?: string | ((data: Lume.Data) => string[] | undefined);
 
   /** The item language */
-  lang?: string | ((data: Data) => string | undefined);
+  lang?: string | ((data: Lume.Data) => string | undefined);
 
   /** The item image */
-  image?: string | ((data: Data) => string | undefined);
+  image?: string | ((data: Lume.Data) => string | undefined);
 
   /** The item author name */
   authorName?: string;
@@ -203,14 +209,14 @@ export function feed(
           ? options.output
           : [options.output];
 
-        const pages = site.search.pages(
+        const pages = site.search.pages<Lume.Data>(
           options.query,
           options.sort,
           options.limit,
-        ) as Data[];
+        );
 
         const { info, items } = options;
-        const rootData = site.source.data.get("/") || {};
+        const rootData = (site.source.data.get("/") || {}) as Partial<Lume.Data>;
 
         const feed: FeedData = {
           title: getPlainDataValue(rootData, info.title),
@@ -297,7 +303,7 @@ export function feed(
 }
 
 function getAuthor(
-  data: Partial<Data>,
+  data: Partial<Lume.Data>,
   info: FeedInfoOptions | FeedItemOptions,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
