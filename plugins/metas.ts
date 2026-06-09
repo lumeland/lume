@@ -54,7 +54,6 @@ export interface MetaData {
     | ((data: Lume.Data) => string | boolean | undefined);
 
   /** Other meta tags */
-  // deno-lint-ignore no-explicit-any
   [name: string]: unknown;
 }
 
