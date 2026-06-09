@@ -216,7 +216,9 @@ export function feed(
         );
 
         const { info, items } = options;
-        const rootData = (site.source.data.get("/") || {}) as Partial<Lume.Data>;
+        const rootData = (site.source.data.get("/") || {}) as Partial<
+          Lume.Data
+        >;
 
         const feed: FeedData = {
           title: getPlainDataValue(rootData, info.title),
