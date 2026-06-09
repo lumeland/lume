@@ -14,10 +14,10 @@ export interface Options<Data extends PageData = PageData> {
   sourceData: Map<string, Partial<Data>>;
 
   /** Filters to apply to all page searches */
-  filters?: Filter<Data>[];
+  filters?: Filter[];
 }
 
-type Filter<Data> = (data: Data) => boolean;
+type Filter = (data: PageData) => boolean;
 type Condition = [string, string, unknown];
 
 /** Search helper */
@@ -27,7 +27,7 @@ export default class Searcher<Data extends PageData = PageData> {
   #sourceData: Map<string, Partial<Data>>;
   #cache = new Map<string, Data[]>();
   #cacheFiles = new Map<string, string[]>();
-  #filters: Filter<Data>[];
+  #filters: Filter[];
 
   constructor(options: Options<Data>) {
     this.#pages = options.pages;
@@ -136,7 +136,7 @@ export default class Searcher<Data extends PageData = PageData> {
       return [...this.#cache.get(id)!] as (Data & T)[];
     }
 
-    const compiledFilter = buildFilter<Data>(query);
+    const compiledFilter = buildFilter(query);
     const filters = compiledFilter
       ? this.#filters.concat([compiledFilter])
       : this.#filters;
@@ -181,9 +181,9 @@ export default class Searcher<Data extends PageData = PageData> {
  * example: "title=foo level<3"
  * returns: (page) => page.data.title === "foo" && page.data.level < 3
  */
-export function buildFilter<Data extends PageData = PageData>(
+export function buildFilter(
   query = "",
-): Filter<Data> | undefined {
+): Filter | undefined {
   // (?:(not)?(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(
