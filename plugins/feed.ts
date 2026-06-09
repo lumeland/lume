@@ -216,9 +216,7 @@ export function feed(
         );
 
         const { info, items } = options;
-        const rootData = (site.source.data.get("/") || {}) as Partial<
-          Lume.Data
-        >;
+        const rootData = site.source.data.get("/") || {};
 
         const feed: FeedData = {
           title: getPlainDataValue(rootData, info.title),
@@ -305,7 +303,7 @@ export function feed(
 }
 
 function getAuthor(
-  data: Partial<Lume.Data>,
+  data: Partial<PageData>,
   info: FeedInfoOptions | FeedItemOptions,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
