@@ -4,8 +4,14 @@ import { Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data as PageData } from "../core/file.ts";
 import type { stringifyable } from "../deps/xml.ts";
+
+declare global {
+  namespace Lume {
+    export interface Data extends PageData {}
+  }
+}
 
 type ChangeFreq =
   | "always"
@@ -37,13 +43,13 @@ export interface Options {
 
 export interface SitemapItemsOptions {
   /** The key to use for the lastmod field or a custom function */
-  lastmod?: string | ((data: Data) => Date);
+  lastmod?: string | ((data: Lume.Data) => Date);
 
   /** The key to use for the changefreq field or a custom function */
-  changefreq?: string | ((data: Data) => ChangeFreq);
+  changefreq?: string | ((data: Lume.Data) => ChangeFreq);
 
   /** The key to use for the priority field or a custom function */
-  priority?: string | ((data: Data) => number);
+  priority?: string | ((data: Lume.Data) => number);
 }
 
 // Default options
@@ -83,7 +89,7 @@ export function sitemap(userOptions?: Options) {
       }\n`;
     });
 
-    function generateSitemap(pages: Data[]): string {
+    function generateSitemap(pages: PageData[]): string {
       const items = options.items ?? {};
       const sitemap: stringifyable = {
         "@version": "1.0",
@@ -112,7 +118,7 @@ export function sitemap(userOptions?: Options) {
             }
 
             if (data.alternates?.length) {
-              node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
+              node["xhtml:link"] = data.alternates.map((alternate) => ({
                 "@rel": "alternate",
                 "@hreflang": alternate.lang!,
                 "@href": site.url(alternate.url, true),
