@@ -209,7 +209,7 @@ export function feed(
           ? options.output
           : [options.output];
 
-        const pages = site.search.pages<Lume.Data>(
+        const pages = site.search.pages(
           options.query,
           options.sort,
           options.limit,
