@@ -1,6 +1,7 @@
 import { Merge, merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
+import type { Data as PageData } from "../core/file.ts";
 
 /** The options for the paginate helper */
 export interface PaginateOptions {
@@ -143,7 +144,7 @@ declare global {
   namespace Lume {
     export type { PaginateResult };
 
-    export interface Data {
+    export interface Data extends PageData {
       /**
        * The paginator helper
        * @see https://lume.land/plugins/paginate/
@@ -160,7 +161,7 @@ declare global {
        * The pagination result
        * @see https://lume.land/plugins/paginate/
        */
-      results?: Data[];
+      results?: Lume.Data[];
     }
   }
 }
