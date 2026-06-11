@@ -1,17 +1,13 @@
 import { isUrl } from "../utils/path.ts";
 import { isPlainObject } from "../utils/object.ts";
-import { envBoolean } from "../utils/env.ts";
 
 import type { RawData } from "../file.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function module(path: string): Promise<RawData> {
   const url = isUrl(path) ? path : `file://${path}`;
-  const specifier = envBoolean("LUME_LIVE_RELOAD")
-    ? `${url}#${Date.now()}`
-    : url;
 
-  const mod = await import(specifier);
+  const mod = await import(url);
   return toData(mod);
 }
 
