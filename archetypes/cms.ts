@@ -1,6 +1,6 @@
 import { log } from "../core/utils/log.ts";
 import { normalizePath } from "../core/utils/path.ts";
-import type { Archetype } from "../cli/create.ts";
+import type { Archetype } from "../core/archetypes.ts";
 
 export default (async function* (name = "_cms.ts") {
   if (!name.endsWith(".ts") && !name.endsWith(".js")) {

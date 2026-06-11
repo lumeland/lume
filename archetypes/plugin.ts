@@ -1,6 +1,6 @@
 import { log } from "../core/utils/log.ts";
 import { toCamelCase, toSnakeCase } from "../deps/text.ts";
-import type { Archetype } from "../cli/create.ts";
+import type { Archetype } from "../core/archetypes.ts";
 
 export default (function (name: string) {
   if (!name) {

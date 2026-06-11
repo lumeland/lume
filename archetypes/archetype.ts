@@ -1,6 +1,5 @@
 import { log } from "../core/utils/log.ts";
-import { toSnakeCase } from "../deps/text.ts";
-import type { Archetype } from "../cli/create.ts";
+import type { Archetype } from "../core/archetypes.ts";
 
 export default (function (name: string) {
   if (!name) {
@@ -8,12 +7,17 @@ export default (function (name: string) {
     return;
   }
 
-  const filename = toSnakeCase(name);
-
   return {
     base: "root",
-    path: `/_archetypes/${filename}.ts`,
-    content: `export default (function (name: string) {
+    path: `/_archetypes/${name}.ts`,
+    content: `import { log } from "lume/core/utils/log.ts";
+
+export default (function (name: string) {
+  if (!name) {
+    log.error("Missing arguments. Run 'deno task new ${name} {name}");
+    return;
+  }
+
   return {
     path: \`hello-\${name}.md\`,
     content: \`Hello \${name}\`,

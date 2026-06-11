@@ -8,6 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.7] - Unreleased
 ### New
+- `site.archetype()` to register archetypes from the _config.ts file.
 - Predefined archetypes for common code scaffolds
   - `plugin` to create a Lume plugin in the local folder `_plugins/[name].ts`.
   - `archetype` to create a Lume archetype in the local folder `_archetype/[name].ts`.
