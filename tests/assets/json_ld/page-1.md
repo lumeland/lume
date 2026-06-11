@@ -7,6 +7,7 @@ jsonLd:
   url: "/"
   name: "=header.title"
   inLanguage: "gl"
+  description: "=children"
   publisher:
     "@type": "Organization"
     name: "=header.title"
