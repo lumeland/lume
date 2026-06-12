@@ -5,9 +5,9 @@ import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
 import type { stringifyable } from "../deps/xml.ts";
-import { MultilanguageData } from "./multilanguage.ts";
+import { MultilanguagePluginData } from "./multilanguage.ts";
 
-export interface SitemapPluginData extends MultilanguageData {}
+export interface SitemapPluginData extends MultilanguagePluginData {}
 
 type ChangeFreq =
   | "always"

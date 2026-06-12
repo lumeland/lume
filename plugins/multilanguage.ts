@@ -8,7 +8,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 
-export interface MultilanguageData extends Data {
+export interface MultilanguagePluginData extends Data {
   /** The language of the page */
   lang?: string;
 
@@ -53,7 +53,7 @@ export const defaults = {
 export function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<MultilanguageData>) => {
+  return (site: Site<MultilanguagePluginData>) => {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
@@ -61,8 +61,8 @@ export function multilanguage(userOptions: Options) {
 
     // Event to handle generators before being preprocessed
     site.addEventListener("beforeRender", ({ pages }) => {
-      const removedPages: Page<MultilanguageData>[] = [];
-      const newPages: Page<MultilanguageData>[] = [];
+      const removedPages: Page<MultilanguagePluginData>[] = [];
+      const newPages: Page<MultilanguagePluginData>[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -117,7 +117,7 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Create a new page per language
-          const newPages: Page<MultilanguageData>[] = [];
+          const newPages: Page<MultilanguagePluginData>[] = [];
           const id = data.id ?? page.src.path.slice(1);
 
           for (const lang of languages) {
@@ -169,8 +169,8 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Page<MultilanguageData>["data"][] = [];
-        const ids = new Map<string, Page<MultilanguageData>>();
+        const alternates: Page<MultilanguagePluginData>["data"][] = [];
+        const ids = new Map<string, Page<MultilanguagePluginData>>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
@@ -246,7 +246,7 @@ export function multilanguage(userOptions: Options) {
     });
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: MultilanguageData) {
+    function mergeTranslations(data: MultilanguagePluginData) {
       const { lang } = data;
 
       if (!lang) {
@@ -268,7 +268,7 @@ export function multilanguage(userOptions: Options) {
     }
 
     /** Assign a language to a page */
-    function fixLanguage(page: Page<MultilanguageData>) {
+    function fixLanguage(page: Page<MultilanguagePluginData>) {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
 
@@ -313,8 +313,8 @@ export function multilanguage(userOptions: Options) {
 }
 
 function getUnmatchedLangPath(
-  currentPage: Page<MultilanguageData>,
-  filteredPages: Page<MultilanguageData>[],
+  currentPage: Page<MultilanguagePluginData>,
+  filteredPages: Page<MultilanguagePluginData>[],
 ): string | undefined {
   const { sourcePath } = currentPage;
   const { unmatchedLangUrl, alternates } = currentPage.data;

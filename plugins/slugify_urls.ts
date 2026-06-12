@@ -8,9 +8,9 @@ import type Site from "../core/site.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 import { getBasename } from "../core/utils/page_url.ts";
-import { MultilanguageData } from "./multilanguage.ts";
+import { MultilanguagePluginData } from "./multilanguage.ts";
 
-export interface SlugifyUrlsPluginData extends MultilanguageData {}
+export interface SlugifyUrlsPluginData extends MultilanguagePluginData {}
 
 export interface Options extends SlugifierOptions {
   /** File extensions to slugify */
