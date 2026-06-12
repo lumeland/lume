@@ -429,11 +429,11 @@ export default class Site<D extends Data = Lume.Data> {
   }
 
   /** Register a processor for some extensions */
-  process(processor: Processor<Data>): this;
-  process(extensions: Extensions, processor: Processor<Data>): this;
+  process(processor: Processor<D>): this;
+  process(extensions: Extensions, processor: Processor<D>): this;
   process(
-    extensions: Extensions | Processor<Data>,
-    processor?: Processor<Data>,
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);

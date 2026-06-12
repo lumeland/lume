@@ -51,8 +51,8 @@ export class Page<D extends UnknownData = Data> {
   }
 
   /** Duplicate this page. */
-  duplicate(index: number | undefined, data: D): Page<D> {
-    const page = new Page(data, { ...this.src });
+  duplicate(index: number | undefined, data: Partial<D>): Page<D> {
+    const page = new Page({ ...this.data, ...data }, { ...this.src });
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;

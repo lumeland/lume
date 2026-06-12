@@ -108,7 +108,7 @@ export function ogImages(userOptions?: Options) {
 
     async function render(
       jsx: unknown,
-    ): Promise<Uint8Array | undefined> {
+    ): Promise<Uint8Array<ArrayBuffer> | undefined> {
       if (cache) {
         const result = await cache.getBytes(["og", jsx]);
 
@@ -124,7 +124,7 @@ export function ogImages(userOptions?: Options) {
         await cache.set(["og", jsx], content);
       }
 
-      return content;
+      return new Uint8Array(content);
     }
   };
 }

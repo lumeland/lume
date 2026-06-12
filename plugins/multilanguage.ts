@@ -57,7 +57,7 @@ export function multilanguage(userOptions: Options) {
 
         // Create a new page per language
         for (const lang of languages) {
-          const newData: Data = { ...data, lang };
+          const newData = { ...data, lang };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
           mergeTranslations(newPage.data);
@@ -243,7 +243,7 @@ export function multilanguage(userOptions: Options) {
     }
 
     /** Assign a language to a page */
-    function fixLanguage(page: Page<Data>) {
+    function fixLanguage(page: Page<Lume.Data>) {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
 
@@ -288,8 +288,8 @@ export function multilanguage(userOptions: Options) {
 }
 
 function getUnmatchedLangPath(
-  currentPage: Page<Data>,
-  filteredPages: Page<Data>[],
+  currentPage: Page<Lume.Data>,
+  filteredPages: Page<Lume.Data>[],
 ): string | undefined {
   const { sourcePath } = currentPage;
   const { unmatchedLangUrl, alternates } = currentPage.data;
@@ -335,3 +335,30 @@ function appendHreflang(lang: string, url: string, document: Document) {
 }
 
 export default multilanguage;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data {
+      /**
+       * Unmatched Language URL
+       * The url for when the user's language doesn't match with any of the site's available languages.
+       *
+       * Valid values are:
+       * - External URL string (http, https), which is language selector page
+       * - Source path string (/), which is language selector page
+       * - Language code (en, gl, vi), which is fallback language page
+       *
+       * This option is made for x-default feature.
+       * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
+       */
+      unmatchedLangUrl?: string;
+
+      /**
+       * Alternate pages (for languages)
+       * @see https://lume.land/plugins/multilanguage/
+       */
+      alternates?: Data[]
+    }
+  }
+}
