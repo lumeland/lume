@@ -11,6 +11,12 @@ import {
   type StrictPresetOptions,
   transform,
 } from "../deps/fff.ts";
+import { Data } from "../core/file.ts";
+
+export interface FFFPluginData
+  extends Data, Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {
+    type?: PostType;
+  }
 
 export interface Options {
   /**
@@ -39,15 +45,15 @@ export const defaults = {
 export function fff(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<FFFPluginData>) => {
     site.preprocess([".html"], function processFFF(pages) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
-            page.data.created = getGitDate("created", page.src.entry.src);
+            page.data.created = getGitDate("created", page.src.entry.src)?.toDateString();
           }
           if (!page.data.updated) {
-            page.data.updated = getGitDate("modified", page.src.entry.src);
+            page.data.updated = getGitDate("modified", page.src.entry.src)?.toDateString();
           }
         }
 
@@ -66,15 +72,3 @@ export function fff(userOptions?: Options) {
 }
 
 export default fff;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data
-      extends Omit<FFFFlavoredFrontmatter, "lang" | "tags" | "created" | "updated"> {
-        created?: Date;
-        updated?: Date;
-        type?: PostType;
-      }
-  }
-}

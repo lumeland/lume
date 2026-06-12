@@ -4,7 +4,14 @@ import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
-import type { Data } from "../core/file.ts";
+import { SearchPluginData } from "./search.ts";
+
+export interface NavPluginData extends SearchPluginData {
+  /** @see https://lume.land/plugins/nav/ */
+  nav: Nav;
+
+  title?: string;
+}
 
 export interface Options {
   /** The default order for the children */
@@ -22,7 +29,7 @@ export const defaults = {
 export function nav(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<NavPluginData>) => {
     const nav = new Nav(site.search, options.order);
     site.data("nav", nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
@@ -32,10 +39,10 @@ export function nav(userOptions?: Options) {
 /** Search helper */
 export class Nav {
   #cache = new Map<string, NavData>();
-  #search: Searcher;
+  #search: Searcher<NavPluginData>;
   #defaultOrder?: string;
 
-  constructor(searcher: Searcher, defaultOrder?: string) {
+  constructor(searcher: Searcher<NavPluginData>, defaultOrder?: string) {
     this.#search = searcher;
     this.#defaultOrder = defaultOrder;
   }
@@ -78,7 +85,7 @@ export class Nav {
     return breadcrumb;
   }
 
-  nextPage(url: string, query?: string, sort?: string): Data | undefined {
+  nextPage(url: string, query?: string, sort?: string): NavPluginData | undefined {
     const item = this.menu(url, query, sort)!;
 
     // It has a child -> return the first child with url
@@ -104,7 +111,7 @@ export class Nav {
     return parent ? getFirstChild(parent)?.data : undefined;
   }
 
-  previousPage(url: string, query?: string, sort?: string): Data | undefined {
+  previousPage(url: string, query?: string, sort?: string): NavPluginData | undefined {
     const nav = this.menu(url, query, sort)!;
     const siblings = nav?.parent?.children;
 
@@ -131,7 +138,7 @@ export class Nav {
   #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
       slug: "",
-      data: { basename: "" } as Data,
+      data: { basename: "" } as NavPluginData,
     };
 
     const dataPages = this.#search.pages(query);
@@ -161,9 +168,9 @@ export class Nav {
           current = current.children[part] = {
             slug: part,
             data: {
-              ...this.#search.data(path),
+              ...this.#search.data(path) as NavPluginData,
               basename: part,
-            } as Data,
+            },
             parent: current,
           };
         } else {
@@ -177,14 +184,14 @@ export class Nav {
 }
 
 export interface TempNavData {
-  data: Data;
+  data: NavPluginData;
   slug: string;
   children?: Record<string, TempNavData>;
   parent?: TempNavData;
 }
 
 export interface NavData {
-  data: Data;
+  data: NavPluginData;
   slug: string;
   children?: NavData[];
   parent?: NavData;
@@ -285,7 +292,7 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 // Convert TempNavData to NavData
 function convert(
   temp: TempNavData,
-  order: (a: Data, b: Data) => number,
+  order: (a: NavPluginData, b: NavPluginData) => number,
   parent?: NavData,
 ): NavData {
   const data: NavData = {
@@ -325,13 +332,3 @@ function filterIndex(path: string): boolean {
 }
 
 export default nav;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /** @see https://lume.land/plugins/nav/ */
-      nav: Nav;
-    }
-  }
-}

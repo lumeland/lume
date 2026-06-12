@@ -4,13 +4,14 @@ import json, { Options as JsonOptions } from "./plugins/json.ts";
 import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
 import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
 import vento, { Options as VentoOptions } from "./plugins/vento.ts";
-import search from "./plugins/search.ts";
-import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
+import search, { SearchPluginData } from "./plugins/search.ts";
+import paginate, { Options as PaginateOptions, PaginatePluginData } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
 
 import type { SiteOptions } from "./core/site.ts";
+import { Data } from "./core/file.ts";
 
 export interface PluginOptions {
   json?: JsonOptions;
@@ -22,16 +23,16 @@ export interface PluginOptions {
   yaml?: YamlOptions;
 }
 
-export default function lume(
+export default function lume<T extends Data = Lume.Data>(
   options: SiteOptions = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
-): Site {
+): Site<T & PaginatePluginData & SearchPluginData> {
   if (cliOptions) {
     getOptionsFromCli(options);
   }
 
-  const site = new Site(options);
+  const site = new Site<T>(options);
 
   // Ignore some files by the watcher
   site.options.watcher.ignore.push("/deno.lock");

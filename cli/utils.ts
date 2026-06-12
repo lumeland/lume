@@ -1,15 +1,16 @@
 import lume from "../mod.ts";
 import { log } from "../core/utils/log.ts";
 import Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 /** Create a site instance */
-export async function createSite(_config?: URL): Promise<Site> {
+export async function createSite<D extends Data>(_config?: URL): Promise<Site<D>> {
   if (!_config) {
-    return lume();
+    return lume() as unknown as Site<D>;
   }
   log.info(`Loading config file <gray>${_config}</gray>`);
   const mod = await import(_config.toString());
-  const site = mod.default as Site | undefined;
+  const site = mod.default as Site<D> | undefined;
   if (!(site instanceof Site)) {
     log.fatal(
       `[Lume] Missing Site instance! Ensure your config file does export the Site instance as default.`,
@@ -20,7 +21,7 @@ export async function createSite(_config?: URL): Promise<Site> {
 }
 
 /** Create a site intance and build it */
-export async function buildSite(site: Site): Promise<void> {
+export async function buildSite<D extends Data>(site: Site<D>): Promise<void> {
   performance.mark("start");
   await site.build();
   performance.mark("end");

@@ -5,10 +5,17 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
+import Site from "../core/site.ts";
 
-import "../types.ts";
+export interface OgImagesPluginData extends Data {
+  /**
+   * The layout to generate the Open Graph Image
+   * @see https://lume.land/plugins/og_image/
+   */
+  openGraphLayout?: string;
+}
 
 export interface Options {
   /**
@@ -37,7 +44,7 @@ export const defaults = {
  * @see https://lume.land/plugins/og_images/
  */
 export function ogImages(userOptions?: Options) {
-  return (site: Lume.Site) => {
+  return (site: Site<OgImagesPluginData>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -124,7 +131,7 @@ export function ogImages(userOptions?: Options) {
         await cache.set(["og", jsx], content);
       }
 
-      return new Uint8Array(content);
+      return content as Uint8Array<ArrayBuffer>;
     }
   };
 }
@@ -138,7 +145,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       data: (await read(
         `${fontsSpecifier}/inter/Inter-Regular.woff`,
         true,
-      )).buffer as ArrayBuffer,
+      )).buffer,
     },
     {
       name: "inter",
@@ -147,22 +154,9 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       data: (await read(
         `${fontsSpecifier}/inter/Inter-SemiBold.woff`,
         true,
-      )).buffer as ArrayBuffer,
+      )).buffer,
     },
   ];
 }
 
 export default ogImages;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /**
-       * The layout to generate the Open Graph Image
-       * @see https://lume.land/plugins/og_image/
-       */
-      openGraphLayout?: string;
-    }
-  }
-}

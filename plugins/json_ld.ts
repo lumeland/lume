@@ -2,8 +2,16 @@ import { isPlainObject } from "../core/utils/object.ts";
 import { getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
+
+export interface JsonldPluginData extends Data {
+  /**
+   * JSON_LD elements
+   * @see https://lume.land/plugins/json_ld/
+   */
+  jsonLd?: JsonldData;
+}
 
 export type JsonldData = Graph | Thing;
 
@@ -188,14 +196,14 @@ export interface Options {
 export function jsonLd(userOptions?: Options) {
   const insert = userOptions?.insert ?? true;
 
-  return (site: Site) => {
+  return (site: Site<JsonldPluginData>) => {
     site.mergeKey("jsonLd", "object");
     site.process([".html"], function processJsonLd(pages) {
       pages.forEach(jsonLdProcessor);
     });
 
-    function jsonLdProcessor(page: Page) {
-      let jsonLdData = page.data.jsonLd as JsonldData | undefined;
+    function jsonLdProcessor(page: Page<JsonldPluginData>) {
+      let jsonLdData = page.data.jsonLd;
 
       if (!jsonLdData) {
         return;
@@ -256,7 +264,7 @@ export function jsonLd(userOptions?: Options) {
           document.head.appendChild(script);
           document.head.appendChild(document.createTextNode("\n"));
         } else {
-          page.data.jsonLdData = jsonLdData;
+          page.data.jsonLd = jsonLdData;
         }
       }
     }
@@ -264,16 +272,3 @@ export function jsonLd(userOptions?: Options) {
 }
 
 export default jsonLd;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /**
-       * JSON_LD elements
-       * @see https://lume.land/plugins/json_ld/
-       */
-      jsonLd?: JsonldData;
-    }
-  }
-}

@@ -1,14 +1,19 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import feed from "../plugins/feed.ts";
+import { Data } from "../core/file.ts";
+
+interface FeedTestData extends Data {
+  title?: string;
+}
 
 Deno.test("RSS plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<FeedTestData>({
     src: "feed",
     location: new URL("https://example.com/"),
   });
 
   site.use(
-    feed({
+    feed<FeedTestData>({
       output: ["feed.json", "feed.rss", "feed.atom"],
       info: {
         published: new Date("2020-01-01"),
@@ -39,13 +44,13 @@ Deno.test("RSS plugin", async (t) => {
 });
 
 Deno.test("RSS plugin with array function", async (t) => {
-  const site = getSite({
+  const site = getSite<FeedTestData>({
     src: "feed",
     location: new URL("https://example.com/"),
   });
 
   site.use(
-    feed(() => [{
+    feed<FeedTestData>(() => [{
       output: ["feed1.json", "feed1.rss", "feed1.atom"],
       stylesheet: "/feed-style.xml",
       info: {

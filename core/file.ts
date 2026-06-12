@@ -103,7 +103,9 @@ export class Page<D extends UnknownData = Data> {
   }
 
   set content(content: Content | undefined) {
-    this.#content = content;
+    this.#content = content instanceof Uint8Array
+      ? content
+      : content && content.toString();
   }
 
   /** The content of this page as text */
@@ -210,6 +212,8 @@ export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
 export interface RawData {
+  page?: Page<this>;
+
   /** The url of a page */
   url?:
     | string
@@ -245,6 +249,8 @@ export interface RawData {
 
 /** The data of a page/folder once loaded and processed */
 export interface Data extends RawData {
+  page?: Page<this>;
+
   /** The url of a page */
   url: string;
 

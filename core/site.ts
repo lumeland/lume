@@ -24,7 +24,6 @@ import {
   Data,
   filesToPages,
   Page,
-  RawData,
   StaticFile,
   UnknownData,
 } from "./file.ts";
@@ -81,7 +80,7 @@ const defaults = {
  * This is the heart of Lume,
  * it contains everything needed to build the site
  */
-export default class Site<D extends Data = Lume.Data> {
+export default class Site<D extends Data = Data> {
   options: Merge<SiteOptions, typeof defaults>;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
@@ -131,10 +130,10 @@ export default class Site<D extends Data = Lume.Data> {
   writer: Writer;
 
   /** Data assigned with site.data() */
-  scopedData = new Map<string, RawData>([["/", {}]]);
+  scopedData = new Map<string, Partial<D>>([["/", {}]]);
 
   /** Pages created with site.page() */
-  scopedPages = new Map<string, RawData[]>();
+  scopedPages = new Map<string, Partial<D>[]>();
 
   /** Components created with site.component() */
   scopedComponents = new Map<string, Components>();
@@ -336,9 +335,9 @@ export default class Site<D extends Data = Lume.Data> {
   }
 
   /** Use a plugin */
-  use(plugin: Plugin<D>): this {
-    plugin(this);
-    return this;
+  use<T extends Data>(plugin: Plugin<T>): Site<D & T> {
+    plugin(this as unknown as Site<T>);
+    return this as unknown as Site<D & T>;
   }
 
   /**
@@ -448,12 +447,12 @@ export default class Site<D extends Data = Lume.Data> {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper<HelperThis>, async = false): this {
+  filter(name: string, filter: Helper<HelperThis<D>>, async = false): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
+  helper(name: string, fn: Helper<HelperThis<D>>, options: HelperOptions): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -465,15 +464,15 @@ export default class Site<D extends Data = Lume.Data> {
   }
 
   /** Register extra data accessible by the layouts */
-  data(name: string, value: unknown, scope = "/"): this {
-    const data = this.scopedData.get(scope) || {};
+  data<K extends string>(name: keyof D, value: D[K], scope = "/"): this {
+    const data: Partial<D> = this.scopedData.get(scope) || {};
     data[name] = value;
     this.scopedData.set(scope, data);
     return this;
   }
 
   /** Register a page */
-  page(data: Partial<Data>, scope = "/"): this {
+  page(data: Partial<D>, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data);
     this.scopedPages.set(scope, pages);
@@ -515,8 +514,8 @@ export default class Site<D extends Data = Lume.Data> {
 
   /** Register a merging strategy for a data key */
   mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
-    const data = this.scopedData.get(scope) || {};
-    const mergedKeys = data.mergedKeys || {};
+    const data: Partial<D> = this.scopedData.get(scope) || {};
+    const mergedKeys: Record<string, MergeStrategy> = data.mergedKeys || {};
     mergedKeys[key] = merge;
     data.mergedKeys = mergedKeys;
     this.scopedData.set(scope, data);
@@ -1028,6 +1027,10 @@ export default class Site<D extends Data = Lume.Data> {
     return absolute ? this.options.location.origin + path : path;
   }
 
+  pushPage(page: Page): void {
+    this.pages.push(page as Page<D>);
+  }
+
   removePage(file: StaticFile<D>): StaticFile<D> | undefined;
   removePage(page: Page<D>): Page<D> | undefined;
   removePage(
@@ -1365,7 +1368,7 @@ export type SiteEvent<D extends Data, T extends SiteEventType = SiteEventType> =
 export type SiteEventType = keyof SiteEventMap<Data>;
 
 /** A generic Lume plugin */
-export type Plugin<D extends Data = Lume.Data> = (
+export type Plugin<D extends Data = Data> = (
   site: Site<D>,
 ) => void;
 
@@ -1375,3 +1378,13 @@ function pathBelongs(base: string, path?: string): boolean {
   }
   return base === path || path?.startsWith(base + "/");
 }
+
+export type OmitIndexSignature<ObjectType> = {
+		[KeyType in keyof ObjectType as string extends KeyType
+			? never
+			: number extends KeyType
+				? never
+				: symbol extends KeyType
+					? never
+					: KeyType]: ObjectType[KeyType];
+	};

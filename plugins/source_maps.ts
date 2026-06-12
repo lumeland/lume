@@ -3,10 +3,18 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
+
+export interface SourceMapsPluginData extends Data {
+  /**
+   * The source map data (if it's an asset)
+   * @see https://lume.land/plugins/source_maps/
+   */
+  sourceMap?: SourceMap;
+}
 
 export interface Options {
   /** Set true to inline the source map in the output file */
@@ -28,7 +36,7 @@ export const defaults = {
 export function sourceMaps(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<SourceMapsPluginData>) => {
     site._data.enableSourceMap = true;
 
     site.process(function processSourceMaps(pages, allPages) {
@@ -199,16 +207,3 @@ function addSourceMap(url: string, sourceMap: string): string {
 }
 
 export default sourceMaps;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /**
-       * The source map data (if it's an asset)
-       * @see https://lume.land/plugins/source_maps/
-       */
-      sourceMap?: SourceMap;
-    }
-  }
-}

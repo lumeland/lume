@@ -1,7 +1,27 @@
 import { Merge, merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data as PageData } from "../core/file.ts";
+import type { Data } from "../core/file.ts";
+
+export interface PaginatePluginData extends Data {
+  /**
+   * The paginator helper
+   * @see https://lume.land/plugins/paginate/
+   */
+  paginate: Paginator;
+
+  /**
+   * The pagination info
+   * @see https://lume.land/plugins/paginate/
+   */
+  pagination?: PaginationInfo;
+
+  /**
+   * The pagination result
+   * @see https://lume.land/plugins/paginate/
+   */
+  results?: this[];
+}
 
 /** The options for the paginate helper */
 export interface PaginateOptions {
@@ -78,7 +98,7 @@ export const defaults = {
 export function paginate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<PaginatePluginData>) => {
     if (!userOptions?.options?.url) {
       const ext = site.options.prettyUrls ? "/index.html" : ".html";
       options.options.url = (page: number) => `./page-${page}${ext}`;
@@ -143,25 +163,5 @@ export default paginate;
 declare global {
   namespace Lume {
     export type { PaginateResult };
-
-    export interface Data extends PageData {
-      /**
-       * The paginator helper
-       * @see https://lume.land/plugins/paginate/
-       */
-      paginate: Paginator;
-
-      /**
-       * The pagination info
-       * @see https://lume.land/plugins/paginate/
-       */
-      pagination?: PaginationInfo;
-
-      /**
-       * The pagination result
-       * @see https://lume.land/plugins/paginate/
-       */
-      results?: Lume.Data[];
-    }
   }
 }

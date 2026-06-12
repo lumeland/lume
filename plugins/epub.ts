@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { filesToPages } from "../core/file.ts";
-import navPlugin from "./nav.ts";
+import navPlugin, { NavPluginData } from "./nav.ts";
 import type { Nav, NavData } from "./nav.ts";
 import type Site from "../core/site.ts";
 
@@ -16,6 +16,14 @@ import {
   type Property,
 } from "./epub/mod.ts";
 import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
+
+export interface EpubPluginData extends NavPluginData {
+  type?: EpubType;
+  index?: boolean;
+  id?: string;
+  properties?: Property | Property[];
+  manifestItem?: ManifestItem;
+}
 
 export interface Options {
   /** File to output the .epub file */
@@ -43,7 +51,7 @@ export const defaults = {
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<EpubPluginData>) => {
     const metadata = options.metadata as Metadata;
     site.data("metadata", metadata);
     let nav: Nav | undefined = site.scopedData.get("/")?.nav as Nav;
@@ -178,17 +186,4 @@ function allPages(menu: NavData): ManifestItem[] {
   }
 
   return pages;
-}
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      type?: EpubType;
-      index?: boolean;
-      id?: string;
-      properties?: Property | Property[];
-      manifestItem?: ManifestItem;
-    }
-  }
 }

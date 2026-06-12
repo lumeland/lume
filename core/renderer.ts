@@ -53,7 +53,7 @@ export default class Renderer<D extends Data> {
   }
 
   /** Register a new helper used by the template engines */
-  addHelper(name: string, fn: Helper<HelperThis>, options: HelperOptions) {
+  addHelper(name: string, fn: Helper<HelperThis<D>>, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
@@ -370,8 +370,8 @@ export interface Engine<T = string | { toString(): string }> {
 }
 
 /** A generic helper to be used in template engines */
-export interface HelperThis {
-  data?: Data;
+export interface HelperThis<D extends Data = Data> {
+  data?: D & { page: Page<D> };
 }
 
 // deno-lint-ignore no-explicit-any

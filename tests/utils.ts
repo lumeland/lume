@@ -6,6 +6,9 @@ import { basename, fromFileUrl, join } from "../deps/path.ts";
 import type { Writer } from "../core/writer.ts";
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
+import { Data } from "../core/file.ts";
+import { PaginatePluginData } from "../plugins/paginate.ts";
+import { SearchPluginData } from "../plugins/search.ts";
 
 const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
@@ -33,14 +36,14 @@ class TestWriter implements Writer {
 }
 
 /** Create a new lume site using the "assets" path as cwd */
-export function getSite(
+export function getSite<T extends Data = Data>(
   options: SiteOptions = {},
   pluginOptions = {},
   write = false,
-): Site {
+): Site<T & PaginatePluginData & SearchPluginData> {
   options.cwd = getPath("assets");
 
-  const site = lume(options, pluginOptions, false);
+  const site = lume<T>(options, pluginOptions, false);
 
   if (!write) {
     site.writer = new TestWriter();
@@ -50,7 +53,7 @@ export function getSite(
 }
 
 /** Returns a generated page by src path */
-export function getPage(site: Site, path: string) {
+export function getPage<T extends Data>(site: Site<T>, path: string) {
   const page = site.pages.find((page) => page.src.path === path);
 
   if (!page) {
@@ -61,7 +64,7 @@ export function getPage(site: Site, path: string) {
 }
 
 /** Build a site and print errors */
-export async function build(site: Site) {
+export async function build<T extends Data>(site: Site<T>) {
   try {
     await site.build();
   } catch (error) {
@@ -110,9 +113,9 @@ interface SiteSnapshotOptions {
   avoidBinaryFilesLength?: boolean;
 }
 
-export async function assertSiteSnapshot(
+export async function assertSiteSnapshot<T extends Data>(
   context: Deno.TestContext,
-  site: Site,
+  site: Site<T>,
   options: SiteSnapshotOptions = {},
 ) {
   const { pages, files } = site;

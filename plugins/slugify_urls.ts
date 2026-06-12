@@ -8,6 +8,9 @@ import type Site from "../core/site.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 import { getBasename } from "../core/utils/page_url.ts";
+import { MultilanguageData } from "./multilanguage.ts";
+
+export interface SlugifyUrlsPluginData extends MultilanguageData {}
 
 export interface Options extends SlugifierOptions {
   /** File extensions to slugify */
@@ -28,7 +31,7 @@ export function slugifyUrls(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
-  return (site: Site) => {
+  return (site: Site<SlugifyUrlsPluginData>) => {
     site.filter("slugify", function (text: string, lang?: string) {
       return slugify(text, lang ?? this?.data?.lang);
     });

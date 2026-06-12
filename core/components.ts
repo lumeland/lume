@@ -331,7 +331,7 @@ async function getEntryContent(entry?: Entry | string): Promise<string> {
   return "";
 }
 
-export interface ProxyComponents {
+export type ProxyComponents = {
   // deno-lint-ignore no-explicit-any
   (props?: Record<string, unknown>): any;
   [key: string]: ProxyComponents;

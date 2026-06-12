@@ -1,15 +1,9 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data as PageData, Page } from "../core/file.ts";
+import type { Data as PageData, Page, Data } from "../core/file.ts";
 
-declare global {
-  namespace Lume {
-    export interface Data extends PageData {}
-  }
-}
-
-type RelationFilter = (data1: Lume.Data, data2: Lume.Data) => boolean;
+type RelationFilter = (data1: Data, data2: Data) => boolean;
 
 interface ForeignKeyOptions {
   foreignKey: string;
@@ -53,7 +47,7 @@ export function relations(userOptions: Options) {
 
     function processRelations(pages1: Page[], pages: Page[]) {
       pages1.forEach((page1) => {
-        const data1 = page1.data as Lume.Data;
+        const data1 = page1.data;
         const [
           type1,
           foreignKey1,
@@ -74,7 +68,7 @@ export function relations(userOptions: Options) {
             return;
           }
 
-          const data2 = page2.data as Lume.Data;
+          const data2 = page2.data;
 
           if (filter1 && !filter1(data1, data2)) {
             return;

@@ -191,7 +191,7 @@ export function pagefind(userOptions?: Options) {
         const { path } = file;
         const content = textExtensions.includes(posix.extname(path))
           ? textDecoder.decode(file.content)
-          : file.content;
+          : new Uint8Array(file.content);
 
         allPages.push(
           Page.create({

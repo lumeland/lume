@@ -1,5 +1,5 @@
 import { typeByExtension } from "../../deps/media_types.ts";
-import type { Data } from "../../core/file.ts";
+import type { Page } from "../../core/file.ts";
 import type { NavData } from "../nav.ts";
 import { stringify, type stringifyable } from "../../deps/xml.ts";
 
@@ -112,7 +112,7 @@ export interface OPF {
   metadata: Metadata;
 }
 
-export function getManifest(data: Data, metadata: Metadata): ManifestItem {
+export function getManifest(data: Page["data"], metadata: Metadata): ManifestItem {
   const href = data.page.outputPath.slice(1); // Remove leading /
   const id = data?.id ?? href.endsWith(".ncx")
     ? "ncx"

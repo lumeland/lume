@@ -8,6 +8,31 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 
+export interface MultilanguageData extends Data {
+  /** The language of the page */
+  lang?: string;
+
+  /**
+   * Unmatched Language URL
+   * The url for when the user's language doesn't match with any of the site's available languages.
+   *
+   * Valid values are:
+   * - External URL string (http, https), which is language selector page
+   * - Source path string (/), which is language selector page
+   * - Language code (en, gl, vi), which is fallback language page
+   *
+   * This option is made for x-default feature.
+   * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
+   */
+  unmatchedLangUrl?: string;
+
+  /**
+   * Alternate pages (for languages)
+   * @see https://lume.land/plugins/multilanguage/
+   */
+  alternates?: this[];
+}
+
 export interface Options {
   /** Available languages */
   languages: string[];
@@ -28,7 +53,7 @@ export const defaults = {
 export function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<MultilanguageData>) => {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
@@ -36,8 +61,8 @@ export function multilanguage(userOptions: Options) {
 
     // Event to handle generators before being preprocessed
     site.addEventListener("beforeRender", ({ pages }) => {
-      const removedPages: Page<Lume.Data>[] = [];
-      const newPages: Page<Lume.Data>[] = [];
+      const removedPages: Page<MultilanguageData>[] = [];
+      const newPages: Page<MultilanguageData>[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -92,7 +117,7 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Create a new page per language
-          const newPages: Page<Lume.Data>[] = [];
+          const newPages: Page<MultilanguageData>[] = [];
           const id = data.id ?? page.src.path.slice(1);
 
           for (const lang of languages) {
@@ -144,8 +169,8 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Lume.Data[] = [];
-        const ids = new Map<string, Page<Lume.Data>>();
+        const alternates: Page<MultilanguageData>["data"][] = [];
+        const ids = new Map<string, Page<MultilanguageData>>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
@@ -221,7 +246,7 @@ export function multilanguage(userOptions: Options) {
     });
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: Lume.Data) {
+    function mergeTranslations(data: MultilanguageData) {
       const { lang } = data;
 
       if (!lang) {
@@ -243,7 +268,7 @@ export function multilanguage(userOptions: Options) {
     }
 
     /** Assign a language to a page */
-    function fixLanguage(page: Page<Lume.Data>) {
+    function fixLanguage(page: Page<MultilanguageData>) {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
 
@@ -288,8 +313,8 @@ export function multilanguage(userOptions: Options) {
 }
 
 function getUnmatchedLangPath(
-  currentPage: Page<Lume.Data>,
-  filteredPages: Page<Lume.Data>[],
+  currentPage: Page<MultilanguageData>,
+  filteredPages: Page<MultilanguageData>[],
 ): string | undefined {
   const { sourcePath } = currentPage;
   const { unmatchedLangUrl, alternates } = currentPage.data;
@@ -335,33 +360,3 @@ function appendHreflang(lang: string, url: string, document: Document) {
 }
 
 export default multilanguage;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /** The language of the page */
-      lang?: string;
-
-      /**
-       * Unmatched Language URL
-       * The url for when the user's language doesn't match with any of the site's available languages.
-       *
-       * Valid values are:
-       * - External URL string (http, https), which is language selector page
-       * - Source path string (/), which is language selector page
-       * - Language code (en, gl, vi), which is fallback language page
-       *
-       * This option is made for x-default feature.
-       * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
-       */
-      unmatchedLangUrl?: string;
-
-      /**
-       * Alternate pages (for languages)
-       * @see https://lume.land/plugins/multilanguage/
-       */
-      alternates?: Data[];
-    }
-  }
-}

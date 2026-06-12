@@ -1,8 +1,16 @@
 import { merge } from "../core/utils/object.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
+
+export interface RedirectPluginData extends Data {
+  /**
+   * The old url(s) of a page
+   * @see https://lume.land/plugins/redirects/
+   */
+  oldUrl?: string | string[];
+}
 
 export interface Options {
   /** The redirects output format */
@@ -39,7 +47,7 @@ const outputs: Record<string, OutputStrategy> = {
 export function redirects(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return (site: Site<RedirectPluginData>) => {
     site.process(function processRedirects(pages) {
       const redirects: Redirect[] = [];
 
@@ -169,16 +177,3 @@ async function vercel(redirects: Redirect[], site: Site): Promise<void> {
 }
 
 export default redirects;
-
-/** Extends Data interface */
-declare global {
-  namespace Lume {
-    export interface Data {
-      /**
-       * The old url(s) of a page
-       * @see https://lume.land/plugins/redirects/
-       */
-      oldUrl?: string | string[];
-    }
-  }
-}
