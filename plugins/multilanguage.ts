@@ -36,8 +36,8 @@ export function multilanguage(userOptions: Options) {
 
     // Event to handle generators before being preprocessed
     site.addEventListener("beforeRender", ({ pages }) => {
-      const removedPages: Page[] = [];
-      const newPages: Page[] = [];
+      const removedPages: Page<Lume.Data>[] = [];
+      const newPages: Page<Lume.Data>[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -92,11 +92,11 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Create a new page per language
-          const newPages: Page[] = [];
+          const newPages: Page<Lume.Data>[] = [];
           const id = data.id ?? page.src.path.slice(1);
 
           for (const lang of languages) {
-            const newData: Data = { ...data, lang, id };
+            const newData = { ...data, lang, id };
             const newPage = page.duplicate(undefined, newData);
             newPages.push(newPage);
             mergeTranslations(newPage.data);
@@ -144,8 +144,8 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Data[] = [];
-        const ids = new Map<string, Page>();
+        const alternates: Lume.Data[] = [];
+        const ids = new Map<string, Page<Lume.Data>>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
@@ -221,7 +221,7 @@ export function multilanguage(userOptions: Options) {
     });
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: Data) {
+    function mergeTranslations(data: Lume.Data) {
       const { lang } = data;
 
       if (!lang) {
@@ -340,6 +340,9 @@ export default multilanguage;
 declare global {
   namespace Lume {
     export interface Data {
+      /** The language of the page */
+      lang?: string;
+
       /**
        * Unmatched Language URL
        * The url for when the user's language doesn't match with any of the site's available languages.
@@ -358,7 +361,7 @@ declare global {
        * Alternate pages (for languages)
        * @see https://lume.land/plugins/multilanguage/
        */
-      alternates?: Data[]
+      alternates?: Data[];
     }
   }
 }

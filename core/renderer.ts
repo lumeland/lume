@@ -13,10 +13,10 @@ import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
 import type DebugBar from "./debugbar.ts";
 
-export interface Options {
+export interface Options<D extends Data> {
   includes: string;
   prettyUrls: boolean;
-  preprocessors: Processors<Data>;
+  preprocessors: Processors<D>;
   formats: Formats;
   fs: FS;
 }
@@ -25,7 +25,7 @@ export interface Options {
  * The renderer is responsible for rendering the site pages
  * in the right order and using the right template engine.
  */
-export default class Renderer {
+export default class Renderer<D extends Data> {
   /** The default folder to include the layouts */
   includes: string;
 
@@ -36,7 +36,7 @@ export default class Renderer {
   prettyUrls: boolean;
 
   /** All preprocessors */
-  preprocessors: Processors<Data>;
+  preprocessors: Processors<D>;
 
   /** Available file formats */
   formats: Formats;
@@ -44,7 +44,7 @@ export default class Renderer {
   /** The registered helpers */
   helpers = new Map<string, [Helper, HelperOptions]>();
 
-  constructor(options: Options) {
+  constructor(options: Options<D>) {
     this.includes = options.includes;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
@@ -65,15 +65,15 @@ export default class Renderer {
 
   /** Render the provided pages */
   async renderPages(
-    from: Page<Data>[],
-    to: Page<Data>[],
+    from: Page<D>[],
+    to: Page<D>[],
     debugBar?: DebugBar,
   ): Promise<void> {
-    const renderedPages: Page<Data>[] = [];
+    const renderedPages: Page<D>[] = [];
 
     for (const group of this.#groupPages(from)) {
-      const pages: Page<Data>[] = [];
-      const generators: Page<Data>[] = [];
+      const pages: Page<D>[] = [];
+      const generators: Page<D>[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
@@ -90,7 +90,7 @@ export default class Renderer {
       to.push(...pages);
 
       debugBar?.startMeasure("generators");
-      const generatedPages: Page<Data>[] = [];
+      const generatedPages: Page<D>[] = [];
       for (const page of generators) {
         const data = { ...page.data };
         const { content } = data;
@@ -229,8 +229,8 @@ export default class Renderer {
   }
 
   /** Group the pages by renderOrder */
-  #groupPages(pages: Page<Data>[]): Page<Data>[][] {
-    const renderOrder: Record<number | string, Page<Data>[]> = {};
+  #groupPages(pages: Page<D>[]): Page<D>[][] {
+    const renderOrder: Record<number | string, Page<D>[]> = {};
 
     for (const page of pages) {
       const order = page.data.renderOrder || 0;

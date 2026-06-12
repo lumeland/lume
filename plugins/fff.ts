@@ -1,3 +1,4 @@
+import { PostType } from "https://deno.land/x/fff@v1.2.1/src/utils/ptd.ts";
 import type Site from "../core/site.ts";
 import { getGitDate } from "../core/utils/date.ts";
 import { merge } from "../core/utils/object.ts";
@@ -70,6 +71,10 @@ export default fff;
 declare global {
   namespace Lume {
     export interface Data
-      extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {}
+      extends Omit<FFFFlavoredFrontmatter, "lang" | "tags" | "created" | "updated"> {
+        created?: Date;
+        updated?: Date;
+        type?: PostType;
+      }
   }
 }

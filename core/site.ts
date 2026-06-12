@@ -109,10 +109,10 @@ export default class Site<D extends Data = Lume.Data> {
   processors: Processors<D>;
 
   /** To store and run the pre-processors */
-  preprocessors: Processors<Data>;
+  preprocessors: Processors<D>;
 
   /** To render the pages using any template engine */
-  renderer: Renderer;
+  renderer: Renderer<D>;
 
   /** To listen and dispatch events */
   // deno-lint-ignore no-explicit-any
@@ -190,8 +190,8 @@ export default class Site<D extends Data = Lume.Data> {
     // To render pages
     const scopes = new Scopes();
     const processors = new Processors<D>();
-    const preprocessors = new Processors<Data>();
-    const renderer = new Renderer({
+    const preprocessors = new Processors<D>();
+    const renderer = new Renderer<D>({
       prettyUrls,
       preprocessors,
       formats,
@@ -406,14 +406,14 @@ export default class Site<D extends Data = Lume.Data> {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(processor: Processor<Data>): this;
+  preprocess(processor: Processor<D>): this;
   preprocess(
     extensions: Extensions,
-    processor: Processor<Data>,
+    processor: Processor<D>,
   ): this;
   preprocess(
-    extensions: Extensions | Processor<Data>,
-    preprocessor?: Processor<Data>,
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.preprocess("*", extensions);
