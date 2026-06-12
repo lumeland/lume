@@ -59,7 +59,7 @@ export function favicon(userOptions?: Options) {
   return (site: Site) => {
     async function getContent(
       file: string,
-    ): Promise<Uint8Array | string | undefined> {
+    ): Promise<Uint8Array<ArrayBuffer> | string | undefined> {
       const content = file.endsWith(".svg")
         ? await site.getContent(file, false)
         : await site.getContent(file, true);
@@ -72,7 +72,7 @@ export function favicon(userOptions?: Options) {
     }
 
     site.process(async function processFaviconImages() {
-      const contents: Record<number, Uint8Array | string> = {};
+      const contents: Record<number, Uint8Array<ArrayBuffer> | string> = {};
 
       for (const [size, file] of Object.entries(input)) {
         const fileContent = await getContent(file);

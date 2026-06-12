@@ -7,7 +7,7 @@ import { getPageDate } from "./utils/page_date.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Content, Data, RawData } from "./file.ts";
+import type { Content, Data, RawData, UnknownData } from "./file.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
@@ -16,7 +16,7 @@ import type DebugBar from "./debugbar.ts";
 export interface Options {
   includes: string;
   prettyUrls: boolean;
-  preprocessors: Processors;
+  preprocessors: Processors<Data>;
   formats: Formats;
   fs: FS;
 }
@@ -36,7 +36,7 @@ export default class Renderer {
   prettyUrls: boolean;
 
   /** All preprocessors */
-  preprocessors: Processors;
+  preprocessors: Processors<Data>;
 
   /** Available file formats */
   formats: Formats;
@@ -65,15 +65,15 @@ export default class Renderer {
 
   /** Render the provided pages */
   async renderPages(
-    from: Page[],
-    to: Page[],
+    from: Page<Data>[],
+    to: Page<Data>[],
     debugBar?: DebugBar,
   ): Promise<void> {
-    const renderedPages: Page[] = [];
+    const renderedPages: Page<Data>[] = [];
 
     for (const group of this.#groupPages(from)) {
-      const pages: Page[] = [];
-      const generators: Page[] = [];
+      const pages: Page<Data>[] = [];
+      const generators: Page<Data>[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
@@ -90,7 +90,7 @@ export default class Renderer {
       to.push(...pages);
 
       debugBar?.startMeasure("generators");
-      const generatedPages: Page[] = [];
+      const generatedPages: Page<Data>[] = [];
       for (const page of generators) {
         const data = { ...page.data };
         const { content } = data;
@@ -111,7 +111,7 @@ export default class Renderer {
           }
           const newPage = page.duplicate(
             index++,
-            mergeData(page.data, data) as Data,
+            mergeData(page.data, data),
           );
 
           let base = basePath;
@@ -229,8 +229,8 @@ export default class Renderer {
   }
 
   /** Group the pages by renderOrder */
-  #groupPages(pages: Page[]): Page[][] {
-    const renderOrder: Record<number | string, Page[]> = {};
+  #groupPages(pages: Page<Data>[]): Page<Data>[][] {
+    const renderOrder: Record<number | string, Page<Data>[]> = {};
 
     for (const page of pages) {
       const order = page.data.renderOrder || 0;
@@ -242,7 +242,7 @@ export default class Renderer {
   }
 
   /** Render a page */
-  async #renderPage(page: Page): Promise<Content> {
+  async #renderPage(page: Page<UnknownData>): Promise<Content> {
     const data = { ...page.data };
     const { content } = data;
     delete data.content;
@@ -255,7 +255,10 @@ export default class Renderer {
   }
 
   /** Render the page layout */
-  async #renderLayout(page: Page, content: Content): Promise<Content> {
+  async #renderLayout(
+    page: Page<Data>,
+    content: Content,
+  ): Promise<Content> {
     let data = { ...page.data };
     let path = page.src.path + page.src.ext;
     let layout = data.layout;
@@ -296,7 +299,7 @@ export default class Renderer {
         layoutData,
         data,
         { content },
-      ) as Data;
+      );
 
       content = await this.render<Content>(
         layoutData.content,
@@ -314,7 +317,7 @@ export default class Renderer {
   /** Get the engines assigned to an extension or configured in the data */
   #getEngine(
     path: string,
-    data: Partial<Data>,
+    data: { templateEngine?: string | string[] },
     isLayout: boolean,
   ): Engine[] | undefined {
     let { templateEngine } = data;

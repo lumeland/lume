@@ -1,13 +1,16 @@
 import { plainText } from "../../deps/remove-markdown.ts";
 
-import type { Data } from "../file.ts";
+import type { Page, UnknownData } from "../file.ts";
 
 /**
  * Get the value of a page data
  * For example, if the value is "=title", it returns the value of the page data "title"
  * If the value is "$.title", it will return the value of the element with the selector ".title"
  */
-export function getDataValue(data: Partial<Data>, value?: unknown) {
+export function getDataValue(
+  data: UnknownData & { page?: Page<UnknownData> },
+  value?: unknown,
+) {
   // Get the value from the page data
   if (typeof value === "string") {
     return searchValue(data, value);
@@ -20,7 +23,10 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
   return value;
 }
 
-export function getPlainDataValue(data: Partial<Data>, value?: unknown) {
+export function getPlainDataValue(
+  data: UnknownData & { page?: Page<UnknownData> },
+  value?: unknown,
+) {
   const val = getDataValue(data, value);
 
   if (typeof val === "string") {
@@ -30,7 +36,10 @@ export function getPlainDataValue(data: Partial<Data>, value?: unknown) {
   return val;
 }
 
-function searchValue(data: Partial<Data>, value: string): unknown {
+function searchValue(
+  data: UnknownData & { page?: Page<UnknownData> },
+  value: string,
+): unknown {
   if (!value) {
     return;
   }

@@ -3,9 +3,8 @@ import { getGitDate, parseDate } from "./date.ts";
 import type { Page, RawData } from "../file.ts";
 
 /** Returns the Date instance of a file */
-export function getPageDate(page: Page): Date {
-  const data = page.data as RawData;
-  const { date } = data;
+export function getPageDate(page: Page<{ date?: RawData["date"] }>): Date {
+  const { date } = page.data;
 
   if (date instanceof Date) {
     return date;
