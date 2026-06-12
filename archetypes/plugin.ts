@@ -3,7 +3,7 @@ import { toCamelCase, toSnakeCase } from "../deps/text.ts";
 import type { Archetype } from "../core/archetypes.ts";
 
 export default (function (name?: string) {
-  name ??= prompt("Name of the plugin:") ?? undefined
+  name ??= prompt("Name of the plugin:") ?? undefined;
 
   if (!name) {
     log.error("Missing name argument. Run 'deno task new plugin {name}");
