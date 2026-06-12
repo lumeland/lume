@@ -25,8 +25,11 @@ export class Page<D extends UnknownData = Data> {
   /** Whether this page comes from a copied file with site.copy() */
   isCopy = false;
 
-  /** The page content (string or Uint8Array) */
-  #content?: Content | Document;
+    /** The page content (string or Uint8Array) */
+    #content?: Content;
+
+    /** The parsed HTML (only for HTML documents) */
+    #document?: Document;
 
   /** Convenient way to create a page dynamically */
   static create<D extends UnknownData & { url: string; content?: Content }>(
@@ -95,51 +98,57 @@ export class Page<D extends UnknownData = Data> {
   }
 
   /** The content of this page */
-  get content(): Content | undefined {
-    if (isDocument(this.#content)) {
-      this.#content = documentToString(this.#content);
+    set content(content: Content | undefined) {
+      this.#document = undefined;
+      this.#content = content instanceof Uint8Array
+        ? content
+        : content && content.toString();
     }
-    return this.#content;
-  }
 
-  set content(content: Content | undefined) {
-    this.#content = content instanceof Uint8Array
-      ? content
-      : content && content.toString();
-  }
+    get content(): Content | undefined {
+      if (this.#document) {
+        this.#content = documentToString(this.#document);
+        this.#document = undefined;
+      }
 
-  /** The content of this page as text */
-  get text(): string {
-    return this.content instanceof Uint8Array
-      ? decoder.decode(this.content)
-      : this.content ?? "";
-  }
-
-  set text(text: string) {
-    this.content = text;
-  }
-
-  /** The content of this page as bytes */
-  get bytes(): Uint8Array<ArrayBuffer> {
-    return this.content instanceof Uint8Array
-      ? this.content
-      : encoder.encode(this.content || "") as Uint8Array<ArrayBuffer>;
-  }
-
-  set bytes(bytes: Uint8Array<ArrayBuffer>) {
-    this.content = bytes;
-  }
-
-  /** The parsed HTML code from the content */
-  get document(): Document {
-    if (!isDocument(this.#content)) {
-      this.#content = stringToDocument(this.text);
+      return this.#content;
     }
-    return this.#content;
-  }
-  set document(document: Document) {
-    this.#content = document;
-  }
+
+    /** The content of this page as text */
+    get text(): string {
+      return this.content instanceof Uint8Array
+        ? decoder.decode(this.content)
+        : this.content ?? "";
+    }
+
+    set text(text: string) {
+      this.content = text;
+    }
+
+    /** The content of this page as bytes */
+    get bytes(): Uint8Array<ArrayBuffer> {
+      return this.content instanceof Uint8Array
+        ? this.content
+        : encoder.encode(this.content || "") as Uint8Array<ArrayBuffer>;
+    }
+
+    set bytes(bytes: Uint8Array<ArrayBuffer>) {
+      this.content = bytes;
+    }
+
+    /** The parsed HTML code from the content */
+    set document(document: Document) {
+      this.#content = undefined;
+      this.#document = document;
+    }
+
+    get document(): Document {
+      if (!this.#document) {
+        this.#document = stringToDocument(this.text);
+      }
+
+      return this.#document;
+    }
 }
 
 export class StaticFile<D extends UnknownData = Data> {
@@ -327,10 +336,6 @@ export function ensureRawData(data: UnknownData): data is RawData {
   }
 
   return true;
-}
-
-function isDocument(val: unknown): val is Document {
-  return typeof val !== "string" && !(val instanceof Uint8Array);
 }
 
 function getUrl(
