@@ -8,8 +8,11 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.2.7] - Unreleased
 ### New
+- `site.archetype()` to register archetypes from the _config.ts file.
 - Predefined archetypes for common code scaffolds
   - `plugin` to create a Lume plugin in the local folder `_plugins/[name].ts`.
+  - `archetype` to create a Lume archetype in the local folder `_archetype/[name].ts`.
+  - `cms` to create the `_cms.ts` file.
 
 ### Changed
 - The `merge` utility function changed the types to better reflect its returned type.
@@ -26,10 +29,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
   const options = merge(defaults, userOptions);
   ```
 - `favicon` plugin: Don't override favicons added explicitly with `site.add()` or `site.copy()`.
+- Archetypes are loaded from the cwd, not the `src` folder.
 
 ### Fixed
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].
 - Updated dependencies: `std`, `html-validate`, `markdown-it` and some icons.
+- `json_ld` plugin: Allow some html tags in the `description` key (according to google's docs).
 
 ## [3.2.6] - 2026-05-25
 ### Fixed

@@ -15,11 +15,14 @@ export interface RemoveMarkdownOptions {
   gfm?: boolean;
 
   /** replace images with alt-text, if present (default: true) */
-  useImgAltText: boolean;
+  useImgAltText?: boolean;
 
+  /** remove abbreviations, if present (default: false) */
   abbr?: boolean;
 
   /** replace links with URLs instead anchor text (default: false) */
   replaceLinksWithURL?: boolean;
+
+  /** HTML tags to skip, if present */
   htmlTagsToSkip?: string[];
 }

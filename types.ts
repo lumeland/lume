@@ -2,7 +2,7 @@ import type { Engine, Helper } from "./core/renderer.ts";
 import type { Data as PageData, Page } from "./core/file.ts";
 import type { Loader } from "./core/fs.ts";
 import type { default as Site, Plugin } from "./core/site.ts";
-import type { Archetype } from "./cli/create.ts";
+import type { Archetype, ArchetypeFile } from "./core/archetypes.ts";
 import type { Middleware, RequestHandler } from "./core/server.ts";
 import type { ProxyComponents as ProxyComponents_ } from "./core/components.ts";
 import { SearchPluginData } from "./plugins/search.ts";
@@ -12,6 +12,7 @@ declare global {
   namespace Lume {
     export type {
       Archetype,
+      ArchetypeFile,
       Engine,
       Loader,
       Middleware,

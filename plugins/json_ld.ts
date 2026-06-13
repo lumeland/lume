@@ -20,7 +20,7 @@ export type JsonldData = Graph | Thing;
  * JSON.stringify(Array.from(document.querySelectorAll('th.prop-nam a')).map(a => a.textContent))
  * on https://schema.org/URL and add '@id'.
  */
-const urlKeys = [
+const urlKeys = new Set([
   "@id",
   "acceptsReservations",
   "acquireLicensePage",
@@ -172,7 +172,9 @@ const urlKeys = [
   "verificationFactCheckingPolicy",
   "warning",
   "webFeed",
-];
+]);
+
+const htmlKeys = new Set(["description"]);
 
 function isEmpty(v: unknown) {
   return v === undefined || v === null || v === "";
@@ -214,11 +216,15 @@ export function jsonLd(userOptions?: Options) {
       // Recursive function to traverse and process JSON-LD data
       function traverse(key: string | undefined, value: unknown): unknown {
         if (typeof value === "string") {
-          const dataValue = getPlainDataValue(data, value);
+          const dataValue = key && htmlKeys.has(key)
+            ? getPlainDataValue(data, value, {
+              htmlTagsToSkip: ["br", "p", "ul", "li"],
+            })
+            : getPlainDataValue(data, value);
           // Check if the value is a URL or ID that needs to be processed
           if (
             key &&
-            urlKeys.includes(key) &&
+            urlKeys.has(key) &&
             typeof dataValue === "string" &&
             (dataValue.startsWith("/") ||
               dataValue.startsWith("./") ||

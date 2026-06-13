@@ -1,4 +1,7 @@
-import { plainText } from "../../deps/remove-markdown.ts";
+import {
+  plainText,
+  RemoveMarkdownOptions,
+} from "../../deps/remove-markdown.ts";
 
 import type { Page, UnknownData } from "../file.ts";
 
@@ -26,11 +29,12 @@ export function getDataValue(
 export function getPlainDataValue(
   data: UnknownData & { page?: Page<UnknownData> },
   value?: unknown,
+  options?: RemoveMarkdownOptions,
 ) {
   const val = getDataValue(data, value);
 
   if (typeof val === "string") {
-    return plainText(val);
+    return plainText(val, options);
   }
 
   return val;

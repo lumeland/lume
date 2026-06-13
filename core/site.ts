@@ -18,7 +18,8 @@ import Events from "./events.ts";
 import Formats from "./formats.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
-import FSWatcher from "../core/watcher.ts";
+import Archetypes from "./archetypes.ts";
+import FSWatcher from "./watcher.ts";
 import { FSWriter } from "./writer.ts";
 import { Data, filesToPages, Page, StaticFile, UnknownData } from "./file.ts";
 import textLoader from "./loaders/text.ts";
@@ -28,6 +29,7 @@ import Cache from "./cache.ts";
 import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
 
+import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
@@ -79,6 +81,9 @@ export default class Site<D extends Data = Data> {
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
   _data: Record<string, unknown> = {};
+
+  /** To register and run archetypes */
+  archetypes: Archetypes;
 
   /** To read the files from the filesystem */
   fs: FS;
@@ -153,6 +158,7 @@ export default class Site<D extends Data = Data> {
   constructor(options?: SiteOptions) {
     this.options = merge(defaults, options);
 
+    const root = this.root();
     const src = this.src();
     const dest = this.dest();
     const { includes, cwd, prettyUrls, components, server, caseSensitiveUrls } =
@@ -193,6 +199,7 @@ export default class Site<D extends Data = Data> {
     });
 
     // Other stuff
+    const archetypes = new Archetypes({ src, root });
     const events = new Events<SiteEvent<Data>>();
     const scripts = new Scripts({ cwd });
     const writer = new FSWriter({ dest, caseSensitiveUrls });
@@ -208,6 +215,7 @@ export default class Site<D extends Data = Data> {
     });
 
     // Save everything in the site instance
+    this.archetypes = archetypes;
     this.fs = fs;
     this.formats = formats;
     this.componentLoader = componentLoader;
@@ -474,6 +482,12 @@ export default class Site<D extends Data = Data> {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data as Partial<D>);
     this.scopedPages.set(scope, pages);
+    return this;
+  }
+
+  /** Register an archetype */
+  archetype(name: string, archetype: string | Archetype): this {
+    this.archetypes.register(name, archetype);
     return this;
   }
 
