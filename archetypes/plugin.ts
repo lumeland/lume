@@ -14,6 +14,10 @@ export default function (name: string) {
     path: `/_plugins/${filename}.ts`,
     content: `import { merge } from "lume/core/utils/object.ts";
 
+/** Plugin data */
+export interface PluginData extends Data {
+}
+
 /** Plugin options */
 export interface Options {
 }
@@ -26,7 +30,7 @@ export const defaults = {
 export function ${pluginName}(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return <D extends PluginData>(site: Site<D>) => {
   }
 }
 
