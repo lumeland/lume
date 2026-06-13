@@ -8,7 +8,7 @@ export interface ReadingInfoPluginData extends Data {
    * Reading info
    * @see https://lume.land/plugins/reading_info/
    */
-  readingInfo: ReadingInfo;
+  readingInfo?: ReadingInfo;
 }
 
 export interface Options {
