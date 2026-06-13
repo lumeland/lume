@@ -6,9 +6,9 @@ import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
 import { Data } from "../core/file.ts";
 
-export interface NavPluginData extends Data {
+export interface NavPluginData<D extends NavPluginData<D>> extends Data {
   /** @see https://lume.land/plugins/nav/ */
-  nav: Nav<this>;
+  nav: Nav<D>;
 
   title?: string;
 }
@@ -29,15 +29,15 @@ export const defaults = {
 export function nav(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends NavPluginData>(site: Site<D>) => {
+  return <D extends NavPluginData<D>>(site: Site<D>) => {
     const nav = new Nav<D>(site.search, options.order);
-    site.data("nav", nav as any);
+    site.data("nav", nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };
 }
 
 /** Search helper */
-export class Nav<D extends NavPluginData> {
+export class Nav<D extends NavPluginData<D>> {
   #cache = new Map<string, NavData<D>>();
   #search: Searcher<D>;
   #defaultOrder?: string;
@@ -301,7 +301,7 @@ function searchData<D extends Data>(
 }
 
 // Convert TempNavData to NavData
-function convert<D extends NavPluginData>(
+function convert<D extends NavPluginData<D>>(
   temp: TempNavData<D>,
   order: (a: D, b: D) => number,
   parent?: NavData<D>,
@@ -347,6 +347,6 @@ export default nav;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data extends NavPluginData {}
+    export interface Data extends NavPluginData<Data> {}
   }
 }
