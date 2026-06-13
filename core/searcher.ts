@@ -1,11 +1,9 @@
 import { globToRegExp } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 
-import type { Data, Page, RawData, StaticFile } from "./file.ts";
+import type { Data, FileData, Page, StaticFile } from "./file.ts";
 
-type PageData<D extends RawData> = Page<D>["data"];
-
-export interface Options<D extends RawData = Data> {
+export interface Options<D extends Data = Data> {
   /** The pages array */
   pages: Page<D>[];
 
@@ -19,15 +17,15 @@ export interface Options<D extends RawData = Data> {
   filters?: Filter<D>[];
 }
 
-type Filter<D extends RawData> = (data: PageData<D>) => boolean;
+type Filter<D extends FileData> = (data: D) => boolean;
 type Condition = [string, string, unknown];
 
 /** Search helper */
-export default class Searcher<D extends RawData = Data> {
+export default class Searcher<D extends Data = Data> {
   #pages: Page<D>[];
   #files: StaticFile<D>[];
   #sourceData: Map<string, Partial<D>>;
-  #cache = new Map<string, PageData<D>[]>();
+  #cache = new Map<string, D[]>();
   #cacheFiles = new Map<string, string[]>();
   #filters: Filter<D>[];
 
@@ -65,7 +63,7 @@ export default class Searcher<D extends RawData = Data> {
   }
 
   /** Search pages */
-  pages<T>(query?: string, sort?: string, limit?: number): (PageData<D> & T)[] {
+  pages<T>(query?: string, sort?: string, limit?: number): (D & T)[] {
     const result = this.#searchPages<T>(query, sort);
 
     if (!limit) {
@@ -76,7 +74,7 @@ export default class Searcher<D extends RawData = Data> {
   }
 
   /** Search and return the first page */
-  page<T>(query?: string, sort?: string): PageData<D> & T | undefined {
+  page<T>(query?: string, sort?: string): D & T | undefined {
     return this.pages<T>(query, sort)[0];
   }
 
@@ -112,7 +110,7 @@ export default class Searcher<D extends RawData = Data> {
     url: string,
     query?: string,
     sort?: string,
-  ): PageData<D> & T | undefined {
+  ): D & T | undefined {
     const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
@@ -124,7 +122,7 @@ export default class Searcher<D extends RawData = Data> {
     url: string,
     query?: string,
     sort?: string,
-  ): PageData<D> & T | undefined {
+  ): D & T | undefined {
     const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
@@ -134,11 +132,11 @@ export default class Searcher<D extends RawData = Data> {
   #searchPages<T = unknown>(
     query?: string,
     sort = "date",
-  ): (PageData<D> & T)[] {
+  ): (D & T)[] {
     const id = JSON.stringify([query, sort]);
 
     if (this.#cache.has(id)) {
-      return [...this.#cache.get(id)!] as (PageData<D> & T)[];
+      return [...this.#cache.get(id)!] as (D & T)[];
     }
 
     const compiledFilter = buildFilter(query);
@@ -152,7 +150,7 @@ export default class Searcher<D extends RawData = Data> {
 
     result.sort(buildSort(sort));
     this.#cache.set(id, result);
-    return [...result] as (PageData<D> & T)[];
+    return [...result] as (D & T)[];
   }
 
   #searchFiles(globOrRegexp?: RegExp | string): string[] {
@@ -188,7 +186,7 @@ export default class Searcher<D extends RawData = Data> {
  */
 export function buildFilter(
   query = "",
-): Filter<RawData> | undefined {
+): Filter<FileData> | undefined {
   // (?:(not)?(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(

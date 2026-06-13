@@ -1,6 +1,6 @@
 import { assertEquals as equals } from "../../deps/assert.ts";
 import Processors from "../../core/processors.ts";
-import { Page, RawData } from "../../core/file.ts";
+import { Page } from "../../core/file.ts";
 
 Deno.test("Processors", async (t) => {
   const processors = new Processors();
@@ -9,7 +9,7 @@ Deno.test("Processors", async (t) => {
 
   await t.step("Add processors", () => {
     const ext = [".foo"];
-    const fn = (pages: Page<RawData>[]) => {
+    const fn = (pages: Page[]) => {
       pages.forEach((page) => {
         const content = page.content as string;
         page.content = content.toUpperCase();
@@ -23,7 +23,7 @@ Deno.test("Processors", async (t) => {
     equals(entry[0], fn);
     equals(entry[1], ext);
 
-    const asterisk = (pages: Page<RawData>[]) => {
+    const asterisk = (pages: Page[]) => {
       pages.forEach((page) => {
         const content = page.content as string;
         page.content = content + "*";
@@ -39,24 +39,23 @@ Deno.test("Processors", async (t) => {
     name: "Run processors",
     ignore: true,
     fn: async () => {
-      const page1 = new Page<RawData>({
+      const page1 = new Page({
         path: "file1",
         ext: ".foo",
       });
       page1.content = "content page 1";
 
-      const page2 = new Page<RawData>({
+      const page2 = new Page({
         path: "file2",
         ext: ".bar",
       });
       page2.content = "content page 2";
 
-      const page3 = new Page<RawData>({
+      const page3 = new Page({
         path: "file2",
         ext: ".bar",
-      }, {
-        url: "file2.foo",
       });
+      page3.data.url = "file2.foo";
       page3.content = "content page 3";
 
       const pages = [page1, page2, page3];

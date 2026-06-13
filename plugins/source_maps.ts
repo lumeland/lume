@@ -3,7 +3,7 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { Data, Page, RawData } from "../core/file.ts";
+import { Data, DataIn, Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
@@ -43,7 +43,7 @@ export function sourceMaps(userOptions?: Options) {
       return concurrent(pages, (page) => processSourceMap(page, allPages));
     });
 
-    async function processSourceMap(file: Page<D>, files: Page<RawData>[]) {
+    async function processSourceMap(file: Page<D>, files: Page<DataIn>[]) {
       const sourceMap = file.data.sourceMap;
       file.data.sourceMap = undefined;
 
@@ -119,15 +119,13 @@ export interface PrepareResult {
 }
 
 /** Return the required info to process a file */
-export function prepareAsset<D extends Data>(
+export function prepareAsset<D extends SourceMapsPluginData>(
   site: Site<D>,
   page: Page<D>,
 ): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.text;
-  const sourceMap = enableSourceMap
-    ? page.data.sourceMap as SourceMap | undefined
-    : undefined;
+  const sourceMap = enableSourceMap ? page.data.sourceMap : undefined;
   const filename = page.src.path
     ? site.src(page.sourcePath)
     : site.src(page.outputPath);
@@ -135,9 +133,9 @@ export function prepareAsset<D extends Data>(
 }
 
 /** Save the process result */
-export function saveAsset<D extends Data>(
+export function saveAsset<D extends SourceMapsPluginData>(
   site: Site<D>,
-  page: Page<RawData>,
+  page: Page<D>,
   content: string,
   sourceMap?: SourceMap | string,
 ) {

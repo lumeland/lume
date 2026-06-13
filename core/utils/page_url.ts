@@ -2,7 +2,7 @@ import { posix } from "../../deps/path.ts";
 import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
-import type { Page, RawData } from "../file.ts";
+import { Page, RawData, Src } from "../file.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(
@@ -28,19 +28,25 @@ export function getBasename(url: string): string {
 
 /** Returns the final URL assigned to a page */
 export function getPageUrl(
-  page: Page<{ url?: RawData["url"]; basename: string }>,
+  data: RawData & { basename: string },
+  src: Src | undefined,
   prettyUrls: boolean,
   parentPath: string,
   destination?: Destination | string,
 ): string | false {
-  let { url } = page.data;
+  let { url, basename } = data;
+  const defaultUrl = getDefaultUrl(basename, parentPath, prettyUrls);
 
   if (url === false) {
     return false;
   }
 
+  const page = Page.create(
+    { ...data, url: defaultUrl, content: undefined },
+    src,
+  );
+
   if (typeof url === "function") {
-    page.data.url = getDefaultUrl(page.data.basename, parentPath, prettyUrls);
     url = url(page);
   }
 
@@ -74,11 +80,6 @@ export function getPageUrl(
     return normalizeUrl(destination);
   }
 
-  const defaultUrl = getDefaultUrl(
-    String(page.data.basename),
-    parentPath,
-    prettyUrls,
-  );
   return destination ? destination(defaultUrl) : defaultUrl;
 }
 

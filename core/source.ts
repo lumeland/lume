@@ -6,7 +6,7 @@ import { getPageDate } from "./utils/page_date.ts";
 import { ensureRawData, Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
 
-import type { RawData } from "./file.ts";
+import type { Data, FileData, RawData, Src } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type { default as Formats, Format } from "./formats.ts";
 import type DataLoader from "./data_loader.ts";
@@ -38,7 +38,7 @@ export interface Options<D extends RawData> {
  * Scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source<D extends RawData> {
+export default class Source<D extends Data> {
   /** Filesystem reader to scan folders */
   fs: FS;
 
@@ -544,22 +544,18 @@ export default class Source<D extends RawData> {
         );
         continue;
       }
-      const page = new Page(undefined, pageData);
 
-      const url = getPageUrl(page, this.prettyUrls, path);
+      const url = getPageUrl(pageData, undefined, this.prettyUrls, path);
       if (!url) {
         continue;
       }
 
-      if (
-        !page.overwrite({
-          url,
-          basename: getBasename(url),
-          date: getPageDate(page),
-        })
-      ) {
-        continue;
-      }
+      const page = new Page(undefined, {
+        ...pageData,
+        url,
+        basename: getBasename(url),
+        date: getPageDate(pageData.date),
+      });
 
       // Prevent running the layout if the page is an asset
       if (!pageData.layout && !page.isHTML) {
@@ -620,28 +616,25 @@ export default class Source<D extends RawData> {
     }
 
     // Create the page
-    const page = new Page({
+    const src: Src = {
       path: entry.path.slice(0, -ext.length),
       ext,
       entry,
-    }, data);
+    };
 
     // Calculate the page URL
-    const url = getPageUrl(page, this.prettyUrls, dirPath, destination);
+    const url = getPageUrl(data, src, this.prettyUrls, dirPath, destination);
 
     if (!url) {
       return;
     }
 
-    if (
-      !page.overwrite({
-        url,
-        basename: getBasename(url),
-        date: getPageDate(page),
-      })
-    ) {
-      return;
-    }
+    const page = new Page(src, {
+      ...data,
+      url,
+      basename: getBasename(url),
+      date: getPageDate(data.date, src),
+    });
 
     // Prevent running the layout if the page is not HTML
     if (!pageData.layout && !page.isHTML) {
@@ -654,7 +647,7 @@ export default class Source<D extends RawData> {
 
 export type Destination = (path: string) => string;
 
-export type BuildFilter = (entry: Entry, page?: Page<RawData>) => boolean;
+export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export type BasenameParser<D> = (
   filename: string,
@@ -705,25 +698,25 @@ function runBasenameParsers<D extends RawData>(
   return data;
 }
 
-function createFile<T extends RawData>(
+function createFile<T extends FileData>(
   entry: Entry,
   ext: string,
   dirPath: string,
   dirData: Partial<T>,
   destination?: string | Destination,
-): StaticFile<T & { url: string }> {
+): StaticFile<T> {
   const url = typeof destination === "string"
     ? destination
     : typeof destination === "function"
     ? destination(posix.join(dirPath, entry.name))
     : posix.join(dirPath, entry.name);
 
-  return StaticFile.create({
-    ...dirData,
+  return StaticFile.create<T>({
+    ...(dirData as T),
     url,
   }, {
     ext,
     path: entry.path.slice(0, -ext.length),
     entry,
-  }) as StaticFile<T & { url: string }>;
+  });
 }

@@ -21,7 +21,7 @@ import Scripts from "./scripts.ts";
 import Archetypes from "./archetypes.ts";
 import FSWatcher from "./watcher.ts";
 import { FSWriter } from "./writer.ts";
-import { Data, filesToPages, Page, RawData, StaticFile } from "./file.ts";
+import { Data, DataIn, filesToPages, Page, StaticFile } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -478,7 +478,7 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Register a page */
-  page(data: Parameters<typeof Page["create"]>[0], scope = "/"): this {
+  page(data: DataIn, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data as Partial<D>);
     this.scopedPages.set(scope, pages);
@@ -1039,7 +1039,7 @@ export default class Site<D extends Data = Data> {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  pushPage(page: Page<RawData & { url: string }>): void {
+  pushPage(page: Page<DataIn>): void {
     this.pages.push(page as Page<D>);
   }
 
@@ -1079,7 +1079,7 @@ export default class Site<D extends Data = Data> {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page<Data>> {
+  async getOrCreatePage(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page
@@ -1323,7 +1323,7 @@ export interface ComponentsOptions {
   placeholder?: string;
 }
 
-export type SiteEventMap<D extends RawData = RawData> = {
+export type SiteEventMap<D extends Data = Data> = {
   // deno-lint-ignore ban-types
   afterLoad: {};
   beforeBuild: {

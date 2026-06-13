@@ -126,7 +126,12 @@ export default class Renderer<D extends Data> {
             base = posix.dirname(page.outputPath);
           }
 
-          const url = getPageUrl(newPage, this.prettyUrls, base);
+          const url = getPageUrl(
+            newPage.data,
+            newPage.src,
+            this.prettyUrls,
+            base,
+          );
 
           if (!url) {
             continue;
@@ -162,7 +167,7 @@ export default class Renderer<D extends Data> {
 
             // Save the children to render the layout later
             if (page.data.layout || page.isHTML) {
-              (page.data as RawData).children = content;
+              (page.data as Data).children = content;
               renderedPages.push(page);
             } else {
               page.content = content;
@@ -242,7 +247,7 @@ export default class Renderer<D extends Data> {
   }
 
   /** Render a page */
-  async #renderPage(page: Page<RawData>): Promise<Content> {
+  async #renderPage(page: Page): Promise<Content> {
     const data = { ...page.data };
     const { content } = data;
     delete data.content;

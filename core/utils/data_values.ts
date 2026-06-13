@@ -3,7 +3,7 @@ import {
   RemoveMarkdownOptions,
 } from "../../deps/remove-markdown.ts";
 
-import type { RawData } from "../file.ts";
+import type { Data } from "../file.ts";
 
 /**
  * Get the value of a page data
@@ -11,7 +11,7 @@ import type { RawData } from "../file.ts";
  * If the value is "$.title", it will return the value of the element with the selector ".title"
  */
 export function getDataValue(
-  data: RawData,
+  data: Partial<Data>,
   value?: unknown,
 ) {
   // Get the value from the page data
@@ -27,7 +27,7 @@ export function getDataValue(
 }
 
 export function getPlainDataValue(
-  data: RawData,
+  data: Partial<Data>,
   value?: unknown,
   options?: RemoveMarkdownOptions,
 ) {
@@ -41,7 +41,7 @@ export function getPlainDataValue(
 }
 
 function searchValue(
-  data: RawData,
+  data: Partial<Data>,
   value: string,
 ): unknown {
   if (!value) {

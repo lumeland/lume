@@ -13,12 +13,12 @@ const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
-export class Page<D extends RawData = Data> {
+export class Page<D extends DataIn = Data> {
   /** The src info */
   src: Src;
 
   /** Used to save the page data */
-  data: D & { page: Page<D> };
+  data: D & { basename: string; page: Page<D> };
 
   /** Whether this page comes from a copied file with site.copy() */
   isCopy = false;
@@ -30,17 +30,17 @@ export class Page<D extends RawData = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create<D extends RawData & { url: string; content?: Content }>(
-    data: D,
+  static create<D extends DataIn>(
+    data: D & { content?: Content },
     src?: Partial<Src>,
-  ): Page<Omit<D, "basename"> & { basename: string }> {
+  ): Page<D> {
     const basename = posix.basename(data.url).replace(/\.[\w.]+$/, "");
 
     if (data.url.endsWith("/index.html")) {
       data.url = data.url.slice(0, -10);
     }
 
-    const page = new Page<Omit<D, "basename"> & { basename: string }>(src, {
+    const page = new Page<D>(src, {
       ...data,
       basename,
     });
@@ -56,7 +56,7 @@ export class Page<D extends RawData = Data> {
 
   /** Duplicate this page. */
   duplicate(index: number | undefined, data: D): Page<D> {
-    const page = new Page({ ...this.src }, data);
+    const page = new Page<D>({ ...this.src }, data);
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
@@ -65,28 +65,16 @@ export class Page<D extends RawData = Data> {
     return page;
   }
 
-  overwrite<T extends RawData>(
-    data: T,
-  ): this is Page<Omit<D, keyof T> & T> {
-    Object.assign(this.data, data);
-    return true;
-  }
-
-  get url() {
-    return getUrl(this.data.url, this);
-  }
-
   /** To check if the page is HTML */
   get isHTML(): boolean {
-    const url = this.url;
-    return !!url && URL_IS_HTML.test(url);
+    return URL_IS_HTML.test(this.data.url);
   }
 
   /** Returns the output path of this page */
   get outputPath(): string {
-    const url = getUrl(this.data.url, this);
-    const outputPath = url && url.endsWith("/") ? url + "index.html" : url;
-    return outputPath ? decodeURIComponentSafe(outputPath) : "";
+    const url = this.data.url;
+    const outputPath = url.endsWith("/") ? url + "index.html" : url;
+    return decodeURIComponentSafe(outputPath);
   }
 
   /** Returns the source path of this page */
@@ -152,7 +140,7 @@ export class Page<D extends RawData = Data> {
   }
 }
 
-export class StaticFile<D extends RawData = Data> {
+export class StaticFile<D extends FileData = FileData> {
   /** The src info */
   src: Required<Src>;
 
@@ -162,35 +150,33 @@ export class StaticFile<D extends RawData = Data> {
   /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
-  static create<D extends RawData>(
+  static create<D extends FileData>(
     data: D,
     src: Required<Src>,
   ): StaticFile<D> {
-    const file = new StaticFile(data, src);
+    const file = new StaticFile(src, data);
     return file;
   }
 
-  constructor(data: D, src: Required<Src>) {
-    this.data = data;
+  constructor(src: Required<Src>, data?: D) {
+    this.data = data ?? {} as D;
     this.src = src;
   }
 
-  async toPage(): Promise<
-    D extends { url: string } ? Page<D & { basename: string }> : never
-  > {
+  async toPage(): Promise<Page<D & DataIn>> {
     const { content } = await this.src.entry.getContent(binaryLoader);
-    const { content: _, ...data } = this.data as D & { url: string };
-    const page = Page.create({ ...data }, this.src);
+    const page = Page.create(
+      { ...this.data } as D & { content?: Content },
+      this.src,
+    );
     page.content = content as Uint8Array<ArrayBuffer>;
     page.isCopy = this.isCopy;
-    // deno-lint-ignore no-explicit-any
-    return page as any;
+    return page;
   }
 
   /** Returns the output path of this page */
   get outputPath(): string {
-    const url = getUrl(this.data.url);
-    return url ? decodeURIComponentSafe(url) : "";
+    return decodeURIComponentSafe(this.data.url);
   }
 
   /** Returns the source path of this page */
@@ -220,13 +206,11 @@ export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
 export interface RawData {
-  page?: Page<this>;
-
   /** The url of a page */
   url?:
     | string
     | false
-    | ((page: Page<RawData & { basename: string }>) => string | false);
+    | ((page: Page<DataIn>) => string | false);
 
   /** The basename of a page */
   basename?: string;
@@ -255,6 +239,11 @@ export interface RawData {
   [index: string]: unknown;
 }
 
+export interface DataIn extends RawData {
+  /** The url of a page */
+  url: string;
+}
+
 export interface DirectoryData extends RawData {
   /** The basename of the page */
   basename: string;
@@ -273,15 +262,15 @@ export interface FileData extends DirectoryData {
 
 /** The data of a page/folder once loaded and processed */
 export interface Data extends FileData {
-  /** The date creation of the page */
-  date: Date;
-
   /** The page reference */
   page: Page<this>;
+
+  /** The date creation of the page */
+  date: Date;
 }
 
 /** Promote files to pages */
-export async function filesToPages<D extends RawData>(
+export async function filesToPages<D extends Data>(
   files: StaticFile<D>[],
   pages: Page<D>[],
   filter: (file: StaticFile<D>) => boolean,
@@ -339,21 +328,4 @@ export function ensureRawData(data: Record<string, unknown>): data is RawData {
   }
 
   return true;
-}
-
-function getUrl(
-  value: unknown,
-  page?: Page<Record<string, unknown>>,
-): string | false | undefined {
-  let url = value;
-  if (typeof url === "function" && page) {
-    url = url(page);
-  }
-  if (typeof url === "boolean" && !url) {
-    return url;
-  }
-  if (typeof url === "string") {
-    return url;
-  }
-  return undefined;
 }
