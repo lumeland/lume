@@ -50,12 +50,16 @@ export function fff(userOptions?: Options) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
-            page.data.created = getGitDate("created", page.src.entry.src)
-              ?.toDateString();
+            page.data.created = getGitDate(
+              "created",
+              page.src.entry.src,
+            ) as unknown as string;
           }
           if (!page.data.updated) {
-            page.data.updated = getGitDate("modified", page.src.entry.src)
-              ?.toDateString();
+            page.data.updated = getGitDate(
+              "modified",
+              page.src.entry.src,
+            ) as unknown as string;
           }
         }
 
