@@ -13,7 +13,7 @@ const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
-export class Page<D extends Record<string, unknown> = Data> {
+export class Page<D extends RawData = Data> {
   /** The src info */
   src: Src;
 
@@ -33,14 +33,14 @@ export class Page<D extends Record<string, unknown> = Data> {
   static create<D extends RawData & { url: string; content?: Content }>(
     data: D,
     src?: Partial<Src>,
-  ): Page<D & { basename: string }> {
+  ): Page<Omit<D, "basename"> & { basename: string }> {
     const basename = posix.basename(data.url).replace(/\.[\w.]+$/, "");
 
     if (data.url.endsWith("/index.html")) {
       data.url = data.url.slice(0, -10);
     }
 
-    const page = new Page<D & { basename: string }>(src, {
+    const page = new Page<Omit<D, "basename"> & { basename: string }>(src, {
       ...data,
       basename,
     });
