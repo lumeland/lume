@@ -35,14 +35,14 @@ export class Page<D extends UnknownData = Data> {
   static create<D extends UnknownData & { url: string; content?: Content }>(
     data: D,
     src?: Partial<Src>,
-  ): Page<D & { basename: string }> {
+  ): Page<D & { basename: string; }> {
     const basename = posix.basename(data.url).replace(/\.[\w.]+$/, "");
 
     if (data.url.endsWith("/index.html")) {
       data.url = data.url.slice(0, -10);
     }
 
-    const page = new Page({ basename, ...data }, src);
+    const page = new Page({ ...data, basename }, src);
     page.content = data.content;
 
     return page;
@@ -263,7 +263,7 @@ export interface Data extends RawData {
   basename: string;
 
   /** The date creation of the page */
-  date?: Date;
+  date: Date;
 
   /** The page reference */
   page: Page<this>;
@@ -272,7 +272,7 @@ export interface Data extends RawData {
    * The available components
    * @see https://lume.land/docs/core/components/
    */
-  comp?: ProxyComponents;
+  comp: ProxyComponents;
 }
 
 /** Promote files to pages */

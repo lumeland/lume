@@ -1025,7 +1025,7 @@ export default class Site<D extends Data = Data> {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  pushPage(page: Page): void {
+  pushPage(page: Page<UnknownData & { url: string }>): void {
     this.pages.push(page as Page<D>);
   }
 

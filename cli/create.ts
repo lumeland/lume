@@ -8,6 +8,7 @@ import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./utils.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 const lumeArchetypes = ["plugin"];
 
@@ -52,7 +53,7 @@ export async function create(
   log.output();
 }
 
-async function saveArchetype(site: Site, archetype: Archetype) {
+async function saveArchetype(site: Site<Data>, archetype: Archetype) {
   const { path, content } = archetype;
 
   if (!path) {
@@ -106,7 +107,7 @@ async function saveFile(path: string, content: string | Uint8Array) {
   }
 }
 
-async function loadArchetype(site: Site, name: string) {
+async function loadArchetype(site: Site<Data>, name: string) {
   if (lumeArchetypes.includes(name)) {
     return await import(`../archetypes/${name}.ts`);
   }
