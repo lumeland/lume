@@ -243,7 +243,7 @@ export interface RawData {
   content?: unknown;
 
   /** The layout used to render a page */
-  layout?: string;
+  layout?: string | null;
 
   /** To configure a different template engine(s) to render a page */
   templateEngine?: string | string[];
@@ -317,7 +317,8 @@ export function ensureRawData(data: UnknownData): data is RawData {
     return false;
   }
   if (
-    typeof data.layout !== "undefined" && typeof data.layout !== "string"
+    data.layout !== null && data.layout !== undefined &&
+    typeof data.layout !== "string"
   ) {
     return false;
   }
