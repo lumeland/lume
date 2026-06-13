@@ -8,6 +8,7 @@ import { log } from "../core/utils/log.ts";
 import type Site from "../core/site.ts";
 import { read } from "../core/utils/read.ts";
 import { isUrl } from "../core/utils/path.ts";
+import { Data } from "../core/file.ts";
 
 interface Dimmensions {
   width: number;
@@ -16,7 +17,7 @@ interface Dimmensions {
 }
 
 export default function imageSize() {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const sizes = new Map<string, Dimmensions | undefined>();
 
     //Clear cache

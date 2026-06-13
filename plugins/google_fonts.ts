@@ -6,6 +6,7 @@ import { log } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** The Share URL of the fonts to download (like `https://fonts.google.com/share?selection.family=...`) */
@@ -34,7 +35,7 @@ export const defaults = {
 export function googleFonts(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     let cssCode = "";
     const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
     const fontsFolder = posix.join(

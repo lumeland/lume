@@ -1,11 +1,19 @@
 import { decapUrl, serverUrl } from "../deps/decap.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
+
+export interface DecapCmsPluginData extends Data {
+  /**
+   * Decap CMS configuration
+   * @see https://lume.land/plugins/decap_cms/
+   */
+  decap_cms: Record<string, unknown>;
+}
 
 export interface Options {
   /** Force the local_backend option. By default is detected automatically. */
@@ -46,7 +54,7 @@ export const defaults = {
 export function decapCMS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends DecapCmsPluginData>(site: Site<D>) => {
     const local_backend = typeof options.local === "boolean"
       ? options.local
       : site.options.location.hostname === "localhost";
@@ -109,7 +117,7 @@ export function decapCMS(userOptions?: Options) {
     });
 
     // Create the configuration file
-    site.process(function processDecapCMS(_, allPages) {
+    site.process(function processDecapCMS() {
       const config = site.source.data.get("/")?.[options.configKey] as
         | Record<string, unknown>
         | undefined;
@@ -121,7 +129,7 @@ export function decapCMS(userOptions?: Options) {
         return;
       }
 
-      allPages.push(Page.create({
+      site.pushPage(Page.create({
         url: configUrl,
         content: stringify({
           ...config,
@@ -167,13 +175,7 @@ export function decapCMS(userOptions?: Options) {
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * Decap CMS configuration
-       * @see https://lume.land/plugins/decap_cms/
-       */
-      decap_cms: Record<string, unknown>;
-    }
+    export interface Data extends DecapCmsPluginData {}
   }
 }
 

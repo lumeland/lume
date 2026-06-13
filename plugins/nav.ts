@@ -4,7 +4,14 @@ import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
-import type { Data } from "../core/file.ts";
+import { Data } from "../core/file.ts";
+
+export interface NavPluginData<D extends NavPluginData<D>> extends Data {
+  /** @see https://lume.land/plugins/nav/ */
+  nav: Nav<D>;
+
+  title?: string;
+}
 
 export interface Options {
   /** The default order for the children */
@@ -22,20 +29,20 @@ export const defaults = {
 export function nav(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
-    const nav = new Nav(site.search, options.order);
+  return <D extends NavPluginData<D>>(site: Site<D>) => {
+    const nav = new Nav<D>(site.search, options.order);
     site.data("nav", nav);
     site.addEventListener("beforeUpdate", () => nav.deleteCache());
   };
 }
 
 /** Search helper */
-export class Nav {
-  #cache = new Map<string, NavData>();
-  #search: Searcher;
+export class Nav<D extends NavPluginData<D>> {
+  #cache = new Map<string, NavData<D>>();
+  #search: Searcher<D>;
   #defaultOrder?: string;
 
-  constructor(searcher: Searcher, defaultOrder?: string) {
+  constructor(searcher: Searcher<D>, defaultOrder?: string) {
     this.#search = searcher;
     this.#defaultOrder = defaultOrder;
   }
@@ -45,9 +52,9 @@ export class Nav {
     this.#cache.clear();
   }
 
-  menu(url?: "/", query?: string, sort?: string): NavData;
-  menu(url: string, query?: string, sort?: string): NavData | undefined;
-  menu(url = "/", query?: string, sort?: string): NavData | undefined {
+  menu(url?: "/", query?: string, sort?: string): NavData<D>;
+  menu(url: string, query?: string, sort?: string): NavData<D> | undefined;
+  menu(url = "/", query?: string, sort?: string): NavData<D> | undefined {
     const id = JSON.stringify([query, sort]);
     let nav = this.#cache.get(id);
 
@@ -66,9 +73,9 @@ export class Nav {
     return searchData(parts, nav);
   }
 
-  breadcrumb(url: string, query?: string, sort?: string): NavData[] {
+  breadcrumb(url: string, query?: string, sort?: string): NavData<D>[] {
     let nav = this.menu(url, query, sort);
-    const breadcrumb: NavData[] = [];
+    const breadcrumb: NavData<D>[] = [];
 
     while (nav) {
       breadcrumb.unshift(nav);
@@ -128,10 +135,10 @@ export class Nav {
   }
 
   /* Build the entire navigation tree */
-  #buildNav(query?: string, sort?: string): NavData {
-    const nav: TempNavData = {
+  #buildNav(query?: string, sort?: string): NavData<D> {
+    const nav: TempNavData<D> = {
       slug: "",
-      data: { basename: "" } as Data,
+      data: { basename: "" } as D,
     };
 
     const dataPages = this.#search.pages(query);
@@ -163,7 +170,7 @@ export class Nav {
             data: {
               ...this.#search.data(path),
               basename: part,
-            } as Data,
+            } as unknown as D,
             parent: current,
           };
         } else {
@@ -176,18 +183,18 @@ export class Nav {
   }
 }
 
-export interface TempNavData {
-  data: Data;
+export interface TempNavData<D extends Data> {
+  data: D;
   slug: string;
-  children?: Record<string, TempNavData>;
-  parent?: TempNavData;
+  children?: Record<string, TempNavData<D>>;
+  parent?: TempNavData<D>;
 }
 
-export interface NavData {
-  data: Data;
+export interface NavData<D extends Data> {
+  data: D;
   slug: string;
-  children?: NavData[];
-  parent?: NavData;
+  children?: NavData<D>[];
+  parent?: NavData<D>;
   toJSON(): NavJSON;
 }
 
@@ -201,7 +208,9 @@ export interface NavJSON {
   children?: NavJSON[];
 }
 
-function getFirstChild(item: NavData): NavData | undefined {
+function getFirstChild<D extends Data>(
+  item: NavData<D>,
+): NavData<D> | undefined {
   if (item.data.url) {
     return item;
   }
@@ -213,7 +222,9 @@ function getFirstChild(item: NavData): NavData | undefined {
   }
 }
 
-function getLastChild(item: NavData): NavData | undefined {
+function getLastChild<D extends Data>(
+  item: NavData<D>,
+): NavData<D> | undefined {
   const children = item.children;
 
   if (children) {
@@ -225,7 +236,9 @@ function getLastChild(item: NavData): NavData | undefined {
   }
 }
 
-function getNextParent(item: NavData): NavData | undefined {
+function getNextParent<D extends Data>(
+  item: NavData<D>,
+): NavData<D> | undefined {
   const parent = item.parent;
 
   if (!parent) {
@@ -242,7 +255,9 @@ function getNextParent(item: NavData): NavData | undefined {
   return children[index + 1];
 }
 
-function getPreviousParent(item: NavData): NavData | undefined {
+function getPreviousParent<D extends Data>(
+  item: NavData<D>,
+): NavData<D> | undefined {
   const parent = item.parent;
 
   if (!parent) {
@@ -262,7 +277,10 @@ function getPreviousParent(item: NavData): NavData | undefined {
   return getLastChild(children[index - 1]);
 }
 
-function searchData(parts: string[], menu: NavData): NavData | undefined {
+function searchData<D extends Data>(
+  parts: string[],
+  menu: NavData<D>,
+): NavData<D> | undefined {
   let part = parts.shift();
 
   if (!part) {
@@ -283,12 +301,12 @@ function searchData(parts: string[], menu: NavData): NavData | undefined {
 }
 
 // Convert TempNavData to NavData
-function convert(
-  temp: TempNavData,
-  order: (a: Data, b: Data) => number,
-  parent?: NavData,
-): NavData {
-  const data: NavData = {
+function convert<D extends NavPluginData<D>>(
+  temp: TempNavData<D>,
+  order: (a: D, b: D) => number,
+  parent?: NavData<D>,
+): NavData<D> {
+  const data: NavData<D> = {
     data: temp.data,
     slug: temp.slug,
     parent,
@@ -329,9 +347,6 @@ export default nav;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /** @see https://lume.land/plugins/nav/ */
-      nav: Nav;
-    }
+    export interface Data extends NavPluginData<Data> {}
   }
 }

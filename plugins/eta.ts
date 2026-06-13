@@ -6,6 +6,7 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { EtaConfig } from "../deps/eta.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -91,7 +92,7 @@ export class EtaEngine implements Engine {
  * @see https://lume.land/plugins/eta/
  */
 export function eta(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

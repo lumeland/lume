@@ -2,20 +2,20 @@ import { matchExtension } from "./utils/path.ts";
 
 import type DebugBar from "./debugbar.ts";
 import type { Extensions } from "./utils/path.ts";
-import type { Page } from "./file.ts";
+import type { Data, Page } from "./file.ts";
 
 /**
  * Class to store and run the (pre)processors
  */
-export default class Processors {
+export default class Processors<D extends Data> {
   /** Processors and the assigned extensions */
-  processors = new Map<Processor, Extensions>();
+  processors = new Map<Processor<D>, Extensions>();
 
   /** Loaded extensions cache */
   loadedExtensions = new Set<string>();
 
   /** Assign a processor to some extensions */
-  set(extensions: Extensions, processor: Processor): void {
+  set(extensions: Extensions, processor: Processor<D>): void {
     if (Array.isArray(extensions)) {
       extensions.forEach((extension) => {
         if (extension.charAt(0) !== ".") {
@@ -38,7 +38,7 @@ export default class Processors {
   }
 
   /** Apply the processors to the provided pages */
-  async run(pages: Page[], debugBar?: DebugBar): Promise<void> {
+  async run(pages: Page<D>[], debugBar?: DebugBar): Promise<void> {
     this.loadedExtensions.clear();
 
     for (const [process, extensions] of this.processors) {
@@ -71,9 +71,9 @@ export default class Processors {
 /**
  * Processor callback is used in both (pre)process methods.
  */
-export type Processor = (
-  filteredPages: Page[],
-  allPages: Page[],
+export type Processor<D extends Data> = (
+  filteredPages: Page<D>[],
+  allPages: Page<D>[],
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {

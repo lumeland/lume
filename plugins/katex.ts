@@ -8,6 +8,7 @@ import { insertContent } from "../core/utils/page_content.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** The css selector to apply katex */
@@ -71,7 +72,7 @@ export const defaults = {
 export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     if (options.cssFile !== false) {
       let cssCode = "";
       const cssFile = posix.join("/", options.cssFile || site.options.cssFile);

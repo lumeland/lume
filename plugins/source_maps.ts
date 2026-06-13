@@ -3,10 +3,18 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { Page } from "../core/file.ts";
+import { Data, DataIn, Page } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
+
+export interface SourceMapsPluginData extends Data {
+  /**
+   * The source map data (if it's an asset)
+   * @see https://lume.land/plugins/source_maps/
+   */
+  sourceMap?: SourceMap;
+}
 
 export interface Options {
   /** Set true to inline the source map in the output file */
@@ -28,15 +36,15 @@ export const defaults = {
 export function sourceMaps(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     site._data.enableSourceMap = true;
 
     site.process(function processSourceMaps(pages, allPages) {
       return concurrent(pages, (page) => processSourceMap(page, allPages));
     });
 
-    async function processSourceMap(file: Page, files: Page[]) {
-      const sourceMap = file.data.sourceMap as SourceMap | undefined;
+    async function processSourceMap(file: Page<D>, files: Page<DataIn>[]) {
+      const sourceMap = file.data.sourceMap;
       file.data.sourceMap = undefined;
 
       if (!sourceMap) {
@@ -111,12 +119,13 @@ export interface PrepareResult {
 }
 
 /** Return the required info to process a file */
-export function prepareAsset(site: Site, page: Page): PrepareResult {
+export function prepareAsset<D extends SourceMapsPluginData>(
+  site: Site<D>,
+  page: Page<D>,
+): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.text;
-  const sourceMap = enableSourceMap
-    ? page.data.sourceMap as SourceMap | undefined
-    : undefined;
+  const sourceMap = enableSourceMap ? page.data.sourceMap : undefined;
   const filename = page.src.path
     ? site.src(page.sourcePath)
     : site.src(page.outputPath);
@@ -124,9 +133,9 @@ export function prepareAsset(site: Site, page: Page): PrepareResult {
 }
 
 /** Save the process result */
-export function saveAsset(
-  site: Site,
-  page: Page,
+export function saveAsset<D extends SourceMapsPluginData>(
+  site: Site<D>,
+  page: Page<D>,
   content: string,
   sourceMap?: SourceMap | string,
 ) {
@@ -203,12 +212,6 @@ export default sourceMaps;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * The source map data (if it's an asset)
-       * @see https://lume.land/plugins/source_maps/
-       */
-      sourceMap?: SourceMap;
-    }
+    export interface Data extends SourceMapsPluginData {}
   }
 }

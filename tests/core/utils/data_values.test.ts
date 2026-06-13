@@ -9,12 +9,17 @@ Deno.test("Test getDataValue() function", async (t) => {
   site.use(metas());
   site.process([".html"], async (pages) => {
     for (const page of pages) {
-      const { data } = page;
+      // deno-lint-ignore no-explicit-any
+      const { data } = page as any;
       if (!data.cover) continue;
 
       await t.step(
         "Data query: =",
-        () => equals(getDataValue(data, data.metas.image), data.cover),
+        () =>
+          equals(
+            getDataValue(data, data.metas.image),
+            data.cover,
+          ),
       );
 
       await t.step(

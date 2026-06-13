@@ -1,13 +1,19 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import esbuild from "../plugins/esbuild.ts";
-import jsx from "../plugins/jsx.ts";
+import jsx, { JSXPluginData } from "../plugins/jsx.ts";
+import { Data } from "../core/file.ts";
+import { PaginatePluginData } from "../plugins/paginate.ts";
+import { SearchPluginData } from "../plugins/search.ts";
+
+interface TestData
+  extends Data, JSXPluginData, PaginatePluginData, SearchPluginData<TestData> {}
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
   "esbuild plugin with JSX",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild_jsx",
     });
 

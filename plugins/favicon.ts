@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 import { buildIcon } from "../core/utils/image.ts";
 import sharp from "../deps/sharp.ts";
@@ -56,10 +56,10 @@ export function favicon(userOptions?: Options) {
     ? { 16: options.input }
     : options.input;
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     async function getContent(
       file: string,
-    ): Promise<Uint8Array | string | undefined> {
+    ): Promise<Uint8Array<ArrayBuffer> | string | undefined> {
       const content = file.endsWith(".svg")
         ? await site.getContent(file, false)
         : await site.getContent(file, true);
@@ -72,7 +72,7 @@ export function favicon(userOptions?: Options) {
     }
 
     site.process(async function processFaviconImages() {
-      const contents: Record<number, Uint8Array | string> = {};
+      const contents: Record<number, Uint8Array<ArrayBuffer> | string> = {};
 
       for (const [size, file] of Object.entries(input)) {
         const fileContent = await getContent(file);
@@ -115,7 +115,7 @@ export function favicon(userOptions?: Options) {
           !site.pages.find((page) => page.data.url === url) &&
           !site.files.find((file) => file.outputPath === url)
         ) {
-          site.pages.push(
+          site.pushPage(
             Page.create({
               url,
               content,

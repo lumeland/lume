@@ -1,5 +1,14 @@
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
+import type { Data } from "../core/file.ts";
+
+export interface SearchPluginData<D extends Data> extends Data {
+  /**
+   * The searcher helper
+   * @see https://lume.land/plugins/search/
+   */
+  search: Searcher<D>;
+}
 
 /**
  * A plugin to add a search helper to the data
@@ -7,7 +16,7 @@ import type Searcher from "../core/searcher.ts";
  * @see https://lume.land/plugins/search/
  */
 export function search() {
-  return (site: Site) => {
+  return <D extends SearchPluginData<D>>(site: Site<D>) => {
     site.data("search", site.search);
   };
 }
@@ -17,12 +26,7 @@ export default search;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * The searcher helper
-       * @see https://lume.land/plugins/search/
-       */
-      search: Searcher;
-    }
+    // @ts-ignore Epub and FFF use incompatible types, but that should only become relevant to the user
+    export interface Data extends SearchPluginData<Data> {}
   }
 }

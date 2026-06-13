@@ -21,7 +21,7 @@ import Scripts from "./scripts.ts";
 import Archetypes from "./archetypes.ts";
 import FSWatcher from "./watcher.ts";
 import { FSWriter } from "./writer.ts";
-import { filesToPages, Page, StaticFile } from "./file.ts";
+import { Data, DataIn, filesToPages, Page, StaticFile } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -33,7 +33,6 @@ import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import type { Data, RawData } from "./file.ts";
 import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
@@ -77,7 +76,7 @@ const defaults = {
  * This is the heart of Lume,
  * it contains everything needed to build the site
  */
-export default class Site {
+export default class Site<D extends Data = Data> {
   options: Merge<SiteOptions, typeof defaults>;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
@@ -96,22 +95,22 @@ export default class Site {
   dataLoader: DataLoader;
 
   /** To load reusable components */
-  componentLoader: ComponentLoader;
+  componentLoader: ComponentLoader<D>;
 
   /** To scan the src folder */
-  source: Source;
+  source: Source<D>;
 
   /** To update pages of the same scope after any change */
   scopes: Scopes;
 
   /** To store and run the processors */
-  processors: Processors;
+  processors: Processors<D>;
 
   /** To store and run the pre-processors */
-  preprocessors: Processors;
+  preprocessors: Processors<D>;
 
   /** To render the pages using any template engine */
-  renderer: Renderer;
+  renderer: Renderer<D>;
 
   /** To listen and dispatch events */
   // deno-lint-ignore no-explicit-any
@@ -121,7 +120,7 @@ export default class Site {
   scripts: Scripts;
 
   /** To search pages */
-  search: Searcher;
+  search: Searcher<D>;
 
   /** To store cached stuff in the _cache folder */
   cache: Cache | undefined;
@@ -130,10 +129,10 @@ export default class Site {
   writer: Writer;
 
   /** Data assigned with site.data() */
-  scopedData = new Map<string, RawData>([["/", {}]]);
+  scopedData = new Map<string, Partial<D>>([["/", {}]]);
 
   /** Pages created with site.page() */
-  scopedPages = new Map<string, RawData[]>();
+  scopedPages = new Map<string, Partial<D>[]>();
 
   /** Components created with site.component() */
   scopedComponents = new Map<string, Components>();
@@ -146,10 +145,10 @@ export default class Site {
   debugBar?: DebugBar;
 
   /** The generated pages are stored here */
-  readonly pages: Page[] = [];
+  readonly pages: Page<D>[] = [];
 
   /** The static files to be copied are stored here */
-  readonly files: StaticFile[] = [];
+  readonly files: StaticFile<D>[] = [];
 
   fetch: Deno.ServeHandler;
 
@@ -171,7 +170,7 @@ export default class Site {
 
     const dataLoader = new DataLoader({ formats });
     const componentLoader = new ComponentLoader({ formats });
-    const source = new Source({
+    const source = new Source<D>({
       fs,
       dataLoader,
       componentLoader,
@@ -189,9 +188,9 @@ export default class Site {
 
     // To render pages
     const scopes = new Scopes();
-    const processors = new Processors();
-    const preprocessors = new Processors();
-    const renderer = new Renderer({
+    const processors = new Processors<D>();
+    const preprocessors = new Processors<D>();
+    const renderer = new Renderer<D>({
       prettyUrls,
       preprocessors,
       formats,
@@ -201,16 +200,16 @@ export default class Site {
 
     // Other stuff
     const archetypes = new Archetypes({ src, root });
-    const events = new Events<SiteEvent>();
+    const events = new Events<SiteEvent<Data>>();
     const scripts = new Scripts({ cwd });
     const writer = new FSWriter({ dest, caseSensitiveUrls });
 
-    const searcher = new Searcher({
+    const searcher = new Searcher<D>({
       pages: this.pages,
       files: this.files,
       sourceData: source.data,
       filters: [
-        (data: Data) => data.page.isHTML,
+        (data) => data.page.isHTML,
         filter404page(server.page404), // not the 404 page
       ],
     });
@@ -321,7 +320,7 @@ export default class Site {
   /** Add a listener to an event */
   addEventListener<K extends SiteEventType>(
     type: K,
-    listener: EventListener<Event & SiteEvent<K>> | string,
+    listener: EventListener<Event & SiteEvent<D, K>> | string,
     options?: EventOptions,
   ): this {
     const fn = typeof listener === "string"
@@ -333,12 +332,12 @@ export default class Site {
   }
 
   /** Dispatch an event */
-  dispatchEvent(event: SiteEvent): Promise<boolean> {
+  dispatchEvent(event: SiteEvent<Data>): Promise<boolean> {
     return this.events.dispatchEvent(event);
   }
 
   /** Use a plugin */
-  use(plugin: Plugin): this {
+  use(plugin: Plugin<D>): this {
     plugin(this);
     return this;
   }
@@ -408,11 +407,14 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(processor: Processor): this;
-  preprocess(extensions: Extensions, processor: Processor): this;
+  preprocess(processor: Processor<D>): this;
   preprocess(
-    extensions: Extensions | Processor,
-    preprocessor?: Processor,
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  preprocess(
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.preprocess("*", extensions);
@@ -428,9 +430,12 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process(processor: Processor): this;
-  process(extensions: Extensions, processor: Processor): this;
-  process(extensions: Extensions | Processor, processor?: Processor): this {
+  process(processor: Processor<D>): this;
+  process(extensions: Extensions, processor: Processor<D>): this;
+  process(
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
+  ): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);
     }
@@ -444,34 +449,38 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper<HelperThis>, async = false): this {
+  filter(name: string, filter: Helper<HelperThis<D>>, async = false): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
+  helper(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
 
   /** Register a basename parser */
-  parseBasename(parser: BasenameParser): this {
+  parseBasename(parser: BasenameParser<D>): this {
     this.source.basenameParsers.push(parser);
     return this;
   }
 
   /** Register extra data accessible by the layouts */
-  data(name: string, value: unknown, scope = "/"): this {
-    const data = this.scopedData.get(scope) || {};
+  data<K extends keyof D>(name: K, value: D[K], scope = "/"): this {
+    const data: Partial<D> = this.scopedData.get(scope) || {};
     data[name] = value;
     this.scopedData.set(scope, data);
     return this;
   }
 
   /** Register a page */
-  page(data: Partial<Data>, scope = "/"): this {
+  page(data: DataIn, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
-    pages.push(data);
+    pages.push(data as Partial<D>);
     this.scopedPages.set(scope, pages);
     return this;
   }
@@ -517,8 +526,8 @@ export default class Site {
 
   /** Register a merging strategy for a data key */
   mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
-    const data = this.scopedData.get(scope) || {};
-    const mergedKeys = data.mergedKeys || {};
+    const data: Partial<D> = this.scopedData.get(scope) || {};
+    const mergedKeys: Record<string, MergeStrategy> = data.mergedKeys || {};
     mergedKeys[key] = merge;
     data.mergedKeys = mergedKeys;
     this.scopedData.set(scope, data);
@@ -839,7 +848,7 @@ export default class Site {
    */
   async #loadPages(
     filters: (entry: Entry) => boolean,
-  ): Promise<[Page[], StaticFile[]]> {
+  ): Promise<[Page<D>[], StaticFile<D>[]]> {
     // Get the site content
     this.debugBar?.startMeasure("load");
     const showDrafts = envBoolean("LUME_DRAFTS");
@@ -880,7 +889,7 @@ export default class Site {
    * Internal function to render pages
    * Used by build and update actions
    */
-  async #buildPages(pages: Page[]): Promise<boolean> {
+  async #buildPages(pages: Page<D>[]): Promise<boolean> {
     // Promote the files that must be preprocessed to pages
     const preExtensions = this.preprocessors.extensions;
     await filesToPages(
@@ -994,7 +1003,7 @@ export default class Site {
       const match = path.match(/^(.*)\s*\(([^)]+)\)$/);
       const srcPath = match ? match[1] : path;
       const pages = match
-        ? this.search.pages(match[2]).map<Page>((data) => data.page!)
+        ? this.search.pages(match[2]).map((data) => data.page)
         : this.pages;
 
       // It's a page
@@ -1030,11 +1039,15 @@ export default class Site {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  removePage(file: StaticFile): StaticFile | undefined;
-  removePage(page: Page): Page | undefined;
+  pushPage(page: Page<DataIn>): void {
+    this.pages.push(page as Page<D>);
+  }
+
+  removePage(file: StaticFile<D>): StaticFile<D> | undefined;
+  removePage(page: Page<D>): Page<D> | undefined;
   removePage(
-    urlOrPage: string | Page | StaticFile,
-  ): Page | StaticFile | undefined {
+    urlOrPage: string | Page<D> | StaticFile<D>,
+  ): Page<Data> | StaticFile<Data> | undefined {
     if (typeof urlOrPage === "string") {
       const url = urlOrPage;
 
@@ -1066,7 +1079,7 @@ export default class Site {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page> {
+  async getOrCreatePage(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page
@@ -1090,13 +1103,13 @@ export default class Site {
     const entry = this.fs.entries.get(url);
     if (entry) {
       const { content } = await entry.getContent(binaryLoader);
-      const page = Page.create({ url }, { entry });
+      const page = Page.create({ url }, { entry }) as Page<D>;
       page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
       return page;
     }
 
-    const newPage = Page.create({ url });
+    const newPage = Page.create({ url }) as Page<D>;
     this.pages.push(newPage);
     return newPage;
   }
@@ -1105,16 +1118,19 @@ export default class Site {
    * Get the content of a file.
    * Resolve the path if it's needed.
    */
-  async getContent(file: string, binary: true): Promise<Uint8Array | undefined>;
+  async getContent(
+    file: string,
+    binary: true,
+  ): Promise<Uint8Array<ArrayBuffer> | undefined>;
   async getContent(file: string, binary: false): Promise<string | undefined>;
   async getContent(
     file: string,
     binary: boolean,
-  ): Promise<string | Uint8Array | undefined>;
+  ): Promise<string | Uint8Array<ArrayBuffer> | undefined>;
   async getContent(
     file: string,
     binary: boolean,
-  ): Promise<string | Uint8Array | undefined> {
+  ): Promise<string | Uint8Array<ArrayBuffer> | undefined> {
     file = normalizePath(file);
     const basePath = this.src();
 
@@ -1138,7 +1154,7 @@ export default class Site {
     if (staticFile) {
       return binary
         ? (await staticFile.src.entry.getContent(binaryLoader))
-          .content as Uint8Array
+          .content as Uint8Array<ArrayBuffer>
         : (await staticFile.src.entry.getContent(textLoader)).content as string;
     }
 
@@ -1147,7 +1163,9 @@ export default class Site {
       const entry = this.fs.entries.get(file);
       if (entry) {
         return binary
-          ? (await entry.getContent(binaryLoader)).content as Uint8Array
+          ? (await entry.getContent(binaryLoader)).content as Uint8Array<
+            ArrayBuffer
+          >
           : (await entry.getContent(textLoader)).content as string;
       }
     } catch {
@@ -1305,7 +1323,7 @@ export interface ComponentsOptions {
   placeholder?: string;
 }
 
-export type SiteEventMap = {
+export type SiteEventMap<D extends Data = Data> = {
   // deno-lint-ignore ban-types
   afterLoad: {};
   beforeBuild: {
@@ -1314,9 +1332,9 @@ export type SiteEventMap = {
   };
   afterBuild: {
     /** the list of pages that have been saved */
-    pages: Page[];
+    pages: Page<D>[];
     /** contains the list of static files that have been copied */
-    staticFiles: StaticFile[];
+    staticFiles: StaticFile<D>[];
   };
   beforeUpdate: {
     /** the files that were changed */
@@ -1326,17 +1344,17 @@ export type SiteEventMap = {
     /** the files that were changed */
     files: Set<string>;
     /** the list of pages that have been saved */
-    pages: Page[];
+    pages: Page<D>[];
     /** contains the list of static files that have been copied */
-    staticFiles: StaticFile[];
+    staticFiles: StaticFile<D>[];
   };
   beforeRender: {
     /** the list of pages that are about to render */
-    pages: Page[];
+    pages: Page<D>[];
   };
   afterRender: {
     /** the list of pages that have been rendered */
-    pages: Page[];
+    pages: Page<D>[];
   };
   // deno-lint-ignore ban-types
   beforeSave: {};
@@ -1353,16 +1371,18 @@ export interface LoadPagesOptions {
 }
 
 /** Custom events for site build */
-export type SiteEvent<T extends SiteEventType = SiteEventType> =
+export type SiteEvent<D extends Data, T extends SiteEventType = SiteEventType> =
   & Event
-  & SiteEventMap[T]
+  & SiteEventMap<D>[T]
   & { type: T };
 
 /** The available event types */
-export type SiteEventType = keyof SiteEventMap;
+export type SiteEventType = keyof SiteEventMap<Data>;
 
 /** A generic Lume plugin */
-export type Plugin = (site: Site) => void;
+export type Plugin<D extends Data = Lume.Data> = (
+  site: Site<D>,
+) => void;
 
 function pathBelongs(base: string, path?: string): boolean {
   if (!path) {
@@ -1370,3 +1390,12 @@ function pathBelongs(base: string, path?: string): boolean {
   }
   return base === path || path?.startsWith(base + "/");
 }
+
+export type OmitIndexSignature<ObjectType> = {
+  [
+    KeyType in keyof ObjectType as string extends KeyType ? never
+      : number extends KeyType ? never
+      : symbol extends KeyType ? never
+      : KeyType
+  ]: ObjectType[KeyType];
+};

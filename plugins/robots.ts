@@ -1,6 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 type Rule = {
   /** User-agent */
@@ -61,7 +62,7 @@ export const defaults = {
 export function robots(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.process(async function processRobots() {
       const rules: Rule[] = [];
       const allow = typeof options.allow === "string"

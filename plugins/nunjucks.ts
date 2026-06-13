@@ -8,6 +8,7 @@ import { log } from "../core/utils/log.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { ProxyComponents } from "../core/components.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -136,10 +137,11 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
+class LumeLoader<D extends Data> extends Nunjucks.Loader
+  implements Nunjucks.ILoaderAsync {
   includes: string;
 
-  constructor(private site: Site, includes: string) {
+  constructor(private site: Site<D>, includes: string) {
     super();
     this.includes = includes;
   }
@@ -181,7 +183,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
  * @see https://lume.land/plugins/nunjucks/
  */
 export function nunjucks(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -221,9 +223,7 @@ export function nunjucks(userOptions?: Options) {
 
     // Register the component helper
     engine.addHelper("comp", async (...args) => {
-      const components = site.source.data.get("/")?.comp as
-        | ProxyComponents
-        | undefined;
+      const components = site.source.data.get("/")?.comp;
       const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };

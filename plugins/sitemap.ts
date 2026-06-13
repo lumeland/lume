@@ -1,11 +1,19 @@
 import { getDataValue } from "../core/utils/data_values.ts";
 import { merge } from "../core/utils/object.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
 import type { stringifyable } from "../deps/xml.ts";
+import { MultilanguagePluginData } from "./multilanguage.ts";
+
+declare global {
+  namespace Lume {
+    export interface Data extends SitemapPluginData {}
+  }
+}
+
+export interface SitemapPluginData extends MultilanguagePluginData {}
 
 type ChangeFreq =
   | "always"
@@ -16,7 +24,7 @@ type ChangeFreq =
   | "yearly"
   | "never";
 
-export interface Options {
+export interface Options<D extends Data> {
   /** The sitemap file name */
   filename?: string;
 
@@ -32,18 +40,18 @@ export interface Options {
   /** The values to sort the sitemap */
   sort?: string;
 
-  items?: SitemapItemsOptions;
+  items?: SitemapItemsOptions<D>;
 }
 
-export interface SitemapItemsOptions {
+export interface SitemapItemsOptions<D extends Data> {
   /** The key to use for the lastmod field or a custom function */
-  lastmod?: string | ((data: Data) => Date);
+  lastmod?: string | ((data: D) => Date);
 
   /** The key to use for the changefreq field or a custom function */
-  changefreq?: string | ((data: Data) => ChangeFreq);
+  changefreq?: string | ((data: D) => ChangeFreq);
 
   /** The key to use for the priority field or a custom function */
-  priority?: string | ((data: Data) => number);
+  priority?: string | ((data: D) => number);
 }
 
 // Default options
@@ -54,16 +62,16 @@ export const defaults = {
   items: {
     lastmod: "=date",
   },
-} satisfies Options;
+} satisfies Options<Data>;
 
 /**
  * A plugin to generate a sitemap.xml from page files after build
  * @see https://lume.land/plugins/sitemap/
  */
-export function sitemap(userOptions?: Options) {
+export function sitemap<D extends SitemapPluginData>(userOptions?: Options<D>) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <T extends D>(site: Site<T>) => {
     site.process(async function processSitemap() {
       // Create the sitemap.xml page
       const sitemap = Page.create({
@@ -74,7 +82,7 @@ export function sitemap(userOptions?: Options) {
       });
 
       // Add the sitemap page to pages
-      site.pages.push(sitemap);
+      site.pushPage(sitemap);
 
       // Add or update `robots.txt` with the sitemap url
       const robots = await site.getOrCreatePage("/robots.txt");
@@ -83,7 +91,7 @@ export function sitemap(userOptions?: Options) {
       }\n`;
     });
 
-    function generateSitemap(pages: Data[]): string {
+    function generateSitemap(pages: SitemapPluginData[]): string {
       const items = options.items ?? {};
       const sitemap: stringifyable = {
         "@version": "1.0",
@@ -112,7 +120,7 @@ export function sitemap(userOptions?: Options) {
             }
 
             if (data.alternates?.length) {
-              node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
+              node["xhtml:link"] = data.alternates.map((alternate) => ({
                 "@rel": "alternate",
                 "@hreflang": alternate.lang!,
                 "@href": site.url(alternate.url, true),

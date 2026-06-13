@@ -1,5 +1,6 @@
 import { assertEquals, assertStrictEquals as equals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
+import { Data } from "../core/file.ts";
 
 import type { SiteEvent } from "../core/site.ts";
 
@@ -34,8 +35,10 @@ Deno.test("build/update events", async () => {
 
   const events: string[] = [];
 
-  const listener = (event: SiteEvent) => events.push(event.type);
-  const updateListener = (event: SiteEvent<"beforeUpdate" | "afterUpdate">) => {
+  const listener = (event: SiteEvent<Data>) => events.push(event.type);
+  const updateListener = (
+    event: SiteEvent<Data, "beforeUpdate" | "afterUpdate">,
+  ) => {
     equals(event.files!.size, 1);
     equals(event.files!.has("/page1.md"), true);
     listener(event);

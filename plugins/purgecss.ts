@@ -4,7 +4,7 @@ import { concurrent } from "../core/utils/concurrent.ts";
 import { getExtension, matchExtension } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 import type { RawContent, UserDefinedOptions } from "../deps/purgecss.ts";
 
 export interface Options {
@@ -34,7 +34,7 @@ export function purgecss(userOptions?: Options) {
     extensions: ["html"],
   });
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.process([".css"], async function processPurgeCSS(pages, allPages) {
       const content: RawContent[] = [];
       for (const page of allPages) {

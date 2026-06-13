@@ -8,6 +8,7 @@ import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
 import type CMS from "lume/cms/core/cms.ts";
 import type { Storage } from "lume/cms/types.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** The CMS instance */
@@ -33,7 +34,7 @@ export function lumeCMS(userOptions: Options) {
     throw new Error("LumeCMS requires a CMS instance");
   }
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     setEnv("LUME_CMS", "true");
 
     // Set the site URL if it's not set

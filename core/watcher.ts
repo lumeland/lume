@@ -4,6 +4,7 @@ import Events from "./events.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import { Data } from "./file.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -175,7 +176,7 @@ export default class FSWatcher implements Watcher {
 }
 
 export class SiteWatcher implements Watcher {
-  site: Site;
+  site: Site<Data>;
   events: Events<WatchEvent> = new Events<WatchEvent>();
 
   constructor(site: Site) {

@@ -4,49 +4,65 @@ import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
 
-export interface MetaData {
+export interface MetasPluginData<D extends Data> extends Data {
+  /**
+   * Meta elements
+   * @see https://lume.land/plugins/metas/
+   */
+  metas?: MetaData<D>;
+}
+
+export interface MetaData<D extends Data> {
   /** The type of the site default is website */
-  type?: string | ((data: Data) => string | undefined);
+  type?: string | ((data: D) => string | undefined);
 
   /** The name of the site */
-  site?: string | ((data: Data) => string | undefined);
+  site?: string | ((data: D) => string | undefined);
 
   /** The title of the page */
-  title?: string | ((data: Data) => string | undefined);
+  title?: string | ((data: D) => string | undefined);
 
   /** The page language */
-  lang?: string | ((data: Data) => string | undefined);
+  lang?: string | ((data: D) => string | undefined);
 
   /** The description of the page */
-  description?: string | ((data: Data) => string | undefined);
+  description?: string | ((data: D) => string | undefined);
 
   /** The image of the page */
-  image?: string | ((data: Data) => string | undefined);
+  image?: string | ((data: D) => string | undefined);
 
   /** The icon of the site */
-  icon?: string | ((data: Data) => string | undefined);
+  icon?: string | ((data: D) => string | undefined);
 
   /** The page keywords */
-  keywords?: string[] | ((data: Data) => string[] | undefined);
+  keywords?: string[] | ((data: D) => string[] | undefined);
 
   /** The twitter username */
-  twitter?: string | ((data: Data) => string | undefined);
+  twitter?: string | ((data: D) => string | undefined);
 
   /** The fediverse username (for author attribution) */
-  fediverse?: string | ((data: Data) => string | undefined);
+  fediverse?: string | ((data: D) => string | undefined);
 
   /** The color theme */
-  color?: string | string[] | ((data: Data) => string | string[] | undefined);
+  color?:
+    | string
+    | string[]
+    | ((data: D) => string | string[] | undefined);
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
-  robots?: string | boolean | ((data: Data) => string | boolean | undefined);
+  robots?:
+    | string
+    | boolean
+    | ((data: D) => string | boolean | undefined);
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
-  generator?: string | boolean | ((data: Data) => string | boolean | undefined);
+  generator?:
+    | string
+    | boolean
+    | ((data: D) => string | boolean | undefined);
 
   /** Other meta tags */
-  // deno-lint-ignore no-explicit-any
-  [name: string]: any;
+  [name: string]: unknown;
 }
 
 const defaultGenerator = getGenerator();
@@ -56,7 +72,7 @@ const defaultGenerator = getGenerator();
  * @see https://lume.land/plugins/metas/
  */
 export function metas() {
-  return (site: Site) => {
+  return <D extends MetasPluginData<D>>(site: Site<D>) => {
     // Configure the merged keys
     site.mergeKey("metas", "object");
     site.process([".html"], function processMetas(pages) {
@@ -65,8 +81,8 @@ export function metas() {
       }
     });
 
-    function metas(page: Page) {
-      const metas = page.data.metas as MetaData | undefined;
+    function metas(page: Page<MetasPluginData<D>>) {
+      const metas = page.data.metas;
 
       if (!metas) {
         return;
@@ -214,7 +230,9 @@ function stringify(value: unknown): string | undefined {
   return String(value);
 }
 
-function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
+function getMetas<D extends Data>(
+  metas: MetaData<D>,
+): [MetaData<D>, Record<string, unknown>] {
   const {
     type,
     site,
@@ -251,12 +269,6 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * Meta elements
-       * @see https://lume.land/plugins/metas/
-       */
-      metas?: MetaData;
-    }
+    export interface Data extends MetasPluginData<Data> {}
   }
 }

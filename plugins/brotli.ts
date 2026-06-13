@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { toArrayBuffer } from "../deps/streams.ts";
 
@@ -22,10 +22,10 @@ export const defaults = {
 export function brotli(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.process(
       options.extensions,
-      function processBrotli(pages, allPages) {
+      function processBrotli(pages) {
         return concurrent(pages, async (page: Page) => {
           const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
@@ -39,7 +39,7 @@ export function brotli(userOptions?: Options) {
             url: page.outputPath + ".br",
             content: compressedContent,
           });
-          allPages.push(compressedPage);
+          site.pushPage(compressedPage);
         });
       },
     );

@@ -7,7 +7,7 @@ import { contentType } from "../deps/media_types.ts";
 import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 
 export interface Options {
   /** List of extra attributes to copy if replacing the element */
@@ -36,7 +36,7 @@ const LINE_BREAK_REGEX = /\r?\n/g;
 export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.process([".html", ".css"], function processInline(pages) {
       return concurrent(pages, inline);
     });
@@ -288,8 +288,8 @@ export function inline(userOptions?: Options) {
 }
 
 /** Returns the content of a file or page */
-async function getFileContent(
-  site: Site,
+async function getFileContent<D extends Data>(
+  site: Site<D>,
   url: string,
   binary: boolean,
 ): Promise<string | Uint8Array | undefined> {

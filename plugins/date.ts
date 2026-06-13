@@ -8,6 +8,11 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 import type { HelperThis } from "../core/renderer.ts";
 import type { Locale } from "../deps/date.ts";
+import { Data } from "../core/file.ts";
+
+export interface DatePluginData extends Data {
+  lang?: string;
+}
 
 export interface Options {
   /** The loaded locales */
@@ -37,13 +42,13 @@ export const defaults = {
 export function date(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends DatePluginData>(site: Site<D>) => {
     const defaultLocale = Object.keys(options.locales).shift();
 
     site.filter("date", filter);
 
     function filter(
-      this: HelperThis | void,
+      this: HelperThis<DatePluginData> | void,
       date: string | Date,
       pattern = "DATE",
       lang?: string,
@@ -86,5 +91,7 @@ declare global {
         lang?: string,
       ) => string | undefined;
     }
+
+    export interface Data extends DatePluginData {}
   }
 }

@@ -3,6 +3,7 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import { merge } from "../core/utils/object.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** Remove the date from the path */
@@ -20,7 +21,7 @@ export const defaults = {
 export function extractDate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.parseBasename((basename) => {
       const result = parseDateFromBasename(basename);
       if (result) {

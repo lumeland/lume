@@ -6,6 +6,7 @@ import { log } from "../core/utils/log.ts";
 import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** True to require trailing slashes and ignore redirections (oldUrl variables) */
@@ -59,9 +60,9 @@ export default function (userOptions?: Options) {
       (url.startsWith("#") && !options.anchors);
   }
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const urls = new Map<string, Set<string>>(); // All URLs found
-    const redirects = new Set<string>(); // All URLs that redirect
+    const redirects = new Set<unknown>(); // All URLs that redirect
 
     // Ignore the ouput file to avoid infinite build loop
     if (typeof options.output === "string") {

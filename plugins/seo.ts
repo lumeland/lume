@@ -7,8 +7,14 @@ import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 
 import type { ErrorMessage } from "./seo/mod.ts";
 import { Item } from "../core/debugbar.ts";
+import Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 const commonWords = new Set<string>(enCommonWords);
+
+export interface SEOPluginData extends Data {
+  lang?: string;
+}
 
 export interface Options {
   /** Customize the report output */
@@ -61,7 +67,7 @@ export const defaults = {
 export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return <D extends SEOPluginData>(site: Site<D>) => {
     const reports: Map<string, ErrorMessage[]> = new Map();
 
     site.process(processSEO);

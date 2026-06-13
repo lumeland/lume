@@ -16,6 +16,7 @@ import type {
   UnocssPluginContext,
   UserConfig,
 } from "../deps/unocss.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /**
@@ -77,7 +78,7 @@ export const defaults = {
 export function unoCSS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     let uno: ReturnType<typeof createGenerator>;
     function getGenerator() {
       if (!uno) {

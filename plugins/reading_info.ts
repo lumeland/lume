@@ -1,6 +1,15 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
+
+export interface ReadingInfoPluginData extends Data {
+  /**
+   * Reading info
+   * @see https://lume.land/plugins/reading_info/
+   */
+  readingInfo?: ReadingInfo;
+}
 
 export interface Options {
   /** File extensions to process */
@@ -22,7 +31,7 @@ export const defaults = {
 export function readingInfo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends ReadingInfoPluginData>(site: Site<D>) => {
     site.preprocess(options.extensions, function processReadingInfo(pages) {
       for (const page of pages) {
         const { content, lang } = page.data;
@@ -85,13 +94,7 @@ export interface ReadingInfo {
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * Reading info
-       * @see https://lume.land/plugins/reading_info/
-       */
-      readingInfo: ReadingInfo;
-    }
+    export interface Data extends ReadingInfoPluginData {}
 
     export interface Helpers {
       /** @see https://lume.land/plugins/reading_info/ */

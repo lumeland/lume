@@ -4,7 +4,7 @@ import { parseSrcset, searchLinks } from "../core/utils/dom_links.ts";
 import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 
 export interface Options {
   /**
@@ -46,7 +46,7 @@ export function modifyUrls(userOptions: Options) {
     return replaced.join(", ");
   }
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.process(
       [".html", ".css"],
       function processModifyUrls(pages) {

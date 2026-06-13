@@ -9,6 +9,7 @@ import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -87,7 +88,7 @@ export function markdown(userOptions?: Options) {
     options.plugins.unshift(...defaultPlugins);
   }
 
-  return function (site: Site) {
+  return function <D extends Data>(site: Site<D>) {
     const engine = markdownIt(options.options);
 
     // Disable indented code blocks by default

@@ -5,7 +5,7 @@ import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
 
-import type { Page, StaticFile } from "./file.ts";
+import type { Data, FileData, Page, StaticFile } from "./file.ts";
 
 export interface Options {
   dest: string;
@@ -14,8 +14,10 @@ export interface Options {
 
 /** Generic interface for Writer */
 export interface Writer {
-  savePages(pages: Page[]): Promise<Page[]>;
-  copyFiles(files: StaticFile[]): Promise<StaticFile[]>;
+  savePages<D extends Data>(pages: Page<D>[]): Promise<Page<D>[]>;
+  copyFiles<D extends FileData>(
+    files: StaticFile<D>[],
+  ): Promise<StaticFile<D>[]>;
   clear(): Promise<void>;
   removeFiles(files: string[]): Promise<void>;
 }
@@ -40,8 +42,8 @@ export class FSWriter implements Writer {
    * Save the pages in the dest folder
    * Returns an array of pages that have been saved
    */
-  async savePages(pages: Page[]): Promise<Page[]> {
-    const savedPages: Page[] = [];
+  async savePages<D extends Data>(pages: Page<D>[]): Promise<Page<D>[]> {
+    const savedPages: Page<D>[] = [];
     ++this.#saveCount;
 
     await concurrent(
@@ -60,7 +62,7 @@ export class FSWriter implements Writer {
    * Save a page in the dest folder
    * Returns a boolean indicating if the page has saved
    */
-  async savePage(page: Page): Promise<boolean> {
+  async savePage(page: Page<Data>): Promise<boolean> {
     const { sourcePath, outputPath, content } = page;
     // Ignore empty pages
     if (!content) {
@@ -95,9 +97,11 @@ export class FSWriter implements Writer {
 
     await ensureDir(posix.dirname(filename));
 
-    content instanceof Uint8Array
-      ? await Deno.writeFile(filename, content)
-      : await Deno.writeTextFile(filename, content);
+    if (content instanceof Uint8Array) {
+      await Deno.writeFile(filename, content);
+    } else {
+      await Deno.writeTextFile(filename, content);
+    }
 
     return true;
   }
@@ -105,8 +109,10 @@ export class FSWriter implements Writer {
   /**
    * Copy the static files in the dest folder
    */
-  async copyFiles(files: StaticFile[]): Promise<StaticFile[]> {
-    const copyFiles: StaticFile[] = [];
+  async copyFiles<D extends FileData>(
+    files: StaticFile<D>[],
+  ): Promise<StaticFile<D>[]> {
+    const copyFiles: StaticFile<D>[] = [];
 
     await concurrent(
       files,
@@ -124,7 +130,7 @@ export class FSWriter implements Writer {
    * Copy a static file in the dest folder
    * Returns a boolean indicating if the file has saved
    */
-  async copyFile(file: StaticFile): Promise<boolean> {
+  async copyFile(file: StaticFile<FileData>): Promise<boolean> {
     const { entry } = file.src;
 
     if (entry.flags.has("saved")) {

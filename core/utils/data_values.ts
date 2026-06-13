@@ -10,7 +10,10 @@ import type { Data } from "../file.ts";
  * For example, if the value is "=title", it returns the value of the page data "title"
  * If the value is "$.title", it will return the value of the element with the selector ".title"
  */
-export function getDataValue(data: Partial<Data>, value?: unknown) {
+export function getDataValue(
+  data: Partial<Data>,
+  value?: unknown,
+) {
   // Get the value from the page data
   if (typeof value === "string") {
     return searchValue(data, value);
@@ -37,7 +40,10 @@ export function getPlainDataValue(
   return val;
 }
 
-function searchValue(data: Partial<Data>, value: string): unknown {
+function searchValue(
+  data: Partial<Data>,
+  value: string,
+): unknown {
   if (!value) {
     return;
   }

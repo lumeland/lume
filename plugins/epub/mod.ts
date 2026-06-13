@@ -1,6 +1,6 @@
 import { typeByExtension } from "../../deps/media_types.ts";
-import type { Data } from "../../core/file.ts";
-import type { NavData } from "../nav.ts";
+import type { Page } from "../../core/file.ts";
+import type { NavData, NavPluginData } from "../nav.ts";
 import { stringify, type stringifyable } from "../../deps/xml.ts";
 
 /**
@@ -112,7 +112,10 @@ export interface OPF {
   metadata: Metadata;
 }
 
-export function getManifest(data: Data, metadata: Metadata): ManifestItem {
+export function getManifest(
+  data: Page["data"],
+  metadata: Metadata,
+): ManifestItem {
   const href = data.page.outputPath.slice(1); // Remove leading /
   const id = data?.id ?? href.endsWith(".ncx")
     ? "ncx"
@@ -139,7 +142,7 @@ export function getManifest(data: Data, metadata: Metadata): ManifestItem {
     id,
     href,
     mediaType,
-    index: data.index ?? true,
+    index: data.index !== undefined ? !!data.index : true,
     properties,
   };
 }
@@ -344,9 +347,9 @@ export function createEncryption(files: string[]) {
   return stringify(clean(xmlObj));
 }
 
-export function createTocNcx(
+export function createTocNcx<D extends NavPluginData<D>>(
   metadata: Metadata,
-  menu: NavData,
+  menu: NavData<D>,
   files: ManifestItem[],
 ) {
   const status = { order: 1, level: 1 };
@@ -398,8 +401,8 @@ export function createTocNcx(
   return stringify(clean(xmlObj));
 }
 
-function createNavPoint(
-  menu: NavData,
+function createNavPoint<D extends NavPluginData<D>>(
+  menu: NavData<D>,
   status: { order: number; level: number },
 ): stringifyable | undefined {
   const manifestItem = menu.data.manifestItem as ManifestItem | undefined;
