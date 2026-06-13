@@ -1366,7 +1366,7 @@ export type SiteEvent<D extends Data, T extends SiteEventType = SiteEventType> =
 export type SiteEventType = keyof SiteEventMap<Data>;
 
 /** A generic Lume plugin */
-export type Plugin<D extends Data = Data> = (
+export type Plugin<D extends Data = Lume.Data> = (
   site: Site<D>,
 ) => void;
 
