@@ -156,7 +156,7 @@ export function esbuild(userOptions?: Options) {
 
     site.process(
       options.extensions,
-      async function processEsbuild(pages, allPages) {
+      async function processEsbuild(pages) {
         const hasPages = warnUntil(
           `[esbuild plugin] No ${
             options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")

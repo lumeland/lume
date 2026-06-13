@@ -1,5 +1,5 @@
 import { typeByExtension } from "../../deps/media_types.ts";
-import type { Data, Page } from "../../core/file.ts";
+import type { Page } from "../../core/file.ts";
 import type { NavData, NavPluginData } from "../nav.ts";
 import { stringify, type stringifyable } from "../../deps/xml.ts";
 

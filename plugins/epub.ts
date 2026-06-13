@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Data, filesToPages } from "../core/file.ts";
+import { filesToPages } from "../core/file.ts";
 import navPlugin, { NavPluginData } from "./nav.ts";
 import type { NavData } from "./nav.ts";
 import type Site from "../core/site.ts";
