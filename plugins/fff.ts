@@ -15,8 +15,8 @@ import { Data } from "../core/file.ts";
 
 export interface FFFPluginData
   extends Data, Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {
-    type?: PostType;
-  }
+  type?: PostType;
+}
 
 export interface Options {
   /**
@@ -50,10 +50,12 @@ export function fff(userOptions?: Options) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
-            page.data.created = getGitDate("created", page.src.entry.src)?.toDateString();
+            page.data.created = getGitDate("created", page.src.entry.src)
+              ?.toDateString();
           }
           if (!page.data.updated) {
-            page.data.updated = getGitDate("modified", page.src.entry.src)?.toDateString();
+            page.data.updated = getGitDate("modified", page.src.entry.src)
+              ?.toDateString();
           }
         }
 

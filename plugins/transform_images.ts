@@ -126,7 +126,10 @@ export function transformImages(userOptions?: Options) {
     // Configure the cache folder
     const { cache } = site;
 
-    async function processPage(page: Page<TransformImagesPluginData>, allPages: Page<TransformImagesPluginData>[]) {
+    async function processPage(
+      page: Page<TransformImagesPluginData>,
+      allPages: Page<TransformImagesPluginData>[],
+    ) {
       const transData = page.data.transformImages;
 
       if (!transData) {

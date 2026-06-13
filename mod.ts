@@ -5,7 +5,10 @@ import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
 import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
 import vento, { Options as VentoOptions } from "./plugins/vento.ts";
 import search, { SearchPluginData } from "./plugins/search.ts";
-import paginate, { Options as PaginateOptions, PaginatePluginData } from "./plugins/paginate.ts";
+import paginate, {
+  Options as PaginateOptions,
+  PaginatePluginData,
+} from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";

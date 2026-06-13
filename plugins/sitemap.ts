@@ -18,7 +18,7 @@ type ChangeFreq =
   | "yearly"
   | "never";
 
-export interface Options<D extends Data>  {
+export interface Options<D extends Data> {
   /** The sitemap file name */
   filename?: string;
 

@@ -85,7 +85,11 @@ export class Nav {
     return breadcrumb;
   }
 
-  nextPage(url: string, query?: string, sort?: string): NavPluginData | undefined {
+  nextPage(
+    url: string,
+    query?: string,
+    sort?: string,
+  ): NavPluginData | undefined {
     const item = this.menu(url, query, sort)!;
 
     // It has a child -> return the first child with url
@@ -111,7 +115,11 @@ export class Nav {
     return parent ? getFirstChild(parent)?.data : undefined;
   }
 
-  previousPage(url: string, query?: string, sort?: string): NavPluginData | undefined {
+  previousPage(
+    url: string,
+    query?: string,
+    sort?: string,
+  ): NavPluginData | undefined {
     const nav = this.menu(url, query, sort)!;
     const siblings = nav?.parent?.children;
 

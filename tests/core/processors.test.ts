@@ -52,7 +52,7 @@ Deno.test("Processors", async (t) => {
       page2.content = "content page 2";
 
       const page3 = new Page({
-        url: "file2.foo"
+        url: "file2.foo",
       }, {
         path: "file2",
         ext: ".bar",

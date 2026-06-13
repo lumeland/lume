@@ -335,7 +335,7 @@ export type ProxyComponents = {
   // deno-lint-ignore no-explicit-any
   (props?: Record<string, unknown>): any;
   [key: string]: ProxyComponents;
-}
+};
 
 /**
  * Create and returns a proxy to use the components

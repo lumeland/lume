@@ -4,7 +4,9 @@ import Site from "../core/site.ts";
 import { Data } from "../core/file.ts";
 
 /** Create a site instance */
-export async function createSite<D extends Data>(_config?: URL): Promise<Site<D>> {
+export async function createSite<D extends Data>(
+  _config?: URL,
+): Promise<Site<D>> {
   if (!_config) {
     return lume() as unknown as Site<D>;
   }

@@ -20,13 +20,7 @@ import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
 import FSWatcher from "../core/watcher.ts";
 import { FSWriter } from "./writer.ts";
-import {
-  Data,
-  filesToPages,
-  Page,
-  StaticFile,
-  UnknownData,
-} from "./file.ts";
+import { Data, filesToPages, Page, StaticFile, UnknownData } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -335,9 +329,9 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Use a plugin */
-  use<T extends Data>(plugin: Plugin<T>): Site<D & T> {
-    plugin(this as unknown as Site<T>);
-    return this as unknown as Site<D & T>;
+  use(plugin: Plugin<D>): Site<D> {
+    plugin(this);
+    return this;
   }
 
   /**
@@ -452,7 +446,11 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis<D>>, options: HelperOptions): this {
+  helper(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -1380,11 +1378,10 @@ function pathBelongs(base: string, path?: string): boolean {
 }
 
 export type OmitIndexSignature<ObjectType> = {
-		[KeyType in keyof ObjectType as string extends KeyType
-			? never
-			: number extends KeyType
-				? never
-				: symbol extends KeyType
-					? never
-					: KeyType]: ObjectType[KeyType];
-	};
+  [
+    KeyType in keyof ObjectType as string extends KeyType ? never
+      : number extends KeyType ? never
+      : symbol extends KeyType ? never
+      : KeyType
+  ]: ObjectType[KeyType];
+};

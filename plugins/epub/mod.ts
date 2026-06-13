@@ -112,7 +112,10 @@ export interface OPF {
   metadata: Metadata;
 }
 
-export function getManifest(data: Page["data"], metadata: Metadata): ManifestItem {
+export function getManifest(
+  data: Page["data"],
+  metadata: Metadata,
+): ManifestItem {
   const href = data.page.outputPath.slice(1); // Remove leading /
   const id = data?.id ?? href.endsWith(".ncx")
     ? "ncx"

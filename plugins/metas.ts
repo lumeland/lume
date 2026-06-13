@@ -230,7 +230,9 @@ function stringify(value: unknown): string | undefined {
   return String(value);
 }
 
-function getMetas<D extends Data>(metas: MetaData<D>): [MetaData<D>, Record<string, unknown>] {
+function getMetas<D extends Data>(
+  metas: MetaData<D>,
+): [MetaData<D>, Record<string, unknown>] {
   const {
     type,
     site,
