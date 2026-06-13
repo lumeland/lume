@@ -35,7 +35,7 @@ export function getPageUrl(
   destination?: Destination | string,
 ): string | false {
   let { url, basename } = data;
-  const defaultUrl = getDefaultUrl(basename, parentPath, prettyUrls);
+  const defaultUrl = getDefaultUrl(String(basename), parentPath, prettyUrls);
 
   if (url === false) {
     return false;
