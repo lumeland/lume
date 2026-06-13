@@ -347,7 +347,7 @@ export function createEncryption(files: string[]) {
   return stringify(clean(xmlObj));
 }
 
-export function createTocNcx<D extends NavPluginData<D>>(
+export function createTocNcx<D extends NavPluginData>(
   metadata: Metadata,
   menu: NavData<D>,
   files: ManifestItem[],
@@ -401,7 +401,7 @@ export function createTocNcx<D extends NavPluginData<D>>(
   return stringify(clean(xmlObj));
 }
 
-function createNavPoint<D extends NavPluginData<D>>(
+function createNavPoint<D extends NavPluginData>(
   menu: NavData<D>,
   status: { order: number; level: number },
 ): stringifyable | undefined {

@@ -17,8 +17,7 @@ import {
 } from "./epub/mod.ts";
 import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
 
-export interface EpubPluginData<D extends NavPluginData<D>>
-  extends NavPluginData<D> {
+export interface EpubPluginData extends NavPluginData {
   type?: EpubType;
   index?: boolean;
   id?: string;
@@ -53,7 +52,7 @@ export const defaults = {
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends EpubPluginData<D>>(site: Site<D>) => {
+  return <D extends EpubPluginData>(site: Site<D>) => {
     const metadata = options.metadata as Metadata;
     site.data("metadata", metadata);
     let nav = site.scopedData.get("/")?.nav;
@@ -168,7 +167,7 @@ export default function (userOptions?: Options) {
   };
 }
 
-function allPages<D extends NavPluginData<D>>(
+function allPages<D extends NavPluginData>(
   menu: NavData<D>,
 ): ManifestItem[] {
   const pages: ManifestItem[] = [];
@@ -195,6 +194,6 @@ function allPages<D extends NavPluginData<D>>(
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data extends EpubPluginData<Data> {}
+    export interface Data extends EpubPluginData {}
   }
 }

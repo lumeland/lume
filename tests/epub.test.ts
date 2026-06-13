@@ -7,7 +7,7 @@ import { SearchPluginData } from "../plugins/search.ts";
 interface TestData
   extends
     Data,
-    EpubPluginData<TestData>,
+    EpubPluginData,
     PaginatePluginData,
     SearchPluginData<TestData> {}
 
