@@ -2,12 +2,12 @@ import { posix } from "../../deps/path.ts";
 import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
-import type { Page, RawData, UnknownData } from "../file.ts";
+import type { Page, RawData } from "../file.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(
   page404?: string,
-): (page: UnknownData) => boolean {
+): (page: RawData) => boolean {
   const url404 = page404 ? normalizePath(page404) : undefined;
 
   return url404 ? (data) => data.url !== url404 : () => true;

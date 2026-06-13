@@ -2,12 +2,12 @@ import { matchExtension } from "./utils/path.ts";
 
 import type DebugBar from "./debugbar.ts";
 import type { Extensions } from "./utils/path.ts";
-import type { Page, UnknownData } from "./file.ts";
+import type { Page, RawData } from "./file.ts";
 
 /**
  * Class to store and run the (pre)processors
  */
-export default class Processors<D extends UnknownData> {
+export default class Processors<D extends RawData> {
   /** Processors and the assigned extensions */
   processors = new Map<Processor<D>, Extensions>();
 
@@ -71,12 +71,12 @@ export default class Processors<D extends UnknownData> {
 /**
  * Processor callback is used in both (pre)process methods.
  */
-export type Processor<D extends UnknownData> = (
+export type Processor<D extends RawData> = (
   filteredPages: Page<D>[],
   allPages: Page<D>[],
 ) => void | false | Promise<void | false>;
 
-function pageMatches(exts: Extensions, page: Page<UnknownData>): boolean {
+function pageMatches(exts: Extensions, page: Page<RawData>): boolean {
   if (page.isCopy) {
     return false;
   }

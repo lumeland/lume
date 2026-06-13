@@ -7,7 +7,7 @@ import { getPageDate } from "./utils/page_date.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
 
-import type { Content, Data, RawData, UnknownData } from "./file.ts";
+import type { Content, Data, RawData } from "./file.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
@@ -162,7 +162,7 @@ export default class Renderer<D extends Data> {
 
             // Save the children to render the layout later
             if (page.data.layout || page.isHTML) {
-              (page.data as UnknownData).children = content;
+              (page.data as RawData).children = content;
               renderedPages.push(page);
             } else {
               page.content = content;
@@ -242,7 +242,7 @@ export default class Renderer<D extends Data> {
   }
 
   /** Render a page */
-  async #renderPage(page: Page<UnknownData>): Promise<Content> {
+  async #renderPage(page: Page<RawData>): Promise<Content> {
     const data = { ...page.data };
     const { content } = data;
     delete data.content;

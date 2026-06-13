@@ -5,7 +5,7 @@ import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
 
-import type { Page, StaticFile, UnknownData } from "./file.ts";
+import type { Page, RawData, StaticFile } from "./file.ts";
 
 export interface Options {
   dest: string;
@@ -14,8 +14,8 @@ export interface Options {
 
 /** Generic interface for Writer */
 export interface Writer {
-  savePages<D extends UnknownData>(pages: Page<D>[]): Promise<Page<D>[]>;
-  copyFiles<D extends UnknownData>(
+  savePages<D extends RawData>(pages: Page<D>[]): Promise<Page<D>[]>;
+  copyFiles<D extends RawData>(
     files: StaticFile<D>[],
   ): Promise<StaticFile<D>[]>;
   clear(): Promise<void>;
@@ -42,7 +42,7 @@ export class FSWriter implements Writer {
    * Save the pages in the dest folder
    * Returns an array of pages that have been saved
    */
-  async savePages<D extends UnknownData>(pages: Page<D>[]): Promise<Page<D>[]> {
+  async savePages<D extends RawData>(pages: Page<D>[]): Promise<Page<D>[]> {
     const savedPages: Page<D>[] = [];
     ++this.#saveCount;
 
@@ -62,7 +62,7 @@ export class FSWriter implements Writer {
    * Save a page in the dest folder
    * Returns a boolean indicating if the page has saved
    */
-  async savePage(page: Page<UnknownData>): Promise<boolean> {
+  async savePage(page: Page<RawData>): Promise<boolean> {
     const { sourcePath, outputPath, content } = page;
     // Ignore empty pages
     if (!content) {
@@ -109,7 +109,7 @@ export class FSWriter implements Writer {
   /**
    * Copy the static files in the dest folder
    */
-  async copyFiles<D extends UnknownData>(
+  async copyFiles<D extends RawData>(
     files: StaticFile<D>[],
   ): Promise<StaticFile<D>[]> {
     const copyFiles: StaticFile<D>[] = [];
@@ -130,7 +130,7 @@ export class FSWriter implements Writer {
    * Copy a static file in the dest folder
    * Returns a boolean indicating if the file has saved
    */
-  async copyFile(file: StaticFile<UnknownData>): Promise<boolean> {
+  async copyFile(file: StaticFile<RawData>): Promise<boolean> {
     const { entry } = file.src;
 
     if (entry.flags.has("saved")) {

@@ -12,10 +12,8 @@ const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
-export type UnknownData = Record<string, unknown>;
-
 /** A page of the site */
-export class Page<D extends UnknownData = Data> {
+export class Page<D extends Record<string, unknown> = Data> {
   /** The src info */
   src: Src;
 
@@ -32,7 +30,7 @@ export class Page<D extends UnknownData = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create<D extends UnknownData & { url: string; content?: Content }>(
+  static create<D extends RawData & { url: string; content?: Content }>(
     data: D,
     src?: Partial<Src>,
   ): Page<D & { basename: string }> {
@@ -42,20 +40,23 @@ export class Page<D extends UnknownData = Data> {
       data.url = data.url.slice(0, -10);
     }
 
-    const page = new Page({ ...data, basename }, src);
+    const page = new Page<D & { basename: string }>(src, {
+      ...data,
+      basename,
+    });
     page.content = data.content;
 
     return page;
   }
 
-  constructor(data: D, src?: Partial<Src>) {
-    this.data = { ...data, page: this };
+  constructor(src?: Partial<Src>, data?: D) {
+    this.data = { ...data, page: this } as unknown as Page<D>["data"];
     this.src = { path: "", ext: "", ...src };
   }
 
   /** Duplicate this page. */
-  duplicate(index: number | undefined, data: Partial<D>): Page<D> {
-    const page = new Page({ ...this.data, ...data }, { ...this.src });
+  duplicate(index: number | undefined, data: D): Page<D> {
+    const page = new Page({ ...this.src }, data);
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
@@ -64,7 +65,7 @@ export class Page<D extends UnknownData = Data> {
     return page;
   }
 
-  overwrite<T extends UnknownData>(
+  overwrite<T extends RawData>(
     data: T,
   ): this is Page<Omit<D, keyof T> & T> {
     Object.assign(this.data, data);
@@ -151,7 +152,7 @@ export class Page<D extends UnknownData = Data> {
   }
 }
 
-export class StaticFile<D extends UnknownData = Data> {
+export class StaticFile<D extends RawData = Data> {
   /** The src info */
   src: Required<Src>;
 
@@ -161,7 +162,7 @@ export class StaticFile<D extends UnknownData = Data> {
   /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
-  static create<D extends UnknownData>(
+  static create<D extends RawData>(
     data: D,
     src: Required<Src>,
   ): StaticFile<D> {
@@ -178,7 +179,7 @@ export class StaticFile<D extends UnknownData = Data> {
     D extends { url: string } ? Page<D & { basename: string }> : never
   > {
     const { content } = await this.src.entry.getContent(binaryLoader);
-    const data = this.data as D & { url: string };
+    const { content: _, ...data } = this.data as D & { url: string };
     const page = Page.create({ ...data }, this.src);
     page.content = content as Uint8Array<ArrayBuffer>;
     page.isCopy = this.isCopy;
@@ -254,19 +255,9 @@ export interface RawData {
   [index: string]: unknown;
 }
 
-/** The data of a page/folder once loaded and processed */
-export interface Data extends RawData {
-  /** The url of a page */
-  url: string;
-
+export interface DirectoryData extends RawData {
   /** The basename of the page */
   basename: string;
-
-  /** The date creation of the page */
-  date: Date;
-
-  /** The page reference */
-  page: Page<this>;
 
   /**
    * The available components
@@ -275,8 +266,22 @@ export interface Data extends RawData {
   comp: ProxyComponents;
 }
 
+export interface FileData extends DirectoryData {
+  /** The url of a page */
+  url: string;
+}
+
+/** The data of a page/folder once loaded and processed */
+export interface Data extends FileData {
+  /** The date creation of the page */
+  date: Date;
+
+  /** The page reference */
+  page: Page<this>;
+}
+
 /** Promote files to pages */
-export async function filesToPages<D extends UnknownData>(
+export async function filesToPages<D extends RawData>(
   files: StaticFile<D>[],
   pages: Page<D>[],
   filter: (file: StaticFile<D>) => boolean,
@@ -289,7 +294,7 @@ export async function filesToPages<D extends UnknownData>(
   }
 }
 
-export function ensureRawData(data: UnknownData): data is RawData {
+export function ensureRawData(data: Record<string, unknown>): data is RawData {
   if (
     typeof data.url !== "undefined" && typeof data.url !== "string" &&
     typeof data.url !== "function" && data.url !== false
@@ -338,7 +343,7 @@ export function ensureRawData(data: UnknownData): data is RawData {
 
 function getUrl(
   value: unknown,
-  page?: Page<UnknownData>,
+  page?: Page<Record<string, unknown>>,
 ): string | false | undefined {
   let url = value;
   if (typeof url === "function" && page) {

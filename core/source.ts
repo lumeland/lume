@@ -6,7 +6,7 @@ import { getPageDate } from "./utils/page_date.ts";
 import { ensureRawData, Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
 
-import type { RawData, UnknownData } from "./file.ts";
+import type { RawData } from "./file.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type { default as Formats, Format } from "./formats.ts";
 import type DataLoader from "./data_loader.ts";
@@ -18,7 +18,7 @@ import type {
 } from "./components.ts";
 import { log } from "./utils/log.ts";
 
-export interface Options<D extends UnknownData> {
+export interface Options<D extends RawData> {
   formats: Formats;
   dataLoader: DataLoader;
   componentLoader: ComponentLoader<D>;
@@ -38,7 +38,7 @@ export interface Options<D extends UnknownData> {
  * Scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source<D extends UnknownData> {
+export default class Source<D extends RawData> {
   /** Filesystem reader to scan folders */
   fs: FS;
 
@@ -544,7 +544,7 @@ export default class Source<D extends UnknownData> {
         );
         continue;
       }
-      const page = new Page(pageData);
+      const page = new Page(undefined, pageData);
 
       const url = getPageUrl(page, this.prettyUrls, path);
       if (!url) {
@@ -620,11 +620,11 @@ export default class Source<D extends UnknownData> {
     }
 
     // Create the page
-    const page = new Page(data, {
+    const page = new Page({
       path: entry.path.slice(0, -ext.length),
       ext,
       entry,
-    });
+    }, data);
 
     // Calculate the page URL
     const url = getPageUrl(page, this.prettyUrls, dirPath, destination);
@@ -654,7 +654,7 @@ export default class Source<D extends UnknownData> {
 
 export type Destination = (path: string) => string;
 
-export type BuildFilter = (entry: Entry, page?: Page<UnknownData>) => boolean;
+export type BuildFilter = (entry: Entry, page?: Page<RawData>) => boolean;
 
 export type BasenameParser<D> = (
   filename: string,
@@ -683,7 +683,7 @@ function mergeComponents(...components: Components[]): Components {
   });
 }
 
-function runBasenameParsers<D extends UnknownData>(
+function runBasenameParsers<D extends RawData>(
   basename: string,
   basenameParsers: BasenameParser<D>[],
   parentData: Partial<D>,
@@ -705,7 +705,7 @@ function runBasenameParsers<D extends UnknownData>(
   return data;
 }
 
-function createFile<T extends UnknownData>(
+function createFile<T extends RawData>(
   entry: Entry,
   ext: string,
   dirPath: string,

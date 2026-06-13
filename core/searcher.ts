@@ -1,11 +1,11 @@
 import { globToRegExp } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 
-import type { Data, Page, StaticFile, UnknownData } from "./file.ts";
+import type { Data, Page, RawData, StaticFile } from "./file.ts";
 
-type PageData<D extends UnknownData> = Page<D>["data"];
+type PageData<D extends RawData> = Page<D>["data"];
 
-export interface Options<D extends UnknownData = Data> {
+export interface Options<D extends RawData = Data> {
   /** The pages array */
   pages: Page<D>[];
 
@@ -19,11 +19,11 @@ export interface Options<D extends UnknownData = Data> {
   filters?: Filter<D>[];
 }
 
-type Filter<D extends UnknownData> = (data: PageData<D>) => boolean;
+type Filter<D extends RawData> = (data: PageData<D>) => boolean;
 type Condition = [string, string, unknown];
 
 /** Search helper */
-export default class Searcher<D extends UnknownData = Data> {
+export default class Searcher<D extends RawData = Data> {
   #pages: Page<D>[];
   #files: StaticFile<D>[];
   #sourceData: Map<string, Partial<D>>;
@@ -188,7 +188,7 @@ export default class Searcher<D extends UnknownData = Data> {
  */
 export function buildFilter(
   query = "",
-): Filter<UnknownData> | undefined {
+): Filter<RawData> | undefined {
   // (?:(not)?(fieldName)(operator))?(value|"value"|'value')
   const matches = query
     ? query.matchAll(

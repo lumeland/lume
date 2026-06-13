@@ -3,7 +3,7 @@ import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 import { read } from "../core/utils/read.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { Data, Page, UnknownData } from "../core/file.ts";
+import { Data, Page, RawData } from "../core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
@@ -43,7 +43,7 @@ export function sourceMaps(userOptions?: Options) {
       return concurrent(pages, (page) => processSourceMap(page, allPages));
     });
 
-    async function processSourceMap(file: Page<D>, files: Page<UnknownData>[]) {
+    async function processSourceMap(file: Page<D>, files: Page<RawData>[]) {
       const sourceMap = file.data.sourceMap;
       file.data.sourceMap = undefined;
 
@@ -137,7 +137,7 @@ export function prepareAsset<D extends Data>(
 /** Save the process result */
 export function saveAsset<D extends Data>(
   site: Site<D>,
-  page: Page<UnknownData>,
+  page: Page<RawData>,
   content: string,
   sourceMap?: SourceMap | string,
 ) {

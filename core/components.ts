@@ -3,7 +3,7 @@ import textLoader from "./loaders/text.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
 
-import type { UnknownData } from "./file.ts";
+import type { RawData } from "./file.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {
@@ -14,7 +14,7 @@ export interface Options {
 /**
  * Class to load components from the _components folder.
  */
-export class ComponentLoader<D extends UnknownData> {
+export class ComponentLoader<D extends RawData> {
   /** List of loaders and engines used by extensions */
   formats: Formats;
 
@@ -130,7 +130,7 @@ export class ComponentLoader<D extends UnknownData> {
     const { css, js, inheritData, content, ...data } = rawComponent;
     const name = defaultName ?? entry.name.slice(0, -ext.length);
 
-    const render = async (props?: Record<string, unknown>): Promise<string> => {
+    const render = async (props?: RawData): Promise<string> => {
       const currData = inheritData !== false
         ? { ...dirData, ...data, ...props }
         : { ...data, ...props };

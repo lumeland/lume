@@ -21,7 +21,7 @@ import Scripts from "./scripts.ts";
 import Archetypes from "./archetypes.ts";
 import FSWatcher from "./watcher.ts";
 import { FSWriter } from "./writer.ts";
-import { Data, filesToPages, Page, StaticFile, UnknownData } from "./file.ts";
+import { Data, filesToPages, Page, RawData, StaticFile } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -1039,7 +1039,7 @@ export default class Site<D extends Data = Data> {
     return absolute ? this.options.location.origin + path : path;
   }
 
-  pushPage(page: Page<UnknownData & { url: string }>): void {
+  pushPage(page: Page<RawData & { url: string }>): void {
     this.pages.push(page as Page<D>);
   }
 
@@ -1323,7 +1323,7 @@ export interface ComponentsOptions {
   placeholder?: string;
 }
 
-export type SiteEventMap<D extends UnknownData = UnknownData> = {
+export type SiteEventMap<D extends RawData = RawData> = {
   // deno-lint-ignore ban-types
   afterLoad: {};
   beforeBuild: {
