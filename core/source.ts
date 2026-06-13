@@ -539,7 +539,9 @@ export default class Source<D extends UnknownData> {
         data,
       );
       if (!ensureRawData(pageData)) {
-        log.error(`[loader] Invalid page data. Path: ${dirData}, page: ${basename}`);
+        log.error(
+          `[loader] Invalid page data. Path: ${dirData}, page: ${basename}`,
+        );
         continue;
       }
       const page = new Page(pageData);
@@ -611,7 +613,9 @@ export default class Source<D extends UnknownData> {
     );
 
     if (!ensureRawData(data)) {
-      log.error(`[loader] Error loading the file "${entry.path}": Invalid page data`);
+      log.error(
+        `[loader] Error loading the file "${entry.path}": Invalid page data`,
+      );
       return;
     }
 
