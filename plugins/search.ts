@@ -26,7 +26,7 @@ export default search;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    // @ts-expect-error Epub and FFF use incompatible types, but that should only become relevant to the user
+    // @ts-ignore Epub and FFF use incompatible types, but that should only become relevant to the user
     export interface Data extends SearchPluginData<Data> {}
   }
 }
