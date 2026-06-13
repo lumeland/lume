@@ -4,7 +4,8 @@ import { Data } from "../core/file.ts";
 import { PaginatePluginData } from "../plugins/paginate.ts";
 import { SearchPluginData } from "../plugins/search.ts";
 
-interface TestData extends Data, PaginatePluginData, SearchPluginData<TestData> {
+interface TestData
+  extends Data, PaginatePluginData, SearchPluginData<TestData> {
   title?: string;
 }
 

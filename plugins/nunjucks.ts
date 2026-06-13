@@ -137,7 +137,8 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader<D extends Data> extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
+class LumeLoader<D extends Data> extends Nunjucks.Loader
+  implements Nunjucks.ILoaderAsync {
   includes: string;
 
   constructor(private site: Site<D>, includes: string) {

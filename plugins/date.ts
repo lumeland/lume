@@ -92,6 +92,6 @@ declare global {
       ) => string | undefined;
     }
 
-		export interface Data extends DatePluginData {}
+    export interface Data extends DatePluginData {}
   }
 }

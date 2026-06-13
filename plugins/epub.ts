@@ -17,7 +17,8 @@ import {
 } from "./epub/mod.ts";
 import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
 
-export interface EpubPluginData<D extends NavPluginData<D>> extends NavPluginData<D> {
+export interface EpubPluginData<D extends NavPluginData<D>>
+  extends NavPluginData<D> {
   type?: EpubType;
   index?: boolean;
   id?: string;
@@ -167,7 +168,9 @@ export default function (userOptions?: Options) {
   };
 }
 
-function allPages<D extends NavPluginData<D>>(menu: NavData<D>): ManifestItem[] {
+function allPages<D extends NavPluginData<D>>(
+  menu: NavData<D>,
+): ManifestItem[] {
   const pages: ManifestItem[] = [];
 
   function traverse(item: NavData<D>) {

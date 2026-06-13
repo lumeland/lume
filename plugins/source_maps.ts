@@ -119,7 +119,10 @@ export interface PrepareResult {
 }
 
 /** Return the required info to process a file */
-export function prepareAsset<D extends Data>(site: Site<D>, page: Page<D>): PrepareResult {
+export function prepareAsset<D extends Data>(
+  site: Site<D>,
+  page: Page<D>,
+): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.text;
   const sourceMap = enableSourceMap

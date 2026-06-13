@@ -275,6 +275,6 @@ export default jsonLd;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data extends JsonldPluginData{}
+    export interface Data extends JsonldPluginData {}
   }
 }

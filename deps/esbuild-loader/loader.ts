@@ -24,7 +24,9 @@ export interface LoaderOptions<D extends Data> {
   }[];
 }
 
-export default function lumeLoader<D extends Data>(options: LoaderOptions<D>): Plugin {
+export default function lumeLoader<D extends Data>(
+  options: LoaderOptions<D>,
+): Plugin {
   const { configPath, entryPoints, site } = options;
 
   return {

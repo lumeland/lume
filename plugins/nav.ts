@@ -6,7 +6,8 @@ import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
 import { SearchPluginData } from "./search.ts";
 
-export interface NavPluginData<D extends NavPluginData<D>> extends SearchPluginData<D> {
+export interface NavPluginData<D extends NavPluginData<D>>
+  extends SearchPluginData<D> {
   /** @see https://lume.land/plugins/nav/ */
   nav: Nav<D>;
 

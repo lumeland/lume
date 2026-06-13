@@ -153,7 +153,10 @@ function json<D extends Data>(redirects: Redirect[], site: Site<D>): void {
 }
 
 /** Netlify redirect */
-async function netlify<D extends Data>(redirects: Redirect[], site: Site<D>): Promise<void> {
+async function netlify<D extends Data>(
+  redirects: Redirect[],
+  site: Site<D>,
+): Promise<void> {
   const content = redirects.map(([from, to, code]) => `${from} ${to} ${code}`)
     .join("\n");
   const page = await site.getOrCreatePage("_redirects");
@@ -161,7 +164,10 @@ async function netlify<D extends Data>(redirects: Redirect[], site: Site<D>): Pr
 }
 
 /** Vercel redirect */
-async function vercel<D extends Data>(redirects: Redirect[], site: Site<D>): Promise<void> {
+async function vercel<D extends Data>(
+  redirects: Redirect[],
+  site: Site<D>,
+): Promise<void> {
   const config = {
     redirects: redirects.map(([source, destination, statusCode]) => ({
       source,

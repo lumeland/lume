@@ -5,7 +5,8 @@ import { Data } from "../core/file.ts";
 import { PaginatePluginData } from "../plugins/paginate.ts";
 import { SearchPluginData } from "../plugins/search.ts";
 
-interface TestData extends Data, JSXPluginData, PaginatePluginData, SearchPluginData<TestData> {}
+interface TestData
+  extends Data, JSXPluginData, PaginatePluginData, SearchPluginData<TestData> {}
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(

@@ -24,7 +24,8 @@ declare global {
     export interface ProxyComponents extends ProxyComponents_ {}
 
     /** The page data */
-    export interface Data extends PageData, PaginatePluginData, SearchPluginData<Data> {
+    export interface Data
+      extends PageData, PaginatePluginData, SearchPluginData<Data> {
       // deno-lint-ignore no-explicit-any
       [index: string]: Data["__strict"] extends true ? unknown : any;
 

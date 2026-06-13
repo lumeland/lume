@@ -36,7 +36,9 @@ class TestWriter implements Writer {
 }
 
 /** Create a new lume site using the "assets" path as cwd */
-export function getSite<T extends Data & PaginatePluginData & SearchPluginData<T>>(
+export function getSite<
+  T extends Data & PaginatePluginData & SearchPluginData<T>,
+>(
   options: SiteOptions = {},
   pluginOptions = {},
   write = false,
