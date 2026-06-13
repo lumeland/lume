@@ -207,3 +207,10 @@ function addSourceMap(url: string, sourceMap: string): string {
 }
 
 export default sourceMaps;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends SourceMapsPluginData {}
+  }
+}

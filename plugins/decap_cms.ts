@@ -172,4 +172,11 @@ export function decapCMS(userOptions?: Options) {
   };
 }
 
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends DecapCmsPluginData {}
+  }
+}
+
 export default decapCMS;

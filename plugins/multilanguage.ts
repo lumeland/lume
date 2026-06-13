@@ -360,3 +360,10 @@ function appendHreflang(lang: string, url: string, document: Document) {
 }
 
 export default multilanguage;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends MultilanguagePluginData {}
+  }
+}

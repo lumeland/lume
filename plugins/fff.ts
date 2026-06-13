@@ -74,3 +74,10 @@ export function fff(userOptions?: Options) {
 }
 
 export default fff;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends FFFPluginData {}
+  }
+}

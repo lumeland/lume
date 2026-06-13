@@ -303,6 +303,13 @@ function removeDuplicatedTransformations(
 
 export default transformImages;
 
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends TransformImagesPluginData {}
+  }
+}
+
 function isAnimated(format: unknown): boolean {
   return typeof format === "string" && (format === "gif" || format === "webp");
 }

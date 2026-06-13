@@ -188,3 +188,10 @@ function allPages<D extends NavPluginData<D>>(menu: NavData<D>): ManifestItem[] 
 
   return pages;
 }
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends EpubPluginData<Data> {}
+  }
+}

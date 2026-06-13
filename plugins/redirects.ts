@@ -177,3 +177,9 @@ async function vercel<D extends Data>(redirects: Redirect[], site: Site<D>): Pro
 }
 
 export default redirects;
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends RedirectPluginData {}
+  }
+}

@@ -163,5 +163,7 @@ export default paginate;
 declare global {
   namespace Lume {
     export type { PaginateResult };
+
+    export interface Data extends PaginatePluginData {}
   }
 }

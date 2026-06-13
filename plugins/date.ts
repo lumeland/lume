@@ -91,5 +91,7 @@ declare global {
         lang?: string,
       ) => string | undefined;
     }
+
+		export interface Data extends DatePluginData {}
   }
 }

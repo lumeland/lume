@@ -22,3 +22,11 @@ export function search() {
 }
 
 export default search;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    // @ts-expect-error
+    export interface Data extends SearchPluginData<Data> {}
+  }
+}

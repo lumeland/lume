@@ -265,3 +265,10 @@ function getMetas<D extends Data>(
     generator,
   }, other];
 }
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends MetasPluginData<Data> {}
+  }
+}

@@ -7,6 +7,12 @@ import type Site from "../core/site.ts";
 import type { stringifyable } from "../deps/xml.ts";
 import { MultilanguagePluginData } from "./multilanguage.ts";
 
+declare global {
+  namespace Lume {
+    export interface Data extends SitemapPluginData {}
+  }
+}
+
 export interface SitemapPluginData extends MultilanguagePluginData {}
 
 type ChangeFreq =

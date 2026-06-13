@@ -94,6 +94,8 @@ export interface ReadingInfo {
 /** Extends Data interface */
 declare global {
   namespace Lume {
+    export interface Data extends ReadingInfoPluginData {}
+
     export interface Helpers {
       /** @see https://lume.land/plugins/reading_info/ */
       readingInfo: (content?: string, lang?: string) => ReadingInfo;

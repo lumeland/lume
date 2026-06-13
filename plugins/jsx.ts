@@ -101,3 +101,10 @@ export function jsx(userOptions?: Options) {
 }
 
 export default jsx;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends JSXPluginData{}
+  }
+}

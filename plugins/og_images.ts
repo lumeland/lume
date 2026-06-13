@@ -161,3 +161,10 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
 }
 
 export default ogImages;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends OgImagesPluginData<Data> {}
+  }
+}

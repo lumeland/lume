@@ -351,3 +351,10 @@ function filterIndex(path: string): boolean {
 }
 
 export default nav;
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data extends NavPluginData<Data> {}
+  }
+}
