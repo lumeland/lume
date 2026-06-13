@@ -329,9 +329,9 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Use a plugin */
-  use(plugin: Plugin<D>): Site<D> {
-    plugin(this);
-    return this;
+  use<T extends Data>(plugin: Plugin<T>): Site<D & T> {
+    plugin(this as unknown as Site<T>);
+    return this as unknown as Site<D & T>;
   }
 
   /**

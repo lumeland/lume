@@ -179,10 +179,8 @@ export class StaticFile<D extends UnknownData = Data> {
   > {
     const { content } = await this.src.entry.getContent(binaryLoader);
     const data = this.data as D & { url: string };
-    const page = Page.create(
-      { ...data, content: content as Uint8Array<ArrayBuffer> },
-      this.src,
-    );
+    const page = Page.create({ ...data }, this.src);
+    page.content = content as Uint8Array<ArrayBuffer>;
     page.isCopy = this.isCopy;
     // deno-lint-ignore no-explicit-any
     return page as any;
