@@ -42,7 +42,7 @@ export class Page<D extends UnknownData = Data> {
       data.url = data.url.slice(0, -10);
     }
 
-    const page = new Page({ ...data, basename }, src);
+    const page = new Page({ basename, ...data }, src);
     page.content = data.content;
 
     return page;
@@ -256,8 +256,6 @@ export interface RawData {
 
 /** The data of a page/folder once loaded and processed */
 export interface Data extends RawData {
-  page?: Page<this>;
-
   /** The url of a page */
   url: string;
 
@@ -266,6 +264,9 @@ export interface Data extends RawData {
 
   /** The date creation of the page */
   date?: Date;
+
+  /** The page reference */
+  page: Page<this>;
 
   /**
    * The available components
