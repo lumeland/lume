@@ -17,7 +17,8 @@ import {
 } from "./epub/mod.ts";
 import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
 
-export interface EpubPluginData<D extends EpubPluginData<D>> extends NavPluginData<D> {
+export interface EpubPluginData<D extends EpubPluginData<D>>
+  extends NavPluginData<D> {
   type?: EpubType;
   index?: boolean;
   id?: string;

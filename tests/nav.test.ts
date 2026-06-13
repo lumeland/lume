@@ -5,7 +5,11 @@ import { PaginatePluginData } from "../plugins/paginate.ts";
 import { SearchPluginData } from "../plugins/search.ts";
 
 interface TestData
-  extends Data, NavPluginData, PaginatePluginData, SearchPluginData<TestData> {}
+  extends
+    Data,
+    NavPluginData<TestData>,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
 
 Deno.test("nav plugin", async (t) => {
   const site = getSite<TestData>({
