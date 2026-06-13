@@ -35,7 +35,7 @@ export class Page<D extends UnknownData = Data> {
   static create<D extends UnknownData & { url: string; content?: Content }>(
     data: D,
     src?: Partial<Src>,
-  ): Page<D & { basename: string; }> {
+  ): Page<D & { basename: string }> {
     const basename = posix.basename(data.url).replace(/\.[\w.]+$/, "");
 
     if (data.url.endsWith("/index.html")) {
