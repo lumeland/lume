@@ -98,7 +98,7 @@ export const defaults = {
 export function paginate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<PaginatePluginData>) => {
+  return <D extends PaginatePluginData>(site: Site<D>) => {
     if (!userOptions?.options?.url) {
       const ext = site.options.prettyUrls ? "/index.html" : ".html";
       options.options.url = (page: number) => `./page-${page}${ext}`;

@@ -1,6 +1,7 @@
 import { read } from "../core/utils/read.ts";
 import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** The algorithm used to calculate the cryptographic hash of the file */
@@ -28,7 +29,7 @@ const cache = new Map<string, string>();
 export function sri(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const { origin } = site.options.location;
 
     site.process([".html"], async function processRSI(pages) {

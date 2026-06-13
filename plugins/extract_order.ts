@@ -1,3 +1,4 @@
+import { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 import { merge } from "../core/utils/object.ts";
 
@@ -23,7 +24,7 @@ const ORDER_REGEX = /(\d+)\.(.+)/;
 export function extractOrder(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.parseBasename((name, parent) => {
       const match = name.match(ORDER_REGEX);
 

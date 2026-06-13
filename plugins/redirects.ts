@@ -22,9 +22,9 @@ export interface Options {
 
 type Status = 301 | 302 | 307 | 308;
 type Redirect = [string, string, Status];
-type OutputStrategy = (
+type OutputStrategy = <D extends Data>(
   redirects: Redirect[],
-  site: Site,
+  site: Site<D>,
 ) => Promise<void> | void;
 
 export const defaults = {
@@ -47,7 +47,7 @@ const outputs: Record<string, OutputStrategy> = {
 export function redirects(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<RedirectPluginData>) => {
+  return <D extends RedirectPluginData>(site: Site<D>) => {
     site.process(function processRedirects(pages) {
       const redirects: Redirect[] = [];
 
@@ -95,11 +95,11 @@ export function redirects(userOptions?: Options) {
 
 const validStatusCodes = [301, 302, 303, 307, 308];
 
-function parseRedirection(
+function parseRedirection<D extends Data>(
   newUrl: string,
   oldUrl: string,
   defaultCode: Status,
-  site: Site,
+  site: Site<D>,
 ): [string, string, Status] | undefined {
   // Resolve the full URL when the site's base URL is not at the root
   const to = site.url(newUrl);
@@ -118,7 +118,7 @@ function parseRedirection(
 }
 
 /** HTML redirect */
-function html(redirects: Redirect[], site: Site): void {
+function html<D extends Data>(redirects: Redirect[], site: Site<D>): void {
   for (const [url, to, statusCode] of redirects) {
     const timeout = (statusCode === 301 || statusCode === 308) ? 0 : 1;
     const content = `<!DOCTYPE html>
@@ -134,12 +134,12 @@ function html(redirects: Redirect[], site: Site): void {
 </body>
 </html>`;
     const page = Page.create({ url, content, unlisted: true });
-    site.pages.push(page);
+    site.pushPage(page);
   }
 }
 
 /** JSON redirect (to use with redirect middleware) */
-function json(redirects: Redirect[], site: Site): void {
+function json<D extends Data>(redirects: Redirect[], site: Site<D>): void {
   const obj = Object.fromEntries(
     redirects.map((
       [from, to, code],
@@ -149,11 +149,11 @@ function json(redirects: Redirect[], site: Site): void {
     url: "_redirects.json",
     content: JSON.stringify(obj, null, 2),
   });
-  site.pages.push(page);
+  site.pushPage(page);
 }
 
 /** Netlify redirect */
-async function netlify(redirects: Redirect[], site: Site): Promise<void> {
+async function netlify<D extends Data>(redirects: Redirect[], site: Site<D>): Promise<void> {
   const content = redirects.map(([from, to, code]) => `${from} ${to} ${code}`)
     .join("\n");
   const page = await site.getOrCreatePage("_redirects");
@@ -161,7 +161,7 @@ async function netlify(redirects: Redirect[], site: Site): Promise<void> {
 }
 
 /** Vercel redirect */
-async function vercel(redirects: Redirect[], site: Site): Promise<void> {
+async function vercel<D extends Data>(redirects: Redirect[], site: Site<D>): Promise<void> {
   const config = {
     redirects: redirects.map(([source, destination, statusCode]) => ({
       source,

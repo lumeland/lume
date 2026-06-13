@@ -71,8 +71,8 @@ const defaultGenerator = getGenerator();
  * A plugin to insert meta tags for SEO and social media
  * @see https://lume.land/plugins/metas/
  */
-export function metas<D extends Data = Lume.Data>() {
-  return (site: Site<MetasPluginData<D>>) => {
+export function metas() {
+  return <D extends MetasPluginData<D>>(site: Site<D>) => {
     // Configure the merged keys
     site.mergeKey("metas", "object");
     site.process([".html"], function processMetas(pages) {

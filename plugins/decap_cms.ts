@@ -54,7 +54,7 @@ export const defaults = {
 export function decapCMS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<DecapCmsPluginData>) => {
+  return <D extends DecapCmsPluginData>(site: Site<D>) => {
     const local_backend = typeof options.local === "boolean"
       ? options.local
       : site.options.location.hostname === "localhost";

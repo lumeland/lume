@@ -1,6 +1,6 @@
 import { typeByExtension } from "../../deps/media_types.ts";
-import type { Page } from "../../core/file.ts";
-import type { NavData } from "../nav.ts";
+import type { Data, Page } from "../../core/file.ts";
+import type { NavData, NavPluginData } from "../nav.ts";
 import { stringify, type stringifyable } from "../../deps/xml.ts";
 
 /**
@@ -347,9 +347,9 @@ export function createEncryption(files: string[]) {
   return stringify(clean(xmlObj));
 }
 
-export function createTocNcx(
+export function createTocNcx<D extends NavPluginData<D>>(
   metadata: Metadata,
-  menu: NavData,
+  menu: NavData<D>,
   files: ManifestItem[],
 ) {
   const status = { order: 1, level: 1 };
@@ -401,8 +401,8 @@ export function createTocNcx(
   return stringify(clean(xmlObj));
 }
 
-function createNavPoint(
-  menu: NavData,
+function createNavPoint<D extends NavPluginData<D>>(
+  menu: NavData<D>,
   status: { order: number; level: number },
 ): stringifyable | undefined {
   const manifestItem = menu.data.manifestItem as ManifestItem | undefined;

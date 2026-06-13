@@ -1,7 +1,7 @@
 import { merge } from "../core/utils/object.ts";
-import { filesToPages } from "../core/file.ts";
+import { Data, filesToPages } from "../core/file.ts";
 import navPlugin, { NavPluginData } from "./nav.ts";
-import type { Nav, NavData } from "./nav.ts";
+import type { NavData } from "./nav.ts";
 import type Site from "../core/site.ts";
 
 import {
@@ -17,12 +17,13 @@ import {
 } from "./epub/mod.ts";
 import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
 
-export interface EpubPluginData extends NavPluginData {
+export interface EpubPluginData<D extends NavPluginData<D>> extends NavPluginData<D> {
   type?: EpubType;
   index?: boolean;
   id?: string;
   properties?: Property | Property[];
   manifestItem?: ManifestItem;
+  metadata?: Metadata;
 }
 
 export interface Options {
@@ -51,15 +52,15 @@ export const defaults = {
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<EpubPluginData>) => {
+  return <D extends EpubPluginData<D>>(site: Site<D>) => {
     const metadata = options.metadata as Metadata;
     site.data("metadata", metadata);
-    let nav: Nav | undefined = site.scopedData.get("/")?.nav as Nav;
+    let nav = site.scopedData.get("/")?.nav;
 
     // Install automatically the nav plugin if it's missing
     if (!nav) {
       site.use(navPlugin());
-      nav = site.scopedData.get("/")?.nav as Nav;
+      nav = site.scopedData.get("/")?.nav!;
     }
 
     // Convert all .html URLs to .xhtml
@@ -166,10 +167,10 @@ export default function (userOptions?: Options) {
   };
 }
 
-function allPages(menu: NavData): ManifestItem[] {
+function allPages<D extends NavPluginData<D>>(menu: NavData<D>): ManifestItem[] {
   const pages: ManifestItem[] = [];
 
-  function traverse(item: NavData) {
+  function traverse(item: NavData<D>) {
     if (item.data.manifestItem) {
       pages.push(item.data.manifestItem as ManifestItem);
     }

@@ -31,7 +31,7 @@ export function slugifyUrls(userOptions?: Options) {
   const options = merge(defaults, userOptions);
   const slugify = createSlugifier(options);
 
-  return (site: Site<SlugifyUrlsPluginData>) => {
+  return <D extends SlugifyUrlsPluginData>(site: Site<D>) => {
     site.filter("slugify", function (text: string, lang?: string) {
       return slugify(text, lang ?? this?.data?.lang);
     });

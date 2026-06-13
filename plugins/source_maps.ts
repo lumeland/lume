@@ -36,7 +36,7 @@ export const defaults = {
 export function sourceMaps(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<SourceMapsPluginData>) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     site._data.enableSourceMap = true;
 
     site.process(function processSourceMaps(pages, allPages) {
@@ -119,7 +119,7 @@ export interface PrepareResult {
 }
 
 /** Return the required info to process a file */
-export function prepareAsset(site: Site, page: Page): PrepareResult {
+export function prepareAsset<D extends Data>(site: Site<D>, page: Page<D>): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.text;
   const sourceMap = enableSourceMap
@@ -132,8 +132,8 @@ export function prepareAsset(site: Site, page: Page): PrepareResult {
 }
 
 /** Save the process result */
-export function saveAsset(
-  site: Site,
+export function saveAsset<D extends Data>(
+  site: Site<D>,
   page: Page,
   content: string,
   sourceMap?: SourceMap | string,

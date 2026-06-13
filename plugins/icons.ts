@@ -6,6 +6,7 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 import type { Catalog, Variant } from "../deps/icons.ts";
+import { Data } from "../core/file.ts";
 export type { Catalog, Variant };
 
 export interface Options {
@@ -28,7 +29,7 @@ export const defaults = {
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const iconFiles = new Map<string, string>();
     const iconSprite = new Map<string, string>();
 

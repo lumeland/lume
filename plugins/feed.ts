@@ -185,7 +185,7 @@ const defaultGenerator = getGenerator();
  * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed<D extends Data = Lume.Data>(
+export function feed<D extends Data>(
   userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
 ) {
   return (site: Site<D>) => {

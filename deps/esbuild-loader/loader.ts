@@ -12,10 +12,11 @@ import { isAbsolutePath, normalizePath } from "../../core/utils/path.ts";
 
 import type { Loader, OnResolveArgs, Plugin } from "../esbuild.ts";
 import type Site from "../../core/site.ts";
+import { Data } from "../../core/file.ts";
 
-export interface LoaderOptions {
+export interface LoaderOptions<D extends Data> {
   configPath?: string;
-  site: Site;
+  site: Site<D>;
   entryPoints: {
     in: string;
     out: string;
@@ -23,7 +24,7 @@ export interface LoaderOptions {
   }[];
 }
 
-export default function lumeLoader(options: LoaderOptions): Plugin {
+export default function lumeLoader<D extends Data>(options: LoaderOptions<D>): Plugin {
   const { configPath, entryPoints, site } = options;
 
   return {

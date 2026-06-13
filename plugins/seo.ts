@@ -67,7 +67,7 @@ export const defaults = {
 export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<SEOPluginData>) => {
+  return <D extends SEOPluginData>(site: Site<D>) => {
     const reports: Map<string, ErrorMessage[]> = new Map();
 
     site.process(processSEO);

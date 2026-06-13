@@ -329,9 +329,9 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Use a plugin */
-  use<T extends Data>(plugin: Plugin<T>): Site<D & T> {
-    plugin(this as unknown as Site<T>);
-    return this as unknown as Site<D & T>;
+  use(plugin: Plugin<D>): this {
+    plugin(this);
+    return this;
   }
 
   /**
@@ -462,7 +462,7 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Register extra data accessible by the layouts */
-  data<K extends string>(name: keyof D, value: D[K], scope = "/"): this {
+  data<K extends keyof D>(name: K, value: D[K], scope = "/"): this {
     const data: Partial<D> = this.scopedData.get(scope) || {};
     data[name] = value;
     this.scopedData.set(scope, data);
@@ -470,9 +470,9 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Register a page */
-  page(data: Partial<D>, scope = "/"): this {
+  page(data: Parameters<typeof Page["create"]>[0], scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
-    pages.push(data);
+    pages.push(data as Partial<D>);
     this.scopedPages.set(scope, pages);
     return this;
   }

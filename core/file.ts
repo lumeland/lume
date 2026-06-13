@@ -267,8 +267,6 @@ export interface Data extends RawData {
   /** The date creation of the page */
   date?: Date;
 
-  children?: unknown;
-
   /**
    * The available components
    * @see https://lume.land/docs/core/components/

@@ -97,7 +97,7 @@ interface SingleTransformation extends Transformation {
 export function transformImages(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<TransformImagesPluginData>) => {
+  return <D extends TransformImagesPluginData>(site: Site<D>) => {
     site.process(
       async function processTransformImages(_, allPages) {
         // Load all static files that must be transformed

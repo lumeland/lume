@@ -53,7 +53,7 @@ export const defaults = {
 export function multilanguage(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<MultilanguagePluginData>) => {
+  return <D extends MultilanguagePluginData>(site: Site<D>) => {
     const isNot404page = filter404page(site.options.server.page404);
 
     // Configure the merged keys
@@ -61,8 +61,8 @@ export function multilanguage(userOptions: Options) {
 
     // Event to handle generators before being preprocessed
     site.addEventListener("beforeRender", ({ pages }) => {
-      const removedPages: Page<MultilanguagePluginData>[] = [];
-      const newPages: Page<MultilanguagePluginData>[] = [];
+      const removedPages: Page<D>[] = [];
+      const newPages: Page<D>[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -128,7 +128,7 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Replace the current page with the multiple language versions
-          allPages.splice(allPages.indexOf(page), 1, ...newPages);
+          (allPages as Page[]).splice(allPages.indexOf(page), 1, ...newPages);
         }
       },
     );
@@ -169,8 +169,8 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Page<MultilanguagePluginData>["data"][] = [];
-        const ids = new Map<string, Page<MultilanguagePluginData>>();
+        const alternates: Page<D>["data"][] = [];
+        const ids = new Map<string, Page<D>>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {

@@ -62,10 +62,10 @@ export const defaults = {
  * A plugin to generate a sitemap.xml from page files after build
  * @see https://lume.land/plugins/sitemap/
  */
-export function sitemap<D extends Data = Lume.Data>(userOptions?: Options<D>) {
+export function sitemap<D extends SitemapPluginData>(userOptions?: Options<D>) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<SitemapPluginData>) => {
+  return <T extends D>(site: Site<T>) => {
     site.process(async function processSitemap() {
       // Create the sitemap.xml page
       const sitemap = Page.create({
@@ -76,7 +76,7 @@ export function sitemap<D extends Data = Lume.Data>(userOptions?: Options<D>) {
       });
 
       // Add the sitemap page to pages
-      site.pages.push(sitemap);
+      site.pushPage(sitemap);
 
       // Add or update `robots.txt` with the sitemap url
       const robots = await site.getOrCreatePage("/robots.txt");

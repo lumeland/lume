@@ -196,7 +196,7 @@ export interface Options {
 export function jsonLd(userOptions?: Options) {
   const insert = userOptions?.insert ?? true;
 
-  return (site: Site<JsonldPluginData>) => {
+  return <D extends JsonldPluginData>(site: Site<D>) => {
     site.mergeKey("jsonLd", "object");
     site.process([".html"], function processJsonLd(pages) {
       pages.forEach(jsonLdProcessor);

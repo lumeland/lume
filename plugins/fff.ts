@@ -45,7 +45,7 @@ export const defaults = {
 export function fff(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<FFFPluginData>) => {
+  return <D extends FFFPluginData>(site: Site<D>) => {
     site.preprocess([".html"], function processFFF(pages) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {

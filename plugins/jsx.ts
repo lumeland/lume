@@ -78,7 +78,7 @@ export class JsxEngine implements Engine {
  * @see https://lume.land/plugins/jsx/
  */
 export function jsx(userOptions?: Options) {
-  return (site: Site<JSXPluginData>) => {
+  return <D extends JSXPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

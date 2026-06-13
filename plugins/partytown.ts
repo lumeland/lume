@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { lib, partytownSnippet } from "../deps/partytown.ts";
 import type { PartytownConfig } from "../deps/partytown.ts";
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /**
@@ -20,7 +21,7 @@ export const defaults = {
 export function partytown(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const dest = options.options.lib!;
     const snippet = partytownSnippet({
       ...options.options,

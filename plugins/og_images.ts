@@ -8,8 +8,9 @@ import { read } from "../core/utils/read.ts";
 import { Data, Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 import Site from "../core/site.ts";
+import { MetasPluginData } from "./metas.ts";
 
-export interface OgImagesPluginData extends Data {
+export interface OgImagesPluginData<D extends Data> extends MetasPluginData<D> {
   /**
    * The layout to generate the Open Graph Image
    * @see https://lume.land/plugins/og_image/
@@ -44,7 +45,7 @@ export const defaults = {
  * @see https://lume.land/plugins/og_images/
  */
 export function ogImages(userOptions?: Options) {
-  return (site: Site<OgImagesPluginData>) => {
+  return <D extends OgImagesPluginData<D>>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -54,7 +55,7 @@ export function ogImages(userOptions?: Options) {
     // Get the cache folder
     const { cache } = site;
 
-    site.process([".html"], async function processOgImages(pages, allPages) {
+    site.process([".html"], async function processOgImages(pages) {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }
@@ -99,7 +100,7 @@ export function ogImages(userOptions?: Options) {
         const content = await render(jsx);
         const url = page.outputPath.replace(/\.html$/, ".png");
 
-        allPages.push(Page.create({ url, content }));
+        site.pushPage(Page.create({ url, content }));
 
         let metas: Record<string, unknown>;
 

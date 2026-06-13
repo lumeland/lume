@@ -2,12 +2,12 @@ import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
 import type { Data } from "../core/file.ts";
 
-export interface SearchPluginData extends Data {
+export interface SearchPluginData<D extends Data> extends Data {
   /**
    * The searcher helper
    * @see https://lume.land/plugins/search/
    */
-  search: Searcher<Lume.Data>;
+  search: Searcher<D>;
 }
 
 /**
@@ -16,7 +16,7 @@ export interface SearchPluginData extends Data {
  * @see https://lume.land/plugins/search/
  */
 export function search() {
-  return (site: Site<SearchPluginData>) => {
+  return <D extends SearchPluginData<D>>(site: Site<D>) => {
     site.data("search", site.search);
   };
 }

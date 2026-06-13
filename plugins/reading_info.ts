@@ -31,7 +31,7 @@ export const defaults = {
 export function readingInfo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<ReadingInfoPluginData>) => {
+  return <D extends ReadingInfoPluginData>(site: Site<D>) => {
     site.preprocess(options.extensions, function processReadingInfo(pages) {
       for (const page of pages) {
         const { content, lang } = page.data;

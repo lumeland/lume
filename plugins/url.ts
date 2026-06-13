@@ -1,3 +1,4 @@
+import { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 
 /**
@@ -7,7 +8,7 @@ import type Site from "../core/site.ts";
  * @see https://lume.land/plugins/url/
  */
 export function url() {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.filter("url", url);
     site.filter("htmlUrl", htmlUrl);
 

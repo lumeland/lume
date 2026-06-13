@@ -3,13 +3,14 @@ import modifyUrls from "./modify_urls.ts";
 
 import type { HelperThis } from "../core/renderer.ts";
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 /**
  * A plugin to convert all internal URLs to relative
  * @see https://lume.land/plugins/relative_urls/
  */
 export function relativeUrls() {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const basePath = site.options.location.pathname;
 
     function getRelativeUrl(url: string, from: string) {

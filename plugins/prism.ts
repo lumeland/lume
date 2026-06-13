@@ -6,7 +6,7 @@ import { insertContent } from "../core/utils/page_content.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
+import type { Data, Page } from "../core/file.ts";
 
 export interface Options {
   /** The css selector to apply prism */
@@ -54,7 +54,7 @@ export function prism(userOptions?: Options) {
     initAutoload();
   }
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     if (site._data.codeHighlight) {
       log.error(
         `[prism plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "prism". Registering "prism" may lead to conflicts and unpredictable behavior.`,

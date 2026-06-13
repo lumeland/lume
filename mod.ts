@@ -26,11 +26,11 @@ export interface PluginOptions {
   yaml?: YamlOptions;
 }
 
-export default function lume<T extends Data = Lume.Data>(
+export default function lume<T extends Data & PaginatePluginData & SearchPluginData<T> = Lume.Data>(
   options: SiteOptions = {},
   pluginOptions: PluginOptions = {},
   cliOptions = true,
-): Site<T & PaginatePluginData & SearchPluginData> {
+): Site<T> {
   if (cliOptions) {
     getOptionsFromCli(options);
   }

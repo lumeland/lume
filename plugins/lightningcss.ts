@@ -2,7 +2,7 @@ import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 import { warnUntil } from "../core/utils/log.ts";
@@ -55,7 +55,7 @@ export const defaults = {
  * @see https://lume.land/plugins/lightningcss/
  */
 export function lightningCSS(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -67,7 +67,7 @@ export function lightningCSS(userOptions?: Options) {
       bundle = true;
     }
 
-    site.process([".css"], function processLightningCSS(files: Page[]) {
+    site.process([".css"], function processLightningCSS(files) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -88,7 +88,7 @@ export function lightningCSS(userOptions?: Options) {
       files.forEach((file) => lightningCSSTransformer(file, item));
     });
 
-    function lightningCSSTransformer(file: Page, item?: Item) {
+    function lightningCSSTransformer(file: Page<D>, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -148,7 +148,7 @@ export function lightningCSS(userOptions?: Options) {
      * This cannot be done in parallel because ligthningcss has a bug that mixes the imports of all files
      * Seems like executing the bundler in sequence fixes the issue
      */
-    async function lightningCSSBundler(files: Page[], item?: Item) {
+    async function lightningCSSBundler(files: Page<D>[], item?: Item) {
       for (const file of files) {
         const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
           site,

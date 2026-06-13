@@ -2,6 +2,7 @@ import jsonLoader from "../core/loaders/json.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -25,7 +26,7 @@ export const defaults = {
 export function json(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.loadData(options.extensions, jsonLoader);
     site.loadPages(options.extensions, {
       pageSubExtension: options.pageSubExtension,

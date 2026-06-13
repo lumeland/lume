@@ -1,7 +1,8 @@
+import { Data } from "../../../core/file.ts";
 import "../../../types.ts";
 
 export const title = "mdx filter example";
-export default async (data: Lume.Data, { mdx }: Lume.Helpers) =>
+export default async (data: Data, { mdx }: Lume.Helpers) =>
   await mdx(
     `
 ---
@@ -13,9 +14,9 @@ import Image from "./_includes/Image.tsx";
 <comp.Header title={title} description={description}/>
 
 ## Hello world
-  
+
 This is a markdown file with the title **{ title }**.
-  
+
 <Image alt="foo" />
     `,
     {

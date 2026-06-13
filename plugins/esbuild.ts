@@ -13,7 +13,7 @@ import {
 } from "../deps/esbuild.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
 
@@ -72,7 +72,7 @@ interface EntryPoint {
 export function esbuild(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
     };
@@ -98,7 +98,7 @@ export function esbuild(userOptions?: Options) {
     }
 
     async function runEsbuild(
-      pages: Page[],
+      pages: Page<D>[],
     ): Promise<[OutputFile[], Metafile, boolean]> {
       let sourcemap;
       const entryPoints: EntryPoint[] = [];
@@ -236,7 +236,7 @@ export function esbuild(userOptions?: Options) {
           if (!entryPoint) {
             const page = Page.create({ url: normalizedOutPath });
             saveAsset(site, page, content, map?.text);
-            allPages.push(page);
+            site.pushPage(page);
             continue;
           }
 

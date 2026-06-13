@@ -42,7 +42,7 @@ export const defaults = {
 export function date(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site<DatePluginData>) => {
+  return <D extends DatePluginData>(site: Site<D>) => {
     const defaultLocale = Object.keys(options.locales).shift();
 
     site.filter("date", filter);

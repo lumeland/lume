@@ -162,7 +162,7 @@ export default class Renderer<D extends Data> {
 
             // Save the children to render the layout later
             if (page.data.layout || page.isHTML) {
-              page.data.children = content;
+              (page.data as UnknownData).children = content;
               renderedPages.push(page);
             } else {
               page.content = content;

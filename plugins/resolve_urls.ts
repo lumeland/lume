@@ -3,13 +3,14 @@ import modifyUrls from "./modify_urls.ts";
 import { normalizePath } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
+import { Data } from "../core/file.ts";
 
 /**
  * A plugin to convert links to source files to the final page
  * @see https://lume.land/plugins/resolve_urls/
  */
 export function resolveUrls() {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     const cache = new Map<string, string | null>();
 
     site.addEventListener("beforeUpdate", () => cache.clear());

@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { pagefind as Pagefind } from "../deps/pagefind.ts";
 import { log } from "../core/utils/log.ts";
 
@@ -144,8 +144,8 @@ export const defaults = {
 export function pagefind(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
-    site.process([".html"], async function processPagefind(pages, allPages) {
+  return <D extends Data>(site: Site<D>) => {
+    site.process([".html"], async function processPagefind(pages) {
       const { index } = await Pagefind.createIndex(options.indexing);
 
       if (!index) {
@@ -193,7 +193,7 @@ export function pagefind(userOptions?: Options) {
           ? textDecoder.decode(file.content)
           : new Uint8Array(file.content);
 
-        allPages.push(
+        site.pushPage(
           Page.create({
             url: posix.join("/", options.outputPath, path),
             content,

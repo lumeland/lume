@@ -36,11 +36,11 @@ class TestWriter implements Writer {
 }
 
 /** Create a new lume site using the "assets" path as cwd */
-export function getSite<T extends Data = Data>(
+export function getSite<T extends Data & PaginatePluginData & SearchPluginData<T>>(
   options: SiteOptions = {},
   pluginOptions = {},
   write = false,
-): Site<T & PaginatePluginData & SearchPluginData> {
+): Site<T> {
   options.cwd = getPath("assets");
 
   const site = lume<T>(options, pluginOptions, false);

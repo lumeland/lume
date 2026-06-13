@@ -1,3 +1,4 @@
+import { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 
 const escapeChars: Record<string, string> = {
@@ -13,7 +14,7 @@ const escapeChars: Record<string, string> = {
  * @see https://lume.land/plugins/attributes/
  */
 export function attributes() {
-  return (site: Site) => {
+  return <D extends Data>(site: Site<D>) => {
     site.filter("attr", attr);
     site.filter("class", className);
   };
