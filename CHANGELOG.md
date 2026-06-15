@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - `plugin` to create a Lume plugin in the local folder `_plugins/[name].ts`.
   - `archetype` to create a Lume archetype in the local folder `_archetype/[name].ts`.
   - `cms` to create the `_cms.ts` file.
+- `feed` plugin: added `authorAvatar` property #859.
 
 ### Changed
 - The `merge` utility function changed the types to better reflect its returned type.
@@ -35,6 +36,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].
 - Updated dependencies: `std`, `html-validate`, `markdown-it` and some icons.
 - `json_ld` plugin: Allow some html tags in the `description` key (according to google's docs).
+- `feed` plugin: Set absolute urls for icons, and images.
 
 ## [3.2.6] - 2026-05-25
 ### Fixed
