@@ -39,6 +39,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `json_ld` plugin: Allow some html tags in the `description` key (according to google's docs).
 - `feed` plugin: Set absolute urls for icons, and images.
 - Don't break the build on error loading a `_data` file.
+- Don't break the build on error rendering a page or layout.
 
 ## [3.2.6] - 2026-05-25
 ### Fixed
