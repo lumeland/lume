@@ -96,7 +96,7 @@ const lume = new Command()
     const { build } = await import("./cli/build.ts");
     build(config, serve, watch, cms);
   })
-  .command("new <archetype> [arguments...]", create)
+  .command("new [archetype] [arguments...]", create)
   .command("upgrade", upgrade);
 
 try {
