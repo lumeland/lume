@@ -24,10 +24,14 @@ const create = new Command()
     "lume new post 'Post title'",
     "Create a new post file using the _archetypes/post.ts archetype.",
   )
-  // @ts-ignore: todo: fix this
-  .action(async ({ config }, name, ...args) => {
+  .option(
+    "--config <config:string>",
+    "The config file path.",
+  )
+  .action(async ({ config }, ...args: string[]) => {
+    const [ name, ...other ] = args
     const { create } = await import("./cli/create.ts");
-    await create(config, name, args);
+    await create(config, name, other);
   });
 
 const lume = new Command()
