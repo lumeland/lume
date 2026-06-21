@@ -2,8 +2,8 @@ import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import Server from "../core/server.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
+import { EmptyWriter } from "../core/writer.ts";
 
-import type { Writer } from "../core/writer.ts";
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
 
@@ -12,24 +12,6 @@ const cwd = fromFileUrl(import.meta.resolve("./"));
 
 export function getPath(path: string): string {
   return join(cwd, path);
-}
-
-class TestWriter implements Writer {
-  savePages() {
-    return Promise.resolve([]);
-  }
-
-  copyFiles() {
-    return Promise.resolve([]);
-  }
-
-  clear() {
-    return Promise.resolve();
-  }
-
-  removeFiles() {
-    return Promise.resolve();
-  }
 }
 
 /** Create a new lume site using the "assets" path as cwd */
@@ -43,7 +25,7 @@ export function getSite(
   const site = lume(options, pluginOptions, false);
 
   if (!write) {
-    site.writer = new TestWriter();
+    site.writer = new EmptyWriter();
   }
 
   return site;
