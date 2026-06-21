@@ -31,6 +31,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   ```
 - `favicon` plugin: Don't override favicons added explicitly with `site.add()` or `site.copy()`.
 - Archetypes are loaded from the cwd, not the `src` folder.
+- Moved `Logger` class to the `core/` folder.
 
 ### Fixed
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].
