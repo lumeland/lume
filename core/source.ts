@@ -457,9 +457,17 @@ export default class Source {
         (entry.type === "file" && entry.name.startsWith("_data.")) ||
         (entry.type === "directory" && entry.name === "_data")
       ) {
-        const loaded = await this.dataLoader.load(entry);
-        if (loaded) {
-          dirDatas.push(loaded);
+        try {
+          const loaded = await this.dataLoader.load(entry);
+          if (loaded) {
+            dirDatas.push(loaded);
+          }
+        } catch (error) {
+          log.error(
+            `[loader] Error loading the file "${entry.path}": ${
+              (error as Error).message
+            }`,
+          );
         }
       }
     }
