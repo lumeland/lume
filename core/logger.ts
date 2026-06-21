@@ -89,6 +89,11 @@ export default class Logger {
     }
   }
 
+  get hasErrors(): boolean {
+    return !!(this.#logs.get(severity.ERROR)?.size ||
+      this.#logs.get(severity.FATAL)?.size);
+  }
+
   output() {
     for (const level of Object.values(severity)) {
       const messages = this.#logs.get(level);

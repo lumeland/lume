@@ -29,7 +29,7 @@ const create = new Command()
     "The config file path.",
   )
   .action(async ({ config }, ...args: string[]) => {
-    const [ name, ...other ] = args
+    const [name, ...other] = args;
     const { create } = await import("./cli/create.ts");
     await create(config, name, other);
   });
@@ -65,6 +65,11 @@ const lume = new Command()
     { default: "http://localhost" },
   )
   .option(
+    "--dry-run",
+    "Test the build without generating the files",
+    { conflicts: ["serve", "watch"] },
+  )
+  .option(
     "-s, --serve",
     "Start a live-reloading web server and watch changes.",
   )
@@ -92,9 +97,9 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(async ({ config, serve, watch, cms }) => {
+  .action(async ({ config, serve, watch, cms, dryRun }) => {
     const { build } = await import("./cli/build.ts");
-    build(config, serve, watch, cms);
+    build(config, serve, watch, cms, dryRun);
   })
   .command("new [archetype] [arguments...]", create)
   .command("upgrade", upgrade);

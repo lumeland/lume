@@ -13,9 +13,9 @@ export async function create(
 
   if (!name) {
     console.log();
-    console.log('Add the archetype URL or one of the following names:');
+    console.log("Add the archetype URL or one of the following names:");
     for (const name of site.archetypes.archetypes.keys()) {
-      console.log(` - ${name}`)
+      console.log(` - ${name}`);
     }
     console.log();
   } else {
