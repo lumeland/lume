@@ -86,12 +86,15 @@ export default class DebugBar {
   }
 
   /** End a measure and add it to the "Build" collection */
-  endMeasure(name: string, title: string): Item | undefined {
+  endMeasure(name: string | null, title: string): Item | undefined {
     this.#measureItem ??= this.buildItem("Performance info", "info");
     this.#measureItem.items ??= [];
 
     performance.mark(`${name}-end`);
-    const measure = performance.measure(name, name, `${name}-end`);
+    const time = name === null
+      ? performance.now()
+      : performance.measure(name, name, `${name}-end`).duration;
+
     let item: Item | undefined;
 
     const [ram, diff] = this.#getRam();
@@ -100,18 +103,20 @@ export default class DebugBar {
       item = this.#measureItem;
       item.title = title;
       item.icon = "clock";
-      item.details = `${duration(measure.duration)} / ${bytes(ram)}`;
-    } else if (measure.duration >= 1) {
+      item.details = `${duration(time)} / ${bytes(ram)}`;
+    } else if (time >= 1) {
       item = {
         title: title,
-        details: `${duration(measure.duration)} / ${bytes(diff)}`,
+        details: `${duration(time)} / ${bytes(diff)}`,
       };
       this.#measureItem.items.push(item);
     }
 
-    performance.clearMarks(name);
-    performance.clearMarks(`${name}-end`);
-    performance.clearMeasures(name);
+    if (name) {
+      performance.clearMarks(name);
+      performance.clearMarks(`${name}-end`);
+      performance.clearMeasures(name);
+    }
     return item;
   }
 

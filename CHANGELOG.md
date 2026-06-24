@@ -16,6 +16,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - `cms` to create the `_cms.ts` file.
 - `feed` plugin: added `authorAvatar` property [#859].
 - RAM usage info in the debugbar.
+- Starting info in the debugbar.
 
 ### Changed
 - The `merge` utility function changed the types to better reflect its returned type.

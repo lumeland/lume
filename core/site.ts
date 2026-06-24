@@ -703,8 +703,8 @@ export default class Site {
 
   /** Build the entire site */
   async build(): Promise<void> {
+    this.debugBar?.endMeasure(null, "[Start] Initialization");
     this.debugBar?.startMeasure("build");
-
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
       this.dispatchEvent({ type: "idle" });
