@@ -15,6 +15,7 @@ export default class DebugBar {
   #url: string;
   #events = new Events<DebugEvent>();
   #measureItem?: Item;
+  #ram = 0;
   collections: Collection[] = [];
 
   constructor(options: Options = {}) {
@@ -93,16 +94,17 @@ export default class DebugBar {
     const measure = performance.measure(name, name, `${name}-end`);
     let item: Item | undefined;
 
+    const [ram, diff] = this.#getRam();
+
     if (name === "build") {
       item = this.#measureItem;
       item.title = title;
       item.icon = "clock";
-      const memory = Deno.memoryUsage();
-      item.details = `${duration(measure.duration)} / ${bytes(memory.rss)}`;
+      item.details = `${duration(measure.duration)} / ${bytes(ram)}`;
     } else if (measure.duration >= 1) {
       item = {
         title: title,
-        details: duration(measure.duration),
+        details: `${duration(measure.duration)} / ${bytes(diff)}`,
       };
       this.#measureItem.items.push(item);
     }
@@ -111,6 +113,13 @@ export default class DebugBar {
     performance.clearMarks(`${name}-end`);
     performance.clearMeasures(name);
     return item;
+  }
+
+  #getRam() {
+    const { rss } = Deno.memoryUsage();
+    const diff = rss - this.#ram;
+    this.#ram = rss;
+    return [rss, diff];
   }
 }
 

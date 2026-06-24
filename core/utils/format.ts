@@ -6,7 +6,10 @@ const byteUnit = Intl.NumberFormat("en", {
 });
 
 export function bytes(bytes: number) {
-  return byteUnit.format(bytes);
+  return byteUnit.format(bytes)
+    .replace("BB", "Gb")
+    .replace("MB", "Mb")
+    .replace("KB", "Kb");
 }
 
 const percentageUnit = Intl.NumberFormat("en", {
