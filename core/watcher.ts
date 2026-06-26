@@ -1,4 +1,5 @@
-import { join, relative } from "../deps/path.ts";
+import { registerHooks } from "../deps/module.ts";
+import { join, relative, toFileUrl } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 import Events from "./events.ts";
 
@@ -60,6 +61,11 @@ export default class FSWatcher implements Watcher {
   events: Events<WatchEvent> = new Events<WatchEvent>();
   options: Options;
   paused = false;
+  #hmr = {
+    hash: 0,
+    files: new Map<string, string>(),
+    dependencies: new Map<string, Set<string>>(),
+  };
 
   constructor(options: Options) {
     this.options = options;
@@ -80,6 +86,57 @@ export default class FSWatcher implements Watcher {
     return this.events.dispatchEvent(event);
   }
 
+  /** Register a hook to enable HMR in Deno */
+  initHMR() {
+    const root = toFileUrl(this.options.root).href;
+    const hmr = this.#hmr;
+
+    function localSpecifier(
+      specifier: string,
+      parentURL?: string,
+    ): string | undefined {
+      if (specifier.startsWith(root)) {
+        return specifier;
+      }
+
+      if (specifier.startsWith(".") && parentURL?.startsWith(root)) {
+        return new URL(specifier, parentURL).href;
+      }
+    }
+
+    function parentDependency(url?: string) {
+      if (!url) return;
+      const cleanUrl = url.split("#")[0];
+      if (hmr.files.has(cleanUrl)) {
+        return cleanUrl;
+      }
+    }
+
+    registerHooks({
+      resolve(specifier, context, nextResolve) {
+        const url = localSpecifier(specifier, context.parentURL);
+
+        if (!url) {
+          return nextResolve(specifier);
+        }
+
+        if (!hmr.files.has(url)) {
+          hmr.files.set(url, `${url}#${hmr.hash}`);
+        }
+
+        const parent = parentDependency(context.parentURL);
+
+        if (parent) {
+          const deps = hmr.dependencies.get(url) ?? new Set();
+          deps.add(parent);
+          hmr.dependencies.set(url, deps);
+        }
+
+        return nextResolve(hmr.files.get(url)!);
+      },
+    });
+  }
+
   /** Start the file watcher */
   async start() {
     const { root, paths, ignore, debounce, dependencies } = this.options;
@@ -87,8 +144,23 @@ export default class FSWatcher implements Watcher {
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
+    const rootUrl = toFileUrl(root).href;
+    const hmr = this.#hmr;
 
     await this.dispatchEvent({ type: "start" });
+
+    function* getDependencies(file: string): Generator<string> {
+      const url = `${rootUrl}${file}`;
+      hmr.files.delete(url);
+
+      for (const dep of hmr.dependencies.get(url) ?? []) {
+        if (dep.startsWith(rootUrl)) {
+          const depFile = dep.slice(rootUrl.length);
+          yield depFile;
+          yield* getDependencies(depFile);
+        }
+      }
+    }
 
     const callback = async () => {
       // If the callback is already running, debounce the next call
@@ -106,6 +178,15 @@ export default class FSWatcher implements Watcher {
       if (!files.size) {
         runningCallback = false;
         return;
+      }
+
+      // HMR
+      ++this.#hmr.hash;
+
+      for (const file of files) {
+        for (const dep of getDependencies(file)) {
+          files.add(dep);
+        }
       }
 
       try {
