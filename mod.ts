@@ -9,8 +9,7 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
-import { toFileUrl } from "./deps/path.ts";
-import { init } from "./loaders.ts";
+import { envBoolean } from "./core/utils/env.ts";
 
 import type { SiteOptions } from "./core/site.ts";
 
@@ -45,7 +44,9 @@ export default function lume(
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
   // Init module hooks
-  init(toFileUrl(site.root()).href);
+  if (envBoolean("LUME_LIVE_RELOAD")) {
+    site.getWatcher().initHMR();
+  }
 
   return site
     .ignore("node_modules")
