@@ -3,6 +3,7 @@ import { localIp, openBrowser } from "../core/utils/net.ts";
 import { envBoolean, setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
+import { init } from "../core/utils/hmr.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
@@ -44,6 +45,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     setEnv("LUME_DRAFTS", "true");
   }
 
+  init();
   const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
   const site = await createSite(_config);
 
@@ -89,14 +91,10 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
 
   // Start the watcher
   const watcher = site.getWatcher();
+  const srcFolder = normalizePath(site.options.src);
 
   watcher.addEventListener("change", async (event) => {
     const files = event.files!;
-
-    log.info("Changes detected:");
-    files.forEach((file) => {
-      log.info(`- <gray>${file}</gray>`);
-    });
 
     // If the config files have changed, reload the build process
     if (reloadFiles.some((file) => files.has(file))) {
@@ -106,7 +104,18 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
       return;
     }
 
-    await site.update(files);
+    const srcFiles = new Set(
+      [...files]
+        .filter((file) => file.startsWith(srcFolder))
+        .map((file) => file.slice(srcFolder.length)),
+    );
+
+    log.info("Changes detected:");
+    srcFiles.forEach((file) => {
+      log.info(`- <gray>${file}</gray>`);
+    });
+
+    await site.update(srcFiles);
     log.output();
   });
 

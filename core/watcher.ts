@@ -1,15 +1,18 @@
-import { registerHooks } from "../deps/module.ts";
-import { join, relative, toFileUrl } from "../deps/path.ts";
+import { fromFileUrl, join, relative, toFileUrl } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 import Events from "./events.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import { updateDependencies, updateVersion } from "./utils/hmr.ts";
 
 /** The options to configure the local server */
 export interface Options {
-  /** The folder root to watch */
+  /** The root folder */
   root: string;
+
+  /** The src folder to watch */
+  src: string;
 
   /** Extra files to watch */
   paths?: string[];
@@ -61,11 +64,6 @@ export default class FSWatcher implements Watcher {
   events: Events<WatchEvent> = new Events<WatchEvent>();
   options: Options;
   paused = false;
-  #hmr = {
-    hash: 0,
-    files: new Map<string, string>(),
-    dependencies: new Map<string, Set<string>>(),
-  };
 
   constructor(options: Options) {
     this.options = options;
@@ -86,81 +84,15 @@ export default class FSWatcher implements Watcher {
     return this.events.dispatchEvent(event);
   }
 
-  /** Register a hook to enable HMR in Deno */
-  initHMR() {
-    const root = toFileUrl(this.options.root).href;
-    const hmr = this.#hmr;
-
-    function localSpecifier(
-      specifier: string,
-      parentURL?: string,
-    ): string | undefined {
-      if (specifier.startsWith(root)) {
-        return specifier;
-      }
-
-      if (specifier.startsWith(".") && parentURL?.startsWith(root)) {
-        return new URL(specifier, parentURL).href;
-      }
-    }
-
-    function parentDependency(url?: string) {
-      if (!url) return;
-      const cleanUrl = url.split("#")[0];
-      if (hmr.files.has(cleanUrl)) {
-        return cleanUrl;
-      }
-    }
-
-    registerHooks({
-      resolve(specifier, context, nextResolve) {
-        const url = localSpecifier(specifier, context.parentURL);
-
-        if (!url) {
-          return nextResolve(specifier);
-        }
-
-        if (!hmr.files.has(url)) {
-          hmr.files.set(url, `${url}#${hmr.hash}`);
-        }
-
-        const parent = parentDependency(context.parentURL);
-
-        if (parent) {
-          const deps = hmr.dependencies.get(url) ?? new Set();
-          deps.add(parent);
-          hmr.dependencies.set(url, deps);
-        }
-
-        return nextResolve(hmr.files.get(url)!);
-      },
-    });
-  }
-
   /** Start the file watcher */
   async start() {
-    const { root, paths, ignore, debounce, dependencies } = this.options;
-    const watcher = Deno.watchFs([root, ...paths ?? []]);
+    const { root, src, paths, ignore, debounce, dependencies } = this.options;
+    const watcher = Deno.watchFs([src, ...paths ?? []]);
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
-    const rootUrl = toFileUrl(root).href;
-    const hmr = this.#hmr;
 
     await this.dispatchEvent({ type: "start" });
-
-    function* getDependencies(file: string): Generator<string> {
-      const url = `${rootUrl}${file}`;
-      hmr.files.delete(url);
-
-      for (const dep of hmr.dependencies.get(url) ?? []) {
-        if (dep.startsWith(rootUrl)) {
-          const depFile = dep.slice(rootUrl.length);
-          yield depFile;
-          yield* getDependencies(depFile);
-        }
-      }
-    }
 
     const callback = async () => {
       // If the callback is already running, debounce the next call
@@ -178,15 +110,6 @@ export default class FSWatcher implements Watcher {
       if (!files.size) {
         runningCallback = false;
         return;
-      }
-
-      // HMR
-      ++this.#hmr.hash;
-
-      for (const file of files) {
-        for (const dep of getDependencies(file)) {
-          files.add(dep);
-        }
       }
 
       try {
@@ -211,21 +134,27 @@ export default class FSWatcher implements Watcher {
     };
 
     for await (const event of watcher) {
-      let paths = event.paths.map((path) => normalizePath(path));
+      const paths = new Set<string>();
 
-      // Filter ignored paths
-      paths = paths.filter((path) =>
-        ignore
-          ? !ignore.some((ignore) =>
-            typeof ignore === "string"
-              ? (path.startsWith(normalizePath(join(root, ignore, "/"))) ||
-                path === normalizePath(join(root, ignore)))
-              : ignore(path)
-          )
-          : true
-      );
+      updateVersion();
 
-      if (!paths.length) {
+      for (const path of event.paths.map((p) => normalizePath(p))) {
+        // Filter ignored paths
+        const isIgnored = ignore?.some((condition) => {
+          typeof condition === "string"
+            ? (path.startsWith(normalizePath(join(root, condition, "/"))) ||
+              path === normalizePath(join(root, condition)))
+            : condition(path);
+        });
+
+        if (isIgnored) continue;
+        paths.add(path);
+        for (const dep of updateDependencies(toFileUrl(path).href)) {
+          paths.add(normalizePath(fromFileUrl(dep)));
+        }
+      }
+
+      if (!paths.size) {
         continue;
       }
 

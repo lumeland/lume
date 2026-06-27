@@ -9,7 +9,6 @@ import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
 import toml, { Options as TomlOptions } from "./plugins/toml.ts";
 import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
-import { envBoolean } from "./core/utils/env.ts";
 
 import type { SiteOptions } from "./core/site.ts";
 
@@ -42,11 +41,6 @@ export default function lume(
   site.options.watcher.ignore.push("/.git");
   site.options.watcher.ignore.push("/_cache");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
-
-  // Init module hooks
-  if (envBoolean("LUME_LIVE_RELOAD")) {
-    site.getWatcher().initHMR();
-  }
 
   return site
     .ignore("node_modules")
