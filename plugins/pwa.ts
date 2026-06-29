@@ -81,6 +81,7 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
 
     site.process([".html"], async (pages) => {
       const manifest: Partial<Manifest> = {};
+      const shortcuts: Shortcut[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -133,15 +134,17 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
           const url = site.url(page.data.url, true);
           const search_params = getPlainDataValue(data, shortcut.search_params);
 
-          manifest.shortcuts ??= [];
-
-          manifest.shortcuts.push({
+          shortcuts.push({
             name: getPlainDataValue(data, shortcut.name),
             short_name: getPlainDataValue(data, shortcut.short_name),
             description: getPlainDataValue(data, shortcut.description),
             url: search_params ? `${url}?${search_params}` : url,
           });
         }
+      }
+
+      if (shortcuts.length) {
+        manifest.shortcuts = shortcuts;
       }
 
       const manifestFile = await site.getOrCreatePage(options.output);

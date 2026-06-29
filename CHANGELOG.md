@@ -40,7 +40,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].
-- Updated dependencies: `std`, `html-validate`, `markdown-it` and some icons.
+- Updated dependencies: `cliffy`, `date-fn`, `decap`, `esbuild`, `postcss`, `sass`, `sharp`, `tailwindcss`, `unocss`, `std`, `html-validate`, `markdown-it` and some icons.
 - `json_ld` plugin: Allow some html tags in the `description` key (according to google's docs).
 - `feed` plugin: Set absolute urls for icons, and images.
 - Don't break the build on error loading a `_data` file.

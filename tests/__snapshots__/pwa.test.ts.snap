@@ -193,13 +193,6 @@ snapshot[`PWA plugin 3`] = `
   },
   {
     content: '{
-  "shortcuts": [
-    {
-      "name": "This is a subsection",
-      "description": "The description of the subsection",
-      "url": "http://localhost/section/"
-    }
-  ],
   "start_url": "http://localhost/?pwa=1",
   "scope": "/",
   "id": "http://localhost/",
@@ -221,6 +214,13 @@ snapshot[`PWA plugin 3`] = `
       "sizes": "512x512",
       "src": "/pwa-icon-512.png",
       "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "This is a subsection",
+      "description": "The description of the subsection",
+      "url": "http://localhost/section/"
     }
   ]
 }',

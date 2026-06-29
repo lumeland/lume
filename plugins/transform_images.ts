@@ -3,8 +3,9 @@ import { filesToPages } from "../core/file.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { Merge, merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import sharp, { create } from "../deps/sharp.ts";
+import { create } from "../deps/sharp.ts";
 
+import type { ResizeOptions, Sharp } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
 import type { Page, StaticFile } from "../core/file.ts";
 
@@ -16,7 +17,7 @@ export interface Options {
 }
 
 export type TransformationFunction = (
-  image: sharp.Sharp,
+  image: Sharp,
   // deno-lint-ignore no-explicit-any
   ...args: any[]
 ) => void;
@@ -25,17 +26,17 @@ export type TransformationFunction = (
 export const defaults = {
   functions: {
     resize(
-      image: sharp.Sharp,
+      image: Sharp,
       width: number,
       height?: number,
-      options: sharp.ResizeOptions = { withoutEnlargement: true },
+      options: ResizeOptions = { withoutEnlargement: true },
     ): void {
       image.resize(width, height, options);
     },
-    blur(image: sharp.Sharp, sigma?: number | boolean): void {
+    blur(image: Sharp, sigma?: number | boolean): void {
       image.blur(sigma);
     },
-    rotate(image: sharp.Sharp, degrees: number): void {
+    rotate(image: Sharp, degrees: number): void {
       image.rotate(degrees);
     },
   },
