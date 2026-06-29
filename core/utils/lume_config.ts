@@ -25,6 +25,7 @@ export const pluginNames = [
   "plaintext",
   "prism",
   "pug",
+  "pwa",
   "remark",
   "robots",
   "sheets",

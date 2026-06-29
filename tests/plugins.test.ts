@@ -30,6 +30,7 @@ Deno.test("Plugins list in init", () => {
     "plaintext",
     "prism",
     "pug",
+    "pwa",
     "remark",
     "robots",
     "sheets",

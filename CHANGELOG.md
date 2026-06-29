@@ -6,8 +6,9 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.2.7] - Unreleased
+## [3.3.0] - Unreleased
 ### Added
+- New plugin: `pwa`.
 - Implement HMR in `serve` mode, using Node module hooks API.
 - `site.archetype()` to register archetypes from the _config.ts file.
 - New flag `--dry-run` to check for build errors [#860]
