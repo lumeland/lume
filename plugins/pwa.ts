@@ -39,6 +39,21 @@ export interface AppData {
 
   /** List of categories */
   categories?: string[];
+
+  /**
+   * @see https://www.w3.org/TR/screen-orientation/#dom-orientationlocktype
+   */
+  orientation?: Orientation;
+
+  /**
+   * @see https://www.w3.org/TR/appmanifest/#lang-member
+   */
+  lang?: string;
+
+  /**
+   * @see https://www.w3.org/TR/appmanifest/#dir-member
+   */
+  dir?: "ltr" | "rtl" | "auto";
 }
 export interface ShortcutData {
   /** Name of the app */
@@ -127,6 +142,10 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
           manifest.theme_color = getDataValue(data, app.color);
           manifest.background_color = getDataValue(data, app.background);
           manifest.categories = getDataValue(data, app.categories);
+          manifest.orientation = getDataValue(data, app.orientation);
+          manifest.lang = getPlainDataValue(data, app.lang);
+          manifest.dir = getPlainDataValue(data, app.dir);
+
           const icon = getDataValue(data, app.icon);
           const content = icon ? await getContent(icon) : undefined;
 
@@ -188,7 +207,7 @@ export interface Icon {
   src: string;
   sizes: string;
   type: string;
-  purpose?: "monochrome" | "maskable" | "any";
+  purpose?: "monochrome" | "maskable" | "any" | "any maskable";
 }
 export interface Screenshot {
   src: string;
@@ -289,6 +308,18 @@ export interface Manifest {
     };
   };
   shortcuts: Shortcut[];
+  /**
+   * @see https://www.w3.org/TR/screen-orientation/#dom-orientationlocktype
+   */
+  orientation: Orientation;
+  /**
+   * @see https://www.w3.org/TR/appmanifest/#lang-member
+   */
+  lang: string;
+  /**
+   * @see https://www.w3.org/TR/appmanifest/#dir-member
+   */
+  dir: "ltr" | "rtl" | "auto";
 }
 
 /** Extends Data interface */
