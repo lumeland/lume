@@ -112,20 +112,28 @@ export function pwa(userOptions?: Options) {
           const content = icon ? await getContent(icon) : undefined;
 
           if (content) {
-            manifest.icons = [{
-              sizes: "512x512",
-              src: "/pwa-icon-512.png",
-              type: "image/png",
-            }];
+            // Both 192×192 and 512×512 are required for Chromium-based browsers to trigger the beforeinstallprompt event.
+            manifest.icons = [
+              {
+                sizes: "192x192",
+                src: "/pwa-icon-192.png",
+                type: "image/png",
+              },
+              {
+                sizes: "512x512",
+                src: "/pwa-icon-512.png",
+                type: "image/png",
+              },
+            ];
+
+            site.pages.push(Page.create({
+              url: "/pwa-icon-192.png",
+              content: await buildIcon(content, "png", [192], cache),
+            }));
 
             site.pages.push(Page.create({
               url: "/pwa-icon-512.png",
-              content: await buildIcon(
-                content,
-                "png",
-                [512],
-                cache,
-              ),
+              content: await buildIcon(content, "png", [512], cache),
             }));
           }
           continue;
