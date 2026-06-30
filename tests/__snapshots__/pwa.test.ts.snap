@@ -203,13 +203,18 @@ snapshot[`PWA plugin 3`] = `
     "standalone",
     "minimal-ui"
   ],
-  "display": "browser",
+  "display": "standalone",
   "theme_color": "#334455",
   "categories": [
     "hello",
     "world"
   ],
   "icons": [
+    {
+      "sizes": "192x192",
+      "src": "/pwa-icon-192.png",
+      "type": "image/png"
+    },
     {
       "sizes": "512x512",
       "src": "/pwa-icon-512.png",
@@ -232,6 +237,24 @@ snapshot[`PWA plugin 3`] = `
         "isCopy",
       ],
       url: "/manifest.json",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Uint8Array(2143)",
+    data: {
+      basename: "pwa-icon-192",
+      content: "Uint8Array(2143)",
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      url: "/pwa-icon-192.png",
     },
     src: {
       ext: "",
