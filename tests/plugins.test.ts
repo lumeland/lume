@@ -17,6 +17,7 @@ Deno.test("Plugins list in init", () => {
     "eta",
     "extract_date",
     "extract_order",
+    "git_date",
     "jsx",
     "json_ld",
     "reading_info",

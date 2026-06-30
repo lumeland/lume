@@ -4,6 +4,8 @@ import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 import { buildIcon } from "../core/utils/image.ts";
 
+import type Site from "../core/site.ts";
+
 export interface AppData {
   /** Name of the app */
   name: string;
@@ -58,10 +60,10 @@ export const defaults = {
   output: "/manifest.json",
 } satisfies Options;
 
-export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
+export function pwa(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     const { cache } = site;
 
     /* Copied from favicon */
