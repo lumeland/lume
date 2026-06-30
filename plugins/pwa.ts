@@ -25,8 +25,11 @@ export interface AppData {
   /** App icon (SVG preferred) */
   icon?: string;
 
-  /** Display configuration */
-  display?: string | string[];
+  /**
+   * Preferred display modes.
+   * @see https://www.w3.org/TR/appmanifest/#display-member
+   */
+  display?: DisplayMode | DisplayMode[];
 
   /** App main color */
   color?: string;
@@ -60,7 +63,14 @@ export const defaults = {
   output: "/manifest.json",
 } satisfies Options;
 
-export function pwa(userOptions?: Options) {
+const BASIC_DISPLAY_MODES: DisplayMode[] = [
+  "fullscreen",
+  "standalone",
+  "minimal-ui",
+  "browser",
+];
+
+export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -92,8 +102,6 @@ export function pwa(userOptions?: Options) {
         if (app) {
           const url = site.url(page.data.url, true);
           const search_params = getPlainDataValue(data, app.search_params);
-          const displayModes = getDataValue(data, app.display) ??
-            ["standalone", "minimal-ui"];
 
           manifest.start_url = search_params ? `${url}?${search_params}` : url;
           manifest.scope = site.url("/");
@@ -103,8 +111,19 @@ export function pwa(userOptions?: Options) {
           manifest.name = getPlainDataValue(data, app.name);
           manifest.short_name = getPlainDataValue(data, app.short_name);
           manifest.description = getPlainDataValue(data, app.description);
-          manifest.display_override = displayModes;
-          manifest.display = "browser";
+
+          const displayValue = getDataValue(data, app.display);
+          const modes: DisplayMode[] = Array.isArray(displayValue)
+            ? displayValue
+            : displayValue
+            ? [displayValue]
+            : ["standalone", "minimal-ui"];
+
+          manifest.display_override = modes;
+          manifest.display = modes.find((m: DisplayMode) =>
+            BASIC_DISPLAY_MODES.includes(m)
+          ) ?? "browser";
+
           manifest.theme_color = getDataValue(data, app.color);
           manifest.background_color = getDataValue(data, app.background);
           manifest.categories = getDataValue(data, app.categories);
