@@ -1,6 +1,6 @@
 export const snapshot = {};
 
-snapshot[`extract_date plugin 1`] = `
+snapshot[`git_date plugin 1`] = `
 {
   formats: [
     {
@@ -110,9 +110,9 @@ snapshot[`extract_date plugin 1`] = `
 }
 `;
 
-snapshot[`extract_date plugin 2`] = `[]`;
+snapshot[`git_date plugin 2`] = `[]`;
 
-snapshot[`extract_date plugin 3`] = `
+snapshot[`git_date plugin 3`] = `
 [
   {
     content: "2026
@@ -175,7 +175,7 @@ snapshot[`extract_date plugin 3`] = `
 ]
 `;
 
-snapshot[`extract_date plugin (override) 1`] = `
+snapshot[`git_date plugin (override) 1`] = `
 {
   formats: [
     {
@@ -285,9 +285,9 @@ snapshot[`extract_date plugin (override) 1`] = `
 }
 `;
 
-snapshot[`extract_date plugin (override) 2`] = `[]`;
+snapshot[`git_date plugin (override) 2`] = `[]`;
 
-snapshot[`extract_date plugin (override) 3`] = `
+snapshot[`git_date plugin (override) 3`] = `
 [
   {
     content: "2026

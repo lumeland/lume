@@ -50,15 +50,13 @@ function getLastModified(path: string): Map<string, string> {
   const dates = new Map<string, string>();
   const toplevel = gitCommand("rev-parse", "--show-toplevel");
 
-  if (toplevel === undefined) {
-    log.error("[gitDate plugin] Unable to get the top level folder");
+  if (!toplevel) {
     return dates;
   }
 
   const str = gitCommand("log", "--format=DATE:%ci", "--name-only", "--", path);
 
-  if (str === undefined) {
-    log.error("[gitDate plugin] Unable to get the last modified date of files");
+  if (!str) {
     return dates;
   }
 
@@ -83,12 +81,19 @@ function getLastModified(path: string): Map<string, string> {
   return dates;
 }
 
-function gitCommand(...args: string[]): string | undefined {
-  const { stdout, success } = new Deno.Command("git", { args }).outputSync();
+const decoder = new TextDecoder();
 
-  if (!success) {
-    return;
+function gitCommand(...args: string[]): string {
+  const { code, stderr, stdout } = new Deno.Command("git", {
+    args,
+    stdout: "piped",
+    stderr: "piped",
+  }).outputSync();
+
+  if (code !== 0) {
+    log.error(`[git_date plugin] Git error: ${decoder.decode(stderr)}`);
+    return "";
   }
 
-  return new TextDecoder().decode(stdout).trim();
+  return decoder.decode(stdout).trim();
 }

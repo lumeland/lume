@@ -10,6 +10,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Added
 - New plugin: `pwa`.
 - New plugin: `git_date`.
+- New plugin: `git_info`.
 - Implement HMR in `serve` mode, using Node module hooks API.
 - `site.archetype()` to register archetypes from the _config.ts file.
 - New flag `--dry-run` to check for build errors [#860]

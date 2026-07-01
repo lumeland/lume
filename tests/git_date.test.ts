@@ -1,7 +1,7 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import gitDate from "../plugins/git_date.ts";
 
-Deno.test("extract_date plugin", async (t) => {
+Deno.test("git_date plugin", async (t) => {
   const site = getSite({
     src: "git_date",
   });
@@ -12,7 +12,7 @@ Deno.test("extract_date plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("extract_date plugin (override)", async (t) => {
+Deno.test("git_date plugin (override)", async (t) => {
   const site = getSite({
     src: "git_date",
   });
