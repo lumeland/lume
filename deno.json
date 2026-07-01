@@ -22,7 +22,7 @@
     },
     "test:update": {
       "description": "Update all tests snapshots",
-      "command": "TZ=Z LUME_NOCACHE=true deno task test -- --update"
+      "command": "TZ=Z LUME_LOGS=ERROR LUME_NOCACHE=true deno test -Au"
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
@@ -59,6 +59,5 @@
     "deny": [
       "npm:sharp"
     ]
-  },
-  "minimumDependencyAge": false
+  }
 }
