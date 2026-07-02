@@ -30,7 +30,7 @@
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
-      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.12/cli.ts' update"
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.13/cli.ts' update --min-age=24"
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",
