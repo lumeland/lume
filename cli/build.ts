@@ -1,6 +1,7 @@
 import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { EmptyWriter } from "../core/writer.ts";
+import { openInspector } from "../deps/inspector.ts";
 import { buildSite, createSite } from "./utils.ts";
 
 /** Build the website and optionally watch changes and serve the site */
@@ -10,7 +11,12 @@ export async function build(
   watch?: boolean,
   cms?: boolean,
   dryRun?: boolean,
+  inspect?: boolean,
 ) {
+  if (inspect) {
+    openInspector();
+  }
+
   if (!serve && !watch) {
     const _config = await resolveConfigFile(
       ["_config.ts", "_config.js"],

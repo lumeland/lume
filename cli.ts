@@ -97,9 +97,13 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(async ({ config, serve, watch, cms, dryRun }) => {
+  .option(
+    "-i, --inspect",
+    "Opens an inspector server for debugging.",
+  )
+  .action(async ({ config, serve, watch, cms, dryRun, inspect }) => {
     const { build } = await import("./cli/build.ts");
-    build(config, serve, watch, cms, dryRun);
+    build(config, serve, watch, cms, dryRun, inspect);
   })
   .command("new [archetype] [arguments...]", create)
   .command("upgrade", upgrade);
