@@ -6,16 +6,17 @@ import { log } from "../core/utils/log.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
-  /** Set true to override the value if it's defined */
-  override?: boolean;
+  /** The variable name used to save the value */
+  varName?: string;
 }
 
 export const defaults = {
-  override: false,
+  varName: "date",
 } satisfies Options;
 
 export function gitDate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+  const { varName } = options;
   let cache: Map<string, string>;
 
   return (site: Site) => {
@@ -31,11 +32,7 @@ export function gitDate(userOptions?: Options) {
           continue;
         }
 
-        if (options.override) {
-          page.data.date = new Date(date);
-        } else {
-          page.data.date ??= new Date(date);
-        }
+        page.data[varName] = new Date(date);
       }
     });
   };

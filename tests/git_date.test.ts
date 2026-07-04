@@ -12,13 +12,13 @@ Deno.test("git_date plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("git_date plugin (override)", async (t) => {
+Deno.test("git_date plugin (varName)", async (t) => {
   const site = getSite({
     src: "git_date",
   });
 
   site.use(gitDate({
-    override: true,
+    varName: "other",
   }));
 
   await build(site);

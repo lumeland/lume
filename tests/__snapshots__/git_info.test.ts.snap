@@ -111,39 +111,4 @@ snapshot[`git_info plugin 1`] = `
 
 snapshot[`git_info plugin 2`] = `[]`;
 
-snapshot[`git_info plugin 3`] = `
-[
-  {
-    content: "Has branchHas hash",
-    data: {
-      basename: "",
-      children: "Has branchHas hash",
-      content: "{{ if git.branch }}Has branch{{ /if }}
-{{ if git.hash }}Has hash{{ /if }}
-",
-      date: [],
-      git: [
-        "branch",
-        "hash",
-      ],
-      mergedKeys: [
-        "tags",
-      ],
-      page: [
-        "src",
-        "data",
-        "isCopy",
-      ],
-      paginate: "paginate",
-      search: [],
-      tags: "Array(0)",
-      url: "/",
-    },
-    src: {
-      ext: ".vto",
-      path: "/index",
-      remote: undefined,
-    },
-  },
-]
-`;
+snapshot[`git_info plugin 3`] = `[]`;

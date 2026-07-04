@@ -1,47 +1,34 @@
-import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
-export interface Options {
-  varName?: string;
-  branchPrefix?: string;
-  shortHash?: boolean;
-}
-
 export interface GitInfo {
   branch: string;
   hash: string;
+  tag?: string;
 }
 
-export const defaults = {
-  varName: "git",
-  branchPrefix: "lumecms/",
-  shortHash: true,
-} satisfies Options;
-
-export function gitInfo(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-
+export function gitInfo() {
   return (site: Site) => {
-    const rawBranch = gitCommand("branch", "--show-current");
-    const branch =
-      options.branchPrefix && rawBranch.startsWith(options.branchPrefix)
-        ? rawBranch.slice(options.branchPrefix.length)
-        : rawBranch;
-
+    const branch = gitCommand("branch", "--show-current");
     const hash = gitCommand(
       "rev-parse",
-      options.shortHash ? "--short" : "--verify",
+      "--verify",
       "HEAD",
     );
+    const tag = gitCommand(
+      "tag",
+      "--points-at",
+      hash,
+    ) || undefined;
 
     const info: GitInfo = {
       branch,
       hash,
+      tag,
     };
 
-    site.data(options.varName, info);
+    site.data("gitInfo", info);
   };
 }
 
@@ -62,4 +49,17 @@ function gitCommand(...args: string[]): string {
   }
 
   return decoder.decode(stdout).trim();
+}
+
+/** Extends Data interface */
+declare global {
+  namespace Lume {
+    export interface Data {
+      /**
+       * GIT info
+       * @see https://lume.land/plugins/git_info/
+       */
+      gitInfo: GitInfo;
+    }
+  }
 }

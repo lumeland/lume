@@ -144,11 +144,11 @@ snapshot[`git_date plugin 3`] = `
     },
   },
   {
-    content: "2016
+    content: "2026
 ",
     data: {
       basename: "two",
-      children: "2016
+      children: "2026
 ",
       content: "{{ date.getFullYear() }}
 ",
@@ -175,7 +175,7 @@ snapshot[`git_date plugin 3`] = `
 ]
 `;
 
-snapshot[`git_date plugin (override) 1`] = `
+snapshot[`git_date plugin (varName) 1`] = `
 {
   formats: [
     {
@@ -285,9 +285,9 @@ snapshot[`git_date plugin (override) 1`] = `
 }
 `;
 
-snapshot[`git_date plugin (override) 2`] = `[]`;
+snapshot[`git_date plugin (varName) 2`] = `[]`;
 
-snapshot[`git_date plugin (override) 3`] = `
+snapshot[`git_date plugin (varName) 3`] = `
 [
   {
     content: "2026
@@ -302,6 +302,7 @@ snapshot[`git_date plugin (override) 3`] = `
       mergedKeys: [
         "tags",
       ],
+      other: [],
       page: [
         "src",
         "data",
@@ -319,11 +320,11 @@ snapshot[`git_date plugin (override) 3`] = `
     },
   },
   {
-    content: "2026
+    content: "2016
 ",
     data: {
       basename: "two",
-      children: "2026
+      children: "2016
 ",
       content: "{{ date.getFullYear() }}
 ",
@@ -331,6 +332,7 @@ snapshot[`git_date plugin (override) 3`] = `
       mergedKeys: [
         "tags",
       ],
+      other: [],
       page: [
         "src",
         "data",
