@@ -11,3 +11,15 @@ Deno.test("PWA plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("PWA plugin (subfolder)", async (t) => {
+  const site = getSite({
+    location: new URL("https://example.com/subfolder"),
+    src: "pwa",
+  });
+
+  site.use(pwa());
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

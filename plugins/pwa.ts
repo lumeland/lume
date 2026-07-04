@@ -154,12 +154,12 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
             manifest.icons = [
               {
                 sizes: "192x192",
-                src: "/pwa-icon-192.png",
+                src: site.url("/pwa-icon-192.png"),
                 type: "image/png",
               },
               {
                 sizes: "512x512",
-                src: "/pwa-icon-512.png",
+                src: site.url("/pwa-icon-512.png"),
                 type: "image/png",
               },
             ];
