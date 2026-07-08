@@ -140,6 +140,7 @@ snapshot[`PWA plugin 3`] = `
         "color",
         "categories",
         "icon",
+        "migrate_from",
       ],
       basename: "",
       children: '<!DOCTYPE html>
@@ -220,6 +221,9 @@ snapshot[`PWA plugin 3`] = `
       "src": "/pwa-icon-512.png",
       "type": "image/png"
     }
+  ],
+  "migrate_from": [
+    "https://example.com"
   ],
   "shortcuts": [
     {
@@ -485,6 +489,7 @@ snapshot[`PWA plugin (subfolder) 3`] = `
         "color",
         "categories",
         "icon",
+        "migrate_from",
       ],
       basename: "",
       children: '<!DOCTYPE html>
@@ -565,6 +570,9 @@ snapshot[`PWA plugin (subfolder) 3`] = `
       "src": "/subfolder/pwa-icon-512.png",
       "type": "image/png"
     }
+  ],
+  "migrate_from": [
+    "https://example.com"
   ],
   "shortcuts": [
     {

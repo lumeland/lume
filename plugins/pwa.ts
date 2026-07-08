@@ -54,7 +54,14 @@ export interface AppData {
    * @see https://www.w3.org/TR/appmanifest/#dir-member
    */
   dir?: "ltr" | "rtl" | "auto";
+
+  /**
+   * Allows to migrate from older origins
+   * @see https://developer.chrome.com/blog/seamless-pwa-origin-migration
+   */
+  migrate_from: string | string[];
 }
+
 export interface ShortcutData {
   /** Name of the app */
   name: string;
@@ -173,6 +180,13 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
               url: "/pwa-icon-512.png",
               content: await buildIcon(content, "png", [512], cache),
             }));
+          }
+
+          const migrateFrom = getDataValue(data, app.migrate_from);
+          if (migrateFrom) {
+            manifest.migrate_from = Array.isArray(migrateFrom)
+              ? migrateFrom
+              : [migrateFrom];
           }
           continue;
         }
@@ -320,6 +334,11 @@ export interface Manifest {
    * @see https://www.w3.org/TR/appmanifest/#dir-member
    */
   dir: "ltr" | "rtl" | "auto";
+
+  /**
+   * @see https://developer.chrome.com/blog/seamless-pwa-origin-migration
+   */
+  migrate_from: string[];
 }
 
 /** Extends Data interface */
