@@ -36,6 +36,7 @@ export const pluginNames = [
   "icons",
   "partytown",
   "replace",
+  "well_known",
 
   // CSS + JS + source maps
   "esbuild",
