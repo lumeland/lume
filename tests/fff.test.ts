@@ -42,7 +42,7 @@ Deno.test("FFF plugin", async (t) => {
 
   // published => date
   const date = pages.find((page) => page.src.path === "/date")!;
-  assertEquals(date.data.date, date.data.published);
+  assertEquals(date.data.date, date.data.published as unknown as Date);
   // getGitDate
   assertEquals(!!date.data.created, true);
   assertEquals(!!date.data.updated, true);

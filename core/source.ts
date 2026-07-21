@@ -226,7 +226,7 @@ export default class Source<D> {
       dirData.comp = toProxy(
         dirComponents,
         this.extraCode,
-      );
+      ) as Data<D>["comp"] & ProxyComponents;
     }
 
     // Store the directory data to be used by other plugins

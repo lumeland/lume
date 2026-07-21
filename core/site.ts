@@ -527,7 +527,8 @@ export default class Site<D = unknown> {
   /** Register a merging strategy for a data key */
   mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
     const data: Partial<Data<D>> = this.scopedData.get(scope) || {};
-    const mergedKeys: Record<string, MergeStrategy> = data.mergedKeys || {};
+    const mergedKeys = data.mergedKeys ||
+      ({} as NonNullable<Data<D>["mergedKeys"]>);
     mergedKeys[key] = merge;
     data.mergedKeys = mergedKeys;
     this.scopedData.set(scope, data);
