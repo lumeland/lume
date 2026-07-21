@@ -219,7 +219,7 @@ export type RawData<D = unknown> = D & {
   draft?: boolean;
 
   /** The date creation of the page */
-  date?: Date | string | number;
+  date?: Date | string | number | null;
 
   /** To configure the rendering order of a page */
   renderOrder?: number;
@@ -299,7 +299,8 @@ export function ensureRawData(data: Record<string, unknown>): data is RawData {
     return false;
   }
   if (
-    typeof data.date !== "undefined" && typeof data.date !== "string" &&
+    typeof data.date !== "undefined" && data.date !== null &&
+    typeof data.date !== "string" &&
     typeof data.date !== "number" && !(data.date instanceof Date)
   ) {
     return false;
