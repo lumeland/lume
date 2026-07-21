@@ -7,7 +7,7 @@ import { contentType } from "../deps/media_types.ts";
 import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** List of extra attributes to copy if replacing the element */

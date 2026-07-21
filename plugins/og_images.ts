@@ -5,7 +5,7 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 import { isPlainObject, merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 import Site from "../core/site.ts";
 import { MetasPluginData } from "./metas.ts";

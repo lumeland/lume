@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";

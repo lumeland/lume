@@ -12,7 +12,6 @@ import { isAbsolutePath, normalizePath } from "../../core/utils/path.ts";
 
 import type { Loader, OnResolveArgs, Plugin } from "../esbuild.ts";
 import type Site from "../../core/site.ts";
-import { Data } from "../../core/file.ts";
 
 export interface LoaderOptions<D> {
   configPath?: string;

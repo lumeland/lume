@@ -2,7 +2,6 @@ import jsonLoader from "../core/loaders/json.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */

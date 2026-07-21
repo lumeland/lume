@@ -8,7 +8,6 @@ import { log } from "../core/utils/log.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { ProxyComponents } from "../core/components.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
