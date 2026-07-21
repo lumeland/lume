@@ -1,5 +1,7 @@
 import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
+import { EmptyWriter } from "../core/writer.ts";
+import { openInspector } from "../deps/inspector.ts";
 import { buildSite, createSite } from "./utils.ts";
 
 /** Build the website and optionally watch changes and serve the site */
@@ -8,15 +10,32 @@ export async function build(
   serve?: boolean,
   watch?: boolean,
   cms?: boolean,
+  dryRun?: boolean,
+  inspect?: boolean,
 ) {
+  if (inspect) {
+    openInspector();
+  }
+
   if (!serve && !watch) {
     const _config = await resolveConfigFile(
       ["_config.ts", "_config.js"],
       config,
     );
     const site = await createSite(_config);
+
+    if (dryRun) {
+      site.writer = new EmptyWriter();
+    }
+
     await buildSite(site);
+
+    const hasErrors = log.hasErrors;
     log.output();
+
+    if (dryRun && hasErrors) {
+      Deno.exit(1);
+    }
     return;
   }
 

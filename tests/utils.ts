@@ -1,9 +1,8 @@
-import { assertSnapshot } from "../deps/snapshot.ts";
 import lume from "../mod.ts";
 import Server from "../core/server.ts";
 import { basename, fromFileUrl, join } from "../deps/path.ts";
+import { EmptyWriter } from "../core/writer.ts";
 
-import type { Writer } from "../core/writer.ts";
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
 import { Data } from "../core/file.ts";
@@ -15,24 +14,6 @@ const cwd = fromFileUrl(import.meta.resolve("./"));
 
 export function getPath(path: string): string {
   return join(cwd, path);
-}
-
-class TestWriter implements Writer {
-  savePages() {
-    return Promise.resolve([]);
-  }
-
-  copyFiles() {
-    return Promise.resolve([]);
-  }
-
-  clear() {
-    return Promise.resolve();
-  }
-
-  removeFiles() {
-    return Promise.resolve();
-  }
 }
 
 /** Create a new lume site using the "assets" path as cwd */
@@ -48,7 +29,7 @@ export function getSite<
   const site = lume<T>(options, pluginOptions, false);
 
   if (!write) {
-    site.writer = new TestWriter();
+    site.writer = new EmptyWriter();
   }
 
   return site;
@@ -123,8 +104,7 @@ export async function assertSiteSnapshot<T extends Data>(
   const { pages, files } = site;
 
   // To-do: test site configuration
-  await assertSnapshot(
-    context,
+  await context.assertSnapshot(
     {
       formats: Array.from(site.formats.entries.values()).map((format) => {
         // deno-lint-ignore no-explicit-any
@@ -210,8 +190,8 @@ export async function assertSiteSnapshot<T extends Data>(
   });
 
   // Test static files
-  await assertSnapshot(context, normalizedFiles);
-  await assertSnapshot(context, normalizedPages);
+  await context.assertSnapshot(normalizedFiles);
+  await context.assertSnapshot(normalizedPages);
 }
 
 export function getServer(
@@ -248,7 +228,7 @@ export async function assertResponseSnapshot(
   const body = await response.text();
   const headers = Object.fromEntries(response.headers.entries());
 
-  await assertSnapshot(context, {
+  await context.assertSnapshot({
     request: request.url,
     method: request.method,
     status: response.status,

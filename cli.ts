@@ -24,10 +24,14 @@ const create = new Command()
     "lume new post 'Post title'",
     "Create a new post file using the _archetypes/post.ts archetype.",
   )
-  // @ts-ignore: todo: fix this
-  .action(async ({ config }, name, ...args) => {
+  .option(
+    "--config <config:string>",
+    "The config file path.",
+  )
+  .action(async ({ config }, ...args: string[]) => {
+    const [name, ...other] = args;
     const { create } = await import("./cli/create.ts");
-    await create(config, name, args);
+    await create(config, name, other);
   });
 
 const lume = new Command()
@@ -61,6 +65,11 @@ const lume = new Command()
     { default: "http://localhost" },
   )
   .option(
+    "--dry-run",
+    "Test the build without generating the files",
+    { conflicts: ["serve", "watch"] },
+  )
+  .option(
     "-s, --serve",
     "Start a live-reloading web server and watch changes.",
   )
@@ -88,11 +97,15 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(async ({ config, serve, watch, cms }) => {
+  .option(
+    "-i, --inspect",
+    "Opens an inspector server for debugging.",
+  )
+  .action(async ({ config, serve, watch, cms, dryRun, inspect }) => {
     const { build } = await import("./cli/build.ts");
-    build(config, serve, watch, cms);
+    build(config, serve, watch, cms, dryRun, inspect);
   })
-  .command("new <archetype> [arguments...]", create)
+  .command("new [archetype] [arguments...]", create)
   .command("upgrade", upgrade);
 
 try {

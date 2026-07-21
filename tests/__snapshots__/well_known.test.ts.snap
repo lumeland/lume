@@ -141,3 +141,337 @@ snapshot[`.well-known folder 3`] = `
   },
 ]
 `;
+
+snapshot[`well_known plugin 1`] = `
+{
+  formats: [
+    {
+      engines: 0,
+      ext: ".page.toml",
+      isPage: true,
+      loader: [AsyncFunction: toml],
+    },
+    {
+      engines: 1,
+      ext: ".page.ts",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".page.js",
+      isPage: true,
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 0,
+      ext: ".page.jsonc",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 0,
+      ext: ".page.json",
+      isPage: true,
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".json",
+      loader: [AsyncFunction: json],
+    },
+    {
+      dataLoader: [AsyncFunction: json],
+      engines: 0,
+      ext: ".jsonc",
+      loader: [AsyncFunction: json],
+    },
+    {
+      engines: 1,
+      ext: ".md",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".markdown",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".js",
+      loader: [AsyncFunction: module],
+    },
+    {
+      dataLoader: [AsyncFunction: module],
+      engines: 1,
+      ext: ".ts",
+      loader: [AsyncFunction: module],
+    },
+    {
+      engines: 1,
+      ext: ".vento",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      engines: 1,
+      ext: ".vto",
+      isPage: true,
+      loader: [AsyncFunction: text],
+    },
+    {
+      dataLoader: [AsyncFunction: toml],
+      engines: 0,
+      ext: ".toml",
+      loader: [AsyncFunction: toml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yaml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+    {
+      dataLoader: [AsyncFunction: yaml],
+      engines: 0,
+      ext: ".yml",
+      isPage: true,
+      loader: [AsyncFunction: yaml],
+    },
+  ],
+  src: [
+    "/",
+    "/.well-known",
+    "/.well-known/page.vto",
+  ],
+}
+`;
+
+snapshot[`well_known plugin 2`] = `[]`;
+
+snapshot[`well_known plugin 3`] = `
+[
+  {
+    content: "1234",
+    data: {
+      basename: "atproto-did",
+      content: "1234",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/atproto-did",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{
+  "gpc": true,
+  "lastUpdate": "2026-07-12"
+}',
+    data: {
+      basename: "gpc",
+      content: '{
+  "gpc": true,
+  "lastUpdate": "2026-07-12"
+}',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/gpc.json",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Contact: mailto:security@example.com
+Policy: https://example.com/security-policy.txt
+Expires: 2026-07-12T09:51:58.383Z
+Preferred-Languages: en, gl
+Canonical: http://localhost/.well-known/security.txt",
+    data: {
+      basename: "security",
+      content: "Contact: mailto:security@example.com
+Policy: https://example.com/security-policy.txt
+Expires: 2026-07-12T09:51:58.383Z
+Preferred-Languages: en, gl
+Canonical: http://localhost/.well-known/security.txt",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/security.txt",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: "Content.",
+    data: {
+      basename: "security",
+      content: "Content.",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/security.txt",
+    },
+    src: {
+      ext: ".vto",
+      path: "/.well-known/page",
+      remote: undefined,
+    },
+  },
+  {
+    content: "social=https://mastodon.gal/@misteroom
+contact=mailto:info@example.com
+datatrainingallowed=no",
+    data: {
+      basename: "trust",
+      content: "social=https://mastodon.gal/@misteroom
+contact=mailto:info@example.com
+datatrainingallowed=no",
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/trust.txt",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{
+  "https://old-domain.com/pwa": {
+    "allow_migration": true
+  }
+}',
+    data: {
+      basename: "web-app-origin-association",
+      content: '{
+  "https://old-domain.com/pwa": {
+    "allow_migration": true
+  }
+}',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/web-app-origin-association",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
+    content: '{
+  "subject": "acct:user@example.com",
+  "links": [
+    {
+      "rel": "http://openid.net/specs/connect/1.0/issuer",
+      "href": "https://codeberg.org"
+    }
+  ]
+}',
+    data: {
+      basename: "webfinger",
+      content: '{
+  "subject": "acct:user@example.com",
+  "links": [
+    {
+      "rel": "http://openid.net/specs/connect/1.0/issuer",
+      "href": "https://codeberg.org"
+    }
+  ]
+}',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/webfinger",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+]
+`;

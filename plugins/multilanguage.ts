@@ -210,7 +210,7 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process([".html"], function processMultilanguage(pages) {
+    site.process([".html"], function processMultilanguageHtml(pages) {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;
@@ -227,12 +227,11 @@ export function multilanguage(userOptions: Options) {
 
         // Insert the <link> elements automatically
         for (const data of alternates) {
-          const meta = document.createElement("link");
-          meta.setAttribute("rel", "alternate");
-          meta.setAttribute("hreflang", data.lang as string);
-          meta.setAttribute("href", site.url(data.url, true));
-          document.head.appendChild(meta);
-          document.head.appendChild(document.createTextNode("\n"));
+          appendHreflang(
+            data.lang as string,
+            site.url(data.url, true),
+            document,
+          );
         }
 
         if (page.data.unmatchedLangUrl) {

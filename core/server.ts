@@ -71,6 +71,20 @@ export default class Server {
     return this.#server?.addr;
   }
 
+  /** The port this server is listening on */
+  get port(): number {
+    return this.options.port;
+  }
+
+  /** The hostname this server is listening on */
+  get hostname(): string {
+    const { hostname } = this.options;
+
+    return (hostname === "0.0.0.0" || hostname === "127.0.0.1")
+      ? "localhost"
+      : hostname ?? "localhost";
+  }
+
   /** Register one or more middlewares */
   use(...middleware: Middleware[]) {
     this.middlewares.push(...middleware);

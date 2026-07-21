@@ -712,8 +712,8 @@ export default class Site<D extends Data = Data> {
 
   /** Build the entire site */
   async build(): Promise<void> {
+    this.debugBar?.endMeasure(null, "[Start] Initialization");
     this.debugBar?.startMeasure("build");
-
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
       this.dispatchEvent({ type: "idle" });
@@ -1179,7 +1179,8 @@ export default class Site<D extends Data = Data> {
       return this.watcher;
     }
     this.watcher = new FSWatcher({
-      root: this.src(),
+      src: this.src(),
+      root: this.root(),
       paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,

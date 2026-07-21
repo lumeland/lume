@@ -2,8 +2,8 @@ import { merge } from "../core/utils/object.ts";
 import { Data, Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 import { buildIcon } from "../core/utils/image.ts";
-import sharp from "../deps/sharp.ts";
 
+import type { FormatEnum } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
@@ -98,7 +98,7 @@ export function favicon(userOptions?: Options) {
 
         page.bytes = await buildIcon(
           content,
-          favicon.format as keyof sharp.FormatEnum,
+          favicon.format as keyof FormatEnum,
           favicon.size,
           cache,
         );

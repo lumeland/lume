@@ -72,6 +72,9 @@ export interface FeedInfoOptions {
   /** The feed author URL */
   authorUrl?: string;
 
+  /** The feed author avatar */
+  authorAvatar?: string;
+
   /** The main image of the site */
   image?: string;
 
@@ -112,6 +115,9 @@ export interface FeedItemOptions<D extends Data> {
 
   /** The item author URL */
   authorUrl?: string;
+
+  /** The feed author avatar */
+  authorAvatar?: string;
 }
 
 export const defaults = {
@@ -148,6 +154,7 @@ export const defaults = {
 export interface Author {
   name?: string;
   url?: string;
+  avatar?: string;
 }
 
 export interface FeedData {
@@ -223,9 +230,9 @@ export function feed<D extends Data>(
           generator: info.generator === true
             ? defaultGenerator
             : info.generator || undefined,
-          author: getAuthor(rootData, info),
-          image: info.image,
-          icon: info.icon,
+          author: getAuthor(rootData, info, site),
+          image: info.image ? site.url(info.image, true) : undefined,
+          icon: info.icon ? site.url(info.icon, true) : undefined,
           color: info.color,
           items: pages.map((data): FeedItem => {
             const content = getDataValue(data, items.content)?.toString();
@@ -240,7 +247,7 @@ export function feed<D extends Data>(
               title: getPlainDataValue(data, items.title),
               url: site.url(data.url, true),
               description: getPlainDataValue(data, items.description),
-              author: getAuthor(data, items),
+              author: getAuthor(data, items, site),
               published: toDate(getDataValue(data, items.published)) ||
                 new Date(),
               updated: toDate(getDataValue(data, items.updated)),
@@ -299,12 +306,15 @@ export function feed<D extends Data>(
 function getAuthor<D extends Data>(
   data: Partial<D>,
   info: FeedInfoOptions | FeedItemOptions<D>,
+  site: Site,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
   const url = getDataValue(data, info.authorUrl);
+  const authorAvatar = getDataValue(data, info.authorAvatar);
+  const avatar = authorAvatar ? site.url(authorAvatar, true) : undefined;
 
-  if (name || url) {
-    return { name, url };
+  if (name || url || avatar) {
+    return { name, url, avatar };
   }
 }
 

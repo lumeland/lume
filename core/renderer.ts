@@ -6,6 +6,7 @@ import { getBasename, getPageUrl } from "./utils/page_url.ts";
 import { getPageDate } from "./utils/page_date.ts";
 import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "./utils/log.ts";
 
 import type { Content, Data, RawData } from "./file.ts";
 import type Processors from "./processors.ts";
@@ -173,9 +174,11 @@ export default class Renderer<D extends Data> {
               page.content = content;
             }
           } catch (cause) {
-            throw new Error(`Error rendering the page: ${page.sourcePath}`, {
-              cause,
-            });
+            log.error(
+              `[rendering] Error rendering the page ${page.sourcePath}: ${
+                (cause as Error).message
+              }`,
+            );
           }
         },
       );
@@ -196,9 +199,10 @@ export default class Renderer<D extends Data> {
             page.data.children as Content,
           );
         } catch (cause) {
-          throw new Error(
-            `Error rendering the layout of the page ${page.sourcePath}`,
-            { cause },
+          log.error(
+            `[rendering] Error rendering the layout of the page ${page.sourcePath}: ${
+              (cause as Error).message
+            }`,
           );
         }
       },

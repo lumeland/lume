@@ -206,3 +206,24 @@ function removeEmptyDirectory(path: string, base: string) {
     // Ignored
   }
 }
+
+/**
+ * A writer implementation that doesn't really write the files
+ */
+export class EmptyWriter implements Writer {
+  savePages() {
+    return Promise.resolve([]);
+  }
+
+  copyFiles() {
+    return Promise.resolve([]);
+  }
+
+  clear() {
+    return Promise.resolve();
+  }
+
+  removeFiles() {
+    return Promise.resolve();
+  }
+}

@@ -1,5 +1,4 @@
 import { build, getSite } from "./utils.ts";
-import { assertSnapshot } from "../deps/snapshot.ts";
 import checkUrls from "../plugins/check_urls.ts";
 
 Deno.test("check_urls plugin", async (t) => {
@@ -22,7 +21,7 @@ Deno.test("check_urls plugin", async (t) => {
 
   await build(site);
   result.sort((a, b) => a.url.localeCompare(b.url));
-  await assertSnapshot(t, result);
+  await t.assertSnapshot(result);
 });
 
 Deno.test("check_urls plugin (strict mode)", async (t) => {
@@ -46,7 +45,7 @@ Deno.test("check_urls plugin (strict mode)", async (t) => {
 
   await build(site);
   result.sort((a, b) => a.url.localeCompare(b.url));
-  await assertSnapshot(t, result);
+  await t.assertSnapshot(result);
 });
 
 Deno.test("check_urls plugin (anchor mode)", async (t) => {
@@ -75,5 +74,5 @@ Deno.test("check_urls plugin (anchor mode)", async (t) => {
 
   await build(site);
   result.sort((a, b) => a.url.localeCompare(b.url));
-  await assertSnapshot(t, result);
+  await t.assertSnapshot(result);
 });

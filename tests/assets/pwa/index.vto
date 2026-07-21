@@ -1,0 +1,30 @@
+---
+title: Hello world
+description: The best progressive web application
+tags:
+  - hello
+  - world
+metas:
+  color: '#334455'
+app:
+  name: =title
+  search_params: pwa=1
+  short_name: "hello"
+  description: =description
+  color: =metas.color
+  categories: =tags
+  icon: favicon.svg
+  migrate_from: "https://example.com"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+</head>
+<body>
+  
+</body>
+</html>

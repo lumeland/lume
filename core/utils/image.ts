@@ -1,11 +1,12 @@
-import sharp, { create, sharpsToIco } from "../../deps/sharp.ts";
+import { create, sharpsToIco } from "../../deps/sharp.ts";
 
 import type { ResvgRenderOptions } from "../../deps/resvg.ts";
+import type { FormatEnum } from "../../deps/sharp.ts";
 import type Cache from "../cache.ts";
 
 export async function buildIcon(
   content: Uint8Array | string,
-  format: keyof sharp.FormatEnum | "ico",
+  format: keyof FormatEnum | "ico",
   size: number[],
   cache?: Cache,
 ): Promise<Uint8Array<ArrayBuffer>> {

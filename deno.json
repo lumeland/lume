@@ -22,15 +22,15 @@
     },
     "test:update": {
       "description": "Update all tests snapshots",
-      "command": "TZ=Z LUME_NOCACHE=true deno task test -- --update"
+      "command": "TZ=Z LUME_LOGS=ERROR LUME_NOCACHE=true deno test -Au"
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
-      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v3.0.4/bin.ts"
+      "command": "deno run --allow-read --allow-write https://deno.land/x/changelog@v3.0.5/bin.ts"
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",
-      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.11/cli.ts' update"
+      "command": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.13/cli.ts' update --min-age=24"
     },
     "update-deps": {
       "description": "Update all dependencies to the latest version. Add `--dry-run` to don't write the changes",

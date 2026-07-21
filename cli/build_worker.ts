@@ -3,6 +3,7 @@ import { localIp, openBrowser } from "../core/utils/net.ts";
 import { envBoolean, setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
+import { init } from "../core/utils/hmr.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";
@@ -11,7 +12,6 @@ import noCors from "../middlewares/no_cors.ts";
 import reload from "../middlewares/reload.ts";
 import { buildSite, createSite } from "./utils.ts";
 import { initLocalStorage } from "./missing_worker_apis.ts";
-import { parseArgs } from "../deps/cli.ts";
 import Server from "../core/server.ts";
 
 addEventListener("message", (event) => {
@@ -45,40 +45,15 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     setEnv("LUME_DRAFTS", "true");
   }
 
-  // Start the server before loading the site to reduce uptime
-  if (serve) {
-    const cli = parseArgs(Deno.args, {
-      string: ["port", "hostname"],
-      alias: { serve: "s", port: "p" },
-    });
-
-    // Only start the server if a port is specified (because it might be changed in the _config file)
-    if (cli.port) {
-      server = new Server({
-        port: parseInt(cli.port),
-        hostname: cli.hostname,
-      });
-      server.wait();
-      log.info("Web server started...");
-    }
-  }
-
+  init();
   const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
   const site = await createSite(_config);
 
   // Start the server and show the wait page while building the first time
   if (serve) {
-    if (!server) {
-      server = site.getServer();
-      server.wait();
-      log.info("Web server started...");
-    } else {
-      // Swap the servers to keep the middlewares and options
-      const tmp = site.getServer();
-      site.server = server;
-      server.middlewares = tmp.middlewares;
-      server.options = tmp.options;
-    }
+    server = site.getServer();
+    server.wait();
+    log.info(`Web server started at http://${server.hostname}:${server.port}/`);
   }
 
   // Setup LumeCMS
@@ -116,14 +91,10 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
 
   // Start the watcher
   const watcher = site.getWatcher();
+  const srcFolder = normalizePath(site.options.src);
 
   watcher.addEventListener("change", async (event) => {
     const files = event.files!;
-
-    log.info("Changes detected:");
-    files.forEach((file) => {
-      log.info(`- <gray>${file}</gray>`);
-    });
 
     // If the config files have changed, reload the build process
     if (reloadFiles.some((file) => files.has(file))) {
@@ -133,7 +104,18 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
       return;
     }
 
-    await site.update(files);
+    const srcFiles = new Set(
+      [...files]
+        .filter((file) => file.startsWith(srcFolder))
+        .map((file) => file.slice(srcFolder.length)),
+    );
+
+    log.info("Changes detected:");
+    srcFiles.forEach((file) => {
+      log.info(`- <gray>${file}</gray>`);
+    });
+
+    await site.update(srcFiles);
     log.output();
   });
 

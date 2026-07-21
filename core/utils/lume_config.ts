@@ -12,6 +12,8 @@ export const pluginNames = [
   "eta",
   "extract_date",
   "extract_order",
+  "git_date",
+  "git_info",
   "jsx",
   "json_ld",
   "reading_info",
@@ -25,6 +27,7 @@ export const pluginNames = [
   "plaintext",
   "prism",
   "pug",
+  "pwa",
   "remark",
   "robots",
   "sheets",
@@ -33,6 +36,7 @@ export const pluginNames = [
   "icons",
   "partytown",
   "replace",
+  "well_known",
 
   // CSS + JS + source maps
   "esbuild",

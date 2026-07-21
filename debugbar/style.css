@@ -194,7 +194,7 @@ lume-icon {
   }
 
   > li:hover:has(details),
-  > li:has(> details[open]) {
+   > li:has(> details[open]) {
     outline: solid 1px var(--db-color-line);
     background-color: var(--db-color-background);
   }
