@@ -1,9 +1,8 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
 
-export interface ReadingInfoPluginData extends Data {
+export interface ReadingInfoPluginData {
   /**
    * Reading info
    * @see https://lume.land/plugins/reading_info/

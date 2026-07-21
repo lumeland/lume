@@ -8,7 +8,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 
-export interface MultilanguagePluginData extends Data {
+export interface MultilanguagePluginData {
   /** The language of the page */
   lang?: string;
 
@@ -30,7 +30,7 @@ export interface MultilanguagePluginData extends Data {
    * Alternate pages (for languages)
    * @see https://lume.land/plugins/multilanguage/
    */
-  alternates?: this[];
+  alternates?: Data<this>[];
 }
 
 export interface Options {
@@ -61,8 +61,8 @@ export function multilanguage(userOptions: Options) {
 
     // Event to handle generators before being preprocessed
     site.addEventListener("beforeRender", ({ pages }) => {
-      const removedPages: Page<D>[] = [];
-      const newPages: Page<D>[] = [];
+      const removedPages: Page<Data<D>>[] = [];
+      const newPages: Page<Data<D>>[] = [];
 
       for (const page of pages) {
         const { data } = page;
@@ -117,7 +117,7 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Create a new page per language
-          const newPages: Page<MultilanguagePluginData>[] = [];
+          const newPages: Page<Data<MultilanguagePluginData>>[] = [];
           const id = data.id ?? page.src.path.slice(1);
 
           for (const lang of languages) {
@@ -169,8 +169,8 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Page<D>["data"][] = [];
-        const ids = new Map<string, Page<D>>();
+        const alternates: Page<Data<D>>["data"][] = [];
+        const ids = new Map<string, Page<Data<D>>>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
           .forEach((page) => {
@@ -245,7 +245,7 @@ export function multilanguage(userOptions: Options) {
     });
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: MultilanguagePluginData) {
+    function mergeTranslations(data: Data<MultilanguagePluginData>) {
       const { lang } = data;
 
       if (!lang) {
@@ -267,7 +267,7 @@ export function multilanguage(userOptions: Options) {
     }
 
     /** Assign a language to a page */
-    function fixLanguage(page: Page<MultilanguagePluginData>) {
+    function fixLanguage(page: Page<Data<MultilanguagePluginData>>) {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
 
@@ -312,8 +312,8 @@ export function multilanguage(userOptions: Options) {
 }
 
 function getUnmatchedLangPath(
-  currentPage: Page<MultilanguagePluginData>,
-  filteredPages: Page<MultilanguagePluginData>[],
+  currentPage: Page<Data<MultilanguagePluginData>>,
+  filteredPages: Page<Data<MultilanguagePluginData>>[],
 ): string | undefined {
   const { sourcePath } = currentPage;
   const { unmatchedLangUrl, alternates } = currentPage.data;

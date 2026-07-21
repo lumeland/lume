@@ -205,12 +205,12 @@ export interface Src {
 export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
-export interface RawData {
+export type RawData<D = unknown> = D & {
   /** The url of a page */
   url?:
     | string
     | false
-    | ((page: Page<DataIn>) => string | false);
+    | ((page: Page<DataIn<D>>) => string | false);
 
   /** The basename of a page */
   basename?: string;
@@ -237,14 +237,14 @@ export interface RawData {
   mergedKeys?: Record<string, MergeStrategy>;
 
   [index: string]: unknown;
-}
+};
 
-export interface DataIn extends RawData {
+export type DataIn<D = unknown> = RawData<D> & {
   /** The url of a page */
   url: string;
-}
+};
 
-export interface DirectoryData extends RawData {
+export type DirectoryData<D = unknown> = RawData<D> & {
   /** The basename of the page */
   basename: string;
 
@@ -253,21 +253,21 @@ export interface DirectoryData extends RawData {
    * @see https://lume.land/docs/core/components/
    */
   comp: ProxyComponents;
-}
+};
 
-export interface FileData extends DirectoryData {
+export type FileData<D = unknown> = DirectoryData<D> & {
   /** The url of a page */
   url: string;
-}
+};
 
 /** The data of a page/folder once loaded and processed */
-export interface Data extends FileData {
+export type Data<D = unknown> = FileData<D> & {
   /** The page reference */
-  page: Page<this>;
+  page: Page<Data<D>>;
 
   /** The date creation of the page */
   date: Date;
-}
+};
 
 /** Promote files to pages */
 export async function filesToPages<D extends Data>(

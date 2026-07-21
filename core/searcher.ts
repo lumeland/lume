@@ -3,31 +3,31 @@ import { normalizePath } from "./utils/path.ts";
 
 import type { Data, FileData, Page, StaticFile } from "./file.ts";
 
-export interface Options<D extends Data = Data> {
+export interface Options<D> {
   /** The pages array */
-  pages: Page<D>[];
+  pages: Page<Data<D>>[];
 
   /** The static files array */
-  files: StaticFile<D>[];
+  files: StaticFile<Data<D>>[];
 
   /** Context data */
-  sourceData: Map<string, Partial<D>>;
+  sourceData: Map<string, Partial<Data<D>>>;
 
   /** Filters to apply to all page searches */
-  filters?: Filter<D>[];
+  filters?: Filter<Data<D>>[];
 }
 
 type Filter<D extends FileData> = (data: D) => boolean;
 type Condition = [string, string, unknown];
 
 /** Search helper */
-export default class Searcher<D extends Data = Data> {
-  #pages: Page<D>[];
-  #files: StaticFile<D>[];
-  #sourceData: Map<string, Partial<D>>;
-  #cache = new Map<string, D[]>();
+export default class Searcher<D> {
+  #pages: Page<Data<D>>[];
+  #files: StaticFile<Data<D>>[];
+  #sourceData: Map<string, Partial<Data<D>>>;
+  #cache = new Map<string, Data<D>[]>();
   #cacheFiles = new Map<string, string[]>();
-  #filters: Filter<D>[];
+  #filters: Filter<Data<D>>[];
 
   constructor(options: Options<D>) {
     this.#pages = options.pages;
@@ -45,12 +45,12 @@ export default class Searcher<D extends Data = Data> {
   /**
    * Return the data in the scope of a path (file or folder)
    */
-  data<T>(path = "/"): T & Partial<D> | undefined {
+  data<T>(path = "/"): T & Partial<Data<D>> | undefined {
     const normalized = normalizePath(path);
     const dirData = this.#sourceData.get(normalized);
 
     if (dirData) {
-      return dirData as T & Partial<D>;
+      return dirData as T & Partial<Data<D>>;
     }
 
     const result = this.#pages.find((page) =>
@@ -58,12 +58,12 @@ export default class Searcher<D extends Data = Data> {
     );
 
     if (result) {
-      return result.data as unknown as T & Partial<D>;
+      return result.data as unknown as T & Partial<Data<D>>;
     }
   }
 
   /** Search pages */
-  pages<T>(query?: string, sort?: string, limit?: number): (D & T)[] {
+  pages<T>(query?: string, sort?: string, limit?: number): (Data<D> & T)[] {
     const result = this.#searchPages<T>(query, sort);
 
     if (!limit) {
@@ -74,7 +74,7 @@ export default class Searcher<D extends Data = Data> {
   }
 
   /** Search and return the first page */
-  page<T>(query?: string, sort?: string): D & T | undefined {
+  page<T>(query?: string, sort?: string): Data<D> & T | undefined {
     return this.pages<T>(query, sort)[0];
   }
 
@@ -110,7 +110,7 @@ export default class Searcher<D extends Data = Data> {
     url: string,
     query?: string,
     sort?: string,
-  ): D & T | undefined {
+  ): Data<D> & T | undefined {
     const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
@@ -122,7 +122,7 @@ export default class Searcher<D extends Data = Data> {
     url: string,
     query?: string,
     sort?: string,
-  ): D & T | undefined {
+  ): Data<D> & T | undefined {
     const pages = this.#searchPages<T>(query, sort);
     const index = pages.findIndex((data) => data.url === url);
 
@@ -132,11 +132,11 @@ export default class Searcher<D extends Data = Data> {
   #searchPages<T = unknown>(
     query?: string,
     sort = "date",
-  ): (D & T)[] {
+  ): (Data<D> & T)[] {
     const id = JSON.stringify([query, sort]);
 
     if (this.#cache.has(id)) {
-      return [...this.#cache.get(id)!] as (D & T)[];
+      return [...this.#cache.get(id)!] as (Data<D> & T)[];
     }
 
     const compiledFilter = buildFilter(query);
@@ -150,7 +150,7 @@ export default class Searcher<D extends Data = Data> {
 
     result.sort(buildSort(sort));
     this.#cache.set(id, result);
-    return [...result] as (D & T)[];
+    return [...result] as (Data<D> & T)[];
   }
 
   #searchFiles(globOrRegexp?: RegExp | string): string[] {

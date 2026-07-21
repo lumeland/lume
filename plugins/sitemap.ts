@@ -24,7 +24,7 @@ type ChangeFreq =
   | "yearly"
   | "never";
 
-export interface Options<D extends Data> {
+export interface Options<D> {
   /** The sitemap file name */
   filename?: string;
 
@@ -43,15 +43,15 @@ export interface Options<D extends Data> {
   items?: SitemapItemsOptions<D>;
 }
 
-export interface SitemapItemsOptions<D extends Data> {
+export interface SitemapItemsOptions<D> {
   /** The key to use for the lastmod field or a custom function */
-  lastmod?: string | ((data: D) => Date);
+  lastmod?: string | ((data: Data<D>) => Date);
 
   /** The key to use for the changefreq field or a custom function */
-  changefreq?: string | ((data: D) => ChangeFreq);
+  changefreq?: string | ((data: Data<D>) => ChangeFreq);
 
   /** The key to use for the priority field or a custom function */
-  priority?: string | ((data: D) => number);
+  priority?: string | ((data: Data<D>) => number);
 }
 
 // Default options
@@ -91,7 +91,7 @@ export function sitemap<D extends SitemapPluginData>(userOptions?: Options<D>) {
       }\n`;
     });
 
-    function generateSitemap(pages: SitemapPluginData[]): string {
+    function generateSitemap(pages: Data<SitemapPluginData>[]): string {
       const items = options.items ?? {};
       const sitemap: stringifyable = {
         "@version": "1.0",

@@ -4,7 +4,7 @@ import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
 
-export interface MetasPluginData<D extends Data> extends Data {
+export interface MetasPluginData<D> {
   /**
    * Meta elements
    * @see https://lume.land/plugins/metas/
@@ -12,54 +12,54 @@ export interface MetasPluginData<D extends Data> extends Data {
   metas?: MetaData<D>;
 }
 
-export interface MetaData<D extends Data> {
+export interface MetaData<D> {
   /** The type of the site default is website */
-  type?: string | ((data: D) => string | undefined);
+  type?: string | ((data: Data<D>) => string | undefined);
 
   /** The name of the site */
-  site?: string | ((data: D) => string | undefined);
+  site?: string | ((data: Data<D>) => string | undefined);
 
   /** The title of the page */
-  title?: string | ((data: D) => string | undefined);
+  title?: string | ((data: Data<D>) => string | undefined);
 
   /** The page language */
-  lang?: string | ((data: D) => string | undefined);
+  lang?: string | ((data: Data<D>) => string | undefined);
 
   /** The description of the page */
-  description?: string | ((data: D) => string | undefined);
+  description?: string | ((data: Data<D>) => string | undefined);
 
   /** The image of the page */
-  image?: string | ((data: D) => string | undefined);
+  image?: string | ((data: Data<D>) => string | undefined);
 
   /** The icon of the site */
-  icon?: string | ((data: D) => string | undefined);
+  icon?: string | ((data: Data<D>) => string | undefined);
 
   /** The page keywords */
-  keywords?: string[] | ((data: D) => string[] | undefined);
+  keywords?: string[] | ((data: Data<D>) => string[] | undefined);
 
   /** The twitter username */
-  twitter?: string | ((data: D) => string | undefined);
+  twitter?: string | ((data: Data<D>) => string | undefined);
 
   /** The fediverse username (for author attribution) */
-  fediverse?: string | ((data: D) => string | undefined);
+  fediverse?: string | ((data: Data<D>) => string | undefined);
 
   /** The color theme */
   color?:
     | string
     | string[]
-    | ((data: D) => string | string[] | undefined);
+    | ((data: Data<D>) => string | string[] | undefined);
 
   /** Robots configuration (Boolean to enable/disable, String for a custom value) */
   robots?:
     | string
     | boolean
-    | ((data: D) => string | boolean | undefined);
+    | ((data: Data<D>) => string | boolean | undefined);
 
   /** Whether include the generator or not (Boolean to enable/disable, String for a custom value) */
   generator?:
     | string
     | boolean
-    | ((data: D) => string | boolean | undefined);
+    | ((data: Data<D>) => string | boolean | undefined);
 
   /** Other meta tags */
   [name: string]: unknown;
@@ -81,7 +81,7 @@ export function metas() {
       }
     });
 
-    function metas(page: Page<MetasPluginData<D>>) {
+    function metas(page: Page<Data<MetasPluginData<D>>>) {
       const metas = page.data.metas;
 
       if (!metas) {
@@ -230,7 +230,7 @@ function stringify(value: unknown): string | undefined {
   return String(value);
 }
 
-function getMetas<D extends Data>(
+function getMetas<D>(
   metas: MetaData<D>,
 ): [MetaData<D>, Record<string, unknown>] {
   const {

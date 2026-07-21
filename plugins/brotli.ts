@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { toArrayBuffer } from "../deps/streams.ts";
 
@@ -22,7 +22,7 @@ export const defaults = {
 export function brotli(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process(
       options.extensions,
       function processBrotli(pages) {

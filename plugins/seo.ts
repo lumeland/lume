@@ -12,7 +12,7 @@ import { Data } from "../core/file.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 
-export interface SEOPluginData extends Data {
+export interface SEOPluginData {
   lang?: string;
 }
 

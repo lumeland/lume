@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { pagefind as Pagefind } from "../deps/pagefind.ts";
 import { log } from "../core/utils/log.ts";
 
@@ -144,7 +144,7 @@ export const defaults = {
 export function pagefind(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process([".html"], async function processPagefind(pages) {
       const { index } = await Pagefind.createIndex(options.indexing);
 

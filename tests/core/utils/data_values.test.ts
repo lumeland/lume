@@ -3,8 +3,18 @@ import { getDataValue } from "../../../core/utils/data_values.ts";
 import { build, getSite } from "../../utils.ts";
 import metas from "../../../plugins/metas.ts";
 
+import type { PaginatePluginData } from "../../../plugins/paginate.ts";
+import type { SearchPluginData } from "../../../plugins/search.ts";
+import type { MetasPluginData } from "../../../plugins/metas.ts";
+
+interface TestData
+  extends
+    MetasPluginData<TestData>,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("Test getDataValue() function", async (t) => {
-  const site = getSite({ src: "metas" });
+  const site = getSite<TestData>({ src: "metas" });
 
   site.use(metas());
   site.process([".html"], async (pages) => {

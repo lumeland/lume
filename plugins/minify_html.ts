@@ -5,7 +5,6 @@ import { bytes, percentage } from "../core/utils/format.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify_html.ts";
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to minify */
@@ -51,7 +50,7 @@ export function minifyHTML(userOptions?: Options) {
   options.options.minify_css ??= options.extensions?.includes(".css");
   options.options.minify_js ??= options.extensions?.includes(".js");
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process(options.extensions, function processMinifyHTML(pages) {
       const item = site.debugBar?.buildItem(
         "[minify_html plugin] Minification completed",

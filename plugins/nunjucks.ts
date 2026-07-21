@@ -137,8 +137,7 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader<D extends Data> extends Nunjucks.Loader
-  implements Nunjucks.ILoaderAsync {
+class LumeLoader<D> extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
   includes: string;
 
   constructor(private site: Site<D>, includes: string) {
@@ -183,7 +182,7 @@ class LumeLoader<D extends Data> extends Nunjucks.Loader
  * @see https://lume.land/plugins/nunjucks/
  */
 export function nunjucks(userOptions?: Options) {
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

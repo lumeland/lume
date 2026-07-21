@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
 import { buildIcon } from "../core/utils/image.ts";
 
@@ -56,7 +56,7 @@ export function favicon(userOptions?: Options) {
     ? { 16: options.input }
     : options.input;
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     async function getContent(
       file: string,
     ): Promise<Uint8Array<ArrayBuffer> | string | undefined> {

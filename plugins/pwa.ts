@@ -92,10 +92,10 @@ const BASIC_DISPLAY_MODES: DisplayMode[] = [
   "browser",
 ];
 
-export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
+export function pwa(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const { cache } = site;
 
     /* Copied from favicon */
@@ -171,12 +171,12 @@ export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
               },
             ];
 
-            site.pages.push(Page.create({
+            site.pushPage(Page.create({
               url: "/pwa-icon-192.png",
               content: await buildIcon(content, "png", [192], cache),
             }));
 
-            site.pages.push(Page.create({
+            site.pushPage(Page.create({
               url: "/pwa-icon-512.png",
               content: await buildIcon(content, "png", [512], cache),
             }));

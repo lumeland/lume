@@ -1,7 +1,7 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /**
@@ -30,7 +30,7 @@ export function filterPages(userOptions: Options) {
   const options = merge(defaults, userOptions);
   const processMethod = options.beforeRender ? "preprocess" : "process";
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site[processMethod](function processFilterPages(pages) {
       for (const page of pages) {
         if (!options.fn(page)) {

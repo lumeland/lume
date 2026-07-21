@@ -1,7 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to process */
@@ -19,7 +18,7 @@ export const defaults = {
 export default function replace(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     const { extensions, replacements } = options;
 
     // Hook to add or modify replacements

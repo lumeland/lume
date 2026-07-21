@@ -7,7 +7,7 @@ import type { Data, Page } from "./file.ts";
 /**
  * Class to store and run the (pre)processors
  */
-export default class Processors<D extends Data> {
+export default class Processors<D> {
   /** Processors and the assigned extensions */
   processors = new Map<Processor<D>, Extensions>();
 
@@ -38,7 +38,7 @@ export default class Processors<D extends Data> {
   }
 
   /** Apply the processors to the provided pages */
-  async run(pages: Page<D>[], debugBar?: DebugBar): Promise<void> {
+  async run(pages: Page<Data<D>>[], debugBar?: DebugBar): Promise<void> {
     this.loadedExtensions.clear();
 
     for (const [process, extensions] of this.processors) {
@@ -71,9 +71,9 @@ export default class Processors<D extends Data> {
 /**
  * Processor callback is used in both (pre)process methods.
  */
-export type Processor<D extends Data> = (
-  filteredPages: Page<D>[],
-  allPages: Page<D>[],
+export type Processor<D> = (
+  filteredPages: Page<Data<D>>[],
+  allPages: Page<Data<D>>[],
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {

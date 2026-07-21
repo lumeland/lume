@@ -6,7 +6,6 @@ import {
 } from "../deps/html_validate.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
-import { Data } from "../core/file.ts";
 import Site from "../core/site.ts";
 
 export interface Options {
@@ -51,7 +50,7 @@ export function validateHtml(userOptions?: Options) {
     extends: options.extends,
   });
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     let reports: Report | undefined;
     site.process([".html"], processValidateHtml);
 

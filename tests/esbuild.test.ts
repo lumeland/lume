@@ -1,12 +1,15 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
-import esbuild from "../plugins/esbuild.ts";
+import esbuild, { EsbuildPluginData } from "../plugins/esbuild.ts";
 import jsx, { JSXPluginData } from "../plugins/jsx.ts";
-import { Data } from "../core/file.ts";
 import { PaginatePluginData } from "../plugins/paginate.ts";
 import { SearchPluginData } from "../plugins/search.ts";
 
 interface TestData
-  extends Data, JSXPluginData, PaginatePluginData, SearchPluginData<TestData> {}
+  extends
+    JSXPluginData,
+    EsbuildPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
 
 // Disable sanitizeOps & sanitizeResources because esbuild doesn't close them
 Deno.test(
@@ -41,7 +44,7 @@ Deno.test(
   "esbuild plugin",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 
@@ -62,7 +65,7 @@ Deno.test(
   "esbuild plugin with splitting as true",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 
@@ -121,7 +124,7 @@ Deno.test(
   "esbuild plugin with outExtension",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 
@@ -144,7 +147,7 @@ Deno.test(
   "esbuild plugin with entryNames simple",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 
@@ -167,7 +170,7 @@ Deno.test(
   "esbuild plugin with entryNames complex",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 
@@ -190,7 +193,7 @@ Deno.test(
   "esbuild plugin without bundle",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "esbuild",
     });
 

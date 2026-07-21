@@ -11,10 +11,9 @@ import {
   type StrictPresetOptions,
   transform,
 } from "../deps/fff.ts";
-import { Data } from "../core/file.ts";
 
 export interface FFFPluginData
-  extends Data, Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {
+  extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {
   type?: PostType;
 }
 

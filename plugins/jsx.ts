@@ -4,9 +4,8 @@ import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import { Data } from "../core/file.ts";
 
-export interface JSXPluginData extends Data {
+export interface JSXPluginData {
   /**
    * The JSX children elements
    * @see https://lume.land/plugins/jsx/

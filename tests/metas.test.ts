@@ -3,8 +3,18 @@ import metas from "../plugins/metas.ts";
 
 import type { Page } from "../core/file.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { MetasPluginData } from "../plugins/metas.ts";
+
+interface TestData
+  extends
+    MetasPluginData<TestData>,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("metas plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "metas",
   });
 

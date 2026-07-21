@@ -76,7 +76,7 @@ const defaults = {
  * This is the heart of Lume,
  * it contains everything needed to build the site
  */
-export default class Site<D extends Data = Data> {
+export default class Site<D = unknown> {
   options: Merge<SiteOptions, typeof defaults>;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
@@ -129,10 +129,10 @@ export default class Site<D extends Data = Data> {
   writer: Writer;
 
   /** Data assigned with site.data() */
-  scopedData = new Map<string, Partial<D>>([["/", {}]]);
+  scopedData = new Map<string, Partial<Data<D>>>([["/", {}]]);
 
   /** Pages created with site.page() */
-  scopedPages = new Map<string, Partial<D>[]>();
+  scopedPages = new Map<string, Partial<Data<D>>[]>();
 
   /** Components created with site.component() */
   scopedComponents = new Map<string, Components>();
@@ -145,10 +145,10 @@ export default class Site<D extends Data = Data> {
   debugBar?: DebugBar;
 
   /** The generated pages are stored here */
-  readonly pages: Page<D>[] = [];
+  readonly pages: Page<Data<D>>[] = [];
 
   /** The static files to be copied are stored here */
-  readonly files: StaticFile<D>[] = [];
+  readonly files: StaticFile<Data<D>>[] = [];
 
   fetch: Deno.ServeHandler;
 
@@ -169,7 +169,7 @@ export default class Site<D extends Data = Data> {
     const formats = new Formats();
 
     const dataLoader = new DataLoader({ formats });
-    const componentLoader = new ComponentLoader({ formats });
+    const componentLoader = new ComponentLoader<D>({ formats });
     const source = new Source<D>({
       fs,
       dataLoader,
@@ -470,8 +470,8 @@ export default class Site<D extends Data = Data> {
   }
 
   /** Register extra data accessible by the layouts */
-  data<K extends keyof D>(name: K, value: D[K], scope = "/"): this {
-    const data: Partial<D> = this.scopedData.get(scope) || {};
+  data<K extends keyof Data<D>>(name: K, value: Data<D>[K], scope = "/"): this {
+    const data: Partial<Data<D>> = this.scopedData.get(scope) || {};
     data[name] = value;
     this.scopedData.set(scope, data);
     return this;
@@ -480,7 +480,7 @@ export default class Site<D extends Data = Data> {
   /** Register a page */
   page(data: DataIn, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
-    pages.push(data as Partial<D>);
+    pages.push(data as Partial<Data<D>>);
     this.scopedPages.set(scope, pages);
     return this;
   }
@@ -526,7 +526,7 @@ export default class Site<D extends Data = Data> {
 
   /** Register a merging strategy for a data key */
   mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
-    const data: Partial<D> = this.scopedData.get(scope) || {};
+    const data: Partial<Data<D>> = this.scopedData.get(scope) || {};
     const mergedKeys: Record<string, MergeStrategy> = data.mergedKeys || {};
     mergedKeys[key] = merge;
     data.mergedKeys = mergedKeys;
@@ -848,7 +848,7 @@ export default class Site<D extends Data = Data> {
    */
   async #loadPages(
     filters: (entry: Entry) => boolean,
-  ): Promise<[Page<D>[], StaticFile<D>[]]> {
+  ): Promise<[Page<Data<D>>[], StaticFile<Data<D>>[]]> {
     // Get the site content
     this.debugBar?.startMeasure("load");
     const showDrafts = envBoolean("LUME_DRAFTS");
@@ -889,7 +889,7 @@ export default class Site<D extends Data = Data> {
    * Internal function to render pages
    * Used by build and update actions
    */
-  async #buildPages(pages: Page<D>[]): Promise<boolean> {
+  async #buildPages(pages: Page<Data<D>>[]): Promise<boolean> {
     // Promote the files that must be preprocessed to pages
     const preExtensions = this.preprocessors.extensions;
     await filesToPages(
@@ -1040,14 +1040,14 @@ export default class Site<D extends Data = Data> {
   }
 
   pushPage(page: Page<DataIn>): void {
-    this.pages.push(page as Page<D>);
+    this.pages.push(page as Page<Data<D>>);
   }
 
-  removePage(file: StaticFile<D>): StaticFile<D> | undefined;
-  removePage(page: Page<D>): Page<D> | undefined;
+  removePage(file: StaticFile<Data<D>>): StaticFile<Data<D>> | undefined;
+  removePage(page: Page<Data<D>>): Page<Data<D>> | undefined;
   removePage(
-    urlOrPage: string | Page<D> | StaticFile<D>,
-  ): Page<Data> | StaticFile<Data> | undefined {
+    urlOrPage: string | Page<Data<D>> | StaticFile<Data<D>>,
+  ): Page<Data<D>> | StaticFile<Data<D>> | undefined {
     if (typeof urlOrPage === "string") {
       const url = urlOrPage;
 
@@ -1079,7 +1079,7 @@ export default class Site<D extends Data = Data> {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page<D>> {
+  async getOrCreatePage(url: string): Promise<Page<Data<D>>> {
     url = normalizePath(url);
 
     // It's a page
@@ -1103,13 +1103,13 @@ export default class Site<D extends Data = Data> {
     const entry = this.fs.entries.get(url);
     if (entry) {
       const { content } = await entry.getContent(binaryLoader);
-      const page = Page.create({ url }, { entry }) as Page<D>;
+      const page = Page.create({ url }, { entry }) as Page<Data<D>>;
       page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
       return page;
     }
 
-    const newPage = Page.create({ url }) as Page<D>;
+    const newPage = Page.create({ url }) as Page<Data<D>>;
     this.pages.push(newPage);
     return newPage;
   }
@@ -1324,7 +1324,7 @@ export interface ComponentsOptions {
   placeholder?: string;
 }
 
-export type SiteEventMap<D extends Data = Data> = {
+export type SiteEventMap<D = unknown> = {
   // deno-lint-ignore ban-types
   afterLoad: {};
   beforeBuild: {
@@ -1333,9 +1333,9 @@ export type SiteEventMap<D extends Data = Data> = {
   };
   afterBuild: {
     /** the list of pages that have been saved */
-    pages: Page<D>[];
+    pages: Page<Data<D>>[];
     /** contains the list of static files that have been copied */
-    staticFiles: StaticFile<D>[];
+    staticFiles: StaticFile<Data<D>>[];
   };
   beforeUpdate: {
     /** the files that were changed */
@@ -1345,17 +1345,17 @@ export type SiteEventMap<D extends Data = Data> = {
     /** the files that were changed */
     files: Set<string>;
     /** the list of pages that have been saved */
-    pages: Page<D>[];
+    pages: Page<Data<D>>[];
     /** contains the list of static files that have been copied */
-    staticFiles: StaticFile<D>[];
+    staticFiles: StaticFile<Data<D>>[];
   };
   beforeRender: {
     /** the list of pages that are about to render */
-    pages: Page<D>[];
+    pages: Page<Data<D>>[];
   };
   afterRender: {
     /** the list of pages that have been rendered */
-    pages: Page<D>[];
+    pages: Page<Data<D>>[];
   };
   // deno-lint-ignore ban-types
   beforeSave: {};
@@ -1372,18 +1372,16 @@ export interface LoadPagesOptions {
 }
 
 /** Custom events for site build */
-export type SiteEvent<D extends Data, T extends SiteEventType = SiteEventType> =
+export type SiteEvent<D, T extends SiteEventType = SiteEventType> =
   & Event
   & SiteEventMap<D>[T]
   & { type: T };
 
 /** The available event types */
-export type SiteEventType = keyof SiteEventMap<Data>;
+export type SiteEventType = keyof SiteEventMap;
 
 /** A generic Lume plugin */
-export type Plugin<D extends Data = Lume.Data> = (
-  site: Site<D>,
-) => void;
+export type Plugin<D> = (site: Site<D>) => void;
 
 function pathBelongs(base: string, path?: string): boolean {
   if (!path) {

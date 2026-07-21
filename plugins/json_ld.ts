@@ -5,7 +5,7 @@ import type Site from "../core/site.ts";
 import type { Data, Page } from "../core/file.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
 
-export interface JsonldPluginData extends Data {
+export interface JsonldPluginData {
   /**
    * JSON_LD elements
    * @see https://lume.land/plugins/json_ld/
@@ -204,7 +204,7 @@ export function jsonLd(userOptions?: Options) {
       pages.forEach(jsonLdProcessor);
     });
 
-    function jsonLdProcessor(page: Page<JsonldPluginData>) {
+    function jsonLdProcessor(page: Page<Data<JsonldPluginData>>) {
       let jsonLdData = page.data.jsonLd;
 
       if (!jsonLdData) {

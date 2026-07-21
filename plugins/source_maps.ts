@@ -8,7 +8,7 @@ import { basename, join, toFileUrl } from "../deps/path.ts";
 
 import type Site from "../core/site.ts";
 
-export interface SourceMapsPluginData extends Data {
+export interface SourceMapsPluginData {
   /**
    * The source map data (if it's an asset)
    * @see https://lume.land/plugins/source_maps/
@@ -43,7 +43,10 @@ export function sourceMaps(userOptions?: Options) {
       return concurrent(pages, (page) => processSourceMap(page, allPages));
     });
 
-    async function processSourceMap(file: Page<D>, files: Page<DataIn>[]) {
+    async function processSourceMap(
+      file: Page<Data<D>>,
+      files: Page<DataIn>[],
+    ) {
       const sourceMap = file.data.sourceMap;
       file.data.sourceMap = undefined;
 
@@ -121,7 +124,7 @@ export interface PrepareResult {
 /** Return the required info to process a file */
 export function prepareAsset<D extends SourceMapsPluginData>(
   site: Site<D>,
-  page: Page<D>,
+  page: Page<Data<D>>,
 ): PrepareResult {
   const enableSourceMap = !!site._data.enableSourceMap;
   const content = page.text;
@@ -135,7 +138,7 @@ export function prepareAsset<D extends SourceMapsPluginData>(
 /** Save the process result */
 export function saveAsset<D extends SourceMapsPluginData>(
   site: Site<D>,
-  page: Page<D>,
+  page: Page<Data<D>>,
   content: string,
   sourceMap?: SourceMap | string,
 ) {

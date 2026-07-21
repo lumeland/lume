@@ -3,14 +3,13 @@ import modifyUrls from "./modify_urls.ts";
 
 import type { HelperThis } from "../core/renderer.ts";
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
 
 /**
  * A plugin to convert all internal URLs to relative
  * @see https://lume.land/plugins/relative_urls/
  */
 export function relativeUrls() {
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     const basePath = site.options.location.pathname;
 
     function getRelativeUrl(url: string, from: string) {
@@ -31,7 +30,7 @@ export function relativeUrls() {
 
     site.filter(
       "relativeUrl",
-      function (this: HelperThis | void, url: string, from?: string) {
+      function (this: HelperThis<D> | void, url: string, from?: string) {
         if (from?.endsWith("/")) {
           from += "index.html";
         } else {
@@ -56,7 +55,7 @@ declare global {
     export interface Helpers {
       /** @see https://lume.land/plugins/relative_urls/ */
       relativeUrl: (
-        this: HelperThis | void,
+        this: HelperThis<Lume.Data> | void,
         url: string,
         from?: string,
       ) => string;

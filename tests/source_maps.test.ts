@@ -6,8 +6,18 @@ import sourceMaps from "../plugins/source_maps.ts";
 import esbuild from "../plugins/esbuild.ts";
 import terser from "../plugins/terser.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SourceMapsPluginData } from "../plugins/source_maps.ts";
+
+interface TestData
+  extends
+    SourceMapsPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("Source maps from CSS files", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "sass",
   });
 
@@ -27,7 +37,7 @@ Deno.test("Source maps from Js files", {
   sanitizeOps: false,
   sanitizeResources: false,
 }, async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "esbuild",
   });
   site.add([".ts"]);

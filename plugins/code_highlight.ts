@@ -9,7 +9,7 @@ import { readFile } from "../core/utils/read.ts";
 import { insertContent } from "../core/utils/page_content.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 
 export interface Options {
   /** Register languages on the Highlight.js context. */
@@ -65,7 +65,7 @@ export function codeHighlight(userOptions?: Options) {
     }
   }
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     if (site._data.codeHighlight) {
       log.error(
         `[code_highlight plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "codeHighlight". Registering "codeHighlight" may lead to conflicts and unpredictable behavior.`,

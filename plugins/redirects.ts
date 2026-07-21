@@ -4,7 +4,7 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
-export interface RedirectPluginData extends Data {
+export interface RedirectPluginData {
   /**
    * The old url(s) of a page
    * @see https://lume.land/plugins/redirects/
@@ -22,7 +22,7 @@ export interface Options {
 
 type Status = 301 | 302 | 307 | 308;
 type Redirect = [string, string, Status];
-type OutputStrategy = <D extends Data>(
+type OutputStrategy = <D>(
   redirects: Redirect[],
   site: Site<D>,
 ) => Promise<void> | void;
@@ -95,7 +95,7 @@ export function redirects(userOptions?: Options) {
 
 const validStatusCodes = [301, 302, 303, 307, 308];
 
-function parseRedirection<D extends Data>(
+function parseRedirection<D>(
   newUrl: string,
   oldUrl: string,
   defaultCode: Status,
@@ -118,7 +118,7 @@ function parseRedirection<D extends Data>(
 }
 
 /** HTML redirect */
-function html<D extends Data>(redirects: Redirect[], site: Site<D>): void {
+function html<D>(redirects: Redirect[], site: Site<D>): void {
   for (const [url, to, statusCode] of redirects) {
     const timeout = (statusCode === 301 || statusCode === 308) ? 0 : 1;
     const content = `<!DOCTYPE html>
@@ -139,7 +139,7 @@ function html<D extends Data>(redirects: Redirect[], site: Site<D>): void {
 }
 
 /** JSON redirect (to use with redirect middleware) */
-function json<D extends Data>(redirects: Redirect[], site: Site<D>): void {
+function json<D>(redirects: Redirect[], site: Site<D>): void {
   const obj = Object.fromEntries(
     redirects.map((
       [from, to, code],
@@ -153,7 +153,7 @@ function json<D extends Data>(redirects: Redirect[], site: Site<D>): void {
 }
 
 /** Netlify redirect */
-async function netlify<D extends Data>(
+async function netlify<D>(
   redirects: Redirect[],
   site: Site<D>,
 ): Promise<void> {
@@ -164,7 +164,7 @@ async function netlify<D extends Data>(
 }
 
 /** Vercel redirect */
-async function vercel<D extends Data>(
+async function vercel<D>(
   redirects: Redirect[],
   site: Site<D>,
 ): Promise<void> {

@@ -10,7 +10,7 @@ import loader from "../core/loaders/module.ts";
 import Site from "../core/site.ts";
 import { MetasPluginData } from "./metas.ts";
 
-export interface OgImagesPluginData<D extends Data> extends MetasPluginData<D> {
+export interface OgImagesPluginData<D> extends MetasPluginData<D> {
   /**
    * The layout to generate the Open Graph Image
    * @see https://lume.land/plugins/og_image/

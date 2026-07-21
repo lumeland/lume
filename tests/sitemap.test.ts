@@ -5,8 +5,20 @@ import filterPages from "../plugins/filter_pages.ts";
 import redirects from "../plugins/redirects.ts";
 import extractDate from "../plugins/extract_date.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SitemapPluginData } from "../plugins/sitemap.ts";
+import type { RedirectPluginData } from "../plugins/redirects.ts";
+
+interface TestData
+  extends
+    SitemapPluginData,
+    RedirectPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("Sitemap plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "normal",
     location: new URL("https://example.com/"),
   });
@@ -22,7 +34,7 @@ Deno.test("Sitemap plugin", async (t) => {
 });
 
 Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "multilanguage",
     location: new URL("https://example.com/"),
   });
@@ -43,7 +55,7 @@ Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
 });
 
 Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "normal",
     location: new URL("https://example.com/"),
   });
@@ -60,7 +72,7 @@ Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
 });
 
 Deno.test("Sitemap plugin with redirects plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "redirects",
     location: new URL("https://example.com/"),
   });

@@ -1,6 +1,6 @@
 import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { toArrayBuffer } from "../deps/streams.ts";
 
 import type { Extensions } from "../core/utils/path.ts";
@@ -22,7 +22,7 @@ export const defaults = {
 export function gzip(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process(
       options.extensions,
       function processGzip(pages) {

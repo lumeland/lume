@@ -20,6 +20,7 @@ import {
 import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
+import type { Data } from "../core/file.ts";
 
 export interface EsbuildPluginData extends SourceMapsPluginData {}
 
@@ -104,7 +105,7 @@ export function esbuild(userOptions?: Options) {
     }
 
     async function runEsbuild(
-      pages: Page<D>[],
+      pages: Page<Data<D>>[],
     ): Promise<[OutputFile[], Metafile, boolean]> {
       let sourcemap;
       const entryPoints: EntryPoint[] = [];
@@ -223,7 +224,7 @@ export function esbuild(userOptions?: Options) {
             : undefined;
 
           // Search the entry point of this output file
-          let entryPoint: Page<D> | undefined;
+          let entryPoint: Page<Data<D>> | undefined;
 
           if (output.entryPoint) {
             const outputRelativeEntryPoint = relativePathFromUri(
@@ -240,7 +241,9 @@ export function esbuild(userOptions?: Options) {
 
           // The page is a chunk
           if (!entryPoint) {
-            const page = Page.create({ url: normalizedOutPath }) as Page<D>;
+            const page = Page.create({ url: normalizedOutPath }) as Page<
+              Data<D>
+            >;
             saveAsset(site, page, content, map?.text);
             site.pushPage(page);
             continue;

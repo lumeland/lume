@@ -14,7 +14,7 @@ import type { Loader, OnResolveArgs, Plugin } from "../esbuild.ts";
 import type Site from "../../core/site.ts";
 import { Data } from "../../core/file.ts";
 
-export interface LoaderOptions<D extends Data> {
+export interface LoaderOptions<D> {
   configPath?: string;
   site: Site<D>;
   entryPoints: {
@@ -24,7 +24,7 @@ export interface LoaderOptions<D extends Data> {
   }[];
 }
 
-export default function lumeLoader<D extends Data>(
+export default function lumeLoader<D>(
   options: LoaderOptions<D>,
 ): Plugin {
   const { configPath, entryPoints, site } = options;

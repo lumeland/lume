@@ -3,7 +3,6 @@ import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -56,7 +55,7 @@ export class ModuleEngine implements Engine {
  * @see https://lume.land/plugins/modules/
  */
 export function modules(userOptions?: Options) {
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

@@ -1,9 +1,8 @@
 import { Merge, merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
 
-export interface PaginatePluginData extends Data {
+export interface PaginatePluginData {
   /**
    * The paginator helper
    * @see https://lume.land/plugins/paginate/

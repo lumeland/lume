@@ -12,7 +12,7 @@ import {
 
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
 
 export interface Options {
@@ -85,7 +85,7 @@ export class MarkdownEngine implements Engine {
 export function remark(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     const plugins = [];
 
     // Add remark-parse to generate MDAST

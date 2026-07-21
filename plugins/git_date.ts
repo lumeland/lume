@@ -5,21 +5,27 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
-export interface Options {
+export type GitDatePluginData<Key extends string = "date"> = {
+  [K in Key]: Date;
+};
+
+export interface Options<Key extends string = "date"> {
   /** The variable name used to save the value */
-  varName?: string;
+  varName?: Key;
 }
 
 export const defaults = {
   varName: "date",
 } satisfies Options;
 
-export function gitDate(userOptions?: Options) {
-  const options = merge(defaults, userOptions);
-  const { varName } = options;
+export function gitDate<const Key extends string = "date">(
+  userOptions?: Options<Key>,
+) {
+  const options = merge(defaults as Options<Key>, userOptions);
+  const varName = options.varName as Key;
   let cache: Map<string, string>;
 
-  return (site: Site) => {
+  return <D extends GitDatePluginData<Key>>(site: Site<D>) => {
     site.addEventListener("beforeBuild", () => {
       cache = getLastModified(site.src());
     });
@@ -32,7 +38,7 @@ export function gitDate(userOptions?: Options) {
           continue;
         }
 
-        page.data[varName] = new Date(date);
+        (page.data as Record<Key, Date>)[varName] = new Date(date);
       }
     });
   };

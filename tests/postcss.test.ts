@@ -3,8 +3,18 @@ import { assert } from "../deps/assert.ts";
 import postcss from "../plugins/postcss.ts";
 import nano from "npm:cssnano@7.1.1";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SourceMapsPluginData } from "../plugins/source_maps.ts";
+
+interface TestData
+  extends
+    SourceMapsPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("Postcss plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "postcss",
   });
 
@@ -16,7 +26,7 @@ Deno.test("Postcss plugin", async (t) => {
 });
 
 Deno.test("Postcss plugin (without includes)", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "postcss",
   });
   site.add(".");
@@ -29,7 +39,7 @@ Deno.test("Postcss plugin (without includes)", async (t) => {
 });
 
 Deno.test("postcss plugin with hooks", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "postcss",
   });
 
@@ -42,7 +52,7 @@ Deno.test("postcss plugin with hooks", async (t) => {
 });
 
 Deno.test("postcss plugin with default name", () => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "postcss",
   });
 
@@ -54,7 +64,7 @@ Deno.test("postcss plugin with default name", () => {
 });
 
 Deno.test("postcss plugin with copy()", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "postcss",
   });
 

@@ -163,7 +163,7 @@ interface WebFingerLink {
 }
 
 export function wellKnown(options: Options) {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     if (options.atProto) {
       site.page({
         url: "/.well-known/atproto-did",

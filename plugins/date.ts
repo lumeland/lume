@@ -8,9 +8,8 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 import type { HelperThis } from "../core/renderer.ts";
 import type { Locale } from "../deps/date.ts";
-import { Data } from "../core/file.ts";
 
-export interface DatePluginData extends Data {
+export interface DatePluginData {
   lang?: string;
 }
 

@@ -11,7 +11,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import type { stringifyable } from "../deps/xml.ts";
 
-export interface Options<D extends Data> {
+export interface Options<D> {
   /** The output filenames */
   output?: string | string[];
 
@@ -85,30 +85,30 @@ export interface FeedInfoOptions {
   color?: string;
 }
 
-export interface FeedItemOptions<D extends Data> {
+export interface FeedItemOptions<D> {
   /** The item title */
-  title?: string | ((data: D) => string | undefined);
+  title?: string | ((data: Data<D>) => string | undefined);
 
   /** The item description */
-  description?: string | ((data: D) => string | undefined);
+  description?: string | ((data: Data<D>) => string | undefined);
 
   /** The item published date */
-  published?: string | ((data: D) => Date | undefined);
+  published?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item updated date */
-  updated?: string | ((data: D) => Date | undefined);
+  updated?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item content */
-  content?: string | ((data: D) => string | undefined);
+  content?: string | ((data: Data<D>) => string | undefined);
 
   /** The item categories */
-  categories?: string | ((data: D) => string[] | undefined);
+  categories?: string | ((data: Data<D>) => string[] | undefined);
 
   /** The item language */
-  lang?: string | ((data: D) => string | undefined);
+  lang?: string | ((data: Data<D>) => string | undefined);
 
   /** The item image */
-  image?: string | ((data: D) => string | undefined);
+  image?: string | ((data: Data<D>) => string | undefined);
 
   /** The item author name */
   authorName?: string;
@@ -192,7 +192,7 @@ const defaultGenerator = getGenerator();
  * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed<D extends Data>(
+export function feed<D>(
   userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
 ) {
   return (site: Site<D>) => {
@@ -303,10 +303,10 @@ export function feed<D extends Data>(
   };
 }
 
-function getAuthor<D extends Data>(
-  data: Partial<D>,
+function getAuthor<D>(
+  data: Partial<Data<D>>,
   info: FeedInfoOptions | FeedItemOptions<D>,
-  site: Site,
+  site: Site<D>,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
   const url = getDataValue(data, info.authorUrl);

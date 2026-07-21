@@ -14,7 +14,6 @@ import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
 
 import type { SiteOptions } from "./core/site.ts";
-import { Data } from "./core/file.ts";
 
 export interface PluginOptions {
   json?: JsonOptions;
@@ -27,7 +26,7 @@ export interface PluginOptions {
 }
 
 export default function lume<
-  T extends Data & PaginatePluginData & SearchPluginData<T> = Lume.Data,
+  T extends PaginatePluginData & SearchPluginData<T> = Lume.Data,
 >(
   options: SiteOptions = {},
   pluginOptions: PluginOptions = {},

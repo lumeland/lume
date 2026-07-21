@@ -1,5 +1,5 @@
 import { decapUrl, serverUrl } from "../deps/decap.ts";
-import { Data, Page } from "../core/file.ts";
+import { Page } from "../core/file.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { stringify } from "../deps/yaml.ts";
@@ -7,7 +7,7 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
-export interface DecapCmsPluginData extends Data {
+export interface DecapCmsPluginData {
   /**
    * Decap CMS configuration
    * @see https://lume.land/plugins/decap_cms/

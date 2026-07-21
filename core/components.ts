@@ -14,7 +14,7 @@ export interface Options {
 /**
  * Class to load components from the _components folder.
  */
-export class ComponentLoader<D extends RawData> {
+export class ComponentLoader<D> {
   /** List of loaders and engines used by extensions */
   formats: Formats;
 
@@ -25,7 +25,7 @@ export class ComponentLoader<D extends RawData> {
   /** Load a directory of components */
   async load(
     dirEntry: Entry,
-    data: Partial<D>,
+    data: Partial<RawData<D>>,
     components?: Components,
   ): Promise<Components> {
     if (!components) {
@@ -65,7 +65,7 @@ export class ComponentLoader<D extends RawData> {
   /** Load a component folder (a folder with a comp.* file) */
   async #loadComponentFolder(
     entry: Entry,
-    data: Partial<D>,
+    data: Partial<RawData<D>>,
   ): Promise<Component | undefined> {
     const compEntry = findChild(
       entry,
@@ -111,7 +111,7 @@ export class ComponentLoader<D extends RawData> {
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
-    dirData: Partial<D>,
+    dirData: Partial<RawData<D>>,
     defaultName?: string,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);

@@ -36,7 +36,7 @@ const LINE_BREAK_REGEX = /\r?\n/g;
 export function inline(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process([".html", ".css"], function processInline(pages) {
       return concurrent(pages, inline);
     });
@@ -288,7 +288,7 @@ export function inline(userOptions?: Options) {
 }
 
 /** Returns the content of a file or page */
-async function getFileContent<D extends Data>(
+async function getFileContent<D>(
   site: Site<D>,
   url: string,
   binary: boolean,

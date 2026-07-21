@@ -7,7 +7,6 @@ import { renderComponent } from "../deps/ssx.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type { PluggableList, RehypeOptions } from "../deps/remark.ts";
-import { Data } from "../core/file.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -121,7 +120,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
  * @see https://lume.land/plugins/mdx/
  */
 export function mdx(userOptions?: Options) {
-  return function <D extends Data>(site: Site<D>) {
+  return function <D>(site: Site<D>) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

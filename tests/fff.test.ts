@@ -3,8 +3,15 @@ import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import fff from "../plugins/fff.ts";
 import { Page } from "../core/file.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { FFFPluginData } from "../plugins/fff.ts";
+
+interface TestData
+  extends FFFPluginData, PaginatePluginData, SearchPluginData<TestData> {}
+
 Deno.test("FFF plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "fff",
     location: new URL("https://example.com/"),
   });

@@ -42,7 +42,7 @@ export const defaults = {
 export function relations(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.preprocess(options.extensions, processRelations);
 
     function processRelations(pages1: Page[], pages: Page[]) {

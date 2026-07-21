@@ -5,7 +5,6 @@ import { EmptyWriter } from "../core/writer.ts";
 
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
-import { Data } from "../core/file.ts";
 import { PaginatePluginData } from "../plugins/paginate.ts";
 import { SearchPluginData } from "../plugins/search.ts";
 
@@ -18,7 +17,7 @@ export function getPath(path: string): string {
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite<
-  T extends Data & PaginatePluginData & SearchPluginData<T>,
+  T extends PaginatePluginData & SearchPluginData<T>,
 >(
   options: SiteOptions = {},
   pluginOptions = {},
@@ -36,7 +35,7 @@ export function getSite<
 }
 
 /** Returns a generated page by src path */
-export function getPage<T extends Data>(site: Site<T>, path: string) {
+export function getPage<T>(site: Site<T>, path: string) {
   const page = site.pages.find((page) => page.src.path === path);
 
   if (!page) {
@@ -47,7 +46,7 @@ export function getPage<T extends Data>(site: Site<T>, path: string) {
 }
 
 /** Build a site and print errors */
-export async function build<T extends Data>(site: Site<T>) {
+export async function build<T>(site: Site<T>) {
   try {
     await site.build();
   } catch (error) {
@@ -96,7 +95,7 @@ interface SiteSnapshotOptions {
   avoidBinaryFilesLength?: boolean;
 }
 
-export async function assertSiteSnapshot<T extends Data>(
+export async function assertSiteSnapshot<T>(
   context: Deno.TestContext,
   site: Site<T>,
   options: SiteSnapshotOptions = {},

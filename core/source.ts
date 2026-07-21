@@ -18,7 +18,7 @@ import type {
 } from "./components.ts";
 import { log } from "./utils/log.ts";
 
-export interface Options<D extends RawData> {
+export interface Options<D> {
   formats: Formats;
   dataLoader: DataLoader;
   componentLoader: ComponentLoader<D>;
@@ -38,7 +38,7 @@ export interface Options<D extends RawData> {
  * Scan and load files from the source folder
  * with the data, pages, assets and static files
  */
-export default class Source<D extends Data> {
+export default class Source<D> {
   /** Filesystem reader to scan folders */
   fs: FS;
 
@@ -81,7 +81,7 @@ export default class Source<D extends Data> {
   };
 
   /** The data assigned per path */
-  data = new Map<string, Partial<D>>();
+  data = new Map<string, Partial<Data<D>>>();
 
   /** Custom parsers for basenames */
   basenameParsers: BasenameParser<D>[] = [];
@@ -134,9 +134,9 @@ export default class Source<D extends Data> {
 
   async build(
     ...buildFilters: BuildFilter[]
-  ): Promise<[Page<D>[], StaticFile<D>[]]> {
-    const pages: Page<D>[] = [];
-    const staticFiles: StaticFile<D>[] = [];
+  ): Promise<[Page<Data<D>>[], StaticFile<Data<D>>[]]> {
+    const pages: Page<Data<D>>[] = [];
+    const staticFiles: StaticFile<Data<D>>[] = [];
     this.data.clear();
 
     await this.#addDirectory(
@@ -196,9 +196,9 @@ export default class Source<D extends Data> {
     dir: Entry,
     parentPath: string,
     parentComponents: Components,
-    parentData: Partial<D>,
-    pages: Page<D>[],
-    staticFiles: StaticFile<D>[],
+    parentData: Partial<Data<D>>,
+    pages: Page<Data<D>>[],
+    staticFiles: StaticFile<Data<D>>[],
     destination?: [Destination, boolean],
   ): Promise<void> {
     if (buildFilters.some((filter) => !filter(dir))) {
@@ -206,10 +206,12 @@ export default class Source<D extends Data> {
     }
 
     // Load _data
-    const dirData = await this.#loadDirData(dir, parentData) as Partial<D> & {
-      basename: string;
-      comp: ProxyComponents;
-    };
+    const dirData = await this.#loadDirData(dir, parentData) as
+      & Partial<Data<D>>
+      & {
+        basename: string;
+        comp: ProxyComponents;
+      };
     let dirPath = posix.join(parentPath, dirData.basename!);
 
     // Load _components
@@ -343,9 +345,9 @@ export default class Source<D extends Data> {
     buildFilters: BuildFilter[],
     file: Entry,
     dirPath: string,
-    dirData: Partial<D> & { basename: string },
-    pages: Page<D>[],
-    staticFiles: StaticFile<D>[],
+    dirData: Partial<Data<D>> & { basename: string },
+    pages: Page<Data<D>>[],
+    staticFiles: StaticFile<Data<D>>[],
     destination?: [Destination, boolean],
   ): Promise<void> {
     // The file is added with `site.add("file.ext")`
@@ -392,7 +394,7 @@ export default class Source<D extends Data> {
 
     // The file is added explicitly with `site.add()` or `site.copy()`
     if (added) {
-      const staticFile = createFile<D>(
+      const staticFile = createFile<Data<D>>(
         file,
         ext,
         dirPath,
@@ -425,7 +427,7 @@ export default class Source<D extends Data> {
     // - the file was added with `site.add([".ext"])`
     // - or any parent folder with `site.add("folder")`
     if (dest) {
-      const staticFile = createFile<D>(
+      const staticFile = createFile<Data<D>>(
         file,
         ext,
         dirPath,
@@ -449,8 +451,8 @@ export default class Source<D extends Data> {
   /** Load a folder's _data and merge it with the parent data  */
   async #loadDirData(
     dir: Entry,
-    parentData: Partial<D>,
-  ): Promise<Partial<D> & { basename: string }> {
+    parentData: Partial<Data<D>>,
+  ): Promise<Partial<Data<D>> & { basename: string }> {
     // Parse the directory's basename
     const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
@@ -501,7 +503,7 @@ export default class Source<D extends Data> {
   async #loadDirComponents(
     dir: Entry,
     parentComponents: Components,
-    data: Partial<D>,
+    data: Partial<Data<D>>,
   ): Promise<Components> {
     // Components registered from site.component()
     const scopedComponents = this.scopedComponents.get(dir.path);
@@ -529,8 +531,8 @@ export default class Source<D extends Data> {
 
   async *#getDirPages(
     path: string,
-    dirData: Partial<D>,
-  ): AsyncGenerator<Page<D>> {
+    dirData: Partial<Data<D>>,
+  ): AsyncGenerator<Page<Data<D>>> {
     const pages = this.scopedPages.get(path);
     if (!pages) {
       return;
@@ -570,7 +572,7 @@ export default class Source<D extends Data> {
         delete page.data.layout;
       }
 
-      yield page as unknown as Page<D>;
+      yield page as unknown as Page<Data<D>>;
     }
   }
 
@@ -578,10 +580,10 @@ export default class Source<D extends Data> {
   async #loadPage(
     entry: Entry,
     format: Format,
-    dirData: Partial<D>,
+    dirData: Partial<Data<D>>,
     dirPath: string,
     destination?: Destination | string,
-  ): Promise<Page<D> | undefined> {
+  ): Promise<Page<Data<D>> | undefined> {
     // The format is a page or asset
     const { loader, ext } = format;
 
@@ -649,7 +651,7 @@ export default class Source<D extends Data> {
       delete page.data.layout;
     }
 
-    return page as unknown as Page<D>;
+    return page as unknown as Page<Data<D>>;
   }
 }
 
@@ -659,7 +661,7 @@ export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export type BasenameParser<D> = (
   filename: string,
-  parentData: Partial<D>,
+  parentData: Partial<RawData<D>>,
 ) => { basename?: string } | undefined;
 
 /** Merge the cascade components */
@@ -684,10 +686,10 @@ function mergeComponents(...components: Components[]): Components {
   });
 }
 
-function runBasenameParsers<D extends RawData>(
+function runBasenameParsers<D>(
   basename: string,
   basenameParsers: BasenameParser<D>[],
-  parentData: Partial<D>,
+  parentData: Partial<RawData<D>>,
 ): { basename: string } {
   const data = { basename };
 

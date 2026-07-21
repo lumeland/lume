@@ -4,7 +4,7 @@ import { warnUntil } from "../core/utils/log.ts";
 import { bytes, percentage } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
 import type { Config } from "../deps/svgo.ts";
 
 export interface Options {
@@ -22,7 +22,7 @@ export const defaults = {} satisfies Options;
 export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return <D extends Data>(site: Site<D>) => {
+  return <D>(site: Site<D>) => {
     site.process([".svg"], function processSVGO(files: Page[]) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",

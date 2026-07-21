@@ -14,7 +14,7 @@ import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
 import type DebugBar from "./debugbar.ts";
 
-export interface Options<D extends Data> {
+export interface Options<D> {
   includes: string;
   prettyUrls: boolean;
   preprocessors: Processors<D>;
@@ -26,7 +26,7 @@ export interface Options<D extends Data> {
  * The renderer is responsible for rendering the site pages
  * in the right order and using the right template engine.
  */
-export default class Renderer<D extends Data> {
+export default class Renderer<D> {
   /** The default folder to include the layouts */
   includes: string;
 
@@ -66,15 +66,15 @@ export default class Renderer<D extends Data> {
 
   /** Render the provided pages */
   async renderPages(
-    from: Page<D>[],
-    to: Page<D>[],
+    from: Page<Data<D>>[],
+    to: Page<Data<D>>[],
     debugBar?: DebugBar,
   ): Promise<void> {
-    const renderedPages: Page<D>[] = [];
+    const renderedPages: Page<Data<D>>[] = [];
 
     for (const group of this.#groupPages(from)) {
-      const pages: Page<D>[] = [];
-      const generators: Page<D>[] = [];
+      const pages: Page<Data<D>>[] = [];
+      const generators: Page<Data<D>>[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
@@ -91,7 +91,7 @@ export default class Renderer<D extends Data> {
       to.push(...pages);
 
       debugBar?.startMeasure("generators");
-      const generatedPages: Page<D>[] = [];
+      const generatedPages: Page<Data<D>>[] = [];
       for (const page of generators) {
         const data = { ...page.data };
         const { content } = data;
@@ -238,8 +238,8 @@ export default class Renderer<D extends Data> {
   }
 
   /** Group the pages by renderOrder */
-  #groupPages(pages: Page<D>[]): Page<D>[][] {
-    const renderOrder: Record<number | string, Page<D>[]> = {};
+  #groupPages(pages: Page<Data<D>>[]): Page<Data<D>>[][] {
+    const renderOrder: Record<number | string, Page<Data<D>>[]> = {};
 
     for (const page of pages) {
       const order = page.data.renderOrder || 0;
@@ -379,8 +379,8 @@ export interface Engine<T = string | { toString(): string }> {
 }
 
 /** A generic helper to be used in template engines */
-export interface HelperThis<D extends Data = Data> {
-  data?: D & { page: Page<D> };
+export interface HelperThis<D> {
+  data?: Data<D> & { page: Page<Data<D>> };
 }
 
 // deno-lint-ignore no-explicit-any

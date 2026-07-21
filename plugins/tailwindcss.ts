@@ -15,7 +15,7 @@ import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "../core/site.ts";
-import { Data } from "../core/file.ts";
+import type { SourceMapsPluginData } from "./source_maps.ts";
 
 export interface Options {
   /**
@@ -35,7 +35,7 @@ export const defaults = {} satisfies Options;
  * @see https://lume.land/plugins/tailwindcss/
  */
 export function tailwindCSS(userOptions?: Options) {
-  return <D extends Data>(site: Site<D>) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

@@ -186,7 +186,7 @@ export default class FSWatcher implements Watcher {
 }
 
 export class SiteWatcher implements Watcher {
-  site: Site<Data>;
+  site: Site;
   events: Events<WatchEvent> = new Events<WatchEvent>();
 
   constructor(site: Site) {

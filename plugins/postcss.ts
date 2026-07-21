@@ -11,7 +11,7 @@ import { browsers, versionString } from "../core/utils/browsers.ts";
 import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type Site from "../core/site.ts";
-import type { SourceMap } from "./source_maps.ts";
+import type { SourceMap, SourceMapsPluginData } from "./source_maps.ts";
 import type { Item } from "../core/debugbar.ts";
 
 export interface Options {
@@ -54,7 +54,7 @@ const defaultPlugins = [
  * @see https://lume.land/plugins/postcss/
  */
 export function postCSS(userOptions?: Options) {
-  return <D extends Data>(site: Site<D>) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -81,7 +81,7 @@ export function postCSS(userOptions?: Options) {
     site.process([".css"], processPostcss);
     site.filter("postcss", filter, true);
 
-    function processPostcss(files: Page<D>[]) {
+    function processPostcss(files: Page<Data<D>>[]) {
       const hasPages = warnUntil(
         "[postcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -98,7 +98,7 @@ export function postCSS(userOptions?: Options) {
       return concurrent(files, (file) => postCss(file, item));
     }
 
-    async function postCss(file: Page<D>, item?: Item) {
+    async function postCss(file: Page<Data<D>>, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -146,7 +146,7 @@ export function postCSS(userOptions?: Options) {
  * Function to configure the postcssImport
  * using the Lume reader and the includes loader
  */
-function configureImport<D extends Data>(site: Site<D>, includes: string) {
+function configureImport<D>(site: Site<D>, includes: string) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {

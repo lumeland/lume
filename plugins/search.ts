@@ -1,8 +1,7 @@
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
-import type { Data } from "../core/file.ts";
 
-export interface SearchPluginData<D extends Data> extends Data {
+export interface SearchPluginData<D> {
   /**
    * The searcher helper
    * @see https://lume.land/plugins/search/
