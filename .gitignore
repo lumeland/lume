@@ -4,3 +4,5 @@ TODO
 deno.lock
 _cache
 _site
+.vscode
+.zed
