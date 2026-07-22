@@ -148,7 +148,7 @@ export function lumeCMS(userOptions: Options) {
           icon: "pencil-simple",
           onclick:
             `window.open("${baseUrl}?edit=" + decodeURIComponent(document.location), "_top");`,
-        })
+        });
       }
     }
     site.addEventListener("beforeBuild", showCMS);

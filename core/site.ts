@@ -1160,6 +1160,7 @@ export default class Site {
     if (this.watcher) {
       return this.watcher;
     }
+
     this.watcher = new FSWatcher({
       src: this.src(),
       root: this.root(),
@@ -1271,9 +1272,8 @@ export interface ServerOptions {
 
   /**
    * Whether to use the debug bar or not
-   * Use a string to specify a custom URL of the <lume-bar> web component
    */
-  debugBar?: string | boolean;
+  debugBar?: boolean;
 
   /** Optional for the server */
   middlewares?: Middleware[];

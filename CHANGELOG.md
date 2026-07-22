@@ -20,9 +20,10 @@ Go to the `v1` branch to see the changelog of Lume 1.
   - `archetype` to create a Lume archetype in the local folder `_archetype/[name].ts`.
   - `cms` to create the `_cms.ts` file.
 - `feed` plugin: added `authorAvatar` property [#859].
-- RAM usage info in the debugbar.
-- Starting info in the debugbar.
+- RAM usage info in the debugBar.
+- Starting info in the debugBar.
 - New flag `--inspect, -i` to start a insector server for debugging.
+- New `site.debugBar.action()` to add visible actions in the debugBar.
 
 ### Changed
 - The `merge` utility function changed the types to better reflect its returned type.
@@ -42,6 +43,12 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Archetypes are loaded from the cwd, not the `src` folder.
 - Moved `Logger` class to the `core/` folder.
 - Removed `@std/testing/snapshot` dependency in favor of buil-in `t.assertSnapshot()` function introduced in Deno 2.9
+- DebugBar:
+  - Inline the code in the HTML pages instead of loading remotely from jsdelivr.
+  - The CMS button is now visible in the tab bar.
+
+### Removed
+- String value for `serve.debugBar` option. Now only allows a boolean value.
 
 ### Fixed
 - `icons` plugin: Added missing type for `spriteIcon` helper [#852].

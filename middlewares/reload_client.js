@@ -2,13 +2,11 @@ export default function liveReload(
   initRevision,
   basepath,
   statusCode,
-  debugbarUrl,
 ) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
   let debugbar;
-  const debugbarModule = debugbarUrl ? import(debugbarUrl) : null;
 
   function socket() {
     if (ws && ws.readyState !== 3) {
@@ -225,18 +223,13 @@ export default function liveReload(
     return newUrl.pathname.endsWith(currentUrl.pathname);
   }
 
-  async function updateDebugbar(data) {
-    if (!debugbarModule) {
-      return;
-    }
-
+  function updateDebugbar(data) {
     if (!debugbar) {
       if (data === undefined) {
         return;
       }
 
-      const { default: DebugBar } = await debugbarModule;
-      debugbar = new DebugBar();
+      debugbar = document.createElement("lume-bar");
       debugbar.websocket = ws;
       document.body.appendChild(debugbar);
     }

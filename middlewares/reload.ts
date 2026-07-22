@@ -1,5 +1,6 @@
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
+import debugBarClient from "./debugbar_client.js" with { type: "text" };
 
 import type { Middleware } from "../core/server.ts";
 import type { Watcher } from "../core/watcher.ts";
@@ -128,13 +129,31 @@ export function reload(options: Options): Middleware {
     if (request.url.endsWith(".xhtml")) {
       source = `//<![CDATA[\n${source}\n//]]>`;
     }
-    const integrity = await computeSourceIntegrity(source);
 
     // Add live reload script and pass initial revision
-    const code =
-      `<script type="module" id="lume-live-reload" integrity="${integrity}">${source}</script>`;
+    const code: string[] = [];
+    if (debugBar) {
+      let source = debugBarClient;
+
+      if (request.url.endsWith(".xhtml")) {
+        source = `//<![CDATA[\n${source}\n//]]>`;
+      }
+
+      code.push(
+        `<script type="module" id="lume-debugbar" integrity="${await computeSourceIntegrity(
+          source,
+        )}">${source}</script>`,
+      );
+    }
+
+    code.push(
+      `<script type="module" id="lume-live-reload" integrity="${await computeSourceIntegrity(
+        source,
+      )}">${source}</script>`,
+    );
+
     if (body.includes("</body>")) {
-      body = body.replace("</body>", `${code}</body>`);
+      body = body.replace("</body>", `${code.join("\n")}</body>`);
     } else {
       body += code;
     }
