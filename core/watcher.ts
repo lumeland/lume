@@ -140,13 +140,12 @@ export default class FSWatcher implements Watcher {
 
       for (const path of event.paths.map((p) => normalizePath(p))) {
         // Filter ignored paths
-        const isIgnored = ignore?.some((condition) => {
+        const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
             ? (path.startsWith(normalizePath(join(root, condition, "/"))) ||
               path === normalizePath(join(root, condition)))
-            : condition(path);
-        });
-
+            : condition(path)
+        );
         if (isIgnored) continue;
         paths.add(path);
         for (const dep of updateDependencies(toFileUrl(path).href)) {
