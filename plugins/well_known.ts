@@ -33,7 +33,7 @@ export interface Options {
    * Indicates whether this site respect the Global Privacy Control signal
    * @see https://w3c.github.io/gpc/
    */
-  gpc?: boolean;
+  gpc?: Gpc;
 
   /**
    * Migrate PWA from old domains
@@ -53,7 +53,7 @@ interface Security {
    * The date and time when the content of the security.txt file should be considered stale
    * @see https://www.rfc-editor.org/info/rfc9116/#section-2.5.5
    */
-  expires: Date;
+  expires: Date | Temporal.PlainDateTime;
 
   /**
    * A link to a key which security researchers should use to securely talk to you.
@@ -162,6 +162,14 @@ interface WebFingerLink {
   properties?: Record<string, string | null>;
 }
 
+interface Gpc {
+  /** True to indicate that the server intends to abide by GPC requests, or false, to indicate that it does not. */
+  gpc: boolean;
+
+  /** This indicates the time at which the statement of support was made */
+  lastUpdate: Date | Temporal.PlainDate | Temporal.PlainDateTime;
+}
+
 export function wellKnown(options: Options) {
   return (site: Site) => {
     if (options.atProto) {
@@ -195,13 +203,13 @@ export function wellKnown(options: Options) {
       });
     }
 
-    if (typeof options.gpc === "boolean") {
+    if (options.gpc) {
       site.page({
         url: "/.well-known/gpc.json",
         content: JSON.stringify(
           {
-            gpc: options.gpc,
-            lastUpdate: Temporal.Now.plainDateISO(),
+            gpc: options.gpc.gpc,
+            lastUpdate: toTemporal(options.gpc.lastUpdate),
           },
           null,
           2,
@@ -243,7 +251,7 @@ function buildSecurity(info: Security, canonical: string): string {
     }
   }
 
-  lines.push(`Expires: ${info.expires.toISOString()}`);
+  lines.push(`Expires: ${toTemporal(info.expires)}`);
 
   if (info.preferredLanguages) {
     lines.push(
@@ -320,3 +328,13 @@ function toArray(v?: string | string[]): string[] {
 }
 
 export default wellKnown;
+
+function toTemporal(
+  date: Date | Temporal.PlainDate | Temporal.PlainDateTime,
+): Temporal.Instant | Temporal.PlainDate | Temporal.PlainDateTime {
+  if (date instanceof Date) {
+    return Temporal.Instant.from(date.toISOString());
+  }
+
+  return date;
+}

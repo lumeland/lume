@@ -284,13 +284,13 @@ snapshot[`well_known plugin 3`] = `
   {
     content: '{
   "gpc": true,
-  "lastUpdate": "2026-07-12"
+  "lastUpdate": "2020-10-10"
 }',
     data: {
       basename: "gpc",
       content: '{
   "gpc": true,
-  "lastUpdate": "2026-07-12"
+  "lastUpdate": "2020-10-10"
 }',
       date: [],
       mergedKeys: [

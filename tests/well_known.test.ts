@@ -23,7 +23,10 @@ Deno.test("well_known plugin", async (t) => {
       preferredLanguages: ["en", "gl"],
       policy: "https://example.com/security-policy.txt",
     },
-    gpc: true,
+    gpc: {
+      gpc: true,
+      lastUpdate: Temporal.PlainDate.from("2020-10-10"),
+    },
     trust: {
       contact: "mailto:info@example.com",
       social: "https://mastodon.gal/@misteroom",
