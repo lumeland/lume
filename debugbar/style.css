@@ -376,6 +376,15 @@ summary.item-title {
     cursor: default;
   }
 }
+.actions > .item-action {
+  background-color: var(--db-color-primary);
+  color: var(--db-color-base);
+  border-color: var(--db-color-primary-highlight);
+  
+  &:hover {
+    background-color: var(--db-color-primary-highlight);
+  }
+}
 
 /** Inline fmt elements */
 red {

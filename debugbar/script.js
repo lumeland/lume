@@ -60,7 +60,7 @@ export default class Bar extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
       <div class="bar">
-        <div class="menu"><div class="tabs"></div><div class="controls"></div></div>
+        <div class="menu"><div class="tabs"></div><div class="actions"></div><div class="controls"></div></div>
         <div hidden class="details"></div>
       </div>
     `;
@@ -68,6 +68,7 @@ export default class Bar extends HTMLElement {
 
     this.bar = this.shadowRoot.querySelector(".bar");
     this.menu = this.bar.querySelector(".menu");
+    this.actions = this.menu.querySelector(".actions");
     this.controls = this.menu.querySelector(".controls");
     this.tabs = this.menu.querySelector(".tabs");
     this.details = this.bar.querySelector(".details");
@@ -114,12 +115,13 @@ export default class Bar extends HTMLElement {
     this.collections = [];
     this.tabs.innerHTML = "";
     this.details.innerHTML = "";
+    this.actions.innerHTML = "";
 
-    if (!data.collections) {
-      return;
+    for (const action of data.actions ?? []) {
+      this.actions.appendChild(this.renderAction(action))
     }
 
-    for (const collection of data.collections) {
+    for (const collection of data.collections ?? []) {
       if (collection.items) {
         await setIds(collection.items, []);
       }
@@ -377,7 +379,9 @@ export default class Bar extends HTMLElement {
               item,
               data: button.dataset,
             }));
-            this.state.set("current_item", [item.id, true]);
+            if (item) {
+              this.state.set("current_item", [item.id, true]);
+            }
             button.appendChild(dom("span", { class: "loader" }));
             button.setAttribute("aria-pressed", "true");
           }

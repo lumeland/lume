@@ -17,6 +17,7 @@ export default class DebugBar {
   #measureItem?: Item;
   #ram = 0;
   collections: Collection[] = [];
+  actions: Action[] = [];
 
   constructor(options: Options = {}) {
     this.#url = options.url || getSpecifier();
@@ -27,10 +28,11 @@ export default class DebugBar {
   }
 
   /**
-   * Clear all collections
+   * Clear all collections and actions
    */
   clear() {
     this.collections.forEach((collection) => collection.items = []);
+    this.actions = [];
     this.#measureItem = undefined;
   }
 
@@ -51,6 +53,13 @@ export default class DebugBar {
 
     this.collections.push(newCollection);
     return newCollection;
+  }
+
+  /**
+   * Add a new a new action
+   */
+  action(action: Action) {
+    this.actions.push(action);
   }
 
   /**
