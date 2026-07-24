@@ -5,8 +5,35 @@ import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { PageData } from "../types.ts";
 import { isGenerator } from "../core/utils/generator.ts";
+
+export interface PluginData {
+  /** The language of the page */
+  lang?: string;
+
+  id?: string;
+
+  /**
+   * Unmatched Language URL
+   * The url for when the user's language doesn't match with any of the site's available languages.
+   *
+   * Valid values are:
+   * - External URL string (http, https), which is language selector page
+   * - Source path string (/), which is language selector page
+   * - Language code (en, gl, vi), which is fallback language page
+   *
+   * This option is made for x-default feature.
+   * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
+   */
+  unmatchedLangUrl?: string;
+
+  /**
+   * Alternate pages (for languages)
+   * @see https://lume.land/plugins/multilanguage/
+   */
+  alternates?: PageData<PluginData>[];
+}
 
 export interface Options {
   /** Available languages */
@@ -39,7 +66,7 @@ export function multilanguage(userOptions: Options) {
       const removedPages: Page[] = [];
       const newPages: Page[] = [];
 
-      for (const page of pages) {
+      for (const page of pages as Page<PluginData>[]) {
         const { data } = page;
 
         if (!isGenerator(data.content) || !page.outputPath.endsWith(".html")) {
@@ -57,7 +84,7 @@ export function multilanguage(userOptions: Options) {
 
         // Create a new page per language
         for (const lang of languages) {
-          const newData: Data = { ...data, lang };
+          const newData = { ...data, lang };
           const newPage = page.duplicate(undefined, newData);
           newPages.push(newPage);
           mergeTranslations(newPage.data);
@@ -78,7 +105,7 @@ export function multilanguage(userOptions: Options) {
      * + display guidance (warning log) to some bug-potential cases
      * + convert "page.data.lang" array type page (if yes) to string type page
      */
-    site.preprocess(
+    site.preprocess<PluginData>(
       [".html"],
       function processMultilanguageSetup(filteredPages, allPages) {
         for (const page of filteredPages) {
@@ -92,11 +119,11 @@ export function multilanguage(userOptions: Options) {
           }
 
           // Create a new page per language
-          const newPages: Page[] = [];
+          const newPages: Page<PluginData>[] = [];
           const id = data.id ?? page.src.path.slice(1);
 
           for (const lang of languages) {
-            const newData: Data = { ...data, lang, id };
+            const newData = { ...data, lang, id };
             const newPage = page.duplicate(undefined, newData);
             newPages.push(newPage);
             mergeTranslations(newPage.data);
@@ -115,7 +142,7 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess([".html"], function processMultilanguageAlternates(pages) {
+    site.preprocess<PluginData>([".html"], function processMultilanguageAlternates(pages) {
       for (const page of pages) {
         const { data } = page;
         const { lang } = data;
@@ -144,7 +171,7 @@ export function multilanguage(userOptions: Options) {
           continue;
         }
 
-        const alternates: Data[] = [];
+        const alternates: PageData<PluginData>[] = [];
         const ids = new Map<string, Page>();
 
         pages.filter((page) => page.data.id == id && page.data.type === type)
@@ -174,7 +201,7 @@ export function multilanguage(userOptions: Options) {
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess([".html"], function processUnmatchedLangUrl(pages) {
+    site.preprocess<PluginData>([".html"], function processUnmatchedLangUrl(pages) {
       for (const page of pages) {
         page.data.unmatchedLangUrl = getUnmatchedLangPath(
           page,
@@ -185,7 +212,7 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process([".html"], function processMultilanguageHtml(pages) {
+    site.process<PluginData>([".html"], function processMultilanguageHtml(pages) {
       for (const page of pages) {
         const { document } = page;
         const alternates = page.data.alternates;
@@ -220,7 +247,7 @@ export function multilanguage(userOptions: Options) {
     });
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: Data) {
+    function mergeTranslations(data: PageData<PluginData>) {
       const { lang } = data;
 
       if (!lang) {
@@ -242,7 +269,7 @@ export function multilanguage(userOptions: Options) {
     }
 
     /** Assign a language to a page */
-    function fixLanguage(page: Page<Data>) {
+    function fixLanguage(page: Page<PluginData>) {
       const { data } = page;
       const languages = data.lang as string | string[] | undefined;
 
@@ -287,8 +314,8 @@ export function multilanguage(userOptions: Options) {
 }
 
 function getUnmatchedLangPath(
-  currentPage: Page<Data>,
-  filteredPages: Page<Data>[],
+  currentPage: Page<PluginData>,
+  filteredPages: Page<PluginData>[],
 ): string | undefined {
   const { sourcePath } = currentPage;
   const { unmatchedLangUrl, alternates } = currentPage.data;

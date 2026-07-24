@@ -15,7 +15,8 @@ export default class Processors {
   loadedExtensions = new Set<string>();
 
   /** Assign a processor to some extensions */
-  set(extensions: Extensions, processor: Processor): void {
+  // deno-lint-ignore no-explicit-any
+  set(extensions: Extensions, processor: Processor<any>): void {
     if (Array.isArray(extensions)) {
       extensions.forEach((extension) => {
         if (extension.charAt(0) !== ".") {
@@ -71,9 +72,9 @@ export default class Processors {
 /**
  * Processor callback is used in both (pre)process methods.
  */
-export type Processor = (
-  filteredPages: Page[],
-  allPages: Page[],
+export type Processor<D = unknown> = (
+  filteredPages: Page<D>[],
+  allPages: Page<D>[],
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {

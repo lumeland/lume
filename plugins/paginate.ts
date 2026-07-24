@@ -104,7 +104,7 @@ export function createPaginator(defaults: CreatePaginatorOptions): Paginator {
     let page = 0;
 
     while (++page <= totalPages) {
-      const data = createPageData(page);
+      const data = createData(page);
       const from = (page - 1) * options.size;
       const to = from + options.size;
       data.results = results.slice(from, to);
@@ -118,7 +118,7 @@ export function createPaginator(defaults: CreatePaginatorOptions): Paginator {
 
     return result;
 
-    function createPageData(page: number): PaginateResult<T> {
+    function createData(page: number): PaginateResult<T> {
       return {
         url: options.url(page),
         results: [],

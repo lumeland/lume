@@ -33,7 +33,6 @@ import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import type { Data, RawData } from "./file.ts";
 import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
@@ -43,6 +42,7 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
+import { PageData, RawData } from "../types.ts";
 
 /** Default options of the site */
 const defaults = {
@@ -210,7 +210,7 @@ export default class Site {
       files: this.files,
       sourceData: source.data,
       filters: [
-        (data: Data) => data.page.isHTML,
+        (data: PageData) => data.page.isHTML,
         filter404page(server.page404), // not the 404 page
       ],
     });
@@ -408,11 +408,11 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(processor: Processor): this;
-  preprocess(extensions: Extensions, processor: Processor): this;
-  preprocess(
-    extensions: Extensions | Processor,
-    preprocessor?: Processor,
+  preprocess<D = unknown>(processor: Processor<D>): this;
+  preprocess<D = unknown>(extensions: Extensions, processor: Processor<D>): this;
+  preprocess<D = unknown>(
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.preprocess("*", extensions);
@@ -428,9 +428,9 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process(processor: Processor): this;
-  process(extensions: Extensions, processor: Processor): this;
-  process(extensions: Extensions | Processor, processor?: Processor): this {
+  process<D = unknown>(processor: Processor<D>): this;
+  process<D = unknown>(extensions: Extensions, processor: Processor<D>): this;
+  process<D = unknown>(extensions: Extensions | Processor<D>, processor?: Processor<D>): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);
     }
@@ -469,7 +469,7 @@ export default class Site {
   }
 
   /** Register a page */
-  page(data: Partial<Data>, scope = "/"): this {
+  page(data: Partial<PageData>, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data);
     this.scopedPages.set(scope, pages);
