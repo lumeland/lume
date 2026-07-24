@@ -31,6 +31,7 @@ export const pluginNames = [
   "remark",
   "robots",
   "sheets",
+  "toc",
   "filter_pages",
   "redirects",
   "icons",

@@ -36,6 +36,7 @@ Deno.test("Plugins list in init", () => {
     "remark",
     "robots",
     "sheets",
+    "toc",
     "filter_pages",
     "redirects",
     "icons",
