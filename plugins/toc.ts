@@ -76,6 +76,11 @@ export default function (userOptions?: Options) {
         continue;
       }
 
+      if (header.hasAttribute("no-toc")) {
+        header.removeAttribute("no-toc");
+        continue;
+      }
+
       const text = header.textContent;
       let id = header.getAttribute("id") || options.slugify(text);
 
