@@ -41,3 +41,7 @@ First subsection of the first subsection of the first subsection of the first su
 ## 4
 
 Forth section
+
+## 5{no-toc}
+
+Ignored

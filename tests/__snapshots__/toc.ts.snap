@@ -142,6 +142,8 @@ snapshot[`toc plugin 3`] = `
 <p>First subsection of the first subsection of the first subsection of the first subsection of the third section</p>
 <h2 id="h_4" tabindex="-1"><a href="#h_4">4</a></h2>
 <p>Forth section</p>
+<h2>5</h2>
+<p>Ignored</p>
 
   </div>
 
@@ -186,7 +188,7 @@ snapshot[`toc plugin 3`] = `
 </body></html>',
     data: {
       basename: "",
-      children: "<h1>Demo of TOC plugin</h1>
+      children: '<h1>Demo of TOC plugin</h1>
 <p>This is the content</p>
 <h2>1.0</h2>
 <p>First section</p>
@@ -206,7 +208,9 @@ snapshot[`toc plugin 3`] = `
 <p>First subsection of the first subsection of the first subsection of the first subsection of the third section</p>
 <h2>4</h2>
 <p>Forth section</p>
-",
+<h2 no-toc="">5</h2>
+<p>Ignored</p>
+',
       content: "# Demo of TOC plugin
 
 This is the content
@@ -246,6 +250,10 @@ First subsection of the first subsection of the first subsection of the first su
 ## 4
 
 Forth section
+
+## 5{no-toc}
+
+Ignored
 ",
       date: [],
       layout: "layout.vto",
@@ -413,6 +421,8 @@ snapshot[`toc plugin (linkInsideHeader) 3`] = `
 <p>First subsection of the first subsection of the first subsection of the first subsection of the third section</p>
 <h2 id="h_4"><a href="#h_4">¶</a> 4</h2>
 <p>Forth section</p>
+<h2>5</h2>
+<p>Ignored</p>
 
   </div>
 
@@ -462,7 +472,7 @@ snapshot[`toc plugin (linkInsideHeader) 3`] = `
 </body></html>',
     data: {
       basename: "",
-      children: "<h1>Demo of TOC plugin</h1>
+      children: '<h1>Demo of TOC plugin</h1>
 <p>This is the content</p>
 <h2>1.0</h2>
 <p>First section</p>
@@ -482,7 +492,9 @@ snapshot[`toc plugin (linkInsideHeader) 3`] = `
 <p>First subsection of the first subsection of the first subsection of the first subsection of the third section</p>
 <h2>4</h2>
 <p>Forth section</p>
-",
+<h2 no-toc="">5</h2>
+<p>Ignored</p>
+',
       content: "# Demo of TOC plugin
 
 This is the content
@@ -522,6 +534,10 @@ First subsection of the first subsection of the first subsection of the first su
 ## 4
 
 Forth section
+
+## 5{no-toc}
+
+Ignored
 ",
       date: [],
       layout: "layout.vto",
