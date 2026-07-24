@@ -40,6 +40,12 @@ export interface Options {
    * @see https://developer.chrome.com/blog/seamless-pwa-origin-migration
    */
   migratePWA?: string | string[];
+
+  /**
+   * Matrix server and client delegation
+   * @see https://spec.matrix.org/v1.10/client-server-api/#well-known-uri
+   */
+  matrix?: Matrix;
 }
 
 interface Security {
@@ -170,6 +176,25 @@ interface Gpc {
   lastUpdate: Date | Temporal.PlainDate | Temporal.PlainDateTime;
 }
 
+interface Matrix {
+  /** Server-to-server routing */
+  server?: {
+    "m.server": string;
+  };
+
+  /** Client-to-server routing */
+  client?: {
+    "m.homeserver": {
+      base_url: string;
+    };
+    "m.identity_server"?: {
+      base_url: string;
+    };
+    /** Allows for other custom or future properties */
+    [key: string]: unknown;
+  };
+}
+
 export function wellKnown(options: Options) {
   return (site: Site) => {
     if (options.atProto) {
@@ -225,6 +250,22 @@ export function wellKnown(options: Options) {
         url: "/.well-known/web-app-origin-association",
         content: JSON.stringify(Object.fromEntries(entries), null, 2),
       });
+    }
+
+    if (options.matrix) {
+      if (options.matrix.server) {
+        site.page({
+          url: "/.well-known/matrix/server",
+          content: JSON.stringify(options.matrix.server, null, 2),
+        });
+      }
+
+      if (options.matrix.client) {
+        site.page({
+          url: "/.well-known/matrix/client",
+          content: JSON.stringify(options.matrix.client, null, 2),
+        });
+      }
     }
   };
 }
