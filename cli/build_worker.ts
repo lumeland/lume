@@ -107,7 +107,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     const srcFiles = new Set(
       [...files]
         .filter((file) => file.startsWith(srcFolder))
-        .map((file) => file.slice(srcFolder.length)),
+        .map((file) => srcFolder === "/" ? file : file.slice(srcFolder.length)),
     );
 
     log.info("Changes detected:");
