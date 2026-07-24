@@ -14,10 +14,10 @@ import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
 import type DebugBar from "./debugbar.ts";
 
-export interface Options {
+export interface Options<D> {
   includes: string;
   prettyUrls: boolean;
-  preprocessors: Processors;
+  preprocessors: Processors<D>;
   formats: Formats;
   fs: FS;
 }
@@ -26,7 +26,7 @@ export interface Options {
  * The renderer is responsible for rendering the site pages
  * in the right order and using the right template engine.
  */
-export default class Renderer {
+export default class Renderer<D> {
   /** The default folder to include the layouts */
   includes: string;
 
@@ -37,7 +37,7 @@ export default class Renderer {
   prettyUrls: boolean;
 
   /** All preprocessors */
-  preprocessors: Processors;
+  preprocessors: Processors<D>;
 
   /** Available file formats */
   formats: Formats;
@@ -45,7 +45,7 @@ export default class Renderer {
   /** The registered helpers */
   helpers = new Map<string, [Helper, HelperOptions]>();
 
-  constructor(options: Options) {
+  constructor(options: Options<D>) {
     this.includes = options.includes;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
@@ -54,7 +54,7 @@ export default class Renderer {
   }
 
   /** Register a new helper used by the template engines */
-  addHelper(name: string, fn: Helper<HelperThis>, options: HelperOptions) {
+  addHelper(name: string, fn: Helper<HelperThis<D>>, options: HelperOptions) {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
@@ -66,15 +66,15 @@ export default class Renderer {
 
   /** Render the provided pages */
   async renderPages(
-    from: Page[],
-    to: Page[],
+    from: Page<Data<D>>[],
+    to: Page<Data<D>>[],
     debugBar?: DebugBar,
   ): Promise<void> {
-    const renderedPages: Page[] = [];
+    const renderedPages: Page<Data<D>>[] = [];
 
     for (const group of this.#groupPages(from)) {
-      const pages: Page[] = [];
-      const generators: Page[] = [];
+      const pages: Page<Data<D>>[] = [];
+      const generators: Page<Data<D>>[] = [];
 
       // Split regular pages and generators
       for (const page of group) {
@@ -91,7 +91,7 @@ export default class Renderer {
       to.push(...pages);
 
       debugBar?.startMeasure("generators");
-      const generatedPages: Page[] = [];
+      const generatedPages: Page<Data<D>>[] = [];
       for (const page of generators) {
         const data = { ...page.data };
         const { content } = data;
@@ -112,7 +112,7 @@ export default class Renderer {
           }
           const newPage = page.duplicate(
             index++,
-            mergeData(page.data, data) as Data,
+            mergeData(page.data, data),
           );
 
           let base = basePath;
@@ -127,7 +127,12 @@ export default class Renderer {
             base = posix.dirname(page.outputPath);
           }
 
-          const url = getPageUrl(newPage, this.prettyUrls, base);
+          const url = getPageUrl(
+            newPage.data,
+            newPage.src,
+            this.prettyUrls,
+            base,
+          );
 
           if (!url) {
             continue;
@@ -163,7 +168,7 @@ export default class Renderer {
 
             // Save the children to render the layout later
             if (page.data.layout || page.isHTML) {
-              page.data.children = content;
+              (page.data as Data).children = content;
               renderedPages.push(page);
             } else {
               page.content = content;
@@ -233,8 +238,8 @@ export default class Renderer {
   }
 
   /** Group the pages by renderOrder */
-  #groupPages(pages: Page[]): Page[][] {
-    const renderOrder: Record<number | string, Page[]> = {};
+  #groupPages(pages: Page<Data<D>>[]): Page<Data<D>>[][] {
+    const renderOrder: Record<number | string, Page<Data<D>>[]> = {};
 
     for (const page of pages) {
       const order = page.data.renderOrder || 0;
@@ -259,7 +264,10 @@ export default class Renderer {
   }
 
   /** Render the page layout */
-  async #renderLayout(page: Page, content: Content): Promise<Content> {
+  async #renderLayout(
+    page: Page<Data>,
+    content: Content,
+  ): Promise<Content> {
     let data = { ...page.data };
     let path = page.src.path + page.src.ext;
     let layout = data.layout;
@@ -300,7 +308,7 @@ export default class Renderer {
         layoutData,
         data,
         { content },
-      ) as Data;
+      );
 
       content = await this.render<Content>(
         layoutData.content,
@@ -318,7 +326,7 @@ export default class Renderer {
   /** Get the engines assigned to an extension or configured in the data */
   #getEngine(
     path: string,
-    data: Partial<Data>,
+    data: { templateEngine?: string | string[] },
     isLayout: boolean,
   ): Engine[] | undefined {
     let { templateEngine } = data;
@@ -371,8 +379,8 @@ export interface Engine<T = string | { toString(): string }> {
 }
 
 /** A generic helper to be used in template engines */
-export interface HelperThis {
-  data?: Data;
+export interface HelperThis<D> {
+  data?: Data<D> & { page: Page<Data<D>> };
 }
 
 // deno-lint-ignore no-explicit-any

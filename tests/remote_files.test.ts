@@ -3,12 +3,21 @@ import postcss from "../plugins/postcss.ts";
 import sass from "../plugins/sass.ts";
 import esbuild from "../plugins/esbuild.ts";
 import nunjucks from "../plugins/nunjucks.ts";
+import type { SourceMapsPluginData } from "../plugins/source_maps.ts";
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+
+interface TestData
+  extends
+    SourceMapsPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
 
 Deno.test("render remote files", {
   sanitizeOps: false,
   sanitizeResources: false,
 }, async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "remote_files",
   });
   site.add("asset.txt");

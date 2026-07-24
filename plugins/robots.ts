@@ -61,7 +61,7 @@ export const defaults = {
 export function robots(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.process(async function processRobots() {
       const rules: Rule[] = [];
       const allow = typeof options.allow === "string"

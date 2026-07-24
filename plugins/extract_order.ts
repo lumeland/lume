@@ -23,7 +23,7 @@ const ORDER_REGEX = /(\d+)\.(.+)/;
 export function extractOrder(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.parseBasename((name, parent) => {
       const match = name.match(ORDER_REGEX);
 

@@ -33,7 +33,7 @@ export function lumeCMS(userOptions: Options) {
     throw new Error("LumeCMS requires a CMS instance");
   }
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     setEnv("LUME_CMS", "true");
 
     // Set the site URL if it's not set

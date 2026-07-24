@@ -2,8 +2,18 @@ import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import resolveUrls from "../plugins/resolve_urls.ts";
 import slugifyUrls from "../plugins/slugify_urls.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SlugifyUrlsPluginData } from "../plugins/slugify_urls.ts";
+
+interface TestData
+  extends
+    SlugifyUrlsPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("relative_url plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "resolve_urls",
   });
 

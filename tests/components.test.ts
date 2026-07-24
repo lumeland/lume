@@ -7,8 +7,20 @@ import jsx from "../plugins/jsx.ts";
 import nunjucks from "../plugins/nunjucks.ts";
 import esbuild from "../plugins/esbuild.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { JSXPluginData } from "../plugins/jsx.ts";
+import type { EsbuildPluginData } from "../plugins/esbuild.ts";
+
+interface TestData
+  extends
+    EsbuildPluginData,
+    JSXPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("Components", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "components",
   });
 
@@ -174,7 +186,7 @@ Deno.test("Folder components", async (t) => {
 });
 
 Deno.test("Components interoperability", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "components_interop",
   });
 
@@ -189,7 +201,7 @@ Deno.test(
   "Components with esbuild",
   { sanitizeOps: false, sanitizeResources: false },
   async (t) => {
-    const site = getSite({
+    const site = getSite<TestData>({
       src: "components",
     });
 

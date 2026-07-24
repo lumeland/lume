@@ -4,6 +4,9 @@ import type { Loader } from "./core/fs.ts";
 import type { default as Site, Plugin } from "./core/site.ts";
 import type { Archetype, ArchetypeFile } from "./core/archetypes.ts";
 import type { Middleware, RequestHandler } from "./core/server.ts";
+import type { ProxyComponents as ProxyComponents_ } from "./core/components.ts";
+import { SearchPluginData } from "./plugins/search.ts";
+import { PaginatePluginData } from "./plugins/paginate.ts";
 
 declare global {
   namespace Lume {
@@ -19,10 +22,15 @@ declare global {
       Site,
     };
 
+    export interface ProxyComponents extends ProxyComponents_ {}
+
     /** The page data */
-    export interface Data extends PageData {
+    export interface Data
+      extends PageData, PaginatePluginData, SearchPluginData<Data> {
       // deno-lint-ignore no-explicit-any
-      [index: string]: any;
+      [index: string]: Data["__strict"] extends true ? unknown : any;
+
+      comp: ProxyComponents;
     }
 
     /** The page helpers */

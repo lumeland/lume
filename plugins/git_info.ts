@@ -2,6 +2,10 @@ import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
 
+export interface GitInfoPluginData {
+  gitInfo: GitInfo;
+}
+
 export interface GitInfo {
   branch: string;
   hash: string;
@@ -9,7 +13,7 @@ export interface GitInfo {
 }
 
 export function gitInfo() {
-  return (site: Site) => {
+  return <D extends GitInfoPluginData>(site: Site<D>) => {
     const branch = gitCommand("branch", "--show-current");
     const hash = gitCommand(
       "rev-parse",

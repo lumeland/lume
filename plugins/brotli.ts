@@ -22,10 +22,10 @@ export const defaults = {
 export function brotli(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.process(
       options.extensions,
-      function processBrotli(pages, allPages) {
+      function processBrotli(pages) {
         return concurrent(pages, async (page: Page) => {
           const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
@@ -39,7 +39,7 @@ export function brotli(userOptions?: Options) {
             url: page.outputPath + ".br",
             content: compressedContent,
           });
-          allPages.push(compressedPage);
+          site.pushPage(compressedPage);
         });
       },
     );

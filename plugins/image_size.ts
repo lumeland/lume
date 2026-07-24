@@ -16,7 +16,7 @@ interface Dimmensions {
 }
 
 export default function imageSize() {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const sizes = new Map<string, Dimmensions | undefined>();
 
     //Clear cache

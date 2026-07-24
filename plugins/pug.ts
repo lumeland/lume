@@ -116,7 +116,7 @@ export class PugEngine implements Engine {
  * @see https://lume.land/plugins/pug/
  */
 export function pug(userOptions?: Options) {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

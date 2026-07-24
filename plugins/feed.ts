@@ -11,7 +11,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../core/file.ts";
 import type { stringifyable } from "../deps/xml.ts";
 
-export interface Options {
+export interface Options<D> {
   /** The output filenames */
   output?: string | string[];
 
@@ -31,7 +31,7 @@ export interface Options {
   info?: FeedInfoOptions;
 
   /** The feed items configuration */
-  items?: FeedItemOptions;
+  items?: FeedItemOptions<D>;
 }
 
 export interface FeedInfoOptions {
@@ -85,30 +85,30 @@ export interface FeedInfoOptions {
   color?: string;
 }
 
-export interface FeedItemOptions {
+export interface FeedItemOptions<D> {
   /** The item title */
-  title?: string | ((data: Data) => string | undefined);
+  title?: string | ((data: Data<D>) => string | undefined);
 
   /** The item description */
-  description?: string | ((data: Data) => string | undefined);
+  description?: string | ((data: Data<D>) => string | undefined);
 
   /** The item published date */
-  published?: string | ((data: Data) => Date | undefined);
+  published?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item updated date */
-  updated?: string | ((data: Data) => Date | undefined);
+  updated?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item content */
-  content?: string | ((data: Data) => string | undefined);
+  content?: string | ((data: Data<D>) => string | undefined);
 
   /** The item categories */
-  categories?: string | ((data: Data) => string[] | undefined);
+  categories?: string | ((data: Data<D>) => string[] | undefined);
 
   /** The item language */
-  lang?: string | ((data: Data) => string | undefined);
+  lang?: string | ((data: Data<D>) => string | undefined);
 
   /** The item image */
-  image?: string | ((data: Data) => string | undefined);
+  image?: string | ((data: Data<D>) => string | undefined);
 
   /** The item author name */
   authorName?: string;
@@ -149,7 +149,7 @@ export const defaults = {
     categories: "=tags",
     lang: "=lang",
   },
-} satisfies Options;
+} satisfies Options<Data>;
 
 export interface Author {
   name?: string;
@@ -192,10 +192,10 @@ const defaultGenerator = getGenerator();
  * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed(
-  userOptionsFn?: Options | Options[] | (() => Options[] | Options),
+export function feed<D>(
+  userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
 ) {
-  return (site: Site) => {
+  return (site: Site<D>) => {
     site.process(function processFeed() {
       const userOptions = typeof userOptionsFn === "function"
         ? userOptionsFn()
@@ -214,7 +214,7 @@ export function feed(
           options.query,
           options.sort,
           options.limit,
-        ) as Data[];
+        );
 
         const { info, items } = options;
         const rootData = site.source.data.get("/") || {};
@@ -268,7 +268,7 @@ export function feed(
 
           switch (getMimeType(filename)) {
             case "application/rss+xml":
-              site.pages.push(
+              site.pushPage(
                 Page.create({
                   url: filename,
                   content: generateRss(feed, file, options.stylesheet),
@@ -277,7 +277,7 @@ export function feed(
               break;
 
             case "application/feed+json":
-              site.pages.push(
+              site.pushPage(
                 Page.create({
                   url: filename,
                   content: generateJson(feed, file),
@@ -286,7 +286,7 @@ export function feed(
               break;
 
             case "application/atom+xml":
-              site.pages.push(
+              site.pushPage(
                 Page.create({
                   url: filename,
                   content: generateAtom(feed, file, options.stylesheet),
@@ -303,10 +303,10 @@ export function feed(
   };
 }
 
-function getAuthor(
-  data: Partial<Data>,
-  info: FeedInfoOptions | FeedItemOptions,
-  site: Site,
+function getAuthor<D>(
+  data: Partial<Data<D>>,
+  info: FeedInfoOptions | FeedItemOptions<D>,
+  site: Site<D>,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
   const url = getDataValue(data, info.authorUrl);

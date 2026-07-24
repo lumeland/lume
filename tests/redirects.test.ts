@@ -1,8 +1,14 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import redirects from "../plugins/redirects.ts";
+import type { RedirectPluginData } from "../plugins/redirects.ts";
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+
+interface TestData
+  extends RedirectPluginData, PaginatePluginData, SearchPluginData<TestData> {}
 
 Deno.test("redirects plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "redirects",
   });
 
@@ -13,7 +19,7 @@ Deno.test("redirects plugin", async (t) => {
 });
 
 Deno.test("redirects plugin for netlify", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "redirects",
   });
 
@@ -26,7 +32,7 @@ Deno.test("redirects plugin for netlify", async (t) => {
 });
 
 Deno.test("redirects plugin for vercel", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "redirects",
   });
 
@@ -39,7 +45,7 @@ Deno.test("redirects plugin for vercel", async (t) => {
 });
 
 Deno.test("redirects plugin for json", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "redirects",
   });
 

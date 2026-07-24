@@ -9,7 +9,7 @@ import type Site from "../core/site.ts";
  * @see https://lume.land/plugins/resolve_urls/
  */
 export function resolveUrls() {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const cache = new Map<string, string | null>();
 
     site.addEventListener("beforeUpdate", () => cache.clear());

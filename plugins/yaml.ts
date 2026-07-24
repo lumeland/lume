@@ -24,7 +24,7 @@ export const defaults = {
 export function yaml(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.loadData(options.extensions, yamlLoader);
     site.loadPages(options.extensions, {
       loader: yamlLoader,

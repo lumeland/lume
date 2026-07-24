@@ -1,8 +1,15 @@
 import { build, getSite } from "./utils.ts";
 import seo from "../plugins/seo.ts";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SEOPluginData } from "../plugins/seo.ts";
+
+interface TestData
+  extends SEOPluginData, PaginatePluginData, SearchPluginData<TestData> {}
+
 Deno.test("SEO plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "seo",
   });
 

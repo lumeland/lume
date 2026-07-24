@@ -12,10 +12,17 @@ import {
   stop,
 } from "../deps/esbuild.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
-import { prepareAsset, saveAsset } from "./source_maps.ts";
+import {
+  prepareAsset,
+  saveAsset,
+  SourceMapsPluginData,
+} from "./source_maps.ts";
 import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
+import type { Data } from "../core/file.ts";
+
+export interface EsbuildPluginData extends SourceMapsPluginData {}
 
 export interface Options {
   /** File extensions to bundle */
@@ -72,7 +79,7 @@ interface EntryPoint {
 export function esbuild(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends EsbuildPluginData>(site: Site<D>) => {
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
     };
@@ -98,7 +105,7 @@ export function esbuild(userOptions?: Options) {
     }
 
     async function runEsbuild(
-      pages: Page[],
+      pages: Page<Data<D>>[],
     ): Promise<[OutputFile[], Metafile, boolean]> {
       let sourcemap;
       const entryPoints: EntryPoint[] = [];
@@ -156,7 +163,7 @@ export function esbuild(userOptions?: Options) {
 
     site.process(
       options.extensions,
-      async function processEsbuild(pages, allPages) {
+      async function processEsbuild(pages) {
         const hasPages = warnUntil(
           `[esbuild plugin] No ${
             options.extensions.map((e) => e.slice(1).toUpperCase()).join(", ")
@@ -217,7 +224,7 @@ export function esbuild(userOptions?: Options) {
             : undefined;
 
           // Search the entry point of this output file
-          let entryPoint: Page | undefined;
+          let entryPoint: Page<Data<D>> | undefined;
 
           if (output.entryPoint) {
             const outputRelativeEntryPoint = relativePathFromUri(
@@ -234,9 +241,11 @@ export function esbuild(userOptions?: Options) {
 
           // The page is a chunk
           if (!entryPoint) {
-            const page = Page.create({ url: normalizedOutPath });
+            const page = Page.create({ url: normalizedOutPath }) as Page<
+              Data<D>
+            >;
             saveAsset(site, page, content, map?.text);
-            allPages.push(page);
+            site.pushPage(page);
             continue;
           }
 

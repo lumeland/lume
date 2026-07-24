@@ -30,7 +30,7 @@ export function filterPages(userOptions: Options) {
   const options = merge(defaults, userOptions);
   const processMethod = options.beforeRender ? "preprocess" : "process";
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site[processMethod](function processFilterPages(pages) {
       for (const page of pages) {
         if (!options.fn(page)) {

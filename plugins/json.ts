@@ -25,7 +25,7 @@ export const defaults = {
 export function json(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.loadData(options.extensions, jsonLoader);
     site.loadPages(options.extensions, {
       pageSubExtension: options.pageSubExtension,

@@ -120,7 +120,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
  * @see https://lume.land/plugins/mdx/
  */
 export function mdx(userOptions?: Options) {
-  return function (site: Site) {
+  return function <D>(site: Site<D>) {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

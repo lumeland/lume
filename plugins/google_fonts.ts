@@ -34,7 +34,7 @@ export const defaults = {
 export function googleFonts(userOptions: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     let cssCode = "";
     const cssFile = posix.join("/", options.cssFile || site.options.cssFile);
     const fontsFolder = posix.join(

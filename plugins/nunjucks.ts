@@ -136,10 +136,10 @@ export class NunjucksEngine implements Engine {
   }
 }
 
-class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
+class LumeLoader<D> extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
   includes: string;
 
-  constructor(private site: Site, includes: string) {
+  constructor(private site: Site<D>, includes: string) {
     super();
     this.includes = includes;
   }
@@ -181,7 +181,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
  * @see https://lume.land/plugins/nunjucks/
  */
 export function nunjucks(userOptions?: Options) {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -221,9 +221,7 @@ export function nunjucks(userOptions?: Options) {
 
     // Register the component helper
     engine.addHelper("comp", async (...args) => {
-      const components = site.source.data.get("/")?.comp as
-        | ProxyComponents
-        | undefined;
+      const components = site.source.data.get("/")?.comp;
       const [content, name, options = {}] = args;
       delete options.__keywords;
       const props = { content, ...options };

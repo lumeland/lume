@@ -7,7 +7,15 @@ import { create } from "../deps/sharp.ts";
 
 import type { ResizeOptions, Sharp } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
-import type { Page, StaticFile } from "../core/file.ts";
+import type { Data, Page, StaticFile } from "../core/file.ts";
+
+export interface TransformImagesPluginData extends Data {
+  /**
+   * Image transformations
+   * @see https://lume.land/plugins/transform_images/
+   */
+  transformImages?: Transformation | Transformation[];
+}
 
 export interface Options {
   /** Custom transform functions */
@@ -77,8 +85,7 @@ export interface Transformation {
   suffix?: string;
   format?: Format | Format[] | FormatOptions | FormatOptions[];
   matches?: RegExp | string;
-  // deno-lint-ignore no-explicit-any
-  [key: string]: any;
+  [key: string]: unknown;
 }
 interface SingleTransformation extends Transformation {
   format?: Format | FormatOptions;
@@ -91,9 +98,9 @@ interface SingleTransformation extends Transformation {
 export function transformImages(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends TransformImagesPluginData>(site: Site<D>) => {
     site.process(
-      async function processTransformImages(_: Page[], allPages: Page[]) {
+      async function processTransformImages(_, allPages) {
         // Load all static files that must be transformed
         await filesToPages(site.files, site.pages, filter);
 
@@ -120,10 +127,15 @@ export function transformImages(userOptions?: Options) {
     // Configure the cache folder
     const { cache } = site;
 
-    async function processPage(page: Page, allPages: Page[]) {
-      const transData = page.data.transformImages as
-        | Transformation
-        | Transformation[];
+    async function processPage(
+      page: Page<TransformImagesPluginData>,
+      allPages: Page<TransformImagesPluginData>[],
+    ) {
+      const transData = page.data.transformImages;
+
+      if (!transData) {
+        return;
+      }
 
       const content = page.src.ext === ".svg" ? page.text : page.bytes;
       const url = page.data.url;
@@ -138,7 +150,7 @@ export function transformImages(userOptions?: Options) {
       for (const transformation of transformations) {
         if (transformation.matches) {
           const regex = new RegExp(transformation.matches);
-          if (!regex.test(page.data.url as string)) {
+          if (!regex.test(page.data.url)) {
             continue;
           }
         }
@@ -295,13 +307,7 @@ export default transformImages;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * Image transformations
-       * @see https://lume.land/plugins/transform_images/
-       */
-      transformImages?: Transformation | Transformation[];
-    }
+    export interface Data extends TransformImagesPluginData {}
   }
 }
 

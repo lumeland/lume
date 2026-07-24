@@ -20,7 +20,7 @@ export const defaults: Options = {
 export function plaintext(userOptions?: Options) {
   const options = { ...defaults, ...userOptions };
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.filter("plaintext", (text?: unknown, opts?: Options) => {
       if (typeof text === "string") {
         return plainText(text, opts || options);

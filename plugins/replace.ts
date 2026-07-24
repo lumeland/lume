@@ -18,7 +18,7 @@ export const defaults = {
 export default function replace(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const { extensions, replacements } = options;
 
     // Hook to add or modify replacements

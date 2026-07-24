@@ -3,7 +3,11 @@ import { resolveInclude } from "../core/utils/path.ts";
 import { merge } from "../core/utils/object.ts";
 import { readFile } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
-import { prepareAsset, saveAsset } from "./source_maps.ts";
+import {
+  prepareAsset,
+  saveAsset,
+  SourceMapsPluginData,
+} from "./source_maps.ts";
 import { posix } from "../deps/path.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
@@ -12,6 +16,7 @@ import { browsers, version } from "../core/utils/browsers.ts";
 import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type { Item } from "../core/debugbar.ts";
+import type { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 import type {
   BundleAsyncOptions,
@@ -55,7 +60,7 @@ export const defaults = {
  * @see https://lume.land/plugins/lightningcss/
  */
 export function lightningCSS(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -67,7 +72,7 @@ export function lightningCSS(userOptions?: Options) {
       bundle = true;
     }
 
-    site.process([".css"], function processLightningCSS(files: Page[]) {
+    site.process([".css"], function processLightningCSS(files) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -88,7 +93,7 @@ export function lightningCSS(userOptions?: Options) {
       files.forEach((file) => lightningCSSTransformer(file, item));
     });
 
-    function lightningCSSTransformer(file: Page, item?: Item) {
+    function lightningCSSTransformer(file: Page<Data<D>>, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -125,13 +130,11 @@ export function lightningCSS(userOptions?: Options) {
         item.items.push({
           title: file.data.url,
           details: bytes(result.code.length),
-          items: [
-            ...result.warnings.map((warning) => ({
-              title: `[${warning.type}] ${warning.message}`,
-              text: warning.loc.filename,
-              context: "warning",
-            })),
-          ],
+          items: result.warnings.map((warning) => ({
+            title: `[${warning.type}] ${warning.message}`,
+            text: warning.loc.filename,
+            context: "warning",
+          })),
         });
       }
 
@@ -148,7 +151,7 @@ export function lightningCSS(userOptions?: Options) {
      * This cannot be done in parallel because ligthningcss has a bug that mixes the imports of all files
      * Seems like executing the bundler in sequence fixes the issue
      */
-    async function lightningCSSBundler(files: Page[], item?: Item) {
+    async function lightningCSSBundler(files: Page<Data<D>>[], item?: Item) {
       for (const file of files) {
         const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
           site,

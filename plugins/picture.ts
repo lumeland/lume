@@ -5,12 +5,15 @@ import { contentType } from "../deps/media_types.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
+import type { Format, TransformImagesPluginData } from "./transform_images.ts";
+
+export interface PicturePluginData extends TransformImagesPluginData {}
 
 interface SourceFormat {
   width?: number;
   height?: number;
   scales: Record<string, number>;
-  format: string;
+  format: Format;
 }
 
 interface Source extends SourceFormat {
@@ -34,7 +37,7 @@ export const defaults = {
 export function picture(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends PicturePluginData>(site: Site<D>) => {
     const transforms = new Map<string, Source>();
 
     site.process([".html"], function processPicture(pages) {
@@ -258,13 +261,13 @@ export function picture(userOptions?: Options) {
     ): SourceFormat[] {
       const path = src.startsWith("/") ? src : posix.join(basePath, src);
       const sizes: string[] = [];
-      const formats: string[] = [];
+      const formats: Format[] = [];
 
       transformImages.trim().split(/\s+/).forEach((piece) => {
         if (piece.match(/^\d/)) {
           sizes.push(piece);
         } else {
-          formats.push(piece);
+          formats.push(piece as Format);
         }
       });
 
@@ -274,7 +277,7 @@ export function picture(userOptions?: Options) {
       if (!sizes.length) {
         for (const format of formats) {
           const key = `:${format}`;
-          const sourceFormat = {
+          const sourceFormat: SourceFormat = {
             format,
             scales: { "": 1 },
           };
@@ -304,7 +307,7 @@ export function picture(userOptions?: Options) {
 
         for (const format of formats) {
           const key = `${width}:${height}${format}`;
-          const sourceFormat = {
+          const sourceFormat: SourceFormat = {
             width,
             height,
             format,

@@ -1,3 +1,4 @@
+import { PostType } from "https://deno.land/x/fff@v1.2.1/src/utils/ptd.ts";
 import type Site from "../core/site.ts";
 import { getGitDate } from "../core/utils/date.ts";
 import { merge } from "../core/utils/object.ts";
@@ -10,6 +11,11 @@ import {
   type StrictPresetOptions,
   transform,
 } from "../deps/fff.ts";
+
+export interface FFFPluginData
+  extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {
+  type?: PostType;
+}
 
 export interface Options {
   /**
@@ -38,15 +44,21 @@ export const defaults = {
 export function fff(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends FFFPluginData>(site: Site<D>) => {
     site.preprocess([".html"], function processFFF(pages) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
-            page.data.created = getGitDate("created", page.src.entry.src);
+            page.data.created = getGitDate(
+              "created",
+              page.src.entry.src,
+            ) as unknown as string;
           }
           if (!page.data.updated) {
-            page.data.updated = getGitDate("modified", page.src.entry.src);
+            page.data.updated = getGitDate(
+              "modified",
+              page.src.entry.src,
+            ) as unknown as string;
           }
         }
 
@@ -69,7 +81,6 @@ export default fff;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data
-      extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {}
+    export interface Data extends FFFPluginData {}
   }
 }

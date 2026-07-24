@@ -55,7 +55,7 @@ export class ModuleEngine implements Engine {
  * @see https://lume.land/plugins/modules/
  */
 export function modules(userOptions?: Options) {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

@@ -87,7 +87,7 @@ export function markdown(userOptions?: Options) {
     options.plugins.unshift(...defaultPlugins);
   }
 
-  return function (site: Site) {
+  return function <D>(site: Site<D>) {
     const engine = markdownIt(options.options);
 
     // Disable indented code blocks by default

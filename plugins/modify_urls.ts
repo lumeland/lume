@@ -46,7 +46,7 @@ export function modifyUrls(userOptions: Options) {
     return replaced.join(", ");
   }
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.process(
       [".html", ".css"],
       function processModifyUrls(pages) {

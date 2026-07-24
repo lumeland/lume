@@ -5,6 +5,8 @@ import { EmptyWriter } from "../core/writer.ts";
 
 import type { default as Site, SiteOptions } from "../core/site.ts";
 import type { SourceMap } from "../plugins/source_maps.ts";
+import { PaginatePluginData } from "../plugins/paginate.ts";
+import { SearchPluginData } from "../plugins/search.ts";
 
 const cwUrl = import.meta.resolve("./");
 const cwd = fromFileUrl(import.meta.resolve("./"));
@@ -14,14 +16,16 @@ export function getPath(path: string): string {
 }
 
 /** Create a new lume site using the "assets" path as cwd */
-export function getSite(
+export function getSite<
+  T extends PaginatePluginData & SearchPluginData<T>,
+>(
   options: SiteOptions = {},
   pluginOptions = {},
   write = false,
-): Site {
+): Site<T> {
   options.cwd = getPath("assets");
 
-  const site = lume(options, pluginOptions, false);
+  const site = lume<T>(options, pluginOptions, false);
 
   if (!write) {
     site.writer = new EmptyWriter();
@@ -31,7 +35,7 @@ export function getSite(
 }
 
 /** Returns a generated page by src path */
-export function getPage(site: Site, path: string) {
+export function getPage<T>(site: Site<T>, path: string) {
   const page = site.pages.find((page) => page.src.path === path);
 
   if (!page) {
@@ -42,7 +46,7 @@ export function getPage(site: Site, path: string) {
 }
 
 /** Build a site and print errors */
-export async function build(site: Site) {
+export async function build<T>(site: Site<T>) {
   try {
     await site.build();
   } catch (error) {
@@ -91,9 +95,9 @@ interface SiteSnapshotOptions {
   avoidBinaryFilesLength?: boolean;
 }
 
-export async function assertSiteSnapshot(
+export async function assertSiteSnapshot<T>(
   context: Deno.TestContext,
-  site: Site,
+  site: Site<T>,
   options: SiteSnapshotOptions = {},
 ) {
   const { pages, files } = site;
@@ -122,42 +126,46 @@ export async function assertSiteSnapshot(
     const isSourceMap = page.outputPath.endsWith(".map");
     return {
       data: Object.fromEntries(
-        Object.entries(page.data).map(([key, value]) => {
-          switch (typeof value) {
-            case "string":
-              if (isSourceMap && key === "content") {
-                return [key, normalizeSourceMap(value)];
-              }
-              return [key, normalizeValue(value, options)];
-            case "undefined":
-              return [key, normalizeValue(value, options)];
-            case "number":
-            case "boolean":
-              return [key, value];
-            case "object":
-              if (value === null) {
-                return [key, null];
-              }
-              if (Array.isArray(value) || value instanceof Uint8Array) {
+        Object.entries(page.data).map(
+          (
+            [key, value],
+          ): [string, string | number | boolean | null | string[]] => {
+            switch (typeof value) {
+              case "string":
+                if (isSourceMap && key === "content") {
+                  return [key, normalizeSourceMap(value)];
+                }
                 return [key, normalizeValue(value, options)];
-              }
-              if (value instanceof Map || value instanceof Set) {
-                return [
-                  key,
-                  [...value.keys()].sort((a, b) => a.localeCompare(b)),
-                ];
-              }
-              return [key, Object.keys(value)];
-            case "function":
-              return [key, value.name];
-            case "symbol":
-              return [key, value.toString()];
-            case "bigint":
-              return [key, `${value}n`];
-            default:
-              throw new Error(`Unknown type "${typeof value}"`);
-          }
-        }).sort((a, b) => a[0].localeCompare(b[0])),
+              case "undefined":
+                return [key, normalizeValue(value, options)];
+              case "number":
+              case "boolean":
+                return [key, value];
+              case "object":
+                if (value === null) {
+                  return [key, null];
+                }
+                if (Array.isArray(value) || value instanceof Uint8Array) {
+                  return [key, normalizeValue(value, options)];
+                }
+                if (value instanceof Map || value instanceof Set) {
+                  return [
+                    key,
+                    [...value.keys()].sort((a, b) => a.localeCompare(b)),
+                  ];
+                }
+                return [key, Object.keys(value)];
+              case "function":
+                return [key, value.name];
+              case "symbol":
+                return [key, value.toString()];
+              case "bigint":
+                return [key, `${value}n`];
+              default:
+                throw new Error(`Unknown type "${typeof value}"`);
+            }
+          },
+        ).sort((a, b) => a[0].localeCompare(b[0])),
       ),
       content: isSourceMap
         ? normalizeSourceMap(page.content as string)

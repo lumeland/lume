@@ -24,7 +24,7 @@ export const defaults = {
 export function toml(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.loadData(options.extensions, tomlLoader);
     site.loadPages(options.extensions, {
       loader: tomlLoader,

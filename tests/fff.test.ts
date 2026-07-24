@@ -1,9 +1,17 @@
 import { assertEquals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import fff from "../plugins/fff.ts";
+import { Page } from "../core/file.ts";
+
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { FFFPluginData } from "../plugins/fff.ts";
+
+interface TestData
+  extends FFFPluginData, PaginatePluginData, SearchPluginData<TestData> {}
 
 Deno.test("FFF plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "fff",
     location: new URL("https://example.com/"),
   });
@@ -34,7 +42,7 @@ Deno.test("FFF plugin", async (t) => {
 
   // published => date
   const date = pages.find((page) => page.src.path === "/date")!;
-  assertEquals(date.data.date, date.data.published);
+  assertEquals(date.data.date, date.data.published as unknown as Date);
   // getGitDate
   assertEquals(!!date.data.created, true);
   assertEquals(!!date.data.updated, true);
@@ -42,7 +50,8 @@ Deno.test("FFF plugin", async (t) => {
   assertEquals(date.data.type, "article");
 
   // images (string media) => image (object media)
-  const image = pages.find((page) => page.src.path === "/image")!;
+  // deno-lint-ignore no-explicit-any
+  const image = pages.find((page) => page.src.path === "/image") as Page<any>;
   assertEquals(image.data.image.alt, "FFF Image Test");
   assertEquals(image.data.image.src, "/my-image.png");
   // getGitDate

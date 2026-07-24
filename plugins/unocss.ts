@@ -77,7 +77,7 @@ export const defaults = {
 export function unoCSS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     let uno: ReturnType<typeof createGenerator>;
     function getGenerator() {
       if (!uno) {

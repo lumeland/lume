@@ -5,8 +5,18 @@ import createSlugifier from "../core/slugifier.ts";
 import unidecode from "npm:unidecode@1.1.0";
 import jaconv from "npm:jaconv@1.0.4";
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { SlugifyUrlsPluginData } from "../plugins/slugify_urls.ts";
+
+interface TestData
+  extends
+    SlugifyUrlsPluginData,
+    PaginatePluginData,
+    SearchPluginData<TestData> {}
+
 Deno.test("slugify_urls plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "slugify_urls",
   });
 
@@ -19,7 +29,7 @@ Deno.test("slugify_urls plugin", async (t) => {
 });
 
 Deno.test("slugify_urls plugin (static files)", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "slugify_urls",
   });
 

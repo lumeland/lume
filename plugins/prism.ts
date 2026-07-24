@@ -54,7 +54,7 @@ export function prism(userOptions?: Options) {
     initAutoload();
   }
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     if (site._data.codeHighlight) {
       log.error(
         `[prism plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "prism". Registering "prism" may lead to conflicts and unpredictable behavior.`,

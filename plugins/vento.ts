@@ -164,7 +164,7 @@ export class VentoEngine implements Engine {
  * @see https://lume.land/plugins/vento/
  */
 export function vento(userOptions?: Options) {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,

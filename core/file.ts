@@ -6,18 +6,19 @@ import { decodeURIComponentSafe } from "./utils/path.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { ProxyComponents } from "./components.ts";
 import type { Entry } from "./fs.ts";
+import { isPlainObject } from "./utils/object.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
-export class Page<D extends Data = Data> {
+export class Page<D extends DataIn = Data> {
   /** The src info */
   src: Src;
 
   /** Used to save the page data */
-  data: D = {} as D;
+  data: D & { basename: string; page: Page<D> };
 
   /** Whether this page comes from a copied file with site.copy() */
   isCopy = false;
@@ -29,38 +30,37 @@ export class Page<D extends Data = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(
-    data: Partial<Data> & { url: string },
+  static create<D extends DataIn>(
+    data: D & { content?: Content },
     src?: Partial<Src>,
-  ): Page {
-    let { url, ...rest } = data;
-    const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
-    const page = new Page(src);
+  ): Page<D> {
+    const basename = posix.basename(data.url).replace(/\.[\w.]+$/, "");
 
-    if (url.endsWith("/index.html")) {
-      url = url.slice(0, -10);
+    if (data.url.endsWith("/index.html")) {
+      data.url = data.url.slice(0, -10);
     }
 
-    page.data = { ...rest, url, page, basename } as Data;
-    page.content = data.content as Content | undefined;
+    const page = new Page<D>(src, {
+      ...data,
+      basename,
+    });
+    page.content = data.content;
 
     return page;
   }
 
-  constructor(src?: Partial<Src>) {
+  constructor(src?: Partial<Src>, data?: D) {
+    this.data = { ...data, page: this } as unknown as Page<D>["data"];
     this.src = { path: "", ext: "", ...src };
   }
 
   /** Duplicate this page. */
   duplicate(index: number | undefined, data: D): Page<D> {
-    const page = new Page<D>({ ...this.src });
+    const page = new Page<D>({ ...this.src }, data);
 
     if (index !== undefined) {
       page.src.path += `[${index}]`;
     }
-
-    data.page = page;
-    page.data = data;
 
     return page;
   }
@@ -140,32 +140,35 @@ export class Page<D extends Data = Data> {
   }
 }
 
-export class StaticFile<D extends Data = Data> {
+export class StaticFile<D extends FileData = FileData> {
   /** The src info */
   src: Required<Src>;
 
   /** Used to save the contextual data */
-  data: D = {} as D;
+  data: D;
 
   /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
-  static create(
-    data: Partial<Data> & { url: string },
+  static create<D extends FileData>(
+    data: D,
     src: Required<Src>,
-  ): StaticFile {
-    const file = new StaticFile(src);
-    file.data = { ...data } as Data;
+  ): StaticFile<D> {
+    const file = new StaticFile(src, data);
     return file;
   }
 
-  constructor(src: Required<Src>) {
+  constructor(src: Required<Src>, data?: D) {
+    this.data = data ?? {} as D;
     this.src = src;
   }
 
-  async toPage(): Promise<Page> {
+  async toPage(): Promise<Page<D & DataIn>> {
     const { content } = await this.src.entry.getContent(binaryLoader);
-    const page = Page.create(this.data, this.src);
+    const page = Page.create(
+      { ...this.data } as D & { content?: Content },
+      this.src,
+    );
     page.content = content as Uint8Array<ArrayBuffer>;
     page.isCopy = this.isCopy;
     return page;
@@ -202,12 +205,12 @@ export interface Src {
 export type Content = Uint8Array<ArrayBuffer> | string;
 
 /** The data of a page declared initially */
-export interface RawData {
-  /** List of tags assigned to a page or folder */
-  tags?: string | string[];
-
+export type RawData<D = unknown> = D & {
   /** The url of a page */
-  url?: string | false | ((page: Page) => string | false);
+  url?:
+    | string
+    | false
+    | ((page: Page<DataIn<D>>) => string | false);
 
   /** The basename of a page */
   basename?: string;
@@ -216,7 +219,7 @@ export interface RawData {
   draft?: boolean;
 
   /** The date creation of the page */
-  date?: Date | string | number;
+  date?: Date | string | number | null;
 
   /** To configure the rendering order of a page */
   renderOrder?: number;
@@ -225,7 +228,7 @@ export interface RawData {
   content?: unknown;
 
   /** The layout used to render a page */
-  layout?: string;
+  layout?: string | null;
 
   /** To configure a different template engine(s) to render a page */
   templateEngine?: string | string[];
@@ -233,76 +236,97 @@ export interface RawData {
   /** To configure how some data keys will be merged with the parent */
   mergedKeys?: Record<string, MergeStrategy>;
 
-  // deno-lint-ignore no-explicit-any
-  [index: string]: any;
-}
+  [index: string]: unknown;
+};
 
-/** The data of a page/folder once loaded and processed */
-export interface Data extends RawData {
-  /** The title of the page */
-  title?: string;
-
-  /** The type of the page (used to group pages in collections) */
-  type?: string;
-
-  /** The id of the page (used to identify a page in a collection) */
-  id?: string | number;
-
-  /** List of tags assigned to a page or folder */
-  tags: string[];
-
+export type DataIn<D = unknown> = RawData<D> & {
   /** The url of a page */
   url: string;
+};
 
+export type DirectoryData<D = unknown> = RawData<D> & {
   /** The basename of the page */
   basename: string;
-
-  /** The date creation of the page */
-  date: Date;
 
   /**
    * The available components
    * @see https://lume.land/docs/core/components/
    */
   comp: ProxyComponents;
+};
 
+export type FileData<D = unknown> = DirectoryData<D> & {
+  /** The url of a page */
+  url: string;
+};
+
+/** The data of a page/folder once loaded and processed */
+export type Data<D = unknown> = FileData<D> & {
   /** The page reference */
-  page: Page;
+  page: Page<Data<D>>;
 
-  /** The language of the page */
-  lang?: string;
-
-  /**
-   * Unmatched Language URL
-   * The url for when the user's language doesn't match with any of the site's available languages.
-   *
-   * Valid values are:
-   * - External URL string (http, https), which is language selector page
-   * - Source path string (/), which is language selector page
-   * - Language code (en, gl, vi), which is fallback language page
-   *
-   * This option is made for x-default feature.
-   * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
-   */
-  unmatchedLangUrl?: string;
-
-  /**
-   * Alternate pages (for languages)
-   * @see https://lume.land/plugins/multilanguage/
-   */
-  alternates?: Data[];
-}
+  /** The date creation of the page */
+  date: Date;
+};
 
 /** Promote files to pages */
-export async function filesToPages(
-  files: StaticFile[],
-  pages: Page[],
-  filter: (file: StaticFile) => boolean,
+export async function filesToPages<D extends Data>(
+  files: StaticFile<D>[],
+  pages: Page<D>[],
+  filter: (file: StaticFile<D>) => boolean,
 ): Promise<void> {
-  const toRemove: StaticFile[] = files.filter(filter);
+  const toRemove: StaticFile<D>[] = files.filter(filter);
 
   for (const file of toRemove) {
     pages.push(await file.toPage());
     files.splice(files.indexOf(file), 1);
   }
+}
+
+export function ensureRawData(data: Record<string, unknown>): data is RawData {
+  if (
+    typeof data.url !== "undefined" && typeof data.url !== "string" &&
+    typeof data.url !== "function" && data.url !== false
+  ) {
+    return false;
+  }
+  if (
+    typeof data.basename !== "undefined" && typeof data.basename !== "string"
+  ) {
+    return false;
+  }
+  if (typeof data.draft !== "undefined" && typeof data.draft !== "boolean") {
+    return false;
+  }
+  if (
+    typeof data.date !== "undefined" && data.date !== null &&
+    typeof data.date !== "string" &&
+    typeof data.date !== "number" && !(data.date instanceof Date)
+  ) {
+    return false;
+  }
+  if (
+    typeof data.renderOrder !== "undefined" &&
+    typeof data.renderOrder !== "number"
+  ) {
+    return false;
+  }
+  if (
+    data.layout !== null && data.layout !== undefined &&
+    typeof data.layout !== "string"
+  ) {
+    return false;
+  }
+  if (
+    typeof data.templateEngine !== "undefined" &&
+    typeof data.templateEngine !== "string" &&
+    !Array.isArray(data.templateEngine)
+  ) {
+    return false;
+  }
+  if (!isPlainObject(data.mergedKeys)) {
+    return false;
+  }
+
+  return true;
 }

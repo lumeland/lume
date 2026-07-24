@@ -3,7 +3,7 @@ import { merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { resolveInclude } from "../core/utils/path.ts";
 import { readFile } from "../core/utils/read.ts";
-import { Page } from "../core/file.ts";
+import { Data, Page } from "../core/file.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
 import { warnUntil } from "../core/utils/log.ts";
 import { bytes } from "../core/utils/format.ts";
@@ -11,7 +11,7 @@ import { browsers, versionString } from "../core/utils/browsers.ts";
 import { getFile, isFromCdn } from "../core/utils/cdn.ts";
 
 import type Site from "../core/site.ts";
-import type { SourceMap } from "./source_maps.ts";
+import type { SourceMap, SourceMapsPluginData } from "./source_maps.ts";
 import type { Item } from "../core/debugbar.ts";
 
 export interface Options {
@@ -54,7 +54,7 @@ const defaultPlugins = [
  * @see https://lume.land/plugins/postcss/
  */
 export function postCSS(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -81,7 +81,7 @@ export function postCSS(userOptions?: Options) {
     site.process([".css"], processPostcss);
     site.filter("postcss", filter, true);
 
-    function processPostcss(files: Page[]) {
+    function processPostcss(files: Page<Data<D>>[]) {
       const hasPages = warnUntil(
         "[postcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
         files.length,
@@ -98,7 +98,7 @@ export function postCSS(userOptions?: Options) {
       return concurrent(files, (file) => postCss(file, item));
     }
 
-    async function postCss(file: Page, item?: Item) {
+    async function postCss(file: Page<Data<D>>, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         file,
@@ -146,7 +146,7 @@ export function postCSS(userOptions?: Options) {
  * Function to configure the postcssImport
  * using the Lume reader and the includes loader
  */
-function configureImport(site: Site, includes: string) {
+function configureImport<D>(site: Site<D>, includes: string) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {

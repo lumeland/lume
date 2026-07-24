@@ -8,9 +8,14 @@ import { concurrent } from "../core/utils/concurrent.ts";
 import { compileStringAsync } from "../deps/sass.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { Page } from "../core/file.ts";
-import { prepareAsset, saveAsset } from "./source_maps.ts";
+import {
+  prepareAsset,
+  saveAsset,
+  SourceMapsPluginData,
+} from "./source_maps.ts";
 import { warnUntil } from "../core/utils/log.ts";
 
+import type { Data } from "../core/file.ts";
 import type Site from "../core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
 
@@ -43,7 +48,7 @@ export const defaults = {
  * @see https://lume.land/plugins/sass/
  */
 export function sass(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -54,7 +59,7 @@ export function sass(userOptions?: Options) {
       site.ignore(options.includes);
     }
 
-    site.process([".scss", ".sass"], function processSASS(files: Page[]) {
+    site.process([".scss", ".sass"], function processSASS(files) {
       const hasPages = warnUntil(
         "[sass plugin] No SCSS or SASS files found. Make sure to add them with <code>site.add()</code>",
         files.length,
@@ -70,7 +75,7 @@ export function sass(userOptions?: Options) {
     const { entries } = site.fs;
     const basePath = site.src();
 
-    async function sass(page: Page) {
+    async function sass(page: Page<Data<D>>) {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
       const baseFilename = posix.dirname(filename);
 

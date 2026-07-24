@@ -1,8 +1,14 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import feed from "../plugins/feed.ts";
+import { PaginatePluginData } from "../plugins/paginate.ts";
+import { SearchPluginData } from "../plugins/search.ts";
+
+interface TestData extends PaginatePluginData, SearchPluginData<TestData> {
+  title?: string;
+}
 
 Deno.test("RSS plugin", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "feed",
     location: new URL("https://example.com/"),
   });
@@ -39,7 +45,7 @@ Deno.test("RSS plugin", async (t) => {
 });
 
 Deno.test("RSS plugin with array function", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "feed",
     location: new URL("https://example.com/"),
   });

@@ -85,7 +85,7 @@ export class MarkdownEngine implements Engine {
 export function remark(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const plugins = [];
 
     // Add remark-parse to generate MDAST

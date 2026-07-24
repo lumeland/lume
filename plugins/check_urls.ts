@@ -59,9 +59,9 @@ export default function (userOptions?: Options) {
       (url.startsWith("#") && !options.anchors);
   }
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const urls = new Map<string, Set<string>>(); // All URLs found
-    const redirects = new Set<string>(); // All URLs that redirect
+    const redirects = new Set<unknown>(); // All URLs that redirect
 
     // Ignore the ouput file to avoid infinite build loop
     if (typeof options.output === "string") {

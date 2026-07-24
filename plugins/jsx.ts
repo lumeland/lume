@@ -5,6 +5,14 @@ import { merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 import type { Engine, Helper } from "../core/renderer.ts";
 
+export interface JSXPluginData {
+  /**
+   * The JSX children elements
+   * @see https://lume.land/plugins/jsx/
+   */
+  children?: JSX.Children;
+}
+
 export interface Options {
   /** File extensions to load */
   extensions?: string[];
@@ -69,7 +77,7 @@ export class JsxEngine implements Engine {
  * @see https://lume.land/plugins/jsx/
  */
 export function jsx(userOptions?: Options) {
-  return (site: Site) => {
+  return <D extends JSXPluginData>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -96,12 +104,6 @@ export default jsx;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * The JSX children elements
-       * @see https://lume.land/plugins/jsx/
-       */
-      children?: JSX.Children;
-    }
+    export interface Data extends JSXPluginData {}
   }
 }

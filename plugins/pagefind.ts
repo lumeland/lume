@@ -144,8 +144,8 @@ export const defaults = {
 export function pagefind(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
-    site.process([".html"], async function processPagefind(pages, allPages) {
+  return <D>(site: Site<D>) => {
+    site.process([".html"], async function processPagefind(pages) {
       const { index } = await Pagefind.createIndex(options.indexing);
 
       if (!index) {
@@ -191,9 +191,9 @@ export function pagefind(userOptions?: Options) {
         const { path } = file;
         const content = textExtensions.includes(posix.extname(path))
           ? textDecoder.decode(file.content)
-          : file.content;
+          : new Uint8Array(file.content);
 
-        allPages.push(
+        site.pushPage(
           Page.create({
             url: posix.join("/", options.outputPath, path),
             content,

@@ -2,12 +2,21 @@ import satori, { fontsSpecifier, SatoriOptions } from "../deps/satori.ts";
 import { create } from "../deps/sharp.ts";
 import { posix } from "../deps/path.ts";
 import { resolveInclude } from "../core/utils/path.ts";
-import { merge } from "../core/utils/object.ts";
+import { log } from "../core/utils/log.ts";
+import { isPlainObject, merge } from "../core/utils/object.ts";
 import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
+import Site from "../core/site.ts";
+import { MetasPluginData } from "./metas.ts";
 
-import "../types.ts";
+export interface OgImagesPluginData<D> extends MetasPluginData<D> {
+  /**
+   * The layout to generate the Open Graph Image
+   * @see https://lume.land/plugins/og_image/
+   */
+  openGraphLayout?: string;
+}
 
 export interface Options {
   /**
@@ -36,7 +45,7 @@ export const defaults = {
  * @see https://lume.land/plugins/og_images/
  */
 export function ogImages(userOptions?: Options) {
-  return (site: Lume.Site) => {
+  return <D extends OgImagesPluginData<D>>(site: Site<D>) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -46,7 +55,7 @@ export function ogImages(userOptions?: Options) {
     // Get the cache folder
     const { cache } = site;
 
-    site.process([".html"], async function processOgImages(pages, allPages) {
+    site.process([".html"], async function processOgImages(pages) {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }
@@ -56,6 +65,13 @@ export function ogImages(userOptions?: Options) {
         const layout = data.openGraphLayout;
 
         if (!layout) {
+          continue;
+        }
+
+        if (typeof layout !== "string") {
+          log.warn(
+            `[og_images] Expected 'openGraphLayout' to be a string. Skipping page.`,
+          );
           continue;
         }
 
@@ -84,19 +100,23 @@ export function ogImages(userOptions?: Options) {
         const content = await render(jsx);
         const url = page.outputPath.replace(/\.html$/, ".png");
 
-        allPages.push(Page.create({ url, content }));
+        site.pushPage(Page.create({ url, content }));
 
-        if (!data.metas) {
-          data.metas = {};
+        let metas: Record<string, unknown>;
+
+        if (isPlainObject(data.metas)) {
+          metas = data.metas;
+        } else {
+          metas = data.metas = {};
         }
 
-        data.metas.image = url;
+        metas.image = url;
       }
     });
 
     async function render(
       jsx: unknown,
-    ): Promise<Uint8Array | undefined> {
+    ): Promise<Uint8Array<ArrayBuffer> | undefined> {
       if (cache) {
         const result = await cache.getBytes(["og", jsx]);
 
@@ -112,7 +132,7 @@ export function ogImages(userOptions?: Options) {
         await cache.set(["og", jsx], content);
       }
 
-      return content;
+      return content as Uint8Array<ArrayBuffer>;
     }
   };
 }
@@ -126,7 +146,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       data: (await read(
         `${fontsSpecifier}/inter/Inter-Regular.woff`,
         true,
-      )).buffer as ArrayBuffer,
+      )).buffer,
     },
     {
       name: "inter",
@@ -135,7 +155,7 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
       data: (await read(
         `${fontsSpecifier}/inter/Inter-SemiBold.woff`,
         true,
-      )).buffer as ArrayBuffer,
+      )).buffer,
     },
   ];
 }
@@ -145,12 +165,6 @@ export default ogImages;
 /** Extends Data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /**
-       * The layout to generate the Open Graph Image
-       * @see https://lume.land/plugins/og_image/
-       */
-      openGraphLayout?: string;
-    }
+    export interface Data extends OgImagesPluginData<Data> {}
   }
 }

@@ -28,7 +28,7 @@ export const defaults = {
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const iconFiles = new Map<string, string>();
     const iconSprite = new Map<string, string>();
 

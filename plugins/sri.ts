@@ -28,7 +28,7 @@ const cache = new Map<string, string>();
 export function sri(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     const { origin } = site.options.location;
 
     site.process([".html"], async function processRSI(pages) {

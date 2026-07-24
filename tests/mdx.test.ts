@@ -1,9 +1,14 @@
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import mdx from "../plugins/mdx.ts";
-import jsx from "../plugins/jsx.ts";
+import jsx, { JSXPluginData } from "../plugins/jsx.ts";
+import { PaginatePluginData } from "../plugins/paginate.ts";
+import { SearchPluginData } from "../plugins/search.ts";
+
+interface TestData
+  extends JSXPluginData, PaginatePluginData, SearchPluginData<TestData> {}
 
 Deno.test("Build a mdx site", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "mdx",
   });
 

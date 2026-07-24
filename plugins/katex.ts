@@ -71,7 +71,7 @@ export const defaults = {
 export function katex(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     if (options.cssFile !== false) {
       let cssCode = "";
       const cssFile = posix.join("/", options.cssFile || site.options.cssFile);

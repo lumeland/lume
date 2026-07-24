@@ -13,8 +13,12 @@ interface DataToMerge {
   [key: string]: unknown;
 }
 
+/** Type merging all types listed in an array. It doesn't reflect the full semantics of `mergeData`, but it's good enough when dealing with generic page data internally. */
+type Merge<T extends unknown[]> = T extends [infer U, ...infer R] ? U & Merge<R>
+  : unknown;
+
 /** Merge the cascade data */
-export function mergeData(...datas: DataToMerge[]): DataToMerge {
+export function mergeData<T extends DataToMerge[]>(...datas: T): Merge<T> {
   return datas.reduce((previous, current) => {
     const data: DataToMerge = { ...previous, ...current };
 
@@ -51,7 +55,7 @@ export function mergeData(...datas: DataToMerge[]): DataToMerge {
     }
 
     return data;
-  });
+  }) as Merge<T>;
 }
 
 /** Override some data recursively */

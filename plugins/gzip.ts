@@ -22,10 +22,10 @@ export const defaults = {
 export function gzip(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.process(
       options.extensions,
-      function processGzip(pages, allPages) {
+      function processGzip(pages) {
         return concurrent(pages, async (page: Page) => {
           const contentStream = ReadableStream.from([page.bytes]);
           const compressedStream = contentStream.pipeThrough(
@@ -38,7 +38,7 @@ export function gzip(userOptions?: Options) {
             url: page.outputPath + ".gz",
             content: compressedContent,
           });
-          allPages.push(compressedPage);
+          site.pushPage(compressedPage);
         });
       },
     );

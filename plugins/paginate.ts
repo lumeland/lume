@@ -2,6 +2,26 @@ import { Merge, merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 
+export interface PaginatePluginData {
+  /**
+   * The paginator helper
+   * @see https://lume.land/plugins/paginate/
+   */
+  paginate: Paginator;
+
+  /**
+   * The pagination info
+   * @see https://lume.land/plugins/paginate/
+   */
+  pagination?: PaginationInfo;
+
+  /**
+   * The pagination result
+   * @see https://lume.land/plugins/paginate/
+   */
+  results?: this[];
+}
+
 /** The options for the paginate helper */
 export interface PaginateOptions {
   /** The number of elements per page */
@@ -77,7 +97,7 @@ export const defaults = {
 export function paginate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends PaginatePluginData>(site: Site<D>) => {
     if (!userOptions?.options?.url) {
       const ext = site.options.prettyUrls ? "/index.html" : ".html";
       options.options.url = (page: number) => `./page-${page}${ext}`;
@@ -143,24 +163,6 @@ declare global {
   namespace Lume {
     export type { PaginateResult };
 
-    export interface Data {
-      /**
-       * The paginator helper
-       * @see https://lume.land/plugins/paginate/
-       */
-      paginate: Paginator;
-
-      /**
-       * The pagination info
-       * @see https://lume.land/plugins/paginate/
-       */
-      pagination?: PaginationInfo;
-
-      /**
-       * The pagination result
-       * @see https://lume.land/plugins/paginate/
-       */
-      results?: Data[];
-    }
+    export interface Data extends PaginatePluginData {}
   }
 }

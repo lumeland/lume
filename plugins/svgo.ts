@@ -22,7 +22,7 @@ export const defaults = {} satisfies Options;
 export function svgo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.process([".svg"], function processSVGO(files: Page[]) {
       const hasPages = warnUntil(
         "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",

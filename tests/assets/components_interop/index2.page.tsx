@@ -1,4 +1,6 @@
-export default function ({ comp }: Lume.Data) {
+import { Data } from "../../../core/file.ts";
+
+export default function ({ comp }: Data) {
   return <>
     <comp.Title />
     <hr/>

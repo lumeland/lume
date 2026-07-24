@@ -7,7 +7,7 @@ import type Site from "../core/site.ts";
  * @see https://lume.land/plugins/base_path/
  */
 export function basePath() {
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.use(modifyUrls({
       fn: (url) => url.startsWith("/") ? site.url(url) : url,
     }));

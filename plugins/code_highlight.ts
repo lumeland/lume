@@ -65,7 +65,7 @@ export function codeHighlight(userOptions?: Options) {
     }
   }
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     if (site._data.codeHighlight) {
       log.error(
         `[code_highlight plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "codeHighlight". Registering "codeHighlight" may lead to conflicts and unpredictable behavior.`,

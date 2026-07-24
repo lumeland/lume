@@ -20,7 +20,7 @@ export const defaults = {
 export function extractDate(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D>(site: Site<D>) => {
     site.parseBasename((basename) => {
       const result = parseDateFromBasename(basename);
       if (result) {

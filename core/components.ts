@@ -3,7 +3,7 @@ import textLoader from "./loaders/text.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
 
-import type { Data } from "./file.ts";
+import type { RawData } from "./file.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {
@@ -14,7 +14,7 @@ export interface Options {
 /**
  * Class to load components from the _components folder.
  */
-export class ComponentLoader {
+export class ComponentLoader<D> {
   /** List of loaders and engines used by extensions */
   formats: Formats;
 
@@ -25,7 +25,7 @@ export class ComponentLoader {
   /** Load a directory of components */
   async load(
     dirEntry: Entry,
-    data: Partial<Data>,
+    data: Partial<RawData<D>>,
     components?: Components,
   ): Promise<Components> {
     if (!components) {
@@ -65,7 +65,7 @@ export class ComponentLoader {
   /** Load a component folder (a folder with a comp.* file) */
   async #loadComponentFolder(
     entry: Entry,
-    data: Partial<Data>,
+    data: Partial<RawData<D>>,
   ): Promise<Component | undefined> {
     const compEntry = findChild(
       entry,
@@ -111,7 +111,7 @@ export class ComponentLoader {
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
-    dirData: Partial<Data>,
+    dirData: Partial<RawData<D>>,
     defaultName?: string,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);
@@ -130,7 +130,7 @@ export class ComponentLoader {
     const { css, js, inheritData, content, ...data } = rawComponent;
     const name = defaultName ?? entry.name.slice(0, -ext.length);
 
-    const render = async (props?: Record<string, unknown>): Promise<string> => {
+    const render = async (props?: RawData): Promise<string> => {
       const currData = inheritData !== false
         ? { ...dirData, ...data, ...props }
         : { ...data, ...props };
@@ -331,11 +331,11 @@ async function getEntryContent(entry?: Entry | string): Promise<string> {
   return "";
 }
 
-export interface ProxyComponents {
+export type ProxyComponents = {
   // deno-lint-ignore no-explicit-any
   (props?: Record<string, unknown>): any;
   [key: string]: ProxyComponents;
-}
+};
 
 /**
  * Create and returns a proxy to use the components

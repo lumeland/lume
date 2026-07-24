@@ -9,6 +9,13 @@ import { es } from "npm:date-fns@4.1.0/locale/es";
 
 const date0 = new Date(0);
 
+import type { PaginatePluginData } from "../plugins/paginate.ts";
+import type { SearchPluginData } from "../plugins/search.ts";
+import type { DatePluginData } from "../plugins/date.ts";
+
+interface TestData
+  extends DatePluginData, PaginatePluginData, SearchPluginData<TestData> {}
+
 Deno.test("date plugin", () => {
   const site = lume();
   site.use(date({
@@ -79,7 +86,7 @@ Deno.test("date plugin with custom locale", async () => {
 });
 
 Deno.test("date plugin filter", async (t) => {
-  const site = getSite({
+  const site = getSite<TestData>({
     src: "date",
   });
 

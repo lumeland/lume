@@ -1,12 +1,17 @@
 import { minify } from "../deps/terser.ts";
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
-import { prepareAsset, saveAsset } from "./source_maps.ts";
+import {
+  prepareAsset,
+  saveAsset,
+  SourceMapsPluginData,
+} from "./source_maps.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { bytes, percentage } from "../core/utils/format.ts";
 
 import type Site from "../core/site.ts";
+import type { Data } from "../core/file.ts";
 import type { MinifyOptions } from "../deps/terser.ts";
 import type { Item } from "../core/debugbar.ts";
 
@@ -38,9 +43,9 @@ export const defaults = {
 export function terser(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Site) => {
+  return <D extends SourceMapsPluginData>(site: Site<D>) => {
     site.filter("terser", filter, true);
-    site.process(options.extensions, function processTerser(files: Page[]) {
+    site.process(options.extensions, function processTerser(files) {
       const hasPages = warnUntil(
         "[terser plugin] No files found. Make sure to add the JS files with <code>site.add()</code>",
         files.length,
@@ -57,7 +62,7 @@ export function terser(userOptions?: Options) {
       return concurrent(files, (file) => terser(file, item));
     });
 
-    async function terser(page: Page, item?: Item) {
+    async function terser(page: Page<Data<D>>, item?: Item) {
       const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
         site,
         page,
