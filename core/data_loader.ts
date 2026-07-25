@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import { isPlainObject } from "./utils/object.ts";
 
 import type { Entry } from "./fs.ts";
-import type { RawData } from "./file.ts";
+import type { RawData } from "../types.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {

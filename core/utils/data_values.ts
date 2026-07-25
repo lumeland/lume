@@ -3,7 +3,7 @@ import {
   RemoveMarkdownOptions,
 } from "../../deps/remove-markdown.ts";
 
-import type { Data } from "../file.ts";
+import type { Data } from "../../types.ts";
 
 /**
  * Get the value of a page data

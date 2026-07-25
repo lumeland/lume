@@ -7,12 +7,13 @@ import type { Middleware, RequestHandler } from "./core/server.ts";
 import type { MergeStrategy } from "./core/utils/merge_data.ts";
 import type { ProxyComponents } from "./core/components.ts";
 
+/** Raw data defined for pages or _data files */
 export type RawData<D = unknown> = D & {
   /** List of tags assigned to a page or folder */
   tags?: string | string[];
 
   /** The url of a page */
-  url?: string | false; //| ((page: Page) => string | false);
+  url?: string | false | ((page: Page<D>) => string | false);
 
   /** The basename of a page */
   basename?: string;
@@ -39,22 +40,26 @@ export type RawData<D = unknown> = D & {
   mergedKeys?: Record<string, MergeStrategy>;
 
   [index: string]: unknown;
-}
+};
 
+/** Data defined in _data files */
 export type DirectoryData<D = unknown> = RawData<D> & {
   basename: string;
   comp: ProxyComponents;
-}
+};
 
+/** Data available for static files */
 export type FileData<D = unknown> = DirectoryData<D> & {
   url: string;
-}
+};
 
-export type PageData<D = unknown> = FileData<D> & {
+/** Data available for pages */
+type PageData<D = unknown> = FileData<D> & {
   page: Page<D>;
   date: Date;
-}
+};
 
+export type { PageData as Data };
 
 declare global {
   namespace Lume {
@@ -70,11 +75,16 @@ declare global {
       Site,
     };
 
+    /** Global data extended by plugins */
+    export interface GlobalData {
+      [index: string]: unknown;
+    }
+
     /** The page data */
-    export interface Data extends PageData {
+    export type Data<D = unknown> = PageData<D> & GlobalData & {
       // deno-lint-ignore no-explicit-any
       [index: string]: Data["__strict"] extends true ? unknown : any;
-    }
+    };
 
     /** The page helpers */
     export interface Helpers {

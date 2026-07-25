@@ -200,10 +200,10 @@ function addSourceMap(url: string, sourceMap: string): string {
 
 export default sourceMaps;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The source map data (if it's an asset)
        * @see https://lume.land/plugins/source_maps/

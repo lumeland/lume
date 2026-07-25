@@ -51,10 +51,10 @@ function gitCommand(...args: string[]): string {
   return decoder.decode(stdout).trim();
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * GIT info
        * @see https://lume.land/plugins/git_info/

@@ -1,7 +1,7 @@
 import { extract, test } from "../../deps/front_matter.ts";
 import { read } from "../utils/read.ts";
 
-import type { RawData } from "../file.ts";
+import type { RawData } from "../../types.ts";
 
 /** Load a text file. Detect and parse the front matter */
 export default async function text(path: string): Promise<RawData> {

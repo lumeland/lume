@@ -1,7 +1,7 @@
 import { isUrl } from "../utils/path.ts";
 import { isPlainObject } from "../utils/object.ts";
 
-import type { RawData } from "../file.ts";
+import type { RawData } from "../../types.ts";
 
 /** Load a JavaScript/TypeScript file. Use a random hash to prevent caching */
 export default async function module(path: string): Promise<RawData> {

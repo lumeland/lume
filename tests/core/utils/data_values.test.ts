@@ -7,26 +7,29 @@ Deno.test("Test getDataValue() function", async (t) => {
   const site = getSite({ src: "metas" });
 
   site.use(metas());
-  site.process([".html"], async (pages) => {
-    for (const page of pages) {
-      const { data } = page;
-      if (!data.cover) continue;
+  site.process<{ metas: { image: string }; cover: string }>(
+    [".html"],
+    async (pages) => {
+      for (const page of pages) {
+        const { data } = page;
+        if (!data.cover) continue;
 
-      await t.step(
-        "Data query: =",
-        () => equals(getDataValue(data, data.metas.image), data.cover),
-      );
+        await t.step(
+          "Data query: =",
+          () => equals(getDataValue(data, data.metas.image), data.cover),
+        );
 
-      await t.step(
-        "CSS query: $",
-        () =>
-          equals(
-            getDataValue(data, '$meta[property="og:image"] attr(content)'),
-            new URL(site.url(data.cover), site.url(page.data.url, true)).href,
-          ),
-      );
-    }
-  });
+        await t.step(
+          "CSS query: $",
+          () =>
+            equals(
+              getDataValue(data, '$meta[property="og:image"] attr(content)'),
+              new URL(site.url(data.cover), site.url(page.data.url, true)).href,
+            ),
+        );
+      }
+    },
+  );
 
   await build(site);
 });

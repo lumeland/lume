@@ -2,7 +2,7 @@ import { parse } from "../../deps/yaml.ts";
 import { isPlainObject } from "../utils/object.ts";
 import { read } from "../utils/read.ts";
 
-import type { RawData } from "../file.ts";
+import type { RawData } from "../../types.ts";
 
 /** Load and parse a YAML file */
 export default async function yaml(path: string): Promise<RawData> {

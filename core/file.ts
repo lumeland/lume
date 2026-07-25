@@ -4,7 +4,7 @@ import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { Entry } from "./fs.ts";
-import type { FileData, PageData } from "../types.ts";
+import type { Data, FileData } from "../types.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
@@ -16,7 +16,7 @@ export class Page<D = unknown> {
   src: Src;
 
   /** Used to save the page data */
-  data: PageData<D> = {} as PageData<D>;
+  data: Data<D> = {} as Data<D>;
 
   /** Whether this page comes from a copied file with site.copy() */
   isCopy = false;
@@ -28,10 +28,10 @@ export class Page<D = unknown> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(
-    data: Partial<FileData> & { url: string },
+  static create<D = unknown>(
+    data: Partial<Omit<FileData<D>, "url">> & { url: string },
     src?: Partial<Src>,
-  ): Page {
+  ): Page<D> {
     let { url, ...rest } = data;
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page(src);
@@ -40,10 +40,10 @@ export class Page<D = unknown> {
       url = url.slice(0, -10);
     }
 
-    page.data = { ...rest, url, page, basename } as PageData;
+    page.data = { ...rest, url, page, basename } as Data<D>;
     page.content = data.content as Content | undefined;
 
-    return page;
+    return page as Page<D>;
   }
 
   constructor(src?: Partial<Src>) {
@@ -58,8 +58,8 @@ export class Page<D = unknown> {
       page.src.path += `[${index}]`;
     }
 
-    (data as PageData<D>).page = page;
-    page.data = data as PageData<D>;
+    (data as Data<D>).page = page;
+    page.data = data as Data<D>;
 
     return page;
   }
@@ -139,18 +139,18 @@ export class Page<D = unknown> {
   }
 }
 
-export class StaticFile<D extends FileData = FileData> {
+export class StaticFile<D = unknown> {
   /** The src info */
   src: Required<Src>;
 
   /** Used to save the contextual data */
-  data: D = {} as D;
+  data: FileData<D> = {} as FileData<D>;
 
   /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
   static create(
-    data: Partial<FileData> & { url: string },
+    data: FileData,
     src: Required<Src>,
   ): StaticFile {
     const file = new StaticFile(src);

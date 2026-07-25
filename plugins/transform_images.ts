@@ -292,10 +292,10 @@ function removeDuplicatedTransformations(
 
 export default transformImages;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Image transformations
        * @see https://lume.land/plugins/transform_images/

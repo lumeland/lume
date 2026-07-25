@@ -5,7 +5,7 @@ import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
-import type { PageData } from "../types.ts";
+import type { Data } from "../types.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 
 export interface PluginData {
@@ -32,7 +32,7 @@ export interface PluginData {
    * Alternate pages (for languages)
    * @see https://lume.land/plugins/multilanguage/
    */
-  alternates?: PageData<PluginData>[];
+  alternates?: Data<PluginData>[];
 }
 
 export interface Options {
@@ -142,112 +142,121 @@ export function multilanguage(userOptions: Options) {
      * + create the alternates
      * + sort the alternates
      */
-    site.preprocess<PluginData>([".html"], function processMultilanguageAlternates(pages) {
-      for (const page of pages) {
-        const { data } = page;
-        const { lang } = data;
+    site.preprocess<PluginData>(
+      [".html"],
+      function processMultilanguageAlternates(pages) {
+        for (const page of pages) {
+          const { data } = page;
+          const { lang } = data;
 
-        if (!lang) {
-          continue;
-        }
-
-        if (isNot404page(data)) {
-          const { url } = data;
-          const isLangUrl = url.startsWith(`/${lang}/`);
-          const isDefaultLang = lang === options.defaultLanguage;
-          if (!isLangUrl && !isDefaultLang) {
-            // Preprocess to prefix all urls with the language code
-            data.url = `/${lang}${url}`;
-          } else if (isLangUrl && isDefaultLang) {
-            // Preprocess to unprefix all urls with the default language code
-            data.url = url.slice(lang.length + 1);
+          if (!lang) {
+            continue;
           }
-        }
 
-        // Create the alternates object if it doesn't exist
-        const { id, type } = data;
-        if (data.alternates || id === undefined) {
-          data.alternates ??= [data];
-          continue;
-        }
-
-        const alternates: PageData<PluginData>[] = [];
-        const ids = new Map<string, Page>();
-
-        pages.filter((page) => page.data.id == id && page.data.type === type)
-          .forEach((page) => {
-            const id = `${page.data.lang}-${page.data.id}-${page.data.type}`;
-            const existing = ids.get(id);
-            if (existing) {
-              log.warn(
-                `[multilanguage plugin] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
-              );
+          if (isNot404page(data)) {
+            const { url } = data;
+            const isLangUrl = url.startsWith(`/${lang}/`);
+            const isDefaultLang = lang === options.defaultLanguage;
+            if (!isLangUrl && !isDefaultLang) {
+              // Preprocess to prefix all urls with the language code
+              data.url = `/${lang}${url}`;
+            } else if (isLangUrl && isDefaultLang) {
+              // Preprocess to unprefix all urls with the default language code
+              data.url = url.slice(lang.length + 1);
             }
-            ids.set(id, page);
-            alternates.push(page.data);
-            page.data.alternates = alternates;
-          });
+          }
 
-        // Sort the alternates by language
-        alternates.sort((a, b) =>
-          options.languages.indexOf(a.lang!) -
-          options.languages.indexOf(b.lang!)
-        );
-      }
-    });
+          // Create the alternates object if it doesn't exist
+          const { id, type } = data;
+          if (data.alternates || id === undefined) {
+            data.alternates ??= [data];
+            continue;
+          }
+
+          const alternates: Data<PluginData>[] = [];
+          const ids = new Map<string, Page>();
+
+          pages.filter((page) => page.data.id == id && page.data.type === type)
+            .forEach((page) => {
+              const id = `${page.data.lang}-${page.data.id}-${page.data.type}`;
+              const existing = ids.get(id);
+              if (existing) {
+                log.warn(
+                  `[multilanguage plugin] The pages ${existing.sourcePath} and ${page.sourcePath} have the same id, type and language.`,
+                );
+              }
+              ids.set(id, page);
+              alternates.push(page.data);
+              page.data.alternates = alternates;
+            });
+
+          // Sort the alternates by language
+          alternates.sort((a, b) =>
+            options.languages.indexOf(a.lang!) -
+            options.languages.indexOf(b.lang!)
+          );
+        }
+      },
+    );
 
     /**
      * Preprocessor to process the Unmatched Language URL
      *
      * + convert unmatchedLangUrl any value to URL string value
      */
-    site.preprocess<PluginData>([".html"], function processUnmatchedLangUrl(pages) {
-      for (const page of pages) {
-        page.data.unmatchedLangUrl = getUnmatchedLangPath(
-          page,
-          pages,
-        );
-      }
-    });
+    site.preprocess<PluginData>(
+      [".html"],
+      function processUnmatchedLangUrl(pages) {
+        for (const page of pages) {
+          page.data.unmatchedLangUrl = getUnmatchedLangPath(
+            page,
+            pages,
+          );
+        }
+      },
+    );
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process<PluginData>([".html"], function processMultilanguageHtml(pages) {
-      for (const page of pages) {
-        const { document } = page;
-        const alternates = page.data.alternates;
-        const lang = page.data.lang as string | undefined;
+    site.process<PluginData>(
+      [".html"],
+      function processMultilanguageHtml(pages) {
+        for (const page of pages) {
+          const { document } = page;
+          const alternates = page.data.alternates;
+          const lang = page.data.lang as string | undefined;
 
-        if (!alternates || !lang) {
-          continue;
-        }
+          if (!alternates || !lang) {
+            continue;
+          }
 
-        // Include <html lang="${lang}"> attribute element if it's missing
-        if (!document.documentElement?.getAttribute("lang")) {
-          document.documentElement?.setAttribute("lang", lang);
-        }
+          // Include <html lang="${lang}"> attribute element if it's missing
+          if (!document.documentElement?.getAttribute("lang")) {
+            document.documentElement?.setAttribute("lang", lang);
+          }
 
-        // Insert the <link> elements automatically
-        for (const data of alternates) {
-          appendHreflang(
-            data.lang as string,
-            site.url(data.url, true),
-            document,
-          );
-        }
+          // Insert the <link> elements automatically
+          for (const data of alternates) {
+            appendHreflang(
+              data.lang as string,
+              site.url(data.url, true),
+              document,
+            );
+          }
 
-        if (page.data.unmatchedLangUrl) {
-          appendHreflang(
-            "x-default",
-            site.url(page.data.unmatchedLangUrl, true),
-            document,
-          );
+          if (page.data.unmatchedLangUrl) {
+            appendHreflang(
+              "x-default",
+              site.url(page.data.unmatchedLangUrl, true),
+              document,
+            );
+          }
         }
-      }
-    });
+      },
+    );
 
     /** Merge translations with the root data object */
-    function mergeTranslations(data: PageData<PluginData>) {
+    function mergeTranslations(data: Data<PluginData>) {
       const { lang } = data;
 
       if (!lang) {
@@ -255,7 +264,7 @@ export function multilanguage(userOptions: Options) {
       }
 
       // Get the language data
-      const override = data[lang];
+      const override = data[lang] as Data | undefined;
 
       // Remove all language data from the page data
       for (const key of options.languages) {
@@ -362,9 +371,9 @@ function appendHreflang(lang: string, url: string, document: Document) {
 
 export default multilanguage;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data extends PluginData {}
+    export interface GlobalData extends PluginData {}
   }
 }

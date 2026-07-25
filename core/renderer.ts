@@ -8,7 +8,8 @@ import { Page } from "./file.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
 
-import type { Content, Data, RawData } from "./file.ts";
+import type { Content } from "./file.ts";
+import type { Data, RawData } from "../types.ts";
 import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
@@ -54,7 +55,11 @@ export default class Renderer {
   }
 
   /** Register a new helper used by the template engines */
-  addHelper(name: string, fn: Helper<HelperThis>, options: HelperOptions) {
+  addHelper<D = unknown>(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ) {
     this.helpers.set(name, [fn, options]);
 
     for (const format of this.formats.entries.values()) {
@@ -107,19 +112,15 @@ export default class Renderer {
         const basePath = posix.dirname(page.data.url);
 
         for await (const data of generator) {
-          if (!data.content) {
-            data.content = undefined;
-          }
-          const newPage = page.duplicate(
-            index++,
-            mergeData(page.data, data) as Data,
-          );
-
-          let base = basePath;
-
           if (data.url === false) {
             continue;
           }
+          if (!data.content) {
+            data.content = undefined;
+          }
+
+          const newPage = page.duplicate(index++, mergeData(page.data, data));
+          let base = basePath;
 
           if (!data.url && data.basename !== undefined) {
             // @ts-ignore: The url is added later
@@ -371,8 +372,8 @@ export interface Engine<T = string | { toString(): string }> {
 }
 
 /** A generic helper to be used in template engines */
-export interface HelperThis {
-  data?: Data;
+export interface HelperThis<D = unknown> {
+  data?: Data<D>;
 }
 
 // deno-lint-ignore no-explicit-any

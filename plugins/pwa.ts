@@ -341,10 +341,10 @@ export interface Manifest {
   migrate_from: string[];
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * PWA - Main app
        * @see https://lume.land/plugins/pwa/

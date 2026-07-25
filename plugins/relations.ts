@@ -1,7 +1,8 @@
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
+import type { Data } from "../types.ts";
 
 type RelationFilter = (data1: Data, data2: Data) => boolean;
 
@@ -35,6 +36,11 @@ export const defaults = {
   foreignKeys: {},
 } satisfies Options;
 
+interface PluginData {
+  id?: string | number;
+  type?: string;
+}
+
 /**
  * A plugin to create relations between pages
  * @see https://lume.land/plugins/relations/
@@ -45,7 +51,10 @@ export function relations(userOptions: Options) {
   return (site: Site) => {
     site.preprocess(options.extensions, processRelations);
 
-    function processRelations(pages1: Page[], pages: Page[]) {
+    function processRelations(
+      pages1: Page<PluginData>[],
+      pages: Page<PluginData>[],
+    ) {
       pages1.forEach((page1) => {
         const data1 = page1.data;
         const [
@@ -61,9 +70,9 @@ export function relations(userOptions: Options) {
         pages.forEach(indexPage);
 
         // Index the current page with previously generated pages (if any)
-        site.pages.forEach(indexPage);
+        (site.pages as Page<PluginData>[]).forEach(indexPage);
 
-        function indexPage(page2: Page) {
+        function indexPage(page2: Page<PluginData>) {
           if (page1 === page2) {
             return;
           }
@@ -178,9 +187,9 @@ export function relations(userOptions: Options) {
   };
 
   function getRelationInfo(
-    data: Data,
+    data: Data<PluginData>,
   ): [string?, string?, string?, string?, string?, RelationFilter?] {
-    const type = data[options.typeKey];
+    const type = data[options.typeKey] as string | undefined;
     if (!type) {
       return [];
     }
@@ -191,13 +200,19 @@ export function relations(userOptions: Options) {
     }
 
     if (typeof foreignKey === "string") {
-      return [type, foreignKey, data[options.idKey], type, type];
+      return [
+        type,
+        foreignKey,
+        data[options.idKey] as string | undefined,
+        type,
+        type,
+      ];
     }
 
     return [
       type,
       foreignKey.foreignKey,
-      data[foreignKey.idKey || options.idKey],
+      data[foreignKey.idKey || options.idKey] as string | undefined,
       foreignKey.relationKey || type,
       foreignKey.pluralRelationKey || foreignKey.relationKey || type,
       foreignKey.filter,

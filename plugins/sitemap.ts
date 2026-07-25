@@ -4,7 +4,7 @@ import { Page } from "../core/file.ts";
 import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 import type { stringifyable } from "../deps/xml.ts";
 
 type ChangeFreq =
@@ -56,6 +56,14 @@ export const defaults = {
   },
 } satisfies Options;
 
+export interface PluginData {
+  lang?: string;
+
+  unmatchedLangUrl?: string;
+
+  alternates?: Data<PluginData>[];
+}
+
 /**
  * A plugin to generate a sitemap.xml from page files after build
  * @see https://lume.land/plugins/sitemap/
@@ -64,7 +72,7 @@ export function sitemap(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.process(async function processSitemap() {
+    site.process<PluginData>(async function processSitemap() {
       // Create the sitemap.xml page
       const sitemap = Page.create({
         url: options.filename,
@@ -83,7 +91,7 @@ export function sitemap(userOptions?: Options) {
       }\n`;
     });
 
-    function generateSitemap(pages: Data[]): string {
+    function generateSitemap(pages: Data<PluginData>[]): string {
       const items = options.items ?? {};
       const sitemap: stringifyable = {
         "@version": "1.0",
@@ -112,7 +120,7 @@ export function sitemap(userOptions?: Options) {
             }
 
             if (data.alternates?.length) {
-              node["xhtml:link"] = data.alternates.map((alternate: Data) => ({
+              node["xhtml:link"] = data.alternates.map((alternate) => ({
                 "@rel": "alternate",
                 "@hreflang": alternate.lang!,
                 "@href": site.url(alternate.url, true),

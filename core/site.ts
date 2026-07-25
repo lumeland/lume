@@ -42,7 +42,7 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
-import { PageData, RawData } from "../types.ts";
+import { Data, RawData } from "../types.ts";
 
 /** Default options of the site */
 const defaults = {
@@ -210,7 +210,7 @@ export default class Site {
       files: this.files,
       sourceData: source.data,
       filters: [
-        (data: PageData) => data.page.isHTML,
+        (data: Data) => data.page.isHTML,
         filter404page(server.page404), // not the 404 page
       ],
     });
@@ -409,7 +409,10 @@ export default class Site {
 
   /** Register a preprocessor for some extensions */
   preprocess<D = unknown>(processor: Processor<D>): this;
-  preprocess<D = unknown>(extensions: Extensions, processor: Processor<D>): this;
+  preprocess<D = unknown>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
   preprocess<D = unknown>(
     extensions: Extensions | Processor<D>,
     preprocessor?: Processor<D>,
@@ -430,7 +433,10 @@ export default class Site {
   /** Register a processor for some extensions */
   process<D = unknown>(processor: Processor<D>): this;
   process<D = unknown>(extensions: Extensions, processor: Processor<D>): this;
-  process<D = unknown>(extensions: Extensions | Processor<D>, processor?: Processor<D>): this {
+  process<D = unknown>(
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
+  ): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);
     }
@@ -444,12 +450,20 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper<HelperThis>, async = false): this {
+  filter<D = unknown>(
+    name: string,
+    filter: Helper<HelperThis<D>>,
+    async = false,
+  ): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
+  helper<D = unknown>(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -469,7 +483,7 @@ export default class Site {
   }
 
   /** Register a page */
-  page(data: Partial<PageData>, scope = "/"): this {
+  page(data: Partial<Data>, scope = "/"): this {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data);
     this.scopedPages.set(scope, pages);
@@ -1066,14 +1080,14 @@ export default class Site {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page> {
+  async getOrCreatePage<D = unknown>(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page
     const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
-      return page;
+      return page as Page<D>;
     }
 
     // It's a static file
@@ -1083,7 +1097,7 @@ export default class Site {
       const file = this.files.splice(index, 1)[0];
       const page = await file.toPage();
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     // Read the source files directly
@@ -1093,12 +1107,12 @@ export default class Site {
       const page = Page.create({ url }, { entry });
       page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     const newPage = Page.create({ url });
     this.pages.push(newPage);
-    return newPage;
+    return newPage as Page<D>;
   }
 
   /**

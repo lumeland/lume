@@ -12,7 +12,7 @@ import { normalizePath } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
 import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";

@@ -157,7 +157,7 @@ export async function assertSiteSnapshot(
             default:
               throw new Error(`Unknown type "${typeof value}"`);
           }
-        }).sort((a, b) => a[0].localeCompare(b[0])),
+        }).sort((a, b) => (a[0] as string).localeCompare(b[0] as string)),
       ),
       content: isSourceMap
         ? normalizeSourceMap(page.content as string)

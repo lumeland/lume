@@ -164,10 +164,10 @@ export function decapCMS(userOptions?: Options) {
   };
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Decap CMS configuration
        * @see https://lume.land/plugins/decap_cms/

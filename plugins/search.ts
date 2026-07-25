@@ -14,10 +14,10 @@ export function search() {
 
 export default search;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The searcher helper
        * @see https://lume.land/plugins/search/

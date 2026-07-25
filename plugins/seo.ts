@@ -84,7 +84,7 @@ export function SEO(userOptions?: Options) {
     function processSEO() {
       reports.clear();
       refresh();
-      const pages = site.search.pages(options.query);
+      const pages = site.search.pages<{ lang?: string }>(options.query);
       for (const page of pages) {
         const errors = validatePage(
           page.page.document,

@@ -6,7 +6,7 @@ import { getPageDate } from "./utils/page_date.ts";
 import { Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
 
-import type { Data, RawData } from "./file.ts";
+import type { Data, DirectoryData, RawData } from "../types.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type { default as Formats, Format } from "./formats.ts";
 import type DataLoader from "./data_loader.ts";
@@ -77,7 +77,7 @@ export default class Source {
   };
 
   /** The data assigned per path */
-  data = new Map<string, Partial<Data>>();
+  data = new Map<string, DirectoryData>();
 
   /** Custom parsers for basenames */
   basenameParsers: BasenameParser[] = [];
@@ -138,7 +138,7 @@ export default class Source {
       this.fs.entries.get("/")!,
       "/",
       new Map(),
-      {},
+      {} as DirectoryData,
       pages,
       staticFiles,
     );
@@ -190,7 +190,7 @@ export default class Source {
     dir: Entry,
     parentPath: string,
     parentComponents: Components,
-    parentData: Partial<Data>,
+    parentData: DirectoryData,
     pages: Page[],
     staticFiles: StaticFile[],
     destination?: [Destination, boolean],
@@ -334,7 +334,7 @@ export default class Source {
     buildFilters: BuildFilter[],
     file: Entry,
     dirPath: string,
-    dirData: Partial<Data>,
+    dirData: DirectoryData,
     pages: Page[],
     staticFiles: StaticFile[],
     destination?: [Destination, boolean],
@@ -440,8 +440,8 @@ export default class Source {
   /** Load a folder's _data and merge it with the parent data  */
   async #loadDirData(
     dir: Entry,
-    parentData: Partial<Data>,
-  ): Promise<Partial<Data>> {
+    parentData: DirectoryData,
+  ): Promise<DirectoryData> {
     // Parse the directory's basename
     const { basename, ...parsedData } = runBasenameParsers(
       dir.name,
@@ -482,7 +482,7 @@ export default class Source {
       scopedData,
       parsedData,
       ...dirDatas,
-    ) as Partial<Data>;
+    ) as DirectoryData;
   }
 
   /**
@@ -492,7 +492,7 @@ export default class Source {
   async #loadDirComponents(
     dir: Entry,
     parentComponents: Components,
-    data: Partial<Data>,
+    data: DirectoryData,
   ): Promise<Components> {
     // Components registered from site.component()
     const scopedComponents = this.scopedComponents.get(dir.path);
@@ -520,7 +520,7 @@ export default class Source {
 
   async *#getDirPages(
     path: string,
-    dirData: Partial<Data>,
+    dirData: DirectoryData,
   ): AsyncGenerator<Page> {
     const pages = this.scopedPages.get(path);
     if (!pages) {
@@ -561,7 +561,7 @@ export default class Source {
   async #loadPage(
     entry: Entry,
     format: Format,
-    dirData: Partial<Data>,
+    dirData: DirectoryData,
     dirPath: string,
     destination?: Destination | string,
   ): Promise<Page | undefined> {
@@ -636,7 +636,7 @@ export type BuildFilter = (entry: Entry, page?: Page) => boolean;
 
 export type BasenameParser = (
   filename: string,
-  parentData: Partial<Data>,
+  parentData: DirectoryData,
 ) => RawData | undefined;
 
 /** Merge the cascade components */
@@ -664,7 +664,7 @@ function mergeComponents(...components: Components[]): Components {
 function runBasenameParsers(
   basename: string,
   basenameParsers: BasenameParser[],
-  parentData: Partial<Data>,
+  parentData: DirectoryData,
 ): RawData {
   const data: RawData = { basename };
 
@@ -687,7 +687,7 @@ function createFile(
   entry: Entry,
   ext: string,
   dirPath: string,
-  dirData: Partial<Data>,
+  dirData: DirectoryData,
   destination?: string | Destination,
 ): StaticFile {
   const url = typeof destination === "string"
