@@ -408,12 +408,12 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess<D = unknown>(processor: Processor<D>): this;
-  preprocess<D = unknown>(
+  preprocess<D = Lume.GlobalData>(processor: Processor<D>): this;
+  preprocess<D = Lume.GlobalData>(
     extensions: Extensions,
     processor: Processor<D>,
   ): this;
-  preprocess<D = unknown>(
+  preprocess<D = Lume.GlobalData>(
     extensions: Extensions | Processor<D>,
     preprocessor?: Processor<D>,
   ): this {
@@ -431,9 +431,12 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process<D = unknown>(processor: Processor<D>): this;
-  process<D = unknown>(extensions: Extensions, processor: Processor<D>): this;
-  process<D = unknown>(
+  process<D = Lume.GlobalData>(processor: Processor<D>): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  process<D = Lume.GlobalData>(
     extensions: Extensions | Processor<D>,
     processor?: Processor<D>,
   ): this {
@@ -450,7 +453,7 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter<D = unknown>(
+  filter<D = Lume.GlobalData>(
     name: string,
     filter: Helper<HelperThis<D>>,
     async = false,
@@ -459,7 +462,7 @@ export default class Site {
   }
 
   /** Register a template helper */
-  helper<D = unknown>(
+  helper<D = Lume.GlobalData>(
     name: string,
     fn: Helper<HelperThis<D>>,
     options: HelperOptions,

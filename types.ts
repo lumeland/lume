@@ -75,15 +75,20 @@ declare global {
       Site,
     };
 
+    export interface TypeConfig {
+      [index: string]: unknown;
+    }
+
     /** Global data extended by plugins */
     export interface GlobalData {
-      [index: string]: unknown;
+      // deno-lint-ignore no-explicit-any
+      [index: string]: TypeConfig["strict"] extends true ? unknown : any;
     }
 
     /** The page data */
     export type Data<D = unknown> = PageData<D> & GlobalData & {
       // deno-lint-ignore no-explicit-any
-      [index: string]: Data["__strict"] extends true ? unknown : any;
+      [index: string]: Data["strict"] extends true ? unknown : any;
     };
 
     /** The page helpers */

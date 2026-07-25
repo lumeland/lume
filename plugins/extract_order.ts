@@ -45,3 +45,12 @@ export function extractOrder(userOptions?: Options) {
 }
 
 export default extractOrder;
+
+/** Extends global data interface */
+declare global {
+  namespace Lume {
+    export interface GlobalData {
+      order?: number;
+    }
+  }
+}

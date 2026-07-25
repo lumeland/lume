@@ -11,7 +11,7 @@ import type Site from "../core/site.ts";
 import type { Data } from "../types.ts";
 import type { stringifyable } from "../deps/xml.ts";
 
-export interface Options<D = unknown> {
+export interface Options<D = Lume.GlobalData> {
   /** The output filenames */
   output?: string | string[];
 
@@ -192,7 +192,7 @@ const defaultGenerator = getGenerator();
  * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed<D = unknown>(
+export function feed<D = Lume.GlobalData>(
   userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
 ) {
   return (site: Site) => {
