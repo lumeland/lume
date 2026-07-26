@@ -23,7 +23,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: added `authorAvatar` property [#859].
 - RAM usage info in the debugBar.
 - Starting info in the debugBar.
-- New flag `--inspect, -i` to start a insector server for debugging.
+- New flag `--inspect, -i` to start a inspector server for debugging.
 - New `site.debugBar.action()` to add visible actions in the debugBar.
 
 ### Changed
@@ -47,6 +47,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - DebugBar:
   - Inline the code in the HTML pages instead of loading remotely from jsdelivr.
   - The CMS button is now visible in the tab bar.
+- Prims and Code Highlight plugins: load `vento` language by default.
 
 ### Removed
 - String value for `serve.debugBar` option. Now only allows a boolean value.

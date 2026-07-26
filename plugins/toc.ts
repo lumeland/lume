@@ -11,7 +11,7 @@ export interface Options {
   /** Custom slugify function to generate ids */
   slugify?: (x: string) => string;
 
-  /** Value of the tabindex attribute on headings, set to false to disable. */
+  /** Value of the tabindex attribute on headings, set to false to disable it. */
   tabIndex?: number | false;
 
   /**
