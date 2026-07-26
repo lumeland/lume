@@ -43,7 +43,7 @@ export interface Options {
 
   /**
    * Matrix server and client delegation
-   * @see https://spec.matrix.org/v1.10/client-server-api/#well-known-uri
+   * @see https://spec.matrix.org/v1.19/client-server-api/#well-known-uris
    */
   matrix?: Matrix;
 }
