@@ -258,9 +258,7 @@ export default class Site {
       envBoolean("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
-      this.initDebugBar(
-        typeof initDebugBar === "string" ? initDebugBar : undefined,
-      );
+      this.initDebugBar();
     }
 
     // Create the fetch function for `deno serve`
@@ -276,12 +274,12 @@ export default class Site {
   }
 
   /** Initialize the debug bar */
-  initDebugBar(url?: string): this {
+  initDebugBar(): this {
     if (this.debugBar) {
       throw new Error("DebugBar is already initialized");
     }
 
-    const debugBar = new DebugBar({ url });
+    const debugBar = new DebugBar();
     this.debugBar = debugBar;
     log.collection = debugBar.collection("Build");
 
