@@ -2,6 +2,7 @@ import hljs, {
   HLJSOptions,
   LanguageFn,
   themesPath,
+  ventoLang,
 } from "../deps/highlight.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
@@ -47,7 +48,10 @@ export const defaults = {
     languageDetectRe: /\blanguage-([\w-]+)\b/i,
     classPrefix: "hljs-",
     cssSelector: "pre code",
-    languages: undefined,
+  },
+  languages: {
+    vento: ventoLang,
+    vto: ventoLang,
   },
 } satisfies Options;
 
