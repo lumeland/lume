@@ -1620,7 +1620,7 @@ snapshot[`Katex plugin 3`] = `
     content: '<!DOCTYPE html>
 <html><head></head><body><h1>Page title</h1>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>c</mi><mo>=</mo><mo>±</mo><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">c = \\\\pm\\\\sqrt{a^2 + b^2}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord">±</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord">±</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
 c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
 c340,-704.7,510.7,-1060.3,512,-1067
 l0 -0
@@ -1636,22 +1636,22 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 \\\\f\\\\relax{x} = \\\\int_{-\\\\infty}^\\\\infty
     \\\\f\\\\hat\\\\xi\\\\,e^{2 \\\\pi i \\\\xi x}
     \\\\,d\\\\xi
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3846em;vertical-align:-0.9703em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">π</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.046em;">ξ</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span></span></span></span></span>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.3846em;vertical-align:-0.9703em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">π</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.046em;">ξ</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span></span></span></span></span>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>C</mi><mi>p</mi></msub><mo stretchy="false">[</mo><mrow><mi mathvariant="normal">H</mi><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mi mathvariant="normal">O</mi><mspace width="0.1111em"></mspace><mo stretchy="false">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo><mo>=</mo><mrow><mn>75.3</mn><mtext>&nbsp;</mtext><mstyle scriptlevel="0" displaystyle="false"><mfrac><mi mathvariant="normal">J</mi><mrow><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mtext> </mtext><mi mathvariant="normal">K</mi></mrow></mfrac></mstyle></mrow></mrow><annotation encoding="application/x-tex">
 % \\\\ce and \\\\pu functions are added by the mhchem extension
 C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathrm">H</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">O</span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mopen">(</span><span class="mord mathrm">l</span><span class="mclose">)</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord">75.3</span><span class="mspace nobreak">&nbsp;</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">mol</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathrm mtight">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">J</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathrm">H</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="katex-inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="katex-fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">O</span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mopen">(</span><span class="mord mathrm">l</span><span class="mclose">)</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord">75.3</span><span class="mspace nobreak">&nbsp;</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">mol</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathrm mtight">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">J</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
 <div id="test">
   This is some text \$math \\\\frac12\$ other text \$\\\\unsupported\$
   <span class="blue">
-  Other node <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>displaymath</mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex"> \\\\text{displaymath} \\\\frac{1}{2} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">displaymath</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span> blah <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mn>2</mn><mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex"> \\\\int_2^3 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.476em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span></span></span></span></span></span>
+  Other node <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>displaymath</mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex"> \\\\text{displaymath} \\\\frac{1}{2} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">displaymath</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span> blah <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mn>2</mn><mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex"> \\\\int_2^3 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.476em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span></span></span></span></span></span>
   </span>
-  and some <!-- comment --> more text <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>n</mi><mi>d</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">and math</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">an</span><span class="mord mathnormal">d</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span></span> blah. And \$math with a
+  and some <!-- comment --> more text <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>n</mi><mi>d</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">and math</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">an</span><span class="mord mathnormal">d</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span></span> blah. And \$math with a
   \\\\\$ sign\$.
   <pre>  Stuff in a \$pre tag\$
   </pre>
   <p>An AMS environment without <code>\$\$…\$\$</code> delimiters.</p>
-  <p><span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>e</mi><mo>+</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class="mtr-glue"></mtd><mtd class="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\\\\begin{equation} \\\\begin{split} a &amp;=b+c\\\\\\\\ &amp;=e+f \\\\end{split} \\\\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.7em;vertical-align:-1.1em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></p>
+  <p><span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>e</mi><mo>+</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class="mtr-glue"></mtd><mtd class="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\\\\begin{equation} \\\\begin{split} a &amp;=b+c\\\\\\\\ &amp;=e+f \\\\end{split} \\\\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.7em;vertical-align:-1.1em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span><span class="katex-tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></p>
 </div>
 </body></html>',
     data: {
@@ -1892,7 +1892,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.17.0";
+  content: "0.18.1";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers
@@ -1907,12 +1907,12 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   overflow: hidden;
 }
 .katex .katex-html {
-  /* \\\\newline is an empty block at top level, between .base elements */
+  /* \\\\newline is an empty block at top level, between .katex-base elements */
 }
-.katex .katex-html > .newline {
+.katex .katex-html > .katex-newline {
   display: block;
 }
-.katex .base {
+.katex .katex-base {
   position: relative;
   display: inline-block;
   white-space: nowrap;
@@ -1920,7 +1920,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   width: -moz-min-content;
   width: min-content;
 }
-.katex .strut {
+.katex .katex-strut {
   display: inline-block;
 }
 .katex .textbf {
@@ -2038,17 +2038,12 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   width: 2px;
   min-width: 2px;
 }
-.katex .vbox {
+.katex .katex-vbox {
   display: inline-flex;
   flex-direction: column;
   align-items: baseline;
 }
-.katex .hbox {
-  display: inline-flex;
-  flex-direction: row;
-  width: 100%;
-}
-.katex .thinbox {
+.katex .katex-thinbox {
   display: inline-flex;
   flex-direction: row;
   width: 0;
@@ -2066,17 +2061,17 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-bottom-style: solid;
 }
 .katex .mfrac .frac-line,
-.katex .overline .overline-line,
-.katex .underline .underline-line,
-.katex .hline,
-.katex .hdashline,
-.katex .rule {
+.katex .katex-overline .overline-line,
+.katex .katex-underline .underline-line,
+.katex .katex-hline,
+.katex .katex-hdashline,
+.katex .katex-rule {
   min-height: 1px;
 }
 .katex .mspace {
   display: inline-block;
 }
-.katex .smash {
+.katex .katex-smash {
   display: inline;
   line-height: 0;
 }
@@ -2086,45 +2081,45 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   width: 0;
   position: relative;
 }
-.katex .llap > .inner,
-.katex .rlap > .inner,
-.katex .clap > .inner {
+.katex .llap > .katex-inner,
+.katex .rlap > .katex-inner,
+.katex .clap > .katex-inner {
   position: absolute;
 }
-.katex .llap > .fix,
-.katex .rlap > .fix,
-.katex .clap > .fix {
+.katex .llap > .katex-fix,
+.katex .rlap > .katex-fix,
+.katex .clap > .katex-fix {
   display: inline-block;
 }
-.katex .llap > .inner {
+.katex .llap > .katex-inner {
   right: 0;
 }
-.katex .rlap > .inner,
-.katex .clap > .inner {
+.katex .rlap > .katex-inner,
+.katex .clap > .katex-inner {
   left: 0;
 }
-.katex .clap > .inner > span {
+.katex .clap > .katex-inner > span {
   margin-left: -50%;
   margin-right: 50%;
 }
-.katex .rule {
+.katex .katex-rule {
   display: inline-block;
   border: solid 0;
   position: relative;
 }
-.katex .overline .overline-line,
-.katex .underline .underline-line,
-.katex .hline {
+.katex .katex-overline .overline-line,
+.katex .katex-underline .underline-line,
+.katex .katex-hline {
   display: inline-block;
   width: 100%;
   border-bottom-style: solid;
 }
-.katex .hdashline {
+.katex .katex-hdashline {
   display: inline-block;
   width: 100%;
   border-bottom-style: dashed;
 }
-.katex .sqrt > .root {
+.katex .sqrt > .katex-root {
   /* These values are taken from the definition of \`\\\\r@@t\`,
    \`\\\\mkern 5mu\` and \`\\\\mkern -10mu\`. */
   /* stylelint-disable-next-line declaration-property-value-no-unknown */
@@ -2132,607 +2127,607 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   /* stylelint-disable-next-line declaration-property-value-no-unknown */
   margin-right: -0.5555555556em;
 }
-.katex .sizing.reset-size1.size1,
+.katex .katex-sizing.reset-size1.size1,
 .katex .fontsize-ensurer.reset-size1.size1 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size1.size2,
+.katex .katex-sizing.reset-size1.size2,
 .katex .fontsize-ensurer.reset-size1.size2 {
   /* stylelint-disable-next-line */
   font-size: 1.2em;
 }
-.katex .sizing.reset-size1.size3,
+.katex .katex-sizing.reset-size1.size3,
 .katex .fontsize-ensurer.reset-size1.size3 {
   /* stylelint-disable-next-line */
   font-size: 1.4em;
 }
-.katex .sizing.reset-size1.size4,
+.katex .katex-sizing.reset-size1.size4,
 .katex .fontsize-ensurer.reset-size1.size4 {
   /* stylelint-disable-next-line */
   font-size: 1.6em;
 }
-.katex .sizing.reset-size1.size5,
+.katex .katex-sizing.reset-size1.size5,
 .katex .fontsize-ensurer.reset-size1.size5 {
   /* stylelint-disable-next-line */
   font-size: 1.8em;
 }
-.katex .sizing.reset-size1.size6,
+.katex .katex-sizing.reset-size1.size6,
 .katex .fontsize-ensurer.reset-size1.size6 {
   /* stylelint-disable-next-line */
   font-size: 2em;
 }
-.katex .sizing.reset-size1.size7,
+.katex .katex-sizing.reset-size1.size7,
 .katex .fontsize-ensurer.reset-size1.size7 {
   /* stylelint-disable-next-line */
   font-size: 2.4em;
 }
-.katex .sizing.reset-size1.size8,
+.katex .katex-sizing.reset-size1.size8,
 .katex .fontsize-ensurer.reset-size1.size8 {
   /* stylelint-disable-next-line */
   font-size: 2.88em;
 }
-.katex .sizing.reset-size1.size9,
+.katex .katex-sizing.reset-size1.size9,
 .katex .fontsize-ensurer.reset-size1.size9 {
   /* stylelint-disable-next-line */
   font-size: 3.456em;
 }
-.katex .sizing.reset-size1.size10,
+.katex .katex-sizing.reset-size1.size10,
 .katex .fontsize-ensurer.reset-size1.size10 {
   /* stylelint-disable-next-line */
   font-size: 4.148em;
 }
-.katex .sizing.reset-size1.size11,
+.katex .katex-sizing.reset-size1.size11,
 .katex .fontsize-ensurer.reset-size1.size11 {
   /* stylelint-disable-next-line */
   font-size: 4.976em;
 }
-.katex .sizing.reset-size2.size1,
+.katex .katex-sizing.reset-size2.size1,
 .katex .fontsize-ensurer.reset-size2.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.8333333333em;
 }
-.katex .sizing.reset-size2.size2,
+.katex .katex-sizing.reset-size2.size2,
 .katex .fontsize-ensurer.reset-size2.size2 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size2.size3,
+.katex .katex-sizing.reset-size2.size3,
 .katex .fontsize-ensurer.reset-size2.size3 {
   /* stylelint-disable-next-line */
   font-size: 1.1666666667em;
 }
-.katex .sizing.reset-size2.size4,
+.katex .katex-sizing.reset-size2.size4,
 .katex .fontsize-ensurer.reset-size2.size4 {
   /* stylelint-disable-next-line */
   font-size: 1.3333333333em;
 }
-.katex .sizing.reset-size2.size5,
+.katex .katex-sizing.reset-size2.size5,
 .katex .fontsize-ensurer.reset-size2.size5 {
   /* stylelint-disable-next-line */
   font-size: 1.5em;
 }
-.katex .sizing.reset-size2.size6,
+.katex .katex-sizing.reset-size2.size6,
 .katex .fontsize-ensurer.reset-size2.size6 {
   /* stylelint-disable-next-line */
   font-size: 1.6666666667em;
 }
-.katex .sizing.reset-size2.size7,
+.katex .katex-sizing.reset-size2.size7,
 .katex .fontsize-ensurer.reset-size2.size7 {
   /* stylelint-disable-next-line */
   font-size: 2em;
 }
-.katex .sizing.reset-size2.size8,
+.katex .katex-sizing.reset-size2.size8,
 .katex .fontsize-ensurer.reset-size2.size8 {
   /* stylelint-disable-next-line */
   font-size: 2.4em;
 }
-.katex .sizing.reset-size2.size9,
+.katex .katex-sizing.reset-size2.size9,
 .katex .fontsize-ensurer.reset-size2.size9 {
   /* stylelint-disable-next-line */
   font-size: 2.88em;
 }
-.katex .sizing.reset-size2.size10,
+.katex .katex-sizing.reset-size2.size10,
 .katex .fontsize-ensurer.reset-size2.size10 {
   /* stylelint-disable-next-line */
   font-size: 3.4566666667em;
 }
-.katex .sizing.reset-size2.size11,
+.katex .katex-sizing.reset-size2.size11,
 .katex .fontsize-ensurer.reset-size2.size11 {
   /* stylelint-disable-next-line */
   font-size: 4.1466666667em;
 }
-.katex .sizing.reset-size3.size1,
+.katex .katex-sizing.reset-size3.size1,
 .katex .fontsize-ensurer.reset-size3.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.7142857143em;
 }
-.katex .sizing.reset-size3.size2,
+.katex .katex-sizing.reset-size3.size2,
 .katex .fontsize-ensurer.reset-size3.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.8571428571em;
 }
-.katex .sizing.reset-size3.size3,
+.katex .katex-sizing.reset-size3.size3,
 .katex .fontsize-ensurer.reset-size3.size3 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size3.size4,
+.katex .katex-sizing.reset-size3.size4,
 .katex .fontsize-ensurer.reset-size3.size4 {
   /* stylelint-disable-next-line */
   font-size: 1.1428571429em;
 }
-.katex .sizing.reset-size3.size5,
+.katex .katex-sizing.reset-size3.size5,
 .katex .fontsize-ensurer.reset-size3.size5 {
   /* stylelint-disable-next-line */
   font-size: 1.2857142857em;
 }
-.katex .sizing.reset-size3.size6,
+.katex .katex-sizing.reset-size3.size6,
 .katex .fontsize-ensurer.reset-size3.size6 {
   /* stylelint-disable-next-line */
   font-size: 1.4285714286em;
 }
-.katex .sizing.reset-size3.size7,
+.katex .katex-sizing.reset-size3.size7,
 .katex .fontsize-ensurer.reset-size3.size7 {
   /* stylelint-disable-next-line */
   font-size: 1.7142857143em;
 }
-.katex .sizing.reset-size3.size8,
+.katex .katex-sizing.reset-size3.size8,
 .katex .fontsize-ensurer.reset-size3.size8 {
   /* stylelint-disable-next-line */
   font-size: 2.0571428571em;
 }
-.katex .sizing.reset-size3.size9,
+.katex .katex-sizing.reset-size3.size9,
 .katex .fontsize-ensurer.reset-size3.size9 {
   /* stylelint-disable-next-line */
   font-size: 2.4685714286em;
 }
-.katex .sizing.reset-size3.size10,
+.katex .katex-sizing.reset-size3.size10,
 .katex .fontsize-ensurer.reset-size3.size10 {
   /* stylelint-disable-next-line */
   font-size: 2.9628571429em;
 }
-.katex .sizing.reset-size3.size11,
+.katex .katex-sizing.reset-size3.size11,
 .katex .fontsize-ensurer.reset-size3.size11 {
   /* stylelint-disable-next-line */
   font-size: 3.5542857143em;
 }
-.katex .sizing.reset-size4.size1,
+.katex .katex-sizing.reset-size4.size1,
 .katex .fontsize-ensurer.reset-size4.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.625em;
 }
-.katex .sizing.reset-size4.size2,
+.katex .katex-sizing.reset-size4.size2,
 .katex .fontsize-ensurer.reset-size4.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.75em;
 }
-.katex .sizing.reset-size4.size3,
+.katex .katex-sizing.reset-size4.size3,
 .katex .fontsize-ensurer.reset-size4.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.875em;
 }
-.katex .sizing.reset-size4.size4,
+.katex .katex-sizing.reset-size4.size4,
 .katex .fontsize-ensurer.reset-size4.size4 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size4.size5,
+.katex .katex-sizing.reset-size4.size5,
 .katex .fontsize-ensurer.reset-size4.size5 {
   /* stylelint-disable-next-line */
   font-size: 1.125em;
 }
-.katex .sizing.reset-size4.size6,
+.katex .katex-sizing.reset-size4.size6,
 .katex .fontsize-ensurer.reset-size4.size6 {
   /* stylelint-disable-next-line */
   font-size: 1.25em;
 }
-.katex .sizing.reset-size4.size7,
+.katex .katex-sizing.reset-size4.size7,
 .katex .fontsize-ensurer.reset-size4.size7 {
   /* stylelint-disable-next-line */
   font-size: 1.5em;
 }
-.katex .sizing.reset-size4.size8,
+.katex .katex-sizing.reset-size4.size8,
 .katex .fontsize-ensurer.reset-size4.size8 {
   /* stylelint-disable-next-line */
   font-size: 1.8em;
 }
-.katex .sizing.reset-size4.size9,
+.katex .katex-sizing.reset-size4.size9,
 .katex .fontsize-ensurer.reset-size4.size9 {
   /* stylelint-disable-next-line */
   font-size: 2.16em;
 }
-.katex .sizing.reset-size4.size10,
+.katex .katex-sizing.reset-size4.size10,
 .katex .fontsize-ensurer.reset-size4.size10 {
   /* stylelint-disable-next-line */
   font-size: 2.5925em;
 }
-.katex .sizing.reset-size4.size11,
+.katex .katex-sizing.reset-size4.size11,
 .katex .fontsize-ensurer.reset-size4.size11 {
   /* stylelint-disable-next-line */
   font-size: 3.11em;
 }
-.katex .sizing.reset-size5.size1,
+.katex .katex-sizing.reset-size5.size1,
 .katex .fontsize-ensurer.reset-size5.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.5555555556em;
 }
-.katex .sizing.reset-size5.size2,
+.katex .katex-sizing.reset-size5.size2,
 .katex .fontsize-ensurer.reset-size5.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.6666666667em;
 }
-.katex .sizing.reset-size5.size3,
+.katex .katex-sizing.reset-size5.size3,
 .katex .fontsize-ensurer.reset-size5.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.7777777778em;
 }
-.katex .sizing.reset-size5.size4,
+.katex .katex-sizing.reset-size5.size4,
 .katex .fontsize-ensurer.reset-size5.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.8888888889em;
 }
-.katex .sizing.reset-size5.size5,
+.katex .katex-sizing.reset-size5.size5,
 .katex .fontsize-ensurer.reset-size5.size5 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size5.size6,
+.katex .katex-sizing.reset-size5.size6,
 .katex .fontsize-ensurer.reset-size5.size6 {
   /* stylelint-disable-next-line */
   font-size: 1.1111111111em;
 }
-.katex .sizing.reset-size5.size7,
+.katex .katex-sizing.reset-size5.size7,
 .katex .fontsize-ensurer.reset-size5.size7 {
   /* stylelint-disable-next-line */
   font-size: 1.3333333333em;
 }
-.katex .sizing.reset-size5.size8,
+.katex .katex-sizing.reset-size5.size8,
 .katex .fontsize-ensurer.reset-size5.size8 {
   /* stylelint-disable-next-line */
   font-size: 1.6em;
 }
-.katex .sizing.reset-size5.size9,
+.katex .katex-sizing.reset-size5.size9,
 .katex .fontsize-ensurer.reset-size5.size9 {
   /* stylelint-disable-next-line */
   font-size: 1.92em;
 }
-.katex .sizing.reset-size5.size10,
+.katex .katex-sizing.reset-size5.size10,
 .katex .fontsize-ensurer.reset-size5.size10 {
   /* stylelint-disable-next-line */
   font-size: 2.3044444444em;
 }
-.katex .sizing.reset-size5.size11,
+.katex .katex-sizing.reset-size5.size11,
 .katex .fontsize-ensurer.reset-size5.size11 {
   /* stylelint-disable-next-line */
   font-size: 2.7644444444em;
 }
-.katex .sizing.reset-size6.size1,
+.katex .katex-sizing.reset-size6.size1,
 .katex .fontsize-ensurer.reset-size6.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.5em;
 }
-.katex .sizing.reset-size6.size2,
+.katex .katex-sizing.reset-size6.size2,
 .katex .fontsize-ensurer.reset-size6.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.6em;
 }
-.katex .sizing.reset-size6.size3,
+.katex .katex-sizing.reset-size6.size3,
 .katex .fontsize-ensurer.reset-size6.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.7em;
 }
-.katex .sizing.reset-size6.size4,
+.katex .katex-sizing.reset-size6.size4,
 .katex .fontsize-ensurer.reset-size6.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.8em;
 }
-.katex .sizing.reset-size6.size5,
+.katex .katex-sizing.reset-size6.size5,
 .katex .fontsize-ensurer.reset-size6.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.9em;
 }
-.katex .sizing.reset-size6.size6,
+.katex .katex-sizing.reset-size6.size6,
 .katex .fontsize-ensurer.reset-size6.size6 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size6.size7,
+.katex .katex-sizing.reset-size6.size7,
 .katex .fontsize-ensurer.reset-size6.size7 {
   /* stylelint-disable-next-line */
   font-size: 1.2em;
 }
-.katex .sizing.reset-size6.size8,
+.katex .katex-sizing.reset-size6.size8,
 .katex .fontsize-ensurer.reset-size6.size8 {
   /* stylelint-disable-next-line */
   font-size: 1.44em;
 }
-.katex .sizing.reset-size6.size9,
+.katex .katex-sizing.reset-size6.size9,
 .katex .fontsize-ensurer.reset-size6.size9 {
   /* stylelint-disable-next-line */
   font-size: 1.728em;
 }
-.katex .sizing.reset-size6.size10,
+.katex .katex-sizing.reset-size6.size10,
 .katex .fontsize-ensurer.reset-size6.size10 {
   /* stylelint-disable-next-line */
   font-size: 2.074em;
 }
-.katex .sizing.reset-size6.size11,
+.katex .katex-sizing.reset-size6.size11,
 .katex .fontsize-ensurer.reset-size6.size11 {
   /* stylelint-disable-next-line */
   font-size: 2.488em;
 }
-.katex .sizing.reset-size7.size1,
+.katex .katex-sizing.reset-size7.size1,
 .katex .fontsize-ensurer.reset-size7.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.4166666667em;
 }
-.katex .sizing.reset-size7.size2,
+.katex .katex-sizing.reset-size7.size2,
 .katex .fontsize-ensurer.reset-size7.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.5em;
 }
-.katex .sizing.reset-size7.size3,
+.katex .katex-sizing.reset-size7.size3,
 .katex .fontsize-ensurer.reset-size7.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.5833333333em;
 }
-.katex .sizing.reset-size7.size4,
+.katex .katex-sizing.reset-size7.size4,
 .katex .fontsize-ensurer.reset-size7.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.6666666667em;
 }
-.katex .sizing.reset-size7.size5,
+.katex .katex-sizing.reset-size7.size5,
 .katex .fontsize-ensurer.reset-size7.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.75em;
 }
-.katex .sizing.reset-size7.size6,
+.katex .katex-sizing.reset-size7.size6,
 .katex .fontsize-ensurer.reset-size7.size6 {
   /* stylelint-disable-next-line */
   font-size: 0.8333333333em;
 }
-.katex .sizing.reset-size7.size7,
+.katex .katex-sizing.reset-size7.size7,
 .katex .fontsize-ensurer.reset-size7.size7 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size7.size8,
+.katex .katex-sizing.reset-size7.size8,
 .katex .fontsize-ensurer.reset-size7.size8 {
   /* stylelint-disable-next-line */
   font-size: 1.2em;
 }
-.katex .sizing.reset-size7.size9,
+.katex .katex-sizing.reset-size7.size9,
 .katex .fontsize-ensurer.reset-size7.size9 {
   /* stylelint-disable-next-line */
   font-size: 1.44em;
 }
-.katex .sizing.reset-size7.size10,
+.katex .katex-sizing.reset-size7.size10,
 .katex .fontsize-ensurer.reset-size7.size10 {
   /* stylelint-disable-next-line */
   font-size: 1.7283333333em;
 }
-.katex .sizing.reset-size7.size11,
+.katex .katex-sizing.reset-size7.size11,
 .katex .fontsize-ensurer.reset-size7.size11 {
   /* stylelint-disable-next-line */
   font-size: 2.0733333333em;
 }
-.katex .sizing.reset-size8.size1,
+.katex .katex-sizing.reset-size8.size1,
 .katex .fontsize-ensurer.reset-size8.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.3472222222em;
 }
-.katex .sizing.reset-size8.size2,
+.katex .katex-sizing.reset-size8.size2,
 .katex .fontsize-ensurer.reset-size8.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.4166666667em;
 }
-.katex .sizing.reset-size8.size3,
+.katex .katex-sizing.reset-size8.size3,
 .katex .fontsize-ensurer.reset-size8.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.4861111111em;
 }
-.katex .sizing.reset-size8.size4,
+.katex .katex-sizing.reset-size8.size4,
 .katex .fontsize-ensurer.reset-size8.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.5555555556em;
 }
-.katex .sizing.reset-size8.size5,
+.katex .katex-sizing.reset-size8.size5,
 .katex .fontsize-ensurer.reset-size8.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.625em;
 }
-.katex .sizing.reset-size8.size6,
+.katex .katex-sizing.reset-size8.size6,
 .katex .fontsize-ensurer.reset-size8.size6 {
   /* stylelint-disable-next-line */
   font-size: 0.6944444444em;
 }
-.katex .sizing.reset-size8.size7,
+.katex .katex-sizing.reset-size8.size7,
 .katex .fontsize-ensurer.reset-size8.size7 {
   /* stylelint-disable-next-line */
   font-size: 0.8333333333em;
 }
-.katex .sizing.reset-size8.size8,
+.katex .katex-sizing.reset-size8.size8,
 .katex .fontsize-ensurer.reset-size8.size8 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size8.size9,
+.katex .katex-sizing.reset-size8.size9,
 .katex .fontsize-ensurer.reset-size8.size9 {
   /* stylelint-disable-next-line */
   font-size: 1.2em;
 }
-.katex .sizing.reset-size8.size10,
+.katex .katex-sizing.reset-size8.size10,
 .katex .fontsize-ensurer.reset-size8.size10 {
   /* stylelint-disable-next-line */
   font-size: 1.4402777778em;
 }
-.katex .sizing.reset-size8.size11,
+.katex .katex-sizing.reset-size8.size11,
 .katex .fontsize-ensurer.reset-size8.size11 {
   /* stylelint-disable-next-line */
   font-size: 1.7277777778em;
 }
-.katex .sizing.reset-size9.size1,
+.katex .katex-sizing.reset-size9.size1,
 .katex .fontsize-ensurer.reset-size9.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.2893518519em;
 }
-.katex .sizing.reset-size9.size2,
+.katex .katex-sizing.reset-size9.size2,
 .katex .fontsize-ensurer.reset-size9.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.3472222222em;
 }
-.katex .sizing.reset-size9.size3,
+.katex .katex-sizing.reset-size9.size3,
 .katex .fontsize-ensurer.reset-size9.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.4050925926em;
 }
-.katex .sizing.reset-size9.size4,
+.katex .katex-sizing.reset-size9.size4,
 .katex .fontsize-ensurer.reset-size9.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.462962963em;
 }
-.katex .sizing.reset-size9.size5,
+.katex .katex-sizing.reset-size9.size5,
 .katex .fontsize-ensurer.reset-size9.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.5208333333em;
 }
-.katex .sizing.reset-size9.size6,
+.katex .katex-sizing.reset-size9.size6,
 .katex .fontsize-ensurer.reset-size9.size6 {
   /* stylelint-disable-next-line */
   font-size: 0.5787037037em;
 }
-.katex .sizing.reset-size9.size7,
+.katex .katex-sizing.reset-size9.size7,
 .katex .fontsize-ensurer.reset-size9.size7 {
   /* stylelint-disable-next-line */
   font-size: 0.6944444444em;
 }
-.katex .sizing.reset-size9.size8,
+.katex .katex-sizing.reset-size9.size8,
 .katex .fontsize-ensurer.reset-size9.size8 {
   /* stylelint-disable-next-line */
   font-size: 0.8333333333em;
 }
-.katex .sizing.reset-size9.size9,
+.katex .katex-sizing.reset-size9.size9,
 .katex .fontsize-ensurer.reset-size9.size9 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size9.size10,
+.katex .katex-sizing.reset-size9.size10,
 .katex .fontsize-ensurer.reset-size9.size10 {
   /* stylelint-disable-next-line */
   font-size: 1.2002314815em;
 }
-.katex .sizing.reset-size9.size11,
+.katex .katex-sizing.reset-size9.size11,
 .katex .fontsize-ensurer.reset-size9.size11 {
   /* stylelint-disable-next-line */
   font-size: 1.4398148148em;
 }
-.katex .sizing.reset-size10.size1,
+.katex .katex-sizing.reset-size10.size1,
 .katex .fontsize-ensurer.reset-size10.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.2410800386em;
 }
-.katex .sizing.reset-size10.size2,
+.katex .katex-sizing.reset-size10.size2,
 .katex .fontsize-ensurer.reset-size10.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.2892960463em;
 }
-.katex .sizing.reset-size10.size3,
+.katex .katex-sizing.reset-size10.size3,
 .katex .fontsize-ensurer.reset-size10.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.337512054em;
 }
-.katex .sizing.reset-size10.size4,
+.katex .katex-sizing.reset-size10.size4,
 .katex .fontsize-ensurer.reset-size10.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.3857280617em;
 }
-.katex .sizing.reset-size10.size5,
+.katex .katex-sizing.reset-size10.size5,
 .katex .fontsize-ensurer.reset-size10.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.4339440694em;
 }
-.katex .sizing.reset-size10.size6,
+.katex .katex-sizing.reset-size10.size6,
 .katex .fontsize-ensurer.reset-size10.size6 {
   /* stylelint-disable-next-line */
   font-size: 0.4821600771em;
 }
-.katex .sizing.reset-size10.size7,
+.katex .katex-sizing.reset-size10.size7,
 .katex .fontsize-ensurer.reset-size10.size7 {
   /* stylelint-disable-next-line */
   font-size: 0.5785920926em;
 }
-.katex .sizing.reset-size10.size8,
+.katex .katex-sizing.reset-size10.size8,
 .katex .fontsize-ensurer.reset-size10.size8 {
   /* stylelint-disable-next-line */
   font-size: 0.6943105111em;
 }
-.katex .sizing.reset-size10.size9,
+.katex .katex-sizing.reset-size10.size9,
 .katex .fontsize-ensurer.reset-size10.size9 {
   /* stylelint-disable-next-line */
   font-size: 0.8331726133em;
 }
-.katex .sizing.reset-size10.size10,
+.katex .katex-sizing.reset-size10.size10,
 .katex .fontsize-ensurer.reset-size10.size10 {
   /* stylelint-disable-next-line */
   font-size: 1em;
 }
-.katex .sizing.reset-size10.size11,
+.katex .katex-sizing.reset-size10.size11,
 .katex .fontsize-ensurer.reset-size10.size11 {
   /* stylelint-disable-next-line */
   font-size: 1.1996142719em;
 }
-.katex .sizing.reset-size11.size1,
+.katex .katex-sizing.reset-size11.size1,
 .katex .fontsize-ensurer.reset-size11.size1 {
   /* stylelint-disable-next-line */
   font-size: 0.2009646302em;
 }
-.katex .sizing.reset-size11.size2,
+.katex .katex-sizing.reset-size11.size2,
 .katex .fontsize-ensurer.reset-size11.size2 {
   /* stylelint-disable-next-line */
   font-size: 0.2411575563em;
 }
-.katex .sizing.reset-size11.size3,
+.katex .katex-sizing.reset-size11.size3,
 .katex .fontsize-ensurer.reset-size11.size3 {
   /* stylelint-disable-next-line */
   font-size: 0.2813504823em;
 }
-.katex .sizing.reset-size11.size4,
+.katex .katex-sizing.reset-size11.size4,
 .katex .fontsize-ensurer.reset-size11.size4 {
   /* stylelint-disable-next-line */
   font-size: 0.3215434084em;
 }
-.katex .sizing.reset-size11.size5,
+.katex .katex-sizing.reset-size11.size5,
 .katex .fontsize-ensurer.reset-size11.size5 {
   /* stylelint-disable-next-line */
   font-size: 0.3617363344em;
 }
-.katex .sizing.reset-size11.size6,
+.katex .katex-sizing.reset-size11.size6,
 .katex .fontsize-ensurer.reset-size11.size6 {
   /* stylelint-disable-next-line */
   font-size: 0.4019292605em;
 }
-.katex .sizing.reset-size11.size7,
+.katex .katex-sizing.reset-size11.size7,
 .katex .fontsize-ensurer.reset-size11.size7 {
   /* stylelint-disable-next-line */
   font-size: 0.4823151125em;
 }
-.katex .sizing.reset-size11.size8,
+.katex .katex-sizing.reset-size11.size8,
 .katex .fontsize-ensurer.reset-size11.size8 {
   /* stylelint-disable-next-line */
   font-size: 0.578778135em;
 }
-.katex .sizing.reset-size11.size9,
+.katex .katex-sizing.reset-size11.size9,
 .katex .fontsize-ensurer.reset-size11.size9 {
   /* stylelint-disable-next-line */
   font-size: 0.6945337621em;
 }
-.katex .sizing.reset-size11.size10,
+.katex .katex-sizing.reset-size11.size10,
 .katex .fontsize-ensurer.reset-size11.size10 {
   /* stylelint-disable-next-line */
   font-size: 0.8336012862em;
 }
-.katex .sizing.reset-size11.size11,
+.katex .katex-sizing.reset-size11.size11,
 .katex .fontsize-ensurer.reset-size11.size11 {
   /* stylelint-disable-next-line */
   font-size: 1em;
@@ -2774,16 +2769,16 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
 .katex .op-limits > .vlist-t {
   text-align: center;
 }
-.katex .accent > .vlist-t {
+.katex .katex-accent > .vlist-t {
   text-align: center;
 }
-.katex .accent .accent-body {
+.katex .katex-accent .accent-body {
   position: relative;
 }
-.katex .accent .accent-body:not(.accent-full) {
+.katex .katex-accent .accent-body:not(.accent-full) {
   width: 0;
 }
-.katex .overlay {
+.katex .katex-overlay {
   display: block;
 }
 .katex .mtable .vertical-separator {
@@ -2834,13 +2829,13 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   max-width: none;
   max-height: none;
 }
-.katex .stretchy {
+.katex .katex-stretchy {
   width: 100%;
   display: block;
   position: relative;
   overflow: hidden;
 }
-.katex .stretchy::before, .katex .stretchy::after {
+.katex .katex-stretchy::before, .katex .katex-stretchy::after {
   content: "";
 }
 .katex .hide-tail {
@@ -2904,7 +2899,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   margin-left: -0.2em;
   margin-right: -0.2em;
 }
-.katex .sout {
+.katex .katex-sout {
   border-bottom-style: solid;
   border-bottom-width: 0.08em;
 }
@@ -2959,12 +2954,12 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   display: block;
   position: relative;
 }
-.katex-display > .katex > .katex-html > .tag {
+.katex-display > .katex > .katex-html > .katex-tag {
   position: absolute;
   right: 0;
 }
 
-.katex-display.leqno > .katex > .katex-html > .tag {
+.katex-display.leqno > .katex > .katex-html > .katex-tag {
   left: 0;
   right: auto;
 }
@@ -3116,7 +3111,7 @@ snapshot[`Katex plugin without assets 3`] = `
     content: '<!DOCTYPE html>
 <html><head></head><body><h1>Page title</h1>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>c</mi><mo>=</mo><mo>±</mo><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">c = \\\\pm\\\\sqrt{a^2 + b^2}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord">±</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord">±</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewbox="0 0 400000 1296" preserveaspectratio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
 c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
 c340,-704.7,510.7,-1060.3,512,-1067
 l0 -0
@@ -3132,22 +3127,22 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 \\\\f\\\\relax{x} = \\\\int_{-\\\\infty}^\\\\infty
     \\\\f\\\\hat\\\\xi\\\\,e^{2 \\\\pi i \\\\xi x}
     \\\\,d\\\\xi
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3846em;vertical-align:-0.9703em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">π</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.046em;">ξ</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span></span></span></span></span>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.3846em;vertical-align:-0.9703em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">π</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.046em;">ξ</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.046em;">ξ</span></span></span></span></span>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>C</mi><mi>p</mi></msub><mo stretchy="false">[</mo><mrow><mi mathvariant="normal">H</mi><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mi mathvariant="normal">O</mi><mspace width="0.1111em"></mspace><mo stretchy="false">(</mo><mi mathvariant="normal">l</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo><mo>=</mo><mrow><mn>75.3</mn><mtext>&nbsp;</mtext><mstyle scriptlevel="0" displaystyle="false"><mfrac><mi mathvariant="normal">J</mi><mrow><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mtext> </mtext><mi mathvariant="normal">K</mi></mrow></mfrac></mstyle></mrow></mrow><annotation encoding="application/x-tex">
 % \\\\ce and \\\\pu functions are added by the mhchem extension
 C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathrm">H</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">O</span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mopen">(</span><span class="mord mathrm">l</span><span class="mclose">)</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord">75.3</span><span class="mspace nobreak">&nbsp;</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">mol</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathrm mtight">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">J</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord"><span class="mord mathrm">H</span><span class="mord"><span class="mord"><span class="mord rlap"><span class="katex-inner"><span class="mord" style="color:transparent;"><span class="mord mathnormal" style="margin-right:0.0785em;color:transparent;">X</span></span></span><span class="katex-fix"></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">O</span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mopen">(</span><span class="mord mathrm">l</span><span class="mclose">)</span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord">75.3</span><span class="mspace nobreak">&nbsp;</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">mol</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathrm mtight">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">J</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
 <div id="test">
   This is some text \$math \\\\frac12\$ other text \$\\\\unsupported\$
   <span class="blue">
-  Other node <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>displaymath</mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex"> \\\\text{displaymath} \\\\frac{1}{2} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">displaymath</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span> blah <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mn>2</mn><mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex"> \\\\int_2^3 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.476em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span></span></span></span></span></span>
+  Other node <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>displaymath</mtext><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex"> \\\\text{displaymath} \\\\frac{1}{2} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">displaymath</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span> blah <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mn>2</mn><mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex"> \\\\int_2^3 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.476em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.4445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span></span></span></span></span></span>
   </span>
-  and some <!-- comment --> more text <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>n</mi><mi>d</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">and math</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">an</span><span class="mord mathnormal">d</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span></span> blah. And \$math with a
+  and some <!-- comment --> more text <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>n</mi><mi>d</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">and math</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">an</span><span class="mord mathnormal">d</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span></span></span></span></span> blah. And \$math with a
   \\\\\$ sign\$.
   <pre>  Stuff in a \$pre tag\$
   </pre>
   <p>An AMS environment without <code>\$\$…\$\$</code> delimiters.</p>
-  <p><span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>e</mi><mo>+</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class="mtr-glue"></mtd><mtd class="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\\\\begin{equation} \\\\begin{split} a &amp;=b+c\\\\\\\\ &amp;=e+f \\\\end{split} \\\\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.7em;vertical-align:-1.1em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></p>
+  <p><span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>e</mi><mo>+</mo><mi>f</mi></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class="mtr-glue"></mtd><mtd class="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\\\\begin{equation} \\\\begin{split} a &amp;=b+c\\\\\\\\ &amp;=e+f \\\\end{split} \\\\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.7em;vertical-align:-1.1em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.76em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-2.26em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span><span class="katex-tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6em;"><span style="top:-3.6em;"><span class="pstrut" style="height:3.6em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1em;"><span></span></span></span></span></span></span></span></span></span></p>
 </div>
 </body></html>',
     data: {
