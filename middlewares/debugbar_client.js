@@ -74,6 +74,10 @@ const styles = `
   }
 }
 
+:host(.is-disconnected) {
+  filter: grayscale(0.9);
+}
+
 :host(.is-closed.is-hovered) {
   opacity: 1;
 }
@@ -549,6 +553,14 @@ class Bar extends HTMLElement {
         }
       },
     }, this.controls);
+  }
+
+  set connected(value) {
+    if (value) {
+      this.classList.remove("is-disconnected");
+    } else {
+      this.classList.add("is-disconnected");
+    }
   }
 
   connectedCallback() {

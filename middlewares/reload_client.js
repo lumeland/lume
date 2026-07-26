@@ -30,6 +30,9 @@ export default function liveReload(
       if (files) {
         refresh(files);
       }
+      if (debugbar) {
+        debugbar.connected = true;
+      }
     };
     ws.onmessage = (e) => {
       const message = JSON.parse(e.data);
@@ -67,6 +70,9 @@ export default function liveReload(
       wasClosed = true;
       // Socket connection closed. Will attempt to reconnect in 5 seconds.
       setTimeout(socket, 5000);
+      if (debugbar) {
+        debugbar.connected = false;
+      }
     };
     ws.onerror = (err) => console.error("Lume webSocket error observed:", err);
   }
