@@ -44,9 +44,9 @@ Deno.test("well_known plugin", async (t) => {
     },
     matrix: {
       server: {
-        "m.server": "https://example.com"
+        "m.server": "https://example.com",
       },
-    }
+    },
   }));
 
   await build(site);
