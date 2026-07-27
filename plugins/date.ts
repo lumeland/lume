@@ -6,7 +6,6 @@ import {
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { HelperThis } from "../core/renderer.ts";
 import type { Locale } from "../deps/date.ts";
 
 export interface Options {
@@ -40,10 +39,7 @@ export function date(userOptions?: Options) {
   return (site: Site) => {
     const defaultLocale = Object.keys(options.locales).shift();
 
-    site.filter("date", filter);
-
-    function filter(
-      this: HelperThis | void,
+    site.filter<{ lang?: string }>("date", function filter(
       date: string | Date,
       pattern = "DATE",
       lang?: string,
@@ -69,7 +65,7 @@ export function date(userOptions?: Options) {
       } else {
         return format(date, patt, { locale });
       }
-    }
+    });
   };
 }
 

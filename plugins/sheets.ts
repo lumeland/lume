@@ -10,7 +10,7 @@ import loadText from "../core/loaders/text.ts";
 import loadBinary from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";
-import type { RawData } from "../core/file.ts";
+import type { RawData } from "../types.ts";
 
 export interface Options {
   /** File extensions to load */

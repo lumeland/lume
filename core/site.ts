@@ -33,7 +33,6 @@ import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import type { Data, RawData } from "./file.ts";
 import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
@@ -43,6 +42,7 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
+import { Data, DefaultType, RawData } from "../types.ts";
 
 /** Default options of the site */
 const defaults = {
@@ -406,11 +406,14 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(processor: Processor): this;
-  preprocess(extensions: Extensions, processor: Processor): this;
-  preprocess(
-    extensions: Extensions | Processor,
-    preprocessor?: Processor,
+  preprocess<D = Lume.GlobalData>(processor: Processor<D>): this;
+  preprocess<D = Lume.GlobalData>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  preprocess<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.preprocess("*", extensions);
@@ -426,9 +429,15 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process(processor: Processor): this;
-  process(extensions: Extensions, processor: Processor): this;
-  process(extensions: Extensions | Processor, processor?: Processor): this {
+  process<D = Lume.GlobalData>(processor: Processor<D>): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
+  ): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);
     }
@@ -442,12 +451,20 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper<HelperThis>, async = false): this {
+  filter<D = Lume.GlobalData>(
+    name: string,
+    filter: Helper<HelperThis<D>>,
+    async = false,
+  ): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
+  helper<D = Lume.GlobalData>(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -1064,14 +1081,14 @@ export default class Site {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page> {
+  async getOrCreatePage<D = DefaultType>(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page
     const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
-      return page;
+      return page as Page<D>;
     }
 
     // It's a static file
@@ -1081,7 +1098,7 @@ export default class Site {
       const file = this.files.splice(index, 1)[0];
       const page = await file.toPage();
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     // Read the source files directly
@@ -1091,12 +1108,12 @@ export default class Site {
       const page = Page.create({ url }, { entry });
       page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     const newPage = Page.create({ url });
     this.pages.push(newPage);
-    return newPage;
+    return newPage as Page<D>;
   }
 
   /**

@@ -93,10 +93,10 @@ export function jsx(userOptions?: Options) {
 
 export default jsx;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The JSX children elements
        * @see https://lume.land/plugins/jsx/

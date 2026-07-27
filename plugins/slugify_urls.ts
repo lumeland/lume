@@ -8,6 +8,7 @@ import type Site from "../core/site.ts";
 import type { Extensions } from "../core/utils/path.ts";
 import type { Options as SlugifierOptions } from "../core/slugifier.ts";
 import { getBasename } from "../core/utils/page_url.ts";
+import { StaticFile } from "../core/file.ts";
 
 export interface Options extends SlugifierOptions {
   /** File extensions to slugify */
@@ -29,27 +30,33 @@ export function slugifyUrls(userOptions?: Options) {
   const slugify = createSlugifier(options);
 
   return (site: Site) => {
-    site.filter("slugify", function (text: string, lang?: string) {
-      return slugify(text, lang ?? this?.data?.lang);
-    });
+    site.filter<{ lang?: string }>(
+      "slugify",
+      function (text: string, lang?: string) {
+        return slugify(text, lang ?? this?.data?.lang);
+      },
+    );
 
-    site.preprocess(options.extensions, function processSlugifyUrls(pages) {
-      // Slugify the page URLs
-      pages.forEach((page) => {
-        const [url, ext] = getPathAndExtension(page.data.url);
-        page.data.url = slugify(url, page.data.lang) + ext;
-        page.data.basename = getBasename(page.data.url);
-      });
-
-      // Slugify the static files
-      site.files
-        .filter((file) => matchExtension(options.extensions, file.outputPath))
-        .forEach((file) => {
-          const [url, ext] = getPathAndExtension(file.data.url);
-          file.data.url = slugify(url, file.data.lang) + ext;
-          file.data.basename = getBasename(file.data.url);
+    site.preprocess<{ lang?: string }>(
+      options.extensions,
+      function processSlugifyUrls(pages) {
+        // Slugify the page URLs
+        pages.forEach((page) => {
+          const [url, ext] = getPathAndExtension(page.data.url);
+          page.data.url = slugify(url, page.data.lang) + ext;
+          page.data.basename = getBasename(page.data.url);
         });
-    });
+
+        // Slugify the static files
+        (site.files as StaticFile<{ lang?: string }>[])
+          .filter((file) => matchExtension(options.extensions, file.outputPath))
+          .forEach((file) => {
+            const [url, ext] = getPathAndExtension(file.data.url);
+            file.data.url = slugify(url, file.data.lang) + ext;
+            file.data.basename = getBasename(file.data.url);
+          });
+      },
+    );
   };
 }
 

@@ -2,7 +2,8 @@ import { getGenerator } from "../core/utils/lume_version.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
-import type { Data, Page } from "../core/file.ts";
+import type { Page } from "../core/file.ts";
+import type { Data } from "../types.ts";
 
 export interface MetaData {
   /** The type of the site default is website */
@@ -59,14 +60,14 @@ export function metas() {
   return (site: Site) => {
     // Configure the merged keys
     site.mergeKey("metas", "object");
-    site.process([".html"], function processMetas(pages) {
+    site.process<{ metas?: MetaData }>([".html"], function processMetas(pages) {
       for (const page of pages) {
         metas(page);
       }
     });
 
-    function metas(page: Page) {
-      const metas = page.data.metas as MetaData | undefined;
+    function metas(page: Page<{ metas?: MetaData }>) {
+      const metas = page.data.metas;
 
       if (!metas) {
         return;
@@ -248,10 +249,10 @@ function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {
   }, other];
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Meta elements
        * @see https://lume.land/plugins/metas/

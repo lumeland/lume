@@ -82,10 +82,10 @@ export interface ReadingInfo {
   time: number;
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Reading info
        * @see https://lume.land/plugins/reading_info/

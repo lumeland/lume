@@ -121,9 +121,7 @@ export function reload(options: Options): Middleware {
     body += decoder.decode();
 
     let source = `${reloadClient};
-    liveReload(${revision}, "${options.basepath}", ${response.status}, "${
-      debugBar?.url || ""
-    }");
+    liveReload(${revision}, "${options.basepath}", ${response.status});
     /*# sourceURL=inline:lume-live-reload.js */; `;
 
     if (request.url.endsWith(".xhtml")) {

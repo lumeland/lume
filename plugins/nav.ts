@@ -4,7 +4,7 @@ import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 import type Searcher from "../core/searcher.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 
 export interface Options {
   /** The default order for the children */
@@ -14,6 +14,14 @@ export interface Options {
 export const defaults = {
   order: "basename=asc-locale",
 } satisfies Options;
+
+interface PluginData {
+  /** Page title, used by some plugins */
+  title?: string;
+
+  /** @see https://lume.land/plugins/nav/ */
+  nav: Nav;
+}
 
 /**
  * A plugin to generate a navigation tree and breadcrumbs
@@ -131,10 +139,10 @@ export class Nav {
   #buildNav(query?: string, sort?: string): NavData {
     const nav: TempNavData = {
       slug: "",
-      data: { basename: "" } as Data,
+      data: { basename: "" } as Data<PluginData>,
     };
 
-    const dataPages = this.#search.pages(query);
+    const dataPages = this.#search.pages<PluginData>(query);
 
     for (const data of dataPages) {
       const url = data.page?.outputPath;
@@ -163,7 +171,7 @@ export class Nav {
             data: {
               ...this.#search.data(path),
               basename: part,
-            } as Data,
+            } as Data<PluginData>,
             parent: current,
           };
         } else {
@@ -177,14 +185,14 @@ export class Nav {
 }
 
 export interface TempNavData {
-  data: Data;
+  data: Data<PluginData>;
   slug: string;
   children?: Record<string, TempNavData>;
   parent?: TempNavData;
 }
 
 export interface NavData {
-  data: Data;
+  data: Data<PluginData>;
   slug: string;
   children?: NavData[];
   parent?: NavData;
@@ -296,7 +304,7 @@ function convert(
       return {
         slug: this.slug,
         data: {
-          title: this.data.title,
+          title: (this.data as Data<PluginData>).title,
           url: this.data.url,
           basename: this.data.basename,
         },
@@ -326,12 +334,9 @@ function filterIndex(path: string): boolean {
 
 export default nav;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
-      /** @see https://lume.land/plugins/nav/ */
-      nav: Nav;
-    }
+    export interface GlobalData extends PluginData {}
   }
 }

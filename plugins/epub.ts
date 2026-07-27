@@ -1,5 +1,5 @@
 import { merge } from "../core/utils/object.ts";
-import { filesToPages } from "../core/file.ts";
+import { filesToPages, type Page } from "../core/file.ts";
 import navPlugin from "./nav.ts";
 import type { Nav, NavData } from "./nav.ts";
 import type Site from "../core/site.ts";
@@ -39,6 +39,14 @@ export const defaults = {
     date: new Date(),
   },
 } satisfies Options;
+
+interface PluginData {
+  type?: EpubType;
+  index?: boolean;
+  id?: string;
+  properties?: Property | Property[];
+  manifestItem?: ManifestItem;
+}
 
 export default function (userOptions?: Options) {
   const options = merge(defaults, userOptions);
@@ -80,7 +88,7 @@ export default function (userOptions?: Options) {
       );
 
       // Generate the manifestItem object for all pages
-      for (const page of site.pages) {
+      for (const page of site.pages as Page<PluginData>[]) {
         page.data.manifestItem = getManifest(page.data, metadata);
       }
 
@@ -96,7 +104,9 @@ export default function (userOptions?: Options) {
       );
 
       // Create the toc.ncx file
-      const tocNcxPage = await site.getOrCreatePage("/toc.ncx");
+      const tocNcxPage = await site.getOrCreatePage<
+        { manifestItem: ManifestItem; index?: boolean }
+      >("/toc.ncx");
       tocNcxPage.content = createTocNcx(metadata, menu, files);
       tocNcxPage.data.manifestItem = getManifest(
         tocNcxPage.data,
@@ -179,10 +189,10 @@ function allPages(menu: NavData): ManifestItem[] {
   return pages;
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       type?: EpubType;
       index?: boolean;
       id?: string;

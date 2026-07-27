@@ -46,7 +46,9 @@ export function ogImages(userOptions?: Options) {
     // Get the cache folder
     const { cache } = site;
 
-    site.process([".html"], async function processOgImages(pages, allPages) {
+    site.process<{ openGraphLayout?: string; metas?: { image?: string } }>([
+      ".html",
+    ], async function processOgImages(pages, allPages) {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
       }
@@ -142,10 +144,10 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
 
 export default ogImages;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The layout to generate the Open Graph Image
        * @see https://lume.land/plugins/og_image/

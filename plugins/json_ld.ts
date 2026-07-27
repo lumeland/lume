@@ -271,10 +271,10 @@ export function jsonLd(userOptions?: Options) {
 
 export default jsonLd;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * JSON_LD elements
        * @see https://lume.land/plugins/json_ld/

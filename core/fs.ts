@@ -1,7 +1,7 @@
 import { posix } from "../deps/path.ts";
 import { toFileUrl } from "../deps/path.ts";
 
-import type { RawData } from "./file.ts";
+import type { RawData } from "../types.ts";
 
 type EntryType = "file" | "directory";
 

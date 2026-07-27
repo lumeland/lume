@@ -130,7 +130,6 @@ snapshot[`FFF plugin 3`] = `
 ",
       content: "The \`published\` should be used as \`date\`.
 ",
-      created: [],
       date: [],
       draft: "undefined",
       flags: "undefined",
@@ -152,7 +151,6 @@ snapshot[`FFF plugin 3`] = `
       tags: "Array(0)",
       title: "FFF Date Test",
       type: "article",
-      updated: [],
       url: "/date/",
       video: "undefined",
       visibility: "undefined",
@@ -175,7 +173,6 @@ snapshot[`FFF plugin 3`] = `
 ",
       content: "FFF Image Test
 ",
-      created: [],
       date: [],
       draft: "undefined",
       flags: "undefined",
@@ -198,7 +195,6 @@ snapshot[`FFF plugin 3`] = `
 ",
       tags: "Array(0)",
       type: "photo",
-      updated: [],
       url: "/image/",
       video: "undefined",
       visibility: "undefined",
@@ -225,7 +221,6 @@ snapshot[`FFF plugin 3`] = `
 
 The \`categories\` should be merged into \`tags\`.
 ",
-      created: [],
       date: [],
       draft: "undefined",
       flags: "undefined",
@@ -247,7 +242,6 @@ The \`categories\` should be merged into \`tags\`.
 ",
       tags: "Array(4)",
       type: "photo",
-      updated: [],
       url: "/tags/",
       video: "undefined",
       visibility: "undefined",
