@@ -20,7 +20,6 @@ Deno.test("FFF plugin", async (t) => {
         type: "object",
       },
     },
-    getGitDate: true,
     postTypeDiscovery: true,
   }));
 
