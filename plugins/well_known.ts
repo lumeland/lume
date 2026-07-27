@@ -40,6 +40,12 @@ export interface Options {
    * @see https://developer.chrome.com/blog/seamless-pwa-origin-migration
    */
   migratePWA?: string | string[];
+
+  /**
+   * Matrix server and client delegation
+   * @see https://spec.matrix.org/v1.19/client-server-api/#well-known-uris
+   */
+  matrix?: Matrix;
 }
 
 interface Security {
@@ -170,6 +176,74 @@ interface Gpc {
   lastUpdate: Date | Temporal.PlainDate | Temporal.PlainDateTime;
 }
 
+interface Matrix {
+  /**
+   * Server-to-server delegation.
+   * @see https://spec.matrix.org/v1.19/server-server-api/#getwell-knownmatrixserver
+   */
+  server?: {
+    "m.server": string;
+  };
+
+  /**
+   * Client-to-server discovery.
+   * @see https://spec.matrix.org/v1.19/client-server-api/#getwell-knownmatrixclient
+   */
+  client?: {
+    "m.homeserver": {
+      base_url: string;
+    };
+    "m.identity_server"?: {
+      base_url: string;
+    };
+    /** Additional application-dependent keys, using Java package naming convention */
+    [key: string]: unknown;
+  };
+
+  /**
+   * Server admin contact and support page.
+   * @see https://spec.matrix.org/v1.19/client-server-api/#getwell-knownmatrixsupport
+   */
+  support?: MatrixSupport;
+
+  /**
+   * Public key information for a Policy Server.
+   * @see https://spec.matrix.org/v1.19/client-server-api/#getwell-knownmatrixpolicy_server
+   */
+  policyServer?: MatrixPolicyServer;
+}
+
+interface MatrixSupport {
+  /** Ways to contact the server administrator. At least one contact or a support page is required. */
+  contacts?: MatrixContact[];
+
+  /** The URL of a page to give users help specific to the homeserver, like extra login/registration steps. */
+  supportPage?: string;
+}
+
+interface MatrixContact {
+  /** An email address to reach the administrator. At least one of matrixId or emailAddress is required. */
+  emailAddress?: string;
+
+  /** A Matrix User ID representing the administrator. At least one of matrixId or emailAddress is required. */
+  matrixId?: string;
+
+  /**
+   * An informal description of what the contact methods are used for.
+   * One of "m.role.admin", "m.role.security", or a namespaced identifier.
+   */
+  role: string;
+}
+
+interface MatrixPolicyServer {
+  /** The unpadded base64-encoded public keys for the Policy Server. MUST contain at least ed25519. */
+  publicKeys: {
+    ed25519: string;
+    /** Additional unpadded base64-encoded public keys, keyed by algorithm */
+    [key: string]: string;
+  };
+}
+
 export function wellKnown(options: Options) {
   return (site: Site) => {
     if (options.atProto) {
@@ -224,6 +298,42 @@ export function wellKnown(options: Options) {
       site.page({
         url: "/.well-known/web-app-origin-association",
         content: JSON.stringify(Object.fromEntries(entries), null, 2),
+      });
+    }
+
+    if (options.matrix?.server) {
+      site.page({
+        url: "/.well-known/matrix/server",
+        content: JSON.stringify(options.matrix.server, null, 2),
+      });
+    }
+
+    if (options.matrix?.client) {
+      site.page({
+        url: "/.well-known/matrix/client",
+        content: JSON.stringify(options.matrix.client, null, 2),
+      });
+    }
+
+    if (options.matrix?.support) {
+      site.page({
+        url: "/.well-known/matrix/support",
+        content: JSON.stringify(
+          buildMatrixSupport(options.matrix.support),
+          null,
+          2,
+        ),
+      });
+    }
+
+    if (options.matrix?.policyServer) {
+      site.page({
+        url: "/.well-known/matrix/policy_server",
+        content: JSON.stringify(
+          { public_keys: options.matrix.policyServer.publicKeys },
+          null,
+          2,
+        ),
       });
     }
   };
@@ -317,6 +427,32 @@ function buildWebFinger(info: WebFinger): Record<string, unknown> {
   jrd.links = info.links;
 
   return jrd;
+}
+
+function buildMatrixSupport(info: MatrixSupport): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+
+  if (info.contacts?.length) {
+    result.contacts = info.contacts.map((contact) => {
+      const entry: Record<string, unknown> = { role: contact.role };
+
+      if (contact.emailAddress) {
+        entry.email_address = contact.emailAddress;
+      }
+
+      if (contact.matrixId) {
+        entry.matrix_id = contact.matrixId;
+      }
+
+      return entry;
+    });
+  }
+
+  if (info.supportPage) {
+    result.support_page = info.supportPage;
+  }
+
+  return result;
 }
 
 function toArray(v?: string | string[]): string[] {
