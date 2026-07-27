@@ -86,10 +86,7 @@ declare global {
     }
 
     /** The page data */
-    export type Data<D = unknown> = PageData<D> & GlobalData & {
-      // deno-lint-ignore no-explicit-any
-      [index: string]: Data["strict"] extends true ? unknown : any;
-    };
+    export type Data<D = unknown> = PageData<D> & GlobalData;
 
     /** The page helpers */
     export interface Helpers {
