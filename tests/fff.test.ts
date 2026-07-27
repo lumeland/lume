@@ -1,7 +1,6 @@
 import { assertEquals } from "../deps/assert.ts";
 import { assertSiteSnapshot, build, getSite } from "./utils.ts";
 import fff from "../plugins/fff.ts";
-import { Page } from "../core/file.ts";
 
 Deno.test("FFF plugin", async (t) => {
   const site = getSite({
@@ -31,7 +30,7 @@ Deno.test("FFF plugin", async (t) => {
   // compare to snapshot
   await assertSiteSnapshot(t, site);
 
-  const pages = site.pages as Page<any>[];
+  const pages = site.pages;
 
   // published => date
   const date = pages.find((page) => page.src.path === "/date")!;

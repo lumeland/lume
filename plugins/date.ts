@@ -6,7 +6,6 @@ import {
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
-import type { HelperThis } from "../core/renderer.ts";
 import type { Locale } from "../deps/date.ts";
 
 export interface Options {

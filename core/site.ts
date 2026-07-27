@@ -42,7 +42,7 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
-import { Data, RawData } from "../types.ts";
+import { Data, DefaultType, RawData } from "../types.ts";
 
 /** Default options of the site */
 const defaults = {
@@ -1081,7 +1081,7 @@ export default class Site {
     }
   }
 
-  async getOrCreatePage<D = unknown>(url: string): Promise<Page<D>> {
+  async getOrCreatePage<D = DefaultType>(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page

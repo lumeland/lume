@@ -39,7 +39,7 @@ export type RawData<D = unknown> = D & {
   /** To configure how some data keys will be merged with the parent */
   mergedKeys?: Record<string, MergeStrategy>;
 
-  [index: string]: unknown;
+  [index: string]: DefaultType;
 };
 
 /** Data defined in _data files */
@@ -60,6 +60,10 @@ type PageData<D = unknown> = FileData<D> & {
 };
 
 export type { PageData as Data };
+
+// deno-lint-ignore no-explicit-any
+export type DefaultType = Lume.TypeConfig["strict"] extends true ? unknown
+  : any;
 
 declare global {
   namespace Lume {

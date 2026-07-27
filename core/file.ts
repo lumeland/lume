@@ -4,14 +4,14 @@ import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { Entry } from "./fs.ts";
-import type { Data, FileData } from "../types.ts";
+import type { Data, DefaultType, FileData } from "../types.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
-export class Page<D = unknown> {
+export class Page<D = DefaultType> {
   /** The src info */
   src: Src;
 
@@ -28,7 +28,7 @@ export class Page<D = unknown> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create<D = unknown>(
+  static create<D = DefaultType>(
     data: Partial<Omit<FileData<D>, "url">> & { url: string },
     src?: Partial<Src>,
   ): Page<D> {
@@ -139,7 +139,7 @@ export class Page<D = unknown> {
   }
 }
 
-export class StaticFile<D = unknown> {
+export class StaticFile<D = DefaultType> {
   /** The src info */
   src: Required<Src>;
 

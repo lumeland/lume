@@ -2,7 +2,7 @@ import { globToRegExp } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 
 import type { Page, StaticFile } from "./file.ts";
-import type { Data, DirectoryData } from "../types.ts";
+import type { Data, DefaultType, DirectoryData } from "../types.ts";
 
 export interface Options {
   /** The pages array */
@@ -90,7 +90,7 @@ export default class Searcher {
   }
 
   /** Returns all values from the same key of a search */
-  values<T = unknown>(key: string, query?: string): T[] {
+  values<T = DefaultType>(key: string, query?: string): T[] {
     const values = new Set();
 
     this.#searchPages(query).forEach((data) => {
@@ -107,7 +107,7 @@ export default class Searcher {
   }
 
   /** Return the next page of a search */
-  nextPage<T = unknown>(
+  nextPage<T = DefaultType>(
     url: string,
     query?: string,
     sort?: string,
@@ -119,7 +119,7 @@ export default class Searcher {
   }
 
   /** Return the previous page of a search */
-  previousPage<T = unknown>(
+  previousPage<T = DefaultType>(
     url: string,
     query?: string,
     sort?: string,

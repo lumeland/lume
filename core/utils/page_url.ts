@@ -3,7 +3,7 @@ import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
 import type { Page } from "../file.ts";
-import type { Data, DirectoryData, RawData } from "../../types.ts";
+import type { Data, DirectoryData } from "../../types.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(page404?: string): (page: Data) => boolean {

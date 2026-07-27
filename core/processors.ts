@@ -74,7 +74,7 @@ export default class Processors {
  */
 export type Processor<D = unknown> = (
   filteredPages: Page<D>[],
-  allPages: Page<D>[],
+  allPages: Page[],
 ) => void | false | Promise<void | false>;
 
 function pageMatches(exts: Extensions, page: Page): boolean {
