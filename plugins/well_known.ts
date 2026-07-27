@@ -301,42 +301,40 @@ export function wellKnown(options: Options) {
       });
     }
 
-    if (options.matrix) {
-      if (options.matrix.server) {
-        site.page({
-          url: "/.well-known/matrix/server",
-          content: JSON.stringify(options.matrix.server, null, 2),
-        });
-      }
+    if (options.matrix?.server) {
+      site.page({
+        url: "/.well-known/matrix/server",
+        content: JSON.stringify(options.matrix.server, null, 2),
+      });
+    }
 
-      if (options.matrix.client) {
-        site.page({
-          url: "/.well-known/matrix/client",
-          content: JSON.stringify(options.matrix.client, null, 2),
-        });
-      }
+    if (options.matrix?.client) {
+      site.page({
+        url: "/.well-known/matrix/client",
+        content: JSON.stringify(options.matrix.client, null, 2),
+      });
+    }
 
-      if (options.matrix.support) {
-        site.page({
-          url: "/.well-known/matrix/support",
-          content: JSON.stringify(
-            buildMatrixSupport(options.matrix.support),
-            null,
-            2,
-          ),
-        });
-      }
+    if (options.matrix?.support) {
+      site.page({
+        url: "/.well-known/matrix/support",
+        content: JSON.stringify(
+          buildMatrixSupport(options.matrix.support),
+          null,
+          2,
+        ),
+      });
+    }
 
-      if (options.matrix.policyServer) {
-        site.page({
-          url: "/.well-known/matrix/policy_server",
-          content: JSON.stringify(
-            { public_keys: options.matrix.policyServer.publicKeys },
-            null,
-            2,
-          ),
-        });
-      }
+    if (options.matrix?.policyServer) {
+      site.page({
+        url: "/.well-known/matrix/policy_server",
+        content: JSON.stringify(
+          { public_keys: options.matrix.policyServer.publicKeys },
+          null,
+          2,
+        ),
+      });
     }
   };
 }

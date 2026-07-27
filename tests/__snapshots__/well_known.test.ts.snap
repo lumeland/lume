@@ -313,6 +313,35 @@ snapshot[`well_known plugin 3`] = `
     },
   },
   {
+    content: '{
+  "m.server": "https://example.com"
+}',
+    data: {
+      basename: "server",
+      content: '{
+  "m.server": "https://example.com"
+}',
+      date: [],
+      mergedKeys: [
+        "tags",
+      ],
+      page: [
+        "src",
+        "data",
+        "isCopy",
+      ],
+      paginate: "paginate",
+      search: [],
+      tags: "Array(0)",
+      url: "/.well-known/matrix/server",
+    },
+    src: {
+      ext: "",
+      path: "",
+      remote: undefined,
+    },
+  },
+  {
     content: "Contact: mailto:security@example.com
 Policy: https://example.com/security-policy.txt
 Expires: 2026-07-12T09:51:58.383Z
