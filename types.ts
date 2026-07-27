@@ -61,8 +61,8 @@ type PageData<D = unknown> = FileData<D> & {
 
 export type { PageData as Data };
 
-// deno-lint-ignore no-explicit-any
 export type DefaultType = Lume.TypeConfig["strict"] extends true ? unknown
+  // deno-lint-ignore no-explicit-any
   : any;
 
 declare global {
