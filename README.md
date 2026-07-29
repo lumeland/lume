@@ -50,7 +50,7 @@ title: Welcome to my page
 Build it:
 
 ```sh
-deno run -A https://deno.land/x/lume/cli.ts
+deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume/cli.ts
 ```
 
 This command will compile your documents to HTML and save them into the
