@@ -48,6 +48,22 @@ Deno.test("Robots plugin with disallow", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
+Deno.test("Robots plugin allow & disallow *", async (t) => {
+  const site = getSite({
+    src: "normal",
+    location: new URL("https://example.com/"),
+  });
+
+  site.use(robots({
+    disallow: "*",
+    allow: "*",
+  }));
+  site.ignore("static.yml");
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
 Deno.test("Robots plugin with custom rules", async (t) => {
   const site = getSite({
     src: "normal",

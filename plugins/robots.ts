@@ -1,3 +1,4 @@
+import { aiRobots } from "../deps/ai_robots.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
@@ -46,6 +47,12 @@ export interface Options {
 
   /** Custom rules */
   rules?: Rule[];
+
+  /**
+   * To block some known AI bots.
+   * List of User Agents from https://github.com/ai-robots-txt/ai.robots.txt
+   */
+  disallowAI?: boolean;
 }
 
 // Default options
@@ -60,6 +67,21 @@ export const defaults = {
  */
 export function robots(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+  if (options.disallowAI && options.disallow !== "*") {
+    options.disallow = [
+      ...options.disallow ?? [],
+      ...aiRobots,
+    ];
+
+    if (options.allow === "*") {
+      options.allow = [];
+    }
+  }
+
+  // If disallow is *, allow can't be *
+  if (options.disallow === "*" && options.allow === "*") {
+    options.allow = [];
+  }
 
   return (site: Site) => {
     site.process(async function processRobots() {
@@ -83,9 +105,9 @@ export function robots(userOptions?: Options) {
 
       // Create the robots.txt page
       const robots = await site.getOrCreatePage(options.filename);
-      const existingContent = robots.content ? `${robots.content}\n` : "";
+      const existingContent = robots.text ? `${robots.text}\n` : "";
 
-      robots.content = existingContent + rules
+      robots.text = existingContent + rules
         .map((rule) =>
           Object.entries(rule)
             .sort(([keyA], [keyB]) =>
