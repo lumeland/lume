@@ -111,11 +111,8 @@ export function robots(userOptions?: Options) {
               ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB)
             )
             .map(([key, value]) =>
-              (typeof value === "string" ? [value] : value).map((item) =>
-                `${key.charAt(0).toUpperCase()}${
-                  key.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
-                }: ${item}`
-              ).join("\n")
+              toArray(value).map((item) => `${formatRuleName(key)}: ${item}`)
+                .join("\n")
             ).join("\n")
         ).join("\n\n") +
         "\n";
@@ -127,4 +124,11 @@ export default robots;
 
 function toArray(value?: string | string[]): string[] {
   return !value ? [] : typeof value === "string" ? [value] : value;
+}
+
+/** Convert 'userAgent' to 'User-agent' */
+function formatRuleName(name: string): string {
+  return `${name.charAt(0).toUpperCase()}${
+    name.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
+  }`;
 }
