@@ -1,6 +1,6 @@
 # 🔥Lume
 
-[![deno.land/x/lume](https://shield.deno.dev/x/lume)](https://deno.land/x/lume)
+[![Lume on JsDelivr](https://data.jsdelivr.com/v1/package/gh/lumeland/lume/badge)](https://www.jsdelivr.com/package/gh/lumeland/lume)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 **Lume** is the Galician word for _fire_ but also a (yet another) static site
