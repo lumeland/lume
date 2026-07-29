@@ -48,15 +48,16 @@ Deno.test("Robots plugin with disallow", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
-Deno.test("Robots plugin allow & disallow *", async (t) => {
+Deno.test("Robots plugin block robots", async (t) => {
   const site = getSite({
     src: "normal",
     location: new URL("https://example.com/"),
   });
 
   site.use(robots({
-    disallow: "*",
-    allow: "*",
+    allow: "AllowThis",
+    disallow: "DisallowThat",
+    disallowAI: true,
   }));
   site.ignore("static.yml");
 

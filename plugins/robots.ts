@@ -67,9 +67,11 @@ export const defaults = {
  */
 export function robots(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+
+  // AI bots
   if (options.disallowAI && options.disallow !== "*") {
     options.disallow = [
-      ...options.disallow ?? [],
+      ...toArray(options.disallow),
       ...aiRobots,
     ];
 
@@ -86,18 +88,13 @@ export function robots(userOptions?: Options) {
   return (site: Site) => {
     site.process(async function processRobots() {
       const rules: Rule[] = [];
-      const allow = typeof options.allow === "string"
-        ? [options.allow]
-        : options.allow;
-      const disallow = typeof options.disallow === "string"
-        ? [options.disallow]
-        : options.disallow;
-
-      if (allow && allow.length > 0) {
+      const allow = toArray(options.allow);
+      const disallow = toArray(options.disallow);
+      if (allow.length > 0) {
         rules.push({ userAgent: allow, allow: "/" });
       }
 
-      if (disallow && disallow.length > 0) {
+      if (disallow.length > 0) {
         rules.push({ userAgent: disallow, disallow: "/" });
       }
 
@@ -127,3 +124,7 @@ export function robots(userOptions?: Options) {
 }
 
 export default robots;
+
+function toArray(value?: string | string[]): string[] {
+  return !value ? [] : typeof value === "string" ? [value] : value;
+}
