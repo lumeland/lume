@@ -155,10 +155,10 @@ snapshot[`OpenGraph images 3`] = `
     },
   },
   {
-    content: "Uint8Array(13160)",
+    content: "Uint8Array(13296)",
     data: {
       basename: "index",
-      content: "Uint8Array(13160)",
+      content: "Uint8Array(13296)",
       page: [
         "src",
         "data",

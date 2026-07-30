@@ -1,6 +1,4 @@
-/** @jsxImportSource npm:react@18.2.0 */
-
-export default function (data) {
+export default function (data, { tolower }) {
   return (
     <div
       style={{
@@ -22,10 +20,10 @@ export default function (data) {
         }}
       >
         <h1 style={{ fontSize: 90, fontWeight: 700, letterSpacing: "-0.03em" }}>
-          {data.title}
+          {tolower(data.title)}
         </h1>
         <div style={{ fontSize: 60, color: "gray", letterSpacing: "-0.015em" }}>
-          {data.description}
+          {tolower(data.description)}
         </div>
       </div>
     </div>
