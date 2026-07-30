@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.26.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.27.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -93,8 +93,15 @@ export const catalogs: Catalog[] = [
   },
   {
     // https://www.mingcute.com/
+    id: "mingcute3",
+    src:
+      "https://cdn.jsdelivr.net/npm/@mingcute/svg@3.0.0/core-{variant}/{name}.svg",
+    variants: ["regular", "filled"],
+  },
+  {
+    // https://www.mingcute.com/
     id: "mingcute",
-    src: "https://cdn.jsdelivr.net/gh/Richard9394/MingCute@2.95/svg/{name}.svg",
+    src: "https://cdn.jsdelivr.net/gh/Richard9394/MingCute@2.97/svg/{name}.svg",
   },
   {
     // https://phosphoricons.com/
@@ -116,13 +123,13 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.27.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.27.1/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.45.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.46.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
@@ -186,7 +193,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.31.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.32.0/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {
@@ -224,7 +231,7 @@ export const catalogs: Catalog[] = [
     // https://ionic.io/ionicons
     id: "ionicons",
     src:
-      "https://cdn.jsdelivr.net/npm/ionicons@8.0.13/dist/svg/{name}{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/ionicons@8.1.0/dist/svg/{name}{variant}.svg",
     variants: [
       { id: "outline", path: "-outline" },
       { id: "filled", path: "" },

@@ -7,8 +7,13 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.3.1] - Unreleased
+### Added
+- New icon catalog `mingcute3` containing the version 3.0.0 of Mingcute icons (that changes the icon names `arrow/arrow_left_fill` => `arrow-left:filled`).
+  The catalog `mingcute` (with version 2) is keept for backward compatibility but can be removed in the future.
+
 ### Fixed
 - `og_images`: Pass helpers in the second argument of the layout function.
+- Updated dependencies: `html-validate`, `postcss`, `markdown-it-attrs`, `markdown-it-deflist` and `ai_robots` and some icons.
 
 ## [3.3.0] - 2026-07-29
 ### Added
