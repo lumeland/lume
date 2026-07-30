@@ -92,7 +92,7 @@ const BASIC_DISPLAY_MODES: DisplayMode[] = [
   "browser",
 ];
 
-export function pwa(userOptions?: Partial<Options>): Lume.Plugin {
+export function pwa(userOptions?: Partial<Options>) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

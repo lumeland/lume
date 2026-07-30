@@ -7,6 +7,9 @@ import {
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
 
+import type Site from "../core/site.ts";
+import type { Page } from "../core/file.ts";
+
 export interface Options {
   /**
    * List of plugins to load
@@ -49,7 +52,7 @@ export function validateHtml(userOptions?: Options) {
     extends: options.extends,
   });
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     let reports: Report | undefined;
     site.process([".html"], processValidateHtml);
 
@@ -71,7 +74,7 @@ export function validateHtml(userOptions?: Options) {
     site.addEventListener("afterUpdate", output);
     site.addEventListener("afterBuild", output);
 
-    async function processValidateHtml(pages: Lume.Page[]) {
+    async function processValidateHtml(pages: Page[]) {
       reports = undefined;
       const pageReports: Set<Report> = new Set();
 

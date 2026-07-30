@@ -5,8 +5,9 @@ import { Options as SeoOptions } from "./seo/mod.ts";
 import messages from "./seo/messages.json" with { type: "json" };
 import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 
+import type Site from "../core/site.ts";
 import type { ErrorMessage } from "./seo/mod.ts";
-import { Item } from "../core/debugbar.ts";
+import type { Item } from "../core/debugbar.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 
@@ -61,7 +62,7 @@ export const defaults = {
 export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     const reports: Map<string, ErrorMessage[]> = new Map();
 
     site.process(processSEO);
