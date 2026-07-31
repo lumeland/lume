@@ -35,7 +35,8 @@ export const defaults = {
 
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
-  const { catalogs, versions } = options;
+  const catalogs = [...options.catalogs];
+  const { versions } = options;
   catalogs.push(mingcute[versions.mingcute]);
 
   return (site: Site) => {
