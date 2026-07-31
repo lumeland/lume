@@ -1,4 +1,4 @@
-import { catalogs } from "../deps/icons.ts";
+import { catalogs, mingcute } from "../deps/icons.ts";
 import { readFile } from "../core/utils/read.ts";
 import { merge } from "../core/utils/object.ts";
 import { posix } from "../deps/path.ts";
@@ -17,16 +17,26 @@ export interface Options {
 
   /** The catalogs to use */
   catalogs?: Catalog[];
+
+  /** Major version of some catalogs */
+  versions?: {
+    mingcute: 2 | 3;
+  };
 }
 
 export const defaults = {
   folder: "/icons",
   spriteFile: "/icons.svg",
   catalogs,
+  versions: {
+    mingcute: 3,
+  },
 } satisfies Options;
 
 export function icons(userOptions?: Options) {
   const options = merge(defaults, userOptions);
+  const { catalogs, versions } = options;
+  catalogs.push(mingcute[versions.mingcute]);
 
   return (site: Site) => {
     const iconFiles = new Map<string, string>();
@@ -41,7 +51,7 @@ export function icons(userOptions?: Options) {
       catalogId: string,
       rest?: string,
     ) {
-      const catalog = options.catalogs.find((c) => c.id === catalogId);
+      const catalog = catalogs.find((c) => c.id === catalogId);
 
       if (!catalog) {
         log.warn(`[icons plugin] Catalog "${catalogId}" not found`);

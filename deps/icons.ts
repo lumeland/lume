@@ -92,18 +92,6 @@ export const catalogs: Catalog[] = [
     variants: ["filled", "outlined", "round", "sharp", "two-tone"],
   },
   {
-    // https://www.mingcute.com/
-    id: "mingcute3",
-    src:
-      "https://cdn.jsdelivr.net/npm/@mingcute/svg@3.0.0/core-{variant}/{name}.svg",
-    variants: ["regular", "filled"],
-  },
-  {
-    // https://www.mingcute.com/
-    id: "mingcute",
-    src: "https://cdn.jsdelivr.net/gh/Richard9394/MingCute@2.97/svg/{name}.svg",
-  },
-  {
     // https://phosphoricons.com/
     id: "phosphor",
     src:
@@ -254,6 +242,20 @@ export const catalogs: Catalog[] = [
     ],
   },
 ];
+
+// https://www.mingcute.com/
+export const mingcute: Record<2 | 3, Catalog> = {
+  3: {
+    id: "mingcute",
+    src:
+      "https://cdn.jsdelivr.net/npm/@mingcute/svg@3.0.0/core-{variant}/{name}.svg",
+    variants: ["regular", "filled"],
+  },
+  2: {
+    id: "mingcute",
+    src: "https://cdn.jsdelivr.net/gh/Richard9394/MingCute@2.97/svg/{name}.svg",
+  },
+};
 
 function capitalize(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
