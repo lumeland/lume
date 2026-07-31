@@ -7,7 +7,7 @@ Deno.test("icons plugin", async (t) => {
   });
 
   site.use(icons());
-  site.ignore("mingcute.vto")
+  site.ignore("mingcute.vto");
 
   await build(site);
   await assertSiteSnapshot(t, site);
@@ -21,9 +21,9 @@ Deno.test("icons plugin (old versions)", async (t) => {
   site.use(icons({
     versions: {
       mingcute: 2,
-    }
+    },
   }));
-  site.ignore("index.vto")
+  site.ignore("index.vto");
 
   await build(site);
   await assertSiteSnapshot(t, site);
