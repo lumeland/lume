@@ -3,6 +3,7 @@ import {
   markdownItAttrs,
   markdownItDeflist,
   MarkdownItOptions,
+  type MarkdownItPlugin,
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
@@ -21,7 +22,7 @@ export interface Options {
    * The list of markdown-it plugins to use
    * @default `[markdownItAttrs, markdownItDeflist]`
    */
-  plugins?: unknown[];
+  plugins?: (MarkdownItPlugin | [MarkdownItPlugin, unknown[]])[];
 
   /** To modify existing rules or new custom rules */
   // deno-lint-ignore no-explicit-any
