@@ -17,11 +17,11 @@ export function init() {
     parentURL?: string,
   ): string | undefined {
     if (specifier.startsWith(root)) {
-      return specifier;
+      return specifier.includes("/node_modules/") ? undefined : specifier;
     }
 
-    if (specifier.startsWith(".") && parentURL?.startsWith(root)) {
-      return new URL(specifier, parentURL).href;
+    if (specifier.startsWith(".") && parentURL) {
+      return localSpecifier(new URL(specifier, parentURL).href);
     }
   }
 

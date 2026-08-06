@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `og_images`: Pass helpers in the second argument of the layout function.
+- Don't apply HMR to node_modules files [#870].
 - Updated dependencies: `std`, `html-validate`, `postcss`, `markdown-it`, `markdown-it-attrs`, `markdown-it-deflist` and `ai_robots` and some icons.
 
 ## [3.3.0] - 2026-07-29
@@ -550,6 +551,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#853]: https://github.com/lumeland/lume/issues/853
 [#859]: https://github.com/lumeland/lume/issues/859
 [#860]: https://github.com/lumeland/lume/issues/860
+[#870]: https://github.com/lumeland/lume/issues/870
 
 [3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...HEAD
 [3.3.0]: https://github.com/lumeland/lume/compare/v3.2.6...v3.3.0
