@@ -12,10 +12,17 @@ const dependencies = new Map<string, Set<string>>();
  * Example: `module.ts#0`, `module.ts#1`, etc
  */
 export function init() {
+  const denoDir = Deno.env.get("DENO_DIR");
+  const denoRoot = denoDir ? toFileUrl(denoDir).href : undefined;
+
   function localSpecifier(
     specifier: string,
     parentURL?: string,
   ): string | undefined {
+    if (denoRoot && specifier.startsWith(denoRoot)) {
+      return undefined;
+    }
+
     if (specifier.startsWith(root)) {
       return specifier.includes("/node_modules/") ? undefined : specifier;
     }

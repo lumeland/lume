@@ -12,7 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - `og_images`: Pass helpers in the second argument of the layout function.
-- Don't apply HMR to node_modules files [#870].
+- Don't apply HMR to node_modules files and files inside the `DENO_DIR` directory [#870].
 - Updated dependencies: `std`, `html-validate`, `postcss`, `markdown-it`, `markdown-it-attrs`, `markdown-it-deflist` and `ai_robots` and some icons.
 
 ## [3.3.0] - 2026-07-29
