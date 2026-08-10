@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.3.1] - Unreleased
+## [3.3.1] - 2026-08-10
 ### Added
 - `icons` plugin: new `versions` option to change the major version of some icon catalogs.
   For now only `mingcute` is available, that changes the icon names `arrow/arrow_left_fill` => `arrow-left:filled`. For now, the version 2 is still the default value (for backward compatibility) but you can use the new version with the option `versions.mingcute = 3`.
@@ -554,7 +554,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#860]: https://github.com/lumeland/lume/issues/860
 [#870]: https://github.com/lumeland/lume/issues/870
 
-[3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...HEAD
+[3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/lumeland/lume/compare/v3.2.6...v3.3.0
 [3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6
 [3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...v3.2.5
