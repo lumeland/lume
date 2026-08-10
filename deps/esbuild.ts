@@ -1,1 +1,1 @@
-export * from "npm:esbuild@0.28.1";
+export * from "npm:esbuild@0.28.2";

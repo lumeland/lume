@@ -29,7 +29,7 @@ export const defaults = {
   spriteFile: "/icons.svg",
   catalogs,
   versions: {
-    mingcute: 3,
+    mingcute: 2,
   },
 } satisfies Options;
 

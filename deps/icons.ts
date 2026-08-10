@@ -33,7 +33,7 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.28.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.31.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
@@ -111,7 +111,7 @@ export const catalogs: Catalog[] = [
   {
     // https://simpleicons.org/
     id: "simpleicons",
-    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.27.1/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/simple-icons@16.28.0/icons/{name}.svg",
   },
   {
     // https://tabler.io/icons
@@ -170,7 +170,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.334/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.335/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
@@ -181,7 +181,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.32.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.33.0/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {

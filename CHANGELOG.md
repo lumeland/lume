@@ -7,13 +7,14 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.3.1] - Unreleased
-### Changed
-- New icon catalog `mingcute` has updated to 3.0.0 (that changes the icon names `arrow/arrow_left_fill` => `arrow-left:filled`). Set the option `versions.mingcute = 2` to back to the v2 version.
+### Added
+- `icons` plugin: new `versions` option to change the major version of some icon catalogs.
+  For now only `mingcute` is available, that changes the icon names `arrow/arrow_left_fill` => `arrow-left:filled`. For now, the version 2 is still the default value (for backward compatibility) but you can use the new version with the option `versions.mingcute = 3`.
 
 ### Fixed
 - `og_images`: Pass helpers in the second argument of the layout function.
 - Don't apply HMR to node_modules files and files inside the `DENO_DIR` directory [#870].
-- Updated dependencies: `std`, `html-validate`, `postcss`, `markdown-it`, `markdown-it-attrs`, `markdown-it-deflist` and `ai_robots` and some icons.
+- Updated dependencies: `std`, `html-validate`, `postcss`, `markdown-it`, `markdown-it-attrs`, `markdown-it-deflist`, `esbuild`, `katex`, `terser`, `zip` and `ai_robots` and some icons.
 
 ## [3.3.0] - 2026-07-29
 ### Added
