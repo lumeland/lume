@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [3.3.2] - Unreleased
+### Fixed
+- Updated dependencies: `katex`, `ai_robots`, `terser`, `sass`, `html-validate`, `postcss-import`, `highlight.js`, `zip-js`, `satori`, `unocss` and icons.
+
 ## [3.3.1] - 2026-08-10
 ### Added
 - `icons` plugin: new `versions` option to change the major version of some icon catalogs.
@@ -554,6 +558,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#860]: https://github.com/lumeland/lume/issues/860
 [#870]: https://github.com/lumeland/lume/issues/870
 
+[3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...HEAD
 [3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/lumeland/lume/compare/v3.2.6...v3.3.0
 [3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6

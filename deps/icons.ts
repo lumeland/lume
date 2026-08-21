@@ -33,55 +33,55 @@ export const catalogs: Catalog[] = [
   {
     // https://lucide.dev/
     id: "lucide",
-    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.31.0/icons/{name}.svg",
+    src: "https://cdn.jsdelivr.net/npm/lucide-static@1.33.0/icons/{name}.svg",
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-100",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-100@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-200",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-200@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-300",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-300@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-400",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-400@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-500",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-500@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-600",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-600@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
     // https://fonts.google.com/icons?icon.set=Material+Symbols
     id: "material-700",
     src:
-      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.45.10/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@material-symbols/svg-700@0.46.0/{variant}/{name}.svg",
     variants: ["outlined", "rounded", "sharp"],
   },
   {
@@ -134,7 +134,7 @@ export const catalogs: Catalog[] = [
     // https://iconoir.com/
     id: "iconoir",
     src:
-      "https://cdn.jsdelivr.net/npm/iconoir@7.11.1/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/iconoir@7.12.1/icons/{variant}/{name}.svg",
     variants: ["regular", "solid"],
   },
   {
@@ -170,7 +170,7 @@ export const catalogs: Catalog[] = [
     // https://react.fluentui.dev/?path=/docs/icons-catalog--docs
     id: "fluent",
     src:
-      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.335/icons/{name}_{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons@1.1.337/icons/{name}_{variant}.svg",
     variants: [
       { id: "outlined", path: "regular" },
       "filled",
