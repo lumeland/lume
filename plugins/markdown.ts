@@ -22,7 +22,7 @@ export interface Options {
    * The list of markdown-it plugins to use
    * @default `[markdownItAttrs, markdownItDeflist]`
    */
-  plugins?: (MarkdownItPlugin | [MarkdownItPlugin, unknown[]])[];
+  plugins?: (MarkdownItPlugin | [MarkdownItPlugin, ...unknown[]])[];
 
   /** To modify existing rules or new custom rules */
   // deno-lint-ignore no-explicit-any
