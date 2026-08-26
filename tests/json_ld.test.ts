@@ -12,6 +12,18 @@ Deno.test("json_ld plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
+Deno.test("json_ld plugin (aggregated)", async (t) => {
+  const site = getSite({
+    src: "json_ld",
+  });
+
+  site.use(jsonLd());
+  site.mergeKey("jsonLd", "array");
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
 Deno.test("json_ld plugin (no insert)", async (t) => {
   const site = getSite({
     src: "json_ld",

@@ -2,8 +2,8 @@ import { isPlainObject } from "../core/utils/object.ts";
 import { getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
-import type { Page } from "../core/file.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
+import { Data } from "../types.ts";
 
 export type JsonldData = Graph | Thing;
 
@@ -192,19 +192,34 @@ export function jsonLd(userOptions?: Options) {
 
   return (site: Site) => {
     site.mergeKey("jsonLd", "object");
-    site.process([".html"], function processJsonLd(pages) {
-      pages.forEach(jsonLdProcessor);
-    });
+    site.process<{ jsonLd?: JsonldData | JsonldData[] }>(
+      [".html"],
+      function processJsonLd(pages) {
+        for (const page of pages) {
+          const jsonLdData = page.data.jsonLd;
 
-    function jsonLdProcessor(page: Page) {
-      let jsonLdData = page.data.jsonLd as JsonldData | undefined;
+          if (!jsonLdData) {
+            continue;
+          }
 
-      if (!jsonLdData) {
-        return;
-      }
+          const result = Array.isArray(jsonLdData)
+            ? jsonLdData.map((json) =>
+              jsonLdProcessor(json, page.document, page.data)
+            ).filter((data) => !!data)
+            : jsonLdProcessor(jsonLdData, page.document, page.data);
 
-      const { document, data } = page;
+          if (!insert && result && (!Array.isArray(result) || result.length)) {
+            page.data.jsonLdData = result;
+          }
+        }
+      },
+    );
 
+    function jsonLdProcessor(
+      jsonLdData: JsonldData,
+      document: Document,
+      data: Data,
+    ) {
       // Recursive function to traverse and process JSON-LD data
       function traverse(key: string | undefined, value: unknown): unknown {
         if (typeof value === "string") {
@@ -261,9 +276,8 @@ export function jsonLd(userOptions?: Options) {
           script.textContent = JSON.stringify(jsonLdData);
           document.head.appendChild(script);
           document.head.appendChild(document.createTextNode("\n"));
-        } else {
-          page.data.jsonLdData = jsonLdData;
         }
+        return jsonLdData;
       }
     }
   };
@@ -279,7 +293,7 @@ declare global {
        * JSON_LD elements
        * @see https://lume.land/plugins/json_ld/
        */
-      jsonLd?: JsonldData;
+      jsonLd?: JsonldData | JsonldData[];
     }
   }
 }
