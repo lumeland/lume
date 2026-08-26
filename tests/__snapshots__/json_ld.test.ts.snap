@@ -431,24 +431,15 @@ snapshot[`json_ld plugin (aggregated) 3`] = `
 [
   {
     content: '<!DOCTYPE html>
-<html><head><script type="application/ld+json">{"@type":"VisualArtwork","url":"http://localhost/","headline":"El Bosque Sagrado.","description":"I’m just a designer and web developer","name":"Óscar Otero","author":{"@type":"Person","name":"Pierre Puvis de Chavannes"},"@context":"https://schema.org","thumbnailUrl":"https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNmE4MTdiMGM4YmIwMC5qcGciLCJyZXNpemUsNjAwLDYwMCJdfQ.4arXVIbfCr9ghgkvEE1n2YOz6l1WpQfWKPypTtfH0Bs.jpg","dateCreated":"2026-08-16T10:55:22+02:00"}</script>
+<html><head><script type="application/ld+json">{"@type":"WebSite","url":"http://localhost/","headline":"Óscar Otero - Web designer and developer","description":"I’m just a designer and web developer","name":"Óscar Otero","author":{"@type":"Person","name":"Óscar Otero"},"@context":"https://schema.org"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VisualArtwork","headline":"El Bosque Sagrado.","thumbnailUrl":"https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNmE4MTdiMGM4YmIwMC5qcGciLCJyZXNpemUsNjAwLDYwMCJdfQ.4arXVIbfCr9ghgkvEE1n2YOz6l1WpQfWKPypTtfH0Bs.jpg","dateCreated":"2026-08-16T10:55:22+02:00","author":{"@type":"Person","name":"Pierre Puvis de Chavannes"}}</script>
 </head><body>Hello world</body></html>',
     data: {
       basename: "page4",
       children: "Hello world",
       content: "default",
       date: [],
-      jsonLd: [
-        "@type",
-        "url",
-        "headline",
-        "description",
-        "name",
-        "author",
-        "@context",
-        "thumbnailUrl",
-        "dateCreated",
-      ],
+      jsonLd: "Array(2)",
       mergedKeys: [
         "tags",
         "jsonLd",
@@ -495,17 +486,7 @@ I hope you enjoy it.
       header: [
         "title",
       ],
-      jsonLd: [
-        "@type",
-        "url",
-        "name",
-        "inLanguage",
-        "description",
-        "publisher",
-        "image",
-        "keywords",
-        "emptyThing",
-      ],
+      jsonLd: "Array(1)",
       keywords: "Array(2)",
       mergedKeys: [
         "tags",
@@ -528,14 +509,14 @@ I hope you enjoy it.
     },
   },
   {
-    content: "<!DOCTYPE html>
-<html><head>
+    content: "<html>
+  <head>
   </head>
   <body>
     Pages without jsonld
-  
-
-</body></html>",
+  </body>
+</html>
+",
     data: {
       basename: "page-2",
       children: "<html>
@@ -555,7 +536,7 @@ I hope you enjoy it.
 </html>
 ",
       date: [],
-      jsonLd: [],
+      jsonLd: "Array(0)",
       mergedKeys: [
         "tags",
         "jsonLd",
@@ -585,14 +566,7 @@ I hope you enjoy it.
       children: "Page content",
       content: "default",
       date: [],
-      jsonLd: [
-        "@type",
-        "url",
-        "headline",
-        "description",
-        "name",
-        "author",
-      ],
+      jsonLd: "Array(1)",
       mergedKeys: [
         "tags",
         "jsonLd",
