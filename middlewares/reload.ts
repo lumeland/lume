@@ -153,7 +153,7 @@ export function reload(options: Options): Middleware {
     if (body.includes("</body>")) {
       body = body.replace("</body>", `${code.join("\n")}</body>`);
     } else {
-      body += code;
+      body += code.join("\n");
     }
 
     const { status, statusText, headers } = response;
