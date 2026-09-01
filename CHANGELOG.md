@@ -12,6 +12,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ### Fixed
 - Markdown plugin: fixed the type of the `plugins` option.
+- Reload middleware with pages that can't include the code before the `</body>` tag [#872].
 - Updated dependencies: `katex`, `ai_robots`, `terser`, `sass`, `html-validate`, `postcss-import`, `highlight.js`, `zip-js`, `satori`, `unocss` and icons.
 
 ## [3.3.1] - 2026-08-10
@@ -561,6 +562,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#859]: https://github.com/lumeland/lume/issues/859
 [#860]: https://github.com/lumeland/lume/issues/860
 [#870]: https://github.com/lumeland/lume/issues/870
+[#872]: https://github.com/lumeland/lume/issues/872
 
 [3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...HEAD
 [3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...v3.3.1
