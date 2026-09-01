@@ -1,3 +1,3 @@
 export const decapUrl =
-  "https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js";
-export const serverUrl = "npm:decap-server@3.10.0";
+  "https://cdn.jsdelivr.net/npm/decap-cms@3.16.0/dist/decap-cms.js";
+export const serverUrl = "npm:decap-server@3.11.0";

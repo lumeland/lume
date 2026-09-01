@@ -13,7 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ### Fixed
 - Markdown plugin: fixed the type of the `plugins` option.
 - Reload middleware with pages that can't include the code before the `</body>` tag [#872].
-- Updated dependencies: `katex`, `ai_robots`, `terser`, `sass`, `html-validate`, `postcss-import`, `highlight.js`, `zip-js`, `satori`, `unocss` and icons.
+- Updated dependencies: `katex`, `ai_robots`, `terser`, `sass`, `html-validate`, `postcss-import`, `highlight.js`, `zip-js`, `satori`, `unocss`, `svgo`, `remove-markdown`, `sharp`, `decap-cms`, `partytown`, `markdown-it`, `magic-string` and icons.
 
 ## [3.3.1] - 2026-08-10
 ### Added
