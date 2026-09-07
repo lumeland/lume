@@ -26,7 +26,7 @@
     },
     "changelog": {
       "description": "Run the changelog utility to format the CHANGELOG.md file",
-      "command": "deno run --allow-read --allow-write https://cdn.jsdelivr.net/gh/oscarotero/keep-a-changelog@3.1.0/bin.ts"
+      "command": "deno run --allow-read --allow-write https://cdn.jsdelivr.net/gh/oscarotero/keep-a-changelog@3.2.0/bin.ts"
     },
     "update": {
       "description": "Run the nudd utility to update dependencies. I.e. `deno task update deps/dom.ts`",

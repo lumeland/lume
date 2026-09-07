@@ -1,4 +1,4 @@
-import data from "https://cdn.jsdelivr.net/gh/ai-robots-txt/ai.robots.txt@1.51/robots.json" with {
+import data from "https://cdn.jsdelivr.net/gh/ai-robots-txt/ai.robots.txt@1.52/robots.json" with {
   type: "json",
 };
 export const aiRobots = Object.keys(data);
