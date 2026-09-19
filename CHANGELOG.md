@@ -8,7 +8,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [3.3.2] - Unreleased
 ### Added
-- `json_ld` plugin: Allow arrays generate multiple `<script type="application/ld+json">` elements.
+- `json_ld` plugin: Allow arrays to generate multiple `<script type="application/ld+json">` elements.
 
 ### Fixed
 - Markdown plugin: fixed the type of the `plugins` option.

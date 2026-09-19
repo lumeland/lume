@@ -68,7 +68,7 @@ function normalizeValue(
 
   if (content instanceof Uint8Array) {
     if (options.avoidBinaryFilesLength) {
-      return `Uint8Array(${content.length ? '' : 0})`;
+      return `Uint8Array(${content.length ? "" : 0})`;
     }
     return `Uint8Array(${content.length})`;
   }
