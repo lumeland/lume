@@ -205,10 +205,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(74)",
+    content: "Uint8Array(72)",
     data: {
       basename: "404",
-      content: "Uint8Array(74)",
+      content: "Uint8Array(72)",
       page: [
         "src",
         "data",
@@ -259,10 +259,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(70)",
+    content: "Uint8Array(68)",
     data: {
       basename: "index",
-      content: "Uint8Array(70)",
+      content: "Uint8Array(68)",
       page: [
         "src",
         "data",
@@ -320,10 +320,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(21)",
+    content: "Uint8Array(20)",
     data: {
       basename: "index",
-      content: "Uint8Array(21)",
+      content: "Uint8Array(20)",
       page: [
         "src",
         "data",
@@ -380,10 +380,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(21)",
+    content: "Uint8Array(20)",
     data: {
       basename: "index",
-      content: "Uint8Array(21)",
+      content: "Uint8Array(20)",
       page: [
         "src",
         "data",
@@ -433,10 +433,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(21)",
+    content: "Uint8Array(20)",
     data: {
       basename: "index",
-      content: "Uint8Array(21)",
+      content: "Uint8Array(20)",
       page: [
         "src",
         "data",
@@ -492,10 +492,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(21)",
+    content: "Uint8Array(20)",
     data: {
       basename: "index",
-      content: "Uint8Array(21)",
+      content: "Uint8Array(20)",
       page: [
         "src",
         "data",
@@ -552,10 +552,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(80)",
+    content: "Uint8Array(78)",
     data: {
       basename: "index",
-      content: "Uint8Array(80)",
+      content: "Uint8Array(78)",
       page: [
         "src",
         "data",
@@ -615,10 +615,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(31)",
+    content: "Uint8Array(29)",
     data: {
       basename: "index",
-      content: "Uint8Array(31)",
+      content: "Uint8Array(29)",
       page: [
         "src",
         "data",
@@ -716,10 +716,10 @@ snapshot[`brotli plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(43)",
+    content: "Uint8Array(41)",
     data: {
       basename: "styles",
-      content: "Uint8Array(43)",
+      content: "Uint8Array(41)",
       page: [
         "src",
         "data",

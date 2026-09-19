@@ -42,7 +42,7 @@
   ],
   "imports": {
     "lume/": "./",
-    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.8/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.9/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.15/jsx-runtime.ts"
   },
   "lint": {
