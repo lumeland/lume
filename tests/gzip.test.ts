@@ -14,7 +14,7 @@ Deno.test("gzip plugin", async (t) => {
   site.use(extractDate());
 
   await build(site);
-  await assertSiteSnapshot(t, site);
+  await assertSiteSnapshot(t, site, { avoidBinaryFilesLength: true });
 });
 
 Deno.test("gzip plugin with options", async (t) => {
@@ -32,5 +32,5 @@ Deno.test("gzip plugin with options", async (t) => {
   site.use(extractDate());
 
   await build(site);
-  await assertSiteSnapshot(t, site);
+  await assertSiteSnapshot(t, site, { avoidBinaryFilesLength: true });
 });

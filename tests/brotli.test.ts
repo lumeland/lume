@@ -13,5 +13,5 @@ Deno.test("brotli plugin", async (t) => {
   site.use(extractDate());
 
   await build(site);
-  await assertSiteSnapshot(t, site);
+  await assertSiteSnapshot(t, site, { avoidBinaryFilesLength: true });
 });

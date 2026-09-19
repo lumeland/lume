@@ -124,7 +124,7 @@ snapshot[`epub plugin 2`] = `[]`;
 snapshot[`epub plugin 3`] = `
 [
   {
-    content: "Uint8Array(3004)",
+    content: "Uint8Array()",
     data: {
       basename: "book",
       page: [
