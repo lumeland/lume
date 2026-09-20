@@ -1,4 +1,4 @@
 export {
   imageDimensionsFromData,
   imageDimensionsFromStream,
-} from "npm:image-dimensions@2.5.1";
+} from "npm:image-dimensions@2.6.0";

@@ -1,39 +1,6 @@
 import { Command } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
 
-const upgrade = new Command()
-  .description("Upgrade your Lume executable to the latest version.")
-  .option(
-    "--version <version:string>",
-    "The version to upgrade to.",
-  )
-  .option(
-    "-d, --dev",
-    "Install the latest development version (last Git commit).",
-  )
-  .example("lume upgrade -g", "Upgrades to the latest stable version.")
-  .example("lume upgrade --dev", "Upgrades to the latest development version.")
-  .action(async ({ dev, version }) => {
-    const { default: upgrade } = await import("./cli/upgrade.ts");
-    await upgrade(dev, version);
-  });
-
-const create = new Command()
-  .description("Run an archetype to create more files.")
-  .example(
-    "lume new post 'Post title'",
-    "Create a new post file using the _archetypes/post.ts archetype.",
-  )
-  .option(
-    "--config <config:string>",
-    "The config file path.",
-  )
-  .action(async ({ config }, ...args: string[]) => {
-    const [name, ...other] = args;
-    const { create } = await import("./cli/create.ts");
-    await create(config, name, other);
-  });
-
 const lume = new Command()
   .name("🔥lume")
   .version(() => getCurrentVersion())
@@ -105,8 +72,8 @@ const lume = new Command()
     const { build } = await import("./cli/build.ts");
     build(config, serve, watch, cms, dryRun, inspect);
   })
-  .command("new [archetype] [arguments...]", create)
-  .command("upgrade", upgrade);
+  .command("new [archetype] [arguments...]", () => import("./cli/create.ts"))
+  .command("upgrade", () => import("./cli/upgrade.ts"));
 
 try {
   await lume.parse(Deno.args);

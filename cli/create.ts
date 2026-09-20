@@ -1,10 +1,25 @@
+import { Command } from "../deps/cliffy.ts";
 import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./utils.ts";
 
-/** Run an archetype */
-export async function create(
-  config: string | undefined,
+export default new Command()
+  .description("Run an archetype to create more files.")
+  .example(
+    "lume new post 'Post title'",
+    "Create a new post file using the _archetypes/post.ts archetype.",
+  )
+  .option(
+    "--config <config:string>",
+    "The config file path.",
+  )
+  .action(async ({ config }, ...args: string[]) => {
+    const [name, ...other] = args;
+    await run(config, name, other);
+  });
+
+async function run(
+  config?: string,
   name?: string,
   args?: string[],
 ) {

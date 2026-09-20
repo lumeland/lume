@@ -117,7 +117,7 @@ export const catalogs: Catalog[] = [
     // https://tabler.io/icons
     id: "tabler",
     src:
-      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.46.0/icons/{variant}/{name}.svg",
+      "https://cdn.jsdelivr.net/npm/@tabler/icons@3.47.0/icons/{variant}/{name}.svg",
     variants: ["filled", "outline"],
   },
   {
@@ -181,7 +181,7 @@ export const catalogs: Catalog[] = [
     // https://primer.style/foundations/icons
     id: "octicons",
     src:
-      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.37.0/build/svg/{name}-{variant}.svg",
+      "https://cdn.jsdelivr.net/npm/@primer/octicons@19.38.0/build/svg/{name}-{variant}.svg",
     variants: ["24", "16", "12", "48", "96"],
   },
   {
