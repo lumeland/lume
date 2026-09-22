@@ -6,7 +6,7 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.3.2] - Unreleased
+## [3.3.2] - 2026-09-22
 ### Added
 - `json_ld` plugin: Allow arrays to generate multiple `<script type="application/ld+json">` elements.
 
@@ -564,7 +564,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#870]: https://github.com/lumeland/lume/issues/870
 [#872]: https://github.com/lumeland/lume/issues/872
 
-[3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...HEAD
+[3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...v3.3.2
 [3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/lumeland/lume/compare/v3.2.6...v3.3.0
 [3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6
