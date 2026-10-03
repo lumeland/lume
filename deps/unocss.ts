@@ -1,9 +1,12 @@
 export {
+  BetterMap,
   createGenerator,
   type SourceCodeTransformer,
   type UnocssPluginContext,
+  type UnoGenerator,
   type UserConfig,
 } from "npm:@unocss/core@66.10.5";
+export { loadConfig } from "npm:@unocss/config@66.10.5";
 
 export { presetWind3 } from "npm:@unocss/preset-wind3@66.10.5";
 export { default as transformerVariantGroup } from "npm:@unocss/transformer-variant-group@66.10.5";
