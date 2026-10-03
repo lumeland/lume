@@ -38,10 +38,10 @@ interface Theme {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   cssSelector: "pre code",
   autoloadLanguages: false,
-};
+} satisfies Options;
 
 /**
  * A plugin to syntax-highlight code using Prism library

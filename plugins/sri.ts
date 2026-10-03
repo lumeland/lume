@@ -13,11 +13,11 @@ export interface Options {
   selector?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   algorithm: "sha384",
   crossorigin: "anonymous",
   selector: "script[src], link[rel=stylesheet][href]",
-};
+} satisfies Options;
 
 const cache = new Map<string, string>();
 
@@ -25,7 +25,7 @@ const cache = new Map<string, string>();
  * A plugin to add the Subresource Integrity (SRI) attribute to the script and link elements
  * @see https://lume.land/plugins/sri/
  */
-export function sri(userOptions?: Partial<Options>) {
+export function sri(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {

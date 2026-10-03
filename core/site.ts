@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { merge } from "./utils/object.ts";
+import { Merge, merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
@@ -18,9 +18,10 @@ import Events from "./events.ts";
 import Formats from "./formats.ts";
 import Searcher from "./searcher.ts";
 import Scripts from "./scripts.ts";
-import FSWatcher from "../core/watcher.ts";
+import Archetypes from "./archetypes.ts";
+import FSWatcher from "./watcher.ts";
 import { FSWriter } from "./writer.ts";
-import { filesToPages, Page } from "./file.ts";
+import { filesToPages, Page, StaticFile } from "./file.ts";
 import textLoader from "./loaders/text.ts";
 import binaryLoader from "./loaders/binary.ts";
 import Server from "./server.ts";
@@ -29,10 +30,10 @@ import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
 import { cwd } from "../deps/runtime.ts";
 
+import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
 import type { BasenameParser, Destination } from "./source.ts";
 import type { Components, UserComponent } from "./components.ts";
-import { Data, RawData, StaticFile } from "./file.ts";
 import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import type { Processor } from "./processors.ts";
@@ -42,9 +43,10 @@ import type { HandlerInfo, Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
+import { Data, DefaultType, RawData } from "../types.ts";
 
 /** Default options of the site */
-const defaults: SiteOptions = {
+const defaults = {
   cwd: cwd(),
   src: "./",
   dest: "./_site",
@@ -70,17 +72,20 @@ const defaults: SiteOptions = {
     dependencies: {},
   },
   components: {},
-};
+} satisfies SiteOptions;
 
 /**
  * This is the heart of Lume,
  * it contains everything needed to build the site
  */
 export default class Site {
-  options: SiteOptions;
+  options: Merge<SiteOptions, typeof defaults>;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
   _data: Record<string, unknown> = {};
+
+  /** To register and run archetypes */
+  archetypes: Archetypes;
 
   /** To read the files from the filesystem */
   fs: FS;
@@ -152,9 +157,10 @@ export default class Site {
   watcher?: FSWatcher;
   server?: Server;
 
-  constructor(options: Partial<SiteOptions> = {}) {
+  constructor(options?: SiteOptions) {
     this.options = merge(defaults, options);
 
+    const root = this.root();
     const src = this.src();
     const dest = this.dest();
     const { includes, cwd, prettyUrls, components, server, caseSensitiveUrls } =
@@ -195,6 +201,7 @@ export default class Site {
     });
 
     // Other stuff
+    const archetypes = new Archetypes({ src, root });
     const events = new Events<SiteEvent>();
     const scripts = new Scripts({ cwd });
     const writer = new FSWriter({ dest, caseSensitiveUrls });
@@ -210,6 +217,7 @@ export default class Site {
     });
 
     // Save everything in the site instance
+    this.archetypes = archetypes;
     this.fs = fs;
     this.formats = formats;
     this.componentLoader = componentLoader;
@@ -251,9 +259,7 @@ export default class Site {
       envBoolean("LUME_LIVE_RELOAD");
 
     if (initDebugBar) {
-      this.initDebugBar(
-        typeof initDebugBar === "string" ? initDebugBar : undefined,
-      );
+      this.initDebugBar();
     }
 
     // Create the fetch function for `deno serve`
@@ -269,12 +275,12 @@ export default class Site {
   }
 
   /** Initialize the debug bar */
-  initDebugBar(url?: string): this {
+  initDebugBar(): this {
     if (this.debugBar) {
       throw new Error("DebugBar is already initialized");
     }
 
-    const debugBar = new DebugBar({ url });
+    const debugBar = new DebugBar();
     this.debugBar = debugBar;
     log.collection = debugBar.collection("Build");
 
@@ -401,11 +407,14 @@ export default class Site {
   }
 
   /** Register a preprocessor for some extensions */
-  preprocess(processor: Processor): this;
-  preprocess(extensions: Extensions, processor: Processor): this;
-  preprocess(
-    extensions: Extensions | Processor,
-    preprocessor?: Processor,
+  preprocess<D = Lume.GlobalData>(processor: Processor<D>): this;
+  preprocess<D = Lume.GlobalData>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  preprocess<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
   ): this {
     if (typeof extensions === "function") {
       return this.preprocess("*", extensions);
@@ -421,9 +430,15 @@ export default class Site {
   }
 
   /** Register a processor for some extensions */
-  process(processor: Processor): this;
-  process(extensions: Extensions, processor: Processor): this;
-  process(extensions: Extensions | Processor, processor?: Processor): this {
+  process<D = Lume.GlobalData>(processor: Processor<D>): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions,
+    processor: Processor<D>,
+  ): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
+  ): this {
     if (typeof extensions === "function") {
       return this.process("*", extensions);
     }
@@ -437,12 +452,20 @@ export default class Site {
   }
 
   /** Register a template filter */
-  filter(name: string, filter: Helper<HelperThis>, async = false): this {
+  filter<D = Lume.GlobalData>(
+    name: string,
+    filter: Helper<HelperThis<D>>,
+    async = false,
+  ): this {
     return this.helper(name, filter, { type: "filter", async });
   }
 
   /** Register a template helper */
-  helper(name: string, fn: Helper<HelperThis>, options: HelperOptions): this {
+  helper<D = Lume.GlobalData>(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
     this.renderer.addHelper(name, fn, options);
     return this;
   }
@@ -466,6 +489,12 @@ export default class Site {
     const pages = this.scopedPages.get(scope) || [];
     pages.push(data);
     this.scopedPages.set(scope, pages);
+    return this;
+  }
+
+  /** Register an archetype */
+  archetype(name: string, archetype: string | Archetype): this {
+    this.archetypes.register(name, archetype);
     return this;
   }
 
@@ -690,8 +719,8 @@ export default class Site {
 
   /** Build the entire site */
   async build(): Promise<void> {
+    this.debugBar?.endMeasure(null, "[Start] Initialization");
     this.debugBar?.startMeasure("build");
-
     if (await this.dispatchEvent({ type: "beforeBuild" }) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
       this.dispatchEvent({ type: "idle" });
@@ -1053,14 +1082,14 @@ export default class Site {
     }
   }
 
-  async getOrCreatePage(url: string): Promise<Page> {
+  async getOrCreatePage<D = DefaultType>(url: string): Promise<Page<D>> {
     url = normalizePath(url);
 
     // It's a page
     const page = this.pages.find((page) => page.data.url === url);
 
     if (page) {
-      return page;
+      return page as Page<D>;
     }
 
     // It's a static file
@@ -1070,7 +1099,7 @@ export default class Site {
       const file = this.files.splice(index, 1)[0];
       const page = await file.toPage();
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     // Read the source files directly
@@ -1080,12 +1109,12 @@ export default class Site {
       const page = Page.create({ url }, { entry });
       page.content = content as Uint8Array<ArrayBuffer>;
       this.pages.push(page);
-      return page;
+      return page as Page<D>;
     }
 
     const newPage = Page.create({ url });
     this.pages.push(newPage);
-    return newPage;
+    return newPage as Page<D>;
   }
 
   /**
@@ -1147,8 +1176,10 @@ export default class Site {
     if (this.watcher) {
       return this.watcher;
     }
+
     this.watcher = new FSWatcher({
-      root: this.src(),
+      src: this.src(),
+      root: this.root(),
       paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
@@ -1193,46 +1224,46 @@ export interface ResolveOptions {
 /** The options to configure the site build */
 export interface SiteOptions {
   /** The path of the current working directory */
-  cwd: string;
+  cwd?: string;
 
   /** The path of the site source */
-  src: string;
+  src?: string;
 
   /** The path of the built destination */
-  dest: string;
+  dest?: string;
 
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
 
   /** The default includes path */
-  includes: string;
+  includes?: string;
 
   /** The default css file */
-  cssFile: string;
+  cssFile?: string;
 
   /** The default js file */
-  jsFile: string;
+  jsFile?: string;
 
   /** The default folder for fonts */
-  fontsFolder: string;
+  fontsFolder?: string;
 
   /** The site location (used to generate final urls) */
-  location: URL;
+  location?: URL;
 
   /** Set true to generate pretty urls (`/about-me/`) */
-  prettyUrls: boolean;
+  prettyUrls?: boolean;
 
   /** Set true to don't consider two urls the equal if the only difference is the case */
-  caseSensitiveUrls: boolean;
+  caseSensitiveUrls?: boolean;
 
   /** The local server options */
-  server: ServerOptions;
+  server?: ServerOptions;
 
   /** The local watcher options */
-  watcher: WatcherOptions;
+  watcher?: WatcherOptions;
 
   /** The components options */
-  components: ComponentsOptions;
+  components?: ComponentsOptions;
 }
 
 /** The options to configure the local server */
@@ -1244,40 +1275,39 @@ export interface ServerOptions {
   root?: string;
 
   /** The port to listen on */
-  port: number;
+  port?: number;
 
   /** The hostname to listen on */
-  hostname: string;
+  hostname?: string;
 
   /** To open the server in a browser */
-  open: boolean;
+  open?: boolean;
 
   /** The file to serve on 404 error */
-  page404: string;
+  page404?: string;
 
   /**
    * Whether to use the debug bar or not
-   * Use a string to specify a custom URL of the <lume-bar> web component
    */
-  debugBar?: string | boolean;
+  debugBar?: boolean;
 
   /** Optional for the server */
-  middlewares: Middleware[];
+  middlewares?: Middleware[];
 }
 
 /** The options to configure the local watcher */
 export interface WatcherOptions {
   /** Paths to ignore by the watcher */
-  ignore: (string | ((path: string) => boolean))[];
+  ignore?: (string | ((path: string) => boolean))[];
 
   /** The interval in milliseconds to check for changes */
-  debounce: number;
+  debounce?: number;
 
   /** Extra files and folders to watch (ouside the src folder) */
-  include: string[];
+  include?: string[];
 
   /** Manual dependencies not detected by the watcher */
-  dependencies: Record<string, string[]>;
+  dependencies?: Record<string, string[]>;
 }
 
 /** The options to configure the components */

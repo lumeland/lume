@@ -25,13 +25,13 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".eta"],
   includes: "",
   options: {
     useWith: true,
   },
-};
+} satisfies Options;
 
 /** Template engine to render Eta files */
 export class EtaEngine implements Engine {

@@ -3,7 +3,7 @@ import textLoader from "./loaders/text.ts";
 import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
 
-import type { Data } from "./file.ts";
+import type { DirectoryData } from "../types.ts";
 import type Formats from "./formats.ts";
 
 export interface Options {
@@ -25,7 +25,7 @@ export class ComponentLoader {
   /** Load a directory of components */
   async load(
     dirEntry: Entry,
-    data: Partial<Data>,
+    data: DirectoryData,
     components?: Components,
   ): Promise<Components> {
     if (!components) {
@@ -65,7 +65,7 @@ export class ComponentLoader {
   /** Load a component folder (a folder with a comp.* file) */
   async #loadComponentFolder(
     entry: Entry,
-    data: Partial<Data>,
+    data: DirectoryData,
   ): Promise<Component | undefined> {
     const compEntry = findChild(
       entry,
@@ -111,7 +111,7 @@ export class ComponentLoader {
   /** Load a component file */
   async #loadComponent(
     entry: Entry,
-    dirData: Partial<Data>,
+    dirData: DirectoryData,
     defaultName?: string,
   ): Promise<Component | undefined> {
     const format = this.formats.search(entry.name);

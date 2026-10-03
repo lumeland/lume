@@ -120,7 +120,7 @@ export interface Options {
   customRecords?: CustomRecord[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   outputPath: "/pagefind",
   ui: {
     containerId: "search",
@@ -135,7 +135,7 @@ export const defaults: Options = {
     verbose: false,
     excludeSelectors: [],
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to generate a static full text search engine

@@ -22,14 +22,14 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".js"],
   options: {
     module: true,
     compress: true,
     mangle: true,
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to minify them using Terser

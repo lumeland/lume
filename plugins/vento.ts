@@ -12,7 +12,7 @@ import { normalizePath } from "../core/utils/path.ts";
 import { log } from "../core/utils/log.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 import type { Engine, Helper, HelperOptions } from "../core/renderer.ts";
 import type FS from "../core/fs.ts";
 import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";
@@ -57,7 +57,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".vento", ".vto"],
   autoTrim: true,
   options: {
@@ -65,7 +65,7 @@ export const defaults: Options = {
     useWith: true,
     autoescape: false,
   },
-};
+} satisfies Options;
 
 class LumeLoader implements Loader {
   fs: FS;
@@ -227,7 +227,7 @@ function compTag(
 
   // Components are always async
   // so convert automatically {{ comp.whatever }} to {{ await comp.whatever }}
-  if (code.startsWith("comp.")) {
+  if (code.startsWith("comp.") || code.startsWith("comp[")) {
     const value = `await ${code}`;
     const val = env.compileFilters(tokens, value, env.options.autoescape);
     return `${output} += ${val};`;

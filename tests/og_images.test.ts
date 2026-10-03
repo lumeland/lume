@@ -7,6 +7,7 @@ Deno.test("OpenGraph images", async (t) => {
   });
 
   site.use(ogImages());
+  site.filter("tolower", (v) => v?.toLowerCase());
 
   await build(site);
   await assertSiteSnapshot(t, site);

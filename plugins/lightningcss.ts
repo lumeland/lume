@@ -32,7 +32,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   includes: "",
   options: {
     minify: true,
@@ -48,7 +48,7 @@ export const defaults: Options = {
       safari: version(browsers.safari),
     },
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to process CSS files with lightningcss
@@ -56,7 +56,7 @@ export const defaults: Options = {
  */
 export function lightningCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge<Options>(
+    const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
     );

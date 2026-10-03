@@ -9,10 +9,10 @@ export interface Options {
   cascade?: boolean;
 }
 
-export const defaults: Options = {
+export const defaults = {
   remove: true,
   cascade: false,
-};
+} satisfies Options;
 
 const ORDER_REGEX = /(\d+)\.(.+)/;
 
@@ -45,3 +45,12 @@ export function extractOrder(userOptions?: Options) {
 }
 
 export default extractOrder;
+
+/** Extends global data interface */
+declare global {
+  namespace Lume {
+    export interface GlobalData {
+      order?: number;
+    }
+  }
+}

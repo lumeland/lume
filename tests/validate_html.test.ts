@@ -1,5 +1,4 @@
 import { build, getSite } from "./utils.ts";
-import { assertSnapshot } from "../deps/snapshot.ts";
 import validateHtml from "../plugins/validate_html.ts";
 
 Deno.test("validate HTML plugin", async (t) => {
@@ -22,5 +21,5 @@ Deno.test("validate HTML plugin", async (t) => {
 
   await build(site);
   result.sort((a, b) => a.url.localeCompare(b.url));
-  await assertSnapshot(t, result);
+  await t.assertSnapshot(result);
 });

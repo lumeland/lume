@@ -12,10 +12,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".json", ".jsonc"],
   pageSubExtension: ".page",
-};
+} satisfies Options;
 
 /**
  * A plugin to load JSON files as data and pages

@@ -15,7 +15,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".html"],
   options: {
     do_not_minify_doctype: true,
@@ -27,7 +27,7 @@ export const defaults: Options = {
     remove_bangs: false,
     remove_processing_instructions: false,
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to minify HTML, CSS & JavaScript files

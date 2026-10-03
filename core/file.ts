@@ -3,21 +3,20 @@ import { documentToString, stringToDocument } from "./utils/dom.ts";
 import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
-import type { MergeStrategy } from "./utils/merge_data.ts";
-import type { ProxyComponents } from "./components.ts";
 import type { Entry } from "./fs.ts";
+import type { Data, DefaultType, FileData } from "../types.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 const URL_IS_HTML = /(\/|\.x?html)$/;
 
 /** A page of the site */
-export class Page<D extends Data = Data> {
+export class Page<D = DefaultType> {
   /** The src info */
   src: Src;
 
   /** Used to save the page data */
-  data: D = {} as D;
+  data: Data<D> = {} as Data<D>;
 
   /** Whether this page comes from a copied file with site.copy() */
   isCopy = false;
@@ -29,10 +28,10 @@ export class Page<D extends Data = Data> {
   #document?: Document;
 
   /** Convenient way to create a page dynamically */
-  static create(
-    data: Partial<Data> & { url: string },
+  static create<D = DefaultType>(
+    data: Partial<Omit<FileData<D>, "url">> & { url: string },
     src?: Partial<Src>,
-  ): Page {
+  ): Page<D> {
     let { url, ...rest } = data;
     const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page(src);
@@ -41,10 +40,10 @@ export class Page<D extends Data = Data> {
       url = url.slice(0, -10);
     }
 
-    page.data = { ...rest, url, page, basename } as Data;
+    page.data = { ...rest, url, page, basename } as Data<D>;
     page.content = data.content as Content | undefined;
 
-    return page;
+    return page as Page<D>;
   }
 
   constructor(src?: Partial<Src>) {
@@ -59,8 +58,8 @@ export class Page<D extends Data = Data> {
       page.src.path += `[${index}]`;
     }
 
-    data.page = page;
-    page.data = data;
+    (data as Data<D>).page = page;
+    page.data = data as Data<D>;
 
     return page;
   }
@@ -140,22 +139,22 @@ export class Page<D extends Data = Data> {
   }
 }
 
-export class StaticFile<D extends Data = Data> {
+export class StaticFile<D = DefaultType> {
   /** The src info */
   src: Required<Src>;
 
   /** Used to save the contextual data */
-  data: D = {} as D;
+  data: FileData<D> = {} as FileData<D>;
 
   /** Whether this file must be copied with site.copy() */
   isCopy = false;
 
   static create(
-    data: Partial<Data> & { url: string },
+    data: FileData,
     src: Required<Src>,
   ): StaticFile {
     const file = new StaticFile(src);
-    file.data = { ...data } as Data;
+    file.data = { ...data } as FileData;
     return file;
   }
 
@@ -200,98 +199,6 @@ export interface Src {
 
 /** The .content property for a Page */
 export type Content = Uint8Array<ArrayBuffer> | string;
-
-/** The data of a page declared initially */
-export interface RawData {
-  /** List of tags assigned to a page or folder */
-  tags?: string | string[];
-
-  /** The url of a page */
-  url?: string | false | ((page: Page) => string | false);
-
-  /** The basename of a page */
-  basename?: string;
-
-  /** Mark the page as a draft */
-  draft?: boolean;
-
-  /** The date creation of the page */
-  date?: Date | string | number;
-
-  /** To configure the rendering order of a page */
-  renderOrder?: number;
-
-  /** The raw content of a page */
-  content?: unknown;
-
-  /** The layout used to render a page */
-  layout?: string;
-
-  /** To configure a different template engine(s) to render a page */
-  templateEngine?: string | string[];
-
-  /** To configure how some data keys will be merged with the parent */
-  mergedKeys?: Record<string, MergeStrategy>;
-
-  // deno-lint-ignore no-explicit-any
-  [index: string]: any;
-}
-
-/** The data of a page/folder once loaded and processed */
-export interface Data extends RawData {
-  /** The title of the page */
-  title?: string;
-
-  /** The type of the page (used to group pages in collections) */
-  type?: string;
-
-  /** The id of the page (used to identify a page in a collection) */
-  id?: string | number;
-
-  /** List of tags assigned to a page or folder */
-  tags: string[];
-
-  /** The url of a page */
-  url: string;
-
-  /** The basename of the page */
-  basename: string;
-
-  /** The date creation of the page */
-  date: Date;
-
-  /**
-   * The available components
-   * @see https://lume.land/docs/core/components/
-   */
-  comp: ProxyComponents;
-
-  /** The page reference */
-  page: Page;
-
-  /** The language of the page */
-  lang?: string;
-
-  /**
-   * Unmatched Language URL
-   * The url for when the user's language doesn't match with any of the site's available languages.
-   *
-   * Valid values are:
-   * - External URL string (http, https), which is language selector page
-   * - Source path string (/), which is language selector page
-   * - Language code (en, gl, vi), which is fallback language page
-   *
-   * This option is made for x-default feature.
-   * @see https://developers.google.com/search/docs/specialty/international/localized-versions#xdefault
-   */
-  unmatchedLangUrl?: string;
-
-  /**
-   * Alternate pages (for languages)
-   * @see https://lume.land/plugins/multilanguage/
-   */
-  alternates?: Data[];
-}
 
 /** Promote files to pages */
 export async function filesToPages(

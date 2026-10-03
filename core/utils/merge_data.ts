@@ -1,5 +1,5 @@
 import { isPlainObject } from "./object.ts";
-import { Data } from "../file.ts";
+import { Data, RawData } from "../../types.ts";
 
 export type MergeStrategy =
   | "array"
@@ -8,15 +8,10 @@ export type MergeStrategy =
   | "data"
   | "none";
 
-interface DataToMerge {
-  mergedKeys?: Record<string, MergeStrategy>;
-  [key: string]: unknown;
-}
-
 /** Merge the cascade data */
-export function mergeData(...datas: DataToMerge[]): DataToMerge {
+export function mergeData(...datas: RawData[]): RawData {
   return datas.reduce((previous, current) => {
-    const data: DataToMerge = { ...previous, ...current };
+    const data: RawData = { ...previous, ...current };
 
     // Merge special keys
     const mergedKeys = {
@@ -41,8 +36,8 @@ export function mergeData(...datas: DataToMerge[]): DataToMerge {
           if (current[key] && previous[key]) {
             const merged = mergeData(
               { mergedKeys },
-              previous[key] as DataToMerge,
-              current[key] as DataToMerge,
+              previous[key] as RawData,
+              current[key] as RawData,
             );
             data[key] = merged;
           }

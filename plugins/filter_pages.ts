@@ -17,10 +17,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   fn: () => true,
   beforeRender: false,
-};
+} satisfies Options;
 
 /**
  * A plugin to filter pages

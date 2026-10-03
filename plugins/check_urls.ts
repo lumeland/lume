@@ -33,12 +33,13 @@ export interface Options {
 }
 
 /** Default options */
-export const defaults: Options = {
+export const defaults = {
   strict: false,
   throw: false,
   ignore: [],
   external: false,
-};
+  anchors: false,
+} satisfies Options;
 
 const cacheExternalUrls = new Map<string, Promise<boolean>>();
 const cacheInternalUrls = new Map<string, boolean>();
@@ -58,7 +59,7 @@ export default function (userOptions?: Options) {
     }
 
     return !url ||
-      options.ignore?.includes(url) ||
+      options.ignore.includes(url) ||
       url.startsWith("?") ||
       (url.startsWith("#") && !options.anchors);
   }
@@ -108,19 +109,21 @@ export default function (userOptions?: Options) {
 
     // Search for redirect URLs non-strict mode
     if (!options.strict) {
-      site.process(function processCheckUrls(pages) {
-        for (const page of pages) {
-          if (page.data.oldUrl) {
-            if (Array.isArray(page.data.oldUrl)) {
-              for (const oldUrl of page.data.oldUrl) {
-                redirects.add(oldUrl);
+      site.process<{ oldUrl?: string | string[] }>(
+        function processCheckUrls(pages) {
+          for (const page of pages) {
+            if (page.data.oldUrl) {
+              if (Array.isArray(page.data.oldUrl)) {
+                for (const oldUrl of page.data.oldUrl) {
+                  redirects.add(oldUrl);
+                }
+              } else {
+                redirects.add(page.data.oldUrl);
               }
-            } else {
-              redirects.add(page.data.oldUrl);
             }
           }
-        }
-      });
+        },
+      );
     }
 
     // Search for URLs in all pages

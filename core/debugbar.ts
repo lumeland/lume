@@ -2,35 +2,22 @@ import { bytes, duration } from "./utils/format.ts";
 import Events, { Event, EventListener, EventOptions } from "./events.ts";
 import { memoryUsage } from "../deps/runtime.ts";
 
-export interface Options {
-  /**
-   * The URL of the debugbar script
-   */
-  url?: string;
-}
-
 /**
  * DebugBar is a class that manages collections of items to be displayed in a debug bar.
  */
 export default class DebugBar {
-  #url: string;
   #events = new Events<DebugEvent>();
   #measureItem?: Item;
+  #ram = 0;
   collections: Collection[] = [];
-
-  constructor(options: Options = {}) {
-    this.#url = options.url || getSpecifier();
-  }
-
-  get url() {
-    return this.#url;
-  }
+  actions: Action[] = [];
 
   /**
-   * Clear all collections
+   * Clear all collections and actions
    */
   clear() {
     this.collections.forEach((collection) => collection.items = []);
+    this.actions = [];
     this.#measureItem = undefined;
   }
 
@@ -51,6 +38,13 @@ export default class DebugBar {
 
     this.collections.push(newCollection);
     return newCollection;
+  }
+
+  /**
+   * Add a new a new action
+   */
+  action(action: Action) {
+    this.actions.push(action);
   }
 
   /**
@@ -86,31 +80,45 @@ export default class DebugBar {
   }
 
   /** End a measure and add it to the "Build" collection */
-  endMeasure(name: string, title: string): Item | undefined {
+  endMeasure(name: string | null, title: string): Item | undefined {
     this.#measureItem ??= this.buildItem("Performance info", "info");
     this.#measureItem.items ??= [];
 
     performance.mark(`${name}-end`);
-    const measure = performance.measure(name, name, `${name}-end`);
+    const time = name === null
+      ? performance.now()
+      : performance.measure(name, name, `${name}-end`).duration;
+
     let item: Item | undefined;
+
+    const [ram, diff] = this.#getRam();
 
     if (name === "build") {
       item = this.#measureItem;
       item.title = title;
       item.icon = "clock";
-      item.details = `${duration(measure.duration)} / ${bytes(memoryUsage())}`;
-    } else if (measure.duration >= 1) {
+      item.details = `${duration(time)} / ${bytes(ram)}`;
+    } else if (time >= 1) {
       item = {
         title: title,
-        details: duration(measure.duration),
+        details: `${duration(time)} / ${bytes(diff)}`,
       };
       this.#measureItem.items.push(item);
     }
 
-    performance.clearMarks(name);
-    performance.clearMarks(`${name}-end`);
-    performance.clearMeasures(name);
+    if (name) {
+      performance.clearMarks(name);
+      performance.clearMarks(`${name}-end`);
+      performance.clearMeasures(name);
+    }
     return item;
+  }
+
+  #getRam() {
+    const rss = memoryUsage();
+    const diff = rss - this.#ram;
+    this.#ram = rss;
+    return [rss, diff];
   }
 }
 
@@ -295,14 +303,4 @@ export interface Action {
    * Data to pass to send a message to the background script
    */
   data?: Record<string, string | number | boolean>;
-}
-
-// Return a HTTP-compatible debug-bar specifier
-function getSpecifier(): string {
-  const url = import.meta.resolve("../debugbar/script.js");
-  if (url.startsWith("http")) {
-    return url;
-  }
-
-  return "https://cdn.jsdelivr.net/gh/lumeland/lume@main/debugbar/script.js";
 }

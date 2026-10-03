@@ -32,9 +32,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   useDefaultPlugins: true,
-};
+} satisfies Options;
 
 const defaultPlugins = [
   autoprefixer({
@@ -55,7 +55,7 @@ const defaultPlugins = [
  */
 export function postCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge<Options>(
+    const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
     );

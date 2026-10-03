@@ -28,10 +28,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".pug"],
   options: {},
-};
+} satisfies Options;
 
 type Compiler = typeof compile;
 

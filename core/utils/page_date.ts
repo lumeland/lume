@@ -1,6 +1,7 @@
 import { getGitDate, parseDate } from "./date.ts";
 
-import type { Page, RawData } from "../file.ts";
+import type { Page } from "../file.ts";
+import type { RawData } from "../../types.ts";
 
 /** Returns the Date instance of a file */
 export function getPageDate(page: Page): Date {

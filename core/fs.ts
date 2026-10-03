@@ -7,7 +7,7 @@ import {
   statSync,
 } from "../deps/runtime.ts";
 
-import type { RawData } from "./file.ts";
+import type { RawData } from "../types.ts";
 
 type EntryType = "file" | "directory";
 

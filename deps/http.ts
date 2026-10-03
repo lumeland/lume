@@ -1,4 +1,4 @@
-import { serveFile as _serveFile } from "jsr:@std/http@1.1.0/file-server";
+import { serveFile as _serveFile } from "jsr:@std/http@1.1.3/file-server";
 import type { FileInfo } from "./runtime.ts";
 
 export async function serveFile(

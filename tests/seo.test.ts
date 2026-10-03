@@ -1,5 +1,4 @@
 import { build, getSite } from "./utils.ts";
-import { assertSnapshot } from "../deps/snapshot.ts";
 import seo from "../plugins/seo.ts";
 
 Deno.test("SEO plugin", async (t) => {
@@ -24,5 +23,5 @@ Deno.test("SEO plugin", async (t) => {
 
   await build(site);
   result.sort((a, b) => a.url.localeCompare(b.url));
-  await assertSnapshot(t, result);
+  await t.assertSnapshot(result);
 });

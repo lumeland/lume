@@ -1,15 +1,19 @@
-import { join, relative } from "../deps/path.ts";
+import { fromFileUrl, join, relative, toFileUrl } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
 import { watchFiles } from "../deps/runtime.ts";
 import Events from "./events.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import { updateDependencies, updateVersion } from "./utils/hmr.ts";
 
 /** The options to configure the local server */
 export interface Options {
-  /** The folder root to watch */
+  /** The root folder */
   root: string;
+
+  /** The src folder to watch */
+  src: string;
 
   /** Extra files to watch */
   paths?: string[];
@@ -83,7 +87,7 @@ export default class FSWatcher implements Watcher {
 
   /** Start the file watcher */
   async start() {
-    const { root, paths, ignore, debounce, dependencies } = this.options;
+    const { root, src, paths, ignore, debounce, dependencies } = this.options;
     const watcher = watchFiles([root, ...paths ?? []]);
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
@@ -130,22 +134,27 @@ export default class FSWatcher implements Watcher {
       }
     };
 
-    for await (let paths of watcher) {
-      paths = paths.map((path) => normalizePath(path));
+    for await (let changes of watcher) {
+      const paths = new Set<string>();
 
-      // Filter ignored paths
-      paths = paths.filter((path) =>
-        ignore
-          ? !ignore.some((ignore) =>
-            typeof ignore === "string"
-              ? (path.startsWith(normalizePath(join(root, ignore, "/"))) ||
-                path === normalizePath(join(root, ignore)))
-              : ignore(path)
-          )
-          : true
-      );
+      updateVersion();
 
-      if (!paths.length) {
+      for (const path of changes.map((p) => normalizePath(p))) {
+        // Filter ignored paths
+        const isIgnored = ignore?.some((condition) =>
+          typeof condition === "string"
+            ? (path.startsWith(normalizePath(join(root, condition, "/"))) ||
+              path === normalizePath(join(root, condition)))
+            : condition(path)
+        );
+        if (isIgnored) continue;
+        paths.add(path);
+        for (const dep of updateDependencies(toFileUrl(path).href)) {
+          paths.add(normalizePath(fromFileUrl(dep)));
+        }
+      }
+
+      if (!paths.size) {
         continue;
       }
 

@@ -39,14 +39,14 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".md"],
   sanitize: false,
   useDefaultPlugins: true,
   rehypeOptions: {
     allowDangerousHtml: true,
   },
-};
+} satisfies Options;
 
 const remarkDefaultPlugins = [
   remarkGfm,
@@ -97,7 +97,7 @@ export function remark(userOptions?: Options) {
     }
 
     // Add remark plugins
-    plugins.push(...options.remarkPlugins);
+    plugins.push(...options.remarkPlugins ?? []);
 
     // Add remark-rehype to generate HAST
     plugins.push([remarkRehype, options.rehypeOptions ?? {}]);

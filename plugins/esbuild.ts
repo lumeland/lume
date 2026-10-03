@@ -35,7 +35,7 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".ts", ".js", ".tsx", ".jsx"],
   options: {
     plugins: [],
@@ -56,7 +56,7 @@ export const defaults: Options = {
     outdir: "./",
     outbase: ".",
   },
-};
+} satisfies Options;
 
 let resolver: ((specifier: string, referrer?: string) => string) | undefined;
 

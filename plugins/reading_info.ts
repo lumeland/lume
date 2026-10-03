@@ -10,10 +10,10 @@ export interface Options {
   wordsPerMinute?: number;
 }
 
-export const defaults: Options = {
+export const defaults = {
   extensions: [".md"],
   wordsPerMinute: 275,
-};
+} satisfies Options;
 
 /**
  * A plugin to calculate the reading time of a content
@@ -82,10 +82,10 @@ export interface ReadingInfo {
   time: number;
 }
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Reading info
        * @see https://lume.land/plugins/reading_info/

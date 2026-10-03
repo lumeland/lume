@@ -27,9 +27,9 @@ export interface Options {
   ignoredSubsets?: string[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   fonts: "",
-};
+} satisfies Options;
 
 export function googleFonts(userOptions: Options) {
   const options = merge(defaults, userOptions);

@@ -16,12 +16,12 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   contentExtensions: [".html", ".js"],
   options: {
     extractors: [],
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to remove unused CSS

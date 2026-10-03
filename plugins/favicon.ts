@@ -1,10 +1,10 @@
 import { merge } from "../core/utils/object.ts";
 import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
-import sharp, { create, sharpsToIco } from "../deps/sharp.ts";
+import { buildIcon } from "../core/utils/image.ts";
 
+import type { FormatEnum } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
-import type Cache from "../core/cache.ts";
 
 export interface Options {
   /**
@@ -21,7 +21,7 @@ export interface Options {
   favicons?: Favicon[];
 }
 
-export const defaults: Options = {
+export const defaults = {
   input: "/favicon.svg",
   favicons: [
     {
@@ -37,7 +37,7 @@ export const defaults: Options = {
       format: "png",
     },
   ],
-};
+} satisfies Options;
 
 export interface Favicon {
   url: string;
@@ -71,7 +71,7 @@ export function favicon(userOptions?: Options) {
       return content;
     }
 
-    site.process(async function processFaviconImages(_, pages) {
+    site.process(async function processFaviconImages() {
       const contents: Record<number, Uint8Array | string> = {};
 
       for (const [size, file] of Object.entries(input)) {
@@ -88,18 +88,19 @@ export function favicon(userOptions?: Options) {
 
       const { cache } = site;
       for (const favicon of options.favicons) {
+        const page = await site.getOrCreatePage(favicon.url);
+
+        if (page.content) {
+          continue;
+        }
+
         const content = getBestContent(contents, favicon.size);
 
-        pages.push(
-          Page.create({
-            url: favicon.url,
-            content: await buildIco(
-              content,
-              favicon.format as keyof sharp.FormatEnum,
-              favicon.size,
-              cache,
-            ),
-          }),
+        page.bytes = await buildIcon(
+          content,
+          favicon.format as keyof FormatEnum,
+          favicon.size,
+          cache,
         );
       }
 
@@ -160,45 +161,6 @@ function addIcon(document: Document, attributes: Record<string, string>) {
   }
   document.head.appendChild(link);
   document.head.appendChild(document.createTextNode("\n"));
-}
-
-async function buildIco(
-  content: Uint8Array | string,
-  format: keyof sharp.FormatEnum | "ico",
-  size: number[],
-  cache?: Cache,
-): Promise<Uint8Array> {
-  if (cache) {
-    const result = await cache.getBytes([content, format, size]);
-
-    if (result) {
-      return result;
-    }
-  }
-
-  const svgOptions = {
-    fitTo: { mode: "width", value: Math.max(...size) },
-  } as const;
-  let image: Uint8Array;
-
-  if (format === "ico") {
-    const resizeOptions = { background: { r: 0, g: 0, b: 0, alpha: 0 } };
-    const img = create(content, undefined, svgOptions);
-    image = await sharpsToIco(
-      ...size.map((size) => img.clone().resize(size, size, resizeOptions)),
-    );
-  } else {
-    image = await create(content, undefined, svgOptions)
-      .resize(size[0], size[0])
-      .toFormat(format)
-      .toBuffer();
-  }
-
-  if (cache) {
-    cache.set([content, format, size], image);
-  }
-
-  return image;
 }
 
 function getBestContent(

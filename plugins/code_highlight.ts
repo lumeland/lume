@@ -2,6 +2,7 @@ import hljs, {
   HLJSOptions,
   LanguageFn,
   themesPath,
+  ventoLang,
 } from "../deps/highlight.ts";
 import { merge } from "../core/utils/object.ts";
 import { log } from "../core/utils/log.ts";
@@ -40,16 +41,19 @@ interface Theme {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   options: {
     ignoreUnescapedHTML: false,
     noHighlightRe: /^$/i,
     languageDetectRe: /\blanguage-([\w-]+)\b/i,
     classPrefix: "hljs-",
     cssSelector: "pre code",
-    languages: undefined,
   },
-};
+  languages: {
+    vento: ventoLang,
+    vto: ventoLang,
+  },
+} satisfies Options;
 
 /**
  * A plugin to syntax-highlight code using the highlight.js library
@@ -76,10 +80,10 @@ export function codeHighlight(userOptions?: Options) {
     site.process([".html"], processCodeHighlight);
 
     if (options.theme) {
+      const theme = options.theme;
+
       site.process(async function processCodeHighlightTheme() {
-        const themes = Array.isArray(options.theme)
-          ? options.theme
-          : [options.theme];
+        const themes = Array.isArray(theme) ? theme : [theme];
 
         for (
           const { name, cssFile = site.options.cssFile, placeholder } of themes

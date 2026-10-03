@@ -12,9 +12,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".yaml", ".yml"],
-};
+} satisfies Options;
 
 /**
  * A plugin to load YAML data files and pages

@@ -16,8 +16,8 @@ export interface Options {
    * The list of presets to apply
    * @see https://fff.js.org/concepts/flavor-transform.html#fff-transform-preset
    */
-  presets: FFFTransformPreset[];
-  strict: false | StrictPresetOptions;
+  presets?: FFFTransformPreset[];
+  strict?: false | StrictPresetOptions;
   /** To convert the generic `date` field to one of these values */
   date?: "created" | "updated" | "published";
   /** Get the date from the git history */
@@ -26,27 +26,31 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   presets: [],
   strict: false,
-};
+} satisfies Options;
+
+type PluginData = Omit<FFFFlavoredFrontmatter, "lang" | "tags">;
 
 /**
  * A plugin to transform frontmatter using FFF
  * @see https://lume.land/plugins/fff/
  */
-export function fff(userOptions?: Partial<Options>) {
+export function fff(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.preprocess([".html"], function processFFF(pages) {
+    site.preprocess<PluginData>([".html"], function processFFF(pages) {
       for (const page of pages) {
         if (options.getGitDate && page.src.entry) {
           if (!page.data.created) {
-            page.data.created = getGitDate("created", page.src.entry.src);
+            page.data.created = getGitDate("created", page.src.entry.src)
+              ?.toISOString();
           }
           if (!page.data.updated) {
-            page.data.updated = getGitDate("modified", page.src.entry.src);
+            page.data.updated = getGitDate("modified", page.src.entry.src)
+              ?.toISOString();
           }
         }
 
@@ -57,7 +61,9 @@ export function fff(userOptions?: Partial<Options>) {
         ]);
 
         if (options.postTypeDiscovery) {
-          page.data.type = postTypeDiscovery(page.data);
+          page.data.type = postTypeDiscovery(
+            page.data as FFFFlavoredFrontmatter,
+          );
         }
       }
     });
@@ -66,10 +72,9 @@ export function fff(userOptions?: Partial<Options>) {
 
 export default fff;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data
-      extends Omit<FFFFlavoredFrontmatter, "lang" | "tags"> {}
+    export interface GlobalData extends PluginData {}
   }
 }

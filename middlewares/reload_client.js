@@ -2,13 +2,11 @@ export default function liveReload(
   initRevision,
   basepath,
   statusCode,
-  debugbarUrl,
 ) {
   let ws;
   let wasClosed = false;
   let revision = initRevision;
   let debugbar;
-  const debugbarModule = debugbarUrl ? import(debugbarUrl) : null;
 
   function socket() {
     if (ws && ws.readyState !== 3) {
@@ -31,6 +29,9 @@ export default function liveReload(
 
       if (files) {
         refresh(files);
+      }
+      if (debugbar) {
+        debugbar.connected = true;
       }
     };
     ws.onmessage = (e) => {
@@ -69,6 +70,9 @@ export default function liveReload(
       wasClosed = true;
       // Socket connection closed. Will attempt to reconnect in 5 seconds.
       setTimeout(socket, 5000);
+      if (debugbar) {
+        debugbar.connected = false;
+      }
     };
     ws.onerror = (err) => console.error("Lume webSocket error observed:", err);
   }
@@ -225,18 +229,13 @@ export default function liveReload(
     return newUrl.pathname.endsWith(currentUrl.pathname);
   }
 
-  async function updateDebugbar(data) {
-    if (!debugbarModule) {
-      return;
-    }
-
+  function updateDebugbar(data) {
     if (!debugbar) {
       if (data === undefined) {
         return;
       }
 
-      const { default: DebugBar } = await debugbarModule;
-      debugbar = new DebugBar();
+      debugbar = document.createElement("lume-bar");
       debugbar.websocket = ws;
       document.body.appendChild(debugbar);
     }

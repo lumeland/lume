@@ -4,22 +4,22 @@ import type { Middleware, RequestHandler } from "../core/server.ts";
 
 export interface Options {
   /** The realm to show in the authentication dialog */
-  realm: string;
+  realm?: string;
   /** The users and passwords to use for authentication */
-  users: Record<string, string>;
+  users?: Record<string, string>;
   /** The error message to show when authentication fails */
-  errorMessage: string;
+  errorMessage?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   realm: "Basic Authentication",
   users: {},
   errorMessage: "401 Unauthorized",
-};
+} satisfies Options;
 
 // Code from https://deno.land/x/basic_auth@v1.0.1/mod.ts
 export function basicAuth(
-  userOptions?: Partial<Options>,
+  userOptions?: Options,
 ): Middleware {
   const options = merge(defaults, userOptions);
 

@@ -17,9 +17,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Partial<Options> = {
+export const defaults = {
   basePath: "/admin",
-};
+} satisfies Partial<Options>;
 
 /**
  * A plugin to use LumeCMS
@@ -142,14 +142,12 @@ export function lumeCMS(userOptions: Options) {
         "lume cms",
       );
       if (item) {
-        item.actions = [
-          {
-            text: "Edit content",
-            icon: "pencil-simple",
-            onclick:
-              `window.open("${baseUrl}?edit=" + decodeURIComponent(document.location), "_top");`,
-          },
-        ];
+        site.debugBar?.action({
+          text: "Edit page",
+          icon: "pencil-simple",
+          onclick:
+            `window.open("${baseUrl}?edit=" + decodeURIComponent(document.location), "_top");`,
+        });
       }
     }
     site.addEventListener("beforeBuild", showCMS);

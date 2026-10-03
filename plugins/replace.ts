@@ -10,10 +10,10 @@ export interface Options {
   replacements: Record<string, string | ((text: string) => string)>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   extensions: [".html"],
   replacements: {},
-};
+} satisfies Options;
 
 export default function replace(userOptions?: Options) {
   const options = merge(defaults, userOptions);

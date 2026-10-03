@@ -33,10 +33,10 @@ export interface Options {
   includes?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   format: "compressed",
   options: {},
-};
+} satisfies Options;
 
 /**
  * A plugin to process SASS and SCSS files

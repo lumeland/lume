@@ -1,25 +1,26 @@
 import type { Middleware } from "../core/server.ts";
+import { merge } from "../core/utils/object.ts";
 
 export interface Options {
   /** The path to the shutdown page */
-  page: string;
+  page?: string;
 
   /**
    * The time in seconds to retry after.
    * @default 60 * 60 * 24 (24 hours)
    */
-  retryAfter: number;
+  retryAfter?: number;
 }
 
-export const defaults: Options = {
+export const defaults = {
   page: "/503.html",
   retryAfter: 60 * 60 * 24, // 24 hours
-};
+} satisfies Options;
 
 export function shutdown(
-  userOptions?: Partial<Options>,
+  userOptions?: Options,
 ): Middleware {
-  const options = { ...defaults, ...userOptions };
+  const options = merge(defaults, userOptions);
 
   return async (request, next) => {
     if (!isHtml(request)) {

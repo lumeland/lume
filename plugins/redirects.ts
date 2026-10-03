@@ -19,10 +19,10 @@ type OutputStrategy = (
   site: Site,
 ) => Promise<void> | void;
 
-export const defaults: Options = {
+export const defaults = {
   output: "html",
   defaultStatus: 301,
-};
+} satisfies Options;
 
 /** Predefined output strategies */
 const outputs: Record<string, OutputStrategy> = {
@@ -170,10 +170,10 @@ async function vercel(redirects: Redirect[], site: Site): Promise<void> {
 
 export default redirects;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The old url(s) of a page
        * @see https://lume.land/plugins/redirects/

@@ -11,11 +11,11 @@ export interface Options {
   options?: PartytownConfig;
 }
 
-export const defaults: Options = {
+export const defaults = {
   options: {
     lib: "/~partytown/",
   },
-};
+} satisfies Options;
 
 export function partytown(userOptions?: Options) {
   const options = merge(defaults, userOptions);

@@ -2,35 +2,6 @@ import { Command } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
 import { args, exit, inspect } from "./deps/runtime.ts";
 
-const upgrade = new Command()
-  .description("Upgrade your Lume executable to the latest version.")
-  .option(
-    "--version <version:string>",
-    "The version to upgrade to.",
-  )
-  .option(
-    "-d, --dev",
-    "Install the latest development version (last Git commit).",
-  )
-  .example("lume upgrade -g", "Upgrades to the latest stable version.")
-  .example("lume upgrade --dev", "Upgrades to the latest development version.")
-  .action(async ({ dev, version }) => {
-    const { default: upgrade } = await import("./cli/upgrade.ts");
-    await upgrade(dev, version);
-  });
-
-const create = new Command()
-  .description("Run an archetype to create more files.")
-  .example(
-    "lume new post 'Post title'",
-    "Create a new post file using the _archetypes/post.ts archetype.",
-  )
-  // @ts-ignore: todo: fix this
-  .action(async ({ config }, name, ...args) => {
-    const { create } = await import("./cli/create.ts");
-    await create(config, name, args);
-  });
-
 const lume = new Command()
   .name("🔥lume")
   .version(() => getCurrentVersion())
@@ -62,6 +33,11 @@ const lume = new Command()
     { default: "http://localhost" },
   )
   .option(
+    "--dry-run",
+    "Test the build without generating the files",
+    { conflicts: ["serve", "watch"] },
+  )
+  .option(
     "-s, --serve",
     "Start a live-reloading web server and watch changes.",
   )
@@ -89,12 +65,16 @@ const lume = new Command()
     "-w, --watch",
     "Build and watch changes.",
   )
-  .action(async ({ config, serve, watch, cms }) => {
+  .option(
+    "-i, --inspect",
+    "Opens an inspector server for debugging.",
+  )
+  .action(async ({ config, serve, watch, cms, dryRun, inspect }) => {
     const { build } = await import("./cli/build.ts");
-    build(config, serve, watch, cms);
+    build(config, serve, watch, cms, dryRun, inspect);
   })
-  .command("new <archetype> [arguments...]", create)
-  .command("upgrade", upgrade);
+  .command("new [archetype] [arguments...]", () => import("./cli/create.ts"))
+  .command("upgrade", () => import("./cli/upgrade.ts"));
 
 try {
   await lume.parse(args());

@@ -10,12 +10,12 @@ export interface Options {
   encodings: Record<string, string>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   encodings: {
     br: ".br",
     gzip: ".gz",
   },
-};
+} satisfies Options;
 
 export function preCompress(userOptions?: Options): Middleware {
   const options = merge(defaults, userOptions);

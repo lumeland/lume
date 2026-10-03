@@ -10,7 +10,7 @@ import loadText from "../core/loaders/text.ts";
 import loadBinary from "../core/loaders/binary.ts";
 
 import type Site from "../core/site.ts";
-import type { RawData } from "../core/file.ts";
+import type { RawData } from "../types.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -32,14 +32,14 @@ export interface Options {
   outputOptions?: Sheet2JSONOpts;
 }
 
-export const defaults: Options = {
+export const defaults = {
   extensions: [".xlsx", ".numbers", ".csv"],
   sheets: "auto",
   options: {},
   outputOptions: {
     UTC: true,
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to load Excel, Numbers, and CSV files

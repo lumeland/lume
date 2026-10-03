@@ -1,6 +1,9 @@
-import { plainText } from "../../deps/remove-markdown.ts";
+import {
+  plainText,
+  RemoveMarkdownOptions,
+} from "../../deps/remove-markdown.ts";
 
-import type { Data } from "../file.ts";
+import type { Data } from "../../types.ts";
 
 /**
  * Get the value of a page data
@@ -20,11 +23,15 @@ export function getDataValue(data: Partial<Data>, value?: unknown) {
   return value;
 }
 
-export function getPlainDataValue(data: Partial<Data>, value?: unknown) {
+export function getPlainDataValue(
+  data: Partial<Data>,
+  value?: unknown,
+  options?: RemoveMarkdownOptions,
+) {
   const val = getDataValue(data, value);
 
   if (typeof val === "string") {
-    return plainText(val);
+    return plainText(val, options);
   }
 
   return val;

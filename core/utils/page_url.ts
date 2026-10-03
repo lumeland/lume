@@ -2,7 +2,8 @@ import { posix } from "../../deps/path.ts";
 import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
 
 import type { Destination } from "../source.ts";
-import type { Data, Page, RawData } from "../file.ts";
+import type { Page } from "../file.ts";
+import type { Data, DirectoryData } from "../../types.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(page404?: string): (page: Data) => boolean {
@@ -31,7 +32,7 @@ export function getPageUrl(
   parentPath: string,
   destination?: Destination | string,
 ): string | false {
-  const data = page.data as RawData;
+  const data = page.data as DirectoryData;
   let { url } = data;
 
   if (url === false) {

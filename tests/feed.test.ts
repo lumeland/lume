@@ -8,7 +8,7 @@ Deno.test("RSS plugin", async (t) => {
   });
 
   site.use(
-    feed({
+    feed<{ title: string }>({
       output: ["feed.json", "feed.rss", "feed.atom"],
       info: {
         published: new Date("2020-01-01"),
@@ -45,7 +45,7 @@ Deno.test("RSS plugin with array function", async (t) => {
   });
 
   site.use(
-    feed(() => [{
+    feed<{ title: string }>(() => [{
       output: ["feed1.json", "feed1.rss", "feed1.atom"],
       stylesheet: "/feed-style.xml",
       info: {

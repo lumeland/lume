@@ -1,46 +1,47 @@
 import { getExtension, getPathAndExtension } from "../core/utils/path.ts";
 import { filesToPages } from "../core/file.ts";
 import { log, warnUntil } from "../core/utils/log.ts";
-import { merge } from "../core/utils/object.ts";
+import { Merge, merge } from "../core/utils/object.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
-import sharp, { create } from "../deps/sharp.ts";
+import { create } from "../deps/sharp.ts";
 
+import type { ResizeOptions, Sharp } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
 import type { Page, StaticFile } from "../core/file.ts";
 
 export interface Options {
   /** Custom transform functions */
-  functions: Record<string, TransformationFunction>;
+  functions?: Record<string, TransformationFunction>;
   /** Limit number of images processed concurrently. Uses global concurrency limit if not set. */
   concurrency?: number;
 }
 
 export type TransformationFunction = (
-  image: sharp.Sharp,
+  image: Sharp,
   // deno-lint-ignore no-explicit-any
   ...args: any[]
 ) => void;
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   functions: {
     resize(
-      image: sharp.Sharp,
+      image: Sharp,
       width: number,
       height?: number,
-      options: sharp.ResizeOptions = { withoutEnlargement: true },
+      options: ResizeOptions = { withoutEnlargement: true },
     ): void {
       image.resize(width, height, options);
     },
-    blur(image: sharp.Sharp, sigma?: number | boolean): void {
+    blur(image: Sharp, sigma?: number | boolean): void {
       image.blur(sigma);
     },
-    rotate(image: sharp.Sharp, degrees: number): void {
+    rotate(image: Sharp, degrees: number): void {
       image.rotate(degrees);
     },
   },
   concurrency: 10,
-};
+} satisfies Options;
 const supportedExtensions = new Set([
   ".jpg",
   ".jpeg",
@@ -87,7 +88,7 @@ interface SingleTransformation extends Transformation {
  * A plugin to transform images in Lume
  * @see https://lume.land/plugins/transform_images/
  */
-export function transformImages(userOptions?: Partial<Options>) {
+export function transformImages(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
@@ -189,7 +190,7 @@ async function transform(
   content: Uint8Array | string,
   page: Page,
   transformation: Transformation,
-  options: Options,
+  options: Merge<Options, typeof defaults>,
 ): Promise<void> {
   const ext = page.src.ext;
   const format = transformation.format;
@@ -291,10 +292,10 @@ function removeDuplicatedTransformations(
 
 export default transformImages;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * Image transformations
        * @see https://lume.land/plugins/transform_images/

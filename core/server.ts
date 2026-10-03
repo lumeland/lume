@@ -2,7 +2,7 @@ import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
-import { merge } from "./utils/object.ts";
+import { Merge, merge } from "./utils/object.ts";
 import { cwd, serve, stat } from "../deps/runtime.ts";
 
 import type { RTServer } from "../deps/runtime.ts";
@@ -11,18 +11,18 @@ import type { Event, EventListener, EventOptions } from "./events.ts";
 /** The options to configure the local server */
 export interface Options {
   /** The root path */
-  root: string;
+  root?: string;
   port?: number;
   hostname?: string;
   serveFile?: (root: string, request: Request) => Promise<Response>;
   signal?: AbortSignal;
 }
 
-export const defaults: Options = {
+export const defaults = {
   root: `${cwd()}/_site`,
   port: 8000,
   serveFile,
-};
+} satisfies Options;
 
 export interface NetAddress {
   transport: "tcp" | "udp";
@@ -63,13 +63,13 @@ export type ServerEventType =
 
 export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
-  options: Required<Options>;
+  options: Merge<Options, typeof defaults>;
   middlewares: Middleware[] = [];
   fetch: (request: Request, info: HandlerInfo) => Promise<Response>;
   #server?: RTServer;
   #waiting = false;
 
-  constructor(options: Partial<Options> = {}) {
+  constructor(options?: Options) {
     this.options = merge(defaults, options);
 
     if (this.options.hostname === "localhost") {
@@ -85,6 +85,20 @@ export default class Server {
   /** The local address this server is listening on. */
   get addr(): NetAddress | undefined {
     return this.#server?.addr;
+  }
+
+  /** The port this server is listening on */
+  get port(): number {
+    return this.options.port;
+  }
+
+  /** The hostname this server is listening on */
+  get hostname(): string {
+    const { hostname } = this.options;
+
+    return (hostname === "0.0.0.0" || hostname === "127.0.0.1")
+      ? "localhost"
+      : hostname ?? "localhost";
   }
 
   /** Register one or more middlewares */

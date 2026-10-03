@@ -1,4 +1,5 @@
 import type { Middleware } from "../core/server.ts";
+import { merge } from "../core/utils/object.ts";
 
 const HOUR = 3600000;
 const DAY = HOUR * 24;
@@ -12,7 +13,7 @@ export interface Options {
   durations: Record<string, number>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   defaultDuration: WEEK,
   durations: {
     "text/html": 0,
@@ -22,11 +23,11 @@ export const defaults: Options = {
     "application/rdf+xml": HOUR,
     "application/rss+xml": HOUR,
   },
-};
+} satisfies Options;
 
 /** Set the Expires header for better caching */
-export function expires(userOptions?: Partial<Options>): Middleware {
-  const options = { ...defaults, ...userOptions };
+export function expires(userOptions?: Options): Middleware {
+  const options = merge(defaults, userOptions);
 
   return async (request, next) => {
     const response = await next(request);

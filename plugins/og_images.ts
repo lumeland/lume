@@ -7,7 +7,8 @@ import { read } from "../core/utils/read.ts";
 import { Page } from "../core/file.ts";
 import loader from "../core/loaders/module.ts";
 
-import "../types.ts";
+import type Site from "../core/site.ts";
+import type { Helper } from "../core/renderer.ts";
 
 export interface Options {
   /**
@@ -23,20 +24,20 @@ export interface Options {
   options?: Partial<SatoriOptions>;
 }
 
-export const defaults: Options = {
+export const defaults = {
   options: {
     width: 1200,
     height: 600,
     fonts: [],
   },
-};
+} satisfies Options;
 
 /**
  * A plugin to generate Open Graph images for your pages
  * @see https://lume.land/plugins/og_images/
  */
 export function ogImages(userOptions?: Options) {
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
@@ -46,9 +47,17 @@ export function ogImages(userOptions?: Options) {
     // Get the cache folder
     const { cache } = site;
 
-    site.process([".html"], async function processOgImages(pages, allPages) {
+    site.process<{ openGraphLayout?: string; metas?: { image?: string } }>([
+      ".html",
+    ], async function processOgImages(pages, allPages) {
       if (!satoriOptions.fonts.length) {
         satoriOptions.fonts.push(...await defaultFonts());
+      }
+
+      const helpers: Record<string, Helper> = {};
+
+      for (const [name, [fn]] of site.renderer.helpers) {
+        helpers[name] = fn;
       }
 
       for (const page of pages) {
@@ -80,7 +89,7 @@ export function ogImages(userOptions?: Options) {
           );
         }
 
-        const jsx = await template(data);
+        const jsx = await template(data, helpers);
         const content = await render(jsx);
         const url = page.outputPath.replace(/\.html$/, ".png");
 
@@ -142,10 +151,10 @@ async function defaultFonts(): Promise<SatoriOptions["fonts"]> {
 
 export default ogImages;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The layout to generate the Open Graph Image
        * @see https://lume.land/plugins/og_image/

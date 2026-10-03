@@ -27,7 +27,7 @@ export interface Options {
   minify?: boolean;
 }
 
-export const defaults: Options = {};
+export const defaults = {} satisfies Options;
 
 /**
  * A plugin to extract the utility classes from HTML pages and apply TailwindCSS
@@ -35,7 +35,7 @@ export const defaults: Options = {};
  */
 export function tailwindCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge<Options>(
+    const options = merge(
       { ...defaults, includes: site.options.includes },
       userOptions,
     );

@@ -2,7 +2,7 @@ import { assert, assertEquals as equals } from "../deps/assert.ts";
 import lume from "../mod.ts";
 
 import type { Engine } from "../core/renderer.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 
 Deno.test("default configuration", () => {
   const site = lume();

@@ -20,10 +20,10 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   extensions: [".jsx", ".tsx"],
   pageSubExtension: ".page",
-};
+} satisfies Options;
 
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
@@ -93,10 +93,10 @@ export function jsx(userOptions?: Options) {
 
 export default jsx;
 
-/** Extends Data interface */
+/** Extends global data interface */
 declare global {
   namespace Lume {
-    export interface Data {
+    export interface GlobalData {
       /**
        * The JSX children elements
        * @see https://lume.land/plugins/jsx/

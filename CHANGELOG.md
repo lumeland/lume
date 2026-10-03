@@ -6,7 +6,89 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [3.2.5] - Unreleased
+## [Unreleased]
+### Fixed
+- Vento plugin: detect `comp["name"]` component calls.
+
+## [3.3.2] - 2026-09-22
+### Added
+- `json_ld` plugin: Allow arrays to generate multiple `<script type="application/ld+json">` elements.
+
+### Fixed
+- Markdown plugin: fixed the type of the `plugins` option.
+- Reload middleware with pages that can't include the code before the `</body>` tag [#872].
+- Updated dependencies: `cliffy`, `image-dimensions`, `katex`, `ai_robots`, `terser`, `sass`, `html-validate`, `postcss`, `postcss-import`, `autoprefixer`, `highlight.js`, `zip-js`, `satori`, `unocss`, `svgo`, `remove-markdown`, `sharp`, `decap-cms`, `partytown`, `markdown-it`, `magic-string`, `katex`, `decap` and icons.
+
+## [3.3.1] - 2026-08-10
+### Added
+- `icons` plugin: new `versions` option to change the major version of some icon catalogs.
+  For now only `mingcute` is available, that changes the icon names `arrow/arrow_left_fill` => `arrow-left:filled`. For now, the version 2 is still the default value (for backward compatibility) but you can use the new version with the option `versions.mingcute = 3`.
+
+### Fixed
+- `og_images`: Pass helpers in the second argument of the layout function.
+- Don't apply HMR to node_modules files and files inside the `DENO_DIR` directory [#870].
+- Updated dependencies: `std`, `html-validate`, `postcss`, `markdown-it`, `markdown-it-attrs`, `markdown-it-deflist`, `esbuild`, `katex`, `terser`, `zip` and `ai_robots` and some icons.
+
+## [3.3.0] - 2026-07-29
+### Added
+- New plugin: `pwa`.
+- New plugin: `git_date`.
+- New plugin: `git_info`.
+- New plugin: `well_known`.
+- New plugin: `toc`.
+- New option `disallowAI` for `robots_txt` plugin.
+- Implement HMR in `serve` mode, using Node module hooks API.
+- `site.archetype()` to register archetypes from the _config.ts file.
+- New flag `--dry-run` to check for build errors [#860]
+- Predefined archetypes for common code scaffolds
+  - `plugin` to create a Lume plugin in the local folder `_plugins/[name].ts`.
+  - `archetype` to create a Lume archetype in the local folder `_archetype/[name].ts`.
+  - `cms` to create the `_cms.ts` file.
+- `feed` plugin: added `authorAvatar` property [#859].
+- RAM usage info in the debugBar.
+- Starting info in the debugBar.
+- New flag `--inspect, -i` to start a inspector server for debugging.
+- New `site.debugBar.action()` to add visible actions in the debugBar.
+
+### Changed
+- The `merge` utility function changed the types to better reflect its returned type.
+  This change only affects to plugin creators.
+  For now on, the default options object must be declared with `satisfies`.
+  You can learn more about this change here: [#853].
+  ```ts
+  // Old way
+  export const defaults: Options = {};
+
+  // New way
+  export const defaults = {} satisfies Options;
+
+  const options = merge(defaults, userOptions);
+  ```
+- `favicon` plugin: Don't override favicons added explicitly with `site.add()` or `site.copy()`.
+- Archetypes are loaded from the cwd, not the `src` folder.
+- Moved `Logger` class to the `core/` folder.
+- Removed `@std/testing/snapshot` dependency in favor of buil-in `t.assertSnapshot()` function introduced in Deno 2.9
+- DebugBar:
+  - Inline the code in the HTML pages instead of loading remotely from jsdelivr.
+  - The CMS button is now visible in the tab bar.
+- Prims and Code Highlight plugins: load `vento` language by default.
+
+### Removed
+- String value for `serve.debugBar` option. Now only allows a boolean value.
+
+### Fixed
+- `icons` plugin: Added missing type for `spriteIcon` helper [#852].
+- Updated dependencies: `cliffy`, `date-fn`, `decap`, `esbuild`, `postcss`, `sass`, `sharp`, `tailwindcss`, `unocss`, `std`, `html-validate`, `markdown-it`, `svgo`, `terser`, `zip-js`, `katex`, `lightningcss`, `postcss`, `autoprefixer`, `decapcms`, `satori`, `unocss`, `magic-string` and some icons.
+- `json_ld` plugin: Allow some html tags in the `description` key (according to google's docs).
+- `feed` plugin: Set absolute urls for icons, and images.
+- Don't break the build on error loading a `_data` file.
+- Don't break the build on error rendering a page or layout.
+
+## [3.2.6] - 2026-05-25
+### Fixed
+- Revert removal of `@std/crypto` dependency because it's needed for MD5.
+
+## [3.2.5] - 2026-05-25
 ### Added
 - `robots` plugin: support rule grouping [#838]
 - `robots` plugin: support Content-Signal rule [#838]
@@ -15,6 +97,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `feed` plugin: Add `items.categories` support, defaults to `"=tags"` [#848]
 - `image_size` plugin: Support for remote files and external URLs.
 - `icons` plugin: Add icons from theSVG.
+- `icons` plugin: Add support for generating an SVG spritesheet. [#851]
 - New `LUME_CONCURRENCY` env var to define a custom global concurrency limit [#843].
 - `transform_images` plugin: New `concurrency` option to limit the number of images processed in parallel (10 by default) [#843].
 
@@ -477,8 +560,20 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#839]: https://github.com/lumeland/lume/issues/839
 [#843]: https://github.com/lumeland/lume/issues/843
 [#848]: https://github.com/lumeland/lume/issues/848
+[#851]: https://github.com/lumeland/lume/issues/851
+[#852]: https://github.com/lumeland/lume/issues/852
+[#853]: https://github.com/lumeland/lume/issues/853
+[#859]: https://github.com/lumeland/lume/issues/859
+[#860]: https://github.com/lumeland/lume/issues/860
+[#870]: https://github.com/lumeland/lume/issues/870
+[#872]: https://github.com/lumeland/lume/issues/872
 
-[3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...HEAD
+[Unreleased]: https://github.com/lumeland/lume/compare/v3.3.2...HEAD
+[3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...v3.3.2
+[3.3.1]: https://github.com/lumeland/lume/compare/v3.3.0...v3.3.1
+[3.3.0]: https://github.com/lumeland/lume/compare/v3.2.6...v3.3.0
+[3.2.6]: https://github.com/lumeland/lume/compare/v3.2.5...v3.2.6
+[3.2.5]: https://github.com/lumeland/lume/compare/v3.2.4...v3.2.5
 [3.2.4]: https://github.com/lumeland/lume/compare/v3.2.3...v3.2.4
 [3.2.3]: https://github.com/lumeland/lume/compare/v3.2.2...v3.2.3
 [3.2.2]: https://github.com/lumeland/lume/compare/v3.2.1...v3.2.2

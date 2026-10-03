@@ -6,6 +6,7 @@ import messages from "./seo/messages.json" with { type: "json" };
 import enCommonWords from "./seo/cw/en.json" with { type: "json" };
 import { writeTextFileSync } from "../deps/runtime.ts";
 
+import type Site from "../core/site.ts";
 import type { ErrorMessage } from "./seo/mod.ts";
 import type { Item } from "../core/debugbar.ts";
 
@@ -22,7 +23,7 @@ export interface Options {
   options?: SeoOptions;
 }
 
-export const defaults: Options = {
+export const defaults = {
   output: false,
   options: {
     commonWords,
@@ -57,12 +58,12 @@ export const defaults: Options = {
       unit: "word",
     },
   },
-};
+} satisfies Options;
 
 export function SEO(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
-  return (site: Lume.Site) => {
+  return (site: Site) => {
     const reports: Map<string, ErrorMessage[]> = new Map();
 
     site.process(processSEO);
@@ -85,7 +86,7 @@ export function SEO(userOptions?: Options) {
     function processSEO() {
       reports.clear();
       refresh();
-      const pages = site.search.pages(options.query);
+      const pages = site.search.pages<{ lang?: string }>(options.query);
       for (const page of pages) {
         const errors = validatePage(
           page.page.document,

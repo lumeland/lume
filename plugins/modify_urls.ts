@@ -15,9 +15,9 @@ export interface Options {
 }
 
 // Default options
-export const defaults: Options = {
+export const defaults = {
   fn: (url) => url,
-};
+} satisfies Options;
 
 /**
  * A plugin to modify all URLs found in HTML and CSS documents

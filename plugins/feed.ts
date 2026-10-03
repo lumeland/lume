@@ -8,10 +8,10 @@ import { log } from "../core/utils/log.ts";
 import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
-import type { Data } from "../core/file.ts";
+import type { Data } from "../types.ts";
 import type { stringifyable } from "../deps/xml.ts";
 
-export interface Options {
+export interface Options<D = Lume.GlobalData> {
   /** The output filenames */
   output?: string | string[];
 
@@ -31,7 +31,7 @@ export interface Options {
   info?: FeedInfoOptions;
 
   /** The feed items configuration */
-  items?: FeedItemOptions;
+  items?: FeedItemOptions<D>;
 }
 
 export interface FeedInfoOptions {
@@ -72,6 +72,9 @@ export interface FeedInfoOptions {
   /** The feed author URL */
   authorUrl?: string;
 
+  /** The feed author avatar */
+  authorAvatar?: string;
+
   /** The main image of the site */
   image?: string;
 
@@ -82,39 +85,42 @@ export interface FeedInfoOptions {
   color?: string;
 }
 
-export interface FeedItemOptions {
+export interface FeedItemOptions<D> {
   /** The item title */
-  title?: string | ((data: Data) => string | undefined);
+  title?: string | ((data: Data<D>) => string | undefined);
 
   /** The item description */
-  description?: string | ((data: Data) => string | undefined);
+  description?: string | ((data: Data<D>) => string | undefined);
 
   /** The item published date */
-  published?: string | ((data: Data) => Date | undefined);
+  published?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item updated date */
-  updated?: string | ((data: Data) => Date | undefined);
+  updated?: string | ((data: Data<D>) => Date | undefined);
 
   /** The item content */
-  content?: string | ((data: Data) => string | undefined);
+  content?: string | ((data: Data<D>) => string | undefined);
 
   /** The item categories */
-  categories?: string | ((data: Data) => string[] | undefined);
+  categories?: string | ((data: Data<D>) => string[] | undefined);
 
   /** The item language */
-  lang?: string | ((data: Data) => string | undefined);
+  lang?: string | ((data: Data<D>) => string | undefined);
 
   /** The item image */
-  image?: string | ((data: Data) => string | undefined);
+  image?: string | ((data: Data<D>) => string | undefined);
 
   /** The item author name */
   authorName?: string;
 
   /** The item author URL */
   authorUrl?: string;
+
+  /** The feed author avatar */
+  authorAvatar?: string;
 }
 
-export const defaults: Options = {
+export const defaults = {
   /** The output filenames */
   output: "/feed.rss",
 
@@ -143,11 +149,12 @@ export const defaults: Options = {
     categories: "=tags",
     lang: "=lang",
   },
-};
+} satisfies Options;
 
 export interface Author {
   name?: string;
   url?: string;
+  avatar?: string;
 }
 
 export interface FeedData {
@@ -185,8 +192,8 @@ const defaultGenerator = getGenerator();
  * A plugin to generate RSS, Atom and JSON feeds
  * @see https://lume.land/plugins/feed/
  */
-export function feed(
-  userOptionsFn?: Options | Options[] | (() => Options[] | Options),
+export function feed<D = Lume.GlobalData>(
+  userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
 ) {
   return (site: Site) => {
     site.process(function processFeed() {
@@ -207,7 +214,7 @@ export function feed(
           options.query,
           options.sort,
           options.limit,
-        ) as Data[];
+        );
 
         const { info, items } = options;
         const rootData = site.source.data.get("/") || {};
@@ -223,9 +230,9 @@ export function feed(
           generator: info.generator === true
             ? defaultGenerator
             : info.generator || undefined,
-          author: getAuthor(rootData, info),
-          image: info.image,
-          icon: info.icon,
+          author: getAuthor(rootData, info, site),
+          image: info.image ? site.url(info.image, true) : undefined,
+          icon: info.icon ? site.url(info.icon, true) : undefined,
           color: info.color,
           items: pages.map((data): FeedItem => {
             const content = getDataValue(data, items.content)?.toString();
@@ -240,7 +247,7 @@ export function feed(
               title: getPlainDataValue(data, items.title),
               url: site.url(data.url, true),
               description: getPlainDataValue(data, items.description),
-              author: getAuthor(data, items),
+              author: getAuthor(data, items, site),
               published: toDate(getDataValue(data, items.published)) ||
                 new Date(),
               updated: toDate(getDataValue(data, items.updated)),
@@ -296,15 +303,18 @@ export function feed(
   };
 }
 
-function getAuthor(
+function getAuthor<D>(
   data: Partial<Data>,
-  info: FeedInfoOptions | FeedItemOptions,
+  info: FeedInfoOptions | FeedItemOptions<D>,
+  site: Site,
 ): Author | undefined {
   const name = getPlainDataValue(data, info.authorName);
   const url = getDataValue(data, info.authorUrl);
+  const authorAvatar = getDataValue(data, info.authorAvatar);
+  const avatar = authorAvatar ? site.url(authorAvatar, true) : undefined;
 
-  if (name || url) {
-    return { name, url };
+  if (name || url || avatar) {
+    return { name, url, avatar };
   }
 }
 
