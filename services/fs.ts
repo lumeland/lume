@@ -23,7 +23,11 @@ export function readTextFileSync(file: string): string {
 }
 
 /** Write a binary file */
-export async function writeFile(file: string, content: Uint8Array, createNew?: boolean): Promise<void> {
+export async function writeFile(
+  file: string,
+  content: Uint8Array,
+  createNew?: boolean,
+): Promise<void> {
   try {
     await Deno.writeFile(file, content, { createNew });
   } catch (error) {
@@ -37,7 +41,11 @@ export function writeFileSync(file: string, content: Uint8Array): void {
 }
 
 /** Write a text file */
-export async function writeTextFile(file: string, content: string, createNew?: boolean): Promise<void> {
+export async function writeTextFile(
+  file: string,
+  content: string,
+  createNew?: boolean,
+): Promise<void> {
   try {
     await Deno.writeTextFile(file, content, { createNew });
   } catch (error) {
@@ -74,6 +82,6 @@ export class FsError extends Error {
   get code() {
     if (this.cause instanceof Deno.errors.NotFound) return "not-found";
     if (this.cause instanceof Deno.errors.AlreadyExists) return "exists";
-    return "other"
+    return "other";
   }
 }

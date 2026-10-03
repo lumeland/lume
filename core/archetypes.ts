@@ -5,7 +5,12 @@ import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { log } from "./utils/log.ts";
 import { isUrl } from "./utils/path.ts";
-import { writeFile, writeTextFile, FsError, readTextFile } from "../services/fs.ts";
+import {
+  FsError,
+  readTextFile,
+  writeFile,
+  writeTextFile,
+} from "../services/fs.ts";
 
 export interface Options {
   src: string;

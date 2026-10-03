@@ -4,7 +4,14 @@ import { concurrent } from "./utils/concurrent.ts";
 import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
 import binaryLoader from "./loaders/binary.ts";
-import { readFileSync, remove, removeSync, writeFile, writeFileSync, writeTextFile } from "../services/fs.ts";
+import {
+  readFileSync,
+  remove,
+  removeSync,
+  writeFile,
+  writeFileSync,
+  writeTextFile,
+} from "../services/fs.ts";
 
 import type { Page, StaticFile } from "./file.ts";
 

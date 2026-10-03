@@ -1,6 +1,12 @@
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
-import { readFileSync, readTextFileSync, removeSync, writeFileSync, writeTextFileSync } from "../services/fs.ts";
+import {
+  readFileSync,
+  readTextFileSync,
+  removeSync,
+  writeFileSync,
+  writeTextFileSync,
+} from "../services/fs.ts";
 import { md5 } from "./utils/digest.ts";
 
 export interface Options {

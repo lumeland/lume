@@ -1,7 +1,7 @@
 import { isUrl } from "./path.ts";
 import { envBoolean } from "./env.ts";
 import { tokens } from "./tokens.ts";
-import { readTextFile, readFile as readFile_ } from "../../services/fs.ts";
+import { readFile as readFile_, readTextFile } from "../../services/fs.ts";
 import { fromFileUrl } from "../../deps/path.ts";
 
 const useCache = envBoolean("LUME_NOCACHE") !== true;
