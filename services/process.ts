@@ -7,3 +7,8 @@ export function args(): string[] {
 export function exit(code = 0): void {
   Deno.exit(code);
 }
+
+/** Get the resident set size (RSS) memory */
+export function rss(): number {
+  return Deno.memoryUsage().rss;
+}

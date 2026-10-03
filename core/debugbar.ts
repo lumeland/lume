@@ -1,5 +1,6 @@
 import { bytes, duration } from "./utils/format.ts";
 import Events, { Event, EventListener, EventOptions } from "./events.ts";
+import { rss } from "../services/process.ts";
 
 /**
  * DebugBar is a class that manages collections of items to be displayed in a debug bar.
@@ -114,10 +115,10 @@ export default class DebugBar {
   }
 
   #getRam() {
-    const { rss } = Deno.memoryUsage();
-    const diff = rss - this.#ram;
-    this.#ram = rss;
-    return [rss, diff];
+    const ram = rss();
+    const diff = ram - this.#ram;
+    this.#ram = ram;
+    return [ram, diff];
   }
 }
 
