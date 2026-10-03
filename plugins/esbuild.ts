@@ -13,6 +13,7 @@ import {
 } from "../deps/esbuild.ts";
 import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 import { prepareAsset, saveAsset } from "./source_maps.ts";
+import { readTextFileSync } from "../services/fs.ts";
 import { Page } from "../core/file.ts";
 
 import type Site from "../core/site.ts";
@@ -86,7 +87,7 @@ export function esbuild(userOptions?: Options) {
         ? site.root(options.denoConfig)
         : site.root("deno.json");
 
-      const content = Deno.readTextFileSync(denoJson);
+      const content = readTextFileSync(denoJson);
       const config = JSON.parse(content);
       const { compilerOptions } = config;
 

@@ -5,6 +5,7 @@ import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { log } from "./utils/log.ts";
 import { isUrl } from "./utils/path.ts";
+import { writeFile, writeTextFile, FsError, readTextFile } from "../services/fs.ts";
 
 export interface Options {
   src: string;
@@ -148,14 +149,14 @@ async function saveFile(
 
   try {
     content instanceof Uint8Array
-      ? await Deno.writeFile(path, content, { createNew: !overwrite })
-      : await Deno.writeTextFile(path, content, { createNew: !overwrite });
+      ? await writeFile(path, content, !overwrite)
+      : await writeTextFile(path, content, !overwrite);
 
     overwrite
       ? log.info(`✔️ Updated file: <gray>${path}</gray>`)
       : log.info(`✔️ Created file: <gray>${path}</gray>`);
   } catch (error) {
-    if (error instanceof Deno.errors.AlreadyExists) {
+    if ((error as FsError).code === "exists") {
       log.warn(`⚠️ File already exists: <gray>${path}</gray>`);
     } else {
       throw error;
@@ -188,9 +189,9 @@ async function runObjectArchetype<T = Record<string, unknown>>(
 
 async function readFile(path: string): Promise<string | undefined> {
   try {
-    return await Deno.readTextFile(path);
+    return await readTextFile(path);
   } catch (error) {
-    if (error instanceof Deno.errors.NotFound) {
+    if ((error as FsError).code === "not-found") {
       return;
     }
     throw error;

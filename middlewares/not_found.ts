@@ -2,6 +2,7 @@ import { join, posix } from "../deps/path.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type { Middleware } from "../core/server.ts";
+import { readFile } from "../services/fs.ts";
 
 export interface Options {
   /** The root folder to look for the 404 page */
@@ -35,7 +36,7 @@ export function notFound(userOptions?: Options): Middleware {
       headers.set("content-type", "text/html; charset=utf-8");
 
       try {
-        const body = await Deno.readFile(join(root, page404));
+        const body = await readFile(join(root, page404));
         return new Response(body, { status, headers });
       } catch {
         if (directoryIndex) {

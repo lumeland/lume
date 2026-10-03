@@ -1,5 +1,6 @@
 import { emptyDir, ensureDir } from "../deps/fs.ts";
 import { posix } from "../deps/path.ts";
+import { readFileSync, readTextFileSync, removeSync, writeFileSync, writeTextFileSync } from "../services/fs.ts";
 import { md5 } from "./utils/digest.ts";
 
 export interface Options {
@@ -27,16 +28,16 @@ export default class Cache {
     await ensureDir(posix.dirname(path));
 
     if (typeof value === "string") {
-      Deno.writeTextFileSync(path, value);
+      writeTextFileSync(path, value);
     } else {
-      Deno.writeFileSync(path, value);
+      writeFileSync(path, value);
     }
   }
 
   /** Remove content from the cache folder */
   async remove(key: unknown[]): Promise<void> {
     try {
-      Deno.removeSync(await this.getPath(key));
+      removeSync(await this.getPath(key));
     } catch {
       // Ignore
     }
@@ -55,7 +56,7 @@ export default class Cache {
   /** Get the content from the cache folder as Uint8Array */
   async getBytes(key: unknown[]): Promise<Uint8Array<ArrayBuffer> | undefined> {
     try {
-      return Deno.readFileSync(await this.getPath(key));
+      return readFileSync(await this.getPath(key));
     } catch {
       // Ignore
     }
@@ -64,7 +65,7 @@ export default class Cache {
   /** Get the content from the cache folder as string */
   async getText(key: unknown[]): Promise<string | undefined> {
     try {
-      return Deno.readTextFileSync(await this.getPath(key));
+      return readTextFileSync(await this.getPath(key));
     } catch {
       // Ignore
     }

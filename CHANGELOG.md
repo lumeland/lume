@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
+### Changed
+- Internal: New `services` folder to store some runtime-specific helpers. This will allow to port Lume to other runtimes in the future.
+
 ### Fixed
 - Vento plugin: detect `comp["name"]` component calls.
 

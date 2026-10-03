@@ -1,6 +1,8 @@
 import { isUrl } from "./path.ts";
 import { envBoolean } from "./env.ts";
 import { tokens } from "./tokens.ts";
+import { readTextFile, readFile as readFile_ } from "../../services/fs.ts";
+import { fromFileUrl } from "../../deps/path.ts";
 
 const useCache = envBoolean("LUME_NOCACHE") !== true;
 
@@ -36,13 +38,14 @@ export async function read(
         : response.text();
     }
 
-    return isBinary ? Deno.readFile(path) : Deno.readTextFile(path);
+    return isBinary ? readFile_(path) : readTextFile(path);
   }
 
   const url = new URL(path);
 
   if (url.protocol === "file:") {
-    return isBinary ? Deno.readFile(url) : Deno.readTextFile(url);
+    const path = fromFileUrl(url);
+    return isBinary ? readFile_(path) : readTextFile(path);
   }
 
   const authorization = tokens.get(url.host);
