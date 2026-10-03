@@ -3,7 +3,7 @@ export async function readFile(file: string): Promise<Uint8Array<ArrayBuffer>> {
   return await Deno.readFile(file);
 }
 
-/** Read a binary file (sync version) */
+/** Synchronously read a binary file */
 export function readFileSync(file: string): Uint8Array<ArrayBuffer> {
   return Deno.readFileSync(file);
 }
@@ -17,7 +17,7 @@ export async function readTextFile(file: string): Promise<string> {
   }
 }
 
-/** Read a text file (sync version) */
+/** Synchronously read a text file */
 export function readTextFileSync(file: string): string {
   return Deno.readTextFileSync(file);
 }
@@ -31,7 +31,7 @@ export async function writeFile(file: string, content: Uint8Array, createNew?: b
   }
 }
 
-/** Write a binary file (sync version) */
+/** Synchronously write a binary file */
 export function writeFileSync(file: string, content: Uint8Array): void {
   Deno.writeFileSync(file, content);
 }
@@ -45,7 +45,7 @@ export async function writeTextFile(file: string, content: string, createNew?: b
   }
 }
 
-/** Write a text file (sync version) */
+/** Synchronously write a text file */
 export function writeTextFileSync(file: string, content: string): void {
   Deno.writeTextFileSync(file, content);
 }
@@ -55,9 +55,14 @@ export async function remove(file: string, recursive?: boolean): Promise<void> {
   await Deno.remove(file, { recursive });
 }
 
-/** Remove a file or folder (sync version) */
+/** Synchronously remove a file or folder */
 export function removeSync(file: string, recursive?: boolean): void {
   Deno.removeSync(file, { recursive });
+}
+
+/** Synchronously returns a full normalized path */
+export function realPathSync(file: string): string {
+  return Deno.realPathSync(file);
 }
 
 export class FsError extends Error {

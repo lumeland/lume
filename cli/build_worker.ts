@@ -46,7 +46,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   }
 
   init();
-  const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
+  const _config = resolveConfigFile(["_config.ts", "_config.js"], config);
   const site = await createSite(_config);
 
   // Start the server and show the wait page while building the first time
@@ -62,7 +62,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   let cms: any;
 
   if (loadCms) {
-    _cms = await resolveConfigFile(["_cms.ts", "_cms.js"]);
+    _cms = resolveConfigFile(["_cms.ts", "_cms.js"]);
 
     if (_cms) {
       const mod = await import(_cms.href);

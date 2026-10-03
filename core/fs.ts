@@ -1,5 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { toFileUrl } from "../deps/path.ts";
+import { realPathSync } from "../services/fs.ts";
 
 import type { RawData } from "../types.ts";
 
@@ -169,7 +170,7 @@ export default class FS {
       name,
       posix.join(dir.path, name),
       type,
-      Deno.realPathSync(src),
+      realPathSync(src),
     );
 
     dir.children.set(name, entry);

@@ -18,7 +18,7 @@ export async function build(
   }
 
   if (!serve && !watch) {
-    const _config = await resolveConfigFile(
+    const _config = resolveConfigFile(
       ["_config.ts", "_config.js"],
       config,
     );

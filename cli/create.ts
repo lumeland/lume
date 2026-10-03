@@ -23,7 +23,7 @@ async function run(
   name?: string,
   args?: string[],
 ) {
-  const _config = await resolveConfigFile(["_config.ts", "_config.js"], config);
+  const _config = resolveConfigFile(["_config.ts", "_config.js"], config);
   const site = await createSite(_config);
 
   if (!name) {
