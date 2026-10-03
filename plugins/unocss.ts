@@ -52,6 +52,7 @@ export interface Options {
    *  transformerVariantGroup(),
    *  transformerDirectives()
    * ]
+   * @deprecated set `options.transformers` instead
    */
   transformers?: SourceCodeTransformer[];
 
@@ -66,11 +67,11 @@ export interface Options {
 export const defaults = {
   options: {
     presets: [presetWind3],
+    transformers: [
+      transformerVariantGroup(),
+      transformerDirectives(),
+    ],
   },
-  transformers: [
-    transformerVariantGroup(),
-    transformerDirectives(),
-  ],
   reset: false,
 } satisfies Options;
 
@@ -220,7 +221,8 @@ export function unoCSS(userOptions?: Options) {
       return uno;
     }
 
-    const { transformers, cssFile = site.options.cssFile, reset } = options;
+    const { cssFile = site.options.cssFile, reset } = options;
+    const transformers = options.transformers ?? options.options.transformers;
 
     if (transformers.length > 0) {
       site.process([".css", ".html"], async function processUnoCSS(files) {
