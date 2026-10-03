@@ -2,6 +2,12 @@ import { Command } from "../deps/cliffy.ts";
 import { log } from "../core/utils/log.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { createSite } from "./utils.ts";
+import {
+  cwd,
+  ErrorFileAlreadyExists,
+  writeFile,
+  writeTextFile,
+} from "../deps/runtime.ts";
 
 export default new Command()
   .description("Run an archetype to create more files.")

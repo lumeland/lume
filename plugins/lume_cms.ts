@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { merge } from "../core/utils/object.ts";
 import { setEnv } from "../core/utils/env.ts";
 import { Fs } from "lume/cms/storage/fs.ts";
@@ -6,12 +7,10 @@ import { posix } from "../deps/path.ts";
 
 import type { Middleware } from "../core/server.ts";
 import type Site from "../core/site.ts";
-import type CMS from "lume/cms/core/cms.ts";
-import type { Storage } from "lume/cms/types.ts";
 
 export interface Options {
   /** The CMS instance */
-  cms: CMS;
+  cms: any;
 
   /** The path to the CMS */
   basePath?: string;
@@ -62,7 +61,7 @@ export function lumeCMS(userOptions: Options) {
       path: string,
       data: unknown,
       hasChanged: boolean,
-      storage: Storage,
+      storage: any,
     ): undefined | string | Promise<string | undefined> {
       if (
         !(storage instanceof Fs) ||

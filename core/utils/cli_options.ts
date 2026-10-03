@@ -1,12 +1,13 @@
 import { parseArgs } from "../../deps/cli.ts";
 import { getFreePort } from "./net.ts";
+import { args } from "../../deps/runtime.ts";
 
 import type { SiteOptions } from "../site.ts";
 
 export function getOptionsFromCli(
   options: SiteOptions,
 ): SiteOptions {
-  const cli = parseArgs(Deno.args, {
+  const cli = parseArgs(args(), {
     string: ["src", "dest", "location", "port", "hostname"],
     boolean: ["serve", "open"],
     alias: { serve: "s", port: "p", open: "o" },

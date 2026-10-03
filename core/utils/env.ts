@@ -1,17 +1,6 @@
-const envVars = new Map<string, string>();
+import { env, setEnv } from "../../deps/runtime.ts";
 
-export function setEnv(name: string, value: string) {
-  if (allowedEnvVars()) {
-    Deno.env.set(name, value);
-  }
-  envVars.set(name, value);
-}
-
-export function env(name: string): string | undefined {
-  return allowedEnvVars()
-    ? envVars.get(name) ?? Deno.env.get(name)
-    : envVars.get(name);
-}
+export { env, setEnv };
 
 export function envBoolean(name: string): boolean | undefined {
   const value = env(name);
@@ -45,12 +34,4 @@ export function envNumber(name: string): number | undefined {
 
   const valueNum = +value;
   return Number.isNaN(valueNum) ? undefined : valueNum;
-}
-
-let allowed: boolean | undefined;
-function allowedEnvVars(): boolean {
-  if (allowed === undefined) {
-    allowed = Deno.permissions.querySync?.({ name: "env" }).state === "granted";
-  }
-  return allowed;
 }

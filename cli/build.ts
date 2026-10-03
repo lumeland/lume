@@ -3,6 +3,7 @@ import { resolveConfigFile } from "../core/utils/lume_config.ts";
 import { EmptyWriter } from "../core/writer.ts";
 import { openInspector } from "../deps/inspector.ts";
 import { buildSite, createSite } from "./utils.ts";
+import { exit } from "../deps/runtime.ts";
 
 /** Build the website and optionally watch changes and serve the site */
 export async function build(
@@ -66,7 +67,7 @@ export async function build(
     worker.onmessage = (event) => {
       switch (event.data.type) {
         case "exit":
-          return Deno.exit(0);
+          return exit(0);
 
         case "reload":
           init();

@@ -2,6 +2,7 @@ import { assert, assertEquals } from "../deps/assert.ts";
 import { reload } from "../middlewares/reload.ts";
 import type { Watcher, WatchEvent, WatchEventType } from "../core/watcher.ts";
 import type { EventListener, EventOptions } from "../core/events.ts";
+import type { HandlerInfo } from "../core/server.ts";
 
 // Minimal Watcher stub. The reload middleware only calls `addEventListener`
 // and `start` during construction, so these are no-op implementations.
@@ -56,7 +57,7 @@ Deno.test(
     const response = await middleware(
       new Request("http://localhost/"),
       () => Promise.resolve(upstream),
-      {} as Deno.ServeHandlerInfo,
+      {} as HandlerInfo,
     );
 
     const decoded = await response.text();

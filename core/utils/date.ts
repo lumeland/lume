@@ -1,3 +1,5 @@
+import { runCommandSyncAndGetStdout } from "../../deps/runtime.ts";
+
 /**
  * Returns the date of the git commit that created or modified the file.
  * Thanks to https://github.com/11ty/eleventy/blob/8dd2a1012de92c5ee1eab7c37e6bf1b36183927e/src/Util/DateGitLastUpdated.js
@@ -10,15 +12,10 @@ export function getGitDate(
     ? ["log", "--diff-filter=A", "--follow", "-1", "--format=%at", "--", file]
     : ["log", "-1", "--format=%at", "--", file];
 
-  const { stdout, success } = new Deno.Command("git", { args }).outputSync();
+  const stdout = runCommandSyncAndGetStdout("git", args);
 
-  if (!success) {
-    return;
-  }
-  const str = new TextDecoder().decode(stdout);
-
-  if (str) {
-    return parseDate(parseInt(str) * 1000);
+  if (stdout) {
+    return parseDate(parseInt(stdout) * 1000);
   }
 }
 

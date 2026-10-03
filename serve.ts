@@ -1,3 +1,4 @@
+import { allEnvVars, args, execPath } from "./deps/runtime.ts";
 import { parseArgs } from "./deps/cli.ts";
 
 /**
@@ -8,7 +9,7 @@ import { parseArgs } from "./deps/cli.ts";
  */
 
 // Capture flags to pass to the server
-const flags = parseArgs(Deno.args, {
+const flags = parseArgs(args(), {
   string: ["port", "hostname", "location"],
   default: {
     port: "3000",
@@ -91,8 +92,8 @@ export function getServeHandler(): Deno.ServeHandler {
 
     console.log(`Start proxied server on port ${port}`);
 
-    const command = new Deno.Command(Deno.execPath(), {
-      env: Deno.env.toObject(),
+    const command = new Deno.Command(execPath(), {
+      env: allEnvVars(),
       stdout: "inherit",
       stderr: "inherit",
       args: [

@@ -1,5 +1,6 @@
 import { fromFileUrl, join, relative, toFileUrl } from "../deps/path.ts";
 import { normalizePath } from "./utils/path.ts";
+import { watchFiles } from "../deps/runtime.ts";
 import Events from "./events.ts";
 
 import type Site from "./site.ts";
@@ -87,7 +88,7 @@ export default class FSWatcher implements Watcher {
   /** Start the file watcher */
   async start() {
     const { root, src, paths, ignore, debounce, dependencies } = this.options;
-    const watcher = Deno.watchFs([src, ...paths ?? []]);
+    const watcher = watchFiles([root, ...paths ?? []]);
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
@@ -133,12 +134,12 @@ export default class FSWatcher implements Watcher {
       }
     };
 
-    for await (const event of watcher) {
+    for await (let changes of watcher) {
       const paths = new Set<string>();
 
       updateVersion();
 
-      for (const path of event.paths.map((p) => normalizePath(p))) {
+      for (const path of changes.map((p) => normalizePath(p))) {
         // Filter ignored paths
         const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
