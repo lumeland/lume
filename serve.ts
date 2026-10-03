@@ -1,4 +1,5 @@
 import { parseArgs } from "./deps/cli.ts";
+import { args } from "./services/process.ts";
 
 /**
  * This module implements an HTTP server that starts a Lume server
@@ -8,7 +9,7 @@ import { parseArgs } from "./deps/cli.ts";
  */
 
 // Capture flags to pass to the server
-const flags = parseArgs(Deno.args, {
+const flags = parseArgs(args(), {
   string: ["port", "hostname", "location"],
   default: {
     port: "3000",
