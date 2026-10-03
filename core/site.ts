@@ -28,6 +28,7 @@ import Server from "./server.ts";
 import Cache from "./cache.ts";
 import DebugBar from "./debugbar.ts";
 import notFound from "../middlewares/not_found.ts";
+import { cwd } from "../services/process.ts";
 
 import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
@@ -42,11 +43,11 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
-import { Data, DefaultType, RawData } from "../types.ts";
+import type { Data, DefaultType, RawData } from "../types.ts";
 
 /** Default options of the site */
 const defaults = {
-  cwd: Deno.cwd(),
+  cwd: cwd(),
   src: "./",
   dest: "./_site",
   emptyDest: true,

@@ -12,3 +12,8 @@ export function exit(code = 0): void {
 export function rss(): number {
   return Deno.memoryUsage().rss;
 }
+
+/** Returns the cwd path */
+export function cwd() {
+  return Deno.cwd();
+}

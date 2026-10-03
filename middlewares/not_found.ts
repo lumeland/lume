@@ -1,8 +1,9 @@
 import { join, posix } from "../deps/path.ts";
 import { merge } from "../core/utils/object.ts";
+import { cwd } from "../services/process.ts";
+import { readDirSync, readFile } from "../services/fs.ts";
 
 import type { Middleware } from "../core/server.ts";
-import { readDirSync, readFile } from "../services/fs.ts";
 
 export interface Options {
   /** The root folder to look for the 404 page */
@@ -14,7 +15,7 @@ export interface Options {
 }
 
 export const defaults = {
-  root: `${Deno.cwd()}/_site`,
+  root: `${cwd()}/_site`,
   page404: "/404.html",
   directoryIndex: false,
 } satisfies Options;

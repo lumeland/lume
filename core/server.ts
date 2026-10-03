@@ -1,6 +1,7 @@
 import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
+import { cwd } from "../services/process.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
@@ -16,7 +17,7 @@ export interface Options extends Deno.ServeOptions {
 }
 
 export const defaults = {
-  root: `${Deno.cwd()}/_site`,
+  root: `${cwd()}/_site`,
   port: 8000,
   serveFile,
 } satisfies Options;

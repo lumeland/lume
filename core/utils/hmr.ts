@@ -1,8 +1,9 @@
 import { registerHooks } from "../../deps/module.ts";
 import { toFileUrl } from "../../deps/path.ts";
+import { cwd } from "../../services/process.ts";
 
 let version = 0;
-const root = toFileUrl(Deno.cwd()).href;
+const root = toFileUrl(cwd()).href;
 const files = new Map<string, string>();
 const dependencies = new Map<string, Set<string>>();
 

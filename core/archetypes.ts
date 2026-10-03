@@ -5,6 +5,7 @@ import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { log } from "./utils/log.ts";
 import { isUrl } from "./utils/path.ts";
+import { cwd } from "../services/process.ts";
 import {
   FsError,
   readTextFile,
@@ -117,7 +118,7 @@ export default class Archetypes {
     }
 
     if (name.startsWith(".")) {
-      return (await import(toFileUrl(join(Deno.cwd(), name)).href)).default;
+      return (await import(toFileUrl(join(cwd(), name)).href)).default;
     }
 
     if (isUrl(name)) {
