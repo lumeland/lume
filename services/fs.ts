@@ -73,6 +73,18 @@ export function realPathSync(file: string): string {
   return Deno.realPathSync(file);
 }
 
+/** Synchronously returns an iterable of a directory content */
+export function readDirSync(path: string): IteratorObject<DirEntry> {
+  return Deno.readDirSync(path);
+}
+
+export interface DirEntry {
+  name: string;
+  isFile: boolean;
+  isDirectory: boolean;
+  isSymlink: boolean;
+}
+
 export class FsError extends Error {
   constructor(cause: Error) {
     super(cause.message);

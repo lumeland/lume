@@ -1,6 +1,6 @@
 import { posix } from "../deps/path.ts";
 import { toFileUrl } from "../deps/path.ts";
-import { realPathSync } from "../services/fs.ts";
+import { readDirSync, realPathSync } from "../services/fs.ts";
 
 import type { RawData } from "../types.ts";
 
@@ -133,7 +133,7 @@ export default class FS {
   #walkFs(dir: Entry) {
     const dirPath = posix.join(this.options.root, dir.path);
 
-    for (const dirEntry of Deno.readDirSync(dirPath)) {
+    for (const dirEntry of readDirSync(dirPath)) {
       const path = posix.join(dir.path, dirEntry.name);
 
       if (dirEntry.isSymlink) {

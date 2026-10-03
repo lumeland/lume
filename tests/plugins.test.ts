@@ -1,7 +1,8 @@
 import { assertEquals as equals } from "../deps/assert.ts";
 import { pluginNames } from "../core/utils/lume_config.ts";
+import { readDirSync } from "../services/fs.ts";
 
-const totalPlugins = Array.from(Deno.readDirSync("plugins"))
+const totalPlugins = Array.from(readDirSync("plugins"))
   .filter((entry) => entry.isFile && entry.name.endsWith(".ts"))
   .length;
 
