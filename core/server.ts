@@ -2,10 +2,11 @@ import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
 import { cwd } from "../services/process.ts";
-
-import type { Event, EventListener, EventOptions } from "./events.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { Merge, merge } from "./utils/object.ts";
+import { FileInfo, statSync } from "../services/fs.ts";
+
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /** The options to configure the local server */
 export interface Options extends Deno.ServeOptions {
@@ -241,7 +242,7 @@ export async function serveFile(
     const file = path.endsWith("/") ? path + "index.html" : path;
 
     // Redirect /example to /example/
-    const info = await Deno.stat(file);
+    const info = statSync(file);
 
     if (info.isDirectory) {
       const search = url.search;
@@ -275,9 +276,11 @@ export async function serveFile(
 async function fixServeFile(
   request: Request,
   path: string,
-  fileInfo?: Deno.FileInfo,
+  fileInfo?: FileInfo,
 ): Promise<Response> {
-  const response = await httpServeFile(request, path, { fileInfo });
+  const response = await httpServeFile(request, path, {
+    fileInfo: fileInfo as Deno.FileInfo,
+  });
 
   // Fix for https://github.com/lumeland/lume/issues/734
   if (response.headers.get("content-type") === "application/rss+xml") {

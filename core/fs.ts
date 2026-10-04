@@ -1,7 +1,8 @@
 import { posix } from "../deps/path.ts";
 import { toFileUrl } from "../deps/path.ts";
-import { readDirSync, realPathSync } from "../services/fs.ts";
+import { readDirSync, realPathSync, statSync } from "../services/fs.ts";
 
+import type { FileInfo, FsError } from "../services/fs.ts";
 import type { RawData } from "../types.ts";
 
 type EntryType = "file" | "directory";
@@ -21,7 +22,7 @@ export class Entry {
   children = new Map<string, Entry>();
   flags = new Set<string>();
   #content = new Map<Loader, Promise<RawData> | RawData>();
-  #info?: Deno.FileInfo;
+  #info?: FileInfo;
 
   constructor(name: string, path: string, type: EntryType, src: string) {
     this.name = name;
@@ -42,7 +43,7 @@ export class Entry {
     if (!this.#info) {
       this.#info = this.src.includes("://")
         ? createFileInfo(this.type)
-        : Deno.statSync(this.src);
+        : statSync(this.src);
     }
 
     return this.#info;
@@ -99,7 +100,7 @@ export default class FS {
       entry.getInfo();
     } catch (error) {
       // Remove if it doesn't exist
-      if (error instanceof Deno.errors.NotFound) {
+      if ((error as FsError).code === "not-found") {
         const src = this.remoteFiles.get(path);
         if (src) {
           entry.flags.add("remote");
@@ -163,7 +164,7 @@ export default class FS {
 
   #walkLink(dir: Entry, name: string) {
     const src = posix.join(dir.src, name);
-    const info = Deno.statSync(src);
+    const info = statSync(src);
     const type = info.isDirectory ? "directory" : "file";
 
     const entry = new Entry(
@@ -209,7 +210,7 @@ export default class FS {
 
     if (!data.type) {
       try {
-        const info = Deno.statSync(data.src!);
+        const info = statSync(data.src!);
         data.type = info.isDirectory ? "directory" : "file";
       } catch {
         data.type = "file";
@@ -269,29 +270,16 @@ export default class FS {
   }
 }
 
-function createFileInfo(type: EntryType): Deno.FileInfo {
+function createFileInfo(type: EntryType): FileInfo {
   return {
     isFile: type === "file",
     isDirectory: type === "directory",
     isSymlink: false,
-    isBlockDevice: null,
-    isCharDevice: null,
-    isSocket: null,
-    isFifo: null,
     size: 0,
     mtime: new Date(),
     atime: new Date(),
     ctime: new Date(),
     birthtime: new Date(),
-    dev: 0,
-    ino: null,
-    mode: null,
-    nlink: null,
-    uid: null,
-    gid: null,
-    rdev: null,
-    blksize: null,
-    blocks: null,
   };
 }
 

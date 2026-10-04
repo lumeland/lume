@@ -4,7 +4,11 @@ import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { log } from "../core/utils/log.ts";
 import { decodeURIComponentSafe } from "../core/utils/path.ts";
-import { readTextFileSync, writeTextFileSync } from "../services/fs.ts";
+import {
+  readTextFileSync,
+  statSync,
+  writeTextFileSync,
+} from "../services/fs.ts";
 
 import type Site from "../core/site.ts";
 
@@ -246,7 +250,7 @@ function checkInternalUrl(
   if (path.endsWith("/")) {
     try {
       const filePath = join(dest, path, "index.html");
-      Deno.statSync(filePath);
+      statSync(filePath);
 
       // Check if the anchor exists in the index.html file
       if (id && anchors) {
@@ -261,7 +265,7 @@ function checkInternalUrl(
   } else {
     try {
       const filePath = join(dest, path);
-      Deno.statSync(filePath);
+      statSync(filePath);
 
       // Check if the anchor exists in the HTML file
       if (id && anchors && filePath.endsWith(".html")) {

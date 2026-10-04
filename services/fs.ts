@@ -97,3 +97,23 @@ export class FsError extends Error {
     return "other";
   }
 }
+
+export interface FileInfo {
+  isFile: boolean;
+  isDirectory: boolean;
+  isSymlink: boolean;
+  size: number;
+  mtime: Date | null;
+  atime: Date | null;
+  ctime: Date | null;
+  birthtime: Date | null;
+}
+
+/** Synchronously returns a FileInfo for a specific path */
+export function statSync(path: string): FileInfo {
+  try {
+    return Deno.statSync(path);
+  } catch (error) {
+    throw new FsError(error as Error);
+  }
+}
