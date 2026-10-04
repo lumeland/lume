@@ -139,3 +139,12 @@ export class FileWatcher {
 export function watchFiles(paths: string[]): FileWatcher {
   return new FileWatcher(Deno.watchFs(paths));
 }
+
+export interface FsStream {
+  readable: ReadableStream<Uint8Array<ArrayBuffer>>,
+  [Symbol.dispose]: () => void
+}
+
+export function readStream(file: string): FsStream {
+  return Deno.openSync(file, { read: true, write: false });
+}
