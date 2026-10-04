@@ -18,6 +18,23 @@ export function cwd() {
   return Deno.cwd();
 }
 
+/** Returns the operating system */
+const allOs: Record<typeof Deno.build.os, "windows" | "darwin" | "unix"> = {
+  linux: "unix",
+  android: "unix",
+  freebsd: "unix",
+  netbsd: "unix",
+  aix: "unix",
+  solaris: "unix",
+  illumos: "unix",
+  windows: "windows",
+  darwin: "darwin",
+};
+
+export function os(): "windows" | "darwin" | "unix" {
+  return allOs[Deno.build.os];
+}
+
 /** Set an environment variable */
 const envVars = new Map<string, string>();
 

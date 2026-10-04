@@ -1,3 +1,5 @@
+import { os } from "../../services/process.ts";
+
 export function localIp(): string | undefined {
   // Try/catch for https://github.com/denoland/deno/issues/25420
   try {
@@ -14,19 +16,13 @@ export function localIp(): string | undefined {
 }
 
 export async function openBrowser(url: string): Promise<void> {
-  const commands: Record<typeof Deno.build.os, string> = {
+  const commands: Record<ReturnType<typeof os>, string> = {
     darwin: "open",
-    linux: "xdg-open",
-    freebsd: "xdg-open",
-    netbsd: "xdg-open",
-    aix: "xdg-open",
-    solaris: "xdg-open",
-    illumos: "xdg-open",
+    unix: "xdg-open",
     windows: "explorer",
-    android: "xdg-open",
   };
 
-  await new Deno.Command(commands[Deno.build.os], {
+  await new Deno.Command(commands[os()], {
     args: [url],
     stdout: "inherit",
     stderr: "inherit",
