@@ -44,6 +44,7 @@ import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { Data, DefaultType, RawData } from "../types.ts";
+import { HTTPHandlerInfo } from "./utils/net.ts";
 
 /** Default options of the site */
 const defaults = {
@@ -152,7 +153,7 @@ export default class Site {
   /** The static files to be copied are stored here */
   readonly files: StaticFile[] = [];
 
-  fetch: Deno.ServeHandler;
+  fetch: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
 
   watcher?: FSWatcher;
   server?: Server;
@@ -265,7 +266,7 @@ export default class Site {
     // Create the fetch function for `deno serve`
     let fetchServer: Server | undefined;
 
-    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+    this.fetch = (request: Request, info: HTTPHandlerInfo) => {
       if (!fetchServer) {
         fetchServer = this.getServer();
       }

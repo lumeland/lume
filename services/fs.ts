@@ -141,8 +141,8 @@ export function watchFiles(paths: string[]): FileWatcher {
 }
 
 export interface FsStream {
-  readable: ReadableStream<Uint8Array<ArrayBuffer>>,
-  [Symbol.dispose]: () => void
+  readable: ReadableStream<Uint8Array<ArrayBuffer>>;
+  [Symbol.dispose]: () => void;
 }
 
 export function readStream(file: string): FsStream {

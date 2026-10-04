@@ -5,15 +5,18 @@ import { cwd } from "../services/process.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { Merge, merge } from "./utils/object.ts";
 import { FileInfo, statSync } from "../services/fs.ts";
+import { serve } from "./utils/net.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
+import type { HTTPHandlerInfo, HTTPServer, NetAddress } from "./utils/net.ts";
 
 /** The options to configure the local server */
-export interface Options extends Deno.ServeOptions {
+export interface Options {
   /** The root path */
   root?: string;
   port?: number;
   hostname?: string;
+  signal?: AbortSignal;
   serveFile?: (root: string, request: Request) => Promise<Response>;
 }
 
@@ -27,7 +30,7 @@ export type RequestHandler = (req: Request) => Promise<Response>;
 export type Middleware = (
   req: Request,
   next: RequestHandler,
-  info: Deno.ServeHandlerInfo,
+  info: HTTPHandlerInfo,
 ) => Promise<Response>;
 
 /** Custom events for server */
@@ -51,8 +54,8 @@ export default class Server {
   events: Events<ServerEvent> = new Events<ServerEvent>();
   options: Merge<Options, typeof defaults>;
   middlewares: Middleware[] = [];
-  fetch: Deno.ServeHandler;
-  #server?: Deno.HttpServer;
+  fetch: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
+  #server?: HTTPServer;
   #waiting = false;
 
   constructor(options?: Options) {
@@ -63,13 +66,13 @@ export default class Server {
     }
 
     // Create the fetch function for `deno serve`
-    this.fetch = (request: Request, info: Deno.ServeHandlerInfo) => {
+    this.fetch = (request: Request, info: HTTPHandlerInfo) => {
       return this.handle(request, info);
     };
   }
 
   /** The local address this server is listening on. */
-  get addr(): Deno.Addr | undefined {
+  get addr(): NetAddress | undefined {
     return this.#server?.addr;
   }
 
@@ -121,17 +124,18 @@ export default class Server {
   }
 
   /** Start the server */
-  start(signal?: Deno.ServeOptions["signal"]) {
+  start(signal?: AbortSignal) {
     if (!this.#server) {
-      this.#server = Deno.serve({
+      this.#server = serve({
         ...this.options,
+        handler: this.handle.bind(this),
         signal,
         onListen: () => {
           if (!this.#waiting) {
             this.dispatchEvent({ type: "start" });
           }
         },
-      }, this.handle.bind(this));
+      });
     } else if (this.#waiting) {
       this.#waiting = false;
       this.dispatchEvent({ type: "start" });
@@ -153,7 +157,7 @@ export default class Server {
   /** Handle a http request event */
   async handle(
     request: Request,
-    info: Deno.ServeHandlerInfo,
+    info: HTTPHandlerInfo,
   ): Promise<Response> {
     if (this.#waiting) {
       return this.handleWait();
@@ -279,7 +283,8 @@ async function fixServeFile(
   fileInfo?: FileInfo,
 ): Promise<Response> {
   const response = await httpServeFile(request, path, {
-    fileInfo: fileInfo as Deno.FileInfo,
+    // deno-lint-ignore no-explicit-any
+    fileInfo: fileInfo as any,
   });
 
   // Fix for https://github.com/lumeland/lume/issues/734
