@@ -117,3 +117,25 @@ export function statSync(path: string): FileInfo {
     throw new FsError(error as Error);
   }
 }
+
+export class FileWatcher {
+  #watcher: Deno.FsWatcher;
+
+  constructor(watcher: Deno.FsWatcher) {
+    this.#watcher = watcher;
+  }
+
+  close(): void {
+    this.#watcher.close();
+  }
+
+  async *[Symbol.asyncIterator](): AsyncGenerator<string[]> {
+    for await (const event of this.#watcher) {
+      yield event.paths;
+    }
+  }
+}
+
+export function watchFiles(paths: string[]): FileWatcher {
+  return new FileWatcher(Deno.watchFs(paths));
+}

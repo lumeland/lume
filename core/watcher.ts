@@ -5,6 +5,7 @@ import Events from "./events.ts";
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
 import { updateDependencies, updateVersion } from "./utils/hmr.ts";
+import { watchFiles } from "../services/fs.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -87,7 +88,7 @@ export default class FSWatcher implements Watcher {
   /** Start the file watcher */
   async start() {
     const { root, src, paths, ignore, debounce, dependencies } = this.options;
-    const watcher = Deno.watchFs([src, ...paths ?? []]);
+    const watcher = watchFiles([src, ...paths ?? []]);
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
@@ -133,12 +134,12 @@ export default class FSWatcher implements Watcher {
       }
     };
 
-    for await (const event of watcher) {
+    for await (const changedPaths of watcher) {
       const paths = new Set<string>();
 
       updateVersion();
 
-      for (const path of event.paths.map((p) => normalizePath(p))) {
+      for (const path of changedPaths.map((p) => normalizePath(p))) {
         // Filter ignored paths
         const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
