@@ -22,3 +22,9 @@ export function checkPort(port: number): boolean {
     throw error;
   }
 }
+
+/** Upgrade an incoming HTTP request to a WebSocket */
+export function upgradeWebSocket(request: Request): [WebSocket, Response] {
+  const { socket, response } = Deno.upgradeWebSocket(request);
+  return [socket, response];
+}

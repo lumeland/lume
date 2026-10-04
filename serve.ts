@@ -1,4 +1,5 @@
 import { parseArgs } from "./deps/cli.ts";
+import { upgradeWebSocket } from "./services/net.ts";
 import { args } from "./services/process.ts";
 
 /**
@@ -153,7 +154,7 @@ export function getServeHandler(): Deno.ServeHandler {
 
   // Proxy the WebSocket connection
   function proxyWebSocket(request: Request) {
-    const { socket, response } = Deno.upgradeWebSocket(request);
+    const [socket, response] = upgradeWebSocket(request);
     const { pathname } = new URL(request.url);
     const origin = new WebSocket(`ws://${hostname}:${port}${pathname}`);
 
