@@ -1,4 +1,4 @@
-import { networkInterfaces } from "../../services/net.ts";
+import { checkPort, networkInterfaces } from "../../services/net.ts";
 import { os } from "../../services/process.ts";
 
 export function localIp(): string | undefined {
@@ -31,19 +31,11 @@ export async function openBrowser(url: string): Promise<void> {
 }
 
 export function getFreePort(port: number, limit: number): number {
-  try {
-    const listener = Deno.listen({ port });
-    listener.close();
-    return port;
-  } catch (error) {
-    if (error instanceof Deno.errors.AddrInUse) {
-      if (port >= limit) {
-        throw new Error(`No free port found in the range ${port} to ${limit}`);
-      }
-
-      return getFreePort(port + 1, limit);
+  for (; port <= limit; ++port) {
+    if (checkPort(port)) {
+      return port;
     }
-
-    throw error;
   }
+
+  throw new Error(`No free port found in the range ${port} to ${limit}`);
 }
