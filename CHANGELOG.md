@@ -9,6 +9,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 ## [Unreleased]
 ### Changed
 - Internal: New `services` folder to store some runtime-specific helpers. This will allow to port Lume to other runtimes in the future.
+- `unocss` plugin: pass a full `UnocssPluginContext` object to each transformer function call.
+- `unocss` plugin: deprecate `transformers` config option in favor of `options.transformers`.
 
 ### Fixed
 - Vento plugin: detect `comp["name"]` component calls.
