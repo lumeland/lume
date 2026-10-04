@@ -1,4 +1,5 @@
 import { log } from "../core/utils/log.ts";
+import { runPipedCommand } from "../services/process.ts";
 
 import type Site from "../core/site.ts";
 
@@ -34,21 +35,15 @@ export function gitInfo() {
 
 export default gitInfo;
 
-const decoder = new TextDecoder();
-
 function gitCommand(...args: string[]): string {
-  const { code, stderr, stdout } = new Deno.Command("git", {
-    args,
-    stdout: "piped",
-    stderr: "piped",
-  }).outputSync();
+  const [success, error] = runPipedCommand("git", args);
 
-  if (code !== 0) {
-    log.error(`[git_info plugin] Git error: ${decoder.decode(stderr)}`);
-    return "";
+  if (success) {
+    return success;
   }
 
-  return decoder.decode(stdout).trim();
+  log.error(`[git_info plugin] Git error: ${error}`);
+  return "";
 }
 
 /** Extends global data interface */

@@ -59,3 +59,41 @@ function allowedEnvVars(): boolean {
   }
   return allowed;
 }
+
+const decoder = new TextDecoder();
+
+/** Synchronously run a piped command and return [stdout, stderr] */
+export function runPipedCommand(
+  cmd: string,
+  args?: string[],
+  cwd?: string,
+): [string | undefined, string | undefined] {
+  const { stdout, stderr, success } = new Deno.Command(cmd, {
+    args,
+    stdout: "piped",
+    stderr: "piped",
+    cwd,
+  }).outputSync();
+
+  if (!success) {
+    return [undefined, decoder.decode(stderr).trim()];
+  }
+
+  return [decoder.decode(stdout).trim(), undefined];
+}
+
+/** Run an command and return if it's success */
+export async function runCommand(
+  cmd: string,
+  args?: string[],
+  cwd?: string,
+): Promise<boolean> {
+  const { success } = await new Deno.Command(cmd, {
+    args,
+    stdout: "inherit",
+    stderr: "inherit",
+    cwd,
+  }).output();
+
+  return success;
+}

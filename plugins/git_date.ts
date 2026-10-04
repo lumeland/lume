@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { join } from "../deps/path.ts";
 import { log } from "../core/utils/log.ts";
+import { runPipedCommand } from "../services/process.ts";
 
 import type Site from "../core/site.ts";
 
@@ -78,19 +79,13 @@ function getLastModified(path: string): Map<string, string> {
   return dates;
 }
 
-const decoder = new TextDecoder();
-
 function gitCommand(...args: string[]): string {
-  const { code, stderr, stdout } = new Deno.Command("git", {
-    args,
-    stdout: "piped",
-    stderr: "piped",
-  }).outputSync();
+  const [success, error] = runPipedCommand("git", args);
 
-  if (code !== 0) {
-    log.error(`[git_date plugin] Git error: ${decoder.decode(stderr)}`);
-    return "";
+  if (success) {
+    return success;
   }
 
-  return decoder.decode(stdout).trim();
+  log.error(`[git_date plugin] Git error: ${error}`);
+  return "";
 }

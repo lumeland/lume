@@ -1,5 +1,5 @@
 import { checkPort, networkInterfaces } from "../../services/net.ts";
-import { os } from "../../services/process.ts";
+import { os, runCommand } from "../../services/process.ts";
 
 export function localIp(): string | undefined {
   // Try/catch for https://github.com/denoland/deno/issues/25420
@@ -23,11 +23,7 @@ export async function openBrowser(url: string): Promise<void> {
     windows: "explorer",
   };
 
-  await new Deno.Command(commands[os()], {
-    args: [url],
-    stdout: "inherit",
-    stderr: "inherit",
-  }).output();
+  await runCommand(commands[os()], [url]);
 }
 
 export function getFreePort(port: number, limit: number): number {
