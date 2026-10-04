@@ -13,6 +13,7 @@ import reload from "../middlewares/reload.ts";
 import { buildSite, createSite } from "./utils.ts";
 import { initLocalStorage } from "./missing_worker_apis.ts";
 import Server from "../core/server.ts";
+import { inspect } from "../services/process.ts";
 
 addEventListener("message", (event) => {
   const { type } = event.data;
@@ -86,7 +87,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   try {
     await buildSite(site);
   } catch (error) {
-    console.error(Deno.inspect(error, { colors: true }));
+    console.error(inspect(error));
   }
 
   // Start the watcher
@@ -120,7 +121,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
   });
 
   watcher.addEventListener("error", (event) => {
-    console.error(Deno.inspect(event.error, { colors: true }));
+    console.error(inspect(event.error));
   });
 
   watcher.start();

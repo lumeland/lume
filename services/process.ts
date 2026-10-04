@@ -60,6 +60,11 @@ function allowedEnvVars(): boolean {
   return allowed;
 }
 
+/** Convert the value to a string */
+export function inspect(value: unknown): string {
+  return Deno.inspect(value, { colors: true });
+}
+
 const decoder = new TextDecoder();
 
 /** Synchronously run a piped command and return [stdout, stderr] */

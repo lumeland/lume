@@ -1,6 +1,6 @@
 import { Command } from "./deps/cliffy.ts";
 import { getCurrentVersion } from "./core/utils/lume_version.ts";
-import { args, exit } from "./services/process.ts";
+import { args, exit, inspect } from "./services/process.ts";
 
 const lume = new Command()
   .name("🔥lume")
@@ -79,6 +79,6 @@ const lume = new Command()
 try {
   await lume.parse(args());
 } catch (error) {
-  console.error(Deno.inspect(error, { colors: true }));
+  console.error(inspect(error));
   exit(1);
 }
