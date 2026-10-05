@@ -15,6 +15,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - `unocss` plugin: deprecate `transformers` config option in favor of `options.transformers`.
 
 ### Fixed
+- Missing tests for the `toc` plugin.
 - Vento plugin: detect `comp["name"]` component calls.
 
 ## [3.3.2] - 2026-09-22
