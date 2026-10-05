@@ -5,10 +5,14 @@ import { cwd } from "../services/process.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 import { Merge, merge } from "./utils/object.ts";
 import { FileInfo, statSync } from "../services/fs.ts";
-import { serve } from "./utils/net.ts";
+import { serve } from "../services/net.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
-import type { HTTPHandlerInfo, HTTPServer, NetAddress } from "./utils/net.ts";
+import type {
+  HTTPHandlerInfo,
+  HTTPServer,
+  NetAddress,
+} from "../services/net.ts";
 
 /** The options to configure the local server */
 export interface Options {

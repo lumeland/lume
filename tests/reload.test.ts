@@ -56,7 +56,10 @@ Deno.test(
     const response = await middleware(
       new Request("http://localhost/"),
       () => Promise.resolve(upstream),
-      {} as Deno.ServeHandlerInfo,
+      {
+        remoteAddr: { transport: "tcp", hostname: "", port: 0 },
+        completed: Promise.resolve(),
+      },
     );
 
     const decoded = await response.text();

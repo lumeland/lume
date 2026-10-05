@@ -35,32 +35,3 @@ export function getFreePort(port: number, limit: number): number {
 
   throw new Error(`No free port found in the range ${port} to ${limit}`);
 }
-
-export interface NetAddress {
-  transport: "tcp" | "udp";
-  hostname: string;
-  port: number;
-}
-
-export interface HTTPHandlerInfo {
-  remoteAddr: NetAddress;
-  completed: Promise<void>;
-}
-
-export interface HTTPServer {
-  shutdown(): void;
-  addr: NetAddress;
-}
-
-export interface HTTPServerOptions {
-  hostname?: string;
-  port?: number;
-  signal?: AbortSignal;
-  handler: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
-  onListen?: () => void;
-}
-
-export function serve(options: HTTPServerOptions): HTTPServer {
-  const { handler, ...other } = options;
-  return Deno.serve(other, handler);
-}
