@@ -44,7 +44,7 @@ import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { Data, DefaultType, RawData } from "../types.ts";
-import { HTTPHandlerInfo } from "./utils/net.ts";
+import type { HTTPHandlerInfo } from "../services/net.ts";
 
 /** Default options of the site */
 const defaults = {

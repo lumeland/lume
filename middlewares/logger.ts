@@ -30,7 +30,7 @@ export function log(): Middleware {
       return response;
     } catch (cause) {
       return new Response(
-        `Error: ${cause.toString()}`,
+        `Error: ${(cause as Error).toString()}`,
         { status: 500 },
       );
     }
