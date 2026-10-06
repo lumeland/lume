@@ -1,6 +1,6 @@
 import { parse, stringify } from "../deps/yaml.ts";
 import { extract, test } from "../deps/front_matter.ts";
-import { ensureDir } from "../deps/fs.ts";
+import { ensureDir } from "./utils/fs.ts";
 import { dirname, join, toFileUrl } from "../deps/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { log } from "./utils/log.ts";

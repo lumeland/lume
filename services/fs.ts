@@ -75,7 +75,20 @@ export function realPathSync(file: string): string {
 
 /** Synchronously returns an iterable of a directory content */
 export function readDirSync(path: string): IteratorObject<DirEntry> {
-  return Deno.readDirSync(path);
+  try {
+    return Deno.readDirSync(path);
+  } catch (error) {
+    throw new FsError(error as Error);
+  }
+}
+
+/** Synchronously creates a new directory with the specified path. */
+export function mkdirSync(path: string, recursive?: boolean) {
+  try {
+    return Deno.mkdirSync(path, { recursive });
+  } catch (error) {
+    throw new FsError(error as Error);
+  }
 }
 
 export interface DirEntry {

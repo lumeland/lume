@@ -1,4 +1,4 @@
-import { emptyDir, ensureDir } from "../deps/fs.ts";
+import { emptyDir, ensureDir } from "./utils/fs.ts";
 import { posix } from "../deps/path.ts";
 import {
   readFileSync,

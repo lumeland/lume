@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { emptyDir, ensureDir } from "../deps/fs.ts";
+import { emptyDir, ensureDir } from "./utils/fs.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { sha1 } from "./utils/digest.ts";
 import { log } from "./utils/log.ts";
