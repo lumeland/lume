@@ -5,19 +5,19 @@ import {
   parse,
   parseRange,
 } from "../../deps/semver.ts";
-import { fromFileUrl, globToRegExp, toFileUrl } from "../../deps/path.ts";
-import { walk, type WalkOptions } from "../../deps/fs.ts";
+import { fromFileUrl, globToRegExp, join, toFileUrl } from "../../deps/path.ts";
+import { readDirSync } from "../../services/fs.ts";
 
 type PackageType = "npm" | "gh";
 
-export function getFiles(
+export async function getFiles(
   specifier: string,
   patterns: string[] = ["/**"],
 ): Promise<Map<string, string>> {
   if (specifier.startsWith("file:")) {
     return getFsFiles(specifier, patterns);
   }
-  return getCDNFiles(specifier, patterns);
+  return await getCDNFiles(specifier, patterns);
 }
 
 async function getCDNFiles(
@@ -63,25 +63,18 @@ async function getCDNFiles(
   return fileMap;
 }
 
-async function getFsFiles(
+function getFsFiles(
   specifier: string,
   patterns: string[],
-): Promise<Map<string, string>> {
+): Map<string, string> {
   const basePath = fromFileUrl(specifier);
   const fileMap = new Map<string, string>();
-  const walkOptions: WalkOptions = {
-    includeDirs: false,
-    followSymlinks: false,
-    skip: [
-      /(^|\/)\.[^\/\.]/, // hidden files
-    ],
-  };
 
   const regexps = patterns.map((pattern) =>
     globToRegExp(pattern, { globstar: true, extended: true })
   );
 
-  for await (const { path } of walk(basePath, walkOptions)) {
+  for (const path of walk(basePath)) {
     const filename = path.slice(basePath.length);
     if (!regexps.some((regexp) => regexp.test(filename))) {
       continue;
@@ -190,5 +183,21 @@ function parseJsDelivr(specifier: string): [
     return parseGh(
       specifier.replace("https://cdn.jsdelivr.net/gh/", "gh:"),
     );
+  }
+}
+
+function* walk(root: string): IterableIterator<string> {
+  for (const entry of readDirSync(root)) {
+    if (entry.isSymlink || entry.name.startsWith(".")) {
+      continue;
+    }
+
+    const path = join(root, entry.name);
+
+    if (entry.isDirectory) {
+      yield* walk(path);
+    } else {
+      yield path;
+    }
   }
 }
