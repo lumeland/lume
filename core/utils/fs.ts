@@ -3,15 +3,15 @@ import {
   FsError,
   mkdirSync,
   readDirSync,
-  remove,
+  removeSync,
   statSync,
 } from "../../services/fs.ts";
 
 /** Ensure a directory is empty */
-export function emptyDir(dir: string) {
+export function emptyDir(dir: string): void {
   try {
     for (const item of readDirSync(dir)) {
-      return remove(join(dir, item.name), true);
+      return removeSync(join(dir, item.name), true);
     }
   } catch (error) {
     if ((error as FsError).code !== "not-found") {
@@ -24,7 +24,7 @@ export function emptyDir(dir: string) {
 }
 
 /** Ensure a directory exists */
-export function ensureDir(dir: string) {
+export function ensureDir(dir: string): void {
   try {
     const fileInfo = statSync(dir);
     if (!fileInfo.isDirectory) {

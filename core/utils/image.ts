@@ -11,7 +11,7 @@ export async function buildIcon(
   cache?: Cache,
 ): Promise<Uint8Array<ArrayBuffer>> {
   if (cache) {
-    const result = await cache.getBytes([content, format, size]);
+    const result = cache.getBytes([content, format, size]);
 
     if (result) {
       return result;

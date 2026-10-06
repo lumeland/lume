@@ -101,7 +101,7 @@ export class FSWriter implements Writer {
 
     log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
-    await ensureDir(posix.dirname(filename));
+    ensureDir(posix.dirname(filename));
 
     content instanceof Uint8Array
       ? await writeFile(filename, content)
@@ -143,7 +143,7 @@ export class FSWriter implements Writer {
     const pathTo = posix.join(this.dest, file.outputPath);
 
     try {
-      await ensureDir(posix.dirname(pathTo));
+      ensureDir(posix.dirname(pathTo));
 
       if (entry.flags.has("remote")) {
         await writeFile(
@@ -171,9 +171,10 @@ export class FSWriter implements Writer {
   }
 
   /** Empty the dest folder */
-  async clear() {
-    await emptyDir(this.dest);
+  clear() {
+    emptyDir(this.dest);
     this.#outputs.clear();
+    return Promise.resolve();
   }
 
   async removeFiles(files: string[]) {

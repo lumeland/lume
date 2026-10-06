@@ -1,4 +1,4 @@
-import { crypto } from "../../deps/crypto.ts";
+import { createHash } from "../../deps/crypto.ts";
 
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
@@ -17,14 +17,10 @@ export async function sha1(message: string | Uint8Array): Promise<string> {
 }
 
 /** Digest a message using MD5 algorithm */
-export async function md5(message: string | Uint8Array): Promise<string> {
+export function md5(message: string | Uint8Array): string {
   if (typeof message === "string") {
     message = encoder.encode(message);
   }
 
-  const hash = await crypto.subtle.digest(
-    "MD5",
-    message as Uint8Array<ArrayBuffer>,
-  );
-  return new Uint8Array(hash).toHex();
+  return createHash("md5").update(message).digest("hex");
 }

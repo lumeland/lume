@@ -25,13 +25,10 @@ export default class Cache {
   }
 
   /** Save some content in the cache folder */
-  async set(
-    key: unknown[],
-    value: string | Uint8Array,
-  ): Promise<void> {
-    const path = await this.getPath(key);
+  set(key: unknown[], value: string | Uint8Array): void {
+    const path = this.getPath(key);
 
-    await ensureDir(posix.dirname(path));
+    ensureDir(posix.dirname(path));
 
     if (typeof value === "string") {
       writeTextFileSync(path, value);
@@ -41,44 +38,44 @@ export default class Cache {
   }
 
   /** Remove content from the cache folder */
-  async remove(key: unknown[]): Promise<void> {
+  remove(key: unknown[]): void {
     try {
-      removeSync(await this.getPath(key));
+      removeSync(this.getPath(key));
     } catch {
       // Ignore
     }
   }
 
-  async getPath(key: unknown[]): Promise<string> {
-    const paths = await Promise.all(key.map((value) => {
+  getPath(key: unknown[]): string {
+    const paths = key.map((value) => {
       if (value instanceof Uint8Array || typeof value === "string") {
         return md5(value);
       }
       return md5(JSON.stringify(value));
-    }));
+    });
     return posix.join(this.#folder, ...paths);
   }
 
   /** Get the content from the cache folder as Uint8Array */
-  async getBytes(key: unknown[]): Promise<Uint8Array<ArrayBuffer> | undefined> {
+  getBytes(key: unknown[]): Uint8Array<ArrayBuffer> | undefined {
     try {
-      return readFileSync(await this.getPath(key));
+      return readFileSync(this.getPath(key));
     } catch {
       // Ignore
     }
   }
 
   /** Get the content from the cache folder as string */
-  async getText(key: unknown[]): Promise<string | undefined> {
+  getText(key: unknown[]): string | undefined {
     try {
-      return readTextFileSync(await this.getPath(key));
+      return readTextFileSync(this.getPath(key));
     } catch {
       // Ignore
     }
   }
 
   /** Empty the cache folder */
-  async clear(): Promise<void> {
-    await emptyDir(this.#folder);
+  clear(): void {
+    emptyDir(this.#folder);
   }
 }
