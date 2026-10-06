@@ -1,6 +1,8 @@
 import { bytes, duration } from "./utils/format.ts";
-import Events, { Event, EventListener, EventOptions } from "./events.ts";
+import Events from "./events.ts";
 import { rss } from "../services/process.ts";
+
+import type { Event, EventListener, EventOptions } from "./events.ts";
 
 /**
  * DebugBar is a class that manages collections of items to be displayed in a debug bar.

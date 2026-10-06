@@ -1,5 +1,5 @@
 import { isPlainObject } from "./object.ts";
-import { Data, RawData } from "../../types.ts";
+import type { Data, RawData } from "../../types.ts";
 
 export type MergeStrategy =
   | "array"

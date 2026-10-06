@@ -1,5 +1,5 @@
 import { join, posix } from "../deps/path.ts";
-import { Merge, merge } from "./utils/object.ts";
+import { merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
@@ -42,6 +42,7 @@ import type { Writer } from "./writer.ts";
 import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
+import type { Merge } from "./utils/object.ts";
 import type { MergeStrategy } from "./utils/merge_data.ts";
 import type { Data, DefaultType, RawData } from "../types.ts";
 import type { HTTPHandlerInfo } from "../services/net.ts";

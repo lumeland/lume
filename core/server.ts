@@ -3,8 +3,8 @@ import Events from "./events.ts";
 import { serveFile as httpServeFile } from "../deps/http.ts";
 import { cwd } from "../services/process.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
-import { Merge, merge } from "./utils/object.ts";
-import { FileInfo, statSync } from "../services/fs.ts";
+import { merge } from "./utils/object.ts";
+import { statSync } from "../services/fs.ts";
 import { serve } from "../services/net.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
@@ -13,6 +13,8 @@ import type {
   HTTPServer,
   NetAddress,
 } from "../services/net.ts";
+import type { FileInfo } from "../services/fs.ts";
+import type { Merge } from "./utils/object.ts";
 
 /** The options to configure the local server */
 export interface Options {
