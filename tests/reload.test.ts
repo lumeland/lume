@@ -59,6 +59,7 @@ Deno.test(
       {
         remoteAddr: { transport: "tcp", hostname: "", port: 0 },
         completed: Promise.resolve(),
+        upgrade: () => [] as unknown as [WebSocket, Response],
       },
     );
 
