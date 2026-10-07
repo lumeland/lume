@@ -1,15 +1,22 @@
 import Site from "./core/site.ts";
 import url from "./plugins/url.ts";
-import json, { Options as JsonOptions } from "./plugins/json.ts";
-import markdown, { Options as MarkdownOptions } from "./plugins/markdown.ts";
-import modules, { Options as ModulesOptions } from "./plugins/modules.ts";
-import vento, { Options as VentoOptions } from "./plugins/vento.ts";
+import json from "./plugins/json.ts";
+import markdown from "./plugins/markdown.ts";
+import modules from "./plugins/modules.ts";
+import vento from "./plugins/vento.ts";
 import search from "./plugins/search.ts";
-import paginate, { Options as PaginateOptions } from "./plugins/paginate.ts";
-import toml, { Options as TomlOptions } from "./plugins/toml.ts";
-import yaml, { Options as YamlOptions } from "./plugins/yaml.ts";
+import paginate from "./plugins/paginate.ts";
+import toml from "./plugins/toml.ts";
+import yaml from "./plugins/yaml.ts";
 import { getOptionsFromCli } from "./core/utils/cli_options.ts";
 
+import type { Options as JsonOptions } from "./plugins/json.ts";
+import type { Options as MarkdownOptions } from "./plugins/markdown.ts";
+import type { Options as ModulesOptions } from "./plugins/modules.ts";
+import type { Options as VentoOptions } from "./plugins/vento.ts";
+import type { Options as PaginateOptions } from "./plugins/paginate.ts";
+import type { Options as TomlOptions } from "./plugins/toml.ts";
+import type { Options as YamlOptions } from "./plugins/yaml.ts";
 import type { SiteOptions } from "./core/site.ts";
 
 export interface PluginOptions {

@@ -1,5 +1,6 @@
-import { Merge, merge } from "../core/utils/object.ts";
+import { merge } from "../core/utils/object.ts";
 
+import type { Merge } from "../core/utils/object.ts";
 import type Site from "../core/site.ts";
 
 /** The options for the paginate helper */
