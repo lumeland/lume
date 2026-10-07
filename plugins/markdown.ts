@@ -2,14 +2,16 @@ import {
   markdownIt,
   markdownItAttrs,
   markdownItDeflist,
-  MarkdownItOptions,
-  type MarkdownItPlugin,
 } from "../deps/markdown_it.ts";
 import loader from "../core/loaders/text.ts";
 import { merge } from "../core/utils/object.ts";
 
 import type Site from "../core/site.ts";
 import type { Engine } from "../core/renderer.ts";
+import type {
+  MarkdownItOptions,
+  MarkdownItPlugin,
+} from "../deps/markdown_it.ts";
 
 export interface Options {
   /** File extensions to load */

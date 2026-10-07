@@ -19,20 +19,14 @@ export function cwd() {
 }
 
 /** Returns the operating system */
-const allOs: Record<typeof Deno.build.os, "windows" | "darwin" | "unix"> = {
-  linux: "unix",
-  android: "unix",
-  freebsd: "unix",
-  netbsd: "unix",
-  aix: "unix",
-  solaris: "unix",
-  illumos: "unix",
-  windows: "windows",
-  darwin: "darwin",
-};
-
 export function os(): "windows" | "darwin" | "unix" {
-  return allOs[Deno.build.os];
+  switch (Deno.build.os) {
+    case "windows":
+    case "darwin":
+      return Deno.build.os;
+    default:
+      return "unix";
+  }
 }
 
 /** Set an environment variable */
