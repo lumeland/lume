@@ -57,6 +57,8 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     log.info(`Web server started at http://${server.hostname}:${server.port}/`);
   }
 
+  log.info("Preparing to build the site");
+
   // Setup LumeCMS
   let _cms: URL | undefined;
   // deno-lint-ignore no-explicit-any

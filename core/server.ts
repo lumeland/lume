@@ -1,10 +1,7 @@
-import { posix } from "../deps/path.ts";
 import Events from "./events.ts";
-import { serveFile as httpServeFile } from "../deps/http.ts";
+import { serveFile } from "./utils/serve_file.ts";
 import { cwd } from "../services/process.ts";
-import { decodeURIComponentSafe } from "./utils/path.ts";
 import { merge } from "./utils/object.ts";
-import { statSync } from "../services/fs.ts";
 import { serve } from "../services/net.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
@@ -13,7 +10,7 @@ import type {
   HTTPServer,
   NetAddress,
 } from "../services/net.ts";
-import type { FileInfo } from "../services/fs.ts";
+
 import type { Merge } from "./utils/object.ts";
 
 /** The options to configure the local server */
@@ -237,66 +234,4 @@ export default class Server {
       },
     );
   }
-}
-
-/** Serve a static file */
-export async function serveFile(
-  root: string,
-  request: Request,
-): Promise<Response> {
-  const url = new URL(request.url);
-  const pathname = posix.normalize(decodeURIComponentSafe(url.pathname));
-  const path = posix.join(root, pathname);
-
-  try {
-    const file = path.endsWith("/") ? path + "index.html" : path;
-
-    // Redirect /example to /example/
-    const info = statSync(file);
-
-    if (info.isDirectory) {
-      const search = url.search;
-      return new Response(null, {
-        status: 301,
-        headers: {
-          location: posix.join(pathname, "/") + search,
-        },
-      });
-    }
-
-    // Serve the static file
-    return await fixServeFile(request, file, info);
-  } catch {
-    try {
-      // Exists a HTML file with this name?
-      if (!posix.extname(path)) {
-        return await fixServeFile(request, path + ".html");
-      }
-    } catch {
-      // Continue
-    }
-
-    return new Response(
-      "Not found",
-      { status: 404 },
-    );
-  }
-}
-
-async function fixServeFile(
-  request: Request,
-  path: string,
-  fileInfo?: FileInfo,
-): Promise<Response> {
-  const response = await httpServeFile(request, path, {
-    // deno-lint-ignore no-explicit-any
-    fileInfo: fileInfo as any,
-  });
-
-  // Fix for https://github.com/lumeland/lume/issues/734
-  if (response.headers.get("content-type") === "application/rss+xml") {
-    response.headers.set("content-type", "application/xml");
-  }
-
-  return response;
 }

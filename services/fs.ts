@@ -158,6 +158,12 @@ export interface FsStream {
   [Symbol.dispose]: () => void;
 }
 
-export function readStream(file: string): FsStream {
-  return Deno.openSync(file, { read: true, write: false });
+export function readStream(file: string, start?: number): FsStream {
+  const stream = Deno.openSync(file, { read: true, write: false });
+
+  if (typeof start === "number") {
+    stream.seekSync(start, Deno.SeekMode.Start);
+  }
+
+  return stream;
 }
