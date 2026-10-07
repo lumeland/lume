@@ -38,7 +38,7 @@ export default gitInfo;
 function gitCommand(...args: string[]): string {
   const [success, error] = runPipedCommand("git", args);
 
-  if (success) {
+  if (typeof success === "string") {
     return success;
   }
 
