@@ -23,12 +23,6 @@ export function checkPort(port: number): boolean {
   }
 }
 
-/** Upgrade an incoming HTTP request to a WebSocket */
-export function upgradeWebSocket(request: Request): [WebSocket, Response] {
-  const { socket, response } = Deno.upgradeWebSocket(request);
-  return [socket, response];
-}
-
 export interface NetAddress {
   transport: "tcp" | "udp";
   hostname: string;
@@ -38,6 +32,7 @@ export interface NetAddress {
 export interface HTTPHandlerInfo {
   remoteAddr: NetAddress;
   completed: Promise<void>;
+  upgrade: () => [WebSocket, Response];
 }
 
 export interface HTTPServer {
@@ -56,5 +51,15 @@ export interface HTTPServerOptions {
 /** Start a new HTTP server */
 export function serve(options: HTTPServerOptions): HTTPServer {
   const { handler, ...other } = options;
-  return Deno.serve(other, handler);
+  return Deno.serve(other, (request, info) => {
+    return handler(request, {
+      ...info,
+      upgrade: () => upgradeWebSocket(request),
+    });
+  });
+}
+
+function upgradeWebSocket(request: Request): [WebSocket, Response] {
+  const { socket, response } = Deno.upgradeWebSocket(request);
+  return [socket, response];
 }

@@ -1,7 +1,6 @@
 import { normalizePath } from "../core/utils/path.ts";
 import reloadClient from "./reload_client.js";
 import debugBarClient from "./debugbar_client.js" with { type: "text" };
-import { upgradeWebSocket } from "../services/net.ts";
 
 import type { Middleware } from "../core/server.ts";
 import type { Watcher } from "../core/watcher.ts";
@@ -61,10 +60,10 @@ export function reload(options: Options): Middleware {
 
   watcher.start();
 
-  return async (request, next) => {
+  return async (request, next, info) => {
     // It's a websocket
     if (request.headers.get("upgrade") === "websocket") {
-      const [socket, response] = upgradeWebSocket(request);
+      const [socket, response] = info.upgrade();
 
       socket.onopen = () => {
         // Browser was in the process of being reloaded. Notify
