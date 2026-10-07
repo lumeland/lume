@@ -1,8 +1,8 @@
-import sharp from "npm:sharp@0.35.4";
+import sharp from "npm:sharp@0.35.5";
 import icoEndec from "npm:ico-endec@0.1.6";
 
-export type { FormatEnum, ResizeOptions, Sharp } from "npm:sharp@0.35.4";
-import type { Sharp, SharpOptions } from "npm:sharp@0.35.4";
+export type { FormatEnum, ResizeOptions, Sharp } from "npm:sharp@0.35.5";
+import type { Sharp, SharpOptions } from "npm:sharp@0.35.5";
 import { type ResvgRenderOptions, toPng } from "./resvg.ts";
 
 export async function sharpsToIco(...images: Sharp[]) {

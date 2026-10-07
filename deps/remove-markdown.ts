@@ -1,4 +1,4 @@
-import removeMarkdown from "npm:remove-markdown@0.7.0";
+import removeMarkdown from "npm:remove-markdown@0.8.0";
 
 export function plainText(md: string, options?: RemoveMarkdownOptions): string {
   return removeMarkdown(md, options).replaceAll(/\s+/g, " ").trim();

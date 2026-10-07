@@ -1879,7 +1879,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
 }
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
 .katex {
-  font: normal 1.21em KaTeX_Main, Times New Roman, serif;
+  font: normal 1.21em KaTeX_Main, math, Times New Roman, serif;
   line-height: 1.2;
   position: relative;
   text-indent: 0;
@@ -1892,7 +1892,7 @@ C_p[\\\\ce{H2O(l)}] = \\\\pu{75.3 J // mol K}
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.18.7";
+  content: "0.19.0";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers
