@@ -1,4 +1,4 @@
-import { serveFile } from "../core/server.ts";
+import { serveFile } from "../core/utils/serve_file.ts";
 
 import type { Middleware, RequestHandler } from "../core/server.ts";
 

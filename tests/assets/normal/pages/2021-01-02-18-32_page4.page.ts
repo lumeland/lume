@@ -1,4 +1,4 @@
-import { Data } from "../../../../core/file.ts";
+import { Data } from "../../../../types.ts";
 
 export const title = "Page 4";
 export const site = "Overrided site name";

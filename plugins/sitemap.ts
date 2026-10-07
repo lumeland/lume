@@ -5,7 +5,7 @@ import { stringify } from "../deps/xml.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../types.ts";
-import type { stringifyable } from "../deps/xml.ts";
+import type { Stringifyable } from "../deps/xml.ts";
 
 type ChangeFreq =
   | "always"
@@ -93,7 +93,7 @@ export function sitemap(userOptions?: Options) {
 
     function generateSitemap(pages: Data<PluginData>[]): string {
       const items = options.items ?? {};
-      const sitemap: stringifyable = {
+      const sitemap: Stringifyable = {
         "@version": "1.0",
         "@encoding": "UTF-8",
         urlset: {

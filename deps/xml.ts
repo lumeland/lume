@@ -1,1 +1,2 @@
-export * from "https://deno.land/x/xml@7.0.4/mod.ts";
+export { cdata, stringify } from "jsr:@libs/xml@8.0.1";
+export type { Stringifyable } from "jsr:@libs/xml@8.0.1";

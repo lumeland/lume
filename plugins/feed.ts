@@ -9,7 +9,7 @@ import { parseDate } from "../core/utils/date.ts";
 
 import type Site from "../core/site.ts";
 import type { Data } from "../types.ts";
-import type { stringifyable } from "../deps/xml.ts";
+import type { Stringifyable } from "../deps/xml.ts";
 
 export interface Options<D = Lume.GlobalData> {
   /** The output filenames */
@@ -331,7 +331,7 @@ function generateRss(
   stylesheet?: string,
 ): string {
   const self = data.self ?? file;
-  const feed: stringifyable = {
+  const feed: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     rss: {
@@ -448,7 +448,7 @@ function generateAtom(
   stylesheet?: string,
 ): string {
   const self = data.self ?? file;
-  const feed: stringifyable = {
+  const feed: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     feed: {

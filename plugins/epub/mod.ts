@@ -1,6 +1,7 @@
 import { typeByExtension } from "../../deps/media_types.ts";
-import { stringify, type stringifyable } from "../../deps/xml.ts";
+import { stringify } from "../../deps/xml.ts";
 
+import type { Stringifyable } from "../../deps/xml.ts";
 import type { Data } from "../../types.ts";
 import type { NavData } from "../nav.ts";
 
@@ -164,7 +165,7 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
     item.properties?.includes("cover-image")
   );
 
-  const xmlObj: stringifyable = {
+  const xmlObj: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     package: {
@@ -279,7 +280,7 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
       },
       manifest: {
         item: manifest.map((item) => {
-          const manifestItem: stringifyable = {
+          const manifestItem: Stringifyable = {
             "@id": item.id,
             "@href": item.href,
             "@media-type": item.mediaType,
@@ -291,7 +292,7 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
       spine: {
         "@toc": ncxItem?.id,
         itemref: spine.map((item) => {
-          const spineItem: stringifyable = {
+          const spineItem: Stringifyable = {
             "@idref": item.idref,
           };
           if (!item.linear) {
@@ -307,7 +308,7 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
 }
 
 export function createContainer(path: string) {
-  const xmlObj: stringifyable = {
+  const xmlObj: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     container: {
@@ -326,7 +327,7 @@ export function createContainer(path: string) {
 }
 
 export function createEncryption(files: string[]) {
-  const xmlObj: stringifyable = {
+  const xmlObj: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     encryption: {
@@ -355,7 +356,7 @@ export function createTocNcx(
 ) {
   const status = { order: 1, level: 1 };
   const cover = files.find((item) => item.properties?.includes("cover-image"));
-  const xmlObj: stringifyable = {
+  const xmlObj: Stringifyable = {
     "@version": "1.0",
     "@encoding": "UTF-8",
     ncx: {
@@ -405,13 +406,13 @@ export function createTocNcx(
 function createNavPoint(
   menu: NavData,
   status: { order: number; level: number },
-): stringifyable | undefined {
+): Stringifyable | undefined {
   const manifestItem = menu.data.manifestItem as ManifestItem | undefined;
   if (!manifestItem?.index) {
     return;
   }
 
-  const navPoint: stringifyable = {
+  const navPoint: Stringifyable = {
     "@id": manifestItem.id,
     "@playOrder": status.order++,
     "@class": `h${status.level}`,

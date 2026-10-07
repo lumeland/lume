@@ -1,4 +1,4 @@
-import type { Data } from "../../../core/file.ts";
+import type { Data } from "../../../types.ts";
 
 export const layout = "paginate.js";
 export const renderOrder = 1;
