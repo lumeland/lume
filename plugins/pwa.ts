@@ -2,7 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 import { Page } from "../core/file.ts";
 import { log } from "../core/utils/log.ts";
-import { buildIcon } from "../core/utils/image.ts";
+import { buildIcon } from "./favicon.ts";
 
 import type Site from "../core/site.ts";
 

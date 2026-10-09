@@ -13,6 +13,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
   allowing to port Lume to other runtimes in the future just reimplementing these services.
 - Internal: The methods of Cache class are synch.
 - Internal: Removed std/http dependency and move the serveFile to core/utils.
+- Internal: Moved `buildIcon` out of core utils.
 - `unocss` plugin: pass a full `UnocssPluginContext` object to each transformer function call.
 - `unocss` plugin: deprecate `transformers` config option in favor of `options.transformers`.
 
