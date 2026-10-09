@@ -5,13 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v1` branch to see the changelog of Lume 1.
 
-## [Unreleased]
+## [2.5.5] - 2026-10-09
 ### Fixed
 - `watcher` plugin: type error with recent Deno versions, where `setTimeout`
-  returns a `Timeout` instead of a `number`.
+  returns a `Timeout` instead of a `number` [#876].
 - `check_urls` plugin: links whose path contains non-ASCII characters were
   reported as broken. `checkInternalUrl` now decodes the percent-encoded url
-  before checking the file on disk.
+  before checking the file on disk [#876].
+- Updated tests.
 
 ## [2.5.4] - 2025-10-20
 ### Fixed
@@ -754,7 +755,9 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#731]: https://github.com/lumeland/lume/issues/731
 [#733]: https://github.com/lumeland/lume/issues/733
 [#735]: https://github.com/lumeland/lume/issues/735
+[#876]: https://github.com/lumeland/lume/issues/876
 
+[2.5.5]: https://github.com/lumeland/lume/compare/v2.5.4...v2.5.5
 [2.5.4]: https://github.com/lumeland/lume/compare/v2.5.3...v2.5.4
 [2.5.3]: https://github.com/lumeland/lume/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/lumeland/lume/compare/v2.5.1...v2.5.2
