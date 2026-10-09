@@ -159,10 +159,10 @@ snapshot[`gzip plugin 2`] = `
 snapshot[`gzip plugin 3`] = `
 [
   {
-    content: "Uint8Array(107)",
+    content: "Uint8Array(101)",
     data: {
       basename: "404",
-      content: "Uint8Array(107)",
+      content: "Uint8Array(101)",
       page: [
         "src",
         "data",
@@ -178,10 +178,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(53)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(53)",
       page: [
         "src",
         "data",
@@ -197,10 +197,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(53)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(53)",
       page: [
         "src",
         "data",
@@ -216,10 +216,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(59)",
+    content: "Uint8Array(53)",
     data: {
       basename: "index",
-      content: "Uint8Array(59)",
+      content: "Uint8Array(53)",
       page: [
         "src",
         "data",
@@ -235,10 +235,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(128)",
+    content: "Uint8Array(122)",
     data: {
       basename: "index",
-      content: "Uint8Array(128)",
+      content: "Uint8Array(122)",
       page: [
         "src",
         "data",
@@ -254,10 +254,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(67)",
+    content: "Uint8Array(61)",
     data: {
       basename: "index",
-      content: "Uint8Array(67)",
+      content: "Uint8Array(61)",
       page: [
         "src",
         "data",
@@ -273,10 +273,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(98)",
+    content: "Uint8Array(91)",
     data: {
       basename: "index",
-      content: "Uint8Array(98)",
+      content: "Uint8Array(91)",
       page: [
         "src",
         "data",
@@ -292,10 +292,10 @@ snapshot[`gzip plugin 3`] = `
     },
   },
   {
-    content: "Uint8Array(78)",
+    content: "Uint8Array(72)",
     data: {
       basename: "styles",
-      content: "Uint8Array(78)",
+      content: "Uint8Array(72)",
       page: [
         "src",
         "data",
@@ -809,10 +809,10 @@ snapshot[`gzip plugin with options 2`] = `[]`;
 snapshot[`gzip plugin with options 3`] = `
 [
   {
-    content: "Uint8Array(2405)",
+    content: "Uint8Array(2398)",
     data: {
       basename: "styles",
-      content: "Uint8Array(2405)",
+      content: "Uint8Array(2398)",
       page: [
         "src",
         "data",
