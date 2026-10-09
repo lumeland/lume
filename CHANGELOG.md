@@ -7,6 +7,8 @@ Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
 ### Fixed
+- `watcher` plugin: type error with recent Deno versions, where `setTimeout`
+  returns a `Timeout` instead of a `number`.
 - `check_urls` plugin: links whose path contains non-ASCII characters were
   reported as broken. `checkInternalUrl` now decodes the percent-encoded url
   before checking the file on disk.
