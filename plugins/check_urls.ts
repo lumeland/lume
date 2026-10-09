@@ -4,6 +4,7 @@ import { gray, green, red } from "../deps/colors.ts";
 import { join } from "../deps/path.ts";
 import { concurrent } from "../core/utils/concurrent.ts";
 import { log } from "../core/utils/log.ts";
+import { decodeURIComponentSafe } from "../core/utils/path.ts";
 
 import type Site from "../core/site.ts";
 
@@ -207,17 +208,21 @@ function checkInternalUrl(
   let result = cacheInternalUrls.get(url);
 
   if (!result) {
-    if (url.endsWith("/")) {
-      result = Deno.stat(join(dest, url, "index.html")).then(() => true).catch(
+    // URLs are stored percent-encoded (new URL(...).pathname), but files are
+    // written with the original characters, so decode before checking the disk.
+    const path = decodeURIComponentSafe(url);
+
+    if (path.endsWith("/")) {
+      result = Deno.stat(join(dest, path, "index.html")).then(() => true).catch(
         () => false,
       );
     } else {
-      result = Deno.stat(join(dest, url)).then(() => true).catch(() => {
+      result = Deno.stat(join(dest, path)).then(() => true).catch(() => {
         if (strict) {
           return false;
         }
 
-        return Deno.stat(join(dest, url, "/index.html"))
+        return Deno.stat(join(dest, path, "/index.html"))
           .then(() => true)
           .catch(() => false);
       });
