@@ -3,7 +3,7 @@ import { localIp, openBrowser } from "../core/utils/net.ts";
 import { envBoolean, setEnv } from "../core/utils/env.ts";
 import { normalizePath } from "../core/utils/path.ts";
 import { resolveConfigFile } from "../core/utils/lume_config.ts";
-import { init } from "../core/utils/hmr.ts";
+import { init } from "../services/hmr.ts";
 import { fromFileUrl } from "../deps/path.ts";
 import { SiteWatcher } from "../core/watcher.ts";
 import logger from "../middlewares/logger.ts";

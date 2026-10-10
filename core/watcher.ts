@@ -4,7 +4,7 @@ import Events from "./events.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
-import { updateDependencies, updateVersion } from "./utils/hmr.ts";
+import { updateDependencies, updateVersion } from "../services/hmr.ts";
 import { watchFiles } from "../services/fs.ts";
 
 /** The options to configure the local server */
