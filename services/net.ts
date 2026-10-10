@@ -32,7 +32,6 @@ export interface NetAddress {
 export interface HTTPHandlerInfo {
   remoteAddr: NetAddress;
   completed: Promise<void>;
-  upgrade: () => [WebSocket, Response];
 }
 
 export interface HTTPServer {
@@ -46,20 +45,25 @@ export interface HTTPServerOptions {
   signal?: AbortSignal;
   handler: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
   onListen?: () => void;
+  onUpgradeWebSocket?: (socket: WebSocket) => void;
 }
 
 /** Start a new HTTP server */
 export function serve(options: HTTPServerOptions): HTTPServer {
-  const { handler, ...other } = options;
-  return Deno.serve(other, (request, info) => {
-    return handler(request, {
-      ...info,
-      upgrade: () => upgradeWebSocket(request),
-    });
-  });
-}
+  const { handler, onUpgradeWebSocket, ...other } = options;
 
-function upgradeWebSocket(request: Request): [WebSocket, Response] {
-  const { socket, response } = Deno.upgradeWebSocket(request);
-  return [socket, response];
+  const server = Deno.serve(other, (request, info) => {
+    if (request.headers.get("upgrade") === "websocket") {
+      const { socket, response } = Deno.upgradeWebSocket(request);
+      onUpgradeWebSocket?.(socket);
+      return response;
+    }
+
+    return handler(request, info);
+  });
+
+  return {
+    shutdown: () => server.shutdown(),
+    addr: server.addr,
+  };
 }

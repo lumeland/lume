@@ -36,25 +36,9 @@ export type Middleware = (
   info: HTTPHandlerInfo,
 ) => Promise<Response>;
 
-/** Custom events for server */
-export interface ServerEvent extends Event {
-  /** The event type */
-  type: ServerEventType;
-
-  /** The request object */
-  request?: Request;
-
-  /** The error object (only for "error" events) */
-  error?: Error;
-}
-
-/** The available event types */
-export type ServerEventType =
-  | "start"
-  | "error";
-
 export default class Server {
-  events: Events<ServerEvent> = new Events<ServerEvent>();
+  // deno-lint-ignore no-explicit-any
+  events: Events<any> = new Events<ServerEvent>();
   options: Merge<Options, typeof defaults>;
   middlewares: Middleware[] = [];
   fetch: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
@@ -106,11 +90,11 @@ export default class Server {
   }
 
   /** Add a listener to an event */
-  addEventListener(
-    type: ServerEventType,
-    listener: EventListener<ServerEvent>,
+  addEventListener<K extends ServerEventType>(
+    type: K,
+    listener: EventListener<Event & ServerEvent<K>>,
     options?: EventOptions,
-  ) {
+  ): this {
     this.events.addEventListener(type, listener, options);
     return this;
   }
@@ -137,6 +121,9 @@ export default class Server {
           if (!this.#waiting) {
             this.dispatchEvent({ type: "start" });
           }
+        },
+        onUpgradeWebSocket: (socket) => {
+          this.dispatchEvent({ type: "upgrade", socket });
         },
       });
     } else if (this.#waiting) {
@@ -235,3 +222,23 @@ export default class Server {
     );
   }
 }
+
+export type ServerEventMap = {
+  // deno-lint-ignore ban-types
+  start: {};
+  upgrade: {
+    socket: WebSocket;
+  };
+  error: {
+    error: Error;
+  };
+};
+
+/** Custom events for site build */
+export type ServerEvent<T extends ServerEventType = ServerEventType> =
+  & Event
+  & ServerEventMap[T]
+  & { type: T };
+
+/** The available event types */
+export type ServerEventType = keyof ServerEventMap;

@@ -5,12 +5,15 @@ import debugBarClient from "./debugbar_client.js" with { type: "text" };
 import type { Middleware } from "../core/server.ts";
 import type { Watcher } from "../core/watcher.ts";
 import type DebugBar from "../core/debugbar.ts";
+import type Server from "../core/server.ts";
 
 export interface Options {
   /** The watcher instance to use */
   watcher: Watcher;
   /** The base path of the site. It's required by the reload script */
   basepath: string;
+  /** The Server instance to register the websocket event */
+  server: Server;
   /** The debug bar instance to use */
   debugBar?: DebugBar;
 }
@@ -18,7 +21,7 @@ export interface Options {
 /** Middleware to hot reload changes */
 export function reload(options: Options): Middleware {
   const sockets = new Set<WebSocket>();
-  const { watcher, debugBar } = options;
+  const { watcher, debugBar, server } = options;
 
   // Keep track of the change revision. A watch change
   // can be dispatched in-between the browser loading
@@ -60,39 +63,33 @@ export function reload(options: Options): Middleware {
 
   watcher.start();
 
-  return async (request, next, info) => {
-    // It's a websocket
-    if (request.headers.get("upgrade") === "websocket") {
-      const [socket, response] = info.upgrade();
+  server.addEventListener("upgrade", ({ socket }) => {
+    socket.onopen = () => {
+      // Browser was in the process of being reloaded. Notify
+      // the user that the latest changes were sent.
+      if (lastAcknowledgedRevision < revision) {
+        lastAcknowledgedRevision = revision;
+        console.log("Changes sent to the browser");
+      }
 
-      socket.onopen = () => {
-        // Browser was in the process of being reloaded. Notify
-        // the user that the latest changes were sent.
-        if (lastAcknowledgedRevision < revision) {
-          lastAcknowledgedRevision = revision;
-          console.log("Changes sent to the browser");
-        }
+      // Tell the browser about the most recent revision
+      socket.send(JSON.stringify({ type: "init", revision, data: debugBar }));
 
-        // Tell the browser about the most recent revision
-        socket.send(JSON.stringify({ type: "init", revision, data: debugBar }));
+      sockets.add(socket);
+    };
+    socket.onclose = () => sockets.delete(socket);
+    socket.onerror = (e) => console.log("Socket errored", e);
+    socket.onmessage = (e) => {
+      if (options.debugBar && e.data) {
+        const message = JSON.parse(e.data);
+        const { data } = message;
+        const { type } = data;
+        options.debugBar.dispatchEvent({ type, data });
+      }
+    };
+  });
 
-        sockets.add(socket);
-      };
-      socket.onclose = () => sockets.delete(socket);
-      socket.onerror = (e) => console.log("Socket errored", e);
-      socket.onmessage = (e) => {
-        if (options.debugBar && e.data) {
-          const message = JSON.parse(e.data);
-          const { data } = message;
-          const { type } = data;
-          options.debugBar.dispatchEvent({ type, data });
-        }
-      };
-
-      return response;
-    }
-
-    // It's a regular request
+  return async (request, next) => {
     const response = await next(request);
 
     if (!response.body) {

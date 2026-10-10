@@ -194,6 +194,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
       watcher: new SiteWatcher(site),
       basepath: site.options.location.pathname,
       debugBar: site.debugBar,
+      server,
     }),
     noCache(),
     noCors(),
