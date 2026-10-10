@@ -1,5 +1,6 @@
 import { assert, assertEquals } from "../deps/assert.ts";
 import { reload } from "../middlewares/reload.ts";
+import Server from "../core/server.ts";
 import type { Watcher, WatchEvent, WatchEventType } from "../core/watcher.ts";
 import type { EventListener, EventOptions } from "../core/events.ts";
 
@@ -51,6 +52,7 @@ Deno.test(
     const middleware = reload({
       watcher: new MockWatcher(),
       basepath: "/",
+      server: new Server(),
     });
 
     const response = await middleware(
@@ -59,7 +61,6 @@ Deno.test(
       {
         remoteAddr: { transport: "tcp", hostname: "", port: 0 },
         completed: Promise.resolve(),
-        upgrade: () => [] as unknown as [WebSocket, Response],
       },
     );
 

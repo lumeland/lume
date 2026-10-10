@@ -206,7 +206,6 @@ export function runRequest(server: Server, request: Request) {
       port: 3000,
     },
     completed: Promise.resolve(),
-    upgrade: () => [] as unknown as [WebSocket, Response],
   });
 }
 
