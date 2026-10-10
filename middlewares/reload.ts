@@ -63,20 +63,18 @@ export function reload(options: Options): Middleware {
 
   watcher.start();
 
-  server.addEventListener("upgrade", ({ socket }) => {
-    socket.onopen = () => {
-      // Browser was in the process of being reloaded. Notify
-      // the user that the latest changes were sent.
-      if (lastAcknowledgedRevision < revision) {
-        lastAcknowledgedRevision = revision;
-        console.log("Changes sent to the browser");
-      }
+  server.addEventListener("openSocket", ({ socket }) => {
+    // Browser was in the process of being reloaded. Notify
+    // the user that the latest changes were sent.
+    if (lastAcknowledgedRevision < revision) {
+      lastAcknowledgedRevision = revision;
+      console.log("Changes sent to the browser");
+    }
 
-      // Tell the browser about the most recent revision
-      socket.send(JSON.stringify({ type: "init", revision, data: debugBar }));
+    // Tell the browser about the most recent revision
+    socket.send(JSON.stringify({ type: "init", revision, data: debugBar }));
+    sockets.add(socket);
 
-      sockets.add(socket);
-    };
     socket.onclose = () => sockets.delete(socket);
     socket.onerror = (e) => console.log("Socket errored", e);
     socket.onmessage = (e) => {

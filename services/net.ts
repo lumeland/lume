@@ -45,17 +45,17 @@ export interface HTTPServerOptions {
   signal?: AbortSignal;
   handler: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
   onListen?: () => void;
-  onUpgradeWebSocket?: (socket: WebSocket) => void;
+  onOpenSocket?: (socket: WebSocket) => void;
 }
 
 /** Start a new HTTP server */
 export function serve(options: HTTPServerOptions): HTTPServer {
-  const { handler, onUpgradeWebSocket, ...other } = options;
+  const { handler, onOpenSocket, ...other } = options;
 
   const server = Deno.serve(other, (request, info) => {
     if (request.headers.get("upgrade") === "websocket") {
       const { socket, response } = Deno.upgradeWebSocket(request);
-      onUpgradeWebSocket?.(socket);
+      socket.onopen = () => onOpenSocket?.(socket);
       return response;
     }
 

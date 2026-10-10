@@ -122,8 +122,8 @@ export default class Server {
             this.dispatchEvent({ type: "start" });
           }
         },
-        onUpgradeWebSocket: (socket) => {
-          this.dispatchEvent({ type: "upgrade", socket });
+        onOpenSocket: (socket) => {
+          this.dispatchEvent({ type: "openSocket", socket });
         },
       });
     } else if (this.#waiting) {
@@ -226,7 +226,7 @@ export default class Server {
 export type ServerEventMap = {
   // deno-lint-ignore ban-types
   start: {};
-  upgrade: {
+  openSocket: {
     socket: WebSocket;
   };
   error: {
