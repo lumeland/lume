@@ -1,9 +1,10 @@
-import { registerHooks } from "../../deps/module.ts";
-import { toFileUrl } from "../../deps/path.ts";
-import { cwd, env } from "../../services/process.ts";
+import { registerHooks } from "node:module";
+import { pathToFileURL } from "node:url";
+
+import { cwd, env } from "./process.ts";
 
 let version = 0;
-const root = toFileUrl(cwd()).href;
+const root = pathToFileURL(cwd()).href;
 const files = new Map<string, string>();
 const dependencies = new Map<string, Set<string>>();
 
@@ -14,7 +15,7 @@ const dependencies = new Map<string, Set<string>>();
  */
 export function init() {
   const denoDir = env("DENO_DIR");
-  const denoRoot = denoDir ? toFileUrl(denoDir).href : undefined;
+  const denoRoot = denoDir ? pathToFileURL(denoDir).href : undefined;
 
   function localSpecifier(
     specifier: string,
