@@ -1,0 +1,81 @@
+import { emptyDir, ensureDir } from "./utils/fs.ts";
+import { posix } from "../deps/path.ts";
+import {
+  readFileSync,
+  readTextFileSync,
+  removeSync,
+  writeFileSync,
+  writeTextFileSync,
+} from "./services/fs.ts";
+import { md5 } from "./utils/digest.ts";
+
+export interface Options {
+  /** The folder to load the files from */
+  folder: string;
+}
+
+/**
+ * Class to manage cache in the _cache folder
+ */
+export default class Cache {
+  #folder: string;
+
+  constructor(options: Options) {
+    this.#folder = options.folder;
+  }
+
+  /** Save some content in the cache folder */
+  set(key: unknown[], value: string | Uint8Array): void {
+    const path = this.getPath(key);
+
+    ensureDir(posix.dirname(path));
+
+    if (typeof value === "string") {
+      writeTextFileSync(path, value);
+    } else {
+      writeFileSync(path, value);
+    }
+  }
+
+  /** Remove content from the cache folder */
+  remove(key: unknown[]): void {
+    try {
+      removeSync(this.getPath(key));
+    } catch {
+      // Ignore
+    }
+  }
+
+  getPath(key: unknown[]): string {
+    const paths = key.map((value) => {
+      if (value instanceof Uint8Array || typeof value === "string") {
+        return md5(value);
+      }
+      return md5(JSON.stringify(value));
+    });
+    return posix.join(this.#folder, ...paths);
+  }
+
+  /** Get the content from the cache folder as Uint8Array */
+  getBytes(key: unknown[]): Uint8Array<ArrayBuffer> | undefined {
+    try {
+      return readFileSync(this.getPath(key));
+    } catch {
+      // Ignore
+    }
+  }
+
+  /** Get the content from the cache folder as string */
+  getText(key: unknown[]): string | undefined {
+    try {
+      return readTextFileSync(this.getPath(key));
+    } catch {
+      // Ignore
+    }
+  }
+
+  /** Empty the cache folder */
+  clear(): void {
+    emptyDir(this.#folder);
+  }
+}

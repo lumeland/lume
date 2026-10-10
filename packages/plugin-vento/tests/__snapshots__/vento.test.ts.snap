@@ -1,0 +1,297 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Vento plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_components",
+      "/_components/Button.vto",
+      "/_components/container.vto",
+      "/_includes",
+      "/_includes/footer.vto",
+      "/_includes/layout.vto",
+      "/index.vto",
+      "/vto-filter.page.js",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÍTULO</title>
+</head>
+<body>
+  <h1>Título</h1>
+
+<a href="https://lume.land" class="btn btn-primary">
+  Go to Lume
+</a>
+
+
+
+<section class="container">
+  <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+
+
+  <a href="https://example.com" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+  <a href="HTTPS://EXAMPLE.COM" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+</section>
+
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+
+CUSTOM FILTER
+
+<strong>Título</strong>
+<strong>Título</strong>
+
+
+  <footer>
+Título
+</footer>
+</body>
+</html>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Título</h1>
+
+<a href="https://lume.land" class="btn btn-primary">
+  Go to Lume
+</a>
+
+
+
+<section class="container">
+  <a href="https://example.com/blog/" class="btn btn-primary">Go to Lume</a>
+
+
+  <a href="https://example.com" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+  <a href="HTTPS://EXAMPLE.COM" class="btn btn-primary">
+    
+    This is a button
+  </a>
+
+</section>
+
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+<A HREF="HTTPS://EXAMPLE.COM/BLOG/" CLASS="BTN BTN-PRIMARY">GO TO LUME</A>
+
+
+CUSTOM FILTER
+
+<strong>Título</strong>
+<strong>Título</strong>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<h1>{{ title }}</h1>
+
+{{ comp button {
+  href: "https://lume.land"
+} }}
+  Go to Lume
+{{ /comp }}
+
+{{ set href = "/" |> url(true) }}
+
+{{ comp container }}
+  {{ comp button {href, content: "Go to Lume"} /}}
+
+  {{ comp button }}
+    {{ slot href }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
+  {{ comp button }}
+    {{ slot href |> toUpperCase }}https://example.com{{ /slot }}
+    This is a button
+  {{ /comp }}
+{{ /comp }}
+
+{{ comp.button({href, content: "Go to Lume"}) |> toUpperCase }}
+{{ comp["button"]({href, content: "Go to Lume"}) |> toUpperCase }}
+
+{{ "custom filter" |> upper }}
+
+<strong>{{ "title" |> fromPage }}</strong>
+<strong>{{ "title" |> await fromPageAsync }}</strong>
+",
+        "date": [],
+        "layout": "layout.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Título",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>VENTO FILTER EXAMPLE</h1>",
+      "data": {
+        "basename": "vto-filter",
+        "children": "<h1>VENTO FILTER EXAMPLE</h1>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "vento filter example",
+        "url": "/vto-filter/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/vto-filter",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

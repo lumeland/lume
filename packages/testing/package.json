@@ -1,0 +1,20 @@
+{
+  "name": "@lumeland/testing",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./*.ts": "./src/*.ts"
+  },
+  "dependencies": {
+    "@lumeland/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "vitest": "^5.0.3"
+  }
+}

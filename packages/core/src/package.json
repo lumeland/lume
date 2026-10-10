@@ -1,0 +1,20 @@
+{
+  "name": "@lumeland/lume",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    "./*.ts": "./*.ts"
+  },
+  "dependencies": {
+    "@lumeland/dom": "workspace:*",
+    "@resvg/resvg-wasm": "2.6.2",
+    "deno-std": "1.4.0",
+    "esbuild": "0.28.2",
+    "lightningcss": "1.33.0",
+    "remove-markdown": "0.8.0",
+    "sharp": "0.35.5"
+  }
+}

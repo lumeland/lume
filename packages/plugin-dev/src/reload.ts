@@ -1,0 +1,170 @@
+import { normalizePath } from "@lumeland/core/utils/path.ts";
+import { readTextFileSync } from "@lumeland/core/services/fs.ts";
+
+import type { Middleware } from "@lumeland/core/server.ts";
+import type { Watcher } from "@lumeland/core/watcher.ts";
+import type DebugBar from "@lumeland/core/debugbar.ts";
+import type Server from "@lumeland/core/server.ts";
+
+export interface Options {
+  /** The watcher instance to use */
+  watcher: Watcher;
+  /** The base path of the site. It's required by the reload script */
+  basepath: string;
+  /** The Server instance to register the websocket event */
+  server: Server;
+  /** The debug bar instance to use */
+  debugBar?: DebugBar;
+}
+
+const reloadAsset = readTextFileSync(import.meta.resolve("../assets/reload.js"));
+const debugBarAsset = readTextFileSync(import.meta.resolve("../assets/debugbar.js"));
+
+/** Middleware to hot reload changes */
+export function reload(options: Options): Middleware {
+  const sockets = new Set<WebSocket>();
+  const { watcher, debugBar, server } = options;
+
+  // Keep track of the change revision. A watch change
+  // can be dispatched in-between the browser loading
+  // the HTML and before it has established a WebSocket
+  // connection. In this case the browser is out of sync
+  // and shows an old version of the page. Upon establishing
+  // a websocket connection we send the latest revision
+  // and the browser can potentially refresh itself when
+  // it has an older revision. The initial revision is
+  // sent to the browser as part of the HTML.
+  let revision = 0;
+  let lastAcknowledgedRevision = 0;
+
+  watcher.addEventListener("change", (event) => {
+    revision++;
+
+    if (!sockets.size) {
+      return;
+    }
+
+    lastAcknowledgedRevision = revision;
+
+    const files = event.files!;
+    const message = JSON.stringify({
+      type: "update",
+      revision,
+      files: Array.from(files).map((file) => normalizePath(file)),
+      data: debugBar,
+    });
+
+    sockets.forEach((socket) => {
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.send(message);
+      }
+    });
+
+    console.log("Changes sent to the browser");
+  });
+
+  watcher.start();
+
+  server.addEventListener("upgrade", ({ socket }) => {
+    // Browser was in the process of being reloaded. Notify
+    // the user that the latest changes were sent.
+    if (lastAcknowledgedRevision < revision) {
+      lastAcknowledgedRevision = revision;
+      console.log("Changes sent to the browser");
+    }
+
+    // Tell the browser about the most recent revision
+    socket.send(JSON.stringify({ type: "init", revision, data: debugBar }));
+    sockets.add(socket);
+
+    socket.onclose = () => sockets.delete(socket);
+    socket.onerror = (e) => console.log("Socket errored", e);
+    socket.onmessage = (e) => {
+      if (options.debugBar && e.data) {
+        const message = JSON.parse(e.data);
+        const { data } = message;
+        const { type } = data;
+        options.debugBar.dispatchEvent({ type, data });
+      }
+    };
+  });
+
+  return async (request, next) => {
+    const response = await next(request);
+
+    if (!response.body) {
+      return response;
+    }
+
+    // It's not a HTML response
+    if (!response.headers.get("content-type")?.includes("html")) {
+      return response;
+    }
+
+    // Insert live-reload script in the body
+    const reader = response.body.getReader();
+
+    let body = "";
+    let result = await reader.read();
+    const decoder = new TextDecoder();
+
+    // Use streaming mode so multi-byte UTF-8 sequences that straddle chunk
+    // boundaries are decoded correctly instead of being replaced with U+FFFD.
+    while (!result.done) {
+      body += decoder.decode(result.value, { stream: true });
+      result = await reader.read();
+    }
+    // Flush any remaining state from the decoder.
+    body += decoder.decode();
+
+    let source = `${reloadAsset};
+    liveReload(${revision}, "${options.basepath}", ${response.status});
+    /*# sourceURL=inline:lume-live-reload.js */; `;
+
+    if (request.url.endsWith(".xhtml")) {
+      source = `//<![CDATA[\n${source}\n//]]>`;
+    }
+
+    // Add live reload script and pass initial revision
+    const code: string[] = [];
+    if (debugBar) {
+      let source = debugBarAsset;
+
+      if (request.url.endsWith(".xhtml")) {
+        source = `//<![CDATA[\n${source}\n//]]>`;
+      }
+
+      code.push(
+        `<script type="module" id="lume-debugbar" integrity="${await computeSourceIntegrity(
+          source,
+        )}">${source}</script>`,
+      );
+    }
+
+    code.push(
+      `<script type="module" id="lume-live-reload" integrity="${await computeSourceIntegrity(
+        source,
+      )}">${source}</script>`,
+    );
+
+    if (body.includes("</body>")) {
+      body = body.replace("</body>", `${code.join("\n")}</body>`);
+    } else {
+      body += code.join("\n");
+    }
+
+    const { status, statusText, headers } = response;
+
+    headers.set("Content-Length", `${body.length}`);
+    return new Response(body, { status, statusText, headers });
+  };
+}
+
+async function computeSourceIntegrity(source: string) {
+  const bytes = new TextEncoder().encode(source);
+  const hash = await crypto.subtle.digest("SHA-384", bytes);
+  const base64 = Buffer.from(hash).toString("base64");
+  return `sha384-${base64}`;
+}
+
+export default reload;

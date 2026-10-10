@@ -1,0 +1,39 @@
+{
+  "name": "lume",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "new-plugin": "node scripts/new-plugin.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u",
+    "lint": "oxlint . --fix",
+    "lint:check": "oxlint .",
+    "fmt": "oxfmt ."
+  },
+  "dependencies": {
+    "@lumeland/core": "workspace:*",
+    "@lumeland/dom": "workspace:*",
+    "@lumeland/lume": "workspace:*",
+    "jszip": "^3.10.2",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "tar-stream": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "vitest": "^5.0.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.10.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.10.1"
+}

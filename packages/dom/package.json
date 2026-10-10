@@ -1,0 +1,26 @@
+{
+  "name": "@lumeland/dom",
+  "description": "Migration of jsr:@b-fuze/deno-dom package to be installed directly from NPM",
+  "version": "0.1.56",
+  "homepage": "https://jsr.io/@b-fuze/deno-dom",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./_dist/deno-dom-wasm.d.ts",
+      "default": "./deno-dom-wasm.js"
+    },
+    "./wasm": {
+      "types": "./_dist/deno-dom-wasm.d.ts",
+      "default": "./deno-dom-wasm.js"
+    },
+    "./wasm-legacy": {
+      "types": "./_dist/deno-dom-wasm-legacy.d.ts",
+      "default": "./deno-dom-wasm-legacy.js"
+    },
+    "./wasm-noinit": {
+      "types": "./_dist/deno-dom-wasm-noinit.d.ts",
+      "default": "./deno-dom-wasm-noinit.js"
+    }
+  },
+  "_jsr_revision": 11
+}

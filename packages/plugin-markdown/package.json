@@ -1,0 +1,31 @@
+{
+  "name": "@lumeland/plugin-markdown",
+  "version": "1.0.0",
+  "description": "Plugin to create pages in Markdown format",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "dependencies": {
+    "markdown-it": "^15.0.2",
+    "markdown-it-attrs": "^5.0.1",
+    "markdown-it-deflist": "^4.0.0"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/markdown-it-footnote": "^3.0.4",
+    "@types/node": "^26.6.4",
+    "markdown-it-footnote": "^4.0.0",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

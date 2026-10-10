@@ -1,0 +1,58 @@
+{
+  "name": "@b-fuze/deno-dom",
+  "version": "0.1.56",
+  "exports": {
+    ".": "./deno-dom-wasm.ts",
+    "./wasm": "./deno-dom-wasm.ts",
+    "./wasm-legacy": "./deno-dom-wasm-legacy.ts",
+    "./wasm-noinit": "./deno-dom-wasm-noinit.ts",
+    "./native": "./deno-dom-native.ts"
+  },
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "html-parser",
+      "Cargo.*",
+      "build/deno-wasm/deno-wasm.js",
+      "build/deno-wasm/deno-wasm-legacy.js",
+      "build/deno-wasm/deno-wasm-dynamic.js",
+      "build/deno-wasm/deno-wasm_bg.wasm",
+      "build/deno-wasm/deno-wasm_bg-wasm.js",
+      "build/deno-wasm/env.js",
+      "build/deno-wasm/wbg.js",
+      "src",
+      "deno-dom-wasm.ts",
+      "deno-dom-wasm-legacy.ts",
+      "deno-dom-wasm-noinit.ts",
+      "deno-dom-native.ts",
+      "test",
+      "native.test.ts",
+      "wasm.test.ts"
+    ]
+  },
+  "tasks": {
+    "type-check": "deno check ./deno-dom-wasm.ts ./deno-dom-wasm-noinit.ts ./deno-dom-native.ts ./native.test.ts ./wasm.test.ts ./test/units/*.ts"
+  },
+  "imports": {
+    "assert": "jsr:@std/assert@^1",
+    "fs": "jsr:@std/fs@^1",
+    "path": "jsr:@std/path@^1"
+  },
+  "fmt": {
+    "exclude": [
+      "./wpt",
+      "./bench/node_modules",
+      "./bench/c.html",
+      "./src/dom/selectors/nwsapi.js",
+      "./src/dom/selectors/sizzle.js",
+      "./target",
+      "./html-parser/core",
+      "./html-parser/plugin",
+      "./html-parser/cli-test",
+      "./html-parser/wasm/target",
+      "./html-parser/wasm/**/*.rs",
+      "./.vim"
+    ]
+  }
+}

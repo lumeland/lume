@@ -1,0 +1,196 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Modules plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_data.yml",
+      "/_includes",
+      "/_includes/layout.vto",
+      "/index.page.yaml",
+      "/page1.yml",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<html>
+  <head>
+    <title>Title of the index</title>
+  </head>
+  <body>
+    <h1>Default title</h1>
+    <p>Default description</p>
+    <h2>Title of the index</h2>
+    <p>Content of the index</p>
+    
+  </body>
+</html>",
+      "data": {
+        "basename": "index.page",
+        "children": "Content of the index",
+        "content": "Content of the index",
+        "date": [],
+        "layout": "layout.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "site": [
+          "title",
+          "description",
+        ],
+        "tags": "Array(0)",
+        "title": "Title of the index",
+        "url": "/index.page/",
+      },
+      "src": {
+        "ext": ".yaml",
+        "path": "/index.page",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "# Welcome
+",
+      "data": {
+        "basename": "page1",
+        "children": "# Welcome
+",
+        "content": "# Welcome
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "site": [
+          "title",
+          "description",
+        ],
+        "tags": "Array(0)",
+        "title": "First page",
+        "url": "/page1/",
+      },
+      "src": {
+        "ext": ".yml",
+        "path": "/page1",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

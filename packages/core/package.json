@@ -1,0 +1,29 @@
+{
+  "name": "@lumeland/core",
+  "version": "1.0.0",
+  "description": "The core of Lume SSG",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "dependencies": {
+    "@lumeland/dom": "workspace:*",
+    "@types/ws": "^8.18.2",
+    "deno-std": "1.4.0",
+    "esbuild": "0.28.2",
+    "lightningcss": "1.33.0",
+    "remove-markdown": "0.8.0",
+    "temporal-polyfill": "^1.0.5",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "vitest": "^5.0.3"
+  }
+}

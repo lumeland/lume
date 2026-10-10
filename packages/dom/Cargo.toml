@@ -1,0 +1,10 @@
+[workspace]
+members = [
+  "html-parser/plugin",
+]
+
+exclude = [
+  "html-parser/cli-test",
+  "html-parser/wasm",
+]
+

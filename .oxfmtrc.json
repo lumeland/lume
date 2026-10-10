@@ -1,0 +1,7 @@
+{
+  "ignorePatterns": [
+    "packages/*/tests/assets/**",
+    "packages/*/tests/__snapshots__/**",
+    "packages/dom/**"
+  ]
+}

@@ -1,0 +1,23 @@
+import { createHash } from "../../deps/crypto.ts";
+
+const decoder = new TextDecoder();
+const encoder = new TextEncoder();
+
+/** Digest a message using SHA-1 algorithm */
+export async function sha1(message: string | Uint8Array): Promise<string> {
+  if (typeof message === "string") {
+    message = encoder.encode(message);
+  }
+
+  const hash = await crypto.subtle.digest("SHA-1", message as Uint8Array<ArrayBuffer>);
+  return decoder.decode(hash);
+}
+
+/** Digest a message using MD5 algorithm */
+export function md5(message: string | Uint8Array): string {
+  if (typeof message === "string") {
+    message = encoder.encode(message);
+  }
+
+  return createHash("md5").update(message).digest("hex");
+}

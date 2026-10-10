@@ -1,0 +1,24 @@
+{
+  "name": "@lumeland/plugin-modify-urls",
+  "version": "1.0.0",
+  "description": "Plugin to modify all URLs of HTML and CSS files with a custom function",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/node": "^26.6.4",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

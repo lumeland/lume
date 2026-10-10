@@ -1,0 +1,24 @@
+export { nodesFromString } from "./deserialize.js";
+export * from "./dom/node.js";
+export * from "./dom/element.js";
+export * from "./dom/document.js";
+export * from "./dom/document-fragment.js";
+export * from "./dom/dom-parser.js";
+export * from "./dom/elements/html-template-element.js";
+export { disableCodeGeneration as denoDomDisableQuerySelectorCodeGeneration } from "./dom/selectors/selectors.js";
+import { CharacterData as ConstructibleCharacterData, Node as ConstructibleNode } from "./dom/node.js";
+import { HTMLDocument as ConstructibleHTMLDocument } from "./dom/document.js";
+import { Attr as ConstructibleAttr, Element as ConstructibleElement } from "./dom/element.js";
+export declare const Node: Pick<typeof ConstructibleNode, keyof typeof ConstructibleNode> & Function;
+export type Node = ConstructibleNode;
+export declare const HTMLDocument: Pick<typeof ConstructibleHTMLDocument, keyof typeof ConstructibleHTMLDocument> & Function;
+export type HTMLDocument = ConstructibleHTMLDocument;
+export declare const CharacterData: Pick<typeof ConstructibleCharacterData, keyof typeof ConstructibleCharacterData> & Function;
+export type CharacterData = ConstructibleCharacterData;
+export declare const Element: Pick<typeof ConstructibleElement, keyof typeof ConstructibleElement> & Function;
+export type Element = ConstructibleElement;
+export declare const Attr: Pick<typeof ConstructibleAttr, keyof typeof ConstructibleAttr> & Function;
+export type Attr = ConstructibleAttr;
+export { NodeListPublic as NodeList } from "./dom/node-list.js";
+export { HTMLCollectionPublic as HTMLCollection } from "./dom/html-collection.js";
+//# sourceMappingURL=api.d.ts.map

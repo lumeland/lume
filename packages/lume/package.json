@@ -1,0 +1,30 @@
+{
+  "name": "@lumeland/lume",
+  "version": "4.0.0-alpha-1",
+  "description": "A fast and flexible static site generator",
+  "license": "MIT",
+  "bin": {
+    "lume": "./cli.ts"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "dependencies": {
+    "@lumeland/core": "workspace:*",
+    "@lumeland/plugin-dev": "workspace:*",
+    "@lumeland/plugin-json": "workspace:*",
+    "@lumeland/plugin-markdown": "workspace:*",
+    "@lumeland/plugin-modules": "workspace:*",
+    "@lumeland/plugin-not-found": "workspace:*",
+    "@lumeland/plugin-paginate": "workspace:*",
+    "@lumeland/plugin-search": "workspace:*",
+    "@lumeland/plugin-toml": "workspace:*",
+    "@lumeland/plugin-url": "workspace:*",
+    "@lumeland/plugin-vento": "workspace:*",
+    "@lumeland/plugin-yaml": "workspace:*",
+    "cac": "^7.0.1",
+    "deno-std": "1.4.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@lumeland/plugin-not-found",
+  "version": "1.0.0",
+  "description": "Middleware to show a custom page on 404 errors",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

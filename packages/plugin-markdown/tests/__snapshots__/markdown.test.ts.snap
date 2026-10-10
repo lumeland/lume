@@ -1,0 +1,955 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Markdown plugin > markdown with hooks 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/basic.md",
+      "/empty.md",
+      "/footnote.md",
+      "/with-attributes.md",
+      "/with-code.md",
+      "/with-deflist.md",
+      "/with-filter.vto",
+      "/with-module.page.js",
+      "/with-vento.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>
+",
+      "data": {
+        "basename": "basic",
+        "children": "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>
+",
+        "content": "# Normal page
+
+- List
+- Of
+- Elements
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Basic page",
+        "url": "/basic/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/basic",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
+<h4 class="mt-3">Footnotes</h4>
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+",
+      "data": {
+        "basename": "footnote",
+        "children": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
+<h4 class="mt-3">Footnotes</h4>
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+",
+        "content": "Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+<!-- deno-fmt-ignore -->
+    Subsequent paragraphs are indented to show that they
+    belong to the previous footnote.
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/footnote/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/footnote",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p><a href="#foo" target="_blank">link</a></p>
+",
+      "data": {
+        "basename": "with-attributes",
+        "children": "<p><a href="#foo" target="_blank">link</a></p>
+",
+        "content": "[link](#foo){target=_blank}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-attributes/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-attributes",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+</code></pre>
+<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
+</code></pre>
+<p>Not indented code</p>
+",
+      "data": {
+        "basename": "with-code",
+        "children": "<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+</code></pre>
+<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
+</code></pre>
+<p>Not indented code</p>
+",
+        "content": "\`\`\`html
+<p>Example</p>
+\`\`\`
+
+\`\`\`
+<p>Example without color highlight</p>
+\`\`\`
+
+    Not indented code
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-code/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-code",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!-- deno-fmt-ignore-file -->
+<dl>
+<dt>This is a definition title</dt>
+<dd>And this the description</dd>
+<dd>Other description</dd>
+<dt>Other title</dt>
+<dd>And other description</dd>
+</dl>
+",
+      "data": {
+        "basename": "with-deflist",
+        "children": "<!-- deno-fmt-ignore-file -->
+<dl>
+<dt>This is a definition title</dt>
+<dd>And this the description</dd>
+<dd>Other description</dd>
+<dt>Other title</dt>
+<dd>And other description</dd>
+</dl>
+",
+        "content": "<!-- deno-fmt-ignore-file -->
+This is a definition title
+: And this the description
+: Other description
+
+Other title
+: And other description
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-deflist/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-deflist",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>Module <strong>example</strong></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+",
+      "data": {
+        "basename": "with-filter",
+        "children": "<h1>Module <strong>example</strong></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+",
+        "content": "<h1>{{ title |> md(true) }}</h1>
+
+<div>{{ description |> md }}</div>
+",
+        "date": [],
+        "description": "Welcome to this [page](/)
+",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Module **example**",
+        "url": "/with-filter/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/with-filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>
+",
+      "data": {
+        "basename": "with-module",
+        "children": "<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>
+",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "templateEngine": "js,md",
+        "title": "Module example",
+        "url": "/with-module/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/with-module",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!-- deno-fmt-ignore-file -->
+<h1>Module <strong>example</strong></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>
+",
+      "data": {
+        "basename": "with-vento",
+        "children": "<!-- deno-fmt-ignore-file -->
+<h1>Module <strong>example</strong></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>
+",
+        "content": "<!-- deno-fmt-ignore-file -->
+# {{ title }}
+
+Foo
+
+{{ for title, no of myData }}
+- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+{{ /for }}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "myData": [
+          "one",
+          "two",
+          "three",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "templateEngine": "vto,md",
+        "title": "Module **example**",
+        "url": "/with-vento/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-vento",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`Markdown plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/basic.md",
+      "/empty.md",
+      "/footnote.md",
+      "/with-attributes.md",
+      "/with-code.md",
+      "/with-deflist.md",
+      "/with-filter.vto",
+      "/with-module.page.js",
+      "/with-vento.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>
+",
+      "data": {
+        "basename": "basic",
+        "children": "<h1>Normal page</h1>
+<ul>
+<li>List</li>
+<li>Of</li>
+<li>Elements</li>
+</ul>
+",
+        "content": "# Normal page
+
+- List
+- Of
+- Elements
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Basic page",
+        "url": "/basic/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/basic",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
+<h4 class="mt-3">Footnotes</h4>
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+",
+      "data": {
+        "basename": "footnote",
+        "children": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<!-- deno-fmt-ignore -->
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote.</p>
+<h4 class="mt-3">Footnotes</h4>
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+",
+        "content": "Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+<!-- deno-fmt-ignore -->
+    Subsequent paragraphs are indented to show that they
+    belong to the previous footnote.
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/footnote/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/footnote",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p><a href="#foo" target="_blank">link</a></p>
+",
+      "data": {
+        "basename": "with-attributes",
+        "children": "<p><a href="#foo" target="_blank">link</a></p>
+",
+        "content": "[link](#foo){target=_blank}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-attributes/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-attributes",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+</code></pre>
+<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
+</code></pre>
+<p>Not indented code</p>
+",
+      "data": {
+        "basename": "with-code",
+        "children": "<pre><code class="language-html">&lt;p&gt;Example&lt;/p&gt;
+</code></pre>
+<pre><code>&lt;p&gt;Example without color highlight&lt;/p&gt;
+</code></pre>
+<p>Not indented code</p>
+",
+        "content": "\`\`\`html
+<p>Example</p>
+\`\`\`
+
+\`\`\`
+<p>Example without color highlight</p>
+\`\`\`
+
+    Not indented code
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-code/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-code",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!-- deno-fmt-ignore-file -->
+<dl>
+<dt>This is a definition title</dt>
+<dd>And this the description</dd>
+<dd>Other description</dd>
+<dt>Other title</dt>
+<dd>And other description</dd>
+</dl>
+",
+      "data": {
+        "basename": "with-deflist",
+        "children": "<!-- deno-fmt-ignore-file -->
+<dl>
+<dt>This is a definition title</dt>
+<dd>And this the description</dd>
+<dd>Other description</dd>
+<dt>Other title</dt>
+<dd>And other description</dd>
+</dl>
+",
+        "content": "<!-- deno-fmt-ignore-file -->
+This is a definition title
+: And this the description
+: Other description
+
+Other title
+: And other description
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/with-deflist/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-deflist",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>Module <strong>example</strong></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+",
+      "data": {
+        "basename": "with-filter",
+        "children": "<h1>Module <strong>example</strong></h1>
+
+<div><p>Welcome to this <a href="/">page</a></p></div>
+",
+        "content": "<h1>{{ title |> md(true) }}</h1>
+
+<div>{{ description |> md }}</div>
+",
+        "date": [],
+        "description": "Welcome to this [page](/)
+",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Module **example**",
+        "url": "/with-filter/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/with-filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>
+",
+      "data": {
+        "basename": "with-module",
+        "children": "<h1>Module example</h1>
+<p><a href="/">Back to home</a></p>
+",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "templateEngine": "js,md",
+        "title": "Module example",
+        "url": "/with-module/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/with-module",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!-- deno-fmt-ignore-file -->
+<h1>Module <strong>example</strong></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>
+",
+      "data": {
+        "basename": "with-vento",
+        "children": "<!-- deno-fmt-ignore-file -->
+<h1>Module <strong>example</strong></h1>
+<p>Foo</p>
+<ul>
+<li>one: <a href="/items/un.html">un</a></li>
+<li>two: <a href="/items/dous.html">dous</a></li>
+<li>three: <a href="/items/tres.html">tres</a></li>
+</ul>
+",
+        "content": "<!-- deno-fmt-ignore-file -->
+# {{ title }}
+
+Foo
+
+{{ for title, no of myData }}
+- {{ title }}: [{{ no }}](/items/{{ no }}.html)
+{{ /for }}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "myData": [
+          "one",
+          "two",
+          "three",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "templateEngine": "vto,md",
+        "title": "Module **example**",
+        "url": "/with-vento/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-vento",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

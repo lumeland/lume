@@ -1,0 +1,14 @@
+{
+  "name": "@lumeland/plugin-dev",
+  "version": "1.0.0",
+  "description": "Middlewares used by Lume in development mode",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

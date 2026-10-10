@@ -1,0 +1,62 @@
+import { parse, parseFrag } from "./parser.js";
+import { CTOR_KEY } from "./constructor-lock.js";
+import { Comment, NodeType, Text } from "./dom/node.js";
+import { DocumentType } from "./dom/document.js";
+import { DocumentFragment } from "./dom/document-fragment.js";
+import { HTMLTemplateElement } from "./dom/elements/html-template-element.js";
+import { Element } from "./dom/element.js";
+export function nodesFromString(html) {
+  const parsed = JSON.parse(parse(html));
+  const node = nodeFromArray(parsed, null);
+  return node;
+}
+export function fragmentNodesFromString(html, contextLocalName) {
+  const parsed = JSON.parse(parseFrag(html, contextLocalName));
+  const node = nodeFromArray(parsed, null);
+  return node;
+}
+function nodeFromArray(data, parentNode) {
+  // For reference only:
+  // type node = [NodeType, nodeName, attributes, node[]]
+  //             | [NodeType, characterData]
+  // <template> element gets special treatment, until
+  // we implement all the HTML elements
+  if (data[1] === "template") {
+    const content = nodeFromArray(data[3], null);
+    const contentFrag = new DocumentFragment();
+    const fragMutator = contentFrag._getChildNodesMutator();
+    for (const child of content.childNodes){
+      fragMutator.push(child);
+      child._setParent(contentFrag);
+    }
+    return new HTMLTemplateElement(parentNode, data[2], CTOR_KEY, contentFrag);
+  }
+  const elm = new Element(data[1], parentNode, data[2], CTOR_KEY);
+  const childNodes = elm._getChildNodesMutator();
+  let childNode;
+  for (const child of data.slice(3)){
+    switch(child[0]){
+      case NodeType.TEXT_NODE:
+        childNode = new Text(child[1]);
+        childNode.parentNode = elm;
+        childNodes.push(childNode);
+        break;
+      case NodeType.COMMENT_NODE:
+        childNode = new Comment(child[1]);
+        childNode.parentNode = elm;
+        childNodes.push(childNode);
+        break;
+      case NodeType.DOCUMENT_NODE:
+      case NodeType.ELEMENT_NODE:
+        nodeFromArray(child, elm);
+        break;
+      case NodeType.DOCUMENT_TYPE_NODE:
+        childNode = new DocumentType(child[1], child[2], child[3], CTOR_KEY);
+        childNode.parentNode = elm;
+        childNodes.push(childNode);
+        break;
+    }
+  }
+  return elm;
+}
+//# sourceMappingURL=deserialize.js.map

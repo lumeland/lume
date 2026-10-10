@@ -1,0 +1,220 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`URL plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/default-filter.page.js",
+      "/renamed-filter.page.js",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="http://localhost/url/">Url</a>
+            <a id="htmlUrl" href="http://localhost/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ",
+      "data": {
+        "basename": "default-filter",
+        "children": "
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Default Filter</title>
+        </head>
+        <body>
+            <a id="url" href="http://localhost/url/">Url</a>
+            <a id="htmlUrl" href="http://localhost/htmlUrl/">htmlUrl</a>
+            <template>
+              <h1>Template content</h1>
+            </template>
+        </body>
+    </html>
+  ",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Default Filter",
+        "url": "/default-filter/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/default-filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ",
+      "data": {
+        "basename": "renamed-filter",
+        "children": "
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Renamed Filter</title>
+        </head>
+        <body>
+            <a id="urlify" href="undefined">Urlify</a>
+            undefined
+        </body>
+    </html>
+  ",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Renamed Filter",
+        "url": "/renamed-filter/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/renamed-filter",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

@@ -1,0 +1,1321 @@
+import { fromFileUrl, join, posix } from "../deps/path.ts";
+import { merge } from "./utils/object.ts";
+import { isUrl, normalizePath } from "./utils/path.ts";
+import { envBoolean, setEnv } from "./utils/env.ts";
+import { log } from "./utils/log.ts";
+import { filter404page } from "./utils/page_url.ts";
+import { insertContent } from "./utils/page_content.ts";
+import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
+
+import FS from "./fs.ts";
+import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
+import DataLoader from "./data_loader.ts";
+import Source from "./source.ts";
+import Scopes from "./scopes.ts";
+import Processors from "./processors.ts";
+import Renderer from "./renderer.ts";
+import Events from "./events.ts";
+import Formats from "./formats.ts";
+import Searcher from "./searcher.ts";
+import Scripts from "./scripts.ts";
+import Archetypes from "./archetypes.ts";
+import FSWatcher from "./watcher.ts";
+import { FSWriter } from "./writer.ts";
+import { filesToPages, Page, StaticFile } from "./file.ts";
+import textLoader from "./loaders/text.ts";
+import binaryLoader from "./loaders/binary.ts";
+import Server from "./server.ts";
+import Cache from "./cache.ts";
+import DebugBar from "./debugbar.ts";
+import { cwd } from "./services/process.ts";
+
+import type { Archetype } from "./archetypes.ts";
+import type { Entry, Loader } from "./fs.ts";
+import type { BasenameParser, Destination } from "./source.ts";
+import type { Components, UserComponent } from "./components.ts";
+import type { Engine, Helper, HelperOptions, HelperThis } from "./renderer.ts";
+import type { Event, EventListener, EventOptions } from "./events.ts";
+import type { Processor } from "./processors.ts";
+import type { Extensions } from "./utils/path.ts";
+import type { Writer } from "./writer.ts";
+import type { Middleware } from "./server.ts";
+import type { ScopeFilter } from "./scopes.ts";
+import type { ScriptOrFunction } from "./scripts.ts";
+import type { Merge } from "./utils/object.ts";
+import type { MergeStrategy } from "./utils/merge_data.ts";
+import type { Data, DefaultType, RawData } from "./types.ts";
+import type { HTTPHandlerInfo } from "./services/net.ts";
+
+/** Default options of the site */
+const defaults = {
+  cwd: cwd(),
+  src: "./",
+  dest: "./_site",
+  emptyDest: true,
+  caseSensitiveUrls: false,
+  includes: "_includes",
+  cssFile: "/style.css",
+  jsFile: "/script.js",
+  fontsFolder: "/fonts",
+  location: new URL("http://localhost"),
+  prettyUrls: true,
+  server: {
+    port: 80,
+    hostname: "localhost",
+    open: false,
+    page404: "/404.html",
+    middlewares: [],
+  },
+  watcher: {
+    ignore: [],
+    debounce: 100,
+    include: [],
+    dependencies: {},
+  },
+  components: {},
+} satisfies SiteOptions;
+
+/**
+ * This is the heart of Lume,
+ * it contains everything needed to build the site
+ */
+export default class Site {
+  options: Merge<SiteOptions, typeof defaults>;
+
+  /** Internal data. Used to save arbitrary data by plugins and processors */
+  _data: Record<string, unknown> = {};
+
+  /** To register and run archetypes */
+  archetypes: Archetypes;
+
+  /** To read the files from the filesystem */
+  fs: FS;
+
+  /** Info about how to handle different file formats */
+  formats: Formats;
+
+  /** To load all _data files */
+  dataLoader: DataLoader;
+
+  /** To load reusable components */
+  componentLoader: ComponentLoader;
+
+  /** To scan the src folder */
+  source: Source;
+
+  /** To update pages of the same scope after any change */
+  scopes: Scopes;
+
+  /** To store and run the processors */
+  processors: Processors;
+
+  /** To store and run the pre-processors */
+  preprocessors: Processors;
+
+  /** To render the pages using any template engine */
+  renderer: Renderer;
+
+  /** To listen and dispatch events */
+  // deno-lint-ignore no-explicit-any
+  events: Events<any>;
+
+  /** To run scripts */
+  scripts: Scripts;
+
+  /** To search pages */
+  search: Searcher;
+
+  /** To store cached stuff in the _cache folder */
+  cache: Cache | undefined;
+
+  /** To write the generated pages in the dest folder */
+  writer: Writer;
+
+  /** Data assigned with site.data() */
+  scopedData = new Map<string, RawData>([["/", {}]]);
+
+  /** Pages created with site.page() */
+  scopedPages = new Map<string, RawData[]>();
+
+  /** Components created with site.component() */
+  scopedComponents = new Map<string, Components>();
+
+  /** Hooks installed by the plugins */
+  // deno-lint-ignore no-explicit-any
+  hooks: Record<string, (...args: any[]) => void> = {};
+
+  /** The debug bar data */
+  debugBar?: DebugBar;
+
+  /** The generated pages are stored here */
+  readonly pages: Page[] = [];
+
+  /** The static files to be copied are stored here */
+  readonly files: StaticFile[] = [];
+
+  fetch: (request: Request, info: HTTPHandlerInfo) => Promise<Response>;
+
+  watcher?: FSWatcher;
+  server?: Server;
+
+  constructor(options?: SiteOptions) {
+    this.options = merge(defaults, options);
+
+    if (this.options.cwd.startsWith("file:")) {
+      this.options.cwd = fromFileUrl(this.options.cwd);
+    }
+
+    const root = this.root();
+    const src = this.src();
+    const dest = this.dest();
+    const { includes, cwd, prettyUrls, components, server, caseSensitiveUrls } = this.options;
+
+    // To load source files
+    const fs = new FS({ root: src });
+    const formats = new Formats();
+
+    const dataLoader = new DataLoader({ formats });
+    const componentLoader = new ComponentLoader({ formats });
+    const source = new Source({
+      fs,
+      dataLoader,
+      componentLoader,
+      formats,
+      components: {
+        cssFile: components.cssFile ?? this.options.cssFile,
+        jsFile: components.jsFile ?? this.options.jsFile,
+      },
+      scopedData: this.scopedData,
+      scopedPages: this.scopedPages,
+      scopedComponents: this.scopedComponents,
+      prettyUrls,
+      basenameParsers: [],
+    });
+
+    // To render pages
+    const scopes = new Scopes();
+    const processors = new Processors();
+    const preprocessors = new Processors();
+    const renderer = new Renderer({
+      prettyUrls,
+      preprocessors,
+      formats,
+      fs,
+      includes,
+    });
+
+    // Other stuff
+    const archetypes = new Archetypes({ src, root });
+    const events = new Events<SiteEvent>();
+    const scripts = new Scripts({ cwd });
+    const writer = new FSWriter({ dest, caseSensitiveUrls });
+
+    const searcher = new Searcher({
+      pages: this.pages,
+      files: this.files,
+      sourceData: source.data,
+      filters: [
+        (data: Data) => data.page.isHTML,
+        filter404page(server.page404), // not the 404 page
+      ],
+    });
+
+    // Save everything in the site instance
+    this.archetypes = archetypes;
+    this.fs = fs;
+    this.formats = formats;
+    this.componentLoader = componentLoader;
+    this.dataLoader = dataLoader;
+    this.source = source;
+    this.scopes = scopes;
+    this.processors = processors;
+    this.preprocessors = preprocessors;
+    this.renderer = renderer;
+    this.events = events;
+    this.scripts = scripts;
+    this.search = searcher;
+    this.writer = writer;
+
+    // Ignore the "dest" directory if it's inside src
+    if (this.dest().startsWith(this.src())) {
+      this.ignore(this.options.dest);
+    }
+
+    // Ignore the includes folder
+    this.ignore(this.options.includes);
+
+    // Normalize the ignored paths
+    this.options.watcher.ignore = this.options.watcher.ignore.map((path) =>
+      typeof path === "string" ? normalizePath(path) : path,
+    );
+
+    // Ignore the dest folder by the watcher
+    this.options.watcher.ignore.push(normalizePath(this.options.dest));
+    this.fs.options.ignore = this.options.watcher.ignore;
+
+    // Initialize the cache if LUME_NOCACHE is not enabled
+    if (envBoolean("LUME_NOCACHE") !== true) {
+      this.cache = new Cache({ folder: this.root("_cache") });
+    }
+
+    // Initialize the debug bar
+    const initDebugBar = this.options.server.debugBar ?? envBoolean("LUME_LIVE_RELOAD");
+
+    if (initDebugBar) {
+      this.initDebugBar();
+    }
+
+    // Create the fetch function for `deno serve`
+    let fetchServer: Server | undefined;
+
+    this.fetch = (request: Request, info: HTTPHandlerInfo) => {
+      if (!fetchServer) {
+        fetchServer = this.getServer();
+      }
+
+      return fetchServer.handle(request, info);
+    };
+  }
+
+  /** Initialize the debug bar */
+  initDebugBar(): this {
+    if (this.debugBar) {
+      throw new Error("DebugBar is already initialized");
+    }
+
+    const debugBar = new DebugBar();
+    this.debugBar = debugBar;
+    log.collection = debugBar.collection("Build");
+
+    debugBar.addEventListener("lume:drafts", (event) => {
+      const showDrafts = event.data.value ?? "false";
+      setEnv("LUME_DRAFTS", String(showDrafts));
+      this.update();
+    });
+
+    return this;
+  }
+
+  /**
+   * Returns the full path to the root directory.
+   * Use the arguments to return a subpath
+   */
+  root(...path: string[]): string {
+    return normalizePath(join(this.options.cwd, ...path));
+  }
+
+  /**
+   * Returns the full path to the src directory.
+   * Use the arguments to return a subpath
+   */
+  src(...path: string[]): string {
+    return this.root(this.options.src, ...path);
+  }
+
+  /**
+   * Returns the full path to the dest directory.
+   * Use the arguments to return a subpath
+   */
+  dest(...path: string[]): string {
+    return this.root(this.options.dest, ...path);
+  }
+
+  /** Add a listener to an event */
+  addEventListener<K extends SiteEventType>(
+    type: K,
+    listener: EventListener<Event & SiteEvent<K>> | string,
+    options?: EventOptions,
+  ): this {
+    const fn = typeof listener === "string" ? () => this.run(listener) : listener;
+
+    this.events.addEventListener(type, fn, options);
+    return this;
+  }
+
+  /** Dispatch an event */
+  dispatchEvent(event: SiteEvent): Promise<boolean | undefined> {
+    return this.events.dispatchEvent(event);
+  }
+
+  /** Use a plugin */
+  use(plugin: Plugin): this {
+    plugin(this);
+    return this;
+  }
+
+  /**
+   * Register a script or a function, so it can be executed with
+   * lume run <name>
+   */
+  script(name: string, ...scripts: ScriptOrFunction[]): this {
+    this.scripts.set(name, ...scripts);
+    return this;
+  }
+
+  /** Runs a script or function registered previously */
+  async run(name: string): Promise<boolean> {
+    return await this.scripts.run(name);
+  }
+
+  /**
+   * Register a data loader for some extensions
+   */
+  loadData(extensions: string[], dataLoader: Loader = textLoader): this {
+    extensions.forEach((ext) => {
+      this.formats.set({ ext, dataLoader });
+    });
+
+    return this;
+  }
+
+  /**
+   * Register a page loader for some extensions
+   */
+  loadPages(extensions: string[], options: LoadPagesOptions | Loader = {}): this {
+    if (typeof options === "function") {
+      options = { loader: options };
+    }
+
+    const { engine, pageSubExtension } = options;
+    const loader = options.loader || textLoader;
+    const engines = Array.isArray(engine) ? engine : engine ? [engine] : [];
+
+    const pageExtensions = pageSubExtension
+      ? extensions.map((ext) => pageSubExtension + ext)
+      : extensions;
+
+    pageExtensions.forEach((ext) => {
+      this.formats.set({
+        ext,
+        loader,
+        isPage: true,
+        engines,
+      });
+    });
+
+    if (pageSubExtension) {
+      extensions.forEach((ext) => this.formats.set({ ext, loader, engines }));
+    }
+
+    for (const [name, helper] of this.renderer.helpers) {
+      engines.forEach((engine) => engine.addHelper(name, ...helper));
+    }
+
+    return this;
+  }
+
+  /** Register a preprocessor for some extensions */
+  preprocess<D = Lume.GlobalData>(processor: Processor<D>): this;
+  preprocess<D = Lume.GlobalData>(extensions: Extensions, processor: Processor<D>): this;
+  preprocess<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    preprocessor?: Processor<D>,
+  ): this {
+    if (typeof extensions === "function") {
+      return this.preprocess("*", extensions);
+    }
+
+    this.preprocessors.set(extensions, preprocessor!);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
+
+    return this;
+  }
+
+  /** Register a processor for some extensions */
+  process<D = Lume.GlobalData>(processor: Processor<D>): this;
+  process<D = Lume.GlobalData>(extensions: Extensions, processor: Processor<D>): this;
+  process<D = Lume.GlobalData>(
+    extensions: Extensions | Processor<D>,
+    processor?: Processor<D>,
+  ): this {
+    if (typeof extensions === "function") {
+      return this.process("*", extensions);
+    }
+
+    this.processors.set(extensions, processor!);
+
+    if (Array.isArray(extensions)) {
+      extensions.forEach((ext) => this.formats.set({ ext }));
+    }
+    return this;
+  }
+
+  /** Register a template filter */
+  filter<D = Lume.GlobalData>(name: string, filter: Helper<HelperThis<D>>, async = false): this {
+    return this.helper(name, filter, { type: "filter", async });
+  }
+
+  /** Register a template helper */
+  helper<D = Lume.GlobalData>(
+    name: string,
+    fn: Helper<HelperThis<D>>,
+    options: HelperOptions,
+  ): this {
+    this.renderer.addHelper(name, fn, options);
+    return this;
+  }
+
+  /** Register a basename parser */
+  parseBasename(parser: BasenameParser): this {
+    this.source.basenameParsers.push(parser);
+    return this;
+  }
+
+  /** Register extra data accessible by the layouts */
+  data(name: string, value: unknown, scope = "/"): this {
+    const data = this.scopedData.get(scope) || {};
+    data[name] = value;
+    this.scopedData.set(scope, data);
+    return this;
+  }
+
+  /** Register a page */
+  page(data: Partial<Data>, scope = "/"): this {
+    const pages = this.scopedPages.get(scope) || [];
+    pages.push(data);
+    this.scopedPages.set(scope, pages);
+    return this;
+  }
+
+  /** Register an archetype */
+  archetype(name: string, archetype: string | Archetype): this {
+    this.archetypes.register(name, archetype);
+    return this;
+  }
+
+  /** Register an extra component accesible by the layouts */
+  component(context: string, component: UserComponent, scope = "/"): this {
+    const pieces = context.split(".");
+    const scopedComponents: Components = this.scopedComponents.get(scope) || new Map();
+    let components: Components = scopedComponents;
+
+    while (pieces.length) {
+      const name = pieces.shift()!;
+      if (!components.get(name)) {
+        components.set(name, new Map());
+      }
+      components = components.get(name) as Components;
+    }
+
+    const assets = new Map<string, string>();
+    if (component.css) {
+      assets.set(component.name + ".css", component.css);
+    }
+    if (component.js) {
+      assets.set(component.name + ".js", component.js);
+    }
+
+    components.set(component.name, {
+      name: component.name,
+      render: component.render,
+      assets,
+    });
+
+    this.scopedComponents.set(scope, scopedComponents);
+    return this;
+  }
+
+  /** Register a merging strategy for a data key */
+  mergeKey(key: string, merge: MergeStrategy, scope = "/"): this {
+    const data = this.scopedData.get(scope) || {};
+    const mergedKeys = data.mergedKeys || {};
+    mergedKeys[key] = merge;
+    data.mergedKeys = mergedKeys;
+    this.scopedData.set(scope, data);
+    return this;
+  }
+
+  /** Add files or directories to the site */
+  add(from: string, to?: string | Destination): this;
+  add(from: string[], to?: Destination): this;
+  add(from: string | string[], to?: string | Destination): this {
+    this.#addOrCopy(from, to, false);
+    return this;
+  }
+
+  /** Copy files or directories to the site */
+  copy(from: string, to?: string | Destination): this;
+  copy(from: string[], to?: Destination): this;
+  copy(from: string | string[], to?: string | Destination): this {
+    this.#addOrCopy(from, to, true);
+    return this;
+  }
+
+  /** Add or copy files or directories to the site */
+  #addOrCopy(from: string | string[], to: string | Destination | undefined, copy: boolean): void {
+    // File extensions
+    if (Array.isArray(from)) {
+      if (typeof to === "string") {
+        throw new Error(
+          `add() files by extension expects a function as second argument but got a string "${to}"`,
+        );
+      }
+      const dest = typeof to === "function" ? to : (path: string) => path;
+      for (const ext of from) {
+        this.source.addFile(ext, dest, copy);
+        this.formats.set({ ext });
+      }
+      return;
+    }
+
+    // Remote files from NPM or GitHub CDN
+    if (isFromCdn(from)) {
+      // It's a pattern
+      if (from.includes("*")) {
+        const pos = from.indexOf("*");
+        const specifier = from.slice(0, pos);
+        const patterns = [from.slice(pos)];
+
+        this.addEventListener("beforeBuild", async () => {
+          const files = await getFiles(specifier, patterns);
+          for (const [name, url] of files) {
+            const dest =
+              typeof to === "function"
+                ? () => (to as Destination)(name)
+                : posix.join(to ?? "", name);
+            this.#addOrCopy(url, dest, copy);
+          }
+        });
+        return;
+      }
+
+      // Copy only the main file
+      from = getFile(from);
+    }
+
+    if (isUrl(from)) {
+      const url = new URL(from);
+
+      if (to === undefined) {
+        to = posix.basename(url.pathname) || undefined;
+      }
+
+      if (typeof to === "function") {
+        to = to(url.href);
+      }
+
+      if (to?.endsWith("/")) {
+        to = posix.join(to, posix.basename(url.pathname));
+      }
+
+      if (!to || to.endsWith("/")) {
+        throw new Error(`Invalid destination path: ${to}`);
+      }
+
+      this.remoteFile(to, url.href);
+      this.source.addFile(to, to, copy);
+      return;
+    }
+
+    // It's a path
+    if (from.startsWith("../")) {
+      throw new Error(`It's not possible to copy files outsite the src directory ("${from}")`);
+    }
+
+    this.source.addFile(normalizePath(from), to ?? ((str: string) => str), copy);
+  }
+
+  /** Ignore one or several files or directories */
+  ignore(...paths: (string | ScopeFilter)[]): this {
+    paths.forEach((path) => {
+      if (typeof path === "string") {
+        this.source.addIgnoredPath(path);
+      } else {
+        this.source.addIgnoreFilter(path);
+      }
+    });
+    return this;
+  }
+
+  /** Define independent scopes to optimize the update process */
+  scopedUpdates(...scopes: ScopeFilter[]): this {
+    scopes.forEach((scope) => this.scopes.scopes.add(scope));
+    return this;
+  }
+
+  /** Define remote fallback files for missing local files */
+  remote(filename: string, url: string, paths?: string | string[]): this {
+    // Single file
+    if (!paths) {
+      this.fs.remoteFiles.set(posix.join("/", filename), isFromCdn(url) ? getFile(url) : url);
+      return this;
+    }
+
+    paths = Array.isArray(paths) ? paths : [paths];
+
+    // Multiple files from CDN or filesystem
+    if (isFromCdn(url) || url.startsWith("file:")) {
+      return this.addEventListener("beforeBuild", async () => {
+        const files = await getFiles(url, paths);
+        for (const [path, url] of files.entries()) {
+          this.fs.remoteFiles.set(posix.join("/", filename, path), url);
+        }
+      });
+    }
+
+    const { pathname } = new URL(url);
+    if (pathname.includes("*")) {
+      throw new Error(
+        `It's not possible to use wildcards in remote URL paths ("${url}"). Use npm: or gh: specifiers instead.`,
+      );
+    }
+
+    for (const path of paths) {
+      this.fs.remoteFiles.set(
+        posix.join("/", filename, path),
+        new URL(posix.join(pathname, path), url).href,
+      );
+    }
+
+    return this;
+  }
+
+  /** Define a remote fallback for a missing local file */
+  remoteFile(filename: string, url: string): this {
+    return this.remote(filename, url);
+  }
+
+  /** Clear the dest directory and any cache */
+  async clear(): Promise<void> {
+    await this.writer.clear();
+  }
+
+  /** Build the entire site */
+  async build(): Promise<void> {
+    this.debugBar?.endMeasure(null, "[Start] Initialization");
+    this.debugBar?.startMeasure("build");
+    if ((await this.dispatchEvent({ type: "beforeBuild" })) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    if (this.options.emptyDest) {
+      await this.clear();
+    }
+
+    this.debugBar?.startMeasure("scan");
+
+    // Load source files
+    this.fs.init();
+
+    this.debugBar?.endMeasure("scan", "[Loading] Scan source folder");
+
+    if ((await this.dispatchEvent({ type: "afterLoad" })) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    // Get the site content
+    const [_pages, _staticFiles] = await this.#loadPages(() => true);
+
+    // Save static files into site.files
+    this.files.splice(0, this.files.length, ..._staticFiles);
+
+    // Stop if the build is cancelled
+    if ((await this.#buildPages(_pages)) === false) {
+      this.debugBar?.endMeasure("build", "Build cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    // Save the pages and copy static files in the dest folder
+    this.debugBar?.startMeasure("save");
+    const pages = await this.writer.savePages(this.pages);
+    const staticFiles = await this.writer.copyFiles(this.files);
+    this.debugBar?.endMeasure("save", `[Write] ${pages.length + staticFiles.length} files`);
+
+    await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
+    this.debugBar?.endMeasure("build", "Site generated");
+    this.dispatchEvent({ type: "idle" });
+  }
+
+  /** Reload some files that might be changed */
+  async update(files?: Set<string>): Promise<void> {
+    this.debugBar?.clear();
+    this.debugBar?.startMeasure("build");
+
+    if ((await this.dispatchEvent({ type: "beforeUpdate", files })) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    this.search.deleteCache();
+
+    // Reload the changed files
+    this.debugBar?.startMeasure("reload");
+    for (const file of files || []) {
+      // Delete the file from the cache
+      this.formats.deleteCache(file);
+      const entry = this.fs.update(file);
+
+      if (!entry) {
+        continue;
+      }
+
+      // Remove pages or static files depending on this entry
+      const pages = this.pages
+        .filter((page) => pathBelongs(entry.path, page.src.entry?.path))
+        .map((page) => page.outputPath);
+      const files = this.files
+        .filter((file) => pathBelongs(entry.path, file.src.entry?.path))
+        .map((file) => file.outputPath);
+
+      await this.writer.removeFiles([...pages, ...files]);
+    }
+    this.debugBar?.endMeasure("reload", `[Loading] Updated ${files?.size ?? 0} files`);
+
+    if ((await this.dispatchEvent({ type: "afterLoad" })) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    // Get the site content
+    const filters = files ? this.scopes.getFilter(files) : () => true;
+    const [_pages, _staticFiles] = await this.#loadPages(filters);
+
+    // Build the pages and save static files into site.files
+    this.files.splice(0, this.files.length, ..._staticFiles);
+
+    if ((await this.#buildPages(_pages)) === false) {
+      this.debugBar?.endMeasure("build", "Update cancelled");
+      this.dispatchEvent({ type: "idle" });
+      return;
+    }
+
+    // Save the pages and copy static files in the dest folder
+    this.debugBar?.startMeasure("save");
+    const pages = await this.writer.savePages(this.pages);
+    const staticFiles = await this.writer.copyFiles(this.files);
+    this.debugBar?.endMeasure("save", `[Write] ${pages.length + staticFiles.length} files`);
+
+    this.debugBar?.endMeasure("build", "Site updated");
+
+    await this.dispatchEvent({
+      type: "afterUpdate",
+      files,
+      pages,
+      staticFiles,
+    });
+    this.dispatchEvent({ type: "idle" });
+  }
+
+  /**
+   * Internal function to load pages
+   * Used by build and update actions
+   */
+  async #loadPages(filters: (entry: Entry) => boolean): Promise<[Page[], StaticFile[]]> {
+    // Get the site content
+    this.debugBar?.startMeasure("load");
+    const showDrafts = envBoolean("LUME_DRAFTS");
+    let draftPages = 0;
+    const [_pages, _staticFiles] = await this.source.build((_, page) => {
+      if (page?.data.draft) {
+        ++draftPages;
+      }
+      return !page?.data.draft || showDrafts === true;
+    }, filters);
+
+    this.debugBar?.endMeasure(
+      "load",
+      `[Loading] ${_pages.length} pages and ${_staticFiles.length} static files`,
+    );
+
+    if (draftPages > 0) {
+      const item = this.debugBar?.buildItem();
+
+      if (item) {
+        item.title = showDrafts
+          ? `${draftPages} draft pages rendered`
+          : `${draftPages} draft pages skipped`;
+        item.actions = [
+          {
+            text: showDrafts ? "Skip draft pages" : "Include draft pages",
+            data: {
+              type: "lume:drafts",
+              value: !showDrafts,
+            },
+          },
+        ];
+      }
+    }
+
+    return [_pages, _staticFiles];
+  }
+
+  /**
+   * Internal function to render pages
+   * Used by build and update actions
+   */
+  async #buildPages(pages: Page[]): Promise<boolean | undefined> {
+    // Promote the files that must be preprocessed to pages
+    const preExtensions = this.preprocessors.extensions;
+    await filesToPages(
+      this.files,
+      pages,
+      (file) => !file.isCopy && preExtensions.has(file.src.ext),
+    );
+
+    if ((await this.dispatchEvent({ type: "beforeRender", pages })) === false) {
+      return false;
+    }
+
+    // Render the pages
+    this.pages.splice(0);
+    await this.renderer.renderPages(pages, this.pages, this.debugBar);
+
+    // Add extra code generated by the components
+    for (const { path, entries } of this.source.getComponentsExtraCode()) {
+      if (path.endsWith(".css")) {
+        this.debugBar?.startMeasure("components-css");
+        const page = await this.getOrCreatePage(path);
+        page.text = insertContent(
+          page.text,
+          await compileCSS(path, entries, this.fs.entries),
+          this.options.components.placeholder,
+        );
+        this.debugBar?.endMeasure(
+          "components-css",
+          `[Components] Compiled CSS code into <code>${path}</code>`,
+        );
+        continue;
+      }
+
+      if (path.endsWith(".js") || path.endsWith(".mjs")) {
+        this.debugBar?.startMeasure("components-js");
+        // https://github.com/lumeland/lume/issues/659
+        const existingFile = this.search.file(path.replace(/.m?js$/, "{.mjs,.js,.ts}"));
+        const page = await this.getOrCreatePage(existingFile || path);
+        page.text = insertContent(
+          page.text,
+          await compileJS(path, entries, this.fs.entries),
+          this.options.components.placeholder,
+        );
+        this.debugBar?.endMeasure(
+          "components-js",
+          `[Components] Compiled JS code into <code>${path}</code>`,
+        );
+      }
+    }
+
+    // Remove empty pages
+    this.pages.splice(
+      0,
+      this.pages.length,
+      ...this.pages.filter((page) => {
+        if (!page.content) {
+          log.warn(`[Lume] <cyan>Skipped page</cyan> ${page.data.url} (file content is empty)`);
+          return false;
+        }
+
+        return true;
+      }),
+    );
+
+    if (
+      (await this.events.dispatchEvent({
+        type: "afterRender",
+        pages: this.pages,
+      })) === false
+    ) {
+      return false;
+    }
+
+    this.debugBar?.startMeasure("prepare-process");
+    // Promote the files that must be processed to pages
+    const extensions = this.processors.extensions;
+    await filesToPages(
+      this.files,
+      this.pages,
+      (file) => !file.isCopy && extensions.has(file.src.ext),
+    );
+    this.debugBar?.endMeasure("prepare-process", "[Loading] Load extra files to process");
+
+    // Run the processors to the pages
+    await this.processors.run(this.pages, this.debugBar);
+
+    return await this.dispatchEvent({ type: "beforeSave" });
+  }
+
+  /** Return the URL of a path */
+  url(path: string, absolute = false): string {
+    if (
+      path.startsWith("./") ||
+      path.startsWith("../") ||
+      path.startsWith("?") ||
+      path.startsWith("#") ||
+      path.startsWith("//")
+    ) {
+      return path;
+    }
+
+    // It's a source file
+    if (path.startsWith("~/")) {
+      path = decodeURI(path.slice(1));
+
+      // Has a search query
+      const match = path.match(/^(.*)\s*\(([^)]+)\)$/);
+      const srcPath = match ? match[1] : path;
+      const pages = match
+        ? this.search.pages(match[2]).map<Page>((data) => data.page!)
+        : this.pages;
+
+      // It's a page
+      const page = pages.find((page) => page.src.path + page.src.ext === srcPath);
+
+      if (page) {
+        path = page.data.url;
+      } else {
+        // It's a static file
+        const file = this.files.find((file) => file.src.entry.path === path);
+
+        if (file) {
+          path = file.outputPath;
+        } else {
+          throw new Error(`Source file not found: ${path}`);
+        }
+      }
+    } else {
+      // Absolute URLs are returned as is
+      try {
+        return new URL(path).href;
+      } catch {
+        // Ignore error
+      }
+    }
+
+    if (!path.startsWith(this.options.location.pathname)) {
+      path = posix.join(this.options.location.pathname, path);
+    }
+
+    return absolute ? this.options.location.origin + path : path;
+  }
+
+  removePage(file: StaticFile): StaticFile | undefined;
+  removePage(page: Page): Page | undefined;
+  removePage(urlOrPage: string | Page | StaticFile): Page | StaticFile | undefined {
+    if (typeof urlOrPage === "string") {
+      const url = urlOrPage;
+
+      // It's a page
+      let index = this.pages.findIndex((page) => page.data.url === url);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+
+      // It's a static file
+      index = this.files.findIndex((f) => f.outputPath === url);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof Page) {
+      const index = this.pages.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.pages.splice(index, 1)[0];
+      }
+    }
+
+    if (urlOrPage instanceof StaticFile) {
+      const index = this.files.indexOf(urlOrPage);
+      if (index > -1) {
+        return this.files.splice(index, 1)[0];
+      }
+    }
+  }
+
+  async getOrCreatePage<D = DefaultType>(url: string): Promise<Page<D>> {
+    url = normalizePath(url);
+
+    // It's a page
+    const page = this.pages.find((page) => page.data.url === url);
+
+    if (page) {
+      return page as Page<D>;
+    }
+
+    // It's a static file
+    const index = this.files.findIndex((f) => f.outputPath === url);
+
+    if (index > -1) {
+      const file = this.files.splice(index, 1)[0];
+      const page = await file.toPage();
+      this.pages.push(page);
+      return page as Page<D>;
+    }
+
+    // Read the source files directly
+    const entry = this.fs.entries.get(url);
+    if (entry) {
+      const { content } = await entry.getContent(binaryLoader);
+      const page = Page.create({ url }, { entry });
+      page.content = content as Uint8Array<ArrayBuffer>;
+      this.pages.push(page);
+      return page as Page<D>;
+    }
+
+    const newPage = Page.create({ url });
+    this.pages.push(newPage);
+    return newPage as Page<D>;
+  }
+
+  /**
+   * Get the content of a file.
+   * Resolve the path if it's needed.
+   */
+  async getContent(file: string, binary: true): Promise<Uint8Array | undefined>;
+  async getContent(file: string, binary: false): Promise<string | undefined>;
+  async getContent(file: string, binary: boolean): Promise<string | Uint8Array | undefined>;
+  async getContent(file: string, binary: boolean): Promise<string | Uint8Array | undefined> {
+    file = normalizePath(file);
+    const basePath = this.src();
+
+    if (file.startsWith(basePath)) {
+      file = normalizePath(file.slice(basePath.length));
+    }
+
+    file = decodeURI(file);
+    const url = encodeURI(file);
+
+    // It's a page
+    const page = this.pages.find((page) => page.data.url === url);
+
+    if (page) {
+      return binary ? page.bytes : page.text;
+    }
+
+    // It's a static file
+    const staticFile = this.files.find((f) => f.outputPath === file);
+
+    if (staticFile) {
+      return binary
+        ? ((await staticFile.src.entry.getContent(binaryLoader)).content as Uint8Array)
+        : ((await staticFile.src.entry.getContent(textLoader)).content as string);
+    }
+
+    // Read the source files directly
+    try {
+      const entry = this.fs.entries.get(file);
+      if (entry) {
+        return binary
+          ? ((await entry.getContent(binaryLoader)).content as Uint8Array)
+          : ((await entry.getContent(textLoader)).content as string);
+      }
+    } catch {
+      // Ignore error
+    }
+  }
+
+  /** Returns a File system watcher of the site */
+  getWatcher(): FSWatcher {
+    if (this.watcher) {
+      return this.watcher;
+    }
+
+    this.watcher = new FSWatcher({
+      src: this.src(),
+      root: this.root(),
+      paths: this.options.watcher.include,
+      ignore: this.options.watcher.ignore,
+      debounce: this.options.watcher.debounce,
+      dependencies: this.options.watcher.dependencies,
+    });
+
+    return this.watcher;
+  }
+
+  /** Returns a Web server of the site */
+  getServer(): Server {
+    if (this.server) {
+      return this.server;
+    }
+
+    const { port, hostname, middlewares } = this.options.server;
+    const root = this.dest(this.options.server.root ?? "");
+    this.server = new Server({ root, port, hostname });
+    this.server.use(...middlewares);
+
+    return this.server;
+  }
+}
+
+/** The options for the resolve function */
+export interface ResolveOptions {
+  /** Whether search in the includes folder or not */
+  includes?: boolean;
+
+  /** Default loader */
+  loader?: Loader;
+}
+
+/** The options to configure the site build */
+export interface SiteOptions {
+  /** The path of the current working directory */
+  cwd?: string;
+
+  /** The path of the site source */
+  src?: string;
+
+  /** The path of the built destination */
+  dest?: string;
+
+  /** Whether the empty folder should be emptied before the build */
+  emptyDest?: boolean;
+
+  /** The default includes path */
+  includes?: string;
+
+  /** The default css file */
+  cssFile?: string;
+
+  /** The default js file */
+  jsFile?: string;
+
+  /** The default folder for fonts */
+  fontsFolder?: string;
+
+  /** The site location (used to generate final urls) */
+  location?: URL;
+
+  /** Set true to generate pretty urls (`/about-me/`) */
+  prettyUrls?: boolean;
+
+  /** Set true to don't consider two urls the equal if the only difference is the case */
+  caseSensitiveUrls?: boolean;
+
+  /** The local server options */
+  server?: ServerOptions;
+
+  /** The local watcher options */
+  watcher?: WatcherOptions;
+
+  /** The components options */
+  components?: ComponentsOptions;
+}
+
+/** The options to configure the local server */
+export interface ServerOptions {
+  /**
+   * The root directory to serve.
+   * By default is the same as the site dest folder.
+   */
+  root?: string;
+
+  /** The port to listen on */
+  port?: number;
+
+  /** The hostname to listen on */
+  hostname?: string;
+
+  /** To open the server in a browser */
+  open?: boolean;
+
+  /** The file to serve on 404 error */
+  page404?: string;
+
+  /**
+   * Whether to use the debug bar or not
+   */
+  debugBar?: boolean;
+
+  /** Optional for the server */
+  middlewares?: Middleware[];
+}
+
+/** The options to configure the local watcher */
+export interface WatcherOptions {
+  /** Paths to ignore by the watcher */
+  ignore?: (string | ((path: string) => boolean))[];
+
+  /** The interval in milliseconds to check for changes */
+  debounce?: number;
+
+  /** Extra files and folders to watch (ouside the src folder) */
+  include?: string[];
+
+  /** Manual dependencies not detected by the watcher */
+  dependencies?: Record<string, string[]>;
+}
+
+/** The options to configure the components */
+export interface ComponentsOptions {
+  /** The name of the file to save the components css code */
+  cssFile?: string;
+
+  /** The name of the file to save the components javascript code */
+  jsFile?: string;
+
+  /** An optional placeholder to insert the CSS and JS code */
+  placeholder?: string;
+}
+
+export type SiteEventMap = {
+  // deno-lint-ignore ban-types
+  afterLoad: {};
+  beforeBuild: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+  };
+  afterBuild: {
+    /** the list of pages that have been saved */
+    pages: Page[];
+    /** contains the list of static files that have been copied */
+    staticFiles: StaticFile[];
+  };
+  beforeUpdate: {
+    /** the files that were changed */
+    files: Set<string>;
+  };
+  afterUpdate: {
+    /** the files that were changed */
+    files: Set<string>;
+    /** the list of pages that have been saved */
+    pages: Page[];
+    /** contains the list of static files that have been copied */
+    staticFiles: StaticFile[];
+  };
+  beforeRender: {
+    /** the list of pages that are about to render */
+    pages: Page[];
+  };
+  afterRender: {
+    /** the list of pages that have been rendered */
+    pages: Page[];
+  };
+  // deno-lint-ignore ban-types
+  beforeSave: {};
+  // deno-lint-ignore ban-types
+  afterStartServer: {};
+  // deno-lint-ignore ban-types
+  idle: {};
+};
+
+export interface LoadPagesOptions {
+  loader?: Loader;
+  engine?: Engine | Engine[];
+  pageSubExtension?: string;
+}
+
+/** Custom events for site build */
+export type SiteEvent<T extends SiteEventType = SiteEventType> = Event &
+  SiteEventMap[T] & { type: T };
+
+/** The available event types */
+export type SiteEventType = keyof SiteEventMap;
+
+/** A generic Lume plugin */
+export type Plugin = (site: Site) => void;
+
+function pathBelongs(base: string, path?: string): boolean {
+  if (!path) {
+    return false;
+  }
+  return base === path || path?.startsWith(base + "/");
+}

@@ -1,0 +1,6 @@
+{
+  "site": {
+    "title": "Default title", // comment
+    "description": "Default description" /* comment */
+  }
+}
