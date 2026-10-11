@@ -52,7 +52,7 @@ export interface Watcher {
   ): this;
 
   /** Dispatch an event */
-  dispatchEvent(event: WatchEvent): Promise<boolean | undefined>;
+  dispatchEvent(event: WatchEvent): Promise<boolean>;
 
   /** Start the watcher */
   start(): Promise<void>;

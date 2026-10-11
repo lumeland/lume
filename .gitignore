@@ -2,3 +2,4 @@ TODO
 node_modules
 proba
 packages/*/build
+dist

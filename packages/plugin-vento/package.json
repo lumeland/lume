@@ -1,14 +1,18 @@
 {
   "name": "@lumeland/plugin-vento",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha-1",
   "description": "Plugin to use the Vento template engine to create pages and layouts",
   "license": "MIT",
+  "files": [
+    "build"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts"
   },
   "scripts": {
+    "build": "rm -rf build && tsc -p .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"

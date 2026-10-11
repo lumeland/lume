@@ -1,26 +1,34 @@
 #!/bin/bash
 set -e
 
-out="./dist-tarballs"
 dist="./dist"
-
-rm -rf "$out" "$dist"
+rm -rf "$dist"
 mkdir -p "$dist"
 
-pnpm -r --filter "@lumeland/*" pack --pack-destination "$out"
+# Test and build
+pnpm test
+pnpm -r build
 
-# Extract tarballs to ./dist
-for tgz in "$out"/*.tgz; do
+# Generate tarballs files
+pnpm -r --filter "@lumeland/*" pack --out "$dist/%s.tgz"
+pnpm -r exec -- rm -rf build
+
+# Extract tarballs
+for tgz in "$dist"/*.tgz; do
   [ -f "$tgz" ] || continue
-  pkg_name="${tgz##*/}"           # remove path
-  pkg_name="${pkg_name%-[0-9].*}"  # remove version and .tgz
-
-  if [[ "$pkg_name" == "lumeland-dom" || "$pkg_name" == "lumeland-testing" ]]; then
-    continue
-  fi
-  
-  mkdir -p "$dist/$pkg_name"
-  tar -xzf "$tgz" -C "$dist/$pkg_name" --strip-components=1
+  out="${tgz%.tgz}"
+  mkdir "$out"
+  tar -xzf "$tgz" -C "$out" --strip-components=1
   rm "$tgz"
 done
-rm -rf $out
+
+# Final tweaks
+node scripts/build.ts
+pnpm exec oxfmt dist/**/*
+
+# Generate tarballs again
+for dir in "$dist"/*; do
+  [ -d "$dir" ] || continue
+  pnpm pack --dir "$dir" --out "../%s.tgz"
+  rm -rf "$dir"
+done

@@ -6,10 +6,16 @@
   "bin": {
     "lume": "./cli.ts"
   },
+  "files": [
+    "build"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc -p ."
   },
   "dependencies": {
     "@lumeland/core": "workspace:*",
@@ -17,7 +23,6 @@
     "@lumeland/plugin-json": "workspace:*",
     "@lumeland/plugin-markdown": "workspace:*",
     "@lumeland/plugin-modules": "workspace:*",
-    "@lumeland/plugin-not-found": "workspace:*",
     "@lumeland/plugin-paginate": "workspace:*",
     "@lumeland/plugin-search": "workspace:*",
     "@lumeland/plugin-toml": "workspace:*",
@@ -25,7 +30,7 @@
     "@lumeland/plugin-vento": "workspace:*",
     "@lumeland/plugin-yaml": "workspace:*",
     "cac": "^7.0.1",
-    "deno-std": "1.4.0"
+    "deno-std": "^1.5.1"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

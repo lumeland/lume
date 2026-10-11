@@ -26,7 +26,7 @@ export default class Events<E extends Event> {
   }
 
   /** Dispatch an event */
-  async dispatchEvent(event: E) {
+  async dispatchEvent(event: E): Promise<boolean> {
     const { type } = event;
     const listeners = this.listeners.get(type);
 
@@ -44,6 +44,8 @@ export default class Events<E extends Event> {
         }
       }
     }
+
+    return true;
   }
 }
 

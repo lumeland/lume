@@ -1,4 +1,5 @@
 import sharp from "sharp";
+// @ts-expect-error: no types for ico-endec
 import icoEndec from "ico-endec";
 
 export type { FormatEnum, ResizeOptions, Sharp } from "sharp";

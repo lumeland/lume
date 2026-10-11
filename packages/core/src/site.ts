@@ -333,7 +333,7 @@ export default class Site {
   }
 
   /** Dispatch an event */
-  dispatchEvent(event: SiteEvent): Promise<boolean | undefined> {
+  dispatchEvent(event: SiteEvent): Promise<boolean> {
     return this.events.dispatchEvent(event);
   }
 

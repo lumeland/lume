@@ -20,6 +20,7 @@ const pkg = {
     "./*.ts": "./src/*.ts",
   },
   scripts: {
+    build: "rm -rf build && tsc -p .",
     test: "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u",
@@ -35,9 +36,27 @@ const pkg = {
   },
 };
 
+const tsconfig = {
+  compilerOptions: {
+    types: ["node"],
+    moduleResolution: "NodeNext",
+    module: "NodeNext",
+    allowImportingTsExtensions: true,
+    target: "ES2022",
+    lib: ["ES2022", "ESNext.Iterator", "DOM", "DOM.Iterable", "ESNext.Temporal"],
+    rewriteRelativeImportExtensions: true,
+    skipLibCheck: true,
+    outDir: "build",
+    rootDir: ".",
+    declaration: true,
+  },
+  exclude: ["tests"],
+};
+
 const root = `packages/plugin-${name}`;
 
 await saveFile(root, "package.json", JSON.stringify(pkg, null, 2));
+await saveFile(root, "tsconfig.json", JSON.stringify(tsconfig, null, 2));
 await saveFile(
   root,
   ".npmignore",

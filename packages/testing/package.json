@@ -1,11 +1,17 @@
 {
   "name": "@lumeland/testing",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha-1",
   "description": "",
   "license": "MIT",
+  "files": [
+    "build"
+  ],
   "type": "module",
   "exports": {
     "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc -p ."
   },
   "dependencies": {
     "@lumeland/core": "workspace:*"

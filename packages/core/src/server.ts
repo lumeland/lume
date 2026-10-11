@@ -1,11 +1,11 @@
 import Events from "./events.ts";
 import { serveFile } from "./utils/serve_file.ts";
-import { cwd } from "@lumeland/core/services/process.ts";
+import { cwd } from "./services/process.ts";
 import { merge } from "./utils/object.ts";
-import { serve } from "@lumeland/core/services/net.ts";
+import { serve } from "./services/net.ts";
 
 import type { Event, EventListener, EventOptions } from "./events.ts";
-import type { HTTPHandlerInfo, HTTPServer, NetAddress } from "@lumeland/core/services/net.ts";
+import type { HTTPHandlerInfo, HTTPServer, NetAddress } from "./services/net.ts";
 
 import type { Merge } from "./utils/object.ts";
 
@@ -96,7 +96,7 @@ export default class Server {
   }
 
   /** Dispatch an event */
-  dispatchEvent(event: ServerEvent) {
+  dispatchEvent(event: ServerEvent): Promise<boolean> {
     return this.events.dispatchEvent(event);
   }
 

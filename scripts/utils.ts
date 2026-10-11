@@ -1,4 +1,5 @@
 import { dirname, join } from "node:path";
+import { readFileSync, writeFileSync } from "node:fs";
 import { writeFile, mkdir, rm, cp } from "node:fs/promises";
 import { cwd } from "node:process";
 import { Readable } from "node:stream";
@@ -68,7 +69,7 @@ export async function* fromJsr(name: string): AsyncGenerator<File> {
   for await (const entry of extract) {
     const chunks: Buffer[] = [];
     for await (const chunk of entry) {
-      chunks.push(Buffer.from(chunk));
+      chunks.push(Buffer.from(chunk as any));
     }
 
     if (entry.header.type !== "file") continue;
@@ -84,4 +85,16 @@ export async function* fromJsr(name: string): AsyncGenerator<File> {
 
 export async function copyFolder(from: string, to: string): Promise<void> {
   await cp(from, to, { recursive: true });
+}
+
+export function editJson<T = Record<string, any>>(path: string, cb: (data: T) => void) {
+  let data = {} as T;
+
+  try {
+    data = JSON.parse(readFileSync(path, "utf-8"));
+  } catch (err) {
+    console.log(`Not found. Generate file: ${path}`);
+  }
+  cb(data);
+  writeFileSync(path, JSON.stringify(data, null, 2));
 }

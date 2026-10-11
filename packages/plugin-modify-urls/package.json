@@ -1,14 +1,18 @@
 {
   "name": "@lumeland/plugin-modify-urls",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha-1",
   "description": "Plugin to modify all URLs of HTML and CSS files with a custom function",
   "license": "MIT",
+  "files": [
+    "build"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts"
   },
   "scripts": {
+    "build": "rm -rf build && tsc -p .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"

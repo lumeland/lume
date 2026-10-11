@@ -1,1 +1,1 @@
-export * from "lightningcss-wasm";
+export * from "lightningcss";

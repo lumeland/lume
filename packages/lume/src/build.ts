@@ -6,12 +6,10 @@ import { hmr } from "@lumeland/core/services/hmr.ts";
 import { exit, setEnv, inspect } from "@lumeland/core/services/process.ts";
 import { buildSite, createSite } from "./utils/site.ts";
 import { envBoolean } from "@lumeland/core/utils/env.ts";
-import { notFound } from "@lumeland/plugin-not-found";
 import { normalizePath } from "@lumeland/core/utils/path.ts";
 import dev from "@lumeland/plugin-dev";
 
 import type Server from "@lumeland/core/server.ts";
-import { localIp, openBrowser } from "./utils/net.ts";
 
 export interface BuildOptions {
   config: string | undefined;
@@ -31,7 +29,7 @@ export async function build({
   inspect: openInspector,
 }: BuildOptions) {
   if (openInspector) {
-    // openInspector();
+    // TODO: openInspector();
   }
 
   if (serve || watch) {
@@ -104,37 +102,9 @@ export async function build({
     watcher.start();
   }
 
-  // Start the local server
+  // Start the local dev server
   if (server) {
-    const { port, hostname, page404, open } = site.options.server;
-
-    server.addEventListener("start", () => {
-      const ipAddr = localIp();
-
-      log.info("\n  Server started at:");
-      log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
-
-      if (ipAddr) {
-        log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
-      }
-
-      if (open) {
-        openBrowser(`http://${hostname}:${port}/`);
-      }
-
-      site.dispatchEvent({ type: "afterStartServer" });
-    });
-
-    server.use(
-      notFound({
-        root: server.options.root,
-        page404,
-        directoryIndex: true,
-      }),
-    );
-
     site.use(dev());
-
     server.start();
   }
 

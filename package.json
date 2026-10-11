@@ -1,12 +1,13 @@
 {
   "name": "lume",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha-1",
   "description": "",
   "keywords": [],
   "license": "ISC",
   "author": "",
   "type": "module",
   "scripts": {
+    "build": "sh scripts/build.sh",
     "new-plugin": "node scripts/new-plugin.ts",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -16,8 +17,6 @@
     "fmt": "oxfmt ."
   },
   "dependencies": {
-    "@lumeland/core": "workspace:*",
-    "@lumeland/dom": "workspace:*",
     "@lumeland/lume": "workspace:*",
     "jszip": "^3.10.2",
     "oxfmt": "^0.72.0",
