@@ -40,13 +40,13 @@ export function reload(options: Options): Middleware {
   watcher.addEventListener("change", (event) => {
     revision++;
 
-    if (!sockets.size) {
+    if (!sockets.size || !event.files?.size) {
       return;
     }
 
     lastAcknowledgedRevision = revision;
 
-    const files = event.files!;
+    const files = event.files;
     const message = JSON.stringify({
       type: "update",
       revision,

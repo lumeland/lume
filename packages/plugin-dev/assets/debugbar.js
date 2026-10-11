@@ -479,7 +479,6 @@ class State {
   constructor() {
     const restore = sessionStorage.getItem(this.key);
     this.state = restore ? JSON.parse(restore) : {};
-    this.state.open = localStorage.getItem(this.key) === "open";
   }
 
   set(key, value) {
@@ -498,7 +497,6 @@ class State {
 
   save() {
     sessionStorage.setItem(this.key, JSON.stringify(this.state));
-    localStorage.setItem(this.key, this.state.open ? "open" : "closed");
   }
 }
 

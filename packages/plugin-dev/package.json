@@ -14,13 +14,13 @@
   "scripts": {
     "build": "rm -rf build && tsc -p . && cp -r assets build"
   },
+  "dependencies": {
+    "@lumeland/plugin-not-found": "workspace:^"
+  },
   "devDependencies": {
     "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:*"
-  },
-  "dependencies": {
-    "@lumeland/plugin-not-found": "workspace:^"
   }
 }

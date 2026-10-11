@@ -1,5 +1,7 @@
 import { SiteWatcher } from "@lumeland/core/watcher.ts";
+import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
+import { inspect } from "@lumeland/core/services/process.ts";
 import reload from "./reload.ts";
 import noCache from "./no_cache.ts";
 import noCors from "./no_cors.ts";
@@ -8,17 +10,33 @@ import { notFound } from "@lumeland/plugin-not-found";
 
 import type Site from "@lumeland/core/site.ts";
 
+export interface DevOptions {
+  serve?: boolean;
+}
+
 /**
- * A plugin to add some middlewares useful for development
+ * Plugin with utilities for a dev environment
  */
-export function dev() {
+export function dev(options: DevOptions = {}) {
   return (site: Site) => {
-    const server = site.getServer();
+    setupWatcher(site);
 
-    const { port, hostname, page404, open } = site.options.server;
+    if (options.serve) {
+      setupServer(site);
+    }
+  };
+}
 
-    // Show server address info
-    server.addEventListener("start", () => {
+export default dev;
+
+function setupServer(site: Site) {
+  const server = site.getServer();
+  const { port, hostname, page404, open } = site.options.server;
+
+  // Show server address info
+  server.addEventListener(
+    "start",
+    () => {
       const ipAddr = localIp();
 
       log.info("\n  Server started at:");
@@ -33,27 +51,59 @@ export function dev() {
       }
 
       site.dispatchEvent({ type: "afterStartServer" });
-    }, { once: true });
+    },
+    { once: true },
+  );
 
-    // Live reload
-    server.useFirst(
-      reload({
-        watcher: new SiteWatcher(site),
-        basepath: site.options.location.pathname,
-        debugBar: site.debugBar,
-        server,
-      }),
-      noCache(),
-      noCors(),
-    );
+  // Live reload
+  server.useFirst(
+    reload({
+      watcher: new SiteWatcher(site),
+      basepath: site.options.location.pathname,
+      debugBar: site.debugBar,
+      server,
+    }),
+    noCache(),
+    noCors(),
+  );
 
-    // Not found page
-    server.use(notFound({
+  // Not found page
+  server.use(
+    notFound({
       root: server.options.root,
       page404,
       directoryIndex: true,
-    }),)
-  };
+    }),
+  );
+
+  server.start();
 }
 
-export default dev;
+/** Setup a file watcher */
+function setupWatcher(site: Site) {
+  // Start the watcher
+  const watcher = site.getWatcher();
+  const srcFolder = normalizePath(site.options.src);
+
+  watcher.addEventListener("change", async (event) => {
+    const srcFiles = new Set(
+      [...event.files!]
+        .filter((file) => file.startsWith(srcFolder))
+        .map((file) => (srcFolder === "/" ? file : file.slice(srcFolder.length))),
+    );
+
+    log.info("Changes detected:");
+    srcFiles.forEach((file) => {
+      log.info(`- <gray>${file}</gray>`);
+    });
+
+    await site.update(srcFiles);
+    log.output();
+  });
+
+  watcher.addEventListener("error", (event) => {
+    console.error(inspect(event.error));
+  });
+
+  watcher.start();
+}

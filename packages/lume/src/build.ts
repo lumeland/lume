@@ -6,8 +6,7 @@ import { hmr } from "@lumeland/core/services/hmr.ts";
 import { exit, setEnv, inspect } from "@lumeland/core/services/process.ts";
 import { buildSite, createSite } from "./utils/site.ts";
 import { envBoolean } from "@lumeland/core/utils/env.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
-import dev from "@lumeland/plugin-dev";
+import { dev } from "@lumeland/plugin-dev";
 
 import type Server from "@lumeland/core/server.ts";
 
@@ -75,37 +74,7 @@ export async function build({
   }
 
   if (server || watch) {
-    // Start the watcher
-    const watcher = site.getWatcher();
-    const srcFolder = normalizePath(site.options.src);
-
-    watcher.addEventListener("change", async (event) => {
-      const srcFiles = new Set(
-        [...event.files!]
-          .filter((file) => file.startsWith(srcFolder))
-          .map((file) => (srcFolder === "/" ? file : file.slice(srcFolder.length))),
-      );
-
-      log.info("Changes detected:");
-      srcFiles.forEach((file) => {
-        log.info(`- <gray>${file}</gray>`);
-      });
-
-      await site.update(srcFiles);
-      log.output();
-    });
-
-    watcher.addEventListener("error", (event) => {
-      console.error(inspect(event.error));
-    });
-
-    watcher.start();
-  }
-
-  // Start the local dev server
-  if (server) {
-    site.use(dev());
-    server.start();
+    site.use(dev({ serve }));
   }
 
   log.output();
