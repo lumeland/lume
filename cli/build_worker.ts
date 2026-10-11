@@ -166,7 +166,7 @@ async function build({ type, config, serve, cms: loadCms }: BuildOptions) {
     }
 
     site.dispatchEvent({ type: "afterStartServer" });
-  });
+  }, { once: true });
 
   if (log.level < 5) {
     server.use(logger());
