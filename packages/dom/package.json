@@ -22,5 +22,8 @@
       "default": "./deno-dom-wasm-noinit.js"
     }
   },
-  "_jsr_revision": 11
+  "_jsr_revision": 11,
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
 }

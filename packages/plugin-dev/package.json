@@ -8,6 +8,9 @@
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts"
   },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
   "peerDependencies": {
     "@lumeland/core": "workspace:*"
   }

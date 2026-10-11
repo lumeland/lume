@@ -5,6 +5,7 @@
     "module": "NodeNext",
     "allowImportingTsExtensions": true,
     "target": "ES2022",
+    "erasableSyntaxOnly": true,
     "lib": ["ES2022", "ESNext.Iterator", "DOM", "DOM.Iterable"]
   }
 }

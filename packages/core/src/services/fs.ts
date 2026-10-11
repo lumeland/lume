@@ -129,7 +129,7 @@ export class FsError extends Error {
   get code() {
     if ((this.cause as { code: string }).code === "ENOENT") return "not-found";
     console.log(this.cause);
-    if (this.cause instanceof Deno.errors.AlreadyExists) return "exists";
+    // if (this.cause instanceof Deno.errors.AlreadyExists) return "exists";
     return "other";
   }
 }

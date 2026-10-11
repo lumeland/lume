@@ -30,6 +30,7 @@ const pkg = {
   devDependencies: {
     "@lumeland/testing": "workspace:*",
     "@types/node": "^26.6.4",
+    typescript: "^7.0.2",
     vitest: "^5.0.3",
   },
 };

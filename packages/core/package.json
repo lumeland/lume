@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "The core of Lume SSG",
   "license": "MIT",
+  "files": [
+    "build"
+  ],
   "type": "module",
   "exports": {
     "./*.ts": "./src/*.ts"
   },
   "scripts": {
+    "build": "tsc -p .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"
@@ -24,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   }
 }

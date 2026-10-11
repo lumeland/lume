@@ -26,5 +26,8 @@
     "@lumeland/plugin-yaml": "workspace:*",
     "cac": "^7.0.1",
     "deno-std": "1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
   }
 }
