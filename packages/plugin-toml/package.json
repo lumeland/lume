@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-toml",
-  "version": "1.0.0-alpha-1",
+  "version": "1.0.0-beta-1",
   "description": "Plugin to add support for TOML format to store data and create pages",
   "license": "MIT",
   "files": [

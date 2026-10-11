@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/core",
-  "version": "1.0.0-alpha-1",
+  "version": "1.0.0-beta-2",
   "description": "The core of Lume SSG",
   "license": "MIT",
   "files": [

@@ -27,8 +27,9 @@ node scripts/build.ts
 pnpm exec oxfmt dist/**/*
 
 # Generate tarballs again
-for dir in "$dist"/*; do
-  [ -d "$dir" ] || continue
-  pnpm pack --dir "$dir" --out "../%s.tgz"
-  rm -rf "$dir"
-done
+# for dir in "$dist"/*; do
+#   [ -d "$dir" ] || continue
+#   pnpm pack --dir "$dir" --out "../%s.tgz"
+#   rm -rf "$dir"
+# done
+

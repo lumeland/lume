@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-vento",
-  "version": "1.0.0-alpha-1",
+  "version": "1.0.0-beta-1",
   "description": "Plugin to use the Vento template engine to create pages and layouts",
   "license": "MIT",
   "files": [

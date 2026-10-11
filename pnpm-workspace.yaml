@@ -6,3 +6,20 @@ linkWorkspacePackages: true
 minimumReleaseAgeExclude:
   - deno-std@1.5.0 || 1.5.1
   - "@lumeland/dom@0.1.56"
+versioning:
+  lanes:
+    "@lumeland/core": beta
+    "@lumeland/lume": beta
+    "@lumeland/plugin-dev": beta
+    "@lumeland/plugin-json": beta
+    "@lumeland/plugin-markdown": beta
+    "@lumeland/plugin-modify-urls": beta
+    "@lumeland/plugin-modules": beta
+    "@lumeland/plugin-not-found": beta
+    "@lumeland/plugin-paginate": beta
+    "@lumeland/plugin-search": beta
+    "@lumeland/plugin-toml": beta
+    "@lumeland/plugin-url": beta
+    "@lumeland/plugin-vento": beta
+    "@lumeland/plugin-yaml": beta
+    "@lumeland/testing": beta
