@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-base-path",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plugin to automatically add a base path to all urls",
   "license": "MIT",
   "type": "module",
   "exports": {

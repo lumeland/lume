@@ -1,0 +1,555 @@
+import { getExtension } from "@lumeland/core/utils/path.ts";
+import { isPlainObject, merge } from "@lumeland/core/utils/object.ts";
+import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+import { cdata, stringify } from "../deps/xml.ts";
+import { Page } from "@lumeland/core/file.ts";
+import { log } from "@lumeland/core/utils/log.ts";
+import { parseDate } from "@lumeland/core/utils/date.ts";
+
+import type Site from "@lumeland/core/site.ts";
+import type { Data } from "@lumeland/core/types.ts";
+import type { Stringifyable } from "../deps/xml.ts";
+
+export interface Options<D = Lume.GlobalData> {
+  /** The output filenames */
+  output?: string | string[];
+
+  /** The query to search the pages */
+  query?: string;
+
+  /** The sort order */
+  sort?: string;
+
+  /** The maximum number of items */
+  limit?: number;
+
+  /** The xml-stylesheet document for styling (only for xml formats) */
+  stylesheet?: string;
+
+  /** The feed info */
+  info?: FeedInfoOptions;
+
+  /** The feed items configuration */
+  items?: FeedItemOptions<D>;
+}
+
+export interface FeedInfoOptions {
+  /** The feed title */
+  title?: string;
+
+  /** The feed subtitle */
+  subtitle?: string;
+
+  /**
+   * The feed published date
+   * @default `new Date()`
+   */
+  published?: Date;
+
+  /** The feed description */
+  description?: string;
+
+  /**
+   * The canonical url of the feed file.
+   * Useful if you have different feeds with the same content and want to priorize one.
+   * @default The output file
+   */
+  self?: string;
+
+  /** The feed language */
+  lang?: string;
+
+  /** The WebSub hubs for the feed */
+  hubs?: string[];
+
+  /** The feed generator. Set `true` to generate automatically */
+  generator?: string | boolean;
+
+  /** The feed author name */
+  authorName?: string;
+
+  /** The feed author URL */
+  authorUrl?: string;
+
+  /** The feed author avatar */
+  authorAvatar?: string;
+
+  /** The main image of the site */
+  image?: string;
+
+  /** The logotype or icon of the site */
+  icon?: string;
+
+  /** The color theme of the site */
+  color?: string;
+}
+
+export interface FeedItemOptions<D> {
+  /** The item title */
+  title?: string | ((data: Data<D>) => string | undefined);
+
+  /** The item description */
+  description?: string | ((data: Data<D>) => string | undefined);
+
+  /** The item published date */
+  published?: string | ((data: Data<D>) => Date | undefined);
+
+  /** The item updated date */
+  updated?: string | ((data: Data<D>) => Date | undefined);
+
+  /** The item content */
+  content?: string | ((data: Data<D>) => string | undefined);
+
+  /** The item categories */
+  categories?: string | ((data: Data<D>) => string[] | undefined);
+
+  /** The item language */
+  lang?: string | ((data: Data<D>) => string | undefined);
+
+  /** The item image */
+  image?: string | ((data: Data<D>) => string | undefined);
+
+  /** The item author name */
+  authorName?: string;
+
+  /** The item author URL */
+  authorUrl?: string;
+
+  /** The feed author avatar */
+  authorAvatar?: string;
+}
+
+export const defaults = {
+  /** The output filenames */
+  output: "/feed.rss",
+
+  /** The query to search the pages */
+  query: "",
+
+  /** The sort order */
+  sort: "date=desc",
+
+  /** The maximum number of items */
+  limit: 10,
+
+  /** The feed info */
+  info: {
+    title: "My RSS Feed",
+    published: new Date(),
+    description: "",
+    lang: "en",
+    generator: true,
+  },
+  items: {
+    title: "=title",
+    description: "=description",
+    published: "=date",
+    content: "=children",
+    categories: "=tags",
+    lang: "=lang",
+  },
+} satisfies Options;
+
+export interface Author {
+  name?: string;
+  url?: string;
+  avatar?: string;
+}
+
+export interface FeedData {
+  title: string;
+  url: string;
+  self?: string;
+  description: string;
+  published: Date;
+  lang: string;
+  hubs?: string[];
+  generator?: string;
+  items: FeedItem[];
+  author?: Author;
+  image?: string;
+  icon?: string;
+  color?: string;
+}
+
+export interface FeedItem {
+  title: string;
+  url: string;
+  description: string;
+  published: Date;
+  updated?: Date;
+  content: string;
+  categories?: string[];
+  lang: string;
+  image?: string;
+  author?: Author;
+}
+
+const defaultGenerator = "Lume";
+
+/**
+ * A plugin to generate RSS, Atom and JSON feeds
+ * @see https://lume.land/plugins/feed/
+ */
+export function feed<D = Lume.GlobalData>(
+  userOptionsFn?: Options<D> | Options<D>[] | (() => Options<D>[] | Options<D>),
+) {
+  return (site: Site) => {
+    site.process(function processFeed() {
+      const userOptions = typeof userOptionsFn === "function" ? userOptionsFn() : userOptionsFn;
+      const optionsArray = Array.isArray(userOptions) ? userOptions : [userOptions];
+
+      for (const opt of optionsArray) {
+        const options = merge(defaults, opt);
+        const output = Array.isArray(options.output) ? options.output : [options.output];
+
+        const pages = site.search.pages(options.query, options.sort, options.limit);
+
+        const { info, items } = options;
+        const rootData = site.source.data.get("/") || {};
+
+        const feed: FeedData = {
+          title: getPlainDataValue(rootData, info.title),
+          description: getPlainDataValue(rootData, info.description),
+          published: getDataValue(rootData, info.published),
+          lang: getDataValue(rootData, info.lang),
+          hubs: info.hubs,
+          url: site.url("", true),
+          self: getDataValue(rootData, info.self),
+          generator: info.generator === true ? defaultGenerator : info.generator || undefined,
+          author: getAuthor(rootData, info, site),
+          image: info.image ? site.url(info.image, true) : undefined,
+          icon: info.icon ? site.url(info.icon, true) : undefined,
+          color: info.color,
+          items: pages.map((data): FeedItem => {
+            const content = getDataValue(data, items.content)?.toString();
+            const pageUrl = site.url(data.url, true);
+            const fixedContent = fixUrls(new URL(pageUrl), content || "");
+            const imagePath = getDataValue(data, items.image);
+            const image = imagePath !== undefined ? site.url(imagePath, true) : undefined;
+
+            return {
+              title: getPlainDataValue(data, items.title),
+              url: site.url(data.url, true),
+              description: getPlainDataValue(data, items.description),
+              author: getAuthor(data, items, site),
+              published: toDate(getDataValue(data, items.published)) || new Date(),
+              updated: toDate(getDataValue(data, items.updated)),
+              content: fixedContent,
+              lang: getDataValue(data, items.lang),
+              categories: toStringArray(getDataValue(data, items.categories)),
+              image,
+            };
+          }),
+        };
+
+        if (feed.self) {
+          feed.self = site.url(feed.self, true);
+        }
+
+        for (const filename of output) {
+          const file = site.url(filename, true);
+
+          switch (getMimeType(filename)) {
+            case "application/rss+xml":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateRss(feed, file, options.stylesheet),
+                }),
+              );
+              break;
+
+            case "application/feed+json":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateJson(feed, file),
+                }),
+              );
+              break;
+
+            case "application/atom+xml":
+              site.pages.push(
+                Page.create({
+                  url: filename,
+                  content: generateAtom(feed, file, options.stylesheet),
+                }),
+              );
+              break;
+
+            default:
+              log.error(`[feed plugin] Input output format: ${filename}`);
+          }
+        }
+      }
+    });
+  };
+}
+
+function getAuthor<D>(
+  data: Partial<Data>,
+  info: FeedInfoOptions | FeedItemOptions<D>,
+  site: Site,
+): Author | undefined {
+  const name = getPlainDataValue(data, info.authorName);
+  const url = getDataValue(data, info.authorUrl);
+  const authorAvatar = getDataValue(data, info.authorAvatar);
+  const avatar = authorAvatar ? site.url(authorAvatar, true) : undefined;
+
+  if (name || url || avatar) {
+    return { name, url, avatar };
+  }
+}
+
+function fixUrls(base: URL, html: string): string {
+  return html.replaceAll(
+    /\s(href|src)="([^"]+)"/g,
+    (_match, attr, value) => ` ${attr}="${new URL(value, base).href}"`,
+  );
+}
+
+function generateRss(data: FeedData, file: string, stylesheet?: string): string {
+  const self = data.self ?? file;
+  const feed: Stringifyable = {
+    "@version": "1.0",
+    "@encoding": "UTF-8",
+    rss: {
+      "@xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+      "@xmlns:wfw": "http://wellformedweb.org/CommentAPI/",
+      "@xmlns:dc": "http://purl.org/dc/elements/1.1/",
+      "@xmlns:atom": "http://www.w3.org/2005/Atom",
+      "@xmlns:sy": "http://purl.org/rss/1.0/modules/syndication/",
+      "@xmlns:slash": "http://purl.org/rss/1.0/modules/slash/",
+      ...(data.image !== undefined || data.icon !== undefined || data.color !== undefined
+        ? { "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0" }
+        : {}),
+      "@version": "2.0",
+      channel: {
+        title: data.title,
+        link: data.url,
+        "atom:link": [
+          {
+            "@href": self,
+            "@rel": "self",
+            "@type": getMimeType(self) ?? "application/rss+xml",
+          },
+          ...(data.hubs ?? []).map((hub) => ({
+            "@href": hub,
+            "@rel": "hub",
+          })),
+        ],
+        description: data.description,
+        lastBuildDate: data.published.toUTCString(),
+        language: data.lang,
+        generator: data.generator,
+        author: {
+          name: data.author?.name,
+          uri: data.author?.url,
+        },
+        "webfeeds:cover": {
+          "@image": data.image,
+        },
+        "webfeeds:logo": data.icon,
+        "webfeeds:accentColor": data.color,
+        item: data.items.map((item) => ({
+          title: item.title,
+          link: item.url,
+          guid: {
+            "@isPermaLink": false,
+            "#text": item.url,
+          },
+          author: {
+            name: item.author?.name,
+            uri: item.author?.url,
+          },
+          description: item.description,
+          "content:encoded": cdata(item.content),
+          category: item.categories,
+          pubDate: item.published.toUTCString(),
+          "atom:updated": item.updated?.toISOString(),
+          meta: item.image ? { "@property": "og:image", "@content": item.image } : undefined,
+        })),
+      },
+    },
+  };
+
+  if (stylesheet) {
+    feed["#instructions"] = {
+      "xml-stylesheet": {
+        "@type": "text/xsl",
+        "@href": stylesheet,
+      },
+    };
+  }
+
+  return stringify(clean(feed));
+}
+
+function generateJson(data: FeedData, file: string): string {
+  const feed = {
+    version: "https://jsonfeed.org/version/1.1",
+    title: data.title,
+    home_page_url: data.url,
+    feed_url: data.self ?? file,
+    hubs: data.hubs && data.hubs.map((hub) => ({ type: "WebSub", url: hub })),
+    description: data.description,
+    language: data.lang,
+    authors: data.author ? [data.author] : undefined,
+    icon: data.image,
+    favicon: data.icon,
+    items: data.items.map((item) => ({
+      id: item.url,
+      url: item.url,
+      title: item.title,
+      language: item.lang,
+      authors: item.author ? [item.author] : undefined,
+      content_html: item.content,
+      tags: item.categories,
+      date_published: item.published.toISOString(),
+      date_modified: item.updated?.toISOString(),
+      image: item.image,
+    })),
+  };
+
+  return JSON.stringify(clean(feed));
+}
+
+function generateAtom(data: FeedData, file: string, stylesheet?: string): string {
+  const self = data.self ?? file;
+  const feed: Stringifyable = {
+    "@version": "1.0",
+    "@encoding": "UTF-8",
+    feed: {
+      "@xmlns": "http://www.w3.org/2005/Atom",
+      ...(data.image !== undefined || data.icon !== undefined || data.color !== undefined
+        ? { "@xmlns:webfeeds": "http://webfeeds.org/rss/1.0" }
+        : {}),
+      "@xml:lang": data.lang,
+      id: file,
+      title: data.title,
+      subtitle: data.description,
+      updated: data.published.toISOString(),
+      link: [
+        {
+          "@href": data.url,
+          "@rel": "alternate",
+          "@type": "text/html",
+        },
+        {
+          "@href": self,
+          "@rel": "self",
+          "@type": getMimeType(self) ?? "application/atom+xml",
+        },
+        ...(data.hubs ?? []).map((hub) => ({
+          "@href": hub,
+          "@rel": "hub",
+        })),
+      ],
+      generator: data.generator,
+      author: {
+        name: data.author?.name,
+        uri: data.author?.url,
+      },
+      icon: data.icon,
+      logo: data.image,
+      "webfeeds:cover": {
+        "@image": data.image,
+      },
+      "webfeeds:logo": data.icon,
+      "webfeeds:accentColor": data.color,
+      entry: data.items.map((item) => ({
+        "@xml:lang": item.lang !== data.lang ? item.lang : undefined,
+        id: item.url,
+        title: item.title,
+        updated: item.updated?.toISOString(),
+        published: item.published.toISOString(),
+        link: {
+          "@href": item.url,
+          "@rel": "alternate",
+          "@type": "text/html",
+        },
+        author: {
+          name: item.author?.name,
+          uri: item.author?.url,
+        },
+        summary: item.description,
+        content: item.content
+          ? {
+              "@type": "html",
+              "#text": item.content,
+            }
+          : undefined,
+        category: item.categories?.map((category) => ({ "@term": category })),
+      })),
+    },
+  };
+
+  if (stylesheet) {
+    feed["#instructions"] = {
+      "xml-stylesheet": {
+        "@type": "text/xsl",
+        "@href": stylesheet,
+      },
+    };
+  }
+
+  return stringify(clean(feed));
+}
+
+/** Remove undefined values of an object recursively */
+function clean(obj: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(obj)
+      .map(([key, value]): [string, unknown] => {
+        if (isPlainObject(value)) {
+          const cleanValue = clean(value);
+          return [key, Object.keys(cleanValue).length > 0 ? cleanValue : undefined];
+        }
+        if (Array.isArray(value)) {
+          const cleanValue = value
+            .map((v) => (isPlainObject(v) ? clean(v) : v))
+            .filter((v) => v !== undefined);
+          return [key, cleanValue.length > 0 ? cleanValue : undefined];
+        }
+        return [key, value];
+      })
+      .filter(([, value]) => value !== undefined),
+  );
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!value) {
+    return [];
+  }
+  const array = Array.isArray(value) ? value : [value];
+  return array.map((v) => (typeof v === "string" ? v : v.toString()));
+}
+
+function toDate(date?: string | number | Date): Date | undefined {
+  if (date instanceof Date) {
+    return date;
+  }
+  if (date === undefined) {
+    return;
+  }
+  return parseDate(date);
+}
+
+function getMimeType(filename: string): string | undefined {
+  const format = getExtension(filename).slice(1);
+
+  switch (format) {
+    case "rss":
+    case "feed":
+    case "xml":
+    case "html":
+      return "application/rss+xml";
+    case "atom":
+      return "application/atom+xml";
+    case "json":
+      return "application/feed+json";
+  }
+}
+
+export default feed;

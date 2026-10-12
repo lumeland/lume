@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-date",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plugin to manipulate date & time values in different locales",
   "license": "MIT",
   "type": "module",
   "exports": {

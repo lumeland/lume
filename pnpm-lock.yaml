@@ -357,6 +357,28 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/plugin-feed:
+    dependencies:
+      '@lowlighter/xml':
+        specifier: ^8.0.1
+        version: 8.0.1
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-json:
     dependencies:
       '@lumeland/core':
@@ -928,6 +950,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@jsr/std__xml@0.2.0':
+    resolution: {integrity: sha512-uuUkBEiLfxa8P6cu9Sl8MjRNNzf5v96UbYmBMn+YE7+7OCBKoCLctjpSXf8vttWTBEM+Raa4FZ6B09L2CPl/Yg==, tarball: https://npm.jsr.io/~/11/@jsr/std__xml/0.2.0.tgz}
+
+  '@lowlighter/xml@8.0.1':
+    resolution: {integrity: sha512-usb8rCjGXDhWQcAjKmP95CtrTUsJ44S+QW8KR6ft7/W2HeVtB0nxHcYkyhhKxLlr0G0kE3XqRWUjMBN07Rc3Dg==}
 
   '@lumeland/dom@0.1.56':
     resolution: {integrity: sha512-PLCpkKfRYqRuG87uU8dHnX3g80ljC/5yw7+xJ/HzbnhiiayhglDdLWXO4rV/fwbO/asH91QBDdZWY8dOGsX5lQ==}
@@ -2226,6 +2254,12 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
+
+  '@jsr/std__xml@0.2.0': {}
+
+  '@lowlighter/xml@8.0.1':
+    dependencies:
+      '@std/xml': '@jsr/std__xml@0.2.0'
 
   '@lumeland/dom@0.1.56': {}
 
