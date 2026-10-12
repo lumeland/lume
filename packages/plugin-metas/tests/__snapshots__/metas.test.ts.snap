@@ -1,0 +1,364 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`metas plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/_data.js",
+      "/page-1.vto",
+      "/page-2.vto",
+      "/page-3.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head>
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Custom title">
+<meta property="og:description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta property="og:url" content="http://localhost/page-1/">
+<meta property="og:image" content="http://localhost/my-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@myUser">
+<meta name="description" content="A very long custom description with a lot of text that will be truncated to a maximum of 155 characters and then append &quot;…&quot; to the end. Lorem ipsum dolor…">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ccc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#333" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Lume testing">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
+</head>
+  <body>
+    Hello world
+  
+
+</body></html>",
+      "data": {
+        "basename": "page-1",
+        "children": "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+        "content": "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+          "metas",
+        ],
+        "metas": [
+          "site",
+          "title",
+          "description",
+          "image",
+          "icon",
+          "robots",
+          "keywords",
+          "twitter",
+          "lang",
+          "color",
+          "twitter:label1",
+          "twitter:data1",
+          "generator",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page-1/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/page-1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head>
+  <meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Relative paths">
+<meta property="og:description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta property="og:url" content="http://localhost/page-2/">
+<meta property="og:image" content="http://localhost/page-2/my-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@myUser">
+<meta name="description" content="Tests the use of relative path (to page.data.url) when filling out the og:image or og:icon URL">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
+<meta name="article:published_time" content="2025-06-21T23:45:00.000Z">
+<meta name="article:modified_time" content="2025-06-21T23:45:00.000Z">
+<meta name="article:tag" content="one">
+<meta name="article:tag" content="two">
+<meta name="article:tag" content="three">
+</head>
+  <body>
+    Hello world
+  
+
+</body></html>",
+      "data": {
+        "basename": "page-2",
+        "children": "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+        "content": "<html>
+  <head>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+          "metas",
+        ],
+        "metas": [
+          "site",
+          "title",
+          "description",
+          "image",
+          "icon",
+          "robots",
+          "keywords",
+          "twitter",
+          "lang",
+          "color",
+          "twitter:label1",
+          "twitter:data1",
+          "article:published_time",
+          "article:modified_time",
+          "article:author",
+          "article:section",
+          "article:tag",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(3)",
+        "url": "/page-2/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/page-2",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head><meta property="og:type" content="website">
+<meta property="og:site_name" content="My site">
+<meta property="og:locale" content="gl">
+<meta property="og:title" content="Title from page data">
+<meta property="og:description" content="THIS IS PAGE EXCERPT WILL BE USED AS META DESCRIPTION.">
+<meta property="og:url" content="http://localhost/page-3/">
+<meta property="og:image" content="http://localhost/page-3/use-cover-as-meta-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@myUser">
+<meta name="fediverse:creator" content="@lume@fosstodon.org">
+<meta name="description" content="THIS IS PAGE EXCERPT WILL BE USED AS META DESCRIPTION.">
+<meta name="keywords" content="one, two">
+<meta name="robots" content="this robots will be overrided">
+<meta name="theme-color" content="black">
+<meta name="generator" content="Lume">
+<meta name="twitter:label1" content="Reading time">
+<meta name="twitter:data1" content="1 minute">
+</head><body><p>This is page excerpt will be used as meta description.</p>
+<!--more-->
+</body></html>",
+      "data": {
+        "basename": "page-3",
+        "children": "<p>This is page excerpt will be used as meta description.</p>
+<!--more-->
+",
+        "content": "This is page excerpt will be used as meta description.
+
+<!--more-->
+",
+        "cover": "./use-cover-as-meta-image.png",
+        "date": [],
+        "excerpt": "This is page excerpt will be used as meta description.
+
+",
+        "header": [
+          "title",
+        ],
+        "mergedKeys": [
+          "tags",
+          "metas",
+        ],
+        "metas": [
+          "site",
+          "title",
+          "description",
+          "image",
+          "icon",
+          "robots",
+          "keywords",
+          "twitter",
+          "lang",
+          "color",
+          "twitter:label1",
+          "twitter:data1",
+          "fediverse",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "robots": "this robots will be overrided",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page-3/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/page-3",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

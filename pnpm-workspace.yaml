@@ -16,6 +16,7 @@ versioning:
     "@lumeland/plugin-dev": beta
     "@lumeland/plugin-json": beta
     "@lumeland/plugin-markdown": beta
+    "@lumeland/plugin-metas": beta
     "@lumeland/plugin-modify-urls": beta
     "@lumeland/plugin-modules": beta
     "@lumeland/plugin-not-found": beta
