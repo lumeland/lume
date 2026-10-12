@@ -357,11 +357,49 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/plugin-extract-date:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-feed:
     dependencies:
       '@lowlighter/xml':
         specifier: ^8.0.1
         version: 8.0.1
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
+  packages/plugin-filter-pages:
+    dependencies:
       '@lumeland/core':
         specifier: workspace:*
         version: link:../core
@@ -489,6 +527,25 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
 
+  packages/plugin-multilanguage:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-not-found:
     dependencies:
       '@lumeland/core':
@@ -540,12 +597,65 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
 
+  packages/plugin-redirects:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-search:
     dependencies:
       '@lumeland/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
+  packages/plugin-sitemap:
+    dependencies:
+      '@lowlighter/xml':
+        specifier: ^8.0.1
+        version: 8.0.1
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/plugin-extract-date':
+        specifier: workspace:^
+        version: link:../plugin-extract-date
+      '@lumeland/plugin-filter-pages':
+        specifier: workspace:^
+        version: link:../plugin-filter-pages
+      '@lumeland/plugin-multilanguage':
+        specifier: workspace:^
+        version: link:../plugin-multilanguage
+      '@lumeland/plugin-redirects':
+        specifier: workspace:^
+        version: link:../plugin-redirects
       '@lumeland/testing':
         specifier: workspace:*
         version: link:../testing

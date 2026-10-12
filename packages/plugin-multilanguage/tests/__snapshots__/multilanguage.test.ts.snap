@@ -1,0 +1,773 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`multilanguage plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/_data.json",
+      "/_includes",
+      "/_includes/layout.vto",
+      "/index.md",
+      "/lang-selector.md",
+      "/other.vto",
+      "/pages",
+      "/pages/page1.md",
+      "/pages/page1_en.md",
+      "/pages/page1_gl.md",
+      "/pagination.page.js",
+      "/types",
+      "/types/article.md",
+      "/types/article_gl.md",
+      "/types/post.md",
+      "/types/post_gl.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
+<link rel="alternate" hreflang="gl" href="http://localhost/">
+</head><body><p>Hello world</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "",
+        "children": "<p>Hello world</p>
+",
+        "content": "Hello world
+",
+        "date": [],
+        "id": "index",
+        "lang": "en",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Hello world",
+        "unmatchedLangUrl": "undefined",
+        "url": "/en/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/other-page-english/">
+</head><body><h1>English subtitle</h1>
+<p>Common description</p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "other",
+        "children": "<h1>English subtitle</h1>
+<p>Common description</p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
+",
+        "content": "<h1>{{ metas.subtitle }}</h1>
+<p>{{ metas.description }}</p>
+<p>Other page <a href="{{ '~/index.md(lang=gl)' |> url }}">Link to index in Galego</a></p>
+",
+        "date": [],
+        "id": "other",
+        "lang": "en",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "metas": [
+          "subtitle",
+          "description",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Other",
+        "unmatchedLangUrl": "/en/other-page-english/",
+        "url": "/en/other-page-english/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
+</head><body><nav>
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+  <a href="/page-1/" hreflang="gl" class="alternate"></a>
+  <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
+</nav>
+  <li>Hello world</li>
+  <li>Other</li>
+  <li>page-en</li>
+  <li>post 1</li>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "page-1",
+        "children": "undefined",
+        "content": "undefined",
+        "date": [],
+        "id": "page-1",
+        "lang": "en",
+        "layout": "layout.vto",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "pagination": [
+          "page",
+          "totalPages",
+          "totalResults",
+          "first",
+          "last",
+          "previous",
+          "next",
+        ],
+        "results": "Array(4)",
+        "search": [],
+        "tags": "Array(0)",
+        "unmatchedLangUrl": "/en/page-1/",
+        "url": "/en/page-1/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/pagination[1]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
+<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-one/">
+</head><body><p>Page 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(3)",
+        "basename": "page-one",
+        "children": "<p>Page 1</p>
+",
+        "content": "Page 1
+",
+        "date": [],
+        "id": "page1",
+        "lang": "en",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "page-en",
+        "unmatchedLangUrl": "/en/page-one/",
+        "url": "/en/page-one/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/pages/page1_en",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/post_gl/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/types/post/">
+</head><body><p>This is the post 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "post",
+        "children": "<p>This is the post 1</p>
+",
+        "content": "This is the post 1
+",
+        "date": [],
+        "id": 1,
+        "lang": "en",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "post 1",
+        "type": "post",
+        "unmatchedLangUrl": "/en/types/post/",
+        "url": "/en/types/post/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/types/post",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="fr"><head><link rel="alternate" hreflang="en" href="http://localhost/en/other-page-english/">
+<link rel="alternate" hreflang="fr" href="http://localhost/fr/other-page-french.html">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/other-page-english/">
+</head><body><h1>Sous-titre français</h1>
+<p>Common description</p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "other",
+        "children": "<h1>Sous-titre français</h1>
+<p>Common description</p>
+<p>Other page <a href="/">Link to index in Galego</a></p>
+",
+        "content": "<h1>{{ metas.subtitle }}</h1>
+<p>{{ metas.description }}</p>
+<p>Other page <a href="{{ '~/index.md(lang=gl)' |> url }}">Link to index in Galego</a></p>
+",
+        "date": [],
+        "id": "other",
+        "lang": "fr",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "metas": [
+          "subtitle",
+          "description",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Autre",
+        "unmatchedLangUrl": "/en/other-page-english/",
+        "url": "/fr/other-page-french.html",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/">
+<link rel="alternate" hreflang="gl" href="http://localhost/">
+</head><body><p>Ola mundo</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "",
+        "children": "<p>Ola mundo</p>
+",
+        "content": "Ola mundo",
+        "date": [],
+        "id": "index",
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Ola mundo",
+        "unmatchedLangUrl": "undefined",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="it"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
+<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-one/">
+</head><body><p>Pagina 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(3)",
+        "basename": "pagina-1",
+        "children": "<p>Pagina 1</p>
+",
+        "content": "Pagina 1
+",
+        "date": [],
+        "id": "page1",
+        "lang": "it",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "page-it",
+        "unmatchedLangUrl": "/en/page-one/",
+        "url": "/it/pagina-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/pages/page1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="it"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/article_gl/">
+</head><body><p>Questo è l'articolo 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "article",
+        "children": "<p>Questo è l'articolo 1</p>
+",
+        "content": "Questo è l'articolo 1
+",
+        "date": [],
+        "id": 1,
+        "lang": "it",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "article 1",
+        "type": "article",
+        "unmatchedLangUrl": "undefined",
+        "url": "/it/types/article/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/types/article",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="gl" href="http://localhost/lang-selector/">
+</head><body><p>Select your languages...</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(1)",
+        "basename": "lang-selector",
+        "children": "<p>Select your languages...</p>
+",
+        "content": "Select your languages...
+",
+        "date": [],
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Language Selector Page",
+        "unmatchedLangUrl": "undefined",
+        "url": "/lang-selector/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/lang-selector",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/page-1/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-1/">
+</head><body><nav>
+  <a href="/en/page-1/" hreflang="en" class="alternate"></a>
+  <a href="/page-1/" hreflang="gl" class="alternate"></a>
+  <a href="/en/page-1/" hreflang="x-default" class="alternate">Unmatched Language Page</a>
+</nav>
+  <li>Ola mundo</li>
+  <li>Language Selector Page</li>
+  <li>page-gl</li>
+  <li>article 1</li>
+  <li>post 1</li>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "page-1",
+        "children": "undefined",
+        "content": "undefined",
+        "date": [],
+        "id": "page-1",
+        "lang": "gl",
+        "layout": "layout.vto",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "pagination": [
+          "page",
+          "totalPages",
+          "totalResults",
+          "first",
+          "last",
+          "previous",
+          "next",
+        ],
+        "results": "Array(5)",
+        "search": [],
+        "tags": "Array(0)",
+        "unmatchedLangUrl": "/en/page-1/",
+        "url": "/page-1/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/pagination[0]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/page-one/">
+<link rel="alternate" hreflang="it" href="http://localhost/it/pagina-1/">
+<link rel="alternate" hreflang="gl" href="http://localhost/paxina-un/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/page-one/">
+</head><body><p>Páxina 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(3)",
+        "basename": "paxina-un",
+        "children": "<p>Páxina 1</p>
+",
+        "content": "Páxina 1
+",
+        "date": [],
+        "id": "page1",
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "page-gl",
+        "unmatchedLangUrl": "/en/page-one/",
+        "url": "/paxina-un/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/pages/page1_gl",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="it" href="http://localhost/it/types/article/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/article_gl/">
+</head><body><p>Este é o artigo 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "article_gl",
+        "children": "<p>Este é o artigo 1</p>
+",
+        "content": "Este é o artigo 1
+",
+        "date": [],
+        "id": 1,
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "article 1",
+        "type": "article",
+        "unmatchedLangUrl": "undefined",
+        "url": "/types/article_gl/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/types/article_gl",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="gl"><head><link rel="alternate" hreflang="en" href="http://localhost/en/types/post/">
+<link rel="alternate" hreflang="gl" href="http://localhost/types/post_gl/">
+<link rel="alternate" hreflang="x-default" href="http://localhost/en/types/post/">
+</head><body><p>Este é o post 1</p>
+</body></html>",
+      "data": {
+        "alternates": "Array(2)",
+        "basename": "post_gl",
+        "children": "<p>Este é o post 1</p>
+",
+        "content": "Este é o post 1
+",
+        "date": [],
+        "id": 1,
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+          "en",
+          "fr",
+          "it",
+          "gl",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "post 1",
+        "type": "post",
+        "unmatchedLangUrl": "/en/types/post/",
+        "url": "/types/post_gl/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/types/post_gl",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

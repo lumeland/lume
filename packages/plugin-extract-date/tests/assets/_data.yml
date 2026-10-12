@@ -1,0 +1,14 @@
+site: Default site name
+
+mergedKeys:
+  tags: stringArray
+  metas: object
+  imagick: array
+
+metas:
+  title: Default title
+  description: Default description
+
+imagick:
+  resize: [400, 300]
+  suffix: -small

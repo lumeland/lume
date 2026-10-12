@@ -14,14 +14,21 @@ versioning:
     "@lumeland/plugin-base-path": beta
     "@lumeland/plugin-date": beta
     "@lumeland/plugin-dev": beta
+    "@lumeland/plugin-extract-date": beta
+    "@lumeland/plugin-feed": beta
+    "@lumeland/plugin-filter-pages": beta
     "@lumeland/plugin-json": beta
     "@lumeland/plugin-markdown": beta
     "@lumeland/plugin-metas": beta
     "@lumeland/plugin-modify-urls": beta
     "@lumeland/plugin-modules": beta
+    "@lumeland/plugin-multilanguage": beta
+    "@lumeland/plugin-nunjucks": beta
     "@lumeland/plugin-not-found": beta
     "@lumeland/plugin-paginate": beta
+    "@lumeland/plugin-redirect": beta
     "@lumeland/plugin-search": beta
+    "@lumeland/plugin-sitemap": beta
     "@lumeland/plugin-toml": beta
     "@lumeland/plugin-url": beta
     "@lumeland/plugin-vento": beta
