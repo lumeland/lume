@@ -9,7 +9,9 @@ minimumReleaseAgeExclude:
 versioning:
   lanes:
     "@lumeland/core": beta
+    "@lumeland/create-lume": beta
     "@lumeland/lume": beta
+    "@lumeland/plugin-base-path": beta
     "@lumeland/plugin-dev": beta
     "@lumeland/plugin-json": beta
     "@lumeland/plugin-markdown": beta

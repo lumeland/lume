@@ -1,0 +1,501 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`base-path plugin > No path 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/index.vto",
+      "/styles.css",
+    ],
+  },
+  "files": [
+    {
+      "entry": "/styles.css",
+      "flags": [],
+      "outputPath": "/styles.css",
+    },
+  ],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/image.jpeg"></video>
+  <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
+</body>
+</html>",
+      "data": {
+        "basename": "",
+        "children": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/image.jpeg"></video>
+  <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
+</body>
+</html>",
+        "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/image.jpeg"></video>
+  <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
+</body>
+</html>",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`base-path plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/index.vto",
+      "/styles.css",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/blog/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/blog/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin="">
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/blog/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/blog/img/avatar.png">
+  <img id="img-2" srcset="/blog/image-400.jpg 400w, /blog/image-800.jpg 800w, /blog/image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/blog/image.jpeg"></video>
+  <script id="script-1" src="/blog/script.js"></script>
+  <form action="/blog/action.php"></form>
+
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/image.jpeg"></video>
+  <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
+</body>
+</html>",
+        "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link id="style-1" rel="stylesheet" href="/style.css">
+  <link id="style-2" rel="stylesheet" href="other-styles.css">
+  <link id="style-3" rel="stylesheet" href="./other-styles.css">
+  <link id="preload-1" rel="preload" href="/fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link id="preload-2" rel="preload" as="image" imagesrcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" imagesizes="100vw">
+</head>
+<body>
+  <a id="link-1" href="/">Home</a>
+  <a id="link-2" href="/blog/">Blog</a>
+  <img id="img-1" src="/img/avatar.png">
+  <img id="img-2" srcset="/image-400.jpg 400w, /image-800.jpg 800w, /image-1600.jpg 1600w" sizes="100vw" alt="">
+  <picture>
+    <source id="source-1" srcset="/blog/image.jpeg x1, /blog/image-big.jpeg">
+  </picture>
+  <video poster="/image.jpeg"></video>
+  <script id="script-1" src="/script.js"></script>
+  <form action="/action.php"></form>
+</body>
+</html>",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "@import "/blog/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import "/blog/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import url("/blog/style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+@import url("/blog/style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+
+@font-face {
+  font-family: "foo";
+  src: url("/blog/fonts/cicle_fina-webfont.woff2");
+}
+
+div {
+  background-image: url("/blog/img/avatar.png");
+
+}
+
+:root {
+  --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+
+  --img: url('data:image/svg+xml;charset-UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="hsl(300, 60%, 60%)" viewBox="0 0 256 256"><path d="M128,72a8,8,0,0,1,8,8v56a8,8,0,0,1-16,0V80A8,8,0,0,1,128,72ZM116,172a12,12,0,1,0,12-12A12,12,0,0,0,116,172Zm124-44a15.85,15.85,0,0,1-4.67,11.28l-96.05,96.06a16,16,0,0,1-22.56,0h0l-96-96.06a16,16,0,0,1,0-22.56l96.05-96.06a16,16,0,0,1,22.56,0l96.05,96.06A15.85,15.85,0,0,1,240,128Zm-16,0L128,32,32,128,128,224h0Z"></path></svg>');
+  --img: url("http://example.com");
+  --img: url("http://example.com");
+  --img: url('data:image/svg+xml;charset-UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="hsl(300, 60%, 60%)" viewBox="0 0 256 256"><path d="M128,72a8,8,0,0,1,8,8v56a8,8,0,0,1-16,0V80A8,8,0,0,1,128,72ZM116,172a12,12,0,1,0,12-12A12,12,0,0,0,116,172Zm124-44a15.85,15.85,0,0,1-4.67,11.28l-96.05,96.06a16,16,0,0,1-22.56,0h0l-96-96.06a16,16,0,0,1,0-22.56l96.05-96.06a16,16,0,0,1,22.56,0l96.05,96.06A15.85,15.85,0,0,1,240,128Zm-16,0L128,32,32,128,128,224h0Z"></path></svg>');
+}
+",
+      "data": {
+        "basename": "styles",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/styles.css",
+      },
+      "src": {
+        "ext": ".css",
+        "path": "/styles",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

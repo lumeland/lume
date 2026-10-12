@@ -57,12 +57,6 @@ const root = `packages/plugin-${name}`;
 
 await saveFile(root, "package.json", JSON.stringify(pkg, null, 2));
 await saveFile(root, "tsconfig.json", JSON.stringify(tsconfig, null, 2));
-await saveFile(
-  root,
-  ".npmignore",
-  `tests
-`,
-);
 await saveFile(root, "src/mod.ts", "");
 await saveFile(
   root,
