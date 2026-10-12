@@ -11,7 +11,7 @@ if (!name) {
 
 const pkg = {
   name: `@lumeland/plugin-${name}`,
-  version: "1.0.0",
+  version: "1.0.0-beta-1",
   description: "",
   license: "MIT",
   type: "module",

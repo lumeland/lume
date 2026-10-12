@@ -1,0 +1,502 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`nunjucks plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".njk",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_components",
+      "/_components/Button.ts",
+      "/_components/icon",
+      "/_components/icon/User.njk",
+      "/_data.yml",
+      "/_includes",
+      "/_includes/basic.njk",
+      "/_includes/partial.njk",
+      "/components.njk",
+      "/data.njk",
+      "/empty.njk",
+      "/index.njk",
+      "/njk-filter.page.js",
+      "/with-helpers.njk",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <main><button class="" type="button">
+  button without arguments
+</button>
+
+<button class="" type="button">button content</button>
+<icon name="John">
+  this is John
+</icon>
+
+
+<button class="my-button" type="button">
+  button content
+
+  <icon name="John">
+  
+  this is John
+  
+</icon>
+
+</button>
+</main>
+  </body>
+</html>
+",
+      "data": {
+        "basename": "components",
+        "children": "<button class="" type="button">
+  button without arguments
+</button>
+
+<button class="" type="button">button content</button>
+<icon name="John">
+  this is John
+</icon>
+
+
+<button class="my-button" type="button">
+  button content
+
+  <icon name="John">
+  
+  this is John
+  
+</icon>
+
+</button>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "{% comp "Button" %}
+  button without arguments
+{% endcomp %}
+
+{{ comp.Button({ content: "button content" }) | await | safe }}
+{{ comp.icon.User({ content: "this is John", name:"John" }) | await | safe }}
+
+{% comp "Button", className="my-button" %}
+  button content
+
+  {% comp "icon.user", name="John" %}
+  this is John
+  {% endcomp %}
+{% endcomp %}
+",
+        "date": [],
+        "layout": "basic.njk",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/components/",
+      },
+      "src": {
+        "ext": ".njk",
+        "path": "/components",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "["red","green","blue"]
+",
+      "data": {
+        "basename": "data",
+        "colors": "Array(3)",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "{{ colors | dump | safe }}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/data.json",
+      },
+      "src": {
+        "ext": ".njk",
+        "path": "/data",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+  </head>
+  <body>
+    <main><h1>Hello World</h1>
+</main>
+  </body>
+</html>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello World</h1>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<h1>{{ title }}</h1>
+",
+        "date": [],
+        "layout": "./_includes/basic.njk",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Hello World",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".njk",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>njk filter example</title>
+  </head>
+  <body>
+    <main><h1>NJK FILTER EXAMPLE</h1></main>
+  </body>
+</html>
+",
+      "data": {
+        "basename": "njk-filter",
+        "children": "<h1>NJK FILTER EXAMPLE</h1>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "layout": "basic.njk",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "njk filter example",
+        "url": "/njk-filter/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/njk-filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "// fs:/_components/Button.ts.js
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", () => {
+    alert("Hello world!");
+  });
+});
+
+// fs:/_components/icon/User.njk.js
+console.log("Hello world, from the icon/User component");
+",
+      "data": {
+        "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/script.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "button {
+  background-color: #00f;
+}
+
+icon {
+  width: 48px;
+  height: 48px;
+}
+",
+      "data": {
+        "basename": "style",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/style.css",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The title</title>
+  </head>
+  <body>
+    <main><p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p></main>
+  </body>
+</html>
+",
+      "data": {
+        "basename": "with-helpers",
+        "children": "<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<p><strong>THE TITLE</strong></p>
+<div>hello (async)</div>
+
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+<ul>
+  <li>This is a partial</li>
+  <li>async helper in a partial (async)</li>
+</ul>
+
+<strong>The title</strong>
+<strong>The title</strong>
+<p><strong>The title</strong></p>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<p>{% upperCase title %}</p>
+<p>{% upperCase "The title" %}</p>
+<p>{% upperCaseAsync title %}</p>
+<p>{% upperCaseAsync "The title" %}</p>
+<p>{% upperCaseBody %}The title{% endupperCaseBody %}</p>
+<p>{% upperCaseBody %}{{ title }}{% endupperCaseBody %}</p>
+<p>{% upperCaseBodyAsync %}The title{% endupperCaseBodyAsync %}</p>
+<p>{% upperCaseBodyAsync %}{{ title }}{% endupperCaseBodyAsync %}</p>
+<div>{{ "hello" | returnAsync }}</div>
+
+{% include "partial.njk" %}
+{% include "./_includes/partial.njk" %}
+
+<strong>{{ "title" | fromPage }}</strong>
+<strong>{{ "title" | fromPageAsync }}</strong>
+<p>{% fromPageTagAsync %}title{% endfromPageTagAsync %}</p>",
+        "date": [],
+        "layout": "basic.njk",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "The title",
+        "url": "/with-helpers/",
+      },
+      "src": {
+        "ext": ".njk",
+        "path": "/with-helpers",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
