@@ -5,6 +5,7 @@ dist="./dist"
 
 sh ./scripts/build.sh
 
+set +e
 # Publish the packages
 for dir in "$dist"/*; do
   [ -d "$dir" ] || continue

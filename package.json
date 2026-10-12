@@ -1,10 +1,4 @@
 {
-  "name": "lume",
-  "version": "1.0.0-alpha-1",
-  "description": "",
-  "keywords": [],
-  "license": "ISC",
-  "author": "",
   "type": "module",
   "scripts": {
     "build": "sh scripts/build.sh",
