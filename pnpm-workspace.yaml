@@ -13,6 +13,7 @@ versioning:
     "@lumeland/lume": beta
     "@lumeland/plugin-base-path": beta
     "@lumeland/plugin-date": beta
+    "@lumeland/plugin-compress": beta
     "@lumeland/plugin-dev": beta
     "@lumeland/plugin-extract-date": beta
     "@lumeland/plugin-feed": beta
