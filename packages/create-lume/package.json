@@ -1,0 +1,24 @@
+{
+  "name": "create-lume",
+  "version": "0.1.0",
+  "description": "Script to create Lume sites",
+  "license": "MIT",
+  "bin": {
+    "create-lume": "./cli.ts"
+  },
+  "files": [
+    "build"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "rm -rf build && tsc -p ."
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.8.1",
+    "cac": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}

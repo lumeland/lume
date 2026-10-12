@@ -3,7 +3,7 @@
 import cac from "cac";
 import pkg from "./package.json" with { type: "json" };
 
-const cli = cac("🔥lume");
+const cli = cac("🔥 Lume");
 
 cli.version(pkg.version);
 
