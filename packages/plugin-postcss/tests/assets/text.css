@@ -1,0 +1,11 @@
+@import "npm:modern-normalize@2.0.0/modern-normalize.css";
+
+.text {
+  font-family: var(--font-family);
+
+  & p {
+    color: var(--color);
+    box-shadow: 0 0 0.5em var(--background);
+    backdrop-filter: blur(2px);
+  }
+}

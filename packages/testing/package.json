@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/testing",
   "version": "1.0.0-beta-1",
-  "description": "",
+  "description": "Helpers for testing plugins",
   "license": "MIT",
   "files": [
     "build"

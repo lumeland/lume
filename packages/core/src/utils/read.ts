@@ -7,18 +7,14 @@ import type Cache from "../cache.ts";
 let cache: Cache | undefined;
 
 export function setCache(instance: Cache) {
-  cache = instance
+  cache = instance;
 }
 
 /**
  * Read a local or remote file and return its content.
  * If the file is remote, it will be cached in the `lume_remote_files` cache.
  */
-export async function read(
-  path: string,
-  isBinary: false,
-  init?: RequestInit,
-): Promise<string>;
+export async function read(path: string, isBinary: false, init?: RequestInit): Promise<string>;
 export async function read(
   path: string,
   isBinary: true,

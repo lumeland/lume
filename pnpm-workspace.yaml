@@ -12,8 +12,8 @@ versioning:
     "@lumeland/create-lume": beta
     "@lumeland/lume": beta
     "@lumeland/plugin-base-path": beta
-    "@lumeland/plugin-date": beta
     "@lumeland/plugin-compress": beta
+    "@lumeland/plugin-date": beta
     "@lumeland/plugin-dev": beta
     "@lumeland/plugin-extract-date": beta
     "@lumeland/plugin-feed": beta
@@ -25,12 +25,13 @@ versioning:
     "@lumeland/plugin-modify-urls": beta
     "@lumeland/plugin-modules": beta
     "@lumeland/plugin-multilanguage": beta
-    "@lumeland/plugin-nunjucks": beta
     "@lumeland/plugin-not-found": beta
+    "@lumeland/plugin-nunjucks": beta
     "@lumeland/plugin-paginate": beta
     "@lumeland/plugin-redirect": beta
     "@lumeland/plugin-search": beta
     "@lumeland/plugin-sitemap": beta
+    "@lumeland/plugin-source-maps": beta
     "@lumeland/plugin-toml": beta
     "@lumeland/plugin-url": beta
     "@lumeland/plugin-vento": beta
