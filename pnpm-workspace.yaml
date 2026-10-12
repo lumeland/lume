@@ -18,6 +18,7 @@ versioning:
     "@lumeland/plugin-extract-date": beta
     "@lumeland/plugin-feed": beta
     "@lumeland/plugin-filter-pages": beta
+    "@lumeland/plugin-image-size": beta
     "@lumeland/plugin-json": beta
     "@lumeland/plugin-markdown": beta
     "@lumeland/plugin-metas": beta

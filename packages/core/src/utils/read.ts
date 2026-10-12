@@ -1,10 +1,9 @@
 import { isUrl } from "./path.ts";
-import { envBoolean } from "./env.ts";
 import { tokens } from "./tokens.ts";
 import { readFile as readFile_, readTextFile } from "../services/fs.ts";
 import { fromFileUrl } from "../../deps/path.ts";
 
-const useCache = envBoolean("LUME_NOCACHE") !== true;
+import type Cache from "../cache.ts";
 
 /**
  * Read a local or remote file and return its content.
@@ -12,18 +11,21 @@ const useCache = envBoolean("LUME_NOCACHE") !== true;
  */
 export async function read(
   path: string,
-  isBinary: boolean,
-): Promise<Uint8Array<ArrayBuffer> | string>;
+  isBinary: false,
+  init?: RequestInit | null,
+  cache?: Cache,
+): Promise<string>;
 export async function read(
   path: string,
   isBinary: true,
-  init?: RequestInit,
+  init?: RequestInit | null,
+  cache?: Cache,
 ): Promise<Uint8Array<ArrayBuffer>>;
-export async function read(path: string, isBinary: false, init?: RequestInit): Promise<string>;
 export async function read(
   path: string,
   isBinary: boolean,
-  init?: RequestInit,
+  init?: RequestInit | null,
+  cache?: Cache,
 ): Promise<string | Uint8Array<ArrayBuffer>> {
   if (!isUrl(path)) {
     if (path.startsWith("data:")) {
@@ -49,27 +51,10 @@ export async function read(
     init = { ...init, headers };
   }
 
-  if (!useCache) {
-    const response = await fetch(url, init);
+  const cached = isBinary ? cache?.getBytes([url]) : cache?.getText([url]);
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch "${url}"`);
-    }
-
-    return isBinary ? new Uint8Array(await response.arrayBuffer()) : response.text();
-  }
-
-  const cache = await caches.open("lume_remote_files");
-
-  // Prevent https://github.com/denoland/deno/issues/19696
-  try {
-    const cached = await cache.match(url);
-
-    if (cached) {
-      return isBinary ? new Uint8Array(await cached.arrayBuffer()) : cached.text();
-    }
-  } catch {
-    // ignore
+  if (cached) {
+    return cached;
   }
 
   const response = await fetch(url, {
@@ -81,9 +66,9 @@ export async function read(
     throw new Error(`Failed to fetch "${url}"`);
   }
 
-  await cache.put(url, response.clone());
-
-  return isBinary ? new Uint8Array(await response.arrayBuffer()) : response.text();
+  const content = isBinary ? new Uint8Array(await response.arrayBuffer()) : await response.text();
+  cache?.set([url], content);
+  return content;
 }
 
 /** Read a text file like a browser */

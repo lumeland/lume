@@ -442,6 +442,28 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
 
+  packages/plugin-image-size:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      image-dimensions:
+        specifier: ^2.6.0
+        version: 2.6.0
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-json:
     dependencies:
       '@lumeland/core':
@@ -1863,6 +1885,11 @@ packages:
   ico-endec@0.1.6:
     resolution: {integrity: sha512-ZdLU38ZoED3g1j3iEyzcQj+wAkY2xfWNkymszfJPoxucIUhK7NayQ+/C4Kv0nDFMIsbtbEHldv3V8PU494/ueQ==}
 
+  image-dimensions@2.6.0:
+    resolution: {integrity: sha512-j1cgVnvl0ltv7tYImMYMlrkYeDB43oSUiQv3zodkImsFbJWmJZ6M5e5N9k5/8zdMVjrtYzRbmcqTqpxvyh29vw==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
@@ -2900,6 +2927,8 @@ snapshots:
     optional: true
 
   ico-endec@0.1.6: {}
+
+  image-dimensions@2.6.0: {}
 
   immediate@3.0.6: {}
 
