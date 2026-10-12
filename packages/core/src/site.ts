@@ -6,6 +6,7 @@ import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page_url.ts";
 import { insertContent } from "./utils/page_content.ts";
 import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
+import { setCache } from "./utils/read.ts";
 
 import FS from "./fs.ts";
 import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
@@ -256,6 +257,7 @@ export default class Site {
     // Initialize the cache if LUME_NOCACHE is not enabled
     if (envBoolean("LUME_NOCACHE") !== true) {
       this.cache = new Cache({ folder: this.root("_cache") });
+      setCache(this.cache);
     }
 
     // Initialize the debug bar

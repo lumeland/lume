@@ -16,7 +16,6 @@ interface Dimmensions {
 export default function imageSize() {
   return (site: Site) => {
     const sizes = new Map<string, Dimmensions | undefined>();
-    const cache = site.cache;
 
     //Clear cache
     site.addEventListener("beforeUpdate", () => sizes.clear());
@@ -34,7 +33,7 @@ export default function imageSize() {
 
       // It's an URL
       if (pathIsUrl) {
-        const data = await read(path, true, null, cache);
+        const data = await read(path, true);
         const dimmensions = imageDimensionsFromData(data);
         sizes.set(path, dimmensions);
         return dimmensions;

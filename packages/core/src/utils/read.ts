@@ -4,6 +4,11 @@ import { readFile as readFile_, readTextFile } from "../services/fs.ts";
 import { fromFileUrl } from "../../deps/path.ts";
 
 import type Cache from "../cache.ts";
+let cache: Cache | undefined;
+
+export function setCache(instance: Cache) {
+  cache = instance
+}
 
 /**
  * Read a local or remote file and return its content.
@@ -12,20 +17,17 @@ import type Cache from "../cache.ts";
 export async function read(
   path: string,
   isBinary: false,
-  init?: RequestInit | null,
-  cache?: Cache,
+  init?: RequestInit,
 ): Promise<string>;
 export async function read(
   path: string,
   isBinary: true,
-  init?: RequestInit | null,
-  cache?: Cache,
+  init?: RequestInit,
 ): Promise<Uint8Array<ArrayBuffer>>;
 export async function read(
   path: string,
   isBinary: boolean,
-  init?: RequestInit | null,
-  cache?: Cache,
+  init?: RequestInit,
 ): Promise<string | Uint8Array<ArrayBuffer>> {
   if (!isUrl(path)) {
     if (path.startsWith("data:")) {
@@ -85,5 +87,5 @@ export async function readFile(path: string): Promise<string> {
  * Clear the cache of remote files.
  */
 export async function clearCache() {
-  await caches.delete("lume_remote_files");
+  cache?.clear();
 }

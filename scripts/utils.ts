@@ -92,7 +92,7 @@ export function editJson<T = Record<string, any>>(path: string, cb: (data: T) =>
 
   try {
     data = JSON.parse(readFileSync(path, "utf-8"));
-  } catch (err) {
+  } catch {
     console.log(`Not found. Generate file: ${path}`);
   }
   cb(data);
