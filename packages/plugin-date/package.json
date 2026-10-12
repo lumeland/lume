@@ -1,0 +1,29 @@
+{
+  "name": "@lumeland/plugin-date",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc -p .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "dependencies": {
+    "date-fns": "^4.4.0"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

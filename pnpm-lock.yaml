@@ -322,6 +322,28 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
 
+  packages/plugin-date:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      date-fns:
+        specifier: ^4.4.0
+        version: 4.4.0
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2))
+
   packages/plugin-dev:
     dependencies:
       '@lumeland/core':
@@ -1560,6 +1582,9 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
+  date-fns@4.4.0:
+    resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
+
   deno-std@1.5.1:
     resolution: {integrity: sha512-5zjRiOHuD1gEOAnmQal491/qkfuA/N2CRu4vL6Cmmjw1d3AJkMG5kTsFg+q4B76sspa/zTnv+LJadbJnYcQegQ==}
 
@@ -2559,6 +2584,8 @@ snapshots:
   chai@6.3.0: {}
 
   core-util-is@1.0.3: {}
+
+  date-fns@4.4.0: {}
 
   deno-std@1.5.1: {}
 

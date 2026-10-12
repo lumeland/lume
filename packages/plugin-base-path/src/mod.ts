@@ -9,9 +9,11 @@ import type Site from "@lumeland/core/site.ts";
 export function basePath() {
   return (site: Site) => {
     if (site.options.location.pathname === "/") return;
-    site.use(modifyUrls({
-      fn: (url) => url.startsWith("/") ? site.url(url) : url,
-    }));
+    site.use(
+      modifyUrls({
+        fn: (url) => (url.startsWith("/") ? site.url(url) : url),
+      }),
+    );
   };
 }
 

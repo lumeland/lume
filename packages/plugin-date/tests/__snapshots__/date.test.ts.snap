@@ -1,0 +1,212 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`date plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/default.vto",
+      "/en.vto",
+      "/gl.vto",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "Hoy es 28 de enero de 2026
+",
+      "data": {
+        "basename": "default",
+        "children": "Hoy es 28 de enero de 2026
+",
+        "content": "Hoy es {{ date |> date("HUMAN_DATE") }}
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/default/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/default",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Today is January 28th, 2026
+Hoxe é 28 de xaneiro 2026
+",
+      "data": {
+        "basename": "en",
+        "children": "Today is January 28th, 2026
+Hoxe é 28 de xaneiro 2026
+",
+        "content": "Today is {{ date |> date("HUMAN_DATE") }}
+Hoxe é {{ date |> date("HUMAN_DATE", "gl") }}
+",
+        "date": [],
+        "lang": "en",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/en/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/en",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Hoxe é 28 de xaneiro 2026
+Today is January 28th, 2026
+",
+      "data": {
+        "basename": "gl",
+        "children": "Hoxe é 28 de xaneiro 2026
+Today is January 28th, 2026
+",
+        "content": "Hoxe é {{ date |> date("HUMAN_DATE") }}
+Today is {{ date |> date("HUMAN_DATE", "en") }}
+",
+        "date": [],
+        "lang": "gl",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/gl/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/gl",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
