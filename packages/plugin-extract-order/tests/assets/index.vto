@@ -1,0 +1,5 @@
+<ul>
+  {{ for page of search.pages("", "order=asc basename=asc") }}
+  <li>{{ page.order }} - {{ page.content.trim() }}</li>
+  {{ /for }}
+</ul>

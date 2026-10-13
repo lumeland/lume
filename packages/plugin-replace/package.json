@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-replace",
   "version": "1.0.0-beta-1",
-  "description": "",
+  "description": "Plugin to replace placeholders with final values",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -14,13 +14,13 @@
     "test:watch": "vitest",
     "test:update": "vitest run -u"
   },
-  "peerDependencies": {
-    "@lumeland/core": "workspace:*"
-  },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
   }
 }

@@ -8,16 +8,18 @@ describe("replace plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(replace({
-      replacements: {
-        "Lume": (text: string) => text.toLowerCase(),
-        "static site generator": "awesome static site generator",
-      },
-    }))
+    site.use(
+      replace({
+        replacements: {
+          Lume: (text: string) => text.toLowerCase(),
+          "static site generator": "awesome static site generator",
+        },
+      }),
+    );
 
     site.addEventListener("beforeBuild", () => {
       site.hooks.replace({
-        "Lume": (text: string) => text.toUpperCase(),
+        Lume: (text: string) => text.toUpperCase(),
       });
     });
 
