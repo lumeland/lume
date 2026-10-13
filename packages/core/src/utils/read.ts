@@ -14,7 +14,7 @@ export function setCache(instance: Cache) {
  * Read a local or remote file and return its content.
  * If the file is remote, it will be cached in the `lume_remote_files` cache.
  */
-export async function read(path: string, isBinary: false, init?: RequestInit): Promise<string>;
+export async function read(path: string, isBinary?: false, init?: RequestInit): Promise<string>;
 export async function read(
   path: string,
   isBinary: true,
@@ -22,7 +22,7 @@ export async function read(
 ): Promise<Uint8Array<ArrayBuffer>>;
 export async function read(
   path: string,
-  isBinary: boolean,
+  isBinary: boolean = false,
   init?: RequestInit,
 ): Promise<string | Uint8Array<ArrayBuffer>> {
   if (!isUrl(path)) {

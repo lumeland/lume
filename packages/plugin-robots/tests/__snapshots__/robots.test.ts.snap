@@ -1,0 +1,1004 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`robots plugin > allow 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Hello world</h1>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+",
+      "data": {
+        "basename": "robots",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/robots.txt",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`robots plugin > disallow 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Hello world</h1>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "User-agent: *
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+",
+      "data": {
+        "basename": "robots",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/robots.txt",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`robots plugin > should block robots and AI 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Hello world</h1>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "User-agent: AllowThis
+Allow: /
+
+User-agent: DisallowThat
+User-agent: AddSearchBot
+User-agent: AgentDataBot
+User-agent: AgentTimes
+User-agent: AI2Bot
+User-agent: AI2Bot-DeepResearchEval
+User-agent: Ai2Bot-Dolma
+User-agent: aiHitBot
+User-agent: AIWebIndex
+User-agent: amazon-kendra
+User-agent: amazon-QBusiness
+User-agent: Amazonbot
+User-agent: AmazonBuyForMe
+User-agent: Amzn-SearchBot
+User-agent: Amzn-User
+User-agent: Andibot
+User-agent: Anomura
+User-agent: anthropic-ai
+User-agent: ApifyBot
+User-agent: ApifyWebsiteContentCrawler
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Aranet-SearchBot
+User-agent: atlassian-bot
+User-agent: Awario
+User-agent: AzureAI-SearchBot
+User-agent: bedrockbot
+User-agent: bigsur.ai
+User-agent: BixelBot
+User-agent: Bravebot
+User-agent: Brightbot
+User-agent: Brightbot 1.0
+User-agent: BuddyBot
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: Channel3Bot
+User-agent: ChatGLM-Spider
+User-agent: ChatGPT Agent
+User-agent: ChatGPT-User
+User-agent: Claude-Code
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Claude-Web
+User-agent: ClaudeBot
+User-agent: Cloudflare-AutoRAG
+User-agent: CloudflareBrowserRenderingCrawler
+User-agent: CloudVertexBot
+User-agent: Code
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: Cotoyogi
+User-agent: CragCrawler
+User-agent: Crawl4AI
+User-agent: Crawlspace
+User-agent: Cursor
+User-agent: Datenbank Crawler
+User-agent: DeepSeekBot
+User-agent: Devin
+User-agent: Diffbot
+User-agent: Diffbot-User
+User-agent: DoubaoBot
+User-agent: DuckAssistBot
+User-agent: Echobot Bot
+User-agent: EchoboxBot
+User-agent: ERNIEBot
+User-agent: ExaBot
+User-agent: ExaSearchBot
+User-agent: FacebookBot
+User-agent: facebookexternalhit
+User-agent: Factset_spyderbot
+User-agent: FirecrawlAgent
+User-agent: FriendlyCrawler
+User-agent: GeistHaus-PageFetcher
+User-agent: Gemini-Deep-Research
+User-agent: Google-Agent
+User-agent: Google-CloudVertexBot
+User-agent: Google-Extended
+User-agent: Google-Firebase
+User-agent: Google-Gemini-CLI
+User-agent: Google-NotebookLM
+User-agent: GoogleAgent-Mariner
+User-agent: GoogleAgent-URLContext
+User-agent: GoogleOther
+User-agent: GoogleOther-Image
+User-agent: GoogleOther-Video
+User-agent: GPTBot
+User-agent: HenkBot
+User-agent: iAskBot
+User-agent: iaskspider
+User-agent: iaskspider/2.0
+User-agent: ICC-Crawler
+User-agent: ImagesiftBot
+User-agent: imageSpider
+User-agent: img2dataset
+User-agent: ISSCyberRiskCrawler
+User-agent: kagi-fetcher
+User-agent: Kangaroo Bot
+User-agent: KeenableBot
+User-agent: Kimi-Agent
+User-agent: Kimi-SearchBot
+User-agent: Kimi-User
+User-agent: KimiBot
+User-agent: KlaviyoAIBot
+User-agent: KunatoCrawler
+User-agent: laion-huggingface-processor
+User-agent: LAIONDownloader
+User-agent: LCC
+User-agent: Lightpanda
+User-agent: LinerBot
+User-agent: Linguee Bot
+User-agent: LinkupBot
+User-agent: Manus-User
+User-agent: meta-externalagent
+User-agent: Meta-ExternalAgent
+User-agent: meta-externalfetcher
+User-agent: Meta-ExternalFetcher
+User-agent: meta-webindexer
+User-agent: MistralAI-Index
+User-agent: MistralAI-Training
+User-agent: MistralAI-User
+User-agent: MistralAI-User/1.0
+User-agent: Mozilla-Tabstack
+User-agent: MyCentralAIScraperBot
+User-agent: NagetBot
+User-agent: netEstate Imprint Crawler
+User-agent: newsai
+User-agent: NotebookLM
+User-agent: NovaAct
+User-agent: OAI-AdsBot
+User-agent: OAI-SearchBot
+User-agent: omgili
+User-agent: omgilibot
+User-agent: OpenAI
+User-agent: opencode
+User-agent: Operator
+User-agent: PanguBot
+User-agent: Panscient
+User-agent: panscient.com
+User-agent: Perplexity-User
+User-agent: PerplexityBot
+User-agent: PetalBot
+User-agent: PhindBot
+User-agent: Poggio-Citations
+User-agent: Poseidon Research Crawler
+User-agent: qodercli
+User-agent: QualifiedBot
+User-agent: Querit-SearchBot
+User-agent: QueritBot
+User-agent: QuillBot
+User-agent: quillbot.com
+User-agent: QwenBot
+User-agent: Reflectionbot
+User-agent: SBIntuitionsBot
+User-agent: Scrapy
+User-agent: SemrushBot-OCOB
+User-agent: SemrushBot-SWA
+User-agent: Shap-User
+User-agent: ShapBot
+User-agent: Sidetrade indexer bot
+User-agent: Spider
+User-agent: TavilyBot
+User-agent: Terra Cotta
+User-agent: TerraCotta
+User-agent: Thinkbot
+User-agent: TikTokSpider
+User-agent: Timpibot
+User-agent: TongyiBot
+User-agent: Trae
+User-agent: TwinAgent
+User-agent: UseAI
+User-agent: VelenPublicWebCrawler
+User-agent: WARDBot
+User-agent: Webzio-Extended
+User-agent: webzio-extended
+User-agent: wpbot
+User-agent: WRTNBot
+User-agent: YaK
+User-agent: YandexAdditional
+User-agent: YandexAdditionalBot
+User-agent: YiyanBot
+User-agent: YouBot
+User-agent: ZanistaBot
+Disallow: /
+",
+      "data": {
+        "basename": "robots",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/robots.txt",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`robots plugin > should block with custom rules 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Hello world</h1>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /admin
+
+User-agent: MistralAI-User
+User-agent: ChatGPT-User
+Disallow: /img
+Disallow: /assets
+
+Sitemap: http://localhost/sitemap.xml
+",
+      "data": {
+        "basename": "robots",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/robots.txt",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`robots plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Hello world</h1>
+",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "User-agent: *
+Allow: /
+",
+      "data": {
+        "basename": "robots",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/robots.txt",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
