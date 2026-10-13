@@ -18,8 +18,7 @@
     "@lumeland/plugin-source-maps": "workspace:^",
     "@tailwindcss/node": "^4.3.3",
     "@tailwindcss/oxide": "^4.3.3",
-    "lightningcss": "^1.33.0",
-    "tailwindcss": "^4.3.3"
+    "lightningcss": "^1.33.0"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",

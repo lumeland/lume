@@ -1,12 +1,8 @@
-import { compile, Scanner, specifier, toSourceMap } from "../deps/tailwindcss.ts";
+import { compile, Scanner, toSourceMap } from "../deps/tailwindcss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
-import { dirname } from "../deps/path.ts";
-import { readFile } from "@lumeland/core/utils/read.ts";
-import { resolveInclude } from "@lumeland/core/utils/path.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { Features, transform } from "../deps/lightningcss.ts";
-import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "@lumeland/core/site.ts";
@@ -61,74 +57,14 @@ export function tailwindCSS(userOptions?: Options) {
       for (const file of files) {
         const { content, filename, enableSourceMap } = prepareAsset(site, file);
         const compiler = await compile(content, {
-          from: filename,
-          async loadModule(id, base, resourceHint) {
-            if (id.startsWith(".")) {
-              id = site.src(base, id);
-              const mod = await import(id);
-              return {
-                base,
-                path: id,
-                module: mod.default,
-              };
-            }
-            if (resourceHint === "plugin") {
-              const mod = await import(`npm:${id}`);
-              return {
-                base,
-                path: id,
-                module: mod.default,
-              };
-            }
-            log.fatal(`[tailwindcss plugin] Cannot resolve module '${id}'`);
-            throw new Error(`Cannot resolve module '${id}'`);
-          },
-          async loadStylesheet(id, base) {
-            if (id === "tailwindcss") {
-              const path = `${specifier}/index.css`;
-              const content = await readFile(path);
-              return { content, path, base };
-            }
-
-            if (id.startsWith("tailwindcss/")) {
-              const filename = id.replace("tailwindcss/", "");
-              const path = `${specifier}/${filename}`;
-              const content = await readFile(path);
-              return { content, path, base };
-            }
-
-            if (options.includes === false) {
-              if (!id.startsWith(".")) {
-                log.fatal(`[tailwindcss plugin] Cannot resolve module '${id}'`);
-                throw new Error(`Cannot resolve module '${id}'`);
-              }
-            }
-
-            // Support npm: prefix to load from npm CDN (ex: npm:tw-animate-css)
-            if (isFromCdn(id)) {
-              id = getFile(id);
-              const content = await readFile(id);
-              return { content, path: id, base };
-            }
-
-            // If the path is relative, and no base is provided, use the CSS file location as base
-            if (!base && id.startsWith(".")) {
-              base = dirname(filename);
-            }
-
-            const path = resolveInclude(id, options.includes || "", base);
-            const content = await site.getContent(path, false);
-
-            if (content === undefined) {
-              log.fatal(`[tailwindcss plugin] File ${path} not found`);
-              throw new Error(`File ${path} not found`);
-            }
-
-            return { content, path, base: dirname(path) };
+          base: site.src(),
+          onDependency(path) {
+            console.log("Tailwind dependency:", path);
           },
         });
 
         const code = compiler.build(candidates);
+
         if (enableSourceMap) {
           const map = toSourceMap(compiler.buildSourceMap()).raw;
 
