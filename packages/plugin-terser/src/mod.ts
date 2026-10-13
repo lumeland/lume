@@ -50,26 +50,21 @@ export function terser(userOptions?: Options) {
         return;
       }
 
-      const item = site.debugBar?.buildItem(
-        "[terser plugin] minification completed",
-      );
+      const item = site.debugBar?.buildItem("[terser plugin] minification completed");
 
       return concurrent(files, (file) => terser(file, item));
     });
 
     async function terser(page: Page, item?: Item) {
-      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(
-        site,
-        page,
-      );
+      const { content, filename, sourceMap, enableSourceMap } = prepareAsset(site, page);
 
       const terserOptions = {
         ...options.options,
         sourceMap: enableSourceMap
           ? {
-            content: JSON.stringify(sourceMap),
-            filename: filename,
-          }
+              content: JSON.stringify(sourceMap),
+              filename: filename,
+            }
           : undefined,
       };
 

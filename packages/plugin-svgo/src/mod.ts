@@ -33,9 +33,7 @@ export function svgo(userOptions?: Options) {
         return;
       }
 
-      const item = site.debugBar?.buildItem(
-        "[svgo plugin] optimization completed",
-      );
+      const item = site.debugBar?.buildItem("[svgo plugin] optimization completed");
 
       for (const file of files) {
         const path = site.src(file.outputPath);

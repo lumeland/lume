@@ -14,8 +14,9 @@
     "test:watch": "vitest",
     "test:update": "vitest run -u"
   },
-  "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+  "dependencies": {
+    "@lumeland/plugin-source-maps": "workspace:^",
+    "terser": "^5.51.2"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",
@@ -23,8 +24,7 @@
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   },
-  "dependencies": {
-    "@lumeland/plugin-source-maps": "workspace:^",
-    "terser": "^5.51.2"
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
   }
 }

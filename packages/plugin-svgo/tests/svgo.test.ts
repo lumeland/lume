@@ -9,7 +9,7 @@ describe("svgo plugin", async () => {
     });
 
     site.use(svgo());
-    site.add("favicon.svg")
+    site.add("favicon.svg");
 
     expect(await build(site)).toMatchSnapshot();
   });
