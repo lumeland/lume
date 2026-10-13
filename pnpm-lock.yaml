@@ -382,6 +382,28 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/plugin-eta:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      eta:
+        specifier: ^4.6.0
+        version: 4.6.0
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))
+
   packages/plugin-extract-date:
     dependencies:
       '@lumeland/core':
@@ -854,6 +876,25 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))
 
+  packages/plugin-toc:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))
+
   packages/plugin-toml:
     dependencies:
       '@lumeland/core':
@@ -1242,6 +1283,10 @@ packages:
 
   estree-walker@3.0.3:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+
+  eta@4.6.0:
+    resolution: {integrity: sha512-lW6is4T1NFOYnmqGZIfvixqj7A7sSvScF+DN8EK6K58xI5MZ5UvYe0GjopxOXQtZvUn4eDdVuZ8XSoYWTMEKwA==}
+    engines: {node: '>=20'}
 
   events-universal@1.0.1:
     resolution: {integrity: sha512-LUd5euvbMLpwOF8m6ivPCbhQeSiYVNb8Vs0fQ8QjXo0JTkEHpz8pxdQf0gStltaPpw0Cca8b39KxvK9cfKRiAw==}
@@ -2116,6 +2161,8 @@ snapshots:
   estree-walker@3.0.3:
     dependencies:
       '@types/estree': 1.0.9
+
+  eta@4.6.0: {}
 
   events-universal@1.0.1:
     dependencies:
