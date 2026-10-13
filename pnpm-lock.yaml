@@ -190,7 +190,7 @@ importers:
         version: 7.0.2
       vitest:
         specifier: ^5.0.3
-        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2))
 
   packages/core:
     dependencies:
@@ -898,6 +898,31 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))
 
+  packages/plugin-terser:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      '@lumeland/plugin-source-maps':
+        specifier: workspace:^
+        version: link:../plugin-source-maps
+      terser:
+        specifier: ^5.51.2
+        version: 5.51.2
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2))
+
   packages/plugin-toc:
     dependencies:
       '@lumeland/core':
@@ -1350,9 +1375,15 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@jridgewell/gen-mapping@0.3.13':
+    resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
+
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
+
+  '@jridgewell/source-map@0.3.11':
+    resolution: {integrity: sha512-ZMp1V8ZFcPG5dIWnQLr3NSI1MiCU7UETdS/A0G8V/XWHvJv3ZsFqutJn1Y5RPmAPX6F3BiE397OqveU/9NCuIA==}
 
   '@jridgewell/sourcemap-codec@1.6.0':
     resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
@@ -1965,6 +1996,11 @@ packages:
   a-sync-waterfall@1.0.1:
     resolution: {integrity: sha512-RYTOHHdWipFUliRFMCS4X2Yn2X8M87V/OpSqWzKKOGhzqyUxzyVmhHDH9sAvG+ZuQf/TAOFsLCpMw09I1ufUnA==}
 
+  acorn@8.19.0:
+    resolution: {integrity: sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   argparse@3.0.2:
     resolution: {integrity: sha512-mFdDM6WqWKraGLsVb+C9CahPnzTXOefAOLq3jYcca2YZ8bEWpr++Tzj+zSaKW9+X9L5uSxcm1AZ3Y6aZJ09OhQ==}
 
@@ -2040,6 +2076,9 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  buffer-from@1.1.2:
+    resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+
   cac@7.0.1:
     resolution: {integrity: sha512-86diuUyeeWM8CrqhpGCaDafrzjS1s++7sWy2AbAPoFNz/xKv7ID57CR4pZsMuGCh60PtsnEx4z68b+Vgt07VPw==}
     engines: {node: '>=20.19.0'}
@@ -2061,6 +2100,9 @@ packages:
   commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
+
+  commander@2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
   commander@5.1.0:
     resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
@@ -2647,6 +2689,13 @@ packages:
     resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
     engines: {node: '>=0.10.0'}
 
+  source-map-support@0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+
   std-env@4.3.0:
     resolution: {integrity: sha512-OtU/EgQ1kIm5KwqQpBC6ZEMXrZRui11w8zgfTWp8cdO9B8OaPsbA8bTHO2P+HNo1VlUTGMVBwPhydu6poeXiag==}
 
@@ -2685,6 +2734,11 @@ packages:
 
   temporal-utils@1.0.3:
     resolution: {integrity: sha512-9jbTSX3HvkOWvDpNpFzwX/d1mkCrgQgwLmVTOEiuocZGKHsrQJtttGZFmybJ2zYP5zCSZuU5ZyeS8+eOEPABiQ==}
+
+  terser@5.51.2:
+    resolution: {integrity: sha512-bWnjSNscmuI+GJze6ZupnHP8G/cTcsJF+bXCeQknk2SHQsgbNJnLrqiH9jZ2W4STPVXH2mDKKRX3iwPhc9Cn/Q==}
+    engines: {node: '>=10'}
+    hasBin: true
 
   text-decoder@1.2.7:
     resolution: {integrity: sha512-vlLytXkeP4xvEq2otHeJfSQIRyWxo/oZGEbXrtEEF9Hnmrdly59sUbzZ/QgyWuLYHctCHxFF4tRQZNQ9k60ExQ==}
@@ -3042,7 +3096,17 @@ snapshots:
   '@img/sharp-win32-x64@0.35.5':
     optional: true
 
+  '@jridgewell/gen-mapping@0.3.13':
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.6.0
+      '@jridgewell/trace-mapping': 0.3.31
+
   '@jridgewell/resolve-uri@3.1.2': {}
+
+  '@jridgewell/source-map@0.3.11':
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.31
 
   '@jridgewell/sourcemap-codec@1.6.0': {}
 
@@ -3369,6 +3433,15 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
+  '@vitest/mocker@5.0.3(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2))':
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      '@vitest/spy': 5.0.3
+      estree-walker: 3.0.3
+      magic-string: 1.4.3
+    optionalDependencies:
+      vite: 8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2)
+
   '@vitest/mocker@5.0.3(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1))':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
@@ -3381,6 +3454,8 @@ snapshots:
   '@vitest/spy@5.0.3': {}
 
   a-sync-waterfall@1.0.1: {}
+
+  acorn@8.19.0: {}
 
   argparse@3.0.2: {}
 
@@ -3440,6 +3515,8 @@ snapshots:
       node-releases: 2.0.58
       update-browserslist-db: 1.3.4(browserslist@4.29.3)
 
+  buffer-from@1.1.2: {}
+
   cac@7.0.1: {}
 
   caniuse-api@4.0.0:
@@ -3456,6 +3533,8 @@ snapshots:
       readdirp: 5.1.1
 
   commander@11.1.0: {}
+
+  commander@2.20.3: {}
 
   commander@5.1.0: {}
 
@@ -4087,6 +4166,13 @@ snapshots:
 
   source-map-js@1.2.2: {}
 
+  source-map-support@0.5.21:
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+
+  source-map@0.6.1: {}
+
   std-env@4.3.0: {}
 
   streamx@2.28.1:
@@ -4146,6 +4232,13 @@ snapshots:
   temporal-spec@1.0.1: {}
 
   temporal-utils@1.0.3: {}
+
+  terser@5.51.2:
+    dependencies:
+      '@jridgewell/source-map': 0.3.11
+      acorn: 8.19.0
+      commander: 2.20.3
+      source-map-support: 0.5.21
 
   text-decoder@1.2.7:
     dependencies:
@@ -4216,6 +4309,41 @@ snapshots:
       esbuild: 0.28.2
       fsevents: 2.3.3
       sass: 1.105.1
+
+  vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2):
+    dependencies:
+      lightningcss: 1.33.0
+      picomatch: 4.0.7
+      postcss: 8.5.29
+      rolldown: 1.2.13
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@types/node': 26.6.4
+      esbuild: 0.28.2
+      fsevents: 2.3.3
+      sass: 1.105.1
+      terser: 5.51.2
+
+  vitest@5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2)):
+    dependencies:
+      '@types/chai': 5.2.3
+      '@vitest/mocker': 5.0.3(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2))
+      chai: 6.3.0
+      es-module-lexer: 2.3.2
+      expect-type: 1.4.0
+      magic-string: 1.4.3
+      obug: 2.2.1
+      picomatch: 4.0.7
+      std-env: 4.3.0
+      tinybench: 6.2.1
+      tinyexec: 1.3.1
+      tinyglobby: 0.2.17
+      vite: 8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)(terser@5.51.2)
+      why-is-node-running: 3.2.1
+    optionalDependencies:
+      '@types/node': 26.6.4
+    transitivePeerDependencies:
+      - msw
 
   vitest@5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(sass@1.105.1)):
     dependencies:
