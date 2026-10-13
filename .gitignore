@@ -1,5 +1,5 @@
-TODO
+/TODO
+/testing
+/packages/*/build
 node_modules
-testing
-packages/*/build
 dist
