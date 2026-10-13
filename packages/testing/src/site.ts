@@ -1,4 +1,5 @@
 import lume, { PluginOptions } from "@lumeland/lume";
+import { basename } from "../deps/path.ts";
 import { EmptyWriter } from "@lumeland/core/writer.ts";
 
 import type { default as Site, SiteOptions } from "@lumeland/core/site.ts";
@@ -58,6 +59,18 @@ function normalizeValue(
   return `Array(${content.length})`;
 }
 
+function normalizeSourceMap(content: string) {
+  const sourceMap = JSON.parse(content);
+  sourceMap.sourceRoot = sourceMap.sourceRoot
+    ? basename(sourceMap.sourceRoot)
+    : undefined;
+  sourceMap.file = sourceMap.file ? basename(sourceMap.file) : undefined;
+  sourceMap.sources = sourceMap.sources.map((source: string) =>
+    basename(source)
+  );
+  return JSON.stringify(sourceMap);
+}
+
 function getSiteSnapshot(site: Site, options: SiteSnapshotOptions = {}) {
   // Get general site configuration
   const config = {
@@ -74,13 +87,18 @@ function getSiteSnapshot(site: Site, options: SiteSnapshotOptions = {}) {
   // Sort and normalize the data of the pages
   const pages = site.pages
     .sort((a, b) => a.outputPath.localeCompare(b.outputPath))
-    .map((page) => ({
+    .map((page) => {
+      const isSourceMap = page.outputPath.endsWith(".map");
+      return {
       data: Object.fromEntries(
         Object.entries(page.data)
           .map(([key, value]) => {
             switch (typeof value) {
               case "string":
-                return [key, normalizeValue(value, options)];
+                if (isSourceMap && key === "content") {
+                return [key, normalizeSourceMap(value)];
+              }
+              return [key, normalizeValue(value, options)];
               case "undefined":
                 return [key, normalizeValue(value, options)];
               case "number":
@@ -109,13 +127,15 @@ function getSiteSnapshot(site: Site, options: SiteSnapshotOptions = {}) {
           })
           .sort((a, b) => (a[0] as string).localeCompare(b[0] as string)),
       ),
-      content: normalizeValue(page.content, options),
+      content: isSourceMap
+        ? normalizeSourceMap(page.content as string)
+        : normalizeValue(page.content, options),
       src: {
         path: page.src.path,
         ext: page.src.ext,
         remote: page.src.entry?.flags.has("remote") ? page.src.entry.src : undefined,
       },
-    }));
+    }});
 
   // Sort and normalize the data of the files
   const files = site.files
