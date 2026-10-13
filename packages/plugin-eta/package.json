@@ -14,8 +14,8 @@
     "test:watch": "vitest",
     "test:update": "vitest run -u"
   },
-  "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+  "dependencies": {
+    "eta": "^4.6.0"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",
@@ -23,7 +23,7 @@
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   },
-  "dependencies": {
-    "eta": "^4.6.0"
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
   }
 }

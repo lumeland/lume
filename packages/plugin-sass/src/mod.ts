@@ -1,8 +1,4 @@
-import {
-  normalizePath,
-  replaceExtension,
-  resolveInclude,
-} from "@lumeland/core/utils/path.ts";
+import { normalizePath, replaceExtension, resolveInclude } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { compileStringAsync } from "../deps/sass.ts";
@@ -44,10 +40,7 @@ export const defaults = {
  */
 export function sass(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge(
-      { ...defaults, includes: site.options.includes },
-      userOptions,
-    );
+    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
 
     // Ignore includes folder
     if (options.includes) {
@@ -147,10 +140,7 @@ function getPathsToLook(path: string): string[] {
     return [path, posix.join(posix.dirname(path), `_${basename}`)];
   } else {
     if (basename.startsWith("_")) {
-      return [
-        `${path}.scss`,
-        `${path}.sass`,
-      ];
+      return [`${path}.scss`, `${path}.sass`];
     }
 
     return [

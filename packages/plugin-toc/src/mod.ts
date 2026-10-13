@@ -201,9 +201,7 @@ export interface LinkInsideHeaderOptions {
  * <h1 id="foo"><a href="#foo">#</a>This is the title</h1>
  * ```
  */
-export function linkInsideHeader(
-  options: LinkInsideHeaderOptions = {},
-) {
+export function linkInsideHeader(options: LinkInsideHeaderOptions = {}) {
   return (header: Element) => {
     const id = header.getAttribute("id");
     const link = header.ownerDocument.createElement("a");

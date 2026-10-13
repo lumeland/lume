@@ -68,9 +68,10 @@ export class Nav {
       url = url.slice(0, -10);
     }
 
-    const parts = url.split("/").filter((part) => part !== "").map(
-      decodeURIComponentSafe,
-    );
+    const parts = url
+      .split("/")
+      .filter((part) => part !== "")
+      .map(decodeURIComponentSafe);
     return searchData(parts, nav);
   }
 
@@ -146,9 +147,7 @@ export class Nav {
 
     for (const data of dataPages) {
       const url = data.page?.outputPath;
-      const parts = url.split("/")
-        .filter(filterIndex)
-        .map(cleanHTMLExtension);
+      const parts = url.split("/").filter(filterIndex).map(cleanHTMLExtension);
 
       let current = nav;
       let path = "";
@@ -315,8 +314,8 @@ function convert(
 
   data.children = temp.children
     ? Object.values(temp.children)
-      .map((child) => convert(child, order, data))
-      .sort((a, b) => order(a.data, b.data))
+        .map((child) => convert(child, order, data))
+        .sort((a, b) => order(a.data, b.data))
     : undefined;
 
   return data;

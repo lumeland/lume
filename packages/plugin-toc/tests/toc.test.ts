@@ -18,13 +18,15 @@ describe("toc plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(toc({
-    minLevel: 1,
-    tabIndex: false,
-    anchor: linkInsideHeader({
-      content: "¶",
-    }),
-  }));
+    site.use(
+      toc({
+        minLevel: 1,
+        tabIndex: false,
+        anchor: linkInsideHeader({
+          content: "¶",
+        }),
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });

@@ -69,24 +69,25 @@ export function robots(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    site.addEventListener("beforeBuild", async () => {
-      // AI bots
-      if (options.disallowAI && options.disallow !== "*") {
-        options.disallow = [
-          ...toArray(options.disallow),
-          ...await getAiRobots(),
-        ];
+    site.addEventListener(
+      "beforeBuild",
+      async () => {
+        // AI bots
+        if (options.disallowAI && options.disallow !== "*") {
+          options.disallow = [...toArray(options.disallow), ...(await getAiRobots())];
 
-        if (options.allow === "*") {
+          if (options.allow === "*") {
+            options.allow = [];
+          }
+        }
+
+        // If disallow is *, allow can't be *
+        if (options.disallow === "*" && options.allow === "*") {
           options.allow = [];
         }
-      }
-
-      // If disallow is *, allow can't be *
-      if (options.disallow === "*" && options.allow === "*") {
-        options.allow = [];
-      }
-    }, { once: true });
+      },
+      { once: true },
+    );
 
     site.process(async function processRobots() {
       const rules: Rule[] = [];
@@ -106,17 +107,20 @@ export function robots(userOptions?: Options) {
       const robots = await site.getOrCreatePage(options.filename);
       const existingContent = robots.text ? `${robots.text}\n` : "";
 
-      robots.text = existingContent + rules
-        .map((rule) =>
-          Object.entries(rule)
-            .sort(([keyA], [keyB]) =>
-              ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB)
-            )
-            .map(([key, value]) =>
-              toArray(value).map((item) => `${formatRuleName(key)}: ${item}`)
-                .join("\n")
-            ).join("\n")
-        ).join("\n\n") +
+      robots.text =
+        existingContent +
+        rules
+          .map((rule) =>
+            Object.entries(rule)
+              .sort(([keyA], [keyB]) => ruleSort.indexOf(keyA) - ruleSort.indexOf(keyB))
+              .map(([key, value]) =>
+                toArray(value)
+                  .map((item) => `${formatRuleName(key)}: ${item}`)
+                  .join("\n"),
+              )
+              .join("\n"),
+          )
+          .join("\n\n") +
         "\n";
     });
   };
@@ -130,7 +134,8 @@ function toArray(value?: string | string[]): string[] {
 
 /** Convert 'userAgent' to 'User-agent' */
 function formatRuleName(name: string): string {
-  return `${name.charAt(0).toUpperCase()}${
-    name.slice(1).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
-  }`;
+  return `${name.charAt(0).toUpperCase()}${name
+    .slice(1)
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .toLowerCase()}`;
 }

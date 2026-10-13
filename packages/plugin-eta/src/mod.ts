@@ -62,17 +62,9 @@ export class EtaEngine implements Engine {
   getTemplate(content: string, filename: string, async?: boolean) {
     filename = posix.join(this.basePath, filename);
 
-    const templates = async
-      ? this.engine.templatesAsync
-      : this.engine.templatesSync;
+    const templates = async ? this.engine.templatesAsync : this.engine.templatesSync;
     if (!templates.get(filename)) {
-      templates.define(
-        filename,
-        this.engine.compile(
-          content,
-          { async },
-        ),
-      );
+      templates.define(filename, this.engine.compile(content, { async }));
     }
     return templates.get(filename)!;
   }
@@ -92,10 +84,7 @@ export class EtaEngine implements Engine {
  */
 export function eta(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge(
-      { ...defaults, includes: site.options.includes },
-      userOptions,
-    );
+    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
 
     // Configure Eta
     const eta = new Eta({

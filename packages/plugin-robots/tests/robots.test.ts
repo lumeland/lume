@@ -18,9 +18,11 @@ describe("robots plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(robots({
-      allow: ["Googlebot", "Bingbot"],
-    }));
+    site.use(
+      robots({
+        allow: ["Googlebot", "Bingbot"],
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });
@@ -30,9 +32,11 @@ describe("robots plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(robots({
-      disallow: "ChatGPT-User",
-    }));
+    site.use(
+      robots({
+        disallow: "ChatGPT-User",
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });
@@ -42,11 +46,13 @@ describe("robots plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(robots({
-      allow: "AllowThis",
-      disallow: "DisallowThat",
-      disallowAI: true,
-    }));
+    site.use(
+      robots({
+        allow: "AllowThis",
+        disallow: "DisallowThat",
+        disallowAI: true,
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });
@@ -56,21 +62,23 @@ describe("robots plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(robots({
-    rules: [
-      {
-        userAgent: "*",
-        disallow: "/admin",
-      },
-      {
-        userAgent: ["MistralAI-User", "ChatGPT-User"],
-        disallow: ["/img", "/assets"],
-      },
-      {
-        sitemap: new URL("/sitemap.xml", site.options.location).href,
-      },
-    ],
-  }));
+    site.use(
+      robots({
+        rules: [
+          {
+            userAgent: "*",
+            disallow: "/admin",
+          },
+          {
+            userAgent: ["MistralAI-User", "ChatGPT-User"],
+            disallow: ["/img", "/assets"],
+          },
+          {
+            sitemap: new URL("/sitemap.xml", site.options.location).href,
+          },
+        ],
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });
