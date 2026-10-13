@@ -1,0 +1,16 @@
+---
+title: Markdown content
+url: /article.html
+---
+extends ./_includes/layout.pug
+block content
+  :md
+    # This is a title
+
+    This is a paragraph
+
+    - Option 1
+    - Option 2
+
+  - const dynamicMd = "# Some dynamic content";
+  != filters.md(dynamicMd)
