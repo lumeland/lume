@@ -27,6 +27,27 @@ export function networkInterfaces(): NetworkInterfaceInfo[] {
   return result;
 }
 
+/** Check if a port is free */
+export function checkPort(port: number): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    const server = createServer(() => {});
+
+    server.once("error", (error: NodeJS.ErrnoException) => {
+      if (error.code === "EADDRINUSE") {
+        resolve(false);
+      } else {
+        reject(error);
+      }
+    });
+
+    server.once("listening", () => {
+      server.close(() => resolve(true));
+    });
+
+    server.listen(port, "0.0.0.0");
+  });
+}
+
 export interface NetAddress {
   transport: "tcp" | "udp";
   hostname: string;

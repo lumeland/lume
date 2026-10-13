@@ -1,10 +1,21 @@
 import { parseArgs } from "node:util";
 import { args } from "@lumeland/core/services/process.ts";
+import { checkPort } from "@lumeland/core/services/net.ts";
 
 import type { SiteOptions } from "@lumeland/core/site.ts";
 
-export function getOptionsFromCli(options: SiteOptions): SiteOptions {
-  const { values: cli } = parseArgs({
+interface CliArgs {
+  src?: string;
+  dest?: string;
+  location?: string;
+  port?: number;
+  hostname?: string;
+  serve?: boolean;
+  open?: boolean;
+}
+
+async function getCliArgs(): Promise<CliArgs> {
+  const { values } = parseArgs({
     allowPositionals: true,
     args: args(),
     options: {
@@ -35,6 +46,33 @@ export function getOptionsFromCli(options: SiteOptions): SiteOptions {
     },
   });
 
+  let port: number | undefined;
+
+  if (values.serve && !values.port) {
+    for (let p = 3000; p <= 3010; ++p) {
+      if (await checkPort(p)) {
+        port = p;
+        break;
+      }
+    }
+  } else if (values.port) {
+    port = parseInt(values.port, 10);
+  }
+
+  return {
+    src: values.src,
+    dest: values.dest,
+    location: values.location,
+    port,
+    hostname: values.hostname,
+    serve: values.serve,
+    open: values.open,
+  };
+}
+
+const cli = await getCliArgs();
+
+export function getOptionsFromCli(options: SiteOptions): SiteOptions {
   if (cli.src) {
     options.src = cli.src;
   }
@@ -54,7 +92,7 @@ export function getOptionsFromCli(options: SiteOptions): SiteOptions {
 
   // Serve mode (--serve or -s)
   // configure the port, hostname and location
-  const port = cli.port ? parseInt(cli.port) : options.server?.port || 3000;
+  const port = cli.port ?? options.server?.port ?? 3000;
 
   const hostname: string = cli.hostname ? cli.hostname : options.server?.hostname || "localhost";
 
