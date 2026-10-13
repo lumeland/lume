@@ -57,10 +57,9 @@ export function tailwindCSS(userOptions?: Options) {
       for (const file of files) {
         const { content, filename, enableSourceMap } = prepareAsset(site, file);
         const compiler = await compile(content, {
+          from: filename,
           base: site.src(),
-          onDependency(path) {
-            console.log("Tailwind dependency:", path);
-          },
+          onDependency: () => {},
         });
 
         const code = compiler.build(candidates);
