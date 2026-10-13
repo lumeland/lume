@@ -29,6 +29,7 @@ versioning:
     "@lumeland/plugin-not-found": beta
     "@lumeland/plugin-nunjucks": beta
     "@lumeland/plugin-paginate": beta
+    "@lumeland/plugin-reading-info": beta
     "@lumeland/plugin-redirect": beta
     "@lumeland/plugin-search": beta
     "@lumeland/plugin-sitemap": beta
