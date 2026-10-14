@@ -80,16 +80,19 @@ export function isFromCdn(specifier: string): boolean {
 export function getFile(specifier: string): string {
   if (specifier.startsWith("npm:")) {
     return specifier.replace("npm:", "https://cdn.jsdelivr.net/npm/");
-  } else if (specifier.startsWith("gh:")) {
+  }
+  if (specifier.startsWith("gh:")) {
     return specifier.replace("gh:", "https://cdn.jsdelivr.net/gh/");
-  } else if (
+  }
+  if (
+    specifier.startsWith("file://") ||
     specifier.startsWith("https://cdn.jsdelivr.net/npm/") ||
     specifier.startsWith("https://cdn.jsdelivr.net/gh/")
   ) {
     return specifier;
-  } else {
-    throw new Error(`Invalid specifier: ${specifier}`);
   }
+
+  throw new Error(`Invalid specifier: ${specifier}`);
 }
 
 export async function getVersion(

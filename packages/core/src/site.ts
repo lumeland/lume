@@ -563,8 +563,8 @@ export default class Site {
       return;
     }
 
-    // Remote files from NPM or GitHub CDN
-    if (isFromCdn(from)) {
+    // Remote files CDN or filesystem
+    if (isFromCdn(from) || from.startsWith("file:")) {
       // It's a pattern
       if (from.includes("*")) {
         const pos = from.indexOf("*");
@@ -573,6 +573,7 @@ export default class Site {
 
         this.addEventListener("beforeBuild", async () => {
           const files = await getFiles(specifier, patterns);
+
           for (const [name, url] of files) {
             const dest =
               typeof to === "function"
