@@ -1,0 +1,291 @@
+import { isPlainObject } from "@lumeland/core/utils/object.ts";
+import { getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+
+import type Site from "@lumeland/core/site.ts";
+import type { Graph, Thing } from "../deps/schema-dts.ts";
+import { Data } from "@lumeland/core/types.ts";
+
+export type JsonldData = Graph | Thing;
+
+/**
+ * This variable is the result of running
+ * JSON.stringify(Array.from(document.querySelectorAll('th.prop-nam a')).map(a => a.textContent))
+ * on https://schema.org/URL and add '@id'.
+ */
+const urlKeys = new Set([
+  "@id",
+  "acceptsReservations",
+  "acquireLicensePage",
+  "actionPlatform",
+  "actionableFeedbackPolicy",
+  "additionalType",
+  "afterMedia",
+  "applicationCategory",
+  "applicationSubCategory",
+  "archivedAt",
+  "artMedium",
+  "artform",
+  "artworkSurface",
+  "asin",
+  "associatedDisease",
+  "bankAccountType",
+  "beforeMedia",
+  "benefitsSummaryUrl",
+  "bodyType",
+  "category",
+  "childTaxon",
+  "codeRepository",
+  "colleague",
+  "colorSwatch",
+  "competencyRequired",
+  "constraintProperty",
+  "contentUrl",
+  "correction",
+  "correctionsPolicy",
+  "courseMode",
+  "credentialCategory",
+  "discussionUrl",
+  "diseasePreventionInfo",
+  "diseaseSpreadStatistics",
+  "diversityPolicy",
+  "diversityStaffingReport",
+  "documentation",
+  "downloadUrl",
+  "duringMedia",
+  "editEIDR",
+  "educationalCredentialAwarded",
+  "educationalLevel",
+  "educationalProgramMode",
+  "embedUrl",
+  "encodingFormat",
+  "engineType",
+  "ethicsPolicy",
+  "featureList",
+  "feesAndCommissionsSpecification",
+  "fileFormat",
+  "fuelType",
+  "gameLocation",
+  "gamePlatform",
+  "genre",
+  "gettingTestedInfo",
+  "gtin",
+  "hasGS1DigitalLink",
+  "hasMap",
+  "hasMenu",
+  "hasMolecularFunction",
+  "hasRepresentation",
+  "healthPlanMarketingUrl",
+  "identifier",
+  "image",
+  "inCodeSet",
+  "inDefinedTermSet",
+  "installUrl",
+  "isBasedOn",
+  "isBasedOnUrl",
+  "isInvolvedInBiologicalProcess",
+  "isLocatedInSubcellularLocation",
+  "isPartOf",
+  "keywords",
+  "knowsAbout",
+  "labelDetails",
+  "layoutImage",
+  "legislationIdentifier",
+  "license",
+  "loanType",
+  "logo",
+  "mainEntityOfPage",
+  "map",
+  "maps",
+  "masthead",
+  "material",
+  "measurementMethod",
+  "measurementTechnique",
+  "meetsEmissionStandard",
+  "memoryRequirements",
+  "menu",
+  "merchantReturnLink",
+  "missionCoveragePrioritiesPolicy",
+  "namedPosition",
+  "newsUpdatesAndGuidelines",
+  "noBylinesPolicy",
+  "occupationalCredentialAwarded",
+  "originalMediaLink",
+  "ownershipFundingInfo",
+  "parentTaxon",
+  "paymentUrl",
+  "physicalRequirement",
+  "prescribingInfo",
+  "productReturnLink",
+  "propertyID",
+  "publicTransportClosuresInfo",
+  "publishingPrinciples",
+  "quarantineGuidelines",
+  "relatedLink",
+  "releaseNotes",
+  "replyToUrl",
+  "requirements",
+  "roleName",
+  "sameAs",
+  "schemaVersion",
+  "schoolClosuresInfo",
+  "screenshot",
+  "sdLicense",
+  "season",
+  "securityClearanceRequirement",
+  "sensoryRequirement",
+  "serviceUrl",
+  "shippingSettingsLink",
+  "significantLink",
+  "significantLinks",
+  "softwareRequirements",
+  "speakable",
+  "sport",
+  "statType",
+  "storageRequirements",
+  "surface",
+  "target",
+  "targetUrl",
+  "taxonRank",
+  "taxonomicRange",
+  "temporalCoverage",
+  "termsOfService",
+  "thumbnailUrl",
+  "ticketToken",
+  "titleEIDR",
+  "tourBookingPage",
+  "trackingUrl",
+  "travelBans",
+  "unitCode",
+  "unnamedSourcesPolicy",
+  "url",
+  "usageInfo",
+  "usesHealthPlanIdStandard",
+  "vehicleTransmission",
+  "verificationFactCheckingPolicy",
+  "warning",
+  "webFeed",
+]);
+
+const htmlKeys = new Set(["description"]);
+
+function isEmpty(v: unknown) {
+  return v === undefined || v === null || v === "";
+}
+
+export interface Options {
+  /**
+   * Decide whether the JSON-LD data will be inserted into each HTML page's <head>
+   * section.
+   *
+   * If `false`, the plugin simply exports the computed JSON-LD object to `jsonLdData`
+   * page data.
+   */
+  insert: boolean;
+}
+
+/**
+ * A plugin to insert structured JSON-LD data for SEO and social media
+ * @see https://lume.land/plugins/json_ld/
+ */
+export function jsonLd(userOptions?: Options) {
+  const insert = userOptions?.insert ?? true;
+
+  return (site: Site) => {
+    site.mergeKey("jsonLd", "object");
+    site.process<{ jsonLd?: JsonldData | JsonldData[] }>([".html"], function processJsonLd(pages) {
+      for (const page of pages) {
+        const jsonLdData = page.data.jsonLd;
+
+        if (!jsonLdData) {
+          continue;
+        }
+
+        const result = Array.isArray(jsonLdData)
+          ? jsonLdData
+              .map((json) => jsonLdProcessor(json, page.document, page.data))
+              .filter((data) => !!data)
+          : jsonLdProcessor(jsonLdData, page.document, page.data);
+
+        if (!insert && result && (!Array.isArray(result) || result.length)) {
+          page.data.jsonLdData = result;
+        }
+      }
+    });
+
+    function jsonLdProcessor(jsonLdData: JsonldData, document: Document, data: Data) {
+      // Recursive function to traverse and process JSON-LD data
+      function traverse(key: string | undefined, value: unknown): unknown {
+        if (typeof value === "string") {
+          const dataValue =
+            key && htmlKeys.has(key)
+              ? getPlainDataValue(data, value, {
+                  htmlTagsToSkip: ["br", "p", "ul", "li"],
+                })
+              : getPlainDataValue(data, value);
+          // Check if the value is a URL or ID that needs to be processed
+          if (
+            key &&
+            urlKeys.has(key) &&
+            typeof dataValue === "string" &&
+            (dataValue.startsWith("/") || dataValue.startsWith("./") || dataValue.startsWith("../"))
+          ) {
+            const pageUrl = site.url(data.url, true);
+            return new URL(dataValue, pageUrl);
+          }
+          return isEmpty(dataValue) ? undefined : dataValue;
+        }
+        if (Array.isArray(value)) {
+          return value.reduce((p, c) => {
+            const processedValue = traverse(key, c);
+            if (!isEmpty(value)) p.push(processedValue);
+            return p;
+          }, []);
+        }
+        if (isPlainObject(value)) {
+          const processedObject: Record<string, unknown> = {};
+          let isEmptyObject = true;
+          for (const [key, v] of Object.entries(value)) {
+            const processedValue = traverse(key, v);
+            // If there's no valid value other than @type, remove this object
+            if (!(key === "@type") && processedValue) isEmptyObject = false;
+            processedObject[key] = processedValue;
+          }
+          return isEmptyObject ? undefined : processedObject;
+        }
+        return value;
+      }
+
+      jsonLdData = traverse(undefined, jsonLdData) as Graph;
+
+      if (jsonLdData || Object.keys(jsonLdData ?? {}).length !== 0) {
+        if (jsonLdData["@context"] === undefined) {
+          jsonLdData["@context"] = "https://schema.org";
+        }
+
+        if (insert) {
+          const script = document.createElement("script");
+          script.setAttribute("type", "application/ld+json");
+          script.textContent = JSON.stringify(jsonLdData);
+          document.head.appendChild(script);
+          document.head.appendChild(document.createTextNode("\n"));
+        }
+        return jsonLdData;
+      }
+    }
+  };
+}
+
+export default jsonLd;
+
+/** Extends global data interface */
+declare global {
+  namespace Lume {
+    export interface GlobalData {
+      /**
+       * JSON_LD elements
+       * @see https://lume.land/plugins/json_ld/
+       */
+      jsonLd?: JsonldData | JsonldData[];
+    }
+  }
+}
