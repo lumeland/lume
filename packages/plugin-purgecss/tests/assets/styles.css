@@ -1,0 +1,64 @@
+::root {
+  --font-family: sans-serif;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.unused {
+  margin-top: 30px;
+}
+
+strong {
+  font-weight: bolder;
+}
+
+em {
+  font-style: italic;
+}
+
+a[href] {
+  text-decoration: underline;
+}
+
+html > body .no-such-element .content-vento, html > * .content-vento {
+  max-width: 800px;
+}
+
+.content-vento:not(.test):focus-visible {
+  outline: 2px solid blue;
+}
+
+.content-dynamic {
+  display: flex;
+}
+
+.content-dynamic:focus-visible {
+  outline: 2px solid lightblue;
+}
+
+.content-static {
+  margin-top: 25px;
+}
+
+.content-other {
+  padding: 20px 5px;
+}
+
+.dynamic-js {
+  opacity: 0;
+}
+
+.dynamic-jssub {
+  display: none;
+}
+
+.dynamic-jssub-open {
+  opacity: 1;
+}
+
+#img-option {
+  max-width: 100%;
+}
