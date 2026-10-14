@@ -1,0 +1,18 @@
+<body>
+
+  <table>
+    <tr>
+      {{ for key, column of attendance_numbers[0] }}
+        <th>{{ key }}</th>
+      {{ /for }}
+    </tr>
+
+    {{ for row of attendance_numbers }}
+      <tr>
+        {{ for key, column of row }}
+          <td>{{ column }}</td>
+        {{ /for }}
+      </tr>
+    {{ /for }}
+  </table>
+</body>
