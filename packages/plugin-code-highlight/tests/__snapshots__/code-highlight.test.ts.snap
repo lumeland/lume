@@ -1,0 +1,497 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`code-highlight plugin > should match site snapshot with a theme 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+      "/other.vto",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><h1>Code highlight plugin testing</h1>
+<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: red
+}
+</code></pre>
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<h1>Code highlight plugin testing</h1>
+<pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css">p {
+  color: red
+}
+</code></pre>
+",
+        "content": "# Code highlight plugin testing
+
+\`\`\`html
+<p>This is a HTML code</p>
+\`\`\`
+
+\`\`\`
+Not highlighted code
+\`\`\`
+
+\`\`\`css
+p {
+  color: red
+}
+\`\`\`
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>
+
+</body></html>",
+      "data": {
+        "basename": "other",
+        "children": "<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>",
+        "content": "<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/other/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}/*!
+  Theme: a11y-dark
+  Author: @ericwbailey
+  Maintainer: @ericwbailey
+
+  Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css
+*/.hljs{background:#2b2b2b;color:#f8f8f2}.hljs-comment,.hljs-quote{color:#d4d0ab}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ffa07a}.hljs-built_in,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#f5ab35}.hljs-attribute{color:gold}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#abe338}.hljs-section,.hljs-title{color:#00e0e0}.hljs-keyword,.hljs-selector-tag{color:#dcc6e0}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}@media screen and (-ms-high-contrast:active){.hljs-addition,.hljs-attribute,.hljs-built_in,.hljs-bullet,.hljs-comment,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-quote,.hljs-string,.hljs-symbol,.hljs-type{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}",
+      "data": {
+        "basename": "style",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/style.css",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`code-highlight plugin > should match site snapshot with a theme and custom file 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+      "/other.vto",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><h1>Code highlight plugin testing</h1>
+<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a HTML code<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css hljs"><span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: red
+}
+</code></pre>
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<h1>Code highlight plugin testing</h1>
+<pre><code class="language-html">&lt;p&gt;This is a HTML code&lt;/p&gt;
+</code></pre>
+<pre><code>Not highlighted code
+</code></pre>
+<pre><code class="language-css">p {
+  color: red
+}
+</code></pre>
+",
+        "content": "# Code highlight plugin testing
+
+\`\`\`html
+<p>This is a HTML code</p>
+\`\`\`
+
+\`\`\`
+Not highlighted code
+\`\`\`
+
+\`\`\`css
+p {
+  color: red
+}
+\`\`\`
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code class="hljs language-css"><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: none }</code></pre>
+
+</body></html>",
+      "data": {
+        "basename": "other",
+        "children": "<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>",
+        "content": "<html>
+<body>
+  <pre>Code inside a PRE</pre>
+  <code>Code inside a CODE</code>
+  <pre><code>Not highlighted code</code></pre>
+  <pre class="language-css"><code>p { display: none }</code></pre>
+</body>
+</html>",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/other/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}/*!
+  Theme: a11y-dark
+  Author: @ericwbailey
+  Maintainer: @ericwbailey
+
+  Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css
+*/.hljs{background:#2b2b2b;color:#f8f8f2}.hljs-comment,.hljs-quote{color:#d4d0ab}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#ffa07a}.hljs-built_in,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#f5ab35}.hljs-attribute{color:gold}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#abe338}.hljs-section,.hljs-title{color:#00e0e0}.hljs-keyword,.hljs-selector-tag{color:#dcc6e0}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}@media screen and (-ms-high-contrast:active){.hljs-addition,.hljs-attribute,.hljs-built_in,.hljs-bullet,.hljs-comment,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-quote,.hljs-string,.hljs-symbol,.hljs-type{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}",
+      "data": {
+        "basename": "theme",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/theme.css",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

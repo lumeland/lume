@@ -1,0 +1,110 @@
+import { hljs, themePath } from "../deps/highlight.ts";
+import { ventoLang } from "../deps/vento.ts";
+import { merge } from "@lumeland/core/utils/object.ts";
+import { log } from "@lumeland/core/utils/log.ts";
+import { readFile } from "@lumeland/core/utils/read.ts";
+import { insertContent } from "@lumeland/core/utils/page_content.ts";
+
+import type { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
+import type Site from "@lumeland/core/site.ts";
+import type { Page } from "@lumeland/core/file.ts";
+
+export interface Options {
+  /** Register languages on the Highlight.js context. */
+  languages?: Record<string, LanguageFn>;
+
+  /**
+   * Options passed to highlight.js.
+   * @see https://highlightjs.readthedocs.io/en/latest/api.html#configure
+   */
+  options?: Partial<Omit<HLJSOptions, "__emitter">>;
+
+  /**
+   * The theme or themes to download
+   * @see https://highlightjs.org/examples
+   */
+  theme?: Theme | Theme[];
+}
+
+interface Theme {
+  /** The name of the theme */
+  name: string;
+
+  /** The CSS file to output the font-face rules */
+  cssFile?: string;
+
+  /** A placeholder to replace with the generated CSS (only for cssFile) */
+  placeholder?: string;
+}
+
+// Default options
+export const defaults = {
+  options: {
+    ignoreUnescapedHTML: false,
+    noHighlightRe: /^$/i,
+    languageDetectRe: /\blanguage-([\w-]+)\b/i,
+    classPrefix: "hljs-",
+    cssSelector: "pre code",
+  },
+  languages: {
+    vento: ventoLang,
+    vto: ventoLang,
+  },
+} satisfies Options;
+
+/**
+ * A plugin to syntax-highlight code using the highlight.js library
+ * @see https://lume.land/plugins/code_highlight/
+ */
+export function codeHighlight(userOptions?: Options) {
+  const options = merge(defaults, userOptions);
+  hljs.configure(options.options);
+
+  if (options.languages) {
+    for (const [name, fn] of Object.entries(options.languages)) {
+      hljs.registerLanguage(name, fn);
+    }
+  }
+
+  return (site: Site) => {
+    if (site._data.codeHighlight) {
+      log.error(
+        `[code_highlight plugin] The plugin "${site._data.codeHighlight}" is already registered for the same purpose as "codeHighlight". Registering "codeHighlight" may lead to conflicts and unpredictable behavior.`,
+      );
+    }
+    site._data.codeHighlight = "codeHighlight";
+
+    site.process([".html"], processCodeHighlight);
+
+    if (options.theme) {
+      const theme = options.theme;
+
+      site.process(async function processCodeHighlightTheme() {
+        const themes = Array.isArray(theme) ? theme : [theme];
+
+        for (const { name, cssFile = site.options.cssFile, placeholder } of themes) {
+          const cssCode = await readFile(themePath(name));
+          const page = await site.getOrCreatePage(cssFile);
+          page.text = insertContent(page.text, cssCode, placeholder);
+        }
+      });
+    }
+
+    function processCodeHighlight(pages: Page[]) {
+      for (const page of pages) {
+        page.document
+          .querySelectorAll<HTMLElement>(options.options.cssSelector!)
+          .forEach((element) => {
+            try {
+              hljs.highlightElement(element);
+              element.removeAttribute("data-highlighted");
+            } catch (error) {
+              log.error(`Error highlighting code block in ${page.sourcePath}: ${error}`);
+            }
+          });
+      }
+    }
+  };
+}
+
+export default codeHighlight;
