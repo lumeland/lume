@@ -1,0 +1,22 @@
+@import "/style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import '/style.css';
+@import 'other-styles.css';
+@import './other-styles.css';
+@import url('/style.css');
+@import url('other-styles.css');
+@import url('./other-styles.css');
+@import url(/style.css);
+@import url(other-styles.css);
+@import url(./other-styles.css);
+
+@font-face {
+  font-family: "foo";
+  src: url("/fonts/cicle_fina-webfont.woff2");
+}
+
+div {
+  background-image: url("/img/avatar.png");
+
+}

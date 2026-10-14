@@ -1,0 +1,824 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`relative-urls plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/about-us",
+      "/about-us/contact.md",
+      "/about-us/index.md",
+      "/about-us/presentation.md",
+      "/filter.vto",
+      "/index.md",
+      "/styles.css",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Contact</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href=".">Contact</a></li>
+<li><a href="../presentation">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "contact",
+        "children": "<p>Contact</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "Contact
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/contact/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/contact",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>About us</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href=".">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "about-us",
+        "children": "<p>About us</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "About us
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Presentation</p>
+<ul>
+<li><a href="../..">Index</a></li>
+<li><a href="..">About us</a></li>
+<li><a href="../contact">Contact</a></li>
+<li><a href=".">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "presentation",
+        "children": "<p>Presentation</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "Presentation
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/presentation/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/presentation",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body>Filter
+
+<a href="..">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="../about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+</body></html>",
+      "data": {
+        "basename": "filter",
+        "children": "Filter
+
+<a href="..">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="../about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+",
+        "content": "Filter
+
+<a href="{{ "/" |> relativeUrl }}">Index</a>
+<a href="{{ "about-us" |> relativeUrl }}">About</a>
+<a href="{{ "./about-us/contact" |> relativeUrl }}">Contact</a>
+<a href="{{ "/about-us/contact" |> relativeUrl("/about-us/contact/other/") }}">Contact 2</a>
+<a href="{{ "/about-us/contact" |> relativeUrl }}">Contact 3</a>
+<a href="{{ "about-us/presentation" |> relativeUrl }}">Presentation</a>
+<a href="{{ "?ignored=true" |> relativeUrl }}">Ignored</a>
+<a href="{{ "#ignored" |> relativeUrl }}">Ignored</a>
+<a href="{{ "https://ignored.com" |> relativeUrl }}">Ignored</a>
+<a href="{{ "//ignored.com" |> relativeUrl }}">Ignored</a>
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/filter/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Index</p>
+<ul>
+<li><a href=".">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<p>Index</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+",
+        "content": "Index
+
+- [Index](/)
+- [About us](about-us)
+- [Contact](./about-us/contact)
+- [Presentation](about-us/presentation)
+- [Ignored](?ignored=true)
+- [Ignored](#ignored)
+- [Ignored](https://ignored.com)
+- [Ignored](//ignored.com)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "@import "style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import "style.css";
+@import "other-styles.css";
+@import "./other-styles.css";
+@import url("style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+@import url("style.css");
+@import url("other-styles.css");
+@import url("./other-styles.css");
+
+@font-face {
+  font-family: "foo";
+  src: url("fonts/cicle_fina-webfont.woff2");
+}
+
+div {
+  background-image: url("img/avatar.png");
+
+}
+",
+      "data": {
+        "basename": "styles",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/styles.css",
+      },
+      "src": {
+        "ext": ".css",
+        "path": "/styles",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`relative-urls plugin > should match site snapshot with pretty urls disabled 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/about-us",
+      "/about-us/contact.md",
+      "/about-us/index.md",
+      "/about-us/presentation.md",
+      "/filter.vto",
+      "/index.md",
+      "/styles.css",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Contact</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href=".">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "contact",
+        "children": "<p>Contact</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "Contact
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/contact.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/contact",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>About us</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href=".">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "index",
+        "children": "<p>About us</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "About us
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/index.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Presentation</p>
+<ul>
+<li><a href="..">Index</a></li>
+<li><a href=".">About us</a></li>
+<li><a href="contact">Contact</a></li>
+<li><a href="presentation">Presentation</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "presentation",
+        "children": "<p>Presentation</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="/about-us">About us</a></li>
+<li><a href="/about-us/contact">Contact</a></li>
+<li><a href="/about-us/presentation">Presentation</a></li>
+</ul>
+",
+        "content": "Presentation
+
+- [Index](/)
+- [About us](/about-us)
+- [Contact](/about-us/contact)
+- [Presentation](/about-us/presentation)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/about-us/presentation.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/about-us/presentation",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body>Filter
+
+<a href=".">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+</body></html>",
+      "data": {
+        "basename": "filter",
+        "children": "Filter
+
+<a href=".">Index</a>
+<a href="about-us">About</a>
+<a href="./about-us/contact">Contact</a>
+<a href="..">Contact 2</a>
+<a href="about-us/contact">Contact 3</a>
+<a href="about-us/presentation">Presentation</a>
+<a href="?ignored=true">Ignored</a>
+<a href="#ignored">Ignored</a>
+<a href="https://ignored.com">Ignored</a>
+<a href="//ignored.com">Ignored</a>
+",
+        "content": "Filter
+
+<a href="{{ "/" |> relativeUrl }}">Index</a>
+<a href="{{ "about-us" |> relativeUrl }}">About</a>
+<a href="{{ "./about-us/contact" |> relativeUrl }}">Contact</a>
+<a href="{{ "/about-us/contact" |> relativeUrl("/about-us/contact/other/") }}">Contact 2</a>
+<a href="{{ "/about-us/contact" |> relativeUrl }}">Contact 3</a>
+<a href="{{ "about-us/presentation" |> relativeUrl }}">Presentation</a>
+<a href="{{ "?ignored=true" |> relativeUrl }}">Ignored</a>
+<a href="{{ "#ignored" |> relativeUrl }}">Ignored</a>
+<a href="{{ "https://ignored.com" |> relativeUrl }}">Ignored</a>
+<a href="{{ "//ignored.com" |> relativeUrl }}">Ignored</a>
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/filter.html",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/filter",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><p>Index</p>
+<ul>
+<li><a href=".">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+</body></html>",
+      "data": {
+        "basename": "index",
+        "children": "<p>Index</p>
+<ul>
+<li><a href="/">Index</a></li>
+<li><a href="about-us">About us</a></li>
+<li><a href="./about-us/contact">Contact</a></li>
+<li><a href="about-us/presentation">Presentation</a></li>
+<li><a href="?ignored=true">Ignored</a></li>
+<li><a href="#ignored">Ignored</a></li>
+<li><a href="https://ignored.com">Ignored</a></li>
+<li><a href="//ignored.com">Ignored</a></li>
+</ul>
+",
+        "content": "Index
+
+- [Index](/)
+- [About us](about-us)
+- [Contact](./about-us/contact)
+- [Presentation](about-us/presentation)
+- [Ignored](?ignored=true)
+- [Ignored](#ignored)
+- [Ignored](https://ignored.com)
+- [Ignored](//ignored.com)
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/index.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
