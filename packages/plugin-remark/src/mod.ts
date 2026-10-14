@@ -48,9 +48,7 @@ export const defaults = {
   },
 } satisfies Options;
 
-const remarkDefaultPlugins = [
-  remarkGfm,
-];
+const remarkDefaultPlugins = [remarkGfm];
 
 /** Template engine to render Markdown files with Remark */
 export class MarkdownEngine implements Engine {
@@ -68,11 +66,13 @@ export class MarkdownEngine implements Engine {
     filename?: string,
   ): Promise<string> {
     const page = data?.page as Page | undefined;
-    return (await this.engine.process({
-      value: content,
-      data: page?.data,
-      path: filename,
-    })).toString();
+    return (
+      await this.engine.process({
+        value: content,
+        data: page?.data,
+        path: filename,
+      })
+    ).toString();
   }
 
   addHelper() {}
@@ -97,7 +97,7 @@ export function remark(userOptions?: Options) {
     }
 
     // Add remark plugins
-    plugins.push(...options.remarkPlugins ?? []);
+    plugins.push(...(options.remarkPlugins ?? []));
 
     // Add remark-rehype to generate HAST
     plugins.push([remarkRehype, options.rehypeOptions ?? {}]);
@@ -108,7 +108,7 @@ export function remark(userOptions?: Options) {
     }
 
     // Add rehype plugins
-    plugins.push(...options.rehypePlugins ?? []);
+    plugins.push(...(options.rehypePlugins ?? []));
 
     if (options.sanitize) {
       // Add rehype-sanitize to make sure HTML is safe

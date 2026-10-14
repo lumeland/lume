@@ -84,3 +84,10 @@ export async function runCommand(cmd: string, args: string[] = [], cwd?: string)
     child.on("close", (code) => resolve(code === 0));
   });
 }
+
+/** Reload the process */
+export function reloadProcess() {
+  if (process.send) {
+    process.send({ type: "reload" });
+  }
+}

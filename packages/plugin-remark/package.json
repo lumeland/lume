@@ -14,15 +14,6 @@
     "test:watch": "vitest",
     "test:update": "vitest run -u"
   },
-  "peerDependencies": {
-    "@lumeland/core": "workspace:*"
-  },
-  "devDependencies": {
-    "@lumeland/testing": "workspace:*",
-    "@types/node": "^26.6.4",
-    "typescript": "^7.0.2",
-    "vitest": "^5.0.3"
-  },
   "dependencies": {
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0",
@@ -31,5 +22,14 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
   }
 }

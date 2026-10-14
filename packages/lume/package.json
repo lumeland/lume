@@ -4,7 +4,7 @@
   "description": "A fast and flexible static site generator",
   "license": "MIT",
   "bin": {
-    "lume": "./cli.ts"
+    "lume": "./bin.ts"
   },
   "files": [
     "build"

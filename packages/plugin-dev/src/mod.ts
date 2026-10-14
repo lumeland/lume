@@ -1,7 +1,7 @@
 import { SiteWatcher } from "@lumeland/core/watcher.ts";
 import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-import { inspect } from "@lumeland/core/services/process.ts";
+import { inspect, reloadProcess } from "@lumeland/core/services/process.ts";
 import reload from "./reload.ts";
 import noCache from "./no_cache.ts";
 import noCors from "./no_cors.ts";
@@ -12,6 +12,7 @@ import type Site from "@lumeland/core/site.ts";
 
 export interface DevOptions {
   serve?: boolean;
+  reloadFiles?: string[];
 }
 
 /**
@@ -19,7 +20,7 @@ export interface DevOptions {
  */
 export function dev(options: DevOptions = {}) {
   return (site: Site) => {
-    setupWatcher(site);
+    setupWatcher(site, options.reloadFiles);
 
     if (options.serve) {
       setupServer(site);
@@ -80,12 +81,21 @@ function setupServer(site: Site) {
 }
 
 /** Setup a file watcher */
-function setupWatcher(site: Site) {
+function setupWatcher(site: Site, reloadFiles?: string[]) {
   // Start the watcher
   const watcher = site.getWatcher();
   const srcFolder = normalizePath(site.options.src);
 
   watcher.addEventListener("change", async (event) => {
+    const files = event.files!;
+
+    // If the config files have changed, reload the build process
+    if (reloadFiles?.some((file) => files.has(file))) {
+      log.info("Reloading the site...");
+      log.output();
+      return reloadProcess();
+    }
+
     const srcFiles = new Set(
       [...event.files!]
         .filter((file) => file.startsWith(srcFolder))
