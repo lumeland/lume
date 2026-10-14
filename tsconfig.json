@@ -6,6 +6,13 @@
     "allowImportingTsExtensions": true,
     "target": "ES2022",
     "erasableSyntaxOnly": true,
-    "lib": ["ES2022", "ESNext.Iterator", "DOM", "DOM.Iterable", "DOM.AsyncIterable", "ESNext.Temporal"]
+    "lib": [
+      "ES2022",
+      "ESNext.Iterator",
+      "DOM",
+      "DOM.Iterable",
+      "DOM.AsyncIterable",
+      "ESNext.Temporal"
+    ]
   }
 }

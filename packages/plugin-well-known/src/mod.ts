@@ -256,10 +256,7 @@ export function wellKnown(options: Options) {
     if (options.security) {
       site.page({
         url: "/.well-known/security.txt",
-        content: buildSecurity(
-          options.security,
-          site.url("/.well-known/security.txt", true),
-        ),
+        content: buildSecurity(options.security, site.url("/.well-known/security.txt", true)),
       });
     }
 
@@ -292,9 +289,10 @@ export function wellKnown(options: Options) {
     }
 
     if (options.migratePWA) {
-      const entries = toArray(options.migratePWA).map((
+      const entries = toArray(options.migratePWA).map((domain) => [
         domain,
-      ) => [domain, { allow_migration: true }]);
+        { allow_migration: true },
+      ]);
       site.page({
         url: "/.well-known/web-app-origin-association",
         content: JSON.stringify(Object.fromEntries(entries), null, 2),
@@ -318,45 +316,26 @@ export function wellKnown(options: Options) {
     if (options.matrix?.support) {
       site.page({
         url: "/.well-known/matrix/support",
-        content: JSON.stringify(
-          buildMatrixSupport(options.matrix.support),
-          null,
-          2,
-        ),
+        content: JSON.stringify(buildMatrixSupport(options.matrix.support), null, 2),
       });
     }
 
     if (options.matrix?.policyServer) {
       site.page({
         url: "/.well-known/matrix/policy_server",
-        content: JSON.stringify(
-          { public_keys: options.matrix.policyServer.publicKeys },
-          null,
-          2,
-        ),
+        content: JSON.stringify({ public_keys: options.matrix.policyServer.publicKeys }, null, 2),
       });
     }
   };
 }
 
 function buildSecurity(info: Security, canonical: string): string {
-  const names = [
-    "Contact",
-    "Policy",
-    "Encryption",
-    "Acknowledgments",
-    "Hiring",
-    "CSAF",
-  ];
+  const names = ["Contact", "Policy", "Encryption", "Acknowledgments", "Hiring", "CSAF"];
 
   const lines: string[] = [];
 
   for (const name of names) {
-    for (
-      const value of toArray(
-        info[name.toLowerCase() as keyof Security] as string | string[],
-      )
-    ) {
+    for (const value of toArray(info[name.toLowerCase() as keyof Security] as string | string[])) {
       lines.push(`${name}: ${value}`);
     }
   }
@@ -364,9 +343,7 @@ function buildSecurity(info: Security, canonical: string): string {
   lines.push(`Expires: ${toTemporal(info.expires)}`);
 
   if (info.preferredLanguages) {
-    lines.push(
-      `Preferred-Languages: ${toArray(info.preferredLanguages).join(", ")}`,
-    );
+    lines.push(`Preferred-Languages: ${toArray(info.preferredLanguages).join(", ")}`);
   }
 
   lines.push(`Canonical: ${canonical}`);
@@ -390,9 +367,7 @@ function buildTrust(info: Trust): string {
   const lines: string[] = [];
 
   for (const key of keys) {
-    for (
-      const value of toArray(info[key as keyof Trust] as string | string[])
-    ) {
+    for (const value of toArray(info[key as keyof Trust] as string | string[])) {
       lines.push(`${key.toLowerCase()}=${value}`);
     }
   }
@@ -402,9 +377,7 @@ function buildTrust(info: Trust): string {
   }
 
   if (typeof info.dataTrainingAllowed === "boolean") {
-    lines.push(
-      `datatrainingallowed=${info.dataTrainingAllowed ? "yes" : "no"}`,
-    );
+    lines.push(`datatrainingallowed=${info.dataTrainingAllowed ? "yes" : "no"}`);
   }
 
   return lines.join("\n");

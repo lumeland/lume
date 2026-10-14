@@ -1,0 +1,612 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`slugify-urls plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/Chourizos ao viño.md",
+      "/Page 1.md",
+      "/UI Styles.css",
+      "/_headers",
+      "/generator.page.js",
+      "/page-3.md",
+      "/page-4.md",
+    ],
+  },
+  "files": [
+    {
+      "entry": "/_headers",
+      "flags": [],
+      "outputPath": "/_headers",
+    },
+    {
+      "entry": "/UI Styles.css",
+      "flags": [],
+      "outputPath": "/UI Styles.css",
+    },
+  ],
+  "pages": [
+    {
+      "content": "Foo",
+      "data": {
+        "basename": "-",
+        "children": "Foo",
+        "content": "Foo",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "/803nfon-sfodij/-/",
+        "url": "/803nfon-sfodij/-/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/generator[1]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 2</p>
+",
+      "data": {
+        "basename": "chourizos-ao-vino",
+        "children": "<p>Page 2</p>
+",
+        "content": "Page 2
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/chourizos-ao-vino/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/Chourizos ao viño",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Filloas con nocilla",
+      "data": {
+        "basename": "filloas-con-nocilla",
+        "children": "Filloas con nocilla",
+        "content": "Filloas con nocilla",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "filloas-con-nocilla",
+        "url": "/filloas-con-nocilla/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/generator[0]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 1</p>
+",
+      "data": {
+        "basename": "page-1",
+        "children": "<p>Page 1</p>
+",
+        "content": "Page 1
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/Page 1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 4</p>
+",
+      "data": {
+        "basename": "paxina-4",
+        "children": "<p>Page 4</p>
+",
+        "content": "Page 4
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/paxina-4.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/page-4",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 3</p>
+",
+      "data": {
+        "basename": "tres",
+        "children": "<p>Page 3</p>
+",
+        "content": "Page 3
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/paxina-numero/tres/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/page-3",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`slugify-urls plugin > should match site with static files 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".css",
+      },
+    ],
+    "src": [
+      "/",
+      "/Chourizos ao viño.md",
+      "/Page 1.md",
+      "/UI Styles.css",
+      "/_headers",
+      "/generator.page.js",
+      "/page-3.md",
+      "/page-4.md",
+    ],
+  },
+  "files": [
+    {
+      "entry": "/_headers",
+      "flags": [],
+      "outputPath": "/headers",
+    },
+    {
+      "entry": "/UI Styles.css",
+      "flags": [],
+      "outputPath": "/ui-styles.css",
+    },
+  ],
+  "pages": [
+    {
+      "content": "Foo",
+      "data": {
+        "basename": "-",
+        "children": "Foo",
+        "content": "Foo",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "/803nfon-sfodij/-/",
+        "url": "/803nfon-sfodij/-/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/generator[1]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 2</p>
+",
+      "data": {
+        "basename": "chourizos-ao-vino",
+        "children": "<p>Page 2</p>
+",
+        "content": "Page 2
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/chourizos-ao-vino/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/Chourizos ao viño",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Filloas con nocilla",
+      "data": {
+        "basename": "filloas-con-nocilla",
+        "children": "Filloas con nocilla",
+        "content": "Filloas con nocilla",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "filloas-con-nocilla",
+        "url": "/filloas-con-nocilla/",
+      },
+      "src": {
+        "ext": ".page.js",
+        "path": "/generator[0]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 1</p>
+",
+      "data": {
+        "basename": "page-1",
+        "children": "<p>Page 1</p>
+",
+        "content": "Page 1
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/Page 1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 4</p>
+",
+      "data": {
+        "basename": "paxina-4",
+        "children": "<p>Page 4</p>
+",
+        "content": "Page 4
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/paxina-4.html",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/page-4",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>Page 3</p>
+",
+      "data": {
+        "basename": "tres",
+        "children": "<p>Page 3</p>
+",
+        "content": "Page 3
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/paxina-numero/tres/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/page-3",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
