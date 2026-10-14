@@ -6,10 +6,8 @@ import { gl } from "date-fns/locale/gl";
 import { pt } from "date-fns/locale/pt";
 import { enUS } from "date-fns/locale/en-US";
 import { es } from "date-fns/locale/es";
-import process from "node:process";
 
 describe("date plugin", async () => {
-  process.env["TZ"] = "Z";
   const date0 = new Date(0);
 
   it("should have a date helper", () => {

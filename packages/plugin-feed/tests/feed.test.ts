@@ -1,11 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { build, getSite } from "@lumeland/testing/site.ts";
-import process from "node:process";
 import feed from "../src/mod.ts";
 
 describe("feed plugin", async () => {
-  process.env["TZ"] = "Z";
-
   it("should match site snapshot", async () => {
     const site = getSite({
       cwd: import.meta.resolve("./assets"),
