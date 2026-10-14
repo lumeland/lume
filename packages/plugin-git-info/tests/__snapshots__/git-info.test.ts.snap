@@ -109,6 +109,40 @@ exports[`git-info plugin > should match site snapshot 1`] = `
     ],
   },
   "files": [],
-  "pages": [],
+  "pages": [
+    {
+      "content": "Has branchHas hash",
+      "data": {
+        "basename": "",
+        "children": "Has branchHas hash",
+        "content": "{{ if gitInfo.branch }}Has branch{{ /if }}
+{{ if gitInfo.hash }}Has hash{{ /if }}
+",
+        "date": [],
+        "gitInfo": [
+          "branch",
+          "hash",
+          "tag",
+        ],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
 }
 `;

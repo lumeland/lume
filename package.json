@@ -3,7 +3,7 @@
   "scripts": {
     "build": "sh scripts/build.sh",
     "publish": "sh scripts/publish.sh",
-    "new-plugin": "node scripts/new-plugin.ts",
+    "new-plugin": "node scripts/new-plugin.ts && pnpm install",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u",
