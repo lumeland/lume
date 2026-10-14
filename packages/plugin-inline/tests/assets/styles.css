@@ -1,0 +1,12 @@
+.one {
+  background-image: url("./favicon.svg");
+}
+.two {
+  background-image: url("./other favicon.png");
+}
+.three {
+  background-image: url("./favicon.svg?inline");
+}
+.four {
+  background-image: url("./other favicon.png?inline");
+}

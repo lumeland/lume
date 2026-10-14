@@ -5,6 +5,7 @@ import type { Middleware } from "@lumeland/core/server.ts";
 import type { Watcher } from "@lumeland/core/watcher.ts";
 import type DebugBar from "@lumeland/core/debugbar.ts";
 import type Server from "@lumeland/core/server.ts";
+import { toBase64 } from "@lumeland/core/services/global.ts";
 
 export interface Options {
   /** The watcher instance to use */
@@ -163,7 +164,7 @@ export function reload(options: Options): Middleware {
 async function computeSourceIntegrity(source: string) {
   const bytes = new TextEncoder().encode(source);
   const hash = await crypto.subtle.digest("SHA-384", bytes);
-  const base64 = Buffer.from(hash).toString("base64");
+  const base64 = toBase64(hash);
   return `sha384-${base64}`;
 }
 

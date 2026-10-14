@@ -5,6 +5,7 @@ import { read } from "@lumeland/core/utils/read.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { basename, join, toFileUrl } from "../deps/path.ts";
+import { toBase64 } from "@lumeland/core/services/global.ts";
 
 import type Site from "@lumeland/core/site.ts";
 
@@ -69,9 +70,7 @@ export function sourceMaps(userOptions?: Options) {
 
       // Inline the source map in the output file
       if (options.inline) {
-        const base64 = Buffer.from(new TextEncoder().encode(JSON.stringify(sourceMap))).toString(
-          "base64",
-        );
+        const base64 = toBase64(new TextEncoder().encode(JSON.stringify(sourceMap)));
         const url = `data:application/json;charset=utf-8;base64,${base64}`;
         file.content += addSourceMap(file.outputPath, url);
         return;
