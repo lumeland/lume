@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`validate-html plugin > should match site snapshot 1`] = `
+[
+  {
+    "messages": [
+      "no-implicit-button-type",
+    ],
+    "url": "/",
+  },
+]
+`;
