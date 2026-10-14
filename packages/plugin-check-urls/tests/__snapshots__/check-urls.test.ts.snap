@@ -1,0 +1,124 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`check-urls plugin > should match site snapshot 1`] = `
+[
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1/",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2/",
+  },
+]
+`;
+
+exports[`check-urls plugin > should match site snapshot in anchors mode 1`] = `
+[
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1/",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1/#non-existing",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1/#title-with-anchor",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1#non-existing",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1#title-with-anchor",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2/",
+  },
+]
+`;
+
+exports[`check-urls plugin > should match site snapshot in strict mode 1`] = `
+[
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page1/",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page2/",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page3",
+  },
+  {
+    "pages": [
+      "/",
+    ],
+    "url": "/page3/",
+  },
+]
+`;
