@@ -1,0 +1,29 @@
+{
+  "name": "@lumeland/plugin-minify-html",
+  "version": "1.0.0-beta-1",
+  "description": "Plugin to minify the HTML code of your pages",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc -p .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "dependencies": {
+    "@minify-html/node": "^0.18.1"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

@@ -694,6 +694,28 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2))
 
+  packages/plugin-minify-html:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      '@minify-html/node':
+        specifier: ^0.18.1
+        version: 0.18.1
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2))
+
   packages/plugin-modify-urls:
     dependencies:
       '@lumeland/core':
@@ -1728,6 +1750,36 @@ packages:
 
   '@lumeland/dom@0.1.56':
     resolution: {integrity: sha512-PLCpkKfRYqRuG87uU8dHnX3g80ljC/5yw7+xJ/HzbnhiiayhglDdLWXO4rV/fwbO/asH91QBDdZWY8dOGsX5lQ==}
+
+  '@minify-html/node-darwin-arm64@0.18.1':
+    resolution: {integrity: sha512-sc/VJHRcHtEk0IQP2hRA/TWkAQntaYH3RCw8n750NbfzliQqkyrDqNAGiKBOli7UlhFtG/H2aWqGjtOjIM/dZA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@minify-html/node-darwin-x64@0.18.1':
+    resolution: {integrity: sha512-0bff2ng4Vgp3+kdC8zgjd5dMN04zkM4nGuYEVP4dLR7J5NCD/Ka4XD4CKNSDZ9goLYQ8BjtKD6AeDTfJ8KBjrA==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@minify-html/node-linux-arm64@0.18.1':
+    resolution: {integrity: sha512-CVGu5XVmmDrGFuA9/b/695rJBFvfTZFwKJJYA1ZXAsBZrqlKVO4bfXPq9DVNmhQ76ky3LFtVZ/+UsU7xpyK5Qw==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@minify-html/node-linux-x64@0.18.1':
+    resolution: {integrity: sha512-qmIv4kRyhZTKO3nXDXHlFrhnmwIKTM57ZRomlYRYdZTWiFW3CbJ4Ggg57qIgx7D/t4dgyS7/O8OTetrWvmEg9w==}
+    cpu: [x64]
+    os: [linux]
+
+  '@minify-html/node-win32-x64@0.18.1':
+    resolution: {integrity: sha512-SNRE/NvcKXvh4UwXTRrujNSWaCj/3E+FFN+FLOBaN4FY+dZG83h6nWxGHJ5+LAoJxVTU7Al1e8toi4JjHpzv2w==}
+    cpu: [x64]
+    os: [win32]
+
+  '@minify-html/node@0.18.1':
+    resolution: {integrity: sha512-pNOv6z9zUDrjTU1+VcPOnDzGeaaqd6m9kbyHU+sg9O35450uzfke8ahx8gKlFdp/kQFrRn2rFIGAoANUZ62nSw==}
+    engines: {node: '>= 8.6.0'}
+    hasBin: true
 
   '@oxc-project/types@0.153.0':
     resolution: {integrity: sha512-jSNrRIyvPVLL5E1z/tS5zLAprosGz/FuI1PWwEOz59j3E4TTTzSpqKb/RDGqJhhW0QHYISGXxq582wGx6T11Tw==}
@@ -3869,6 +3921,29 @@ snapshots:
       '@std/xml': '@jsr/std__xml@0.2.0'
 
   '@lumeland/dom@0.1.56': {}
+
+  '@minify-html/node-darwin-arm64@0.18.1':
+    optional: true
+
+  '@minify-html/node-darwin-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node-linux-arm64@0.18.1':
+    optional: true
+
+  '@minify-html/node-linux-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node-win32-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node@0.18.1':
+    optionalDependencies:
+      '@minify-html/node-darwin-arm64': 0.18.1
+      '@minify-html/node-darwin-x64': 0.18.1
+      '@minify-html/node-linux-arm64': 0.18.1
+      '@minify-html/node-linux-x64': 0.18.1
+      '@minify-html/node-win32-x64': 0.18.1
 
   '@oxc-project/types@0.153.0': {}
 
