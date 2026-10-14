@@ -141,11 +141,11 @@ exports[`git-date plugin > should match site snapshot 1`] = `
       },
     },
     {
-      "content": "2016
+      "content": "2026
 ",
       "data": {
         "basename": "two",
-        "children": "2016
+        "children": "2026
 ",
         "content": "{{ date.getFullYear() }}
 ",
@@ -297,6 +297,7 @@ exports[`git-date plugin > should match store the data in a different variable 1
         "mergedKeys": [
           "tags",
         ],
+        "other": [],
         "page": [
           "src",
           "data",
@@ -326,6 +327,7 @@ exports[`git-date plugin > should match store the data in a different variable 1
         "mergedKeys": [
           "tags",
         ],
+        "other": [],
         "page": [
           "src",
           "data",
