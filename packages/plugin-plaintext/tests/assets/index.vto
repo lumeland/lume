@@ -1,0 +1,26 @@
+---
+title: "Hello **world**"
+description: |
+  This is a   description<br>
+  in multiple lines
+
+  - With
+  - list
+  - elements
+  - [and     links](#url)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title |> plaintext }}</title>
+  <meta name="description" content="{{ description |> plaintext }}">
+</head>
+<body>
+  <h1>{{ title |> md(true) }}</h1>
+
+  {{ description |> md }}
+</body>
+</html>
