@@ -1,0 +1,16 @@
+transformImages:
+  - suffix: -small
+    resize: 20
+    blur: 10
+  - suffix: -big
+    resize: 20
+    blur: 10
+    matches: \.png$
+  - format:
+    - format: jpg
+      progressive: true
+    - format: webp
+  - format: png
+  - format: jpg
+    suffix: -never
+    matches: \.jpg$
