@@ -4,6 +4,7 @@
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
     "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
     "target": "ES2022",
     "erasableSyntaxOnly": true,
     "lib": [
