@@ -1,0 +1,244 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`favicon plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".svg",
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/favicon.svg",
+      "/index.vto",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "Uint8Array(1904)",
+      "data": {
+        "basename": "apple-touch-icon",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/apple-touch-icon.png",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Uint8Array(467)",
+      "data": {
+        "basename": "favicon",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/favicon.ico",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_84_667)">
+<path opacity="0.2" d="M31.9999 31.9975V59.9982L7.48613 46.0132L7.48584 17.9971L31.9999 31.9975Z" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60 15.9687L31.9999 -0.03125L4 15.9688V48.031L31.9999 64.031L60 48.031V15.9687ZM56.5 17.9994L44.2477 10.9981L44.25 10.9997L32 17.9997L19.75 10.9997L19.7528 10.9978L7.5 17.9994V31.9997L19.75 38.9997V52.9994L32 59.9994V31.9997L56.5 17.9994ZM56.5 45.9994L44.25 52.9994V38.9997L56.5 31.9997V45.9994Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_84_667">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+",
+      "data": {
+        "basename": "favicon",
+        "content": "<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_84_667)">
+<path opacity="0.2" d="M31.9999 31.9975V59.9982L7.48613 46.0132L7.48584 17.9971L31.9999 31.9975Z" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60 15.9687L31.9999 -0.03125L4 15.9688V48.031L31.9999 64.031L60 48.031V15.9687ZM56.5 17.9994L44.2477 10.9981L44.25 10.9997L32 17.9997L19.75 10.9997L19.7528 10.9978L7.5 17.9994V31.9997L19.75 38.9997V52.9994L32 59.9994V31.9997L56.5 17.9994ZM56.5 45.9994L44.25 52.9994V38.9997L56.5 31.9997V45.9994Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_84_667">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/favicon.svg",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head>
+    <title>Hello world</title>
+  <link rel="icon" sizes="32x32" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml">
+</head>
+  <body>
+  
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<html>
+  <head>
+    <title>Hello world</title>
+  </head>
+  <body>
+  </body>
+</html>",
+        "content": "<html>
+  <head>
+    <title>{{ title }}</title>
+  </head>
+  <body>
+  </body>
+</html>",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Hello world",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
