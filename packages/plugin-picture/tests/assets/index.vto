@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <title>Demo</title>
+</head>
+
+<body>
+
+  <!-- without sizes -->
+  <div transform-images="png 600@2">
+    <img src="/kevin schmid unsplash.jpg">
+  </div>
+
+
+  <picture transform-images="avif webp jpg 600@2">
+    <img src="/kevin schmid unsplash.jpg">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2">
+
+  <!-- This image won't be converted to a picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif">
+
+  <!-- with sizes -->
+  <div transform-images="png 600@2">
+    <img src="/kevin schmid unsplash.jpg" sizes="600px">
+  </div>
+
+
+  <picture transform-images="avif webp jpg 600@2">
+    <img src="/kevin schmid unsplash.jpg" sizes="600px">
+  </picture>
+
+  <!-- This image will be converted to a picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300@2" sizes="600px">
+
+  <!-- This image will be converted to a square picture -->
+  <img src="/kevin schmid unsplash.jpg" transform-images="avif webp jpg 300x300@2">
+</body>
+</html>
