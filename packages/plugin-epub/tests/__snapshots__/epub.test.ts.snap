@@ -121,7 +121,7 @@ exports[`epub plugin > should match site snapshot 1`] = `
   "files": [],
   "pages": [
     {
-      "content": "Uint8Array(2998)",
+      "content": "Uint8Array()",
       "data": {
         "basename": "book",
         "page": [

@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { partytownSnippet, getLibFiles } from "../deps/partytown.ts";
+import { getLibFiles, partytownSnippet } from "../deps/partytown.ts";
 import type { PartytownConfig } from "../deps/partytown.ts";
 import type Site from "@lumeland/core/site.ts";
 
@@ -28,7 +28,6 @@ export function partytown(userOptions?: Options) {
     });
 
     const src = getLibFiles(options.options.debug);
-    console.log({ src });
 
     site.add(src, dest);
     site.process([".html"], function processPartytown(pages) {
