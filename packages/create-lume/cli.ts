@@ -104,6 +104,13 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     },
   });
 
+  writeFile(root, "tsconfig.json", {
+    compilerOptions: {
+      jsx: "react-jsx",
+      jsxImportSource: "@lumeland/ssx",
+    },
+  });
+
   writeFile(root, ".gitignore", ["_site", "_cache", "node_modules", ".env", ".DS_Store"]);
   const srcRoot = path.join(root, src);
   if (srcRoot !== root) {

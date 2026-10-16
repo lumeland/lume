@@ -292,12 +292,18 @@ importers:
       '@lumeland/plugin-yaml':
         specifier: workspace:*
         version: link:../plugin-yaml
+      '@lumeland/ssx':
+        specifier: ^0.1.16
+        version: 0.1.16
       cac:
         specifier: ^7.0.1
         version: 7.0.1
       deno-std:
         specifier: ^1.5.1
         version: 1.5.1
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
     devDependencies:
       typescript:
         specifier: ^7.0.2

@@ -45,8 +45,9 @@ export default function lume(
   site.options.watcher.ignore.push("/deno.lock");
   site.options.watcher.ignore.push("/deno.json");
   site.options.watcher.ignore.push("/package.json");
+  site.options.watcher.ignore.push("/tsconfig.json");
   site.options.watcher.ignore.push("/deno.jsonc");
-  site.options.watcher.ignore.push("/node_modules/.deno");
+  site.options.watcher.ignore.push("/node_modules");
   site.options.watcher.ignore.push("/.git");
   site.options.watcher.ignore.push("/_cache");
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
@@ -55,6 +56,7 @@ export default function lume(
     .ignore("node_modules")
     .ignore("import_map.json")
     .ignore("package.json")
+    .ignore("tsconfig.json")
     .ignore("deno.json")
     .ignore("deno.jsonc")
     .ignore("deno.lock")
