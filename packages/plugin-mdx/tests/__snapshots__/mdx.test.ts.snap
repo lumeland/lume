@@ -1,0 +1,233 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`mdx plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 1,
+        "ext": ".page.tsx",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.jsx",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".jsx",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".tsx",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".mdx",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_components",
+      "/_components/Header.jsx",
+      "/index.mdx",
+      "/mdx-filter.page.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<p style="font-size:23px;">Testing styles</p>",
+      "data": {
+        "basename": "",
+        "children": "<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>
+<p style="font-size:23px;">Testing styles</p>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<comp.Header title={title} description={description}/>
+
+## Hello world
+
+This is a markdown file with the title **{ title }**.
+
+<p style={{ "font-size": "23px" }}>Testing styles</p>
+
+",
+        "date": [],
+        "description": "This is a description",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Hello world",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".mdx",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<hr>
+<h2>title: Hello world
+description: This is a description</h2>
+<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>",
+      "data": {
+        "basename": "mdx-filter",
+        "children": "<hr>
+<h2>title: Hello world
+description: This is a description</h2>
+<header><h1>Hello world</h1><p>This is a description</p></header>
+<h2>Hello world</h2>
+<p>This is a markdown file with the title <strong>Hello world</strong>.</p>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "mdx filter example",
+        "url": "/mdx-filter/",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/mdx-filter",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

@@ -2,6 +2,8 @@
   "compilerOptions": {
     "types": ["node"],
     "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@lumeland/ssx",
     "module": "NodeNext",
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
