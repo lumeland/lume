@@ -1,6 +1,5 @@
 import { readdirSync } from "node:fs";
-import { join } from "node:path";
-import { editJson } from "./utils.ts";
+import { saveFile } from "./utils.ts";
 
 const root = "packages";
 
@@ -9,8 +8,4 @@ for (const entry of readdirSync(`./${root}`)) {
     continue;
   }
   const dir = `./${root}/${entry}`;
-
-  editJson(join(dir, "package.json"), (pkg) => {
-    pkg.files = ["build"];
-  });
 }
