@@ -4,7 +4,8 @@
   "description": "Middleware to show a custom page on 404 errors",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

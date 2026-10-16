@@ -17,7 +17,6 @@ describe("epub plugin", async () => {
       }),
     );
 
-    expect(await build(site, { avoidBinaryFilesLength: true }))
-      .toMatchSnapshot();
+    expect(await build(site, { avoidBinaryFilesLength: true })).toMatchSnapshot();
   });
 });

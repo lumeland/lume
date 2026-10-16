@@ -4,7 +4,8 @@
   "description": "Plugin to create pages in Markdown format",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

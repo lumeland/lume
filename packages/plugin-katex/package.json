@@ -3,6 +3,10 @@
   "version": "1.0.0-beta-2",
   "description": "Plugin to provide TeX math rendering in HTML",
   "license": "MIT",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",

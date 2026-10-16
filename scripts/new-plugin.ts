@@ -15,6 +15,7 @@ const pkg = {
   description: "",
   license: "MIT",
   type: "module",
+  files: ["build", "CHANGELOG.md"],
   exports: {
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts",

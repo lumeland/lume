@@ -11,9 +11,11 @@ for (const entry of readdirSync(`./${root}`)) {
 
   // Bump beta version
   editJson(dir, "package.json", (data) => {
-    const [version, beta] = data.version.split("-beta-");
-    if (beta) {
-      data.version = `${version}-beta-${parseInt(beta) + 1}`;
-    }
+    data.files = Array.from(new Set(["build", "CHANGELOG.md", ...(data.files ?? [])]));
+
+    // const [version, beta] = data.version.split("-beta-");
+    // if (beta) {
+    //   data.version = `${version}-beta-${parseInt(beta) + 1}`;
+    // }
   });
 }

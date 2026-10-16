@@ -4,7 +4,8 @@
   "description": "Plugin to use the Vento template engine to create pages and layouts",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

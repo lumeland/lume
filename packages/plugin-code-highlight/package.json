@@ -3,6 +3,10 @@
   "version": "1.0.0-beta-2",
   "description": "Plugin for code syntax highlighting using highlight.js",
   "license": "MIT",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",

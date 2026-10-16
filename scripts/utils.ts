@@ -1,6 +1,6 @@
 import { dirname, join } from "node:path";
 import { readFileSync, writeFileSync } from "node:fs";
-import { writeFile, mkdir, rm, cp } from "node:fs/promises";
+import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { cwd } from "node:process";
 import { Readable } from "node:stream";
 import { createGunzip } from "node:zlib";
@@ -100,6 +100,11 @@ export function editJson<T = Record<string, any>>(
   } catch {
     console.log(`Not found. Generate file: ${file}`);
   }
-  cb(data);
+  try {
+    cb(data);
+  } catch (err) {
+    console.log(`Error editing file: ${file}`);
+    throw err;
+  }
   writeFileSync(file, JSON.stringify(data, null, 2));
 }

@@ -4,7 +4,8 @@
   "description": "Plugin to modify all URLs of HTML and CSS files with a custom function",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

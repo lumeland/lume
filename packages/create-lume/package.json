@@ -7,7 +7,8 @@
     "create-lume": "./cli.ts"
   },
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "scripts": {

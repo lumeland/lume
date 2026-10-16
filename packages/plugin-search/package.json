@@ -4,7 +4,8 @@
   "description": "Plugin to provide the search helper to Lume",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

@@ -3,6 +3,10 @@
   "version": "1.0.0-beta-2",
   "description": "Image manipulation plugin using Sharp",
   "license": "MIT",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",

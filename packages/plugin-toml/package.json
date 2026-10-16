@@ -4,7 +4,8 @@
   "description": "Plugin to add support for TOML format to store data and create pages",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

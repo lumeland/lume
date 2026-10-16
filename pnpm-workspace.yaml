@@ -8,6 +8,7 @@ minimumReleaseAgeExclude:
   - deno-std@1.5.0 || 1.5.1
   - "@lumeland/dom@0.1.56"
   - "@lumeland/ssx@0.1.16"
+ignoreWorkspaceCycles: true
 ignoredOptionalDependencies:
   - "@parcel/*"
 versioning:

@@ -3,6 +3,10 @@
   "version": "1.0.0-beta-2",
   "description": "Plugin to automatically check the URLs of your site to detect broken links",
   "license": "MIT",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/mod.ts",

@@ -4,7 +4,8 @@
   "description": "Plugin to provide the paginate helper to Lume",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

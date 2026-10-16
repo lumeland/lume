@@ -4,7 +4,8 @@
   "description": "Helpers for testing plugins",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

@@ -1,5 +1,4 @@
 import { readdirSync } from "node:fs";
-import { join } from "node:path";
 import { editJson } from "./utils.ts";
 
 const root = "dist";
@@ -11,7 +10,7 @@ for (const entry of readdirSync(`./${root}`, { withFileTypes: true })) {
 
   const dir = `./${root}/${entry.name}`;
 
-  editJson(join(dir, "package.json"), (pkg) => {
+  editJson(dir, "package.json", (pkg) => {
     // Generate the exports entries (support for .js and .ts)
     const exports = pkg.exports as Record<string, string> | undefined;
     if (exports) {

@@ -4,7 +4,8 @@
   "description": "Plugin to register the url filter to fix and resolve URLs",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {

@@ -4,7 +4,8 @@
   "description": "Plugin to use ESM and TypeScript modules to create pages, layouts, and store data",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "CHANGELOG.md"
   ],
   "type": "module",
   "exports": {
