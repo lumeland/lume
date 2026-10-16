@@ -19,6 +19,7 @@
     "tar-stream": "^3.2.2"
   },
   "devDependencies": {
+    "@lumeland/ssx": "0.1.16",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"

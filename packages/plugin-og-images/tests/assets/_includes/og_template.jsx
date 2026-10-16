@@ -1,0 +1,33 @@
+/** @jsxImportSource @lumeland/ssx */
+
+export default function (data, { tolower }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+        width: "100%",
+        padding: 60,
+        flexDirection: "column",
+        backgroundColor: "white",
+        color: "black",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+          justifyContent: "flex-end",
+        }}
+      >
+        <h1 style={{ fontSize: 90, fontWeight: 700, letterSpacing: "-0.03em" }}>
+          {tolower(data.title)}
+        </h1>
+        <div style={{ fontSize: 60, color: "gray", letterSpacing: "-0.015em" }}>
+          {tolower(data.description)}
+        </div>
+      </div>
+    </div>
+  );
+}
