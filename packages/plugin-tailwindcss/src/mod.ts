@@ -2,6 +2,7 @@ import { compile, Scanner, toSourceMap } from "../deps/tailwindcss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
+import { browsers, version } from "@lumeland/core/utils/browsers.ts";
 import { Features, transform } from "../deps/lightningcss.ts";
 
 import type { ChangedContent } from "../deps/tailwindcss.ts";
@@ -87,11 +88,6 @@ export function tailwindCSS(userOptions?: Options) {
 
 export default tailwindCSS;
 
-// https://github.com/tailwindlabs/tailwindcss/blob/191195af7e77234b3a5278c45d9df3eb3395cef7/packages/%40tailwindcss-node/src/optimize.ts#L29-L56
-interface OptimizeResult {
-  code: string;
-  map?: string;
-}
 function optimize(filename: string, code: string, map?: string) {
   try {
     const result = transform({
@@ -109,10 +105,12 @@ function optimize(filename: string, code: string, map?: string) {
       include: Features.Nesting | Features.MediaQueries,
       exclude: Features.LogicalProperties | Features.DirSelector | Features.LightDark,
       targets: {
-        safari: (16 << 16) | (4 << 8),
-        ios_saf: (16 << 16) | (4 << 8),
-        firefox: 128 << 16,
-        chrome: 111 << 16,
+        android: version(browsers.chrome_android),
+        chrome: version(browsers.chrome),
+        edge: version(browsers.edge),
+        firefox: version(browsers.firefox),
+        ios_saf: version(browsers.safari_ios),
+        safari: version(browsers.safari),
       },
       errorRecovery: true,
     });
