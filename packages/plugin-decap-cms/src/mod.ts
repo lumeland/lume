@@ -46,9 +46,10 @@ export function decapCMS(userOptions?: Options) {
   const options = merge(defaults, userOptions);
 
   return (site: Site) => {
-    const local_backend = typeof options.local === "boolean"
-      ? options.local
-      : site.options.location.hostname === "localhost";
+    const local_backend =
+      typeof options.local === "boolean"
+        ? options.local
+        : site.options.location.hostname === "localhost";
 
     // Run the local decap server
     if (local_backend) {
@@ -60,14 +61,8 @@ export function decapCMS(userOptions?: Options) {
     // Create the admin HTML page
     const configUrl = posix.join(options.path, "config.yml");
     const code: string[] = [];
-    code.push(
-      `<link href="${
-        site.url(configUrl)
-      }" type="text/yaml" rel="cms-config-url">`,
-    );
-    code.push(
-      `<script src="${decapUrl}"></script>`,
-    );
+    code.push(`<link href="${site.url(configUrl)}" type="text/yaml" rel="cms-config-url">`);
+    code.push(`<script src="${decapUrl}"></script>`);
 
     if (options.identity === "netlify") {
       code.push(
@@ -80,11 +75,7 @@ export function decapCMS(userOptions?: Options) {
     }
 
     if (options.previewStyle) {
-      code.push(
-        `<script>CMS.registerPreviewStyle("${
-          site.url(options.previewStyle)
-        }");</script>`,
-      );
+      code.push(`<script>CMS.registerPreviewStyle("${site.url(options.previewStyle)}");</script>`);
     }
 
     // Register the page
@@ -114,20 +105,20 @@ export function decapCMS(userOptions?: Options) {
         | undefined;
 
       if (!config) {
-        log.error(
-          `[decap_cms plugin] Missing configuration: ${options.configKey}`,
-        );
+        log.error(`[decap_cms plugin] Missing configuration: ${options.configKey}`);
         return;
       }
 
-      allPages.push(Page.create({
-        url: configUrl,
-        content: stringify({
-          ...config,
-          site_url: site.options.location.href,
-          local_backend,
+      allPages.push(
+        Page.create({
+          url: configUrl,
+          content: stringify({
+            ...config,
+            site_url: site.options.location.href,
+            local_backend,
+          }),
         }),
-      }));
+      );
 
       // Redirect to the admin page from the home page if the URL has a token
       if (options.identity === "netlify") {
@@ -136,19 +127,16 @@ export function decapCMS(userOptions?: Options) {
 
         if (document) {
           const script = document.createElement("script");
-          script.innerHTML =
-            `if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "${
-              site.url(options.path)
-            }" + document.location.hash; }`;
+          script.innerHTML = `if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "${site.url(
+            options.path,
+          )}" + document.location.hash; }`;
           document.head.appendChild(script);
         }
       }
 
       if (local_backend) {
         const url = site.url(options.path, true);
-        const item = site.debugBar?.buildItem(
-          `[decap plugin] CMS running at ${url}`,
-        );
+        const item = site.debugBar?.buildItem(`[decap plugin] CMS running at ${url}`);
         if (item) {
           item.actions = [
             {

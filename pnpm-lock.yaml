@@ -454,6 +454,37 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/plugin-epub:
+    dependencies:
+      '@lowlighter/xml':
+        specifier: ^8.0.1
+        version: 8.0.1
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+      '@lumeland/plugin-nav':
+        specifier: workspace:^
+        version: link:../plugin-nav
+      '@zip.js/zip.js':
+        specifier: ^2.23.0
+        version: 2.23.0
+      deno-std:
+        specifier: ^1.5.1
+        version: 1.5.1
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2))
+
   packages/plugin-eta:
     dependencies:
       '@lumeland/core':
@@ -3045,6 +3076,10 @@ packages:
 
   '@vitest/spy@5.0.3':
     resolution: {integrity: sha512-XhFysQTB8AZ+P4gMi+Lpo99vg2AZi0qKpaB9yXQl37+CaMEAPO3iH/wGVnSyL5MPERiLezpqTVtrR6UZH5GCXg==}
+
+  '@zip.js/zip.js@2.23.0':
+    resolution: {integrity: sha512-K5obAqfrO7zhycnCupM9aaoZ9kx0SA0kv7+Z2oOUsdpWquv4s/Z4zyD7AdTqxrK3pgPM+ozaUi8kdRQbCWaIrQ==}
+    engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   a-sync-waterfall@1.0.1:
     resolution: {integrity: sha512-RYTOHHdWipFUliRFMCS4X2Yn2X8M87V/OpSqWzKKOGhzqyUxzyVmhHDH9sAvG+ZuQf/TAOFsLCpMw09I1ufUnA==}
@@ -6015,6 +6050,8 @@ snapshots:
       vite: 8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2)
 
   '@vitest/spy@5.0.3': {}
+
+  '@zip.js/zip.js@2.23.0': {}
 
   a-sync-waterfall@1.0.1: {}
 

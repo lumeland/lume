@@ -8,10 +8,12 @@ describe("decap-cms plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(decapCMS({
-      local: false,
-      identity: "netlify",
-    }));
+    site.use(
+      decapCMS({
+        local: false,
+        identity: "netlify",
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });

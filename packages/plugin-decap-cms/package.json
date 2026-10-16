@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-decap-cms",
   "version": "1.0.0-beta-1",
-  "description": "",
+  "description": "Plugin to use Decap as CMS to manage the site content",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -14,8 +14,9 @@
     "test:watch": "vitest",
     "test:update": "vitest run -u"
   },
-  "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+  "dependencies": {
+    "decap-server": "^3.11.5",
+    "deno-std": "^1.5.1"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",
@@ -23,8 +24,7 @@
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   },
-  "dependencies": {
-    "decap-server": "^3.11.5",
-    "deno-std": "^1.5.1"
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
   }
 }

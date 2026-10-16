@@ -1,0 +1,122 @@
+@charset "utf-8";
+@namespace epub "http://www.idpf.org/2007/ops";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+	hyphens: auto;
+	-epub-hyphens: auto;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.9rem;
+    line-height: 1.8;
+  }
+}
+
+q {
+  font-style: italic;
+}
+
+.h1,
+h1 {
+  color: #d72b2b;
+  margin-top: 0;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 0.6em;
+}
+
+.h1 {
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .h1,
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  margin: 0 0 1.6rem;
+  font-size: 2.6rem;
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+}
+
+h4 {
+  margin: 0 0 0.3rem;
+}
+
+h5 {
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+
+ol {
+  padding-left: 3rem;
+}
+
+video {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  ol {
+    padding-left: 4rem;
+  }
+}
+
+ol li {
+  margin-bottom: 1.6rem;
+}
+
+p, pre, blockquote, .cp_embed_wrapper, .u-mb, table, .video {
+  margin: 0 0 2.4rem;
+}
+
+a:link {
+  color: #d72b2b;
+}
+
+a:visited {
+  color: #a83636;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a code {
+  text-decoration: underline;
+}
+
+a:hover code {
+  text-decoration: none;
+}
+
+blockquote {
+  font-size: 2.1rem;
+}
+
+blockquote::before {
+  content: open-quote;
+}
+blockquote::after {
+  content: close-quote;
+}
