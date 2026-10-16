@@ -1,5 +1,5 @@
 import { readdirSync } from "node:fs";
-import { saveFile } from "./utils.ts";
+import { editJson } from "./utils.ts";
 
 const root = "packages";
 
@@ -8,4 +8,12 @@ for (const entry of readdirSync(`./${root}`)) {
     continue;
   }
   const dir = `./${root}/${entry}`;
+
+  // Bump beta version
+  editJson(dir, "package.json", (data) => {
+    const [version, beta] = data.version.split("-beta-");
+    if (beta) {
+      data.version = `${version}-beta-${parseInt(beta) + 1}`;
+    }
+  });
 }

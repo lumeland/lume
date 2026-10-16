@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-nav",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin with helpers to build menus and breadcrumbs",
   "license": "MIT",
   "type": "module",

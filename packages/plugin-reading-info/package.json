@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-reading-info",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to provide some information about the page content",
   "license": "MIT",
   "type": "module",

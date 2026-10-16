@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-not-found",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Middleware to show a custom page on 404 errors",
   "license": "MIT",
   "files": [

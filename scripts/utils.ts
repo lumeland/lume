@@ -87,14 +87,19 @@ export async function copyFolder(from: string, to: string): Promise<void> {
   await cp(from, to, { recursive: true });
 }
 
-export function editJson<T = Record<string, any>>(path: string, cb: (data: T) => void) {
+export function editJson<T = Record<string, any>>(
+  root: string,
+  path: string,
+  cb: (data: T) => void,
+) {
+  const file = join(root, path);
   let data = {} as T;
 
   try {
-    data = JSON.parse(readFileSync(path, "utf-8"));
+    data = JSON.parse(readFileSync(file, "utf-8"));
   } catch {
-    console.log(`Not found. Generate file: ${path}`);
+    console.log(`Not found. Generate file: ${file}`);
   }
   cb(data);
-  writeFileSync(path, JSON.stringify(data, null, 2));
+  writeFileSync(file, JSON.stringify(data, null, 2));
 }

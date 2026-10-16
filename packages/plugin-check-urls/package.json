@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-check-urls",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to automatically check the URLs of your site to detect broken links",
   "license": "MIT",
   "type": "module",

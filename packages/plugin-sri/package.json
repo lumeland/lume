@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-sri",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to use SRI to load securely assets loaded from an external CDN",
   "license": "MIT",
   "type": "module",

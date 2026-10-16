@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-yaml",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to add support for YAML to store data and create pages",
   "license": "MIT",
   "files": [

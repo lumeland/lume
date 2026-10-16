@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-extract-order",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to extract the order values from the filenames",
   "license": "MIT",
   "type": "module",
