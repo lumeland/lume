@@ -1,0 +1,348 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`pwa plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/favicon.svg",
+      "/index.vto",
+      "/section.vto",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello world</title>
+</head>
+<body>
+  
+</body>
+</html>
+",
+      "data": {
+        "app": [
+          "name",
+          "search_params",
+          "short_name",
+          "description",
+          "color",
+          "categories",
+          "icon",
+          "migrate_from",
+        ],
+        "basename": "",
+        "children": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello world</title>
+</head>
+<body>
+  
+</body>
+</html>
+",
+        "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+</head>
+<body>
+  
+</body>
+</html>
+",
+        "date": [],
+        "description": "The best progressive web application",
+        "mergedKeys": [
+          "tags",
+        ],
+        "metas": [
+          "color",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(2)",
+        "title": "Hello world",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{
+  "start_url": "http://localhost/?pwa=1",
+  "scope": "/",
+  "id": "http://localhost/",
+  "name": "Hello world",
+  "short_name": "hello",
+  "description": "The best progressive web application",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "display": "standalone",
+  "theme_color": "#334455",
+  "categories": [
+    "hello",
+    "world"
+  ],
+  "icons": [
+    {
+      "sizes": "192x192",
+      "src": "/pwa-icon-192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "/pwa-icon-512.png",
+      "type": "image/png"
+    }
+  ],
+  "migrate_from": [
+    "https://example.com"
+  ],
+  "shortcuts": [
+    {
+      "name": "This is a subsection",
+      "description": "The description of the subsection",
+      "url": "http://localhost/section/"
+    }
+  ]
+}",
+      "data": {
+        "basename": "manifest",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/manifest.json",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Uint8Array(2143)",
+      "data": {
+        "basename": "pwa-icon-192",
+        "content": "Uint8Array(2143)",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/pwa-icon-192.png",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "Uint8Array(8414)",
+      "data": {
+        "basename": "pwa-icon-512",
+        "content": "Uint8Array(8414)",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/pwa-icon-512.png",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>",
+      "data": {
+        "basename": "section",
+        "children": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>",
+        "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>",
+        "date": [],
+        "description": "The description of the subsection",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "shortcut": [
+          "name",
+          "description",
+        ],
+        "tags": "Array(0)",
+        "title": "This is a subsection",
+        "url": "/section/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/section",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
