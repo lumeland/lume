@@ -1,0 +1,1330 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`esbuild plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/script.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/to_lowercase.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var i=Object.defineProperty;var e=(o,r)=>i(o,"name",{value:r,configurable:!0});var m=(o,r,t)=>()=>{if(t)throw t[0];try{return o&&(r=o(o=0)),r}catch(a){throw t=[a],a}};var u=(o,r)=>{for(var t in r)i(o,t,{get:r[t],enumerable:!0})};var c={};u(c,{toLowercase:()=>L});function L(o){return o.toLowerCase()}var s=m(()=>{e(L,"toLowercase")});function n(o){return o.toUpperCase()}e(n,"toUppercase");async function p(o){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),c));return r(o)}e(p,"toLowercase");var f={foo:"bar"};import"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=n(o.innerHTML+f.foo),p(o.innerHTML).then(r=>{o.innerHTML=r})});var l={bar:"baz"};console.log(l);
+",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/other.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`esbuild plugin > should match with complex entryNames 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/one/foo/bar/two/script/hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/one/foo/bar/two/to_lowercase/hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var i=Object.defineProperty;var e=(o,r)=>i(o,"name",{value:r,configurable:!0});var m=(o,r,t)=>()=>{if(t)throw t[0];try{return o&&(r=o(o=0)),r}catch(a){throw t=[a],a}};var u=(o,r)=>{for(var t in r)i(o,t,{get:r[t],enumerable:!0})};var c={};u(c,{toLowercase:()=>L});function L(o){return o.toLowerCase()}var s=m(()=>{e(L,"toLowercase")});function n(o){return o.toUpperCase()}e(n,"toUppercase");async function p(o){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),c));return r(o)}e(p,"toLowercase");var f={foo:"bar"};import"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=n(o.innerHTML+f.foo),p(o.innerHTML).then(r=>{o.innerHTML=r})});var l={bar:"baz"};console.log(l);
+",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/one/two/main/hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/one/two/other/hash.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`esbuild plugin > should match with entryNames 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "var i=Object.defineProperty;var e=(o,r)=>i(o,"name",{value:r,configurable:!0});var m=(o,r,t)=>()=>{if(t)throw t[0];try{return o&&(r=o(o=0)),r}catch(a){throw t=[a],a}};var u=(o,r)=>{for(var t in r)i(o,t,{get:r[t],enumerable:!0})};var c={};u(c,{toLowercase:()=>L});function L(o){return o.toLowerCase()}var s=m(()=>{e(L,"toLowercase")});function n(o){return o.toUpperCase()}e(n,"toUppercase");async function p(o){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),c));return r(o)}e(p,"toLowercase");var f={foo:"bar"};import"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=n(o.innerHTML+f.foo),p(o.innerHTML).then(r=>{o.innerHTML=r})});var l={bar:"baz"};console.log(l);
+",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/js/main.hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/js/other.hash.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/js/script.hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/js/to_lowercase.hash.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`esbuild plugin > should match with out extension 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/script.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/to_lowercase.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var i=Object.defineProperty;var e=(o,r)=>i(o,"name",{value:r,configurable:!0});var m=(o,r,t)=>()=>{if(t)throw t[0];try{return o&&(r=o(o=0)),r}catch(a){throw t=[a],a}};var u=(o,r)=>{for(var t in r)i(o,t,{get:r[t],enumerable:!0})};var c={};u(c,{toLowercase:()=>L});function L(o){return o.toLowerCase()}var s=m(()=>{e(L,"toLowercase")});function n(o){return o.toUpperCase()}e(n,"toUppercase");async function p(o){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),c));return r(o)}e(p,"toLowercase");var f={foo:"bar"};import"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=n(o.innerHTML+f.foo),p(o.innerHTML).then(r=>{o.innerHTML=r})});var l={bar:"baz"};console.log(l);
+",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var n=Object.defineProperty;var t=(r,o)=>n(r,"name",{value:o,configurable:!0});function e(r){return r.toUpperCase()}t(e,"toUppercase");document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/other.min.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`esbuild plugin > should match without bundle 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/script.hash.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var t=Object.defineProperty;var o=(e,r)=>t(e,"name",{value:r,configurable:!0});function s(e){return e.toLowerCase()}o(s,"toLowercase");export{s as toLowercase};
+",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/foo/bar/to_lowercase.hash.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "import e,{toLowercase as n}from "./modules/to_uppercase.hash.min.js";import t from "./data.json";import "https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(o=>{o.innerHTML=e(o.innerHTML+t.foo),n(o.innerHTML).then(r=>{o.innerHTML=r})});const i={bar:"baz"};console.log(i);
+",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main.hash.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var o=Object.defineProperty;var r=(t,e)=>o(t,"name",{value:e,configurable:!0});function n(t){return t.toUpperCase()}r(n,"toUppercase");async function s(t){const{toLowercase:e}=await import("./../foo/bar/to_lowercase.hash.min.js");return e(t)}r(s,"toLowercase");export{n as default,s as toLowercase};
+",
+      "data": {
+        "basename": "to_uppercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/modules/to_uppercase.hash.min.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/modules/to_uppercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "import e from "./modules/to_uppercase.hash.min.js";document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/other.hash.min.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
