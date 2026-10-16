@@ -1,0 +1,601 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`source-maps plugin > should match CSS source maps 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".css",
+      },
+      {
+        "ext": ".sass",
+      },
+      {
+        "ext": ".scss",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/sass",
+      "/_includes/sass/_list.scss",
+      "/_includes/sass/bootstrap.scss",
+      "/_includes/sass/button",
+      "/_includes/sass/button/index.scss",
+      "/_includes/sass/colors.scss",
+      "/_includes/sass/third.scss",
+      "/index.scss",
+      "/index2.sass",
+      "/styles.css",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "body{color:#00f}
+/*# sourceMappingURL=./index2.css.map */",
+      "data": {
+        "basename": "index2",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/index2.css",
+      },
+      "src": {
+        "ext": ".sass",
+        "path": "/index2",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"sourceRoot":"assets-css","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["@use \\"sass/colors\\" as *\\n\\nbody\\n  color: $primary-color\\n","$primary-color: blue;\\n$secondary-color: red;\\n"],"names":[],"file":"index2.css.map"}",
+      "data": {
+        "basename": "index2",
+        "content": "{"version":3,"sourceRoot":"assets-css","mappings":"AAEA","sources":["index2.sass","colors.scss"],"sourcesContent":["@use \\"sass/colors\\" as *\\n\\nbody\\n  color: $primary-color\\n","$primary-color: blue;\\n$secondary-color: red;\\n"],"names":[],"file":"index2.css.map"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/index2.css.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "body{font-family:sans-serif}
+/*# sourceMappingURL=./styles.css.map */",
+      "data": {
+        "basename": "styles",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/styles.css",
+      },
+      "src": {
+        "ext": ".css",
+        "path": "/styles",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"sourceRoot":"assets-css","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\n  font-family: sans-serif;\\n}\\n"],"names":[],"file":"styles.css.map"}",
+      "data": {
+        "basename": "styles",
+        "content": "{"version":3,"sourceRoot":"assets-css","mappings":"AAAA","sources":["styles.css"],"sourcesContent":["body {\\n  font-family: sans-serif;\\n}\\n"],"names":[],"file":"styles.css.map"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/styles.css.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
+
+exports[`source-maps plugin > should match JS source maps 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".tsx",
+      },
+      {
+        "ext": ".jsx",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/layout.js",
+      "/data.json",
+      "/main.d.ts",
+      "/main.ts",
+      "/main.vto",
+      "/modules",
+      "/modules/to_uppercase.ts",
+      "/other",
+      "/other.page.ts",
+      "/other/_data.yml",
+      "/other/script.ts",
+      "/other/to_lowercase.ts",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "console.log("Hello from script.ts!");
+//# sourceMappingURL=./script.js.map",
+      "data": {
+        "basename": "script",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/foo/bar/script.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/script",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"file":"script.js.map","names":["console","log"],"sources":["script.ts"],"sourcesContent":["console.log(\\"Hello from script.ts!\\");\\n"],"mappings":"AAAAA,QAAQC,IAAI","ignoreList":[],"sourceRoot":"assets-js"}",
+      "data": {
+        "basename": "script",
+        "content": "{"version":3,"file":"script.js.map","names":["console","log"],"sources":["script.ts"],"sourcesContent":["console.log(\\"Hello from script.ts!\\");\\n"],"mappings":"AAAAA,QAAQC,IAAI","ignoreList":[],"sourceRoot":"assets-js"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/foo/bar/script.js.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "function e(e){return e.toLowerCase()}(0,Object.defineProperty)(e,"name",{value:"toLowercase",configurable:!0});export{e as toLowercase};
+//# sourceMappingURL=./to_lowercase.js.map",
+      "data": {
+        "basename": "to_lowercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/foo/bar/to_lowercase.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/other/to_lowercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"file":"to_lowercase.js.map","names":["toLowercase","text","toLowerCase","s"],"sources":["to_lowercase.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n"],"mappings":"AAAO,SAASA,EAAYC,GAC1B,OAAOA,EAAKC,aACd,E,yBAFgBF,E,cAAA,c,yBAAAG","ignoreList":[],"sourceRoot":"assets-js"}",
+      "data": {
+        "basename": "to_lowercase",
+        "content": "{"version":3,"file":"to_lowercase.js.map","names":["toLowercase","text","toLowerCase","s"],"sources":["to_lowercase.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n"],"mappings":"AAAO,SAASA,EAAYC,GAC1B,OAAOA,EAAKC,aACd,E,yBAFgBF,E,cAAA,c,yBAAAG","ignoreList":[],"sourceRoot":"assets-js"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/foo/bar/to_lowercase.js.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var e=Object.defineProperty,r=(r,t)=>e(r,"name",{value:t,configurable:!0}),t={};function o(e){return e.toLowerCase()}((r,t)=>{for(var o in t)e(r,o,{get:t[o],enumerable:!0})})(t,{toLowercase:()=>o});var n,a,c,s=(n=()=>{r(o,"toLowercase")},()=>{if(c)throw c[0];try{return n&&(a=n(n=0)),a}catch(e){throw c=[e],e}});function i(e){return e.toUpperCase()}async function p(e){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),t));return r(e)}r(i,"toUppercase"),r(p,"toLowercase");var u="bar";import"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs";document.querySelectorAll("h1")?.forEach(e=>{e.innerHTML=i(e.innerHTML+u),p(e.innerHTML).then(r=>{e.innerHTML=r})});console.log({bar:"baz"});
+//# sourceMappingURL=./main.js.map",
+      "data": {
+        "basename": "main",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/main.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"file":"main.js.map","names":["to_lowercase_exports","toLowercase","text","toLowerCase","__export","init_to_lowercase","__name","toUppercase","toUpperCase","async","Promise","resolve","then","s","c","data_default","document","querySelectorAll","forEach","h1","innerHTML","lower","console","log","bar"],"sources":["to_lowercase.ts","to_uppercase.ts","data.json","main.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n","export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n","{\\n  \\"foo\\": \\"bar\\"\\n}\\n","/// <reference lib=\\"dom\\" />\\nimport toUppercase, { toLowercase } from \\"./modules/to_uppercase.ts\\";\\nimport { Foo } from \\"./main.d.ts\\";\\nimport data from \\"./data.json\\" with { type: \\"json\\" };\\n\\n// https://github.com/lumeland/lume/issues/442\\nimport \\"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs\\";\\n\\ndocument.querySelectorAll(\\"h1\\")?.forEach((h1) => {\\n  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);\\n\\n  toLowercase(h1.innerHTML).then((lower) => {\\n    h1.innerHTML = lower;\\n  });\\n});\\n\\nconst foo: Foo = { bar: \\"baz\\" };\\nconsole.log(foo);\\n"],"mappings":"2EAAAA,EAAA,GAAO,SAASC,EAAYC,GAC1B,OAAOA,EAAKC,aACd,C,yDAFAC,CAAAJ,EAAA,CAAAC,YAAA,IAAAA,IAAA,I,MAAAI,G,EAAA,KAAgBC,EAAAL,EAAA,gB,0ECAD,SAARM,EAA6BL,GAClC,OAAOA,EAAKM,aACd,CAEAC,eAAsBR,EAAYC,GAChC,IAAQD,qBAAsBS,QAAAC,UAAAC,KAAA,KAAAC,IAAAC,IAE9B,OAAOb,EAAYC,EACrB,CARwBI,EAAAC,EAAA,eAIFD,EAAAL,EAAA,eCJtB,IAAAc,EACS,YCKF,4EAEPC,SAASC,iBAAiB,OAAOC,QAASC,IACxCA,EAAGC,UAAYb,EAAYY,EAAGC,UAAYL,GAE1Cd,EAAYkB,EAAGC,WAAWR,KAAMS,IAC9BF,EAAGC,UAAYC,MAKnBC,QAAQC,IADS,CAAEC,IAAK","ignoreList":[],"sourceRoot":"assets-js"}",
+      "data": {
+        "basename": "main",
+        "content": "{"version":3,"file":"main.js.map","names":["to_lowercase_exports","toLowercase","text","toLowerCase","__export","init_to_lowercase","__name","toUppercase","toUpperCase","async","Promise","resolve","then","s","c","data_default","document","querySelectorAll","forEach","h1","innerHTML","lower","console","log","bar"],"sources":["to_lowercase.ts","to_uppercase.ts","data.json","main.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n","export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n","{\\n  \\"foo\\": \\"bar\\"\\n}\\n","/// <reference lib=\\"dom\\" />\\nimport toUppercase, { toLowercase } from \\"./modules/to_uppercase.ts\\";\\nimport { Foo } from \\"./main.d.ts\\";\\nimport data from \\"./data.json\\" with { type: \\"json\\" };\\n\\n// https://github.com/lumeland/lume/issues/442\\nimport \\"https://esm.sh/v127/prop-types@15.8.1/denonext/prop-types.development.mjs\\";\\n\\ndocument.querySelectorAll(\\"h1\\")?.forEach((h1) => {\\n  h1.innerHTML = toUppercase(h1.innerHTML + data.foo);\\n\\n  toLowercase(h1.innerHTML).then((lower) => {\\n    h1.innerHTML = lower;\\n  });\\n});\\n\\nconst foo: Foo = { bar: \\"baz\\" };\\nconsole.log(foo);\\n"],"mappings":"2EAAAA,EAAA,GAAO,SAASC,EAAYC,GAC1B,OAAOA,EAAKC,aACd,C,yDAFAC,CAAAJ,EAAA,CAAAC,YAAA,IAAAA,IAAA,I,MAAAI,G,EAAA,KAAgBC,EAAAL,EAAA,gB,0ECAD,SAARM,EAA6BL,GAClC,OAAOA,EAAKM,aACd,CAEAC,eAAsBR,EAAYC,GAChC,IAAQD,qBAAsBS,QAAAC,UAAAC,KAAA,KAAAC,IAAAC,IAE9B,OAAOb,EAAYC,EACrB,CARwBI,EAAAC,EAAA,eAIFD,EAAAL,EAAA,eCJtB,IAAAc,EACS,YCKF,4EAEPC,SAASC,iBAAiB,OAAOC,QAASC,IACxCA,EAAGC,UAAYb,EAAYY,EAAGC,UAAYL,GAE1Cd,EAAYkB,EAAGC,WAAWR,KAAMS,IAC9BF,EAAGC,UAAYC,MAKnBC,QAAQC,IADS,CAAEC,IAAK","ignoreList":[],"sourceRoot":"assets-js"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/main.js.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+  <body>
+    Hello world
+  </body>
+  ",
+      "data": {
+        "basename": "main",
+        "children": "Hello world",
+        "content": "Hello world",
+        "date": [],
+        "layout": "layout.js",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/main/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/main",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "var e=Object.defineProperty,r=(r,t)=>e(r,"name",{value:t,configurable:!0}),t={};function o(e){return e.toLowerCase()}((r,t)=>{for(var o in t)e(r,o,{get:t[o],enumerable:!0})})(t,{toLowercase:()=>o});var a,n,c,s=(a=()=>{r(o,"toLowercase")},()=>{if(c)throw c[0];try{return a&&(n=a(a=0)),n}catch(e){throw c=[e],e}});function u(e){return e.toUpperCase()}async function i(e){let{toLowercase:r}=await Promise.resolve().then(()=>(s(),t));return r(e)}r(u,"toUppercase"),r(i,"toLowercase");export{u as default,i as toLowercase};
+//# sourceMappingURL=./to_uppercase.js.map",
+      "data": {
+        "basename": "to_uppercase",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/modules/to_uppercase.js",
+      },
+      "src": {
+        "ext": ".ts",
+        "path": "/modules/to_uppercase",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"file":"to_uppercase.js.map","names":["to_lowercase_exports","toLowercase","text","toLowerCase","__export","init_to_lowercase","__name","toUppercase","toUpperCase","async","Promise","resolve","then","c","a","w","g"],"sources":["to_lowercase.ts","to_uppercase.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n","export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n"],"mappings":"2EAAAA,EAAA,GAAO,SAASC,EAAYC,GAC1B,OAAOA,EAAKC,aACd,C,yDAFAC,CAAAJ,EAAA,CAAAC,YAAA,IAAAA,IAAA,I,MAAAI,G,EAAA,KAAgBC,EAAAL,EAAA,gB,0ECAD,SAARM,EAA6BL,GAClC,OAAOA,EAAKM,aACd,CAEAC,eAAsBR,EAAYC,GAChC,IAAQD,qBAAsBS,QAAAC,UAAAC,KAAA,KAAAC,IAAAC,IAE9B,OAAOb,EAAYC,EACrB,CARwBI,EAAAC,EAAA,eAIFD,EAAAL,EAAA,sBAAAc,aAAAC","ignoreList":[],"sourceRoot":"assets-js"}",
+      "data": {
+        "basename": "to_uppercase",
+        "content": "{"version":3,"file":"to_uppercase.js.map","names":["to_lowercase_exports","toLowercase","text","toLowerCase","__export","init_to_lowercase","__name","toUppercase","toUpperCase","async","Promise","resolve","then","c","a","w","g"],"sources":["to_lowercase.ts","to_uppercase.ts"],"sourcesContent":["export function toLowercase(text: string) {\\n  return text.toLowerCase();\\n}\\n","export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n"],"mappings":"2EAAAA,EAAA,GAAO,SAASC,EAAYC,GAC1B,OAAOA,EAAKC,aACd,C,yDAFAC,CAAAJ,EAAA,CAAAC,YAAA,IAAAA,IAAA,I,MAAAI,G,EAAA,KAAgBC,EAAAL,EAAA,gB,0ECAD,SAARM,EAA6BL,GAClC,OAAOA,EAAKM,aACd,CAEAC,eAAsBR,EAAYC,GAChC,IAAQD,qBAAsBS,QAAAC,UAAAC,KAAA,KAAAC,IAAAC,IAE9B,OAAOb,EAAYC,EACrB,CARwBI,EAAAC,EAAA,eAIFD,EAAAL,EAAA,sBAAAc,aAAAC","ignoreList":[],"sourceRoot":"assets-js"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/modules/to_uppercase.js.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "function e(e){return e.toUpperCase()}(0,Object.defineProperty)(e,"name",{value:"toUppercase",configurable:!0}),document.querySelectorAll(".other")?.forEach(r=>{r.innerHTML=e(r.innerHTML)});
+//# sourceMappingURL=./other.js.map",
+      "data": {
+        "basename": "other",
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "sourceMap": "undefined",
+        "tags": "Array(0)",
+        "url": "/other.js",
+      },
+      "src": {
+        "ext": ".page.ts",
+        "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.page.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n","\\n/// <reference lib=\\"dom\\" />\\nimport toUppercase from \\"./modules/to_uppercase.ts\\";\\n\\ndocument.querySelectorAll(\\".other\\")?.forEach((el) => {\\n  el.innerHTML = toUppercase(el.innerHTML);\\n});\\n  "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCIxBG,SAASC,iBAAiB,WAAWC,QAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","ignoreList":[],"sourceRoot":"assets-js"}",
+      "data": {
+        "basename": "other",
+        "content": "{"version":3,"file":"other.js.map","names":["toUppercase","text","toUpperCase","document","querySelectorAll","forEach","el","innerHTML"],"sources":["to_uppercase.ts","other.page.ts"],"sourcesContent":["export default function toUppercase(text: string) {\\n  return text.toUpperCase();\\n}\\n\\nexport async function toLowercase(text: string) {\\n  const { toLowercase } = await import(\\"../other/to_lowercase.ts\\");\\n\\n  return toLowercase(text);\\n}\\n","\\n/// <reference lib=\\"dom\\" />\\nimport toUppercase from \\"./modules/to_uppercase.ts\\";\\n\\ndocument.querySelectorAll(\\".other\\")?.forEach((el) => {\\n  el.innerHTML = toUppercase(el.innerHTML);\\n});\\n  "],"mappings":"AAAe,SAARA,EAA6BC,GAClC,OAAOA,EAAKC,aACd,E,yBAFwBF,E,cAAA,c,kBCIxBG,SAASC,iBAAiB,WAAWC,QAASC,IAC5CA,EAAGC,UAAYP,EAAYM,EAAGC","ignoreList":[],"sourceRoot":"assets-js"}",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/other.js.map",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

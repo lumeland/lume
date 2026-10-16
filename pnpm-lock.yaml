@@ -1645,6 +1645,21 @@ importers:
         specifier: workspace:*
         version: link:../core
     devDependencies:
+      '@lumeland/plugin-esbuild':
+        specifier: workspace:^
+        version: link:../plugin-esbuild
+      '@lumeland/plugin-lightningcss':
+        specifier: workspace:^
+        version: link:../plugin-lightningcss
+      '@lumeland/plugin-postcss':
+        specifier: workspace:^
+        version: link:../plugin-postcss
+      '@lumeland/plugin-sass':
+        specifier: workspace:^
+        version: link:../plugin-sass
+      '@lumeland/plugin-terser':
+        specifier: workspace:^
+        version: link:../plugin-terser
       '@lumeland/testing':
         specifier: workspace:*
         version: link:../testing

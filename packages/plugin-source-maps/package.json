@@ -15,6 +15,11 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
+    "@lumeland/plugin-esbuild": "workspace:^",
+    "@lumeland/plugin-lightningcss": "workspace:^",
+    "@lumeland/plugin-postcss": "workspace:^",
+    "@lumeland/plugin-sass": "workspace:^",
+    "@lumeland/plugin-terser": "workspace:^",
     "@lumeland/testing": "workspace:*",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
