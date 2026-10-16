@@ -1,0 +1,253 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`decap-cms plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_data",
+      "/_data/decap_cms.yml",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "backend:
+  name: git-gateway
+  branch: master
+media_folder: img
+public_folder: /img
+site_url: 'http://localhost/'
+local_backend: false
+",
+      "data": {
+        "basename": "config",
+        "content": "backend:
+  name: git-gateway
+  branch: master
+media_folder: img
+public_folder: /img
+site_url: 'http://localhost/'
+local_backend: false
+",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/admin/config.yml",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.16.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </body>
+      </html>
+      ",
+      "data": {
+        "basename": "admin",
+        "children": "
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.16.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </body>
+      </html>
+      ",
+        "content": "
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+      </head>
+      <body>
+        <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url"><script src="https://cdn.jsdelivr.net/npm/decap-cms@3.16.3/dist/decap-cms.js"></script><script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </body>
+      </html>
+      ",
+        "date": [],
+        "decap_cms": [
+          "backend",
+          "media_folder",
+          "public_folder",
+        ],
+        "layout": "undefined",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "unlisted": true,
+        "url": "/admin/",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<!DOCTYPE html>
+<html><head><script>if (document.location.hash.startsWith("#invite_token=") || document.location.hash.startsWith("#recovery_token=")) { document.location = "/admin/" + document.location.hash; }</script></head><body><h1>Hello world</h1>
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+",
+        "content": "# Hello world
+",
+        "date": [],
+        "decap_cms": [
+          "backend",
+          "media_folder",
+          "public_folder",
+        ],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
