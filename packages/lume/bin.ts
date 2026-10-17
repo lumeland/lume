@@ -4,9 +4,7 @@ import { fileURLToPath } from "node:url";
 import process from "node:process";
 
 // main entry can be cli.ts or cli.js
-const mainEntry = fileURLToPath(
-  import.meta.url.replace(/bin(\.\w+)$/, "cli$1"),
-);
+const mainEntry = fileURLToPath(import.meta.url.replace(/bin(\.\w+)$/, "cli$1"));
 const tsxEntry = import.meta.resolve("tsx");
 
 let child: ChildProcess | undefined;

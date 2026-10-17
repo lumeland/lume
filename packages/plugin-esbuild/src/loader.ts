@@ -77,8 +77,8 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
 
         if (path.startsWith(".") && importer) {
           return {
-            path: resolve(dirname(importer), path)
-          }
+            path: resolve(dirname(importer), path),
+          };
         }
       }
 
