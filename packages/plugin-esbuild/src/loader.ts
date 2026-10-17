@@ -1,4 +1,4 @@
-import { extname, fromFileUrl, isBuiltin } from "../deps/path.ts";
+import { dirname, extname, fromFileUrl, isBuiltin, resolve } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import textLoader from "@lumeland/core/loaders/text.ts";
 import { normalizePath } from "@lumeland/core/utils/path.ts";
@@ -73,6 +73,12 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
             path,
             external: true,
           };
+        }
+
+        if (path.startsWith(".") && importer) {
+          return {
+            path: resolve(dirname(importer), path)
+          }
         }
       }
 

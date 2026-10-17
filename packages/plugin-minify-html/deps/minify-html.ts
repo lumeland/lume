@@ -1,7 +1,7 @@
-import { minify as minifyHTML } from "@minify-html/node";
+import * as minifyHtml from "@minify-html/node";
 
 export function minify(data: Uint8Array<ArrayBuffer>, options: Options): Uint8Array<ArrayBuffer> {
-  return minifyHTML(Buffer.from(data), options) as Uint8Array<ArrayBuffer>;
+  return minifyHtml.default.minify(Buffer.from(data), options) as Uint8Array<ArrayBuffer>;
 }
 
 export interface Options {

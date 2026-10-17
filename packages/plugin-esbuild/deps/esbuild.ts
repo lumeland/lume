@@ -1,3 +1,3 @@
-export { build, BuildOptions, Metafile, OutputFile, stop } from "esbuild";
+export { build, stop } from "esbuild";
 
-export type { Loader, OnResolveArgs, Plugin } from "esbuild";
+export type { BuildOptions, Metafile, OutputFile, Loader, OnResolveArgs, Plugin } from "esbuild";
