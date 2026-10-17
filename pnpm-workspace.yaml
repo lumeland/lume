@@ -1,6 +1,6 @@
 packages:
   - "packages/*"
-  # - "testing/*"
+  - "testing/*"
 allowBuilds:
   esbuild: true
 linkWorkspacePackages: true

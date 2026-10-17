@@ -3,7 +3,10 @@ import { type ChildProcess, fork } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import process from "node:process";
 
-const mainEntry = fileURLToPath(import.meta.resolve("./cli.ts"));
+// main entry can be cli.ts or cli.js
+const mainEntry = fileURLToPath(
+  import.meta.url.replace(/bin(\.\w+)$/, "cli$1"),
+);
 const tsxEntry = import.meta.resolve("tsx");
 
 let child: ChildProcess | undefined;

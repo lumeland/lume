@@ -87,7 +87,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   if (src) {
     code.push("const site = lume({", `  src: "${src}"`, "});");
   } else {
-    code.push("const site = lume()");
+    code.push("const site = lume();");
   }
 
   code.push("", "export default site;");

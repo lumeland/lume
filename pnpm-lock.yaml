@@ -1999,6 +1999,18 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.15))
 
+  testing/proba:
+    dependencies:
+      '@lumeland/lume':
+        specifier: workspace:*
+        version: link:../../packages/lume
+      '@lumeland/plugin-jsx':
+        specifier: workspace:*
+        version: link:../../packages/plugin-jsx
+      '@lumeland/plugin-tailwindcss':
+        specifier: workspace:*
+        version: link:../../packages/plugin-tailwindcss
+
 packages:
 
   '@babel/helper-string-parser@7.29.7':
