@@ -2077,6 +2077,9 @@ importers:
       '@lumeland/plugin-replace':
         specifier: workspace:^
         version: link:../../packages/plugin-replace
+      '@lumeland/plugin-resolve-urls':
+        specifier: workspace:^
+        version: link:../../packages/plugin-resolve-urls
       '@lumeland/plugin-sitemap':
         specifier: workspace:^
         version: link:../../packages/plugin-sitemap
