@@ -451,7 +451,7 @@ Sitemap: https://example.com/sitemap.xml
   </url>
   <url>
     <loc>https://example.com/page_3/</loc>
-    <lastmod>2019-12-31T23:00:00.000Z</lastmod>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/page4/</loc>
@@ -480,7 +480,7 @@ Sitemap: https://example.com/sitemap.xml
   </url>
   <url>
     <loc>https://example.com/page_3/</loc>
-    <lastmod>2019-12-31T23:00:00.000Z</lastmod>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/page4/</loc>
@@ -1976,7 +1976,7 @@ Sitemap: https://example.com/sitemap.xml
   </url>
   <url>
     <loc>https://example.com/page_3/</loc>
-    <lastmod>2019-12-31T23:00:00.000Z</lastmod>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
@@ -2014,7 +2014,7 @@ Sitemap: https://example.com/sitemap.xml
   </url>
   <url>
     <loc>https://example.com/page_3/</loc>
-    <lastmod>2019-12-31T23:00:00.000Z</lastmod>
+    <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
   <url>
     <loc>https://example.com/pages/new-name/page7/</loc>
