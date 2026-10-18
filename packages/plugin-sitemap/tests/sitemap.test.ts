@@ -67,7 +67,7 @@ describe("sitemap plugin", async () => {
 
   it("should match site snapshot with redirections", async () => {
     const site = getSite({
-      cwd: import.meta.resolve("./assets"),
+      cwd: import.meta.resolve("./assets-redirect"),
       location: new URL("https://example.com/"),
     });
 
