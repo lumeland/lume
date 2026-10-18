@@ -13,12 +13,12 @@ describe("sitemap plugin", async () => {
       location: new URL("https://example.com/"),
     });
 
+    site.use(extractDate());
     site.use(
       sitemap({
         stylesheet: "/sitemap-style.xml",
       }),
     );
-    site.use(extractDate());
 
     expect(await build(site)).toMatchSnapshot();
   });
@@ -35,7 +35,6 @@ describe("sitemap plugin", async () => {
         languages: ["en", "fr", "it", "gl"],
       }),
     );
-    site.use(extractDate());
     site.use(
       sitemap({
         items: {
@@ -71,9 +70,8 @@ describe("sitemap plugin", async () => {
       location: new URL("https://example.com/"),
     });
 
-    site.use(sitemap());
     site.use(redirects());
-    site.use(extractDate());
+    site.use(sitemap());
 
     expect(await build(site)).toMatchSnapshot();
   });

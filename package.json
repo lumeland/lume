@@ -4,9 +4,8 @@
     "build": "sh scripts/build.sh",
     "publish": "sh scripts/publish.sh",
     "new-plugin": "node scripts/new-plugin.ts",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:update": "vitest run -u",
+    "test": "pnpm -r test",
+    "test:update": "pnpm -r test:update",
     "lint": "oxlint . --fix",
     "lint:check": "oxlint .",
     "fmt": "oxfmt ."
@@ -19,10 +18,8 @@
     "tar-stream": "^3.2.2"
   },
   "devDependencies": {
-    "@lumeland/ssx": "0.1.16",
     "@types/node": "^26.6.4",
-    "typescript": "^7.0.2",
-    "vitest": "^5.0.3"
+    "typescript": "^7.0.2"
   },
   "devEngines": {
     "packageManager": {
