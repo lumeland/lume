@@ -172,10 +172,10 @@ export function statSync(path: string): FileInfo {
 
 export class FileWatcher {
   #controller = new AbortController();
-  #paths: string[];
+  #path: string;
 
-  constructor(paths: string[]) {
-    this.#paths = paths;
+  constructor(path: string) {
+    this.#path = path;
   }
 
   close(): void {
@@ -185,18 +185,18 @@ export class FileWatcher {
   async *[Symbol.asyncIterator](): AsyncGenerator<string[]> {
     const { signal } = this.#controller;
 
-    const iterator = mergeIterators(
-      this.#paths.map((p) => [p, fsPromises.watch(p, { signal, recursive: true })]),
-    );
+    const iterator = fsPromises.watch(this.#path, { signal, recursive: true });
 
     for await (const change of iterator) {
-      yield change;
+      if (change.filename) {
+        yield [join(this.#path, change.filename)];
+      }
     }
   }
 }
 
-export function watchFiles(paths: string[]): FileWatcher {
-  return new FileWatcher(paths.map(toPath));
+export function watchFiles(path: string): FileWatcher {
+  return new FileWatcher(path);
 }
 
 export interface FsStream {
@@ -213,44 +213,6 @@ export function readStream(file: string, start?: number): FsStream {
       nodeStream.destroy();
     },
   };
-}
-
-function mergeIterators(
-  iterators: [string, AsyncIterable<{ filename: string | null }>][],
-): AsyncIterable<string[]> {
-  let done = false;
-
-  return new ReadableStream<string[]>({
-    start(controller) {
-      let active = iterators.length;
-
-      for (const [root, it] of iterators) {
-        (async () => {
-          try {
-            for await (const item of it) {
-              if (item.filename) {
-                controller.enqueue([join(root, item.filename)]);
-              }
-            }
-          } catch (error) {
-            if ((error as Error)?.name !== "AbortError" && !done) {
-              done = true;
-              controller.error(error);
-            }
-          } finally {
-            active--;
-            if (active === 0 && !done) {
-              done = true;
-              controller.close();
-            }
-          }
-        })();
-      }
-    },
-    cancel() {
-      done = true;
-    },
-  });
 }
 
 // Ensure file: URLs are converted to paths

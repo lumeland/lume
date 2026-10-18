@@ -43,3 +43,5 @@ versioning:
     "@lumeland/plugin-vento": beta
     "@lumeland/plugin-yaml": beta
     "@lumeland/testing": beta
+overrides:
+  "@lumeland/cms": link:../cms

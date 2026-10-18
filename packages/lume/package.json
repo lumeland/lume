@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@lumeland/core": "workspace:*",
+    "@lumeland/plugin-cms": "workspace:^",
     "@lumeland/plugin-dev": "workspace:*",
     "@lumeland/plugin-json": "workspace:*",
     "@lumeland/plugin-markdown": "workspace:*",

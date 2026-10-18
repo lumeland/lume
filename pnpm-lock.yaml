@@ -162,10 +162,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@lumeland/cms': link:../cms
+
 importers:
 
   .:
     dependencies:
+      '@lumeland/cms':
+        specifier: link:../cms
+        version: link:../cms
       '@lumeland/lume':
         specifier: workspace:*
         version: link:packages/lume
@@ -256,6 +262,9 @@ importers:
       '@lumeland/core':
         specifier: workspace:*
         version: link:../core
+      '@lumeland/plugin-cms':
+        specifier: workspace:^
+        version: link:../plugin-cms
       '@lumeland/plugin-dev':
         specifier: workspace:*
         version: link:../plugin-dev
@@ -326,6 +335,25 @@ importers:
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.15))
 
   packages/plugin-check-urls:
+    dependencies:
+      '@lumeland/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@lumeland/testing':
+        specifier: workspace:*
+        version: link:../testing
+      '@types/node':
+        specifier: ^26.6.4
+        version: 26.6.4
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.15))
+
+  packages/plugin-cms:
     dependencies:
       '@lumeland/core':
         specifier: workspace:*
@@ -2021,6 +2049,99 @@ importers:
         specifier: ^5.0.3
         version: 5.0.3(@types/node@26.6.4)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.15))
 
+  testing/lume.land:
+    dependencies:
+      '@lumeland/lume':
+        specifier: workspace:*
+        version: link:../../packages/lume
+      '@lumeland/plugin-check-urls':
+        specifier: workspace:^
+        version: link:../../packages/plugin-check-urls
+      '@lumeland/plugin-code-highlight':
+        specifier: workspace:^
+        version: link:../../packages/plugin-code-highlight
+      '@lumeland/plugin-esbuild':
+        specifier: workspace:^
+        version: link:../../packages/plugin-esbuild
+      '@lumeland/plugin-extract-order':
+        specifier: workspace:^
+        version: link:../../packages/plugin-extract-order
+      '@lumeland/plugin-favicon':
+        specifier: workspace:^
+        version: link:../../packages/plugin-favicon
+      '@lumeland/plugin-google-fonts':
+        specifier: workspace:^
+        version: link:../../packages/plugin-google-fonts
+      '@lumeland/plugin-icons':
+        specifier: workspace:^
+        version: link:../../packages/plugin-icons
+      '@lumeland/plugin-inline':
+        specifier: workspace:^
+        version: link:../../packages/plugin-inline
+      '@lumeland/plugin-metas':
+        specifier: workspace:^
+        version: link:../../packages/plugin-metas
+      '@lumeland/plugin-minify-html':
+        specifier: workspace:^
+        version: link:../../packages/plugin-minify-html
+      '@lumeland/plugin-nav':
+        specifier: workspace:^
+        version: link:../../packages/plugin-nav
+      '@lumeland/plugin-og-images':
+        specifier: workspace:^
+        version: link:../../packages/plugin-og-images
+      '@lumeland/plugin-plaintext':
+        specifier: workspace:^
+        version: link:../../packages/plugin-plaintext
+      '@lumeland/plugin-postcss':
+        specifier: workspace:^
+        version: link:../../packages/plugin-postcss
+      '@lumeland/plugin-redirects':
+        specifier: workspace:^
+        version: link:../../packages/plugin-redirects
+      '@lumeland/plugin-replace':
+        specifier: workspace:^
+        version: link:../../packages/plugin-replace
+      '@lumeland/plugin-resolve-urls':
+        specifier: workspace:^
+        version: link:../../packages/plugin-resolve-urls
+      '@lumeland/plugin-sitemap':
+        specifier: workspace:^
+        version: link:../../packages/plugin-sitemap
+      '@lumeland/plugin-toc':
+        specifier: workspace:^
+        version: link:../../packages/plugin-toc
+      '@lumeland/plugin-transform-images':
+        specifier: workspace:^
+        version: link:../../packages/plugin-transform-images
+      '@lumeland/plugin-well-known':
+        specifier: workspace:^
+        version: link:../../packages/plugin-well-known
+      '@mdit/plugin-alert':
+        specifier: ^2.0.2
+        version: 2.0.2(markdown-it@15.0.2)
+      postcss-nesting:
+        specifier: ^14.0.3
+        version: 14.0.3(postcss@8.5.29)
+
+  testing/proba:
+    dependencies:
+      '@lumeland/lume':
+        specifier: workspace:*
+        version: link:../../packages/lume
+      '@lumeland/plugin-cms':
+        specifier: workspace:^
+        version: link:../../packages/plugin-cms
+      '@lumeland/plugin-jsx':
+        specifier: workspace:*
+        version: link:../../packages/plugin-jsx
+      '@lumeland/plugin-tailwindcss':
+        specifier: workspace:*
+        version: link:../../packages/plugin-tailwindcss
+      '@lumeland/ssx':
+        specifier: ^0.1.16
+        version: 0.1.16
+
 packages:
 
   '@babel/helper-string-parser@7.29.7':
@@ -2062,6 +2183,18 @@ packages:
   '@csstools/css-tokenizer@4.0.2':
     resolution: {integrity: sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw==}
     engines: {node: '>=20.19.0'}
+
+  '@csstools/selector-resolve-nested@4.0.2':
+    resolution: {integrity: sha512-JpjNBJFA+4OnAHKRK4AMp8xrYyLhI9XapOeBlP2PhRU/IylSw+1ep3BFNTksBJnrTS3KT6kqKNVfpzLLwZUW5Q==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      postcss-selector-parser: ^7.1.1
+
+  '@csstools/selector-specificity@6.0.1':
+    resolution: {integrity: sha512-MBuqFIIvqk4S593MGAskTkPpEUUzZNvGzh8mMxEwl3oHwjQlXmqHEDxNbN3Y0Tsh+xjmem4GZjeg7I0qkwBivg==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      postcss-selector-parser: ^7.1.1
 
   '@dabh/diagnostics@2.0.9':
     resolution: {integrity: sha512-R6siwR65Hm+3yfgP7o8DKhNvputQAwfoz9zTc3kyDudnomj2/BcLmD+uGQQPICjuFUp8ounPBU+jmKsocwVVAg==}
@@ -2459,6 +2592,24 @@ packages:
 
   '@lumeland/ssx@0.1.16':
     resolution: {integrity: sha512-zk22w7DxAXWd/LyUJ8Hh26/JHduOz/+lEIFJ/5YwZUb6qVLyPVtSEsj0DpBizHXw2ryLtBniIEnjPiJRreEENg==}
+
+  '@mdit/helper@1.1.2':
+    resolution: {integrity: sha512-xZywQ7aXrmkRCuGvFXguXVKeiQ7kHCxPkjtR+nK/n31YiSPPi/Rmb/ll+CYt0LdyeXR0Y1I16da7gxDT4/VXWg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-alert@2.0.2':
+    resolution: {integrity: sha512-0vjhfT58lKE5BDkrdpXdsX4jzRq2zDhlVqQNcgAOAatjG+Tq7k8eCQZBle+10lzNegqpWRgszpu2BSS4df7luw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
@@ -4857,6 +5008,12 @@ packages:
     peerDependencies:
       postcss: ^8.5.29
 
+  postcss-nesting@14.0.3:
+    resolution: {integrity: sha512-S6NJP2WFinT50vIo7fu3Z8PrTgng3P0ky47a5wQSrQpsH3WS82ZpjkIdAs+2ltRkk0wU7vRBKLYM96qY0RvKjA==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      postcss: ^8.4
+
   postcss-normalize-charset@9.0.6:
     resolution: {integrity: sha512-H336j3ofJ5nM6TLW1nbKHj3zIMtGkycfS0KetU1cmcTtTwQ0f9CvdLVZUmBja6+IO3xuqMogjkYtB91K2slshQ==}
     engines: {node: ^22.22.3 || ^24.15.0 || >=26.0}
@@ -5645,6 +5802,14 @@ snapshots:
 
   '@csstools/css-tokenizer@4.0.2': {}
 
+  '@csstools/selector-resolve-nested@4.0.2(postcss-selector-parser@7.1.6)':
+    dependencies:
+      postcss-selector-parser: 7.1.6
+
+  '@csstools/selector-specificity@6.0.1(postcss-selector-parser@7.1.6)':
+    dependencies:
+      postcss-selector-parser: 7.1.6
+
   '@dabh/diagnostics@2.0.9':
     dependencies:
       '@so-ric/colorspace': 1.1.6
@@ -5926,6 +6091,16 @@ snapshots:
   '@lumeland/dom@0.1.56': {}
 
   '@lumeland/ssx@0.1.16': {}
+
+  '@mdit/helper@1.1.2(markdown-it@15.0.2)':
+    optionalDependencies:
+      markdown-it: 15.0.2
+
+  '@mdit/plugin-alert@2.0.2(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.2(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
 
   '@mdx-js/mdx@3.1.1':
     dependencies:
@@ -8386,6 +8561,13 @@ snapshots:
       caniuse-api: 4.0.0
       cssnano-utils: 9.0.0(postcss@8.5.29)
       postcss: 8.5.29
+
+  postcss-nesting@14.0.3(postcss@8.5.29):
+    dependencies:
+      '@csstools/selector-resolve-nested': 4.0.2(postcss-selector-parser@7.1.6)
+      '@csstools/selector-specificity': 6.0.1(postcss-selector-parser@7.1.6)
+      postcss: 8.5.29
+      postcss-selector-parser: 7.1.6
 
   postcss-normalize-charset@9.0.6(postcss@8.5.29):
     dependencies:

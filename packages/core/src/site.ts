@@ -1123,9 +1123,7 @@ export default class Site {
     }
 
     this.watcher = new FSWatcher({
-      src: this.src(),
       root: this.root(),
-      paths: this.options.watcher.include,
       ignore: this.options.watcher.ignore,
       debounce: this.options.watcher.debounce,
       dependencies: this.options.watcher.dependencies,

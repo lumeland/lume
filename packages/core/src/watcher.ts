@@ -12,12 +12,6 @@ export interface Options {
   /** The root folder */
   root: string;
 
-  /** The src folder to watch */
-  src: string;
-
-  /** Extra files to watch */
-  paths?: string[];
-
   /** Paths ignored by the watcher */
   ignore?: (string | ((path: string) => boolean))[];
 
@@ -84,8 +78,8 @@ export default class FSWatcher implements Watcher {
 
   /** Start the file watcher */
   async start() {
-    const { root, src, paths, ignore, debounce, dependencies } = this.options;
-    const watcher = watchFiles([src, ...(paths ?? [])]);
+    const { root, ignore, debounce, dependencies } = this.options;
+    const watcher = watchFiles(root);
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;

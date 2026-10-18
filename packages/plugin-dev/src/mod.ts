@@ -12,7 +12,10 @@ import type Site from "@lumeland/core/site.ts";
 
 export interface DevOptions {
   serve?: boolean;
-  reloadFiles?: string[];
+  configFiles?: {
+    site?: string;
+    cms?: string;
+  };
 }
 
 /**
@@ -20,17 +23,17 @@ export interface DevOptions {
  */
 export function dev(options: DevOptions = {}) {
   return (site: Site) => {
-    setupWatcher(site, options.reloadFiles);
+    setupWatcher(site, Object.values(options.configFiles ?? {}).filter(Boolean));
 
     if (options.serve) {
-      setupServer(site);
+      setupServer(site, !!options.configFiles?.cms);
     }
   };
 }
 
 export default dev;
 
-function setupServer(site: Site) {
+function setupServer(site: Site, hasCms: boolean) {
   const server = site.getServer();
   const { port, hostname, page404, open } = site.options.server;
 
@@ -45,6 +48,16 @@ function setupServer(site: Site) {
 
       if (ipAddr) {
         log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
+      }
+
+      if (hasCms) {
+        log.info("\n  LumeCMS started at:");
+
+        log.info(`  <green>http://${hostname}:${port}/admin</green> (local)`);
+
+        if (ipAddr) {
+          log.info(`  <green>http://${ipAddr}:${port}/admin</green> (network)`);
+        }
       }
 
       if (open) {
@@ -81,33 +94,39 @@ function setupServer(site: Site) {
 }
 
 /** Setup a file watcher */
-function setupWatcher(site: Site, reloadFiles?: string[]) {
+function setupWatcher(site: Site, reloadFiles: string[]) {
   // Start the watcher
   const watcher = site.getWatcher();
-  const srcFolder = normalizePath(site.options.src);
-
+  const src = normalizePath(site.options.src);
   watcher.addEventListener("change", async (event) => {
-    const files = event.files!;
+    const files = new Set<string>();
 
-    // If the config files have changed, reload the build process
-    if (reloadFiles?.some((file) => files.has(file))) {
-      log.info("Reloading the site...");
-      log.output();
-      return reloadProcess();
+    for (const file of event.files!) {
+      // Config file. Reload the process
+      if (reloadFiles.includes(site.root(file))) {
+        log.info("Reloading the site...");
+        log.output();
+        return reloadProcess();
+      }
+
+      // Not in the src folder
+      if (!file.startsWith(src)) {
+        continue;
+      }
+
+      if (src !== "/") {
+        files.add(file.slice(src.length));
+      } else {
+        files.add(file);
+      }
     }
 
-    const srcFiles = new Set(
-      [...event.files!]
-        .filter((file) => file.startsWith(srcFolder))
-        .map((file) => (srcFolder === "/" ? file : file.slice(srcFolder.length))),
-    );
-
     log.info("Changes detected:");
-    srcFiles.forEach((file) => {
+    files.forEach((file) => {
       log.info(`- <gray>${file}</gray>`);
     });
 
-    await site.update(srcFiles);
+    await site.update(files);
     log.output();
   });
 
