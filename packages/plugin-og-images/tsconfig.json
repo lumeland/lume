@@ -6,6 +6,8 @@
     "allowImportingTsExtensions": true,
     "target": "ES2022",
     "lib": ["ES2022", "ESNext.Iterator", "DOM", "DOM.Iterable", "ESNext.Temporal"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "@lumeland/ssx",
     "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
     "outDir": "build",

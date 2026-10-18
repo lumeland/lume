@@ -1106,6 +1106,9 @@ importers:
       '@lumeland/core':
         specifier: workspace:*
         version: link:../core
+      '@lumeland/ssx':
+        specifier: ^0.1.16
+        version: 0.1.16
       '@resvg/resvg-js':
         specifier: ^2.6.2
         version: 2.6.2
