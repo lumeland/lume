@@ -1,8 +1,12 @@
 import { registerHooks } from "node:module";
 import { pathToFileURL } from "node:url";
+import process from "node:process";
 import { cwd } from "./process.ts";
+import { type ChildProcess, fork } from "node:child_process";
 
 let version = 0;
+
+const reloadFiles = new Set<string>();
 const root = pathToFileURL(cwd()).href;
 const files = new Map<string, string>();
 const dependencies = new Map<string, Set<string>>();
@@ -61,6 +65,11 @@ export function hmr() {
  * This updates all modules that import the module that just changed.
  */
 export function* updateDependencies(url: string): Generator<string> {
+  if (reloadFiles.has(url)) {
+    reloadProcess();
+    return;
+  }
+
   files.delete(url);
 
   for (const dep of dependencies.get(url) ?? []) {
@@ -72,4 +81,39 @@ export function* updateDependencies(url: string): Generator<string> {
 /** Increment the version number */
 export function updateVersion() {
   ++version;
+}
+
+/** Files that reload the process when they changed (not HMR available) */
+export function addReloadFile(path: string) {
+  reloadFiles.add(path);
+}
+
+/** Reload the current process */
+export function reloadProcess() {
+  if (process.send) {
+    process.send({ type: "reload" });
+  }
+}
+
+let child: ChildProcess | undefined;
+
+export function startProcess(mainEntry: string, importer: string) {
+  child = fork(mainEntry, process.argv.slice(2), {
+    stdio: ["inherit", "inherit", "inherit", "ipc"],
+    execArgv: [...process.execArgv, "--import", importer],
+  });
+
+  let relaunch = false;
+
+  child.on("message", (msg) => {
+    if ((msg as { type?: string }).type === "reload") {
+      relaunch = true;
+      child?.kill("SIGTERM");
+    }
+  });
+
+  child.on("exit", (code, signal) => {
+    if (relaunch) return startProcess(mainEntry, importer);
+    process.exit(code ?? (signal ? 1 : 0));
+  });
 }

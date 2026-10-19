@@ -1,5 +1,4 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { setEnv } from "@lumeland/core/utils/env.ts";
 import { Fs } from "@lumeland/cms/storage/fs.ts";
 import { posix } from "../deps/path.ts";
 
@@ -24,17 +23,11 @@ export const defaults = {
 /**
  * A plugin to use LumeCMS
  */
-export function lumeCMS(userOptions: Options) {
+export function cms(userOptions: Options) {
   const options = merge(defaults, userOptions);
   const { cms, basePath } = options;
 
-  if (!cms) {
-    throw new Error("LumeCMS requires a CMS instance");
-  }
-
   return (site: Site) => {
-    setEnv("LUME_CMS", "true");
-
     // Set the site URL if it's not set
     if (!cms.options.site.url) {
       cms.options.site.url = site.url("/", true);
@@ -43,7 +36,7 @@ export function lumeCMS(userOptions: Options) {
     // Set the base path for the CMS
     cms.options.basePath = basePath;
 
-    // Configure the src storage (only if not set)
+    // Configure the src storage (if not defined)
     const root = site.src();
     const src = new Fs({ root });
     if (cms.storages.get("src") === undefined) {
@@ -136,4 +129,4 @@ export function lumeCMS(userOptions: Options) {
   };
 }
 
-export default lumeCMS;
+export default cms;

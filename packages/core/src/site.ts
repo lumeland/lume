@@ -70,7 +70,7 @@ const defaults = {
   watcher: {
     ignore: [],
     debounce: 100,
-    include: [],
+    reload: [],
     dependencies: {},
   },
   components: {},
@@ -1238,8 +1238,8 @@ export interface WatcherOptions {
   /** The interval in milliseconds to check for changes */
   debounce?: number;
 
-  /** Extra files and folders to watch (ouside the src folder) */
-  include?: string[];
+  /** Extra files that cause the process to reload */
+  reload?: string[];
 
   /** Manual dependencies not detected by the watcher */
   dependencies?: Record<string, string[]>;

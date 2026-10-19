@@ -1,7 +1,7 @@
 import { SiteWatcher } from "@lumeland/core/watcher.ts";
 import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-import { inspect, reloadProcess } from "@lumeland/core/services/process.ts";
+import { inspect } from "@lumeland/core/services/process.ts";
 import reload from "./reload.ts";
 import noCache from "./no_cache.ts";
 import noCors from "./no_cors.ts";
@@ -11,11 +11,8 @@ import { notFound } from "@lumeland/plugin-not-found";
 import type Site from "@lumeland/core/site.ts";
 
 export interface DevOptions {
+  /** True if requires to open a server */
   serve?: boolean;
-  configFiles?: {
-    site?: string;
-    cms?: string;
-  };
 }
 
 /**
@@ -23,17 +20,17 @@ export interface DevOptions {
  */
 export function dev(options: DevOptions = {}) {
   return (site: Site) => {
-    setupWatcher(site, Object.values(options.configFiles ?? {}).filter(Boolean));
+    setupWatcher(site);
 
     if (options.serve) {
-      setupServer(site, !!options.configFiles?.cms);
+      setupServer(site);
     }
   };
 }
 
 export default dev;
 
-function setupServer(site: Site, hasCms: boolean) {
+function setupServer(site: Site) {
   const server = site.getServer();
   const { port, hostname, page404, open } = site.options.server;
 
@@ -48,16 +45,6 @@ function setupServer(site: Site, hasCms: boolean) {
 
       if (ipAddr) {
         log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
-      }
-
-      if (hasCms) {
-        log.info("\n  LumeCMS started at:");
-
-        log.info(`  <green>http://${hostname}:${port}/admin</green> (local)`);
-
-        if (ipAddr) {
-          log.info(`  <green>http://${ipAddr}:${port}/admin</green> (network)`);
-        }
       }
 
       if (open) {
@@ -94,7 +81,7 @@ function setupServer(site: Site, hasCms: boolean) {
 }
 
 /** Setup a file watcher */
-function setupWatcher(site: Site, reloadFiles: string[]) {
+function setupWatcher(site: Site) {
   // Start the watcher
   const watcher = site.getWatcher();
   const src = normalizePath(site.options.src);
@@ -102,13 +89,6 @@ function setupWatcher(site: Site, reloadFiles: string[]) {
     const files = new Set<string>();
 
     for (const file of event.files!) {
-      // Config file. Reload the process
-      if (reloadFiles.includes(site.root(file))) {
-        log.info("Reloading the site...");
-        log.output();
-        return reloadProcess();
-      }
-
       // Not in the src folder
       if (!file.startsWith(src)) {
         continue;

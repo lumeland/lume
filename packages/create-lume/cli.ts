@@ -106,8 +106,13 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
   writeFile(root, "tsconfig.json", {
     compilerOptions: {
+      moduleResolution: "NodeNext",
+      module: "NodeNext",
       jsx: "react-jsx",
       jsxImportSource: "@lumeland/ssx",
+      allowImportingTsExtensions: true,
+      rewriteRelativeImportExtensions: true,
+      erasableSyntaxOnly: true,
     },
   });
 
