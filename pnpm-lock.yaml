@@ -194,15 +194,15 @@ importers:
       '@lumeland/dom':
         specifier: ^0.1.56
         version: 0.1.56
+      '@lumeland/plugin-esbuild':
+        specifier: workspace:^
+        version: link:../plugin-esbuild
+      '@lumeland/plugin-lightningcss':
+        specifier: workspace:^
+        version: link:../plugin-lightningcss
       deno-std:
         specifier: 1.5.1
         version: 1.5.1
-      esbuild:
-        specifier: 0.28.2
-        version: 0.28.2
-      lightningcss:
-        specifier: 1.33.0
-        version: 1.33.0
       remove-markdown:
         specifier: 0.8.0
         version: 0.8.0

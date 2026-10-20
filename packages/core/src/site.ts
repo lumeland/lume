@@ -9,7 +9,7 @@ import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
 import { setCache } from "./utils/read.ts";
 
 import FS from "./fs.ts";
-import { compileCSS, compileJS, ComponentLoader } from "./components.ts";
+import { ComponentLoader } from "./components.ts";
 import DataLoader from "./data_loader.ts";
 import Source from "./source.ts";
 import Scopes from "./scopes.ts";
@@ -29,6 +29,8 @@ import Server from "./server.ts";
 import Cache from "./cache.ts";
 import DebugBar from "./debugbar.ts";
 import { cwd } from "./services/process.ts";
+import { compileComponentsCSS } from "@lumeland/plugin-lightningcss/comp.ts";
+import { compileComponentsJS } from "@lumeland/plugin-esbuild/comp.ts";
 
 import type { Archetype } from "./archetypes.ts";
 import type { Entry, Loader } from "./fs.ts";
@@ -880,7 +882,7 @@ export default class Site {
         const page = await this.getOrCreatePage(path);
         page.text = insertContent(
           page.text,
-          await compileCSS(path, entries, this.fs.entries),
+          await compileComponentsCSS(path, entries, this.fs.entries),
           this.options.components.placeholder,
         );
         this.debugBar?.endMeasure(
@@ -897,7 +899,7 @@ export default class Site {
         const page = await this.getOrCreatePage(existingFile || path);
         page.text = insertContent(
           page.text,
-          await compileJS(path, entries, this.fs.entries),
+          await compileComponentsJS(path, entries, this.fs.entries),
           this.options.components.placeholder,
         );
         this.debugBar?.endMeasure(
