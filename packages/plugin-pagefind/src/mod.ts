@@ -14,7 +14,7 @@ export interface Options {
   outputPath?: string;
 
   /** Include the new Component UI files */
-  componentUI:
+  componentUI?:
     | {
         /** The CSS file to output the components styles */
         cssFile?: string;
