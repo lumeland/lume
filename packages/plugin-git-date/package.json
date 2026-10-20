@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-git-date",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to extract the last modification time of all pages from the Git history",
   "homepage": "https://lume.land/plugins/git-date/",
   "license": "MIT",

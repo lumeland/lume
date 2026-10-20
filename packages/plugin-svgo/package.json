@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-svgo",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to optimize SVG files with SVGO",
   "homepage": "https://lume.land/plugins/svgo/",
   "license": "MIT",

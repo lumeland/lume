@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-url",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to register the url filter to fix and resolve URLs",
   "homepage": "https://lume.land/plugins/url/",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-decap-cms",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to use Decap as CMS to manage the site content",
   "homepage": "https://lume.land/plugins/decap-cms/",
   "license": "MIT",

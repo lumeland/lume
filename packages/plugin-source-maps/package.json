@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-source-maps",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to generate source maps files for CSS and JS",
   "homepage": "https://lume.land/plugins/source-maps/",
   "license": "MIT",

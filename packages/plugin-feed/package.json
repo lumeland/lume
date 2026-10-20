@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-feed",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to generate a RSS, Atom or JSON Feed automatically for your site",
   "homepage": "https://lume.land/plugins/feed/",
   "license": "MIT",

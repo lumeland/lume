@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-validate-html",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to automatically check the HTML code from your pages",
   "homepage": "https://lume.land/plugins/validate-html/",
   "license": "MIT",

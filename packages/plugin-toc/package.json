@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-toc",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to generate automatically the table of contents",
   "homepage": "https://lume.land/plugins/toc/",
   "license": "MIT",

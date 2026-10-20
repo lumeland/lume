@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-multilanguage",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to create multiple language versions of the same page",
   "homepage": "https://lume.land/plugins/multilanguage/",
   "license": "MIT",

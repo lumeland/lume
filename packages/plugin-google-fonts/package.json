@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-google-fonts",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.0-beta-4",
   "description": "Plugin to download and self host Google fonts",
   "homepage": "https://lume.land/plugins/google-fonts/",
   "license": "MIT",
