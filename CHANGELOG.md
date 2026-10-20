@@ -15,14 +15,14 @@ Go to the `v1` branch to see the changelog of Lume 1.
 - Internal: Removed std/http dependency and move the serveFile to core/utils.
 - Internal: Moved `buildIcon` out of core utils.
 - Internal: Moved websocket handler to a server event.
-- `unocss` plugin: pass a full `UnocssPluginContext` object to each transformer function call.
-- `unocss` plugin: deprecate `transformers` config option in favor of `options.transformers`.
+- `unocss` plugin: pass a full `UnocssPluginContext` object to each transformer function call [#875].
+- `unocss` plugin: deprecate `transformers` config option in favor of `options.transformers` [#875].
 
 ### Fixed
 - Missing tests for the `toc` plugin.
 - Debugbar: keep the opened status after reloading.
 - Vento plugin: detect `comp["name"]` component calls.
-- Updated dependencies: `xml`, `ai-robots`, `decap-cms`, `vento`, `html-validate`, `std`, `katex`, `partytown`, `postcss`, `remove-markdown`, `sass`, `satori`, `schema-dts`, `sharp`, `magic-string`, `zip-js` and icons.
+- Updated dependencies: `xml`, `ai-robots`, `decap-cms`, `vento`, `html-validate`, `std`, `katex`, `partytown`, `postcss`, `remove-markdown`, `sass`, `satori`, `schema-dts`, `sharp`, `magic-string`, `zip-js`, `markdown-it`, `unocss` and icons.
 
 ## [3.3.2] - 2026-09-22
 ### Added
@@ -581,6 +581,7 @@ Go to the `v1` branch to see the changelog of Lume 1.
 [#860]: https://github.com/lumeland/lume/issues/860
 [#870]: https://github.com/lumeland/lume/issues/870
 [#872]: https://github.com/lumeland/lume/issues/872
+[#875]: https://github.com/lumeland/lume/issues/875
 
 [Unreleased]: https://github.com/lumeland/lume/compare/v3.3.2...HEAD
 [3.3.2]: https://github.com/lumeland/lume/compare/v3.3.1...v3.3.2
