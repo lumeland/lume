@@ -26,7 +26,7 @@
     "markdown-it-deflist": "^4.0.0"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^26.6.5",
     "markdown-it-footnote": "^4.0.0",
@@ -34,6 +34,6 @@
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }

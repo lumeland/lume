@@ -245,40 +245,40 @@ importers:
   packages/lume:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-cms':
         specifier: workspace:^
         version: link:../plugin-cms
       '@lumeland/plugin-dev':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-dev
       '@lumeland/plugin-json':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-json
       '@lumeland/plugin-markdown':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-markdown
       '@lumeland/plugin-modules':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-modules
       '@lumeland/plugin-paginate':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-paginate
       '@lumeland/plugin-search':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-search
       '@lumeland/plugin-toml':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-toml
       '@lumeland/plugin-url':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-url
       '@lumeland/plugin-vento':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-vento
       '@lumeland/plugin-yaml':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../plugin-yaml
       '@lumeland/ssx':
         specifier: ^0.1.16
@@ -300,14 +300,14 @@ importers:
   packages/plugin-base-path:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-modify-urls':
         specifier: workspace:^
         version: link:../plugin-modify-urls
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -322,11 +322,11 @@ importers:
   packages/plugin-check-urls:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -344,11 +344,11 @@ importers:
         specifier: ^1.0.0-beta-3
         version: 1.0.0-beta-3(@types/node@26.6.5)
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -363,7 +363,7 @@ importers:
   packages/plugin-code-highlight:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       highlight.js:
         specifier: ^11.12.0
@@ -373,7 +373,7 @@ importers:
         version: 2.4.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -388,7 +388,7 @@ importers:
   packages/plugin-compress:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       deno-std:
         specifier: ^1.5.1
@@ -398,7 +398,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-extract-date
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -413,14 +413,14 @@ importers:
   packages/plugin-date:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -435,7 +435,7 @@ importers:
   packages/plugin-decap-cms:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       decap-server:
         specifier: ^3.11.5
@@ -445,7 +445,7 @@ importers:
         version: 1.5.1
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -460,7 +460,7 @@ importers:
   packages/plugin-dev:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-not-found':
         specifier: workspace:^
@@ -476,7 +476,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-nav':
         specifier: workspace:^
@@ -489,7 +489,7 @@ importers:
         version: 1.5.1
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -504,7 +504,7 @@ importers:
   packages/plugin-esbuild:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -514,7 +514,7 @@ importers:
         version: 0.28.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -529,14 +529,14 @@ importers:
   packages/plugin-eta:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       eta:
         specifier: ^4.6.0
         version: 4.6.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -551,11 +551,11 @@ importers:
   packages/plugin-extract-date:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -570,11 +570,11 @@ importers:
   packages/plugin-extract-order:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -589,7 +589,7 @@ importers:
   packages/plugin-favicon:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@resvg/resvg-js':
         specifier: ^2.6.2
@@ -605,7 +605,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-svgo
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -623,11 +623,11 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -642,11 +642,11 @@ importers:
   packages/plugin-filter-pages:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -661,11 +661,11 @@ importers:
   packages/plugin-git-date:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -680,11 +680,11 @@ importers:
   packages/plugin-git-info:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -699,11 +699,11 @@ importers:
   packages/plugin-google-fonts:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -718,11 +718,11 @@ importers:
   packages/plugin-icons:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -737,14 +737,14 @@ importers:
   packages/plugin-image-size:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       image-dimensions:
         specifier: ^2.6.0
         version: 2.6.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -759,7 +759,7 @@ importers:
   packages/plugin-inline:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       deno-std:
         specifier: ^1.5.1
@@ -769,7 +769,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-base-path
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -784,11 +784,11 @@ importers:
   packages/plugin-json:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -803,14 +803,14 @@ importers:
   packages/plugin-json-ld:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       schema-dts:
         specifier: ^2.1.0
         version: 2.1.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -825,14 +825,14 @@ importers:
   packages/plugin-jsx:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/ssx':
         specifier: ^0.1.16
         version: 0.1.16
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -847,14 +847,14 @@ importers:
   packages/plugin-katex:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       katex:
         specifier: ^0.19.0
         version: 0.19.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -869,7 +869,7 @@ importers:
   packages/plugin-lightningcss:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -879,7 +879,7 @@ importers:
         version: 1.33.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -894,7 +894,7 @@ importers:
   packages/plugin-markdown:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       markdown-it:
         specifier: ^15.0.3
@@ -907,7 +907,7 @@ importers:
         version: 4.0.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/markdown-it-footnote':
         specifier: ^3.0.4
@@ -928,7 +928,7 @@ importers:
   packages/plugin-mdx:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/ssx':
         specifier: ^0.1.16
@@ -953,7 +953,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-jsx
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -968,11 +968,11 @@ importers:
   packages/plugin-metas:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -987,14 +987,14 @@ importers:
   packages/plugin-minify-html:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@minify-html/node':
         specifier: ^0.18.1
         version: 0.18.1
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1009,11 +1009,11 @@ importers:
   packages/plugin-modify-urls:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1028,11 +1028,11 @@ importers:
   packages/plugin-modules:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1047,11 +1047,11 @@ importers:
   packages/plugin-multilanguage:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1066,11 +1066,11 @@ importers:
   packages/plugin-nav:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1085,7 +1085,7 @@ importers:
   packages/plugin-not-found:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       typescript:
@@ -1095,14 +1095,14 @@ importers:
   packages/plugin-nunjucks:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       nunjucks:
         specifier: ^3.2.4
         version: 3.2.4
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1120,7 +1120,7 @@ importers:
   packages/plugin-og-images:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/ssx':
         specifier: ^0.1.16
@@ -1133,7 +1133,7 @@ importers:
         version: 0.57.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1148,7 +1148,7 @@ importers:
   packages/plugin-pagefind:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@pagefind/component-ui':
         specifier: ^1.5.2
@@ -1158,7 +1158,7 @@ importers:
         version: 1.5.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1173,7 +1173,7 @@ importers:
   packages/plugin-paginate:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@types/node':
@@ -1189,14 +1189,14 @@ importers:
   packages/plugin-partytown:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@qwik.dev/partytown':
         specifier: ^1.0.1
         version: 1.0.1
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1211,7 +1211,7 @@ importers:
   packages/plugin-picture:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-transform-images':
         specifier: workspace:^
@@ -1221,7 +1221,7 @@ importers:
         version: 1.5.1
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1236,14 +1236,14 @@ importers:
   packages/plugin-plaintext:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       remove-markdown:
         specifier: ^0.8.0
         version: 0.8.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1258,7 +1258,7 @@ importers:
   packages/plugin-postcss:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -1274,7 +1274,7 @@ importers:
         version: 17.0.1(postcss@8.5.31)
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1295,7 +1295,7 @@ importers:
   packages/plugin-prism:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       prismjs:
         specifier: ^1.30.0
@@ -1305,7 +1305,7 @@ importers:
         version: 2.4.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1323,14 +1323,14 @@ importers:
   packages/plugin-pug:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       pug:
         specifier: ^3.0.4
         version: 3.0.4
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1348,7 +1348,7 @@ importers:
   packages/plugin-purgecss:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       purgecss:
         specifier: ^8.0.0
@@ -1358,7 +1358,7 @@ importers:
         version: 8.0.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1373,14 +1373,14 @@ importers:
   packages/plugin-pwa:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-favicon':
         specifier: workspace:^
         version: link:../plugin-favicon
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1395,11 +1395,11 @@ importers:
   packages/plugin-reading-info:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1414,11 +1414,11 @@ importers:
   packages/plugin-redirects:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1433,14 +1433,14 @@ importers:
   packages/plugin-relative-urls:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-modify-urls':
         specifier: workspace:^
         version: link:../plugin-modify-urls
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1455,7 +1455,7 @@ importers:
   packages/plugin-remark:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       rehype-raw:
         specifier: ^7.0.0
@@ -1480,7 +1480,7 @@ importers:
         version: 11.0.5
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1495,11 +1495,11 @@ importers:
   packages/plugin-replace:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1514,7 +1514,7 @@ importers:
   packages/plugin-resolve-urls:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-modify-urls':
         specifier: workspace:^
@@ -1524,7 +1524,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-slugify-urls
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1539,11 +1539,11 @@ importers:
   packages/plugin-robots:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1558,7 +1558,7 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -1568,7 +1568,7 @@ importers:
         version: 1.105.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1583,11 +1583,11 @@ importers:
   packages/plugin-search:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1602,14 +1602,14 @@ importers:
   packages/plugin-sheets:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       xlsx:
         specifier: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
         version: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1627,7 +1627,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/plugin-extract-date':
@@ -1643,7 +1643,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-redirects
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1658,11 +1658,11 @@ importers:
   packages/plugin-slugify-urls:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1686,7 +1686,7 @@ importers:
   packages/plugin-source-maps:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/plugin-esbuild':
@@ -1705,7 +1705,7 @@ importers:
         specifier: workspace:^
         version: link:../plugin-terser
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1720,11 +1720,11 @@ importers:
   packages/plugin-sri:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1739,14 +1739,14 @@ importers:
   packages/plugin-svgo:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       svgo:
         specifier: ^4.1.0
         version: 4.1.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1761,7 +1761,7 @@ importers:
   packages/plugin-tailwindcss:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -1777,7 +1777,7 @@ importers:
         version: 1.33.0
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1795,7 +1795,7 @@ importers:
   packages/plugin-terser:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@lumeland/plugin-source-maps':
         specifier: workspace:^
@@ -1805,7 +1805,7 @@ importers:
         version: 5.51.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1820,11 +1820,11 @@ importers:
   packages/plugin-toc:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1839,11 +1839,11 @@ importers:
   packages/plugin-toml:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1858,7 +1858,7 @@ importers:
   packages/plugin-transform-images:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@resvg/resvg-js':
         specifier: ^2.6.2
@@ -1868,7 +1868,7 @@ importers:
         version: 0.35.5(@types/node@26.6.5)
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1883,7 +1883,7 @@ importers:
   packages/plugin-unocss:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@unocss/config':
         specifier: ^66.11.0
@@ -1908,7 +1908,7 @@ importers:
         version: 1.4.3
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1923,11 +1923,11 @@ importers:
   packages/plugin-url:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1942,14 +1942,14 @@ importers:
   packages/plugin-validate-html:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       html-validate:
         specifier: ^11.16.4
         version: 11.16.4(vitest@5.0.5(@types/node@26.6.5)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.105.2)(terser@5.51.2)(tsx@4.23.15)))
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1964,14 +1964,14 @@ importers:
   packages/plugin-vento:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       ventojs:
         specifier: ^2.4.2
         version: 2.4.2
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -1986,11 +1986,11 @@ importers:
   packages/plugin-well-known:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -2005,11 +2005,11 @@ importers:
   packages/plugin-yaml:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@lumeland/testing':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../testing
       '@types/node':
         specifier: ^26.6.5
@@ -2024,7 +2024,7 @@ importers:
   packages/testing:
     dependencies:
       '@lumeland/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
     devDependencies:
       '@types/node':

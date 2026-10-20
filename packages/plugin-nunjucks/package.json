@@ -24,13 +24,13 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.5",
     "@types/nunjucks": "^3.2.6",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }

@@ -21,7 +21,7 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.5",
     "@types/unidecode": "^1.1.0",
     "jaconv": "^1.1.2",
@@ -30,6 +30,6 @@
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }

@@ -24,6 +24,6 @@
     "typescript": "^7.0.2"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }
