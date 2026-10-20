@@ -23,7 +23,7 @@ export const defaults = {
 /**
  * A plugin to use LumeCMS
  */
-export function cms(userOptions: Options) {
+export function lumeCms(userOptions: Options) {
   const options = merge(defaults, userOptions);
   const { cms, basePath } = options;
 
@@ -129,4 +129,4 @@ export function cms(userOptions: Options) {
   };
 }
 
-export default cms;
+export default lumeCms;
