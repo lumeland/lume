@@ -21,16 +21,16 @@
   "dependencies": {
     "@lumeland/plugin-source-maps": "workspace:^",
     "autoprefixer": "^10.6.1",
-    "postcss": "^8.5.29",
-    "postcss-import": "^17.0.0"
+    "postcss": "^8.5.31",
+    "postcss-import": "^17.0.1"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:*",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "@types/postcss-import": "^14.0.3",
-    "cssnano": "^9.6.0",
+    "cssnano": "^9.9.0",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.5"
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:*"

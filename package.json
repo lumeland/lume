@@ -14,11 +14,11 @@
     "@lumeland/lume": "workspace:*",
     "jszip": "^3.10.2",
     "oxfmt": "^0.72.0",
-    "oxlint": "^1.87.0",
+    "oxlint": "^1.89.0",
     "tar-stream": "^3.2.2"
   },
   "devDependencies": {
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "typescript": "^7.0.2"
   },
   "devEngines": {
