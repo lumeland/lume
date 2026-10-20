@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-yaml",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to add support for YAML to store data and create pages",
+  "homepage": "https://lume.land/plugins/yaml/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

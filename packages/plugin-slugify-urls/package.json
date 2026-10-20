@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-slugify-urls",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to slugify all page URLs to remove potentially conflicting characters",
+  "homepage": "https://lume.land/plugins/slugify-urls/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

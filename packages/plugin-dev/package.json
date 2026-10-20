@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-dev",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Middlewares used by Lume in development mode",
+  "homepage": "https://lume.land/plugins/dev/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

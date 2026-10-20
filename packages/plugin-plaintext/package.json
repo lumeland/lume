@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-plaintext",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin with a helper to remove HTML and Markdown syntax in any text",
+  "homepage": "https://lume.land/plugins/plaintext/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

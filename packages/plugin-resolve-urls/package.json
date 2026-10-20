@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-resolve-urls",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Plugin to resolve all URLs pointing to source files",
+  "homepage": "https://lume.land/plugins/resolve-urls/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

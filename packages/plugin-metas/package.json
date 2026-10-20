@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-metas",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to add automatically META tags for SEO and social media",
+  "homepage": "https://lume.land/plugins/metas/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-terser",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to minify JavaScript files with Terser",
+  "homepage": "https://lume.land/plugins/terser/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

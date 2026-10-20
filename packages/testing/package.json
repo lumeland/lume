@@ -1,8 +1,9 @@
 {
   "name": "@lumeland/testing",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Helpers for testing plugins",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

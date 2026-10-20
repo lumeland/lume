@@ -11,11 +11,15 @@ for (const entry of readdirSync(`./${root}`)) {
 
   // Bump beta version
   editJson(dir, "package.json", (data) => {
-    data.files = Array.from(new Set(["build", "CHANGELOG.md", ...(data.files ?? [])]));
+    // data.files = Array.from(new Set(["build", "CHANGELOG.md", ...(data.files ?? [])]));
 
-    // const [version, beta] = data.version.split("-beta-");
-    // if (beta) {
-    //   data.version = `${version}-beta-${parseInt(beta) + 1}`;
+    // if (data.name.startsWith("@lumeland/plugin-")) {
+    //   data.homepage = `https://lume.land/plugins/${data.name.slice(17)}/`;
     // }
+
+    const [version, beta] = data.version.split("-beta-");
+    if (beta) {
+      data.version = `${version}-beta-${parseInt(beta) + 1}`;
+    }
   });
 }

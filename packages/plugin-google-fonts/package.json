@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-google-fonts",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to download and self host Google fonts",
+  "homepage": "https://lume.land/plugins/google-fonts/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

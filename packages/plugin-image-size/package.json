@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-image-size",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to set automatically the width and height attributes of images",
+  "homepage": "https://lume.land/plugins/image-size/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

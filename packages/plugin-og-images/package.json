@@ -1,8 +1,10 @@
 {
   "name": "@lumeland/plugin-og-images",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0-beta-3",
   "description": "Plugin to create Open Graph images automatically",
+  "homepage": "https://lume.land/plugins/og-images/",
   "license": "MIT",
+  "author": "Óscar Otero",
   "files": [
     "build",
     "CHANGELOG.md"

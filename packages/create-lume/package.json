@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Script to create Lume sites",
   "license": "MIT",
+  "author": "Óscar Otero",
   "bin": {
     "create-lume": "./cli.ts"
   },
