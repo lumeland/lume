@@ -14,5 +14,5 @@
     "rootDir": ".",
     "declaration": true
   },
-  "exclude": ["tests"]
+  "exclude": ["tests", "build"]
 }
