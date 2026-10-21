@@ -106,7 +106,7 @@ export function pagefind(userOptions?: Options) {
 
       for (const file of files) {
         const { path } = file;
-        if (path.endsWith(".css") || path.endsWith(".js")) {
+        if (path.endsWith(".css") || (path.endsWith(".js") && path.endsWith("/pagefind.js"))) {
           continue; // Don't export UI files
         }
         const content = textExtensions.includes(posix.extname(path))

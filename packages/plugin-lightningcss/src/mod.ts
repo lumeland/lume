@@ -164,7 +164,11 @@ export function lightningCSS(userOptions?: Options) {
                 return readFile(file);
               }
 
-              return (await site.getContent(file, false)) as string;
+              const code = await site.getContent(file, false);
+              if (code === undefined) {
+                log.error(`[lightningcss plugin] File ${file} not found`);
+              }
+              return code ?? "";
             },
           },
         };

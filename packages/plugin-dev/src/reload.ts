@@ -156,7 +156,7 @@ export function reload(options: Options): Middleware {
 
     const { status, statusText, headers } = response;
 
-    headers.set("Content-Length", `${body.length}`);
+    headers.delete("Content-Length");
     return new Response(body, { status, statusText, headers });
   };
 }
