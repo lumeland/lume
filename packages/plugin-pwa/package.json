@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-pwa",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin to generate the manifest.json file to create a Progressive Web Application",
   "homepage": "https://lume.land/plugins/pwa/",
   "license": "MIT",

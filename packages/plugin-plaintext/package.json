@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-plaintext",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin with a helper to remove HTML and Markdown syntax in any text",
   "homepage": "https://lume.land/plugins/plaintext/",
   "license": "MIT",

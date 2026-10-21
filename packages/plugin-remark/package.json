@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-remark",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin to use Remark to render the markdown content",
   "homepage": "https://lume.land/plugins/remark/",
   "license": "MIT",

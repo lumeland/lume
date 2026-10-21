@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-json",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin to add support for JSON or JSONC to store data and create pages",
   "homepage": "https://lume.land/plugins/json/",
   "license": "MIT",

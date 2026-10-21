@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/testing",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Helpers for testing plugins",
   "license": "MIT",
   "author": "Óscar Otero",

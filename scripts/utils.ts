@@ -106,5 +106,5 @@ export function editJson<T = Record<string, any>>(
     console.log(`Error editing file: ${file}`);
     throw err;
   }
-  writeFileSync(file, JSON.stringify(data, null, 2));
+  writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
 }

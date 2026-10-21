@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-esbuild",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin to bundle JavaScript, TypeScript and JSX files using esbuild library",
   "homepage": "https://lume.land/plugins/esbuild/",
   "license": "MIT",

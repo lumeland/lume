@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-sass",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Plugin to compile SCSS and SASS files to CSS",
   "homepage": "https://lume.land/plugins/sass/",
   "license": "MIT",
