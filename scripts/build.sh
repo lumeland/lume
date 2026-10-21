@@ -1,17 +1,19 @@
 #!/bin/bash
 set -e
 
+filter=${1:-"@lumeland/plugin-*"}
 dist="./dist"
+
 rm -rf "$dist"
 mkdir -p "$dist"
 
 # Test and build
-pnpm test
-pnpm -r --filter "@lumeland/*" build
+pnpm -r --filter "$filter" test
+pnpm -r --filter "$filter" build
 
 # Generate tarballs files
-pnpm -r --filter "@lumeland/*" pack --out "$dist/%s.tgz"
-pnpm -r --filter "@lumeland/*" exec -- rm -rf build
+pnpm -r --filter "$filter" pack --out "$dist/%s.tgz"
+pnpm -r --filter "$filter" exec -- rm -rf build
 
 # Extract tarballs
 for tgz in "$dist"/*.tgz; do

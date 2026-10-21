@@ -37,5 +37,6 @@ for (const entry of readdirSync(`./${root}`, { withFileTypes: true })) {
     // Remove dev stuff
     delete pkg.scripts;
     delete pkg.devDependencies;
+    delete pkg.devEngines;
   });
 }

@@ -41,25 +41,26 @@ export default function lume(
 
   const site = new Site(options);
 
+  const ignore = [
+    "/deno.lock",
+    "/deno.json",
+    "/deno.jsonc",
+    "/package.json",
+    "/package-lock.json",
+    "/pnpm-lock.yaml",
+    "/pnpm-worksapce.yaml",
+    "/tsconfig.json",
+    "/node_modules",
+    "/.git",
+    "/_cache",
+  ];
+
   // Ignore some files by the watcher
-  site.options.watcher.ignore.push("/deno.lock");
-  site.options.watcher.ignore.push("/deno.json");
-  site.options.watcher.ignore.push("/package.json");
-  site.options.watcher.ignore.push("/tsconfig.json");
-  site.options.watcher.ignore.push("/deno.jsonc");
-  site.options.watcher.ignore.push("/node_modules");
-  site.options.watcher.ignore.push("/.git");
-  site.options.watcher.ignore.push("/_cache");
+  site.options.watcher.ignore.push(...ignore);
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
   return site
-    .ignore("node_modules")
-    .ignore("import_map.json")
-    .ignore("package.json")
-    .ignore("tsconfig.json")
-    .ignore("deno.json")
-    .ignore("deno.jsonc")
-    .ignore("deno.lock")
+    .ignore(...ignore)
     .ignore((path) => path.endsWith(".d.ts"))
     .mergeKey("tags", "stringArray")
     .archetype("archetype", import.meta.resolve("./archetypes/archetype.ts"))

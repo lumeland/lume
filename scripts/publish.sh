@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 
+filter=${1:-"@lumeland/plugin-*"}
 dist="./dist"
 
-sh ./scripts/build.sh
+sh ./scripts/build.sh "$filter"
 
 set +e
 # Publish the packages

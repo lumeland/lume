@@ -1,6 +1,7 @@
 packages:
   - "packages/*"
-  - "testing/*"
+  - "themes/*"
+  # - "testing/*"
 allowBuilds:
   esbuild: true
 linkWorkspacePackages: true
