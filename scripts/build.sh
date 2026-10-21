@@ -7,11 +7,11 @@ mkdir -p "$dist"
 
 # Test and build
 pnpm test
-pnpm -r build
+pnpm -r --filter "@lumeland/*" build
 
 # Generate tarballs files
 pnpm -r --filter "@lumeland/*" pack --out "$dist/%s.tgz"
-pnpm -r exec -- rm -rf build
+pnpm -r --filter "@lumeland/*" exec -- rm -rf build
 
 # Extract tarballs
 for tgz in "$dist"/*.tgz; do
