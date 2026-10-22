@@ -1,11 +1,10 @@
 import { getDataValue } from "@lumeland/core/utils/data_values.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Page } from "@lumeland/core/file.ts";
-import { stringify } from "../deps/xml.ts";
+import { XMLBuilder } from "../deps/xml.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Data } from "@lumeland/core/types.ts";
-import type { Stringifyable } from "../deps/xml.ts";
 
 type ChangeFreq = "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
 
@@ -81,10 +80,26 @@ export function sitemap(userOptions?: Options) {
     });
 
     function generateSitemap(pages: Data<PluginData>[]): string {
+      const builder = new XMLBuilder({
+        ignoreAttributes: false,
+        suppressEmptyNode: true,
+        attributeNamePrefix: "@",
+        cdataPropName: "_html",
+        format: true,
+      });
+
       const items = options.items ?? {};
-      const sitemap: Stringifyable = {
-        "@version": "1.0",
-        "@encoding": "UTF-8",
+      const sitemap: Record<string, unknown> = {
+        "?xml": {
+          "@version": "1.0",
+          "@encoding": "UTF-8",
+        },
+        "?xml-stylesheet": options.stylesheet
+          ? {
+              "@type": "text/xsl",
+              "@href": options.stylesheet,
+            }
+          : undefined,
         urlset: {
           "@xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
           "@xmlns:xhtml": "http://www.w3.org/1999/xhtml",
@@ -128,16 +143,7 @@ export function sitemap(userOptions?: Options) {
         },
       };
 
-      if (options.stylesheet) {
-        sitemap["#instructions"] = {
-          "xml-stylesheet": {
-            "@type": "text/xsl",
-            "@href": options.stylesheet,
-          },
-        };
-      }
-
-      return stringify(sitemap);
+      return builder.build(sitemap);
     }
   };
 }

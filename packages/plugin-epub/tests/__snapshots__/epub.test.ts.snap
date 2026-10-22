@@ -169,7 +169,8 @@ exports[`epub plugin > should match site snapshot 1`] = `
     <itemref idref="page1-index.xhtml"/>
     <itemref idref="page2-index.xhtml"/>
   </spine>
-</package>",
+</package>
+",
       "data": {
         "basename": "content",
         "page": [
@@ -386,7 +387,8 @@ e outra
       <content src="page2/index.xhtml"/>
     </navPoint>
   </navMap>
-</ncx>",
+</ncx>
+",
       "data": {
         "basename": "toc",
         "manifestItem": [
@@ -415,7 +417,8 @@ e outra
   <rootfiles>
     <rootfile full-path="epub/content.opf" media-type="application/oebps-package+xml"/>
   </rootfiles>
-</container>",
+</container>
+",
       "data": {
         "basename": "container",
         "page": [

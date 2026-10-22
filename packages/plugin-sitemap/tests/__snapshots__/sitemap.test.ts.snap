@@ -461,7 +461,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
       "data": {
         "basename": "sitemap",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -490,7 +491,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/pages/page6/</loc>
     <lastmod>2022-01-01T00:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
         "page": [
           "src",
           "data",
@@ -1294,7 +1296,8 @@ Sitemap: https://example.com/sitemap.xml
     <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/types/post_gl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/types/post/"/>
   </url>
-</urlset>",
+</urlset>
+",
       "data": {
         "basename": "sitemap",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -1380,7 +1383,8 @@ Sitemap: https://example.com/sitemap.xml
     <xhtml:link rel="alternate" hreflang="gl" href="https://example.com/types/post_gl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/en/types/post/"/>
   </url>
-</urlset>",
+</urlset>
+",
         "page": [
           "src",
           "data",
@@ -1994,7 +1998,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/static/</loc>
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
       "data": {
         "basename": "sitemap",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -2032,7 +2037,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/static/</loc>
     <lastmod>2020-01-01T00:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
         "page": [
           "src",
           "data",
@@ -2405,7 +2411,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/page2/</loc>
     <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
       "data": {
         "basename": "sitemap",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -2418,7 +2425,8 @@ Sitemap: https://example.com/sitemap.xml
     <loc>https://example.com/page2/</loc>
     <lastmod>2025-02-04T20:00:00.000Z</lastmod>
   </url>
-</urlset>",
+</urlset>
+",
         "page": [
           "src",
           "data",

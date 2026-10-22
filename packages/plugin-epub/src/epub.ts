@@ -1,9 +1,16 @@
 import { typeByExtension } from "../deps/media-types.ts";
-import { stringify } from "../deps/xml.ts";
+import { XMLBuilder } from "../deps/xml.ts";
 
-import type { Stringifyable } from "../deps/xml.ts";
 import type { Data } from "@lumeland/core/types.ts";
 import type { NavData } from "@lumeland/plugin-nav";
+
+const builder = new XMLBuilder({
+  ignoreAttributes: false,
+  suppressEmptyNode: true,
+  attributeNamePrefix: "@",
+  cdataPropName: "_html",
+  format: true,
+});
 
 /**
  * OPF - Open Packaging Format for eBooks
@@ -153,9 +160,11 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
 
   const coverItem = manifest.find((item) => item.properties?.includes("cover-image"));
 
-  const xmlObj: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const xmlObj: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
     package: {
       "@xmlns": "http://www.idpf.org/2007/opf",
       "@version": "3.0",
@@ -267,38 +276,32 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
         ],
       },
       manifest: {
-        item: manifest.map((item) => {
-          const manifestItem: Stringifyable = {
-            "@id": item.id,
-            "@href": item.href,
-            "@media-type": item.mediaType,
-            "@properties": item.properties,
-          };
-          return manifestItem;
-        }),
+        item: manifest.map((item) => ({
+          "@id": item.id,
+          "@href": item.href,
+          "@media-type": item.mediaType,
+          "@properties": item.properties,
+        })),
       },
       spine: {
         "@toc": ncxItem?.id,
-        itemref: spine.map((item) => {
-          const spineItem: Stringifyable = {
-            "@idref": item.idref,
-          };
-          if (!item.linear) {
-            spineItem["@linear"] = "no";
-          }
-          return spineItem;
-        }),
+        itemref: spine.map((item) => ({
+          "@idref": item.idref,
+          "@linear": !item.linear ? "no" : undefined,
+        })),
       },
     },
   };
 
-  return stringify(clean(xmlObj));
+  return builder.build(clean(xmlObj));
 }
 
 export function createContainer(path: string) {
-  const xmlObj: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const xmlObj: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
     container: {
       "@xmlns": "urn:oasis:names:tc:opendocument:xmlns:container",
       "@version": "1.0",
@@ -311,13 +314,15 @@ export function createContainer(path: string) {
     },
   };
 
-  return stringify(clean(xmlObj));
+  return builder.build(clean(xmlObj));
 }
 
 export function createEncryption(files: string[]) {
-  const xmlObj: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const xmlObj: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
     encryption: {
       "@xmlns": "urn:oasis:names:tc:opendocument:xmlns:container",
       EncryptedData: files.map((file) => ({
@@ -334,15 +339,17 @@ export function createEncryption(files: string[]) {
     },
   };
 
-  return stringify(clean(xmlObj));
+  return builder.build(clean(xmlObj));
 }
 
 export function createTocNcx(metadata: Metadata, menu: NavData, files: ManifestItem[]) {
   const status = { order: 1, level: 1 };
   const cover = files.find((item) => item.properties?.includes("cover-image"));
-  const xmlObj: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const xmlObj: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
     ncx: {
       "@xmlns": "http://www.daisy.org/z3986/2005/ncx/",
       "@version": "2005-1",
@@ -384,19 +391,19 @@ export function createTocNcx(metadata: Metadata, menu: NavData, files: ManifestI
     },
   };
 
-  return stringify(clean(xmlObj));
+  return builder.build(clean(xmlObj));
 }
 
 function createNavPoint(
   menu: NavData,
   status: { order: number; level: number },
-): Stringifyable | undefined {
+): Record<string, unknown> | undefined {
   const manifestItem = menu.data.manifestItem as ManifestItem | undefined;
   if (!manifestItem?.index) {
     return;
   }
 
-  const navPoint: Stringifyable = {
+  const navPoint: Record<string, unknown> = {
     "@id": manifestItem.id,
     "@playOrder": status.order++,
     "@class": `h${status.level}`,

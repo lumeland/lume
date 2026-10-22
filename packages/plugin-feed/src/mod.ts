@@ -1,14 +1,13 @@
 import { getExtension } from "@lumeland/core/utils/path.ts";
 import { isPlainObject, merge } from "@lumeland/core/utils/object.ts";
 import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
-import { cdata, stringify } from "../deps/xml.ts";
+import { XMLBuilder } from "../deps/xml.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { parseDate } from "@lumeland/core/utils/date.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Data } from "@lumeland/core/types.ts";
-import type { Stringifyable } from "../deps/xml.ts";
 
 export interface Options<D = Lume.GlobalData> {
   /** The output filenames */
@@ -287,6 +286,14 @@ export function feed<D = Lume.GlobalData>(
   };
 }
 
+const builder = new XMLBuilder({
+  ignoreAttributes: false,
+  suppressEmptyNode: true,
+  attributeNamePrefix: "@",
+  cdataPropName: "_html",
+  format: true,
+});
+
 function getAuthor<D>(
   data: Partial<Data>,
   info: FeedInfoOptions | FeedItemOptions<D>,
@@ -311,9 +318,17 @@ function fixUrls(base: URL, html: string): string {
 
 function generateRss(data: FeedData, file: string, stylesheet?: string): string {
   const self = data.self ?? file;
-  const feed: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const feed: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
+    "?xml-stylesheet": stylesheet
+      ? {
+          "@type": "text/xsl",
+          "@href": stylesheet,
+        }
+      : undefined,
     rss: {
       "@xmlns:content": "http://purl.org/rss/1.0/modules/content/",
       "@xmlns:wfw": "http://wellformedweb.org/CommentAPI/",
@@ -364,7 +379,7 @@ function generateRss(data: FeedData, file: string, stylesheet?: string): string 
             uri: item.author?.url,
           },
           description: item.description,
-          "content:encoded": cdata(item.content),
+          "content:encoded": { _html: item.content },
           category: item.categories,
           pubDate: item.published.toUTCString(),
           "atom:updated": item.updated?.toISOString(),
@@ -374,16 +389,7 @@ function generateRss(data: FeedData, file: string, stylesheet?: string): string 
     },
   };
 
-  if (stylesheet) {
-    feed["#instructions"] = {
-      "xml-stylesheet": {
-        "@type": "text/xsl",
-        "@href": stylesheet,
-      },
-    };
-  }
-
-  return stringify(clean(feed));
+  return builder.build(clean(feed));
 }
 
 function generateJson(data: FeedData, file: string): string {
@@ -417,9 +423,17 @@ function generateJson(data: FeedData, file: string): string {
 
 function generateAtom(data: FeedData, file: string, stylesheet?: string): string {
   const self = data.self ?? file;
-  const feed: Stringifyable = {
-    "@version": "1.0",
-    "@encoding": "UTF-8",
+  const feed: Record<string, unknown> = {
+    "?xml": {
+      "@version": "1.0",
+      "@encoding": "UTF-8",
+    },
+    "?xml-stylesheet": stylesheet
+      ? {
+          "@type": "text/xsl",
+          "@href": stylesheet,
+        }
+      : undefined,
     feed: {
       "@xmlns": "http://www.w3.org/2005/Atom",
       ...(data.image !== undefined || data.icon !== undefined || data.color !== undefined
@@ -485,16 +499,7 @@ function generateAtom(data: FeedData, file: string, stylesheet?: string): string
     },
   };
 
-  if (stylesheet) {
-    feed["#instructions"] = {
-      "xml-stylesheet": {
-        "@type": "text/xsl",
-        "@href": stylesheet,
-      },
-    };
-  }
-
-  return stringify(clean(feed));
+  return builder.build(clean(feed));
 }
 
 /** Remove undefined values of an object recursively */

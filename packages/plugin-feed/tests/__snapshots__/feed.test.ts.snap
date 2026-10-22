@@ -208,7 +208,8 @@ exports[`feed plugin > should match site snapshot 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
       "data": {
         "basename": "feed",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -243,7 +244,8 @@ exports[`feed plugin > should match site snapshot 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
         "page": [
           "src",
           "data",
@@ -301,14 +303,17 @@ exports[`feed plugin > should match site snapshot 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
       "data": {
         "basename": "feed",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -336,14 +341,17 @@ exports[`feed plugin > should match site snapshot 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
         "page": [
           "src",
           "data",
@@ -570,7 +578,8 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
       "data": {
         "basename": "feed1",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -606,7 +615,8 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
         "page": [
           "src",
           "data",
@@ -665,14 +675,17 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
       "data": {
         "basename": "feed1",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -701,14 +714,17 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
         "page": [
           "src",
           "data",
@@ -755,7 +771,8 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
       "data": {
         "basename": "feed2",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -790,7 +807,8 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
     <category term="tag1"/>
     <category term="tag2"/>
   </entry>
-</feed>",
+</feed>
+",
         "page": [
           "src",
           "data",
@@ -848,14 +866,17 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
       "data": {
         "basename": "feed2",
         "content": "<?xml version="1.0" encoding="UTF-8"?>
@@ -883,14 +904,17 @@ exports[`feed plugin > should match site snapshot with array function 1`] = `
         <name>Óscar</name>
         <uri>https://oscarotero.com</uri>
       </author>
-      <content:encoded><![CDATA[Content of Page 5]]></content:encoded>
+      <content:encoded>
+        <![CDATA[Content of Page 5]]>
+      </content:encoded>
       <category>tag1</category>
       <category>tag2</category>
       <pubDate>Thu, 21 Jun 1979 23:45:00 GMT</pubDate>
       <atom:updated>1979-06-21T23:45:00.000Z</atom:updated>
     </item>
   </channel>
-</rss>",
+</rss>
+",
         "page": [
           "src",
           "data",
