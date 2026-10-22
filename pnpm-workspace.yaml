@@ -1,7 +1,7 @@
 packages:
   - "packages/*"
   - "themes/*"
-  # - "testing/*"
+  - "testing/*"
 allowBuilds:
   esbuild: true
 linkWorkspacePackages: true
@@ -10,6 +10,21 @@ minimumReleaseAgeExclude:
   - "@lumeland/dom@0.1.56"
   - "@lumeland/ssx@0.1.16"
   - "@lumeland/cms@1.0.0-beta-1 || 1.0.0-beta-3"
+  - "@lumeland/plugin-base-path@1.0.0-beta-5"
+  - "@lumeland/plugin-cms@1.0.0-beta-4"
+  - "@lumeland/plugin-date@1.0.0-beta-5"
+  - "@lumeland/plugin-feed@1.0.0-beta-5"
+  - "@lumeland/plugin-lightningcss@1.0.0-beta-5"
+  - "@lumeland/plugin-metas@1.0.0-beta-5"
+  - "@lumeland/plugin-modify-urls@1.0.0-beta-5"
+  - "@lumeland/plugin-pagefind@1.0.0-beta-5"
+  - "@lumeland/plugin-prism@1.0.0-beta-5"
+  - "@lumeland/plugin-reading-info@1.0.0-beta-5"
+  - "@lumeland/plugin-resolve-urls@1.0.0-beta-4"
+  - "@lumeland/plugin-sitemap@1.0.0-beta-5"
+  - "@lumeland/plugin-slugify-urls@1.0.0-beta-5"
+  - "@lumeland/plugin-source-maps@1.0.0-beta-5"
+  - "@lumeland/plugin-terser@1.0.0-beta-5"
 ignoreWorkspaceCycles: true
 ignoredOptionalDependencies:
   - "@parcel/*"

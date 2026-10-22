@@ -7,6 +7,7 @@ import { log } from "./utils/log.ts";
 import { isUrl } from "./utils/path.ts";
 import { cwd } from "./services/process.ts";
 import { FsError, readTextFile, writeFile, writeTextFile } from "./services/fs.ts";
+import { read } from "./utils/read.ts";
 
 export interface Options {
   src: string;
@@ -57,20 +58,24 @@ export default class Archetypes {
   }
 
   async save(file: ArchetypeFile): Promise<void> {
-    const { path, base = "src", content } = file;
+    const { path, base = "src", content, overwrite } = file;
 
     if (!path) {
       throw new Error("Archetype path is required.");
     }
 
-    if (!content) {
+    if (content === undefined || content === null) {
       throw new Error("Archetype content is required.");
     }
 
     const fullPath = join(base === "root" ? this.root : this.src, path);
 
+    if (content instanceof URL) {
+      return await saveFile(fullPath, await read(content.href), overwrite);
+    }
+
     if (typeof content === "string" || content instanceof Uint8Array) {
-      return await saveFile(fullPath, content);
+      return await saveFile(fullPath, content, overwrite);
     }
 
     if (path.endsWith(".json")) {
@@ -135,7 +140,8 @@ export type Archetype = (
 export interface ArchetypeFile<T = unknown> {
   base?: "src" | "root";
   path: string;
-  content: T | ((prev?: T) => T | Promise<T>);
+  overwrite?: boolean;
+  content: T | URL | ((prev?: T) => T | Promise<T>);
 }
 
 async function saveFile(path: string, content: string | Uint8Array, overwrite = false) {
