@@ -282,7 +282,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       throw new Error(`Theme ${source} not installed`);
     }
 
-    writeFile(root, config, getConfigCode([{ name, specifier, init: "" }]));
+    writeFile(root, config, getConfigCode([{ name: "theme", specifier, init: "" }]));
     writeFile(root, "__setup__.js", [
       `import site from "./${config}"`,
       `import * as theme from "${specifier}"`,
