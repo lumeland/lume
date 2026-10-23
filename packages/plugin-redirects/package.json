@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-redirects",
   "version": "1.0.0-beta-8",
   "description": "Plugin to create redirections from one page to another",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/redirects/",
   "license": "MIT",
   "author": "Óscar Otero",

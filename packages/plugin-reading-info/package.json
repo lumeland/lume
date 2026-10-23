@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-reading-info",
   "version": "1.0.0-beta-8",
   "description": "Plugin to provide some information about the page content",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/reading-info/",
   "license": "MIT",
   "author": "Óscar Otero",

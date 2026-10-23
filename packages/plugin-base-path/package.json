@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-base-path",
   "version": "1.0.0-beta-8",
   "description": "Plugin to automatically add a base path to all urls",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/base-path/",
   "license": "MIT",
   "author": "Óscar Otero",

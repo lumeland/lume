@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-postcss",
   "version": "1.0.0-beta-8",
   "description": "Plugin to transform the CSS code with PostCSS",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/postcss/",
   "license": "MIT",
   "author": "Óscar Otero",

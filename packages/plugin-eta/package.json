@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-eta",
   "version": "1.0.0-beta-8",
   "description": "Plugin to use the template engine Eta to build pages",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/eta/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-robots",
   "version": "1.0.0-beta-8",
   "description": "Plugin to create the robots.txt file automatically",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/robots/",
   "license": "MIT",
   "author": "Óscar Otero",

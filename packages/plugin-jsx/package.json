@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-jsx",
   "version": "1.0.0-beta-8",
   "description": "",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/jsx/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-extract-date",
   "version": "1.0.0-beta-8",
   "description": "Plugin to extract dates from the filenames",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/extract-date/",
   "license": "MIT",
   "author": "Óscar Otero",

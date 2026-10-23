@@ -20,6 +20,7 @@ const pkg = {
     ".": "./src/mod.ts",
     "./*.ts": "./src/*.ts",
   },
+  keywords: ["lume-plugin"],
   scripts: {
     build: "rm -rf build && tsc -p .",
     test: "vitest run",

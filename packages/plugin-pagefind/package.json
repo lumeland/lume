@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-pagefind",
   "version": "1.0.0-beta-8",
   "description": "Plugin to integrate the Pagefind static search engine",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/pagefind/",
   "license": "MIT",
   "author": "Óscar Otero",

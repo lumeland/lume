@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-picture",
   "version": "1.0.0-beta-8",
   "description": "Plugin to create responsive images using the Transform Images plugin",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/picture/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-inline",
   "version": "1.0.0-beta-8",
   "description": "Plugin to inline CSS, JavaScript, SVG, and images in the HTML and CSS",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/inline/",
   "license": "MIT",
   "author": "Óscar Otero",

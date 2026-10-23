@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-toml",
   "version": "1.0.0-beta-8",
   "description": "Plugin to add support for TOML format to store data and create pages",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/toml/",
   "license": "MIT",
   "author": "Óscar Otero",

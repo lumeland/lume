@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-search",
   "version": "1.0.0-beta-8",
   "description": "Plugin to provide the search helper to Lume",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/search/",
   "license": "MIT",
   "author": "Óscar Otero",

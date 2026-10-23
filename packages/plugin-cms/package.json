@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-cms",
   "version": "1.0.0-beta-8",
   "description": "",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/cms/",
   "license": "MIT",
   "author": "Óscar Otero",

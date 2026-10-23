@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-multilanguage",
   "version": "1.0.0-beta-8",
   "description": "Plugin to create multiple language versions of the same page",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/multilanguage/",
   "license": "MIT",
   "author": "Óscar Otero",

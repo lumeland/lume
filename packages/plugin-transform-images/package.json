@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-transform-images",
   "version": "1.0.0-beta-8",
   "description": "Image manipulation plugin using Sharp",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/transform-images/",
   "license": "MIT",
   "author": "Óscar Otero",

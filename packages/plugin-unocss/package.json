@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-unocss",
   "version": "1.0.0-beta-8",
   "description": "Plugin to use UnoCSS to create the CSS styles",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/unocss/",
   "license": "MIT",
   "author": "Óscar Otero",

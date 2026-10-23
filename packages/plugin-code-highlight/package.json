@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-code-highlight",
   "version": "1.0.0-beta-8",
   "description": "Plugin for code syntax highlighting using highlight.js",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/code-highlight/",
   "license": "MIT",
   "author": "Óscar Otero",

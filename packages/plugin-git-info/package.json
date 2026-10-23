@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-git-info",
   "version": "1.0.0-beta-8",
   "description": "Extract the current branch, commit hash and tag from Git",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/git-info/",
   "license": "MIT",
   "author": "Óscar Otero",

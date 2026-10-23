@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-filter-pages",
   "version": "1.0.0-beta-8",
   "description": "Plugin to filter pages under a specific condition",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/filter-pages/",
   "license": "MIT",
   "author": "Óscar Otero",

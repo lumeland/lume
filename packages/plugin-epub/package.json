@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-epub",
   "version": "1.0.0-beta-8",
   "description": "Output a .epub file with the site",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/epub/",
   "license": "MIT",
   "author": "Óscar Otero",

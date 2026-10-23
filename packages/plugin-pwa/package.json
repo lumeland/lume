@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-pwa",
   "version": "1.0.0-beta-8",
   "description": "Plugin to generate the manifest.json file to create a Progressive Web Application",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/pwa/",
   "license": "MIT",
   "author": "Óscar Otero",

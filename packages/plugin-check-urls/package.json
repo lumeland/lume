@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-check-urls",
   "version": "1.0.0-beta-8",
   "description": "Plugin to automatically check the URLs of your site to detect broken links",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/check-urls/",
   "license": "MIT",
   "author": "Óscar Otero",

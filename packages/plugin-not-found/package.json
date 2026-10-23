@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-not-found",
   "version": "1.0.0-beta-8",
   "description": "Middleware to show a custom page on 404 errors",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/not-found/",
   "license": "MIT",
   "author": "Óscar Otero",

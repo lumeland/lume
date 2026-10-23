@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-modify-urls",
   "version": "1.0.0-beta-8",
   "description": "Plugin to modify all URLs of HTML and CSS files with a custom function",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/modify-urls/",
   "license": "MIT",
   "author": "Óscar Otero",

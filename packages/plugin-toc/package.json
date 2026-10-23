@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-toc",
   "version": "1.0.0-beta-8",
   "description": "Plugin to generate automatically the table of contents",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/toc/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-sitemap",
   "version": "1.0.0-beta-8",
   "description": "Plugin to generate a sitemap automatically",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/sitemap/",
   "license": "MIT",
   "author": "Óscar Otero",

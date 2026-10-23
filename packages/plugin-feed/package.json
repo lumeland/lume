@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-feed",
   "version": "1.0.0-beta-8",
   "description": "Plugin to generate a RSS, Atom or JSON Feed automatically for your site",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/feed/",
   "license": "MIT",
   "author": "Óscar Otero",

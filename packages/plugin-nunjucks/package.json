@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-nunjucks",
   "version": "1.0.0-beta-8",
   "description": "Plugin to use Nunjucks to create pages and layouts",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/nunjucks/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-well-known",
   "version": "1.0.0-beta-8",
   "description": "Plugin to generate some .well-known urls",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/well-known/",
   "license": "MIT",
   "author": "Óscar Otero",

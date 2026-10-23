@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-url",
   "version": "1.0.0-beta-8",
   "description": "Plugin to register the url filter to fix and resolve URLs",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/url/",
   "license": "MIT",
   "author": "Óscar Otero",

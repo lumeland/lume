@@ -1,0 +1,205 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`markdown-footnotes plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/default.vto",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <p>Let's include a footnote for not good reason.<sup><a class="footnote-ref" href="#fn-1" id="fnref-1">1</a></sup></p>
+<p>Here is a footnote reference,<sup><a class="footnote-ref" href="#fn-2" id="fnref-2">2</a></sup> and another,<sup><a class="footnote-ref" href="#fn-3" id="fnref-3">3</a></sup> and another with a
+duplicated reference.<sup><a class="footnote-ref" href="#fn-2" id="fnref-2:1">2:1</a></sup></p>
+<p>Here is an inline note. <sup><a class="footnote-ref" href="#fn-4" id="fnref-4">4</a></sup></p>
+
+
+  <ul>
+    <li id=fn-1>
+      <p>I really don't have one.</p>
+
+        <a href="#fnref-1" class="footnote-backref">↩</a>
+    </li>
+    <li id=fn-2>
+      <p>Here is the footnote.</p>
+
+        <a href="#fnref-2" class="footnote-backref">↩</a>
+        <a href="#fnref-2:1" class="footnote-backref">↩</a>
+    </li>
+    <li id=fn-3>
+      <p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they belong to the previous
+footnote.</p>
+
+        <a href="#fnref-3" class="footnote-backref">↩</a>
+    </li>
+    <li id=fn-4>
+      <p>Inlines notes are easier to write, since you don't have
+to pick an identifier and move down to type the note.</p>
+        <a href="#fnref-4" class="footnote-backref">↩</a>
+    </li>
+  </ul>  
+</body>
+</html>
+",
+      "data": {
+        "basename": "",
+        "children": "<p>Let's include a footnote for not good reason.<sup><a class="footnote-ref" href="#fn-1" id="fnref-1">1</a></sup></p>
+<p>Here is a footnote reference,<sup><a class="footnote-ref" href="#fn-2" id="fnref-2">2</a></sup> and another,<sup><a class="footnote-ref" href="#fn-3" id="fnref-3">3</a></sup> and another with a
+duplicated reference.<sup><a class="footnote-ref" href="#fn-2" id="fnref-2:1">2:1</a></sup></p>
+<p>Here is an inline note. <sup><a class="footnote-ref" href="#fn-4" id="fnref-4">4</a></sup></p>
+",
+        "content": "Let's include a footnote for not good reason.[^footnote-for-no-good-reason]
+
+[^footnote-for-no-good-reason]: I really don't have one.
+
+Here is a footnote reference,[^1] and another,[^longnote] and another with a
+duplicated reference.[^1]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they belong to the previous
+    footnote.
+
+Here is an inline note. ^[Inlines notes are easier to write, since you don't have
+to pick an identifier and move down to type the note.]
+",
+        "date": [],
+        "footnotes": "Array(4)",
+        "layout": "default.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;

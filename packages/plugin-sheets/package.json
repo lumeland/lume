@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-sheets",
   "version": "1.0.0-beta-8",
   "description": "Plugin to add support for Spreadsheets to store data",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/sheets/",
   "license": "MIT",
   "author": "Óscar Otero",

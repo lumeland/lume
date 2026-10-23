@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-google-fonts",
   "version": "1.0.0-beta-8",
   "description": "Plugin to download and self host Google fonts",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/google-fonts/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-plaintext",
   "version": "1.0.0-beta-8",
   "description": "Plugin with a helper to remove HTML and Markdown syntax in any text",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/plaintext/",
   "license": "MIT",
   "author": "Óscar Otero",

@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-pug",
   "version": "1.0.0-beta-8",
   "description": "Plugin to use Pug to create pages and layouts",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/pug/",
   "license": "MIT",
   "author": "Óscar Otero",

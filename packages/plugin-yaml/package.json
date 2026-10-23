@@ -2,6 +2,9 @@
   "name": "@lumeland/plugin-yaml",
   "version": "1.0.0-beta-8",
   "description": "Plugin to add support for YAML to store data and create pages",
+  "keywords": [
+    "lume-plugin"
+  ],
   "homepage": "https://lume.land/plugins/yaml/",
   "license": "MIT",
   "author": "Óscar Otero",
