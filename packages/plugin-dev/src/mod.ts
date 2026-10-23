@@ -32,7 +32,7 @@ export default dev;
 
 function setupServer(site: Site) {
   const server = site.getServer();
-  const { port, hostname, page404, open } = site.options.server;
+  const { page404, open } = site.options.server;
 
   // Show server address info
   server.addEventListener(
@@ -41,14 +41,14 @@ function setupServer(site: Site) {
       const ipAddr = localIp();
 
       log.info("\n  Server started at:");
-      log.info(`  <green>http://${hostname}:${port}/</green> (local)`);
+      log.info(`  <green>http://${server.hostname}:${server.port}/</green> (local)`);
 
       if (ipAddr) {
-        log.info(`  <green>http://${ipAddr}:${port}/</green> (network)`);
+        log.info(`  <green>http://${ipAddr}:${server.port}/</green> (network)`);
       }
 
       if (open) {
-        openBrowser(`http://${hostname}:${port}/`);
+        openBrowser(`http://${server.hostname}:${server.port}/`);
       }
 
       site.dispatchEvent({ type: "afterStartServer" });

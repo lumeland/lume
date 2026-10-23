@@ -156,6 +156,11 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     name: targetDir.replaceAll(/[^\w-]/g, "") || "lume-site",
     private: true,
     type: "module",
+    allowScripts: {
+      esbuild: false,
+      fsevents: false,
+      "@parcel/watcher": false,
+    },
     scripts: {
       serve: "lume build -s",
       build: "lume build",
@@ -244,12 +249,12 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   }
 
   // Success
-  let doneMessage = `Done. Now run:\n`;
+  let doneMessage = `🔥 Done! Now run:\n   `;
   if (root !== cwd) {
     const cdProjectName = path.relative(cwd, root);
-    doneMessage += `\n  cd ${cdProjectName.includes(" ") ? `"${cdProjectName}"` : cdProjectName}`;
+    doneMessage += `cd ${cdProjectName.includes(" ") ? `"${cdProjectName}"` : cdProjectName} && `;
   }
-  doneMessage += `\n  ${pkgManager} ${scriptArgs("serve").join(" ")}`;
+  doneMessage += `${pkgManager} ${scriptArgs("serve").join(" ")}`;
   prompts.outro(doneMessage);
 
   /** Get the install arguments according the package manager */

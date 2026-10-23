@@ -2,8 +2,6 @@ packages:
   - "packages/*"
   - "themes/*"
   - "testing/*"
-allowBuilds:
-  esbuild: true
 linkWorkspacePackages: true
 minimumReleaseAgeExclude:
   - deno-std@1.5.0 || 1.5.1
@@ -28,3 +26,7 @@ minimumReleaseAgeExclude:
 ignoreWorkspaceCycles: true
 ignoredOptionalDependencies:
   - "@parcel/*"
+allowBuilds:
+  esbuild: false
+  fsevents: false
+  "@parcel/watcher": false

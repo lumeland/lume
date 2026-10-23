@@ -6,6 +6,7 @@ import type { Middleware } from "@lumeland/core/server.ts";
 import type Site from "@lumeland/core/site.ts";
 import type CMS from "@lumeland/cms/core/cms.ts";
 import type { Storage } from "@lumeland/cms/types.ts";
+import { log } from "@lumeland/core/utils/log.ts";
 
 export interface Options {
   /** The CMS instance */
@@ -126,6 +127,15 @@ export function lumeCms(userOptions: Options) {
     }
     site.addEventListener("beforeBuild", showCMS);
     site.addEventListener("beforeUpdate", showCMS);
+
+    server.addEventListener(
+      "start",
+      () => {
+        log.info("\n  Lume CMS started at:");
+        log.info(`  <green>http://${server.hostname}:${server.port}/admin</green>`);
+      },
+      { once: true },
+    );
   };
 }
 
