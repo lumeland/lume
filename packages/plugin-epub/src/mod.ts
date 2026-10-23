@@ -74,6 +74,7 @@ export function epub(userOptions?: Options) {
     // Ensure all xhtml pages have correct syntax
     site.process([".xhtml"], function processXHTML(pages) {
       for (const page of pages) {
+        // oxlint-disable-next-line no-unused-expressions
         page.document;
       }
     });
