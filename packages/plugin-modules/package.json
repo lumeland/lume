@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-modules",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to use ESM and TypeScript modules to create pages, layouts, and store data",
   "homepage": "https://lume.land/plugins/modules/",
   "license": "MIT",

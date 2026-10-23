@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-sitemap",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to generate a sitemap automatically",
   "homepage": "https://lume.land/plugins/sitemap/",
   "license": "MIT",

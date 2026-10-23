@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-sheets",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to add support for Spreadsheets to store data",
   "homepage": "https://lume.land/plugins/sheets/",
   "license": "MIT",

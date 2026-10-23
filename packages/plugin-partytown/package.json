@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-partytown",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to use Partytown to run third-party scripts from a web worker",
   "homepage": "https://lume.land/plugins/partytown/",
   "license": "MIT",

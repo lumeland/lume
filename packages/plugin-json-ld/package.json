@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-json-ld",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to generate JSON-LD tags in the HTML pages",
   "homepage": "https://lume.land/plugins/json-ld/",
   "license": "MIT",

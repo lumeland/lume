@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-unocss",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to use UnoCSS to create the CSS styles",
   "homepage": "https://lume.land/plugins/unocss/",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-search",
-  "version": "1.0.0-beta-5",
+  "version": "1.0.0-beta-8",
   "description": "Plugin to provide the search helper to Lume",
   "homepage": "https://lume.land/plugins/search/",
   "license": "MIT",
