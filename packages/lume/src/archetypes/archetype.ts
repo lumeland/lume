@@ -3,20 +3,18 @@ import type { Archetype } from "@lumeland/core/archetypes.ts";
 
 export default (function (name?: string) {
   if (!name) {
-    log.error("Missing name argument. Run this command again adding the archetype name.");
+    log.error("Missing 'name' argument. Run this command again adding the archetype name.");
     return;
   }
 
   return {
     base: "root",
     path: `/_archetypes/${name}.ts`,
-    content: `import { log } from "lume/core/utils/log.ts";
+    content: `import type { Archetype } from "@lumeland/core/archetypes.ts";
 
 export default (function (name?: string) {
-  name ??= prompt("Name:", "world") ?? undefined
-
   if (!name) {
-    log.error("Missing arguments. Run 'deno task new ${name} {name}");
+    console.error("Missing 'name' argument");
     return;
   }
 
@@ -24,7 +22,7 @@ export default (function (name?: string) {
     path: \`hello-\${name}.md\`,
     content: \`Hello \${name}\`,
   };
-}) satisfies Lume.Archetype;
+}) satisfies Archetype;
 `,
   };
 } satisfies Archetype);

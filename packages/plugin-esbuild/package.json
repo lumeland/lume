@@ -32,5 +32,8 @@
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:^"
+  },
+  "allowScripts": {
+    "esbuild": false
   }
 }

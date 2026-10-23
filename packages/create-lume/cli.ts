@@ -20,72 +20,70 @@ init(parsed.args[0], parsed.options);
 const pkgManagers = ["npm", "yarn", "pnpm", "bun"] as const;
 type PkgManager = (typeof pkgManagers)[number];
 
-const plugins = [
-  "base-path",
-  "check-urls",
-  "code-highlight",
-  "compress",
-  "date",
-  "decap-cms",
-  "epub",
-  "esbuild",
-  "eta",
-  "extract-date",
-  "extract-order",
-  "favicon",
-  "feed",
-  "filter-pages",
-  "git-date",
-  "git-info",
-  "google-fonts",
-  "icons",
-  "image-size",
-  "inline",
-  "json-ld",
-  "jsx",
-  "katex",
-  "lightningcss",
-  "mdx",
-  "metas",
-  "minify-html",
-  "modify-urls",
-  "multilanguage",
-  "nav",
-  "nunjucks",
-  "og-images",
-  "pagefind",
-  "partytown",
-  "picture",
-  "plaintext",
-  "postcss",
-  "prism",
-  "pug",
-  "purgecss",
-  "pwa",
-  "reading-info",
-  "redirects",
-  "relative-urls",
-  "remark",
-  "replace",
-  "resolve-urls",
-  "robots",
-  "sass",
-  "search",
-  "sheets",
-  "sitemap",
-  "slugify-urls",
-  "source-maps",
-  "sri",
-  "svgo",
-  "tailwindcss",
-  "terser",
-  "toc",
-  "toml",
-  "transform-images",
-  "unocss",
-  "validate-html",
-  "well-known",
-];
+const plugins: Record<string, [string, string?]> = {
+  basePath: ["base-path"],
+  checkUrls: ["check-urls"],
+  codeHighlight: ["code-highlight"],
+  compress: ["compress"],
+  date: ["date"],
+  epub: ["epub"],
+  esbuild: ["esbuild"],
+  eta: ["eta"],
+  extractDate: ["extract-date"],
+  extractOrder: ["extract-order"],
+  favicon: ["favicon"],
+  feed: ["feed"],
+  filterPages: ["filter-pages"],
+  gitDate: ["git-date"],
+  gitInfo: ["git-info"],
+  googleFonts: ["google-fonts"],
+  icons: ["icons"],
+  imageSize: ["image-size"],
+  inline: ["inline"],
+  jsonLd: ["json-ld"],
+  jsx: ["jsx"],
+  katex: ["katex"],
+  lightningcss: ["lightningcss"],
+  mdx: ["mdx"],
+  metas: ["metas"],
+  minifyHtml: ["minify-html"],
+  modifyUrls: ["modify-urls"],
+  multilanguage: ["multilanguage"],
+  nav: ["nav"],
+  nunjucks: ["nunjucks"],
+  ogImages: ["og-images"],
+  pagefind: ["pagefind"],
+  partytown: ["partytown"],
+  picture: ["picture"],
+  plaintext: ["plaintext"],
+  postcss: ["postcss"],
+  prism: ["prism"],
+  pug: ["pug"],
+  purgecss: ["purgecss"],
+  pwa: ["pwa"],
+  readingInfo: ["reading-info"],
+  redirects: ["redirects"],
+  relativeUrls: ["relative-urls"],
+  remark: ["remark"],
+  replace: ["replace"],
+  resolveUrls: ["resolve-urls"],
+  robots: ["robots"],
+  sass: ["sass"],
+  search: ["search"],
+  sheets: ["sheets"],
+  sitemap: ["sitemap"],
+  slugifyUrls: ["slugify-urls"],
+  sourceMaps: ["source-maps"],
+  sri: ["sri"],
+  svgo: ["svgo"],
+  tailwindcss: ["tailwindcss"],
+  terser: ["terser"],
+  toc: ["toc"],
+  transformImages: ["transform-images"],
+  unocss: ["unocss"],
+  validateHtml: ["validate-html"],
+  wellKnown: ["well-known"],
+};
 
 interface InitOptions {
   js?: boolean;
@@ -97,6 +95,8 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   const cwd = process.cwd();
   const cancel = () => prompts.cancel("Operation cancelled");
   let pkgManager = getPackageManager();
+
+  prompts.intro("Create a Lume site");
 
   // 1. Target dir
   if (targetDir) targetDir = formatTargetDir(targetDir);
@@ -182,36 +182,60 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     fs.mkdirSync(srcRoot);
   }
 
-  // 4. Install Lume
-  run(pkgManager, installArgs("@lumeland/lume"), root);
-
   const config = options.js ? "_config.js" : "_config.ts";
 
-  // 5. Install a theme or an empty site
+  // 4. Install Lume + theme or only Lume
   if (options.theme) {
     await installTheme(options.theme);
   } else {
+    const packages = ["@lumeland/lume"];
+
+    // 4.1. Select plugins
     const selectedPlugins = await prompts.autocompleteMultiselect({
       message: "Plugins to install",
-      options: plugins.map((name) => ({
+      options: Object.entries(plugins).map(([key, [name]]) => ({
         label: name,
-        value: name,
-        hint: `https://lume.land/plugins/${name}/`,
+        value: key,
+        hint: `https://lume.land/plugins/${key}/`,
       })),
       maxItems: Infinity,
     });
 
-    const p = !prompts.isCancel(selectedPlugins) ? selectedPlugins : [];
+    const keys = !prompts.isCancel(selectedPlugins) ? selectedPlugins : [];
+    const imports: ConfigImport[] = keys.map((name) => {
+      const [key, init] = plugins[name];
+      const specifier = `@lumeland/plugin-${key}`;
+      return { name, specifier, init: init ?? "" };
+    });
 
-    if (p.length) {
-      run(pkgManager, installArgs(...p.map((n) => `@lumeland/plugin-${n}`)), root);
+    packages.push(...imports.map(({ specifier }) => specifier));
+
+    // 4.2. Setup LumeCMS
+    if (await prompts.confirm({ message: "Do you want to setup Lume CMS?" })) {
+      packages.push("@lumeland/cms", "@lumeland/plugin-cms");
+      imports.push({
+        name: "lumeCms",
+        specifier: "@lumeland/plugin-cms",
+        init: "{ cms }",
+      });
+      const cmsConfig = options.js ? "_cms.js" : "_cms.ts";
+      imports.push({
+        name: "cms",
+        specifier: `./${cmsConfig}`,
+        init: false,
+      });
+      writeFile(root, cmsConfig, [
+        'import create from "@lumeland/cms";',
+        "",
+        "const cms = create();",
+        "",
+        "export default cms;",
+      ]);
     }
 
-    writeFile(
-      root,
-      config,
-      getConfigCode(Object.fromEntries(p.map((n) => [toCamelCase(n), `@lumeland/plugin-${n}`]))),
-    );
+    // 4.3. Install everything and create the remaining files
+    run(pkgManager, installArgs("@lumeland/lume", ...packages), root);
+    writeFile(root, config, getConfigCode(imports));
 
     writeFile(srcRoot, "index.md", [
       "# Hello world",
@@ -253,8 +277,8 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   }
 
   async function installTheme(source: string) {
-    const theme = source.startsWith(".") ? realpathSync(source) : source;
-    run(pkgManager, installArgs(theme), root);
+    const name = source.startsWith(".") ? realpathSync(source) : source;
+    run(pkgManager, installArgs("@lumeland/lume", name), root);
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
     const specifier = Object.keys(pkg.dependencies).find((name) => name !== "@lumeland/lume");
@@ -263,7 +287,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       throw new Error(`Theme ${source} not installed`);
     }
 
-    writeFile(root, config, getConfigCode({ theme: specifier }));
+    writeFile(root, config, getConfigCode([{ name, specifier, init: "" }]));
     writeFile(root, "__setup__.js", [
       `import site from "./${config}"`,
       `import * as theme from "${specifier}"`,
@@ -278,10 +302,16 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     fs.rmSync(path.join(root, "__setup__.js"));
   }
 
-  function getConfigCode(plugins: Record<string, string> = {}) {
+  interface ConfigImport {
+    name: string;
+    specifier: string;
+    init: string | false;
+  }
+
+  function getConfigCode(imports: ConfigImport[] = []) {
     const code: string[] = ['import lume from "@lumeland/lume";'];
 
-    for (const [name, specifier] of Object.entries(plugins)) {
+    for (const { name, specifier } of imports) {
       code.push(`import ${name} from "${specifier}";`);
     }
 
@@ -293,8 +323,12 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       code.push("const site = lume();");
     }
 
-    for (const name of Object.keys(plugins)) {
-      code.push(`site.use(${name}());`);
+    for (const { name, init } of imports) {
+      if (init === false) {
+        continue;
+      }
+
+      code.push(`site.use(${name}(${init}));`);
     }
 
     code.push("", "export default site;", "");
@@ -351,16 +385,6 @@ function writeFile(
   }
 
   fs.writeFileSync(filename, content);
-}
-
-function toCamelCase(name: string): string {
-  return name
-    .split("-")
-    .map((part, index) => {
-      if (!index) return part;
-      return part[0].toUpperCase() + part.slice(1);
-    })
-    .join("");
 }
 
 /** Run an command and return if it's success */

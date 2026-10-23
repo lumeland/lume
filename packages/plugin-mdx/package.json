@@ -37,5 +37,8 @@
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:^"
+  },
+  "allowScripts": {
+    "fsevents": false
   }
 }

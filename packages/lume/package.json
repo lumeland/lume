@@ -40,5 +40,8 @@
   },
   "devDependencies": {
     "typescript": "^7.0.2"
+  },
+  "allowScripts": {
+    "fsevents": false
   }
 }
