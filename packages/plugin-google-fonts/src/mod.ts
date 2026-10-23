@@ -194,7 +194,7 @@ function getCssUrl(fonts: string): string | undefined {
 function getFontName(parts: (string | undefined)[]): string {
   const name = parts
     .filter((part) => part !== undefined)
-    .map((part) => part.replace(" ", "-").replaceAll(/[^\w-\[\]]/g, ""))
+    .map((part) => part.replace(" ", "-").replaceAll(/[^\w-[\]]/g, ""))
     .join("-");
   return name.replaceAll(" ", "_").toLowerCase() + ".woff2";
 }

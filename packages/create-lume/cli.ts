@@ -7,16 +7,6 @@ import { spawnSync } from "node:child_process";
 import * as prompts from "@clack/prompts";
 import cac from "cac";
 
-const cli = cac("create-lume");
-cli.option("--js", "Use JavaScript (_config.js) instead of TypeScript (_config.ts)");
-cli.option("--src <src>", "The source directory");
-cli.option("--theme <package>", "Installable package with a Lume theme");
-cli.help();
-
-const parsed = cli.parse();
-
-init(parsed.args[0], parsed.options);
-
 const pkgManagers = ["npm", "yarn", "pnpm", "bun"] as const;
 type PkgManager = (typeof pkgManagers)[number];
 
@@ -401,3 +391,13 @@ export function run(cmd: string, args: string[] = [], cwd?: string): boolean {
 
   return child.status === 0;
 }
+
+const cli = cac("create-lume");
+cli.option("--js", "Use JavaScript (_config.js) instead of TypeScript (_config.ts)");
+cli.option("--src <src>", "The source directory");
+cli.option("--theme <package>", "Installable package with a Lume theme");
+cli.help();
+
+const parsed = cli.parse();
+
+init(parsed.args[0], parsed.options);

@@ -7,8 +7,9 @@ dist="./dist"
 rm -rf "$dist"
 mkdir -p "$dist"
 
-# Test and build
+# Test, lint and build
 pnpm -r --filter "$filter" test
+pnpm lint
 pnpm -r --filter "$filter" build
 
 # Generate tarballs files
