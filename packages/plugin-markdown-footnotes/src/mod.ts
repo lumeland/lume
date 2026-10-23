@@ -1,4 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
+import { log } from "@lumeland/core/utils/log.ts";
 
 import type { MarkdownIt, StateBlock, StateCore, StateInline, Token } from "../deps/markdown.ts";
 import type Site from "@lumeland/core/site.ts";
@@ -256,13 +257,22 @@ function markdownItFootnotes(md: MarkdownIt, options: Required<Options>) {
     if (!silent) {
       const label = state.src.slice(labelStart, labelEnd);
       const footnote = searchFootnote(state, label);
-      const token = state.push("footnote_reference", "", 0);
+
+      if (footnote) {
+        const token = state.push("footnote_reference", "", 0);
+        footnote.subId++;
+        token.meta = { ...footnote };
+      }
 
       if (!footnote) {
-        return false;
+        if (state.env.filename) {
+          log.error(
+            `[markdown-footnotes plugin] Footnote "[^${label}]" not found in the page ${state.env.filename}`,
+          );
+        } else {
+          log.debug(`[markdown-footnotes plugin] Footnote "[^${label}]" not found`);
+        }
       }
-      footnote.subId++;
-      token.meta = { ...footnote };
     }
 
     state.pos = ++labelEnd;
