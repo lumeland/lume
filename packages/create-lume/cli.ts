@@ -2,7 +2,7 @@
 
 import process from "node:process";
 import path from "node:path";
-import fs from "node:fs";
+import fs, { realpathSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import * as prompts from "@clack/prompts";
 import cac from "cac";
@@ -10,21 +10,35 @@ import cac from "cac";
 const cli = cac("create-lume");
 cli.option("--js", "Use JavaScript (_config.js) instead of TypeScript (_config.ts)");
 cli.option("--src <src>", "The source directory");
+cli.option("--theme <package>", "Installable package with a Lume theme");
+cli.option("--pkg-manager <packageManager>", "Package manager used (npm, yarn or pnpm)");
 cli.help();
 
 const parsed = cli.parse();
-const pkgManager = getPackageManager();
 
 init(parsed.args[0], parsed.options);
+
+const pkgManagers = ["npm", "yarn", "pnpm", "bun"] as const;
+type PkgManager = (typeof pkgManagers)[number];
 
 interface InitOptions {
   js?: boolean;
   src?: string;
+  theme?: string;
+  pkgManager?: PkgManager;
 }
 
 async function init(targetDir: string | undefined, options: InitOptions) {
   const cwd = process.cwd();
   const cancel = () => prompts.cancel("Operation cancelled");
+  let pkgManager = getPackageManager();
+  if (options.pkgManager) {
+    if (!pkgManagers.includes(options.pkgManager)) {
+      console.error(`Invalid package manager (${options.pkgManager}). Use "npm", "yarn" or "pnpm"`);
+      process.exit(1);
+    }
+    pkgManager = options.pkgManager;
+  }
 
   // 1. Target dir
   if (targetDir) targetDir = formatTargetDir(targetDir);
@@ -77,23 +91,9 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     }
   }
 
-  // Create project directory
+  // 3. Create project directory and basic files
   fs.mkdirSync(root, { recursive: true });
 
-  // Create the _config file
-  const code: string[] = ['import lume from "@lumeland/lume";', ""];
-
-  const src = options.src ? path.join("/", options.src).replace(/^\//, "") : "";
-  if (src) {
-    code.push("const site = lume({", `  src: "${src}"`, "});");
-  } else {
-    code.push("const site = lume();");
-  }
-
-  code.push("", "export default site;");
-  writeFile(root, options.js ? "_config.js" : "_config.ts", code);
-
-  // Create the remaining files
   writeFile(root, "package.json", {
     name: targetDir.replaceAll(/[^\w-]/g, "") || "lume-site",
     private: true,
@@ -117,51 +117,120 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   });
 
   writeFile(root, ".gitignore", ["_site", "_cache", "node_modules", ".env", ".DS_Store"]);
+
+  const src = options.src ? path.join("/", options.src).replace(/^\//, "") : "";
   const srcRoot = path.join(root, src);
   if (srcRoot !== root) {
     fs.mkdirSync(srcRoot);
   }
-  writeFile(srcRoot, "index.md", [
-    "# Hello world",
-    "[Go to Lume documentation](https://lume.land)",
-  ]);
 
-  // Install @lumeland/lume
-  switch (pkgManager) {
-    case "yarn":
-    case "pnpm":
-    case "bun":
-      run(pkgManager, ["add", "@lumeland/lume"], root);
-      break;
-    default:
-      run("npm", ["install", "@lumeland/lume"], root);
+  // 4. Install Lume
+  run(pkgManager, installArgs("@lumeland/lume"), root);
+
+  const config = options.js ? "_config.js" : "_config.ts";
+
+  // 5. Install a theme or an empty site
+  if (options.theme) {
+    await installTheme(options.theme);
+  } else {
+    writeFile(root, config, getConfigCode());
+
+    writeFile(srcRoot, "index.md", [
+      "# Hello world",
+      "[Go to Lume documentation](https://lume.land)",
+    ]);
   }
 
   // Success
-  let doneMessage = "";
-  const cdProjectName = path.relative(cwd, root);
-  doneMessage += `Done. Now run:\n`;
+  let doneMessage = `Done. Now run:\n`;
   if (root !== cwd) {
+    const cdProjectName = path.relative(cwd, root);
     doneMessage += `\n  cd ${cdProjectName.includes(" ") ? `"${cdProjectName}"` : cdProjectName}`;
   }
-  switch (pkgManager) {
-    case "yarn":
-    case "pnpm":
-    case "bun":
-      doneMessage += `\n  ${pkgManager} serve`;
-    default:
-      doneMessage += `\n  npm run serve`;
+  doneMessage += `\n  ${pkgManager} ${scriptArgs("serve").join(" ")}`;
+  prompts.outro(doneMessage);
+
+  /** Get the install arguments according the package manager */
+  function installArgs(pkg: string) {
+    switch (pkgManager) {
+      case "yarn":
+      case "pnpm":
+      case "bun":
+        return ["add", pkg];
+      default:
+        return ["install", pkg];
+    }
   }
 
-  prompts.outro(doneMessage);
+  /** Get the run script arguments according the package manager */
+  function scriptArgs(...script: string[]) {
+    switch (pkgManager) {
+      case "yarn":
+      case "pnpm":
+      case "bun":
+        return script;
+      default:
+        return ["run", ...script];
+    }
+  }
+
+  async function installTheme(specifier: string) {
+    const theme = specifier.startsWith(".") ? realpathSync(specifier) : specifier;
+    run(pkgManager, installArgs(theme), root);
+
+    const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
+    const themeName = Object.keys(pkg.dependencies).find((name) => name !== "@lumeland/lume");
+
+    writeFile(root, config, getConfigCode(themeName));
+    writeFile(root, "__setup__.js", [
+      `import site from "./${config}"`,
+      `import * as theme from "${themeName}"`,
+      "if (theme.setup) {",
+      "site.archetype('__setup__', theme.setup);",
+      "site.archetypes.run('__setup__');",
+      "} else {",
+      `console.log('No setup script found for ${themeName}')`,
+      "}",
+    ]);
+    run("node", ["./__setup__.js"], root);
+    fs.rmSync(path.join(root, "__setup__.js"));
+  }
+
+  function getConfigCode(theme?: string) {
+    const code: string[] = ['import lume from "@lumeland/lume";'];
+
+    if (theme) {
+      code.push(`import theme from "${theme}";`);
+    }
+
+    code.push("");
+
+    if (src) {
+      code.push("const site = lume({", `  src: "${src}"`, "});");
+    } else {
+      code.push("const site = lume();");
+    }
+
+    if (theme) {
+      code.push("site.use(theme());");
+    }
+
+    code.push("", "export default site;", "");
+
+    return code;
+  }
 }
 
-function getPackageManager(): string {
+function getPackageManager(): PkgManager {
   const ua = process.env.npm_config_user_agent?.split(" ")[0];
   if (!ua) {
     return "npm";
   }
-  return ua.split("/")[0];
+  const pkg = ua.split("/")[0] as PkgManager;
+  if (pkgManagers.includes(pkg)) {
+    return pkg;
+  }
+  return "npm";
 }
 
 function formatTargetDir(targetDir: string) {
@@ -204,6 +273,7 @@ function writeFile(
 
 /** Run an command and return if it's success */
 export function run(cmd: string, args: string[] = [], cwd?: string): boolean {
+  console.log({ cmd, args, cwd });
   const child = spawnSync(cmd, args, {
     cwd,
     stdio: "inherit",

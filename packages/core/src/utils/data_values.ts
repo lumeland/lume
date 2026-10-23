@@ -1,5 +1,6 @@
-import { plainText, RemoveMarkdownOptions } from "../../deps/remove-markdown.ts";
+import { plainText } from "../../deps/remove-markdown.ts";
 
+import type { RemoveMarkdownOptions } from "../../deps/remove-markdown.ts";
 import type { Data } from "../types.ts";
 
 /**
