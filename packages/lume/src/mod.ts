@@ -48,7 +48,7 @@ export default function lume(
     "/package.json",
     "/package-lock.json",
     "/pnpm-lock.yaml",
-    "/pnpm-worksapce.yaml",
+    "/pnpm-workspace.yaml",
     "/tsconfig.json",
     "/node_modules",
     "/.git",
