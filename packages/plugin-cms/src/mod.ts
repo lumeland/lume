@@ -1,12 +1,11 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Fs } from "@lumeland/cms/storage/fs.ts";
 import { posix } from "../deps/path.ts";
+import { log } from "@lumeland/core/utils/log.ts";
 
-import type { Middleware } from "@lumeland/core/server.ts";
 import type Site from "@lumeland/core/site.ts";
 import type CMS from "@lumeland/cms/core/cms.ts";
 import type { Storage } from "@lumeland/cms/types.ts";
-import { log } from "@lumeland/core/utils/log.ts";
 
 export interface Options {
   /** The CMS instance */
@@ -33,6 +32,9 @@ export function lumeCms(userOptions: Options) {
     if (!cms.options.site.url) {
       cms.options.site.url = site.url("/", true);
     }
+
+    // Create a hook to modify the cms
+    site.hooks.cms = (callback) => callback(cms);
 
     // Set the base path for the CMS
     cms.options.basePath = basePath;
@@ -90,23 +92,25 @@ export function lumeCms(userOptions: Options) {
       }
     };
 
-    // Middleware to handle CMS requests
-    const router = cms.init();
     const baseUrl = site.url(basePath);
-    const middleware: Middleware = (request, next) => {
-      const { pathname } = new URL(request.url);
-      if (pathname === baseUrl || pathname.startsWith(baseUrl + "/")) {
-        return router.fetch(request);
-      }
-      return next(request);
-    };
 
-    // Ensure the CMS middleware is the first one to be executed
+    // Register the middleware as the first one to be executed
     const server = site.getServer();
     server.addEventListener(
       "start",
       () => {
-        server.useFirst(middleware);
+        // Middleware to handle CMS requests
+        const router = cms.init();
+        server.useFirst((request, next) => {
+          const { pathname } = new URL(request.url);
+          if (pathname === baseUrl || pathname.startsWith(baseUrl + "/")) {
+            return router.fetch(request);
+          }
+          return next(request);
+        });
+
+        log.info("\n  Lume CMS started at:");
+        log.info(`  <green>http://${server.hostname}:${server.port}/admin</green>`);
       },
       { once: true },
     );
@@ -127,15 +131,6 @@ export function lumeCms(userOptions: Options) {
     }
     site.addEventListener("beforeBuild", showCMS);
     site.addEventListener("beforeUpdate", showCMS);
-
-    server.addEventListener(
-      "start",
-      () => {
-        log.info("\n  Lume CMS started at:");
-        log.info(`  <green>http://${server.hostname}:${server.port}/admin</green>`);
-      },
-      { once: true },
-    );
   };
 }
 
