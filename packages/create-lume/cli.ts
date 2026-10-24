@@ -34,6 +34,7 @@ const plugins: Record<string, [string, string?]> = {
   jsx: ["jsx"],
   katex: ["katex"],
   lightningcss: ["lightningcss"],
+  markdownFootnotes: ["markdown-footnotes"],
   mdx: ["mdx"],
   metas: ["metas"],
   minifyHtml: ["minify-html"],
