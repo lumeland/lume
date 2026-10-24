@@ -33,13 +33,15 @@
     "@lumeland/plugin-url": "workspace:^",
     "@lumeland/plugin-vento": "workspace:^",
     "@lumeland/plugin-yaml": "workspace:^",
-    "@lumeland/ssx": "^0.1.16",
     "cac": "^7.1.0",
     "deno-std": "^1.5.1",
     "tsx": "^4.23.15"
   },
   "devDependencies": {
     "typescript": "^7.0.2"
+  },
+  "peerDependencies": {
+    "@lumeland/ssx": "^0.1.16"
   },
   "allowScripts": {
     "fsevents": false

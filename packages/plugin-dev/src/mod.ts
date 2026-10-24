@@ -3,8 +3,8 @@ import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { inspect } from "@lumeland/core/services/process.ts";
 import reload from "./reload.ts";
-import noCache from "./no_cache.ts";
-import noCors from "./no_cors.ts";
+import noCache from "./no-cache.ts";
+import noCors from "./no-cors.ts";
 import { localIp, openBrowser } from "./utils/net.ts";
 import { notFound } from "@lumeland/plugin-not-found";
 

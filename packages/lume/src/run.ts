@@ -1,5 +1,5 @@
 import { log } from "@lumeland/core/utils/log.ts";
-import { resolveConfigFile } from "@lumeland/core/utils/lume_config.ts";
+import { resolveConfigFile } from "@lumeland/core/utils/lume-config.ts";
 import { createSite } from "./utils/site.ts";
 
 export interface RunOptions {

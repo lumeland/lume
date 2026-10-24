@@ -184,7 +184,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   if (options.theme) {
     await installTheme(options.theme);
   } else {
-    const packages = ["@lumeland/lume"];
+    const packages = ["@lumeland/lume", "@lumeland/ssx"];
 
     // 4.1. Select plugins
     const selectedPlugins = await prompts.autocompleteMultiselect({
@@ -274,10 +274,12 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
   async function installTheme(source: string) {
     const name = source.startsWith(".") ? realpathSync(source) : source;
-    run(pkgManager, installArgs("@lumeland/lume", name), root);
+    run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
-    const specifier = Object.keys(pkg.dependencies).find((name) => name !== "@lumeland/lume");
+    const specifier = Object.keys(pkg.dependencies).find(
+      (name) => name !== "@lumeland/lume" && name !== "@lumeland/ssx",
+    );
 
     if (!specifier) {
       throw new Error(`Theme ${source} not installed`);

@@ -24,7 +24,6 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "@lumeland/ssx": "^0.1.16",
     "@mdx-js/mdx": "^3.1.1",
     "remark-gfm": "^4.0.1",
     "remark-rehype": "^11.1.2",
@@ -39,7 +38,8 @@
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:^"
+    "@lumeland/core": "workspace:^",
+    "@lumeland/ssx": "^0.1.16"
   },
   "allowScripts": {
     "fsevents": false
