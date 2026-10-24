@@ -1,5 +1,5 @@
 import Events from "./events.ts";
-import { serveFile } from "./utils/serve_file.ts";
+import { serveFile } from "./utils/serve-file.ts";
 import { cwd } from "./services/process.ts";
 import { merge } from "./utils/object.ts";
 import { serve } from "./services/net.ts";

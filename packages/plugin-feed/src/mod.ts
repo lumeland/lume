@@ -1,6 +1,6 @@
 import { getExtension } from "@lumeland/core/utils/path.ts";
 import { isPlainObject, merge } from "@lumeland/core/utils/object.ts";
-import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data-values.ts";
 import { XMLBuilder } from "../deps/xml.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { log } from "@lumeland/core/utils/log.ts";

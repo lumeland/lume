@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { parseSrcset, searchLinks } from "@lumeland/core/utils/dom_links.ts";
+import { parseSrcset, searchLinks } from "@lumeland/core/utils/dom-links.ts";
 import { join } from "../deps/path.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { log } from "@lumeland/core/utils/log.ts";

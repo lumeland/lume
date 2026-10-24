@@ -1,5 +1,5 @@
 import { isPlainObject } from "@lumeland/core/utils/object.ts";
-import { getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+import { getPlainDataValue } from "@lumeland/core/utils/data-values.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";

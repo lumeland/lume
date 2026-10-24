@@ -3,7 +3,7 @@ import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { contentType } from "../deps/media-types.ts";
-import { walkUrls } from "@lumeland/core/utils/css_urls.ts";
+import { walkUrls } from "@lumeland/core/utils/css-urls.ts";
 import { toBase64 } from "@lumeland/core/services/global.ts";
 
 import type Site from "@lumeland/core/site.ts";

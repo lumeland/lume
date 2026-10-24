@@ -1,7 +1,7 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
-import { parseSrcset, searchLinks } from "@lumeland/core/utils/dom_links.ts";
-import { walkUrls } from "@lumeland/core/utils/css_urls.ts";
+import { parseSrcset, searchLinks } from "@lumeland/core/utils/dom-links.ts";
+import { walkUrls } from "@lumeland/core/utils/css-urls.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";

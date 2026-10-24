@@ -2,7 +2,7 @@ import { Prism, themePath } from "../deps/prism.ts";
 import "../deps/prism.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
-import { insertContent } from "@lumeland/core/utils/page_content.ts";
+import { insertContent } from "@lumeland/core/utils/page-content.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 
 import type Site from "@lumeland/core/site.ts";

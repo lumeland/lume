@@ -1,4 +1,4 @@
-import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data-values.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";

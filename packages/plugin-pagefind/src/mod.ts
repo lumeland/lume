@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { insertContent } from "@lumeland/core/utils/page_content.ts";
+import { insertContent } from "@lumeland/core/utils/page-content.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { log } from "@lumeland/core/utils/log.ts";

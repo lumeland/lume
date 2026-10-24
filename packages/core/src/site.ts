@@ -3,14 +3,14 @@ import { merge } from "./utils/object.ts";
 import { isUrl, normalizePath } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
-import { filter404page } from "./utils/page_url.ts";
-import { insertContent } from "./utils/page_content.ts";
+import { filter404page } from "./utils/page-url.ts";
+import { insertContent } from "./utils/page-content.ts";
 import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
 import { setCache } from "./utils/read.ts";
 
 import FS from "./fs.ts";
 import { ComponentLoader } from "./components.ts";
-import DataLoader from "./data_loader.ts";
+import DataLoader from "./data-loader.ts";
 import Source from "./source.ts";
 import Scopes from "./scopes.ts";
 import Processors from "./processors.ts";
@@ -45,7 +45,7 @@ import type { Middleware } from "./server.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ScriptOrFunction } from "./scripts.ts";
 import type { Merge } from "./utils/object.ts";
-import type { MergeStrategy } from "./utils/merge_data.ts";
+import type { MergeStrategy } from "./utils/merge-data.ts";
 import type { Data, DefaultType, RawData } from "./types.ts";
 import type { HTTPHandlerInfo } from "./services/net.ts";
 

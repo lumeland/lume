@@ -1,8 +1,8 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { posix } from "../deps/path.ts";
 import { read, readFile } from "@lumeland/core/utils/read.ts";
-import { walkUrls } from "@lumeland/core/utils/css_urls.ts";
-import { insertContent } from "@lumeland/core/utils/page_content.ts";
+import { walkUrls } from "@lumeland/core/utils/css-urls.ts";
+import { insertContent } from "@lumeland/core/utils/page-content.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { getAssetPath, katex as Katex } from "../deps/katex.ts";
 import { renderMathInElement } from "../auto-render/auto-render.ts";

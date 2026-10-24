@@ -9,7 +9,7 @@ import search from "@lumeland/plugin-search";
 import paginate from "@lumeland/plugin-paginate";
 import toml from "@lumeland/plugin-toml";
 import yaml from "@lumeland/plugin-yaml";
-import { getOptionsFromCli } from "./utils/cli_options.ts";
+import { getOptionsFromCli } from "./utils/cli-options.ts";
 
 import type { Options as JsonOptions } from "@lumeland/plugin-json";
 import type { Options as MarkdownOptions } from "@lumeland/plugin-markdown";

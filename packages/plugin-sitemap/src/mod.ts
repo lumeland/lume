@@ -1,4 +1,4 @@
-import { getDataValue } from "@lumeland/core/utils/data_values.ts";
+import { getDataValue } from "@lumeland/core/utils/data-values.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { XMLBuilder } from "../deps/xml.ts";

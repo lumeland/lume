@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data_values.ts";
+import { getDataValue, getPlainDataValue } from "@lumeland/core/utils/data-values.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { buildIcon } from "@lumeland/plugin-favicon";

@@ -1,1 +1,1 @@
-export { parseArgs } from "deno-std/cli/parse_args.js";
+export { parseArgs } from "deno-std/cli/parse-args.js";

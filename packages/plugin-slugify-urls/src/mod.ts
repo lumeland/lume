@@ -5,7 +5,7 @@ import createSlugifier, { defaults as slugifierDefaults } from "@lumeland/core/s
 import type Site from "@lumeland/core/site.ts";
 import type { Extensions } from "@lumeland/core/utils/path.ts";
 import type { Options as SlugifierOptions } from "@lumeland/core/slugifier.ts";
-import { getBasename } from "@lumeland/core/utils/page_url.ts";
+import { getBasename } from "@lumeland/core/utils/page-url.ts";
 import { StaticFile } from "@lumeland/core/file.ts";
 
 export interface Options extends SlugifierOptions {

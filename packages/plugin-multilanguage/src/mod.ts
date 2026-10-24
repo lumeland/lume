@@ -1,8 +1,8 @@
 import { Page } from "@lumeland/core/file.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
-import { overrideData } from "@lumeland/core/utils/merge_data.ts";
+import { overrideData } from "@lumeland/core/utils/merge-data.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-import { filter404page } from "@lumeland/core/utils/page_url.ts";
+import { filter404page } from "@lumeland/core/utils/page-url.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Data } from "@lumeland/core/types.ts";

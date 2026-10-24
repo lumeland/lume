@@ -1,4 +1,4 @@
-import { extract, test } from "../../deps/front_matter.ts";
+import { extract, test } from "../../deps/front-matter.ts";
 import { read } from "../utils/read.ts";
 
 import type { RawData } from "../types.ts";

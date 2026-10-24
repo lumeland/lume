@@ -1,6 +1,6 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { read } from "@lumeland/core/utils/read.ts";
-import { insertContent } from "@lumeland/core/utils/page_content.ts";
+import { insertContent } from "@lumeland/core/utils/page-content.ts";
 import { cwd } from "@lumeland/core/services/process.ts";
 import {
   BetterMap,

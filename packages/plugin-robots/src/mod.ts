@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { getAiRobots } from "../deps/ai_robots.ts";
+import { getAiRobots } from "../deps/ai-robots.ts";
 
 import type Site from "@lumeland/core/site.ts";
 

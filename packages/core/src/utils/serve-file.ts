@@ -1,4 +1,4 @@
-import { contentType } from "../../deps/media_types.ts";
+import { contentType } from "../../deps/media-types.ts";
 import { decodeURIComponentSafe } from "./path.ts";
 import { extname, posix } from "../../deps/path.ts";
 

@@ -1,15 +1,15 @@
 import { posix } from "../deps/path.ts";
 import { getExtension, normalizePath } from "./utils/path.ts";
-import { mergeData } from "./utils/merge_data.ts";
-import { getBasename, getPageUrl } from "./utils/page_url.ts";
-import { getPageDate } from "./utils/page_date.ts";
+import { mergeData } from "./utils/merge-data.ts";
+import { getBasename, getPageUrl } from "./utils/page-url.ts";
+import { getPageDate } from "./utils/page-date.ts";
 import { Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
 
 import type { Data, DirectoryData, RawData } from "./types.ts";
 import type { default as FS, Entry } from "./fs.ts";
 import type { default as Formats, Format } from "./formats.ts";
-import type DataLoader from "./data_loader.ts";
+import type DataLoader from "./data-loader.ts";
 import type { ScopeFilter } from "./scopes.ts";
 import type { ComponentLoader, Components } from "./components.ts";
 import { log } from "./utils/log.ts";
