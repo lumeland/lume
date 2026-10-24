@@ -1,5 +1,5 @@
 import { merge } from "@lumeland/core/utils/object.ts";
-import { getAiRobots } from "../deps/ai-robots.ts";
+import aiRobots from "./ai-robots.json" with { type: "json" };
 
 import type Site from "@lumeland/core/site.ts";
 
@@ -74,7 +74,7 @@ export function robots(userOptions?: Options) {
       async () => {
         // AI bots
         if (options.disallowAI && options.disallow !== "*") {
-          options.disallow = [...toArray(options.disallow), ...(await getAiRobots())];
+          options.disallow = [...toArray(options.disallow), ...Object.keys(aiRobots)];
 
           if (options.allow === "*") {
             options.allow = [];

@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "rm -rf build && tsc -p .",
+    "update-robots": "curl -L -o src/ai-robots.json 'https://cdn.jsdelivr.net/gh/ai-robots-txt/ai.robots.txt@latest/robots.json'",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"

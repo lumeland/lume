@@ -30,7 +30,7 @@
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/cms": "^1.0.0-beta-3",
+    "@lumeland/cms": "^1.0.0",
     "@lumeland/core": "workspace:^"
   }
 }
