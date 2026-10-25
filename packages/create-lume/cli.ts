@@ -81,12 +81,13 @@ interface InitOptions {
   js?: boolean;
   src?: string;
   theme?: string;
+  pkgManager?: string;
 }
 
 async function init(targetDir: string | undefined, options: InitOptions) {
   const cwd = process.cwd();
   const cancel = () => prompts.cancel("Operation cancelled");
-  let pkgManager = getPackageManager();
+  const pkgManager = getPackageManager(options.pkgManager);
 
   prompts.intro("Create a Lume site");
 
@@ -329,7 +330,10 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   function migrateToNode() {
     createNodeFiles(root, path.basename(root).replaceAll(/[^\w-]/g, ""));
     const denoConfig = JSON.parse(fs.readFileSync(path.join(root, "deno.json"), "utf-8"));
-    let lumeConfig = fs.readFileSync(path.join(root, "_config.ts"), "utf-8");
+    const lumeConfigPath = fs.existsSync(path.join(root, "_config.ts"))
+      ? "_config.ts"
+      : "_config.js";
+    let lumeConfig = fs.readFileSync(path.join(root, lumeConfigPath), "utf-8");
     const packages = ["@lumeland/lume", "@lumeland/ssx"];
 
     for (const spec of Object.values(denoConfig.imports as Record<string, string>)) {
@@ -338,9 +342,16 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       }
     }
 
-    lumeConfig = lumeConfig.replaceAll(/from ["']([^"']+)["']/g, (_, spec) => {
+    lumeConfig = lumeConfig.replaceAll(/from ["']([^"']+)["']/g, (full, spec) => {
       if (spec === "lume/mod.ts") {
         return 'from "@lumeland/lume"';
+      }
+
+      if (spec.startsWith("lume/core/")) {
+        if (!packages.includes("@lumeland/core")) {
+          packages.push("@lumeland/core");
+        }
+        return `from "@lumeland/core/${spec.slice(10)}"`;
       }
 
       if (spec.startsWith("lume/plugins/")) {
@@ -367,10 +378,10 @@ async function init(targetDir: string | undefined, options: InitOptions) {
         }
       }
 
-      return spec;
+      return full;
     });
 
-    writeFile(root, "_config.ts", lumeConfig);
+    writeFile(root, lumeConfigPath, lumeConfig);
     run(pkgManager, installArgs(...packages), root);
 
     let doneMessage = `Automatic migration to Node completed 🔥🔥🔥\n`;
@@ -394,7 +405,16 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   }
 }
 
-function getPackageManager(): PkgManager {
+function getPackageManager(userArg?: string): PkgManager {
+  if (userArg) {
+    if (pkgManagers.includes(userArg as PkgManager)) {
+      return userArg as PkgManager;
+    }
+
+    throw new Error(
+      `Invalid package manager: ${userArg}. Available versions: ${pkgManagers.join(", ")}`,
+    );
+  }
   const ua = process.env.npm_config_user_agent?.split(" ")[0];
   if (!ua) {
     return "npm";
@@ -485,7 +505,8 @@ function createNodeFiles(root: string, name?: string) {
 
 function isDenoProject(root: string) {
   return (
-    fs.existsSync(path.join(root, "deno.json")) && fs.existsSync(path.join(root, "_config.ts"))
+    fs.existsSync(path.join(root, "deno.json")) &&
+    (fs.existsSync(path.join(root, "_config.ts")) || fs.existsSync(path.join(root, "_config.js")))
   );
 }
 
@@ -493,8 +514,14 @@ const cli = cac("create-lume");
 cli.option("--js", "Use JavaScript (_config.js) instead of TypeScript (_config.ts)");
 cli.option("--src <src>", "The source directory");
 cli.option("--theme <package>", "Installable package with a Lume theme");
+cli.option(
+  "--pkg-manager <name>",
+  "To use a specific package manager. Allowed options: " + pkgManagers.join(", "),
+);
 cli.help();
 
 const parsed = cli.parse();
 
-init(parsed.args[0], parsed.options);
+if (!parsed.options.help) {
+  init(parsed.args[0], parsed.options);
+}
