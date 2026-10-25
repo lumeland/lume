@@ -43,13 +43,11 @@ export const defaults = {
 
 /** Template engine to render Nunjucks files */
 export class NunjucksEngine implements Engine {
-  // deno-lint-ignore no-explicit-any
   env: any;
   cache = new Map();
   basePath: string;
   includes: string;
 
-  // deno-lint-ignore no-explicit-any
   constructor(env: any, basePath: string, includes: string) {
     this.env = env;
     this.basePath = basePath;
@@ -61,7 +59,6 @@ export class NunjucksEngine implements Engine {
     const filename = basename(file);
 
     // Remove the internal cache of nunjucks
-    // deno-lint-ignore no-explicit-any
     this.env.loaders.forEach((fsLoader: any) => {
       Object.keys(fsLoader.cache).forEach((key) => {
         if (key.endsWith(filename)) {
@@ -124,7 +121,6 @@ export class NunjucksEngine implements Engine {
           return;
         }
 
-        // deno-lint-ignore no-explicit-any
         this.env.addFilter(name, function (this: any, ...args: unknown[]) {
           return fn.apply({ data: this.ctx }, args);
         });
@@ -260,7 +256,6 @@ export function nunjucks(userOptions?: Options) {
  * https://mozilla.github.io/nunjucks/api.html#custom-filters
  */
 function createAsyncFilter(fn: Helper) {
-  // deno-lint-ignore no-explicit-any
   return async function (this: any, ...args: unknown[]) {
     const cb = args.pop() as (err: unknown, result?: unknown) => void;
 
@@ -301,7 +296,6 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
       return new nodes.CallExtensionAsync(tagExtension, "run", args, extraArgs);
     },
 
-    // deno-lint-ignore no-explicit-any
     run(context: any, ...args: any[]) {
       const thisArg = { data: context.ctx };
       const callback = args.pop();
@@ -353,7 +347,6 @@ declare global {
       njk: (string: string, data?: Record<string, unknown>) => Promise<string>;
 
       /** @see https://lume.land/plugins/nunjucks/ */
-      // deno-lint-ignore no-explicit-any
       await: (value: any) => Promise<any>;
     }
   }

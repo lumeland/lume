@@ -141,16 +141,13 @@ exports[`resolve-urls plugin > should match site snapshot 1`] = `
 </body></html>",
       "data": {
         "basename": "first-article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>First article</p>
+        "children": "<p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
 <a href="./article-3.md">Go to third</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-First article
+        "content": "First article
 
 [Go to second](./article-2.md)
 [Go to third](./article-3.md)
@@ -185,15 +182,12 @@ First article
 </body></html>",
       "data": {
         "basename": "third article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>Third article</p>
+        "children": "<p>Third article</p>
 <p><a href="./article-2.md">Go to second</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-Third article
+        "content": "Third article
 
 [Go to second](./article-2.md)
 [Go to other](../other.md)
@@ -259,16 +253,13 @@ Third article
 </body></html>",
       "data": {
         "basename": "second-article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>Second article</p>
+        "children": "<p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
 <a href="article-3.md">Go to third</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-Second article
+        "content": "Second article
 
 [Go to first](article-1.md)
 [Go to third](article-3.md)
@@ -314,8 +305,7 @@ Second article
 </body></html>",
       "data": {
         "basename": "",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p><a href="/bar">url</a>
+        "children": "<p><a href="/bar">url</a>
 <a href="foo">url</a>
 <a href="./foo">url</a>
 <a href="../foo">url</a>
@@ -331,8 +321,7 @@ Second article
 <a href="robots.txt">static-file</a>
 <a href="statics/asset.md">static-file</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-[url](/bar)
+        "content": "[url](/bar)
 [url](foo)
 [url](./foo)
 [url](../foo)
@@ -577,16 +566,13 @@ exports[`resolve-urls plugin > should support slugify urls 1`] = `
 </body></html>",
       "data": {
         "basename": "first-article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>First article</p>
+        "children": "<p>First article</p>
 <p><a href="./article-2.md">Go to second</a>
 <a href="./article-3.md">Go to third</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-First article
+        "content": "First article
 
 [Go to second](./article-2.md)
 [Go to third](./article-3.md)
@@ -621,15 +607,12 @@ First article
 </body></html>",
       "data": {
         "basename": "third-article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>Third article</p>
+        "children": "<p>Third article</p>
 <p><a href="./article-2.md">Go to second</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-Third article
+        "content": "Third article
 
 [Go to second](./article-2.md)
 [Go to other](../other.md)
@@ -695,16 +678,13 @@ Third article
 </body></html>",
       "data": {
         "basename": "second-article",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>Second article</p>
+        "children": "<p>Second article</p>
 <p><a href="article-1.md">Go to first</a>
 <a href="article-3.md">Go to third</a>
 <a href="../other.md">Go to other</a>
 <a href="/index.md">Go to index</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-
-Second article
+        "content": "Second article
 
 [Go to first](article-1.md)
 [Go to third](article-3.md)
@@ -750,8 +730,7 @@ Second article
 </body></html>",
       "data": {
         "basename": "",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p><a href="/bar">url</a>
+        "children": "<p><a href="/bar">url</a>
 <a href="foo">url</a>
 <a href="./foo">url</a>
 <a href="../foo">url</a>
@@ -767,8 +746,7 @@ Second article
 <a href="robots.txt">static-file</a>
 <a href="statics/asset.md">static-file</a></p>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-[url](/bar)
+        "content": "[url](/bar)
 [url](foo)
 [url](./foo)
 [url](../foo)

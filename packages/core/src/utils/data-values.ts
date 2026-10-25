@@ -49,7 +49,6 @@ function searchValue(data: Partial<Data>, value: string): unknown {
     }
 
     const keys = key.split(".");
-    // deno-lint-ignore no-explicit-any
     let val: any = data;
     for (const key of keys) {
       val = val?.[key];

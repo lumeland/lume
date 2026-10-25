@@ -164,15 +164,14 @@ exports[`Markdown plugin > markdown with hooks 1`] = `
     },
     {
       "content": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<!-- deno-fmt-ignore -->
-<p>Subsequent paragraphs are indented to show that they
-belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -180,15 +179,14 @@ belong to the previous footnote.</p>
       "data": {
         "basename": "footnote",
         "children": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<!-- deno-fmt-ignore -->
-<p>Subsequent paragraphs are indented to show that they
-belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -199,7 +197,6 @@ belong to the previous footnote.</p>
 
 [^longnote]: Here's one with multiple blocks.
 
-<!-- deno-fmt-ignore -->
     Subsequent paragraphs are indented to show that they
     belong to the previous footnote.
 ",
@@ -298,8 +295,7 @@ belong to the previous footnote.</p>
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<dl>
+      "content": "<dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
 <dd>Other description</dd>
@@ -309,8 +305,7 @@ belong to the previous footnote.</p>
 ",
       "data": {
         "basename": "with-deflist",
-        "children": "<!-- deno-fmt-ignore-file -->
-<dl>
+        "children": "<dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
 <dd>Other description</dd>
@@ -318,8 +313,7 @@ belong to the previous footnote.</p>
 <dd>And other description</dd>
 </dl>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-This is a definition title
+        "content": "This is a definition title
 : And this the description
 : Other description
 
@@ -417,8 +411,7 @@ Other title
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+      "content": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -428,8 +421,7 @@ Other title
 ",
       "data": {
         "basename": "with-vento",
-        "children": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+        "children": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -437,8 +429,7 @@ Other title
 <li>three: <a href="/items/tres.html">tres</a></li>
 </ul>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-# {{ title }}
+        "content": "# {{ title }}
 
 Foo
 
@@ -641,15 +632,14 @@ exports[`Markdown plugin > should match site snapshot 1`] = `
     },
     {
       "content": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<!-- deno-fmt-ignore -->
-<p>Subsequent paragraphs are indented to show that they
-belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -657,15 +647,14 @@ belong to the previous footnote.</p>
       "data": {
         "basename": "footnote",
         "children": "<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<!-- deno-fmt-ignore -->
-<p>Subsequent paragraphs are indented to show that they
-belong to the previous footnote.</p>
 <h4 class="mt-3">Footnotes</h4>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+<li id="fn2" class="footnote-item"><p>Here's one with multiple blocks.</p>
+<p>Subsequent paragraphs are indented to show that they
+belong to the previous footnote. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
@@ -676,7 +665,6 @@ belong to the previous footnote.</p>
 
 [^longnote]: Here's one with multiple blocks.
 
-<!-- deno-fmt-ignore -->
     Subsequent paragraphs are indented to show that they
     belong to the previous footnote.
 ",
@@ -775,8 +763,7 @@ belong to the previous footnote.</p>
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<dl>
+      "content": "<dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
 <dd>Other description</dd>
@@ -786,8 +773,7 @@ belong to the previous footnote.</p>
 ",
       "data": {
         "basename": "with-deflist",
-        "children": "<!-- deno-fmt-ignore-file -->
-<dl>
+        "children": "<dl>
 <dt>This is a definition title</dt>
 <dd>And this the description</dd>
 <dd>Other description</dd>
@@ -795,8 +781,7 @@ belong to the previous footnote.</p>
 <dd>And other description</dd>
 </dl>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-This is a definition title
+        "content": "This is a definition title
 : And this the description
 : Other description
 
@@ -894,8 +879,7 @@ Other title
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+      "content": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -905,8 +889,7 @@ Other title
 ",
       "data": {
         "basename": "with-vento",
-        "children": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+        "children": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -914,8 +897,7 @@ Other title
 <li>three: <a href="/items/tres.html">tres</a></li>
 </ul>
 ",
-        "content": "<!-- deno-fmt-ignore-file -->
-# {{ title }}
+        "content": "# {{ title }}
 
 Foo
 

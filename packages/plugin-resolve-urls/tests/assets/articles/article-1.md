@@ -1,8 +1,6 @@
 ---
 url: ./first-article/
 ---
-<!-- deno-fmt-ignore-file -->
-
 First article
 
 [Go to second](./article-2.md)

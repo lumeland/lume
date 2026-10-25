@@ -1,4 +1,3 @@
-<!-- deno-fmt-ignore-file -->
 [url](/bar)
 [url](foo)
 [url](./foo)

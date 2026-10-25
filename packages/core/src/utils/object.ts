@@ -19,11 +19,9 @@ export type Merge<T, D extends Partial<T>> = T extends RegExp | URL | unknown[]
   ? T
   : T extends object
     ? T & {
-        // deno-lint-ignore ban-types
         [K in keyof T & keyof D]: D[K] extends {} ? Merge<T[K], D[K]> : unknown;
       }
-    : // deno-lint-ignore ban-types
-      D extends {}
+    : D extends {}
       ? NonNullable<T>
       : T;
 

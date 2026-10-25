@@ -315,7 +315,6 @@ export interface HelperThis<D = unknown> {
   data?: Data<D>;
 }
 
-// deno-lint-ignore no-explicit-any
 export type Helper<T = any> = (this: T | void, ...args: any[]) => any;
 
 /** The options for a template helper */

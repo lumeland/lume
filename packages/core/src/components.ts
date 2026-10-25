@@ -199,7 +199,6 @@ function findChild(entry: Entry, filter: (entry: Entry) => boolean): Entry | und
 }
 
 export interface ProxyComponents {
-  // deno-lint-ignore no-explicit-any
   (props?: Record<string, unknown>): any;
   [key: string]: ProxyComponents;
 }

@@ -101,7 +101,6 @@ export function lightningCSS(userOptions?: Options) {
       try {
         result = transform(transformOptions);
       } catch (err) {
-        // deno-lint-ignore no-explicit-any
         const error = err as any;
         const message = showError(content, error.loc.column, error.loc.line);
         log.error(`[lightningcss plugin] Error processing ${file.data.url}:\n${message}`);
@@ -178,7 +177,6 @@ export function lightningCSS(userOptions?: Options) {
         try {
           result = await bundleAsync(bundleOptions);
         } catch (err) {
-          // deno-lint-ignore no-explicit-any
           const error = err as any;
           const code = (await site.getContent(error.fileName, false)) as string;
 

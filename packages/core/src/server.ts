@@ -33,7 +33,6 @@ export type Middleware = (
 ) => Promise<Response>;
 
 export default class Server {
-  // deno-lint-ignore no-explicit-any
   events: Events<any> = new Events<ServerEvent>();
   options: Merge<Options, typeof defaults>;
   middlewares: Middleware[] = [];
@@ -215,7 +214,6 @@ export default class Server {
 }
 
 export type ServerEventMap = {
-  // deno-lint-ignore ban-types
   start: {};
   upgrade: {
     socket: WebSocket;

@@ -152,10 +152,7 @@ export class FSWriter implements Writer {
       );
       return true;
     } catch (error: unknown) {
-      log.error(
-        // deno-lint-ignore no-explicit-any
-        `Failed to copy file: ${file.outputPath}: ${(error as any).message}`,
-      );
+      log.error(`Failed to copy file: ${file.outputPath}: ${(error as any).message}`);
     }
 
     return false;

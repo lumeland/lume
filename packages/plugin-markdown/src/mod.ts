@@ -20,7 +20,6 @@ export interface Options {
   plugins?: (MarkdownItPlugin | [MarkdownItPlugin, ...unknown[]])[];
 
   /** To modify existing rules or new custom rules */
-  // deno-lint-ignore no-explicit-any
   rules?: Record<string, (...args: any[]) => any>;
 
   /** Set `false` to remove the default plugins */

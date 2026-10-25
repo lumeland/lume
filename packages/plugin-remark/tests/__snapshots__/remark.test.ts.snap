@@ -226,22 +226,19 @@ exports[`remark plugin > should match site snapshot 1`] = `
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<p>This is a definition title
+      "content": "<p>This is a definition title
 : And this the description
 : Other description</p>
 <p>Other title
 : And other description</p>",
       "data": {
         "basename": "with-deflist",
-        "children": "<!-- deno-fmt-ignore-file -->
-<p>This is a definition title
+        "children": "<p>This is a definition title
 : And this the description
 : Other description</p>
 <p>Other title
 : And other description</p>",
-        "content": "<!-- deno-fmt-ignore-file -->
-This is a definition title
+        "content": "This is a definition title
 : And this the description
 : Other description
 
@@ -337,8 +334,7 @@ Other title
       },
     },
     {
-      "content": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+      "content": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
@@ -347,16 +343,14 @@ Other title
 </ul>",
       "data": {
         "basename": "with-vto",
-        "children": "<!-- deno-fmt-ignore-file -->
-<h1>Module <strong>example</strong></h1>
+        "children": "<h1>Module <strong>example</strong></h1>
 <p>Foo</p>
 <ul>
 <li>one: <a href="/items/un.html">un</a></li>
 <li>two: <a href="/items/dous.html">dous</a></li>
 <li>three: <a href="/items/tres.html">tres</a></li>
 </ul>",
-        "content": "<!-- deno-fmt-ignore-file -->
-# {{ title }}
+        "content": "# {{ title }}
 
 Foo
 

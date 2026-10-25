@@ -9,18 +9,6 @@ describe("mdx plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    // const plugin = () => {
-    //   // deno-lint-ignore no-explicit-any
-    //   return (tree: any) => {
-    //     tree.children.push({
-    //       type: "element",
-    //       tagName: "div",
-    //       properties: { style: "background-color: orange;" },
-    //       children: [{ type: "text", value: "Hello, World!" }],
-    //     });
-    //   };
-    // };
-
     site.use(jsx());
     site.use(mdx());
 

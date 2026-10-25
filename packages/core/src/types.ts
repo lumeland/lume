@@ -61,10 +61,7 @@ type PageData<D = unknown> = FileData<D> & {
 
 export type { PageData as Data };
 
-export type DefaultType = Lume.TypeConfig["strict"] extends true
-  ? unknown
-  : // deno-lint-ignore no-explicit-any
-    any;
+export type DefaultType = Lume.TypeConfig["strict"] extends true ? unknown : any;
 
 declare global {
   namespace Lume {
@@ -86,7 +83,6 @@ declare global {
 
     /** Global data extended by plugins */
     export interface GlobalData {
-      // deno-lint-ignore no-explicit-any
       [index: string]: TypeConfig["strict"] extends true ? unknown : any;
     }
 

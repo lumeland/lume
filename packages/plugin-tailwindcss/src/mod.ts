@@ -122,7 +122,6 @@ function optimize(filename: string, code: string, map?: string) {
       map: result.map ? decoder.decode(result.map) : undefined,
     };
   } catch (err) {
-    // deno-lint-ignore no-explicit-any
     const error = err as any;
     const message = showError(code, error.loc.column, error.loc.line);
     log.error(`[tailwindcss plugin] Error processing ${filename}:\n${message}`);

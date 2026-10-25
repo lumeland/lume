@@ -18,11 +18,7 @@ export interface Options {
   concurrency?: number;
 }
 
-export type TransformationFunction = (
-  image: Sharp,
-  // deno-lint-ignore no-explicit-any
-  ...args: any[]
-) => void;
+export type TransformationFunction = (image: Sharp, ...args: any[]) => void;
 
 // Default options
 export const defaults = {
@@ -78,7 +74,6 @@ export interface Transformation {
   suffix?: string;
   format?: Format | Format[] | FormatOptions | FormatOptions[];
   matches?: RegExp | string;
-  // deno-lint-ignore no-explicit-any
   [key: string]: any;
 }
 interface SingleTransformation extends Transformation {

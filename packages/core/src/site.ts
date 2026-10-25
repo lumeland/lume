@@ -119,7 +119,6 @@ export default class Site {
   renderer: Renderer;
 
   /** To listen and dispatch events */
-  // deno-lint-ignore no-explicit-any
   events: Events<any>;
 
   /** To run scripts */
@@ -144,7 +143,6 @@ export default class Site {
   scopedComponents = new Map<string, Components>();
 
   /** Hooks installed by the plugins */
-  // deno-lint-ignore no-explicit-any
   hooks: Record<string, (...args: any[]) => void> = {};
 
   /** The debug bar data */
@@ -1149,15 +1147,6 @@ export default class Site {
   }
 }
 
-/** The options for the resolve function */
-export interface ResolveOptions {
-  /** Whether search in the includes folder or not */
-  includes?: boolean;
-
-  /** Default loader */
-  loader?: Loader;
-}
-
 /** The options to configure the site build */
 export interface SiteOptions {
   /** The path of the current working directory */
@@ -1260,7 +1249,6 @@ export interface ComponentsOptions {
 }
 
 export type SiteEventMap = {
-  // deno-lint-ignore ban-types
   afterLoad: {};
   beforeBuild: {
     /** the list of pages that have been saved */
@@ -1292,11 +1280,8 @@ export type SiteEventMap = {
     /** the list of pages that have been rendered */
     pages: Page[];
   };
-  // deno-lint-ignore ban-types
   beforeSave: {};
-  // deno-lint-ignore ban-types
   afterStartServer: {};
-  // deno-lint-ignore ban-types
   idle: {};
 };
 

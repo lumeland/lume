@@ -15,7 +15,6 @@ export default class Processors {
   loadedExtensions = new Set<string>();
 
   /** Assign a processor to some extensions */
-  // deno-lint-ignore no-explicit-any
   set(extensions: Extensions, processor: Processor<any>): void {
     if (Array.isArray(extensions)) {
       extensions.forEach((extension) => {

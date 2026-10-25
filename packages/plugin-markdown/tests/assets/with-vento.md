@@ -6,7 +6,6 @@ myData:
   two: dous
   three: tres
 ---
-<!-- deno-fmt-ignore-file -->
 # {{ title }}
 
 Foo
