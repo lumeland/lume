@@ -11,12 +11,6 @@ export interface Options {
 
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
-
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
 }
 
 // Default options
@@ -28,13 +22,6 @@ export const defaults = {
 /** Template engine to render JSX files */
 export class JsxEngine implements Engine {
   helpers: Record<string, Helper> = {};
-  basePath: string;
-  includes: string;
-
-  constructor(basePath: string, includes: string) {
-    this.basePath = basePath;
-    this.includes = includes;
-  }
 
   deleteCache() {}
 
@@ -69,14 +56,8 @@ export class JsxEngine implements Engine {
  */
 export function jsx(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
-
-    const engine = new JsxEngine(site.src("/"), options.includes);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const options = merge(defaults, userOptions);
+    const engine = new JsxEngine();
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

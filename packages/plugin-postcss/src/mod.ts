@@ -15,11 +15,8 @@ import type { SourceMap } from "@lumeland/plugin-source-maps";
 import type { Item } from "@lumeland/core/debugbar.ts";
 
 export interface Options {
-  /**
-   * Custom includes path for `postcss-import`
-   * @default `site.options.includes`
-   */
-  includes?: string | false;
+  /** Bundle the CSS or only transform it */
+  bundle?: boolean;
 
   /**
    * Plugins to use by postcss
@@ -33,6 +30,7 @@ export interface Options {
 
 // Default options
 export const defaults = {
+  bundle: true,
   useDefaultPlugins: true,
 } satisfies Options;
 
@@ -55,7 +53,7 @@ const defaultPlugins = [
  */
 export function postCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
     const plugins = [...(options.plugins ?? [])];
 
@@ -63,9 +61,8 @@ export function postCSS(userOptions?: Options) {
       plugins.unshift(...defaultPlugins);
     }
 
-    if (options.includes) {
-      plugins.unshift(configureImport(site, options.includes));
-      site.ignore(options.includes);
+    if (options.bundle) {
+      plugins.unshift(configureImport(site));
     }
 
     // @ts-ignore: Argument of type 'unknown[]' is not assignable to parameter of type 'AcceptedPlugin[]'.
@@ -133,7 +130,7 @@ export function postCSS(userOptions?: Options) {
  * Function to configure the postcssImport
  * using the Lume reader and the includes loader
  */
-function configureImport(site: Site, includes: string) {
+function configureImport(site: Site) {
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
@@ -141,7 +138,7 @@ function configureImport(site: Site, includes: string) {
         return "/" + id;
       }
 
-      return resolveInclude(id, includes, basedir);
+      return resolveInclude(id, basedir);
     },
 
     /** Load the content (using the Lume reader) */

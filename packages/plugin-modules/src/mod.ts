@@ -10,12 +10,6 @@ export interface Options {
 
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
-
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
 }
 
 // Default options
@@ -27,11 +21,6 @@ export const defaults = {
 /** Template engine to render js/ts files */
 export class ModuleEngine implements Engine {
   helpers: Record<string, Helper> = {};
-  includes: string;
-
-  constructor(includes: string) {
-    this.includes = includes;
-  }
 
   deleteCache() {}
 
@@ -51,14 +40,9 @@ export class ModuleEngine implements Engine {
  */
 export function modules(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
-    const engine = new ModuleEngine(options.includes);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const engine = new ModuleEngine();
 
     // Load the _data files
     site.loadData(options.extensions, loader);

@@ -21,12 +21,6 @@ export interface Options {
    * @see https://sass-lang.com/documentation/js-api/interfaces/options/
    */
   options?: SassOptions;
-
-  /**
-   * Custom includes paths
-   * @default `site.options.includes`
-   */
-  includes?: string;
 }
 
 export const defaults = {
@@ -40,12 +34,7 @@ export const defaults = {
  */
 export function sass(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const options = merge(defaults, userOptions);
 
     site.process([".scss", ".sass"], function processSASS(files: Page[]) {
       const hasPages = warnUntil(
@@ -94,7 +83,7 @@ export function sass(userOptions?: Options) {
               : mainPath;
 
             for (const path of getPathsToLook(includePath)) {
-              const resolved = resolveInclude(path, options.includes);
+              const resolved = resolveInclude(path);
               const entry = entries.get(resolved);
 
               if (entry) {

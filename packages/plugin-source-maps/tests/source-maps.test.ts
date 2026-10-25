@@ -19,7 +19,7 @@ describe("source-maps plugin", async () => {
     site.use(postcss());
     site.use(
       lightningCSS({
-        includes: false,
+        bundle: false,
       }),
     );
     site.use(sourceMaps());

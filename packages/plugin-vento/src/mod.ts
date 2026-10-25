@@ -19,12 +19,6 @@ export interface Options {
   pageSubExtension?: string;
 
   /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
-
-  /**
    * Plugins to use by vento
    */
   plugins?: Plugin[];
@@ -101,11 +95,9 @@ class LumeLoader implements Loader {
 /** Template engine to render Vento files */
 export class VentoEngine implements Engine {
   engine: Environment;
-  includes: string;
 
-  constructor(engine: Environment, includes: string) {
+  constructor(engine: Environment) {
     this.engine = engine;
-    this.includes = includes;
   }
 
   deleteCache(file: string) {
@@ -153,10 +145,10 @@ export class VentoEngine implements Engine {
  */
 export function vento(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
     const vento = engine({
-      includes: new LumeLoader(normalizePath(options.includes), site.fs),
+      includes: new LumeLoader("/_includes", site.fs),
       ...options.options,
     });
 
@@ -173,12 +165,7 @@ export function vento(userOptions?: Options) {
     };
     site.hooks.vento = (callback) => callback(vento);
 
-    const ventoEngine = new VentoEngine(vento, options.includes);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const ventoEngine = new VentoEngine(vento);
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

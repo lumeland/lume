@@ -16,7 +16,6 @@ import type FS from "./fs.ts";
 import type DebugBar from "./debugbar.ts";
 
 export interface Options {
-  includes: string;
   prettyUrls: boolean;
   preprocessors: Processors;
   formats: Formats;
@@ -28,9 +27,6 @@ export interface Options {
  * in the right order and using the right template engine.
  */
 export default class Renderer {
-  /** The default folder to include the layouts */
-  includes: string;
-
   /** The filesystem instance used to read the layouts */
   fs: FS;
 
@@ -47,7 +43,6 @@ export default class Renderer {
   helpers = new Map<string, [Helper, HelperOptions]>();
 
   constructor(options: Options) {
-    this.includes = options.includes;
     this.prettyUrls = options.prettyUrls;
     this.preprocessors = options.preprocessors;
     this.formats = options.formats;
@@ -241,13 +236,7 @@ export default class Renderer {
         throw new Error(`The layout format "${layout}" doesn't exist`);
       }
 
-      const includesPath = format.engines?.[0].includes;
-
-      if (!includesPath) {
-        throw new Error(`The layout format "${layout}" doesn't support includes`);
-      }
-
-      const layoutPath = resolveInclude(layout, includesPath, posix.dirname(path));
+      const layoutPath = resolveInclude(layout, posix.dirname(path));
       const entry = this.fs.entries.get(layoutPath);
 
       if (!entry) {

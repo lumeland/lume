@@ -56,7 +56,6 @@ const defaults = {
   dest: "./_site",
   emptyDest: true,
   caseSensitiveUrls: false,
-  includes: "_includes",
   cssFile: "/style.css",
   jsFile: "/script.js",
   fontsFolder: "/fonts",
@@ -169,7 +168,7 @@ export default class Site {
     const root = this.root();
     const src = this.src();
     const dest = this.dest();
-    const { includes, cwd, prettyUrls, components, server, caseSensitiveUrls } = this.options;
+    const { cwd, prettyUrls, components, server, caseSensitiveUrls } = this.options;
 
     // To load source files
     const fs = new FS({ root: src });
@@ -202,7 +201,6 @@ export default class Site {
       preprocessors,
       formats,
       fs,
-      includes,
     });
 
     // Other stuff
@@ -241,9 +239,6 @@ export default class Site {
     if (this.dest().startsWith(this.src())) {
       this.ignore(this.options.dest);
     }
-
-    // Ignore the includes folder
-    this.ignore(this.options.includes);
 
     // Normalize the ignored paths
     this.options.watcher.ignore = this.options.watcher.ignore.map((path) =>
@@ -1160,9 +1155,6 @@ export interface SiteOptions {
 
   /** Whether the empty folder should be emptied before the build */
   emptyDest?: boolean;
-
-  /** The default includes path */
-  includes?: string;
 
   /** The default css file */
   cssFile?: string;

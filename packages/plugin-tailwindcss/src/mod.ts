@@ -9,12 +9,6 @@ import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "@lumeland/core/site.ts";
 
 export interface Options {
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string | false;
-
   /** To enable minified output */
   minify?: boolean;
 }
@@ -27,7 +21,7 @@ export const defaults = {} satisfies Options;
  */
 export function tailwindCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
     const scanner = new Scanner({});
     const candidates: string[] = [];
     let content: ChangedContent[] = [];

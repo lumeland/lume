@@ -13,12 +13,6 @@ import type { Helper } from "@lumeland/core/renderer.ts";
 
 export interface Options {
   /**
-   * Custom includes path to load the layout
-   * @default `site.options.includes`
-   */
-  includes?: string;
-
-  /**
    * The options for Satori to generate the SVG image.
    * @see https://github.com/vercel/satori
    */
@@ -39,7 +33,7 @@ export const defaults = {
  */
 export function ogImages(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
     const satoriOptions = options.options as SatoriOptions;
 
     // Get the cache folder
@@ -66,11 +60,7 @@ export function ogImages(userOptions?: Options) {
             continue;
           }
 
-          const layoutPath = resolveInclude(
-            layout,
-            options.includes,
-            posix.dirname(page.sourcePath),
-          );
+          const layoutPath = resolveInclude(layout, posix.dirname(page.sourcePath));
 
           const entry = site.fs.entries.get(layoutPath);
 

@@ -14,12 +14,6 @@ export interface Options {
   /** Optional sub-extension for page files */
   pageSubExtension?: string;
 
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
-
   /** Configuration to pass to Eta */
   options?: Partial<EtaConfig>;
 }
@@ -27,7 +21,6 @@ export interface Options {
 // Default options
 export const defaults = {
   extensions: [".eta"],
-  includes: "",
   options: {
     useWith: true,
   },
@@ -38,12 +31,10 @@ export class EtaEngine implements Engine {
   engine: Eta;
   filters: Record<string, Helper> = {};
   basePath: string;
-  includes: string;
 
-  constructor(engine: Eta, basePath: string, includes: string) {
+  constructor(engine: Eta, basePath: string) {
     this.engine = engine;
     this.basePath = basePath;
-    this.includes = includes;
   }
 
   deleteCache(file: string): void {
@@ -84,20 +75,15 @@ export class EtaEngine implements Engine {
  */
 export function eta(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
     // Configure Eta
     const eta = new Eta({
       ...options.options,
-      views: site.src(options.includes),
+      views: site.src("_includes"),
     });
 
-    const engine = new EtaEngine(eta, site.src(), options.includes);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const engine = new EtaEngine(eta, site.src());
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

@@ -33,19 +33,12 @@ export interface Options {
 
   /** Components to add/override */
   components?: Record<string, unknown>;
-
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
 }
 
 // Default options
 export const defaults = {
   extensions: [".mdx"],
   useDefaultPlugins: true,
-  includes: "", // Will be overwritten
 } satisfies Options;
 
 const remarkDefaultPlugins = [remarkGfm];
@@ -54,13 +47,11 @@ const remarkDefaultPlugins = [remarkGfm];
 export class MDXEngine implements Engine<string | { toString(): string }> {
   baseUrl: string;
   options: Merge<Options, typeof defaults>;
-  includes: string;
   filters: Record<string, Helper> = {};
 
   constructor(baseUrl: string, options: Merge<Options, typeof defaults>) {
     this.baseUrl = baseUrl;
     this.options = options;
-    this.includes = options.includes;
   }
 
   deleteCache() {}
@@ -114,7 +105,7 @@ export class MDXEngine implements Engine<string | { toString(): string }> {
  */
 export function mdx(userOptions?: Options) {
   return function (site: Site) {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
     if (options.useDefaultPlugins) {
       options.remarkPlugins ||= [];
@@ -122,11 +113,6 @@ export function mdx(userOptions?: Options) {
     }
 
     const engine = new MDXEngine(site.src(), options);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

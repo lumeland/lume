@@ -17,12 +17,6 @@ export interface Options {
   pageSubExtension?: string;
 
   /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
-
-  /**
    * Options passed to Nunjucks
    * @see https://mozilla.github.io/nunjucks/api.html#configure
    */
@@ -46,12 +40,10 @@ export class NunjucksEngine implements Engine {
   env: any;
   cache = new Map();
   basePath: string;
-  includes: string;
 
-  constructor(env: any, basePath: string, includes: string) {
+  constructor(env: any, basePath: string) {
     this.env = env;
     this.basePath = basePath;
-    this.includes = includes;
   }
 
   deleteCache(file: string): void {
@@ -129,14 +121,8 @@ export class NunjucksEngine implements Engine {
 }
 
 class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
-  includes: string;
-
-  constructor(
-    private site: Site,
-    includes: string,
-  ) {
+  constructor(private site: Site) {
     super();
-    this.includes = includes;
   }
 
   async: true = true;
@@ -146,7 +132,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
     let path = normalizePath(id, rootToRemove);
 
     if (path === normalizePath(id)) {
-      path = resolveInclude(id, this.includes, undefined, rootToRemove);
+      path = resolveInclude(id, undefined, rootToRemove);
     }
 
     this.site.getContent(path, false).then((content) => {
@@ -174,9 +160,9 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
  */
 export function nunjucks(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
+    const options = merge(defaults, userOptions);
 
-    const env = new Nunjucks.Environment([new LumeLoader(site, options.includes)], options.options);
+    const env = new Nunjucks.Environment([new LumeLoader(site)], options.options);
 
     for (const [name, fn] of Object.entries(options.plugins)) {
       env.addExtension(name, fn);
@@ -186,12 +172,7 @@ export function nunjucks(userOptions?: Options) {
       env.addExtension(name, fn);
     };
 
-    const engine = new NunjucksEngine(env, site.src(), options.includes);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const engine = new NunjucksEngine(env, site.src());
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

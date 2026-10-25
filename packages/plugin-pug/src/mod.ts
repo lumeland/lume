@@ -15,12 +15,6 @@ export interface Options {
   pageSubExtension?: string;
 
   /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string;
-
-  /**
    * Options passed to Pug
    * @see https://pugjs.org/api/reference.html#options
    */
@@ -42,13 +36,11 @@ export class PugEngine implements Engine {
   filters: Record<string, Helper> = {};
   cache = new Map<string, (data?: Record<string, unknown>) => string>();
   basePath: string;
-  includes: string;
 
-  constructor(compiler: Compiler, basePath: string, includes: string, options: PugOptions = {}) {
+  constructor(compiler: Compiler, basePath: string, options: PugOptions = {}) {
     this.compiler = compiler;
     this.options = options;
     this.basePath = basePath;
-    this.includes = includes;
   }
 
   deleteCache(): void {
@@ -105,15 +97,10 @@ export class PugEngine implements Engine {
  */
 export function pug(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
-    options.options.basedir = site.src(options.includes);
+    const options = merge(defaults, userOptions);
+    options.options.basedir = site.src("_includes");
 
-    const engine = new PugEngine(compile, site.src(), options.includes, options.options);
-
-    // Ignore includes folder
-    if (options.includes) {
-      site.ignore(options.includes);
-    }
+    const engine = new PugEngine(compile, site.src(), options.options);
 
     // Load the pages and register the engine
     site.loadPages(options.extensions, {

@@ -74,12 +74,7 @@ export function matchExtension(exts: Extensions, path: string): boolean {
  * Resolve the path of an included file
  * Used in the template engines and processors
  */
-export function resolveInclude(
-  path: string,
-  includesDir: string,
-  fromDir?: string,
-  rootToRemove?: string,
-): string {
+export function resolveInclude(path: string, fromDir?: string, rootToRemove?: string): string {
   if (isUrl(path)) {
     return path;
   }
@@ -94,9 +89,7 @@ export function resolveInclude(
 
   const normalized = normalizePath(path, rootToRemove);
 
-  return normalized.startsWith(normalizePath(posix.join(includesDir, "/")))
-    ? normalized
-    : normalizePath(posix.join(includesDir, normalized));
+  return normalized.startsWith("/_includes/") ? normalized : posix.join("/_includes/", normalized);
 }
 
 /**

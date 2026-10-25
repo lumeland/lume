@@ -12,7 +12,7 @@ describe("lightningcss plugin", async () => {
     site.add("text.css");
     site.use(
       lightningCSS({
-        includes: false,
+        bundle: false,
       }),
     );
 

@@ -21,11 +21,8 @@ import type {
 } from "../deps/lightningcss.ts";
 
 export interface Options {
-  /**
-   * Custom includes path
-   * @default `site.options.includes`
-   */
-  includes?: string | false;
+  /** Bundle the CSS or only transform it */
+  bundle?: boolean;
 
   /** Options passed to Lightningcss */
   options?: Omit<BundleAsyncOptions<CustomAtRules>, "filename">;
@@ -33,7 +30,7 @@ export interface Options {
 
 // Default options
 export const defaults = {
-  includes: "",
+  bundle: true,
   options: {
     minify: true,
     drafts: {
@@ -56,13 +53,7 @@ export const defaults = {
  */
 export function lightningCSS(userOptions?: Options) {
   return (site: Site) => {
-    const options = merge({ ...defaults, includes: site.options.includes }, userOptions);
-
-    let bundle = false;
-    if (options.includes) {
-      site.ignore(options.includes);
-      bundle = true;
-    }
+    const options = merge(defaults, userOptions);
 
     site.process([".css"], function processLightningCSS(files: Page[]) {
       const hasPages = warnUntil(
@@ -76,7 +67,7 @@ export function lightningCSS(userOptions?: Options) {
 
       const item = site.debugBar?.buildItem("[lightningcss plugin] CSS processing completed");
 
-      if (bundle) {
+      if (options.bundle) {
         return lightningCSSBundler(files, item);
       }
 
@@ -139,8 +130,6 @@ export function lightningCSS(userOptions?: Options) {
       for (const file of files) {
         const { content, filename, sourceMap, enableSourceMap } = prepareAsset(site, file);
 
-        const includes = options.includes as string;
-
         // Process the code with lightningCSS
         const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
           filename,
@@ -152,7 +141,7 @@ export function lightningCSS(userOptions?: Options) {
               if (isFromCdn(id)) {
                 return getFile(id);
               }
-              return resolveInclude(id, includes, posix.dirname(from));
+              return resolveInclude(id, posix.dirname(from));
             },
             async read(file: string) {
               if (file === filename) {

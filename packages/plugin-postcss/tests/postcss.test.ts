@@ -25,7 +25,7 @@ describe("postcss plugin", async () => {
     site.add(".");
     site.use(
       postcss({
-        includes: false,
+        bundle: false,
       }),
     );
 
