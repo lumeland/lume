@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { removeRoot } from "../../src/utils/path.ts";
+import { fromFileUrl } from "../../deps/path.ts";
 
 describe("Path utils", async () => {
   it("Remove root", async () => {
@@ -13,5 +14,6 @@ describe("Path utils", async () => {
     expect(removeRoot("../bar", "file:///foo")).toBe("/foo");
     expect(removeRoot("C:\\bar", "file:///bar")).toBe("/");
     expect(removeRoot("C:\\bar/boo", "file:///bar/boo/baz")).toBe("/baz");
+    expect(removeRoot(import.meta.dirname, fromFileUrl(import.meta.resolve("./foo")))).toBe("/foo");
   });
 });
