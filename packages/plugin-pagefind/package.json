@@ -24,8 +24,8 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "@pagefind/component-ui": "^1.5.2",
-    "pagefind": "^1.5.2"
+    "@pagefind/component-ui": "1.5.2",
+    "pagefind": "1.5.2"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",
