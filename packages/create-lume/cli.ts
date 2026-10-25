@@ -4,6 +4,7 @@ import process from "node:process";
 import path from "node:path";
 import fs, { realpathSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { styleText } from "node:util";
 import * as prompts from "@clack/prompts";
 import cac from "cac";
 
@@ -109,6 +110,15 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
   // 2. Handle directory if exist and not empty
   if (fs.existsSync(root) && !isEmpty(root)) {
+    if (
+      isDenoProject(root) &&
+      (await prompts.confirm({
+        message: "This folder has a Lume site with Deno. Do you want help to migrate to Node?",
+      }))
+    ) {
+      return migrateToNode();
+    }
+
     const res = await prompts.select({
       message:
         (root === cwd ? "Current directory" : `Target directory "${targetDir}"`) +
@@ -143,20 +153,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   // 3. Create project directory and basic files
   fs.mkdirSync(root, { recursive: true });
 
-  writeFile(root, "package.json", {
-    name: targetDir.replaceAll(/[^\w-]/g, "") || "lume-site",
-    private: true,
-    type: "module",
-    allowScripts: {
-      esbuild: false,
-      fsevents: false,
-      "@parcel/watcher": false,
-    },
-    scripts: {
-      serve: "lume build -s",
-      build: "lume build",
-    },
-  });
+  createNodeFiles(root, targetDir.replaceAll(/[^\w-]/g, ""));
 
   writeFile(root, "tsconfig.json", {
     compilerOptions: {
@@ -240,12 +237,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   }
 
   // Success
-  let doneMessage = `🔥 Done! Now run:\n   `;
-  if (root !== cwd) {
-    const cdProjectName = path.relative(cwd, root);
-    doneMessage += `cd ${cdProjectName.includes(" ") ? `"${cdProjectName}"` : cdProjectName} && `;
-  }
-  doneMessage += `${pkgManager} ${scriptArgs("serve").join(" ")}`;
+  let doneMessage = `🔥 Done! Now run ${styleText(["greenBright"], runCommand())} to get started!`;
   prompts.outro(doneMessage);
 
   /** Get the install arguments according the package manager */
@@ -333,6 +325,73 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
     return code;
   }
+
+  function migrateToNode() {
+    createNodeFiles(root, path.basename(root).replaceAll(/[^\w-]/g, ""));
+    const denoConfig = JSON.parse(fs.readFileSync(path.join(root, "deno.json"), "utf-8"));
+    let lumeConfig = fs.readFileSync(path.join(root, "_config.ts"), "utf-8");
+    const packages = ["@lumeland/lume", "@lumeland/ssx"];
+
+    for (const spec of Object.values(denoConfig.imports as Record<string, string>)) {
+      if (spec.startsWith("npm:")) {
+        packages.push(spec.slice(4));
+      }
+    }
+
+    lumeConfig = lumeConfig.replaceAll(/from ["']([^"']+)["']/g, (_, spec) => {
+      if (spec === "lume/mod.ts") {
+        return 'from "@lumeland/lume"';
+      }
+
+      if (spec.startsWith("lume/plugins/")) {
+        const name = spec.slice(13, -3).replaceAll("_", "-");
+
+        if (Object.values(plugins).find(([n]) => n === name)) {
+          const fullName = `@lumeland/plugin-${name}`;
+          packages.push(fullName);
+          return `from "${fullName}"`;
+        } else {
+          console.warn(`Plugin ${name} not found`);
+        }
+      }
+
+      if (spec.startsWith("npm:")) {
+        const match = spec.match(/^npm:(@?[^@]+)(@[^/]+)?(.*)$/);
+
+        if (match) {
+          const [, name, version = "", path = ""] = match;
+          packages.push(`${name}${version}`);
+          return `from "${name}${path}"`;
+        } else {
+          console.log(`Invalid npm package: ${spec}`);
+        }
+      }
+
+      return spec;
+    });
+
+    writeFile(root, "_config.ts", lumeConfig);
+    run(pkgManager, installArgs(...packages), root);
+
+    let doneMessage = `Automatic migration to Node completed 🔥🔥🔥\n`;
+    doneMessage += "   Note that you may need additional changes:\n";
+    doneMessage += `   - Run ${styleText(["greenBright"], runCommand())} to check if the site builds\n`;
+    doneMessage += `   - Add ${styleText(["dim"], "node_modules")} to .gitignore\n`;
+    doneMessage += `   - Remove the deno.json file`;
+
+    prompts.outro(doneMessage);
+    process.exit(0);
+  }
+
+  function runCommand() {
+    let command = "";
+    if (root !== cwd) {
+      const cdProjectName = path.relative(cwd, root);
+      command += `cd ${cdProjectName.includes(" ") ? `"${cdProjectName}"` : cdProjectName} && `;
+    }
+    command += `${pkgManager} ${scriptArgs("serve").join(" ")}`;
+    return command;
+  }
 }
 
 function getPackageManager(): PkgManager {
@@ -386,13 +445,48 @@ function writeFile(
 }
 
 /** Run an command and return if it's success */
-export function run(cmd: string, args: string[] = [], cwd?: string): boolean {
+function run(cmd: string, args: string[] = [], cwd?: string): boolean {
   const child = spawnSync(cmd, args, {
     cwd,
     stdio: "inherit",
   });
 
   return child.status === 0;
+}
+
+function createNodeFiles(root: string, name?: string) {
+  writeFile(root, "package.json", {
+    name: name || "lume-site",
+    private: true,
+    type: "module",
+    allowScripts: {
+      esbuild: false,
+      fsevents: false,
+      "@parcel/watcher": false,
+    },
+    scripts: {
+      serve: "lume build -s",
+      build: "lume build",
+    },
+  });
+
+  writeFile(root, "tsconfig.json", {
+    compilerOptions: {
+      moduleResolution: "NodeNext",
+      module: "NodeNext",
+      jsx: "react-jsx",
+      jsxImportSource: "@lumeland/ssx",
+      allowImportingTsExtensions: true,
+      rewriteRelativeImportExtensions: true,
+      erasableSyntaxOnly: true,
+    },
+  });
+}
+
+function isDenoProject(root: string) {
+  return (
+    fs.existsSync(path.join(root, "deno.json")) && fs.existsSync(path.join(root, "_config.ts"))
+  );
 }
 
 const cli = cac("create-lume");
