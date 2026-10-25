@@ -10,6 +10,16 @@ describe("pagefind plugin", async () => {
 
     site.use(pagefind());
 
-    expect(await build(site, { avoidBinaryFilesLength: true })).toMatchSnapshot();
+    const result = await build(site);
+
+    // Don't add the pagefind content to the snapshot
+    result.pages.forEach((page) => {
+      if (page.data.url.startsWith("/pagefind/")) {
+        page.content = page.content.length ? "yes" : "no";
+        page.data.content = page.data.content.length ? "yes" : "no";
+      }
+    });
+
+    expect(result).toMatchSnapshot();
   });
 });
