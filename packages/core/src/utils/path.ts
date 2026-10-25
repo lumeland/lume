@@ -1,32 +1,52 @@
-import { posix, SEPARATOR } from "../../deps/path.ts";
+import { fromFileUrl, posix, SEPARATOR } from "../../deps/path.ts";
+
+const WINDOWS_ABSOLUTE = /^\w:[\\/]/;
+
+export function removeRoot(root: string | undefined, path: string): string {
+  root = unifyRoot(root ?? "/");
+  path = unifyRoot(path);
+
+  if (root.length > 1 && root.endsWith("/")) {
+    root = root.slice(0, -1);
+  }
+
+  if (path === root || path.startsWith(root)) {
+    return normalizePath(path.slice(root.length));
+  }
+
+  return path;
+}
+
+function unifyRoot(path: string): string {
+  if (path.startsWith("file://")) {
+    path = fromFileUrl(path);
+  }
+
+  if (path.match(WINDOWS_ABSOLUTE)) {
+    path = path.slice(2).replaceAll("\\", "/");
+  }
+
+  path = normalizePath(path);
+
+  return path;
+}
 
 /**
  * Convert the Windows paths (that use the separator "\")
  * to Posix paths (with the separator "/")
  * and ensure it starts with "/".
  */
-export function normalizePath(path: string, rootToRemove?: string) {
-  if (rootToRemove) {
-    path = path.replace(rootToRemove, "");
-  }
-
+export function normalizePath(path: string) {
   if (SEPARATOR !== "/") {
     path = path.replaceAll(SEPARATOR, "/");
 
     // Is absolute Windows path (C:/...)
-    if (path.includes(":/")) {
-      if (rootToRemove && path.startsWith(rootToRemove)) {
-        return posix.join("/", path.replace(rootToRemove, ""));
-      }
-
+    if (path.match(WINDOWS_ABSOLUTE)) {
       return path;
     }
   }
 
-  const absolute = posix.join("/", path);
-  return rootToRemove && absolute.startsWith(rootToRemove)
-    ? posix.join("/", absolute.replace(rootToRemove, ""))
-    : absolute;
+  return posix.join("/", path);
 }
 
 /** Check if the path is an URL */
@@ -68,28 +88,6 @@ export function matchExtension(exts: Extensions, path: string): boolean {
   }
 
   return exts.some((ext) => path.endsWith(ext));
-}
-
-/**
- * Resolve the path of an included file
- * Used in the template engines and processors
- */
-export function resolveInclude(path: string, fromDir?: string, rootToRemove?: string): string {
-  if (isUrl(path)) {
-    return path;
-  }
-
-  if (path.startsWith(".")) {
-    if (!fromDir) {
-      throw new Error(`Cannot load "${path}" without a base directory`);
-    }
-
-    return normalizePath(posix.join(fromDir, path), rootToRemove);
-  }
-
-  const normalized = normalizePath(path, rootToRemove);
-
-  return normalized.startsWith("/_includes/") ? normalized : posix.join("/_includes/", normalized);
 }
 
 /**

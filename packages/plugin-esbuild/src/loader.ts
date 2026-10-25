@@ -1,7 +1,7 @@
 import { dirname, extname, fromFileUrl, isBuiltin, resolve } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import textLoader from "@lumeland/core/loaders/text.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
+import { removeRoot } from "@lumeland/core/utils/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { OnResolveArgs, Plugin } from "../deps/esbuild.ts";
@@ -95,7 +95,7 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
 
         // If it's a file, check if it's already loaded by Lume
         if (namespace === "file") {
-          const src = normalizePath(path, basePath);
+          const src = removeRoot(basePath, path);
           const entry = site.fs.entries.get(src);
 
           // Return the content loaded by Lume

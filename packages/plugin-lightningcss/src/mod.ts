@@ -1,4 +1,4 @@
-import { resolveInclude } from "@lumeland/core/utils/path.ts";
+import { removeRoot } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
@@ -19,6 +19,7 @@ import type {
   TransformOptions,
   TransformResult,
 } from "../deps/lightningcss.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 
 export interface Options {
   /** Bundle the CSS or only transform it */
@@ -129,6 +130,7 @@ export function lightningCSS(userOptions?: Options) {
     async function lightningCSSBundler(files: Page[], item?: Item) {
       for (const file of files) {
         const { content, filename, sourceMap, enableSourceMap } = prepareAsset(site, file);
+        const root = site.src();
 
         // Process the code with lightningCSS
         const bundleOptions: BundleAsyncOptions<CustomAtRules> = {
@@ -141,7 +143,15 @@ export function lightningCSS(userOptions?: Options) {
               if (isFromCdn(id)) {
                 return getFile(id);
               }
-              return resolveInclude(id, posix.dirname(from));
+
+              const entry = getInclude(posix.dirname(removeRoot(root, from)), id, site.fs);
+
+              if (!entry) {
+                log.error(`[lightningcss plugin] Included file ${id} from ${from} not found`);
+                return "";
+              }
+
+              return entry.path;
             },
             async read(file: string) {
               if (file === filename) {

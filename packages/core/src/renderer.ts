@@ -1,4 +1,3 @@
-import { resolveInclude } from "./utils/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { mergeData } from "./utils/merge-data.ts";
@@ -14,6 +13,7 @@ import type Processors from "./processors.ts";
 import type Formats from "./formats.ts";
 import type FS from "./fs.ts";
 import type DebugBar from "./debugbar.ts";
+import { getInclude } from "./utils/includes.ts";
 
 export interface Options {
   prettyUrls: boolean;
@@ -225,7 +225,7 @@ export default class Renderer {
   /** Render the page layout */
   async #renderLayout(page: Page, content: Content): Promise<Content> {
     let data = { ...page.data };
-    let path = page.src.path + page.src.ext;
+    let path = posix.dirname(page.src.path + page.src.ext);
     let layout = data.layout;
 
     // Render the layouts recursively
@@ -236,23 +236,22 @@ export default class Renderer {
         throw new Error(`The layout format "${layout}" doesn't exist`);
       }
 
-      const layoutPath = resolveInclude(layout, posix.dirname(path));
-      const entry = this.fs.entries.get(layoutPath);
+      const layoutEntry = getInclude(path, layout, this.fs);
 
-      if (!entry) {
-        throw new Error(`The layout file "${layoutPath}" doesn't exist`);
+      if (!layoutEntry) {
+        throw new Error(`The layout file "${layout}" for the file "${path}" doesn't exist`);
       }
 
-      const layoutData = await entry.getContent(format.loader);
+      const layoutData = await layoutEntry.getContent(format.loader);
 
       delete data.layout;
       delete data.templateEngine;
 
       data = mergeData(layoutData, data, { content }) as Data;
 
-      content = await this.render<Content>(layoutData.content, data, layoutPath, true);
+      content = await this.render<Content>(layoutData.content, data, layoutEntry.path, true);
       layout = layoutData.layout;
-      path = layoutPath;
+      path = layoutEntry.path.split("/_includes/")[0];
     }
 
     return content;

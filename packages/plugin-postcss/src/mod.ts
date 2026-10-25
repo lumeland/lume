@@ -1,7 +1,7 @@
 import { autoprefixer, postcss, postcssImport } from "../deps/postcss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
-import { resolveInclude } from "@lumeland/core/utils/path.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
@@ -9,6 +9,8 @@ import { warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes } from "@lumeland/core/utils/format.ts";
 import { browsers, versionString } from "@lumeland/core/utils/browsers.ts";
 import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
+import { removeRoot } from "@lumeland/core/utils/path.ts";
+import { posix } from "../../core/deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { SourceMap } from "@lumeland/plugin-source-maps";
@@ -131,6 +133,7 @@ export function postCSS(userOptions?: Options) {
  * using the Lume reader and the includes loader
  */
 function configureImport(site: Site) {
+  const root = site.src();
   return postcssImport({
     /** Resolve the import path */
     resolve(id: string, basedir: string) {
@@ -138,7 +141,13 @@ function configureImport(site: Site) {
         return "/" + id;
       }
 
-      return resolveInclude(id, basedir);
+      const entry = getInclude(removeRoot(root, posix.join(basedir, "/")), id, site.fs);
+
+      if (!entry) {
+        throw new Error(`File ${id} not found from ${basedir}`);
+      }
+
+      return entry.path;
     },
 
     /** Load the content (using the Lume reader) */

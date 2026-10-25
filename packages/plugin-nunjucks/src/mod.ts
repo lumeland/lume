@@ -2,12 +2,13 @@ import Nunjucks from "../deps/nunjucks.ts";
 import { basename, join, posix } from "../deps/path.ts";
 import loader from "@lumeland/core/loaders/text.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
-import { normalizePath, resolveInclude } from "@lumeland/core/utils/path.ts";
+import { removeRoot } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Engine, Helper, HelperOptions } from "@lumeland/core/renderer.ts";
 import type { ProxyComponents } from "@lumeland/core/components.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -127,14 +128,11 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
 
   async: true = true;
 
-  getSource(id: string, callback: Nunjucks.Callback<Error, Nunjucks.LoaderSource>) {
-    const rootToRemove = this.site.src();
-    let path = normalizePath(id, rootToRemove);
+  isRelative(filename: string): boolean {
+    return !filename.startsWith("/");
+  }
 
-    if (path === normalizePath(id)) {
-      path = resolveInclude(id, undefined, rootToRemove);
-    }
-
+  getSource(path: string, callback: Nunjucks.Callback<Error, Nunjucks.LoaderSource>) {
     this.site.getContent(path, false).then((content) => {
       if (content) {
         callback(null, {
@@ -150,7 +148,15 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
   }
 
   override resolve(from: string, to: string): string {
-    return posix.join(posix.dirname(from), to);
+    const fromDir = posix.dirname(removeRoot(this.site.src(), from));
+    const entry = getInclude(fromDir, to, this.site.fs);
+
+    if (!entry) {
+      log.error(`[nunjucks plugin] Unable to resolve ${to} from ${from}`);
+      return "";
+    }
+
+    return entry.path;
   }
 }
 

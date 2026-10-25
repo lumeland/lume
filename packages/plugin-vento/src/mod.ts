@@ -10,6 +10,7 @@ import type { Data } from "@lumeland/core/types.ts";
 import type { Engine, Helper, HelperOptions } from "@lumeland/core/renderer.ts";
 import type FS from "@lumeland/core/fs.ts";
 import type { Environment, Loader, Plugin, Token } from "../deps/vento.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 
 export interface Options {
   /** File extensions to load */
@@ -57,10 +58,8 @@ export const defaults = {
 
 class LumeLoader implements Loader {
   fs: FS;
-  #root: string;
 
-  constructor(root: string, fs: FS) {
-    this.#root = root;
+  constructor(fs: FS) {
     this.fs = fs;
   }
 
@@ -80,15 +79,14 @@ class LumeLoader implements Loader {
   }
 
   resolve(from: string, file: string): string {
-    if (file.startsWith(".")) {
-      return normalizePath(posix.join(posix.dirname(from), file));
+    const resolved = getInclude(posix.dirname(from), file, this.fs);
+
+    if (!resolved) {
+      log.error(`[vento plugin] Included file ${file} not found (from ${from})`);
+      return "";
     }
 
-    if (file.startsWith(this.#root)) {
-      return normalizePath(file);
-    }
-
-    return normalizePath(posix.join(this.#root, file));
+    return resolved.path;
   }
 }
 
@@ -148,7 +146,7 @@ export function vento(userOptions?: Options) {
     const options = merge(defaults, userOptions);
 
     const vento = engine({
-      includes: new LumeLoader("/_includes", site.fs),
+      includes: new LumeLoader(site.fs),
       ...options.options,
     });
 

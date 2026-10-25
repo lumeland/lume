@@ -1,5 +1,5 @@
 import satori, { SatoriOptions } from "../deps/satori.ts";
-import { resolveInclude } from "@lumeland/core/utils/path.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
@@ -60,19 +60,17 @@ export function ogImages(userOptions?: Options) {
             continue;
           }
 
-          const layoutPath = resolveInclude(layout, posix.dirname(page.sourcePath));
-
-          const entry = site.fs.entries.get(layoutPath);
+          const entry = getInclude(posix.dirname(page.sourcePath), layout, site.fs);
 
           if (!entry) {
-            throw new Error(`The layout file "${layoutPath}" doesn't exist`);
+            throw new Error(`The layout file "${layout}" doesn't exist`);
           }
 
           const layoutData = await entry.getContent(loader);
           const template = layoutData.content;
 
           if (typeof template !== "function") {
-            throw new Error(`The layout file "${layoutPath}" doesn't have a default export`);
+            throw new Error(`The layout file "${entry.path}" doesn't have a default export`);
           }
 
           const jsx = await template(data, helpers);

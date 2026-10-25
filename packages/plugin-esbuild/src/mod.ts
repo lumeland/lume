@@ -1,4 +1,4 @@
-import { getPathAndExtension, normalizePath } from "@lumeland/core/utils/path.ts";
+import { getPathAndExtension, normalizePath, removeRoot } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes } from "@lumeland/core/utils/format.ts";
@@ -7,7 +7,7 @@ import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { Page } from "@lumeland/core/file.ts";
 import lumeLoader from "./loader.ts";
 import { build, BuildOptions, Metafile, OutputFile, stop } from "../deps/esbuild.ts";
-import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
+import { posix, toFileUrl } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 
@@ -159,7 +159,7 @@ export function esbuild(userOptions?: Options) {
           ? outputFile.text
           : resolveImports(
               outputFile.text,
-              output.entryPoint ? relativePathFromUri(output.entryPoint, basePath) : outputPath,
+              output.entryPoint ? removeRoot(basePath, output.entryPoint) : outputPath,
               outputPath,
               basePath,
               metafile,
@@ -174,7 +174,7 @@ export function esbuild(userOptions?: Options) {
         let entryPoint: Page | undefined;
 
         if (output.entryPoint) {
-          const outputRelativeEntryPoint = relativePathFromUri(output.entryPoint, basePath);
+          const outputRelativeEntryPoint = removeRoot(basePath, output.entryPoint);
 
           entryPoint = pages.find(
             (page) =>
@@ -209,14 +209,6 @@ export function esbuild(userOptions?: Options) {
       }
     });
   };
-}
-
-function relativePathFromUri(uri: string, basePath?: string): string {
-  if (uri.startsWith("file://")) {
-    uri = fromFileUrl(uri);
-  }
-
-  return normalizePath(uri, basePath);
 }
 
 function resolveImports(
@@ -259,7 +251,7 @@ function resolveImport(
         return false;
       }
 
-      const outputRelativeEntryPoint = relativePathFromUri(output.entryPoint, basePath);
+      const outputRelativeEntryPoint = removeRoot(basePath, output.entryPoint);
 
       return outputRelativeEntryPoint === sourcePathOfImport;
     });

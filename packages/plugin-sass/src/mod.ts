@@ -1,4 +1,4 @@
-import { normalizePath, replaceExtension, resolveInclude } from "@lumeland/core/utils/path.ts";
+import { normalizePath, replaceExtension } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { compileStringAsync } from "../deps/sass.ts";
@@ -146,3 +146,8 @@ function getPathsToLook(path: string): string[] {
 }
 
 export default sass;
+
+function resolveInclude(path: string): string {
+  const normalized = normalizePath(path);
+  return normalized.startsWith("/_includes/") ? normalized : posix.join("/_includes/", normalized);
+}
