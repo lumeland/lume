@@ -19,7 +19,7 @@ export function removeRoot(root: string | undefined, path: string): string {
 
 function unifyRoot(path: string): string {
   if (path.startsWith("file://")) {
-    path = fromFileUrl(path);
+    path = fromFileUrl(path, { windows: false });
   }
 
   if (path.match(WINDOWS_ABSOLUTE)) {
