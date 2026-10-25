@@ -321,11 +321,7 @@ function parseSize(size: string): [number, number | undefined, number[]] {
   return [parseInt(width), height ? parseInt(height) : undefined, [...sizes.values()]];
 }
 
-function createSrcset(
-  src: string,
-  srcFormats: SourceFormat[],
-  sizes?: string | null | undefined,
-): string[] {
+function createSrcset(src: string, srcFormats: SourceFormat[], sizes?: string | null): string[] {
   const srcset: string[] = [];
   const path = encodeURI(getPathAndExtension(src)[0]);
 
@@ -364,12 +360,7 @@ function createSource(
   return source;
 }
 
-function editImg(
-  img: Element,
-  src: string,
-  srcFormat: SourceFormat[],
-  sizes?: string | null | undefined,
-) {
+function editImg(img: Element, src: string, srcFormat: SourceFormat[], sizes?: string | null) {
   const srcset = createSrcset(src, srcFormat, sizes);
   const newSrc = srcset.shift()!;
 

@@ -225,6 +225,7 @@ function compileFilter(conditions: Condition[]) {
 
   args.push(`return (data) => ${filters.join(" && ")};`);
 
+  // oxlint-disable-next-line typescript/no-implied-eval
   const factory = new Function(...args);
 
   return factory(...values);
@@ -445,6 +446,7 @@ export function buildSort(sort: string): (a: Data, b: Data) => number {
     }
   });
 
+  // oxlint-disable-next-line typescript/no-implied-eval
   return new Function(`${init} return function (a, b) { return ${fn}; }`)() as (
     a: Data,
     b: Data,

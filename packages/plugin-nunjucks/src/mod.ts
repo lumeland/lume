@@ -133,7 +133,7 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
   }
 
   getSource(path: string, callback: Nunjucks.Callback<Error, Nunjucks.LoaderSource>) {
-    this.site.getContent(path, false).then((content) => {
+    void this.site.getContent(path, false).then((content) => {
       if (content) {
         callback(null, {
           src: content as string,
@@ -301,9 +301,11 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
             return;
           }
 
-          (fn.apply(thisArg, [bodyContent, ...args]) as Promise<string>).then((string: string) => {
-            callback(null, new Nunjucks.runtime.SafeString(string));
-          });
+          void (fn.apply(thisArg, [bodyContent, ...args]) as Promise<string>).then(
+            (string: string) => {
+              callback(null, new Nunjucks.runtime.SafeString(string));
+            },
+          );
         });
 
         return;
@@ -315,7 +317,7 @@ function createCustomTag(name: string, fn: Helper, options: HelperOptions) {
         return;
       }
 
-      (fn.apply(thisArg, args) as Promise<string>).then((string: string) => {
+      void (fn.apply(thisArg, args) as Promise<string>).then((string: string) => {
         callback(null, new Nunjucks.runtime.SafeString(string));
       });
     },

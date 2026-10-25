@@ -123,7 +123,9 @@ export function katex(userOptions?: Options) {
               element.replaceWith(div.firstChild!);
             }
           } catch (cause) {
-            log.error(`[katex plugin] Failed to render math in ${page.outputPath}: ${cause}`);
+            log.error(
+              `[katex plugin] Failed to render math in ${page.outputPath}: ${cause as Error}`,
+            );
           }
         });
 
@@ -131,7 +133,9 @@ export function katex(userOptions?: Options) {
           try {
             renderMathInElement(document.body, options.options);
           } catch (cause) {
-            log.error(`[katex plugin] Failed to render math in ${page.outputPath}: ${cause}`);
+            log.error(
+              `[katex plugin] Failed to render math in ${page.outputPath}: ${cause as Error}`,
+            );
           }
         }
       }

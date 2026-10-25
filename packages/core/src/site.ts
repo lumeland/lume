@@ -287,7 +287,7 @@ export default class Site {
     debugBar.addEventListener("lume:drafts", (event) => {
       const showDrafts = event.data.value ?? "false";
       setEnv("LUME_DRAFTS", String(showDrafts));
-      this.update();
+      void this.update();
     });
 
     return this;
@@ -687,7 +687,7 @@ export default class Site {
     this.debugBar?.startMeasure("build");
     if ((await this.dispatchEvent({ type: "beforeBuild" })) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -704,7 +704,7 @@ export default class Site {
 
     if ((await this.dispatchEvent({ type: "afterLoad" })) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -717,7 +717,7 @@ export default class Site {
     // Stop if the build is cancelled
     if ((await this.#buildPages(_pages)) === false) {
       this.debugBar?.endMeasure("build", "Build cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -729,7 +729,7 @@ export default class Site {
 
     await this.dispatchEvent({ type: "afterBuild", pages, staticFiles });
     this.debugBar?.endMeasure("build", "Site generated");
-    this.dispatchEvent({ type: "idle" });
+    await this.dispatchEvent({ type: "idle" });
   }
 
   /** Reload some files that might be changed */
@@ -739,7 +739,7 @@ export default class Site {
 
     if ((await this.dispatchEvent({ type: "beforeUpdate", files })) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -770,7 +770,7 @@ export default class Site {
 
     if ((await this.dispatchEvent({ type: "afterLoad" })) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -783,7 +783,7 @@ export default class Site {
 
     if ((await this.#buildPages(_pages)) === false) {
       this.debugBar?.endMeasure("build", "Update cancelled");
-      this.dispatchEvent({ type: "idle" });
+      await this.dispatchEvent({ type: "idle" });
       return;
     }
 
@@ -801,7 +801,7 @@ export default class Site {
       pages,
       staticFiles,
     });
-    this.dispatchEvent({ type: "idle" });
+    await this.dispatchEvent({ type: "idle" });
   }
 
   /**

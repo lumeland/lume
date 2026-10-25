@@ -70,6 +70,7 @@ export function redirects(options: Options): Middleware {
 
       case 200:
         request = new Request(to.href, {
+          // oxlint-disable-next-line typescript/no-misused-spread
           ...request,
         });
     }

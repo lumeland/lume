@@ -89,7 +89,7 @@ export default class Renderer {
         const { content } = data;
         delete data.content;
 
-        const generator = await this.render<Generator<RawData, RawData>>(
+        const generator = await this.render<AsyncGenerator<RawData, RawData>>(
           content,
           data,
           page.src.path + page.src.ext,

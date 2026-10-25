@@ -48,10 +48,10 @@ function setupServer(site: Site) {
       }
 
       if (open) {
-        openBrowser(`http://${server.hostname}:${server.port}/`);
+        void openBrowser(`http://${server.hostname}:${server.port}/`);
       }
 
-      site.dispatchEvent({ type: "afterStartServer" });
+      void site.dispatchEvent({ type: "afterStartServer" });
     },
     { once: true },
   );
@@ -114,5 +114,5 @@ function setupWatcher(site: Site) {
     console.error(inspect(event.error));
   });
 
-  watcher.start();
+  void watcher.start();
 }

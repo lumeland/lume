@@ -63,7 +63,7 @@ export function redirects(userOptions?: Options) {
         typeof options.output === "string" ? outputs[options.output] : options.output;
 
       if (!outputFn) {
-        log.fatal(`[redirects plugin] Invalid output format: ${options.output}`);
+        log.fatal("[redirects plugin] Invalid output format");
         return;
       }
 

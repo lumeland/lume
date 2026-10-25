@@ -44,7 +44,7 @@ export default class DataLoader {
   async #loadDirectory(entry: Entry): Promise<RawData> {
     const data: RawData = {};
 
-    for await (const child of entry.children.values()) {
+    for (const child of entry.children.values()) {
       await this.loadEntry(child, data);
     }
 

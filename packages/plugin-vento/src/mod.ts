@@ -119,7 +119,7 @@ export class VentoEngine implements Engine {
           return;
         }
       }
-      throw new Error(`Error rendering Vento template in file ${filename}: ${error}`);
+      throw new Error(`Error rendering Vento template in file ${filename}: ${error as Error}`);
     }
   }
 

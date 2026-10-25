@@ -267,7 +267,7 @@ function markdownItFootnotes(md: MarkdownIt, options: Required<Options>) {
       if (!footnote) {
         if (state.env.filename) {
           log.error(
-            `[markdown-footnotes plugin] Footnote "[^${label}]" not found in the page ${state.env.filename}`,
+            `[markdown-footnotes plugin] Footnote "[^${label}]" not found in the page ${state.env.filename as string}`,
           );
         } else {
           log.debug(`[markdown-footnotes plugin] Footnote "[^${label}]" not found`);

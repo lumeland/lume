@@ -523,5 +523,5 @@ cli.help();
 const parsed = cli.parse();
 
 if (!parsed.options.help) {
-  init(parsed.args[0], parsed.options);
+  void init(parsed.args[0], parsed.options);
 }

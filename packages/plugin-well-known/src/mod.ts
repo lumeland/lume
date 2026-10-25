@@ -340,7 +340,7 @@ function buildSecurity(info: Security, canonical: string): string {
     }
   }
 
-  lines.push(`Expires: ${toTemporal(info.expires)}`);
+  lines.push(`Expires: ${toTemporal(info.expires).toString()}`);
 
   if (info.preferredLanguages) {
     lines.push(`Preferred-Languages: ${toArray(info.preferredLanguages).join(", ")}`);

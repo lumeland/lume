@@ -1,7 +1,6 @@
 export {
   BetterMap,
   createGenerator,
-  type SourceCodeTransformer,
   type UnocssPluginContext,
   type UnoGenerator,
   type UserConfig,

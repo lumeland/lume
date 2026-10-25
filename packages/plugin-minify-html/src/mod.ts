@@ -70,7 +70,7 @@ export function minifyHTML(userOptions?: Options) {
             });
           }
         } catch (error) {
-          log.error(`[minify-html plugin] Error minifying ${page.sourcePath}: ${error}`);
+          log.error(`[minify-html plugin] Error minifying ${page.sourcePath}: ${error as Error}`);
         }
       }
     });

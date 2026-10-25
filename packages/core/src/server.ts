@@ -114,16 +114,16 @@ export default class Server {
         signal,
         onListen: () => {
           if (!this.#waiting) {
-            this.dispatchEvent({ type: "start" });
+            void this.dispatchEvent({ type: "start" });
           }
         },
         onUpgradeWebSocket: (socket) => {
-          this.dispatchEvent({ type: "upgrade", socket });
+          void this.dispatchEvent({ type: "upgrade", socket });
         },
       });
     } else if (this.#waiting) {
       this.#waiting = false;
-      this.dispatchEvent({ type: "start" });
+      void this.dispatchEvent({ type: "start" });
     }
   }
 
@@ -132,7 +132,7 @@ export default class Server {
     try {
       this.#server?.shutdown();
     } catch (err) {
-      this.dispatchEvent({
+      void this.dispatchEvent({
         type: "error",
         error: err as Error,
       });

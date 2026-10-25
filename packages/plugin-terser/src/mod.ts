@@ -90,7 +90,7 @@ export function terser(userOptions?: Options) {
         );
       } catch (cause) {
         log.error(
-          `[terser plugin] Error processing the file: ${filename} by the Terser plugin. (${cause})`,
+          `[terser plugin] Error processing the file: ${filename} by the Terser plugin. (${cause as Error})`,
         );
       }
     }

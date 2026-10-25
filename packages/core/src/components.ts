@@ -25,7 +25,7 @@ export class ComponentLoader {
       components = new Map();
     }
 
-    for await (const entry of dirEntry.children.values()) {
+    for (const entry of dirEntry.children.values()) {
       if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
         continue;
       }

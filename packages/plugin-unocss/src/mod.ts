@@ -14,13 +14,7 @@ import {
 } from "../deps/unocss.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import type {
-  Reset,
-  SourceCodeTransformer,
-  UnocssPluginContext,
-  UnoGenerator,
-  UserConfig,
-} from "../deps/unocss.ts";
+import type { Reset, UnocssPluginContext, UnoGenerator, UserConfig } from "../deps/unocss.ts";
 
 export interface Options {
   /**
@@ -45,17 +39,6 @@ export interface Options {
    * Only used when `cssFile` is set.
    */
   placeholder?: string;
-
-  /**
-   * Process CSS files using UnoCSS transformers.
-   * @default
-   * [
-   *  transformerVariantGroup(),
-   *  transformerDirectives()
-   * ]
-   * @deprecated set `options.transformers` instead
-   */
-  transformers?: SourceCodeTransformer[];
 
   /**
    * Supported CSS reset options.
@@ -216,7 +199,7 @@ export function unoCSS(userOptions?: Options) {
     }
 
     const { cssFile = site.options.cssFile, reset } = options;
-    const transformers = options.transformers ?? options.options.transformers;
+    const transformers = options.options.transformers;
 
     if (transformers.length > 0) {
       site.process([".css", ".html"], async function processUnoCSS(files) {
@@ -225,7 +208,7 @@ export function unoCSS(userOptions?: Options) {
           const content = file.text;
           if (content) {
             const code = new MagicString(content);
-            for await (const { transform } of transformers) {
+            for (const { transform } of transformers) {
               await transform(code, file.src.path, unoCtx);
             }
             file.content = code.toString();

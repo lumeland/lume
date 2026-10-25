@@ -64,7 +64,7 @@ export function reload(options: Options): Middleware {
     console.log("Changes sent to the browser");
   });
 
-  watcher.start();
+  void watcher.start();
 
   server.addEventListener("upgrade", ({ socket }) => {
     // Browser was in the process of being reloaded. Notify
@@ -85,7 +85,7 @@ export function reload(options: Options): Middleware {
         const message = JSON.parse(e.data);
         const { data } = message;
         const { type } = data;
-        options.debugBar.dispatchEvent({ type, data });
+        void options.debugBar.dispatchEvent({ type, data });
       }
     };
   });

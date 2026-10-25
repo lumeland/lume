@@ -196,7 +196,7 @@ function stringify(value: unknown): string | undefined {
     return value.toISOString();
   }
 
-  return String(value);
+  return String(value as string);
 }
 
 function getMetas(metas: MetaData): [MetaData, Record<string, unknown>] {

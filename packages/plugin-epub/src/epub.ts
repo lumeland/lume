@@ -251,7 +251,7 @@ export function createOPF(metadata: Metadata, manifest: ManifestItem[]) {
           },
           {
             "@property": "a11y:certifiedBy",
-            "#text": metadata.creator?.join(", "),
+            "#text": metadata.creator?.map((v) => (typeof v === "string" ? v : v.name)).join(", "),
           },
           {
             "@property": "schema:accessMode",

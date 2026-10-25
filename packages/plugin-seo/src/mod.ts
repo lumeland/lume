@@ -167,7 +167,9 @@ function getMessage(error: ErrorMessage): Message {
   const { msg, text, items, ...params } = error;
   const template = errors[msg] ?? msg;
 
-  const title = template.replace(/\{(\w+)\}/g, (match, key) => String(params[key] ?? match));
+  const title = template.replace(/\{(\w+)\}/g, (match, key) =>
+    String((params[key] as string) ?? match),
+  );
 
   return {
     title,

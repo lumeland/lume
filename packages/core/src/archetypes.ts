@@ -46,7 +46,7 @@ export default class Archetypes {
     }
 
     if (isGenerator(archetype)) {
-      for await (const file of archetype(...args) as Generator<ArchetypeFile>) {
+      for await (const file of archetype(...args) as AsyncGenerator<ArchetypeFile>) {
         await this.save(file);
       }
     } else {
@@ -100,7 +100,7 @@ export default class Archetypes {
       },
       (data) => {
         const { content: body, ...frontmatter } = data;
-        return `---\n${stringify(frontmatter)}---\n${body || ""}\n`;
+        return `---\n${stringify(frontmatter)}---\n${(body as string | undefined) || ""}\n`;
       },
     );
   }

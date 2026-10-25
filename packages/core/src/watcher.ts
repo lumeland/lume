@@ -121,7 +121,7 @@ export default class FSWatcher implements Watcher {
 
       // New changes detected while running the callback
       if (changes.size) {
-        callback();
+        void callback();
       }
     };
 
@@ -204,7 +204,7 @@ export class SiteWatcher implements Watcher {
         ...event.pages.map((page) => page.outputPath),
         ...event.staticFiles.map((file) => file.outputPath),
       ]);
-      this.dispatchEvent({ type: "change", files });
+      void this.dispatchEvent({ type: "change", files });
     });
   }
 }

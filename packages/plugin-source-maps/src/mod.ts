@@ -49,10 +49,9 @@ export function sourceMaps(userOptions?: Options) {
         if (options.sourceContent) {
           const sourcesContent = sourceMap.sourcesContent || [];
           sourceMap.sourcesContent = await Promise.all(
-            sourceMap.sources.map((url: string, index: number) => {
+            sourceMap.sources.map(async (url: string, index: number) => {
               const content = sourcesContent[index] ?? sourceMap[dynamicSourcesSymbol]?.[url];
-
-              return content ? content : read(url, false);
+              return content ? content : await read(url, false);
             }),
           );
         } else {
