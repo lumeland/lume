@@ -34,4 +34,4 @@ export function ${fnName}(userOptions?: Options) {
 export default ${fnName};
 `,
   };
-} satisfies Archetype);
+}) satisfies Archetype;

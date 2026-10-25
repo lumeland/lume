@@ -25,4 +25,4 @@ export default (function (name?: string) {
 }) satisfies Archetype;
 `,
   };
-} satisfies Archetype);
+}) satisfies Archetype;
