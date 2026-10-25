@@ -4,9 +4,9 @@
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
     "allowImportingTsExtensions": true,
-    "target": "ES2022",
+    "target": "ES2025",
     "lib": [
-      "ES2022",
+      "ES2025",
       "ESNext.Iterator",
       "DOM",
       "DOM.Iterable",

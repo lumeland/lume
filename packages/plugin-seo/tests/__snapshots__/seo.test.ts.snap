@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`seo plugin > should match site snapshot 1`] = `
+[
+  {
+    "messages": [
+      "DESCRIPTION_MISSING",
+      "BODY_TOO_SHORT",
+    ],
+    "url": "/",
+  },
+]
+`;
