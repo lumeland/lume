@@ -1,6 +1,6 @@
 packages:
   - "packages/*"
-  # - "themes/*"
+  - "themes/*"
   # - "testing/*"
 linkWorkspacePackages: true
 minimumReleaseAgeExclude:

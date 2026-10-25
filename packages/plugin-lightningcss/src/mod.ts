@@ -144,6 +144,10 @@ export function lightningCSS(userOptions?: Options) {
                 return getFile(id);
               }
 
+              if (id.startsWith("http")) {
+                return id;
+              }
+
               const entry = getInclude(posix.dirname(removeRoot(root, from)), id, site.fs);
 
               if (!entry) {

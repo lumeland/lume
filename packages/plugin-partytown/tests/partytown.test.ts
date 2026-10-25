@@ -12,6 +12,7 @@ describe("partytown plugin", async () => {
 
     expect(await build(site)).toMatchSnapshot();
   });
+
   it("should match debug mode", async () => {
     const site = getSite({
       cwd: import.meta.resolve("./assets"),
