@@ -24,7 +24,7 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "katex": "^0.19.1"
+    "katex": "0.19.1"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",
