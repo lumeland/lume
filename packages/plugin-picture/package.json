@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@lumeland/plugin-transform-images": "workspace:^",
-    "deno-std": "^1.5.1"
+    "deno-std": "^1.6.0"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",

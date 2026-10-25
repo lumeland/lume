@@ -24,7 +24,7 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "html-validate": "^11.16.4"
+    "html-validate": "^11.17.0"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",

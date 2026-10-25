@@ -1,7 +1,7 @@
 packages:
   - "packages/*"
-  - "themes/*"
-  - "testing/*"
+  # - "themes/*"
+  # - "testing/*"
 linkWorkspacePackages: true
 minimumReleaseAgeExclude:
   - deno-std@1.6.0

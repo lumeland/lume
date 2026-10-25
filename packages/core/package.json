@@ -22,7 +22,7 @@
     "@lumeland/dom": "^0.1.56",
     "@lumeland/plugin-esbuild": "workspace:^",
     "@lumeland/plugin-lightningcss": "workspace:^",
-    "deno-std": "1.5.1",
+    "deno-std": "^1.6.0",
     "remove-markdown": "0.8.0",
     "temporal-polyfill": "^1.0.6",
     "ws": "^8.22.0"

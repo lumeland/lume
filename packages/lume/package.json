@@ -34,7 +34,7 @@
     "@lumeland/plugin-vento": "workspace:^",
     "@lumeland/plugin-yaml": "workspace:^",
     "cac": "^7.1.0",
-    "deno-std": "^1.5.1",
+    "deno-std": "^1.6.0",
     "tsx": "^4.23.15"
   },
   "devDependencies": {

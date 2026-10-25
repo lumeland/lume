@@ -24,7 +24,7 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "deno-std": "^1.5.1"
+    "deno-std": "^1.6.0"
   },
   "devDependencies": {
     "@lumeland/plugin-extract-date": "workspace:^",

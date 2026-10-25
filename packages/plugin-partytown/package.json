@@ -24,7 +24,7 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "@qwik.dev/partytown": "^1.0.1"
+    "@qwik.dev/partytown": "^1.0.2"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",

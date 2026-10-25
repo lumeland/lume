@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@lumeland/plugin-source-maps": "workspace:^",
-    "sass": "^1.105.2"
+    "sass": "^1.106.1"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",

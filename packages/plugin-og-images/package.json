@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "satori": "^0.57.2"
+    "satori": "^0.63.2"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",

@@ -13,7 +13,7 @@
   "dependencies": {
     "@lumeland/lume": "workspace:*",
     "jszip": "^3.10.2",
-    "oxfmt": "^0.72.0",
+    "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0",
     "oxlint-tsgolint": "^7.0.2005",
     "tar-stream": "^3.2.2"
