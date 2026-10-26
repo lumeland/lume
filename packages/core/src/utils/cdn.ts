@@ -1,6 +1,7 @@
 import { canParse, format, maxSatisfying, parse, parseRange } from "../../deps/semver.ts";
 import { fromFileUrl, globToRegExp, join, posix, toFileUrl } from "../../deps/path.ts";
 import { readDirSync } from "../services/fs.ts";
+import { normalizePath } from "./path.ts";
 
 type PackageType = "npm" | "gh";
 
@@ -58,10 +59,11 @@ function getFsFiles(specifier: string, patterns: string[]): Map<string, string> 
   );
 
   for (const path of walk(basePath)) {
-    const filename = join("/", path.slice(basePath.length));
+    const filename = normalizePath(path.slice(basePath.length));
     if (!regexps.some((regexp) => regexp.test(filename))) {
       continue;
     }
+
     fileMap.set(filename, toFileUrl(path).href);
   }
   return fileMap;
