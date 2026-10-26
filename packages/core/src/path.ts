@@ -1,4 +1,4 @@
-import { fromFileUrl, toFileUrl, posix } from "../deps/path.ts";
+import { fromFileUrl, toFileUrl, posix, SEPARATOR } from "../deps/path.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
 const WINDOWS_ABSOLUTE = /^\w:[\\/]/;
@@ -117,12 +117,14 @@ function parse(path: string): [string | undefined, string] {
   let drive: string | undefined;
 
   if (path.startsWith("file://")) {
-    path = fromFileUrl(path, { windows: false });
+    path = fromFileUrl(path);
   }
 
   if (path.match(WINDOWS_ABSOLUTE)) {
+    drive = path[0];
     path = path.slice(2).replaceAll("\\", "/");
-    drive = path[1];
+  } else if (SEPARATOR !== "/") {
+    path = path.replaceAll("\\", "/");
   }
 
   path = posix.join("/", path);

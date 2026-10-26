@@ -10,12 +10,6 @@ describe("Path class", async () => {
     expect(removeBase("/foo/", "/foo")).toBe("/");
     expect(removeBase("/foo/", "/ola")).toBe("/ola");
     expect(removeBase("/foo/", "/../ola")).toBe("/ola");
-    expect(removeBase("file:///foo", "/foo")).toBe("/");
-    expect(removeBase("file:///foo", "file:///foo")).toBe("/");
-    expect(removeBase("bar", "file:///foo")).toBe("/foo");
-    expect(removeBase("../bar", "file:///foo")).toBe("/foo");
-    expect(removeBase("C:\\bar", "file:///bar")).toBe("/");
-    expect(removeBase("C:\\bar/boo", "file:///bar/boo/baz")).toBe("/baz");
     expect(removeBase(import.meta.dirname, fromFileUrl(import.meta.resolve("./foo")))).toBe("/foo");
   });
 

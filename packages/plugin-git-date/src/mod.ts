@@ -27,7 +27,6 @@ export function gitDate(userOptions?: Options) {
     site.preprocess((pages) => {
       for (const page of pages) {
         const date = cache.get(site.src(page.sourcePath));
-
         if (date === undefined) {
           continue;
         }
@@ -68,7 +67,7 @@ function getLastModified(path: string): Map<string, string> {
     }
 
     if (text && currentDate) {
-      const path = topLevelPath.clone().join(text).toString();
+      const path = topLevelPath.clone().join(text).full;
       // First commits, last modification
       if (!dates.has(path)) {
         dates.set(path, currentDate);
