@@ -3,7 +3,7 @@ import { build, getSite } from "@lumeland/testing/site.ts";
 import googleFonts from "../src/mod.ts";
 
 describe("google-fonts plugin", async () => {
-  it("should match site snapshot", async () => {
+  it("should match site snapshot", { timeout: 10000 }, async () => {
     const site = getSite({
       cwd: import.meta.resolve("./assets"),
     });
@@ -18,7 +18,7 @@ describe("google-fonts plugin", async () => {
     expect(await build(site)).toMatchSnapshot();
   });
 
-  it("should download and rename fonts", async () => {
+  it("should download and rename fonts", { timeout: 10000 }, async () => {
     const site = getSite({
       cwd: import.meta.resolve("./assets"),
     });
@@ -37,7 +37,7 @@ describe("google-fonts plugin", async () => {
     expect(await build(site)).toMatchSnapshot();
   });
 
-  it("should use a placeholder", async () => {
+  it("should use a placeholder", { timeout: 10000 }, async () => {
     const site = getSite({
       cwd: import.meta.resolve("./assets"),
     });
