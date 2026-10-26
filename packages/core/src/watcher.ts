@@ -1,6 +1,6 @@
-import { fromFileUrl, join, relative, toFileUrl } from "../deps/path.ts";
-import { normalizePath } from "./utils/path.ts";
+import { relative } from "../deps/path.ts";
 import Events from "./events.ts";
+import Path from "./path.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
@@ -79,7 +79,8 @@ export default class FSWatcher implements Watcher {
   /** Start the file watcher */
   async start() {
     const { root, ignore, debounce, dependencies } = this.options;
-    const watcher = watchFiles(root);
+    const rootPath = Path.create(root);
+    const watcher = watchFiles(rootPath.toString());
     const changes = new Set<string>();
     let timer: ReturnType<typeof setTimeout> | undefined = undefined;
     let runningCallback = false;
@@ -130,18 +131,17 @@ export default class FSWatcher implements Watcher {
 
       updateVersion();
 
-      for (const path of changedPaths.map((p) => normalizePath(p))) {
+      for (const path of changedPaths.map((p) => Path.create(p))) {
         // Filter ignored paths
         const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
-            ? path.startsWith(normalizePath(join(root, condition, "/"))) ||
-              path === normalizePath(join(root, condition))
-            : condition(path),
+            ? path.belongsTo(rootPath.clone().join(condition))
+            : condition(path.toString()),
         );
         if (isIgnored) continue;
-        paths.add(path);
-        for (const dep of updateDependencies(toFileUrl(path).href)) {
-          paths.add(normalizePath(fromFileUrl(dep)));
+        paths.add(path.toString());
+        for (const dep of updateDependencies(path.url.href)) {
+          paths.add(Path.create(dep).toString());
         }
       }
 
@@ -150,15 +150,15 @@ export default class FSWatcher implements Watcher {
       }
 
       paths.forEach((path) => {
-        const normalized = normalizePath(relative(root, path));
+        const normalized = Path.create(relative(root, path)).toString();
         changes.add(normalized);
 
         // The file has dependencies
         for (const [file, deps] of Object.entries(dependencies ?? {})) {
-          const isDependent = deps.some((dep) => normalizePath(dep) === normalized);
+          const isDependent = deps.some((dep) => Path.create(dep).toString() === normalized);
 
           if (isDependent) {
-            changes.add(normalizePath(file));
+            changes.add(Path.create(file).toString());
           }
         }
       });

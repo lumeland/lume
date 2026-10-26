@@ -1,6 +1,6 @@
+import Path from "@lumeland/core/path.ts";
 import { posix } from "../deps/path.ts";
 import modifyUrls from "@lumeland/plugin-modify-urls";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 
@@ -25,7 +25,7 @@ export function resolveUrls() {
           let [file, rest] = getPathInfo(url);
 
           if (!file.startsWith("~")) {
-            file = posix.resolve(posix.dirname(normalizePath(page.src.path)), file);
+            file = posix.resolve(Path.create(page.src.path).dirname, file);
           }
 
           if (cache.has(file)) {

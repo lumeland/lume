@@ -1,7 +1,6 @@
+import Path from "@lumeland/core/path.ts";
 import { describe, it, expect } from "vitest";
 import { build, getSite } from "@lumeland/testing/site.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
-import { fromFileUrl } from "../deps/path.ts";
 import purgecss from "../src/mod.ts";
 
 describe("purgecss plugin", async () => {
@@ -26,7 +25,7 @@ describe("purgecss plugin", async () => {
       purgecss({
         options: {
           content: [
-            normalizePath(fromFileUrl(import.meta.resolve("./assets/purgecss/static/**/*.html"))),
+            Path.create(import.meta.resolve("./assets/purgecss/static/**/*.html")).toString(),
             {
               raw: '<img id="img-option" src="">',
               extension: "html",

@@ -1,10 +1,10 @@
-import { dirname, extname, fromFileUrl, isBuiltin, resolve } from "../deps/path.ts";
+import { dirname, fromFileUrl, isBuiltin, resolve } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import textLoader from "@lumeland/core/loaders/text.ts";
-import { removeRoot } from "@lumeland/core/utils/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { OnResolveArgs, Plugin } from "../deps/esbuild.ts";
+import Path from "@lumeland/core/path.ts";
 
 export interface LoaderOptions {
   site: Site;
@@ -84,19 +84,21 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
 
       build.onResolve({ filter: /.*/ }, onResolve);
 
-      build.onLoad({ filter: /.*/ }, async ({ path, pluginData, namespace }) => {
+      build.onLoad({ filter: /.*/ }, async ({ path: rawPath, pluginData, namespace }) => {
+        const path = Path.create(rawPath);
+
         // If the file is an entry point, return its content
         if (pluginData?.entryPoint) {
           return {
             contents: pluginData.entryPoint.content,
-            loader: getLoader(path),
+            loader: getLoader(path.extension),
           };
         }
 
         // If it's a file, check if it's already loaded by Lume
         if (namespace === "file") {
-          const src = removeRoot(basePath, path);
-          const entry = site.fs.entries.get(src);
+          path.removeBase(basePath);
+          const entry = site.fs.entries.get(path.toString());
 
           // Return the content loaded by Lume
           if (entry) {
@@ -104,7 +106,7 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
 
             return {
               contents: content,
-              loader: getLoader(path),
+              loader: getLoader(path.extension),
             };
           }
         }
@@ -113,9 +115,7 @@ export default function lumeLoader(options: LoaderOptions): Plugin {
   } as Plugin;
 }
 
-function getLoader(path: string) {
-  const ext = extname(path).toLowerCase();
-
+function getLoader(ext: string) {
   switch (ext) {
     case ".ts":
     case ".mts":

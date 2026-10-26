@@ -2,8 +2,8 @@ import { autotrim, engine, SourceError, stringifyError, VentoError } from "../de
 import { posix } from "../deps/path.ts";
 import loader from "@lumeland/core/loaders/text.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Data } from "@lumeland/core/types.ts";
@@ -64,7 +64,7 @@ class LumeLoader implements Loader {
   }
 
   async load(file: string) {
-    const entry = this.fs.entries.get(normalizePath(file));
+    const entry = this.fs.entries.get(Path.create(file).toString());
 
     if (!entry) {
       throw new Error(`File not found: ${file}`);

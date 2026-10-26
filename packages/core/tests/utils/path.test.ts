@@ -1,19 +1,53 @@
 import { describe, it, expect } from "vitest";
-import { removeRoot } from "../../src/utils/path.ts";
 import { fromFileUrl } from "../../deps/path.ts";
+import Path from "../../src/path.ts";
 
-describe("Path utils", async () => {
-  it("Remove root", async () => {
-    expect(removeRoot("", "foo")).toBe("/foo");
-    expect(removeRoot("/foo/", "/foo")).toBe("/");
-    expect(removeRoot("/foo/", "/ola")).toBe("/ola");
-    expect(removeRoot("/foo/", "/../ola")).toBe("/ola");
-    expect(removeRoot("file:///foo", "/foo")).toBe("/");
-    expect(removeRoot("file:///foo", "file:///foo")).toBe("/");
-    expect(removeRoot("bar", "file:///foo")).toBe("/foo");
-    expect(removeRoot("../bar", "file:///foo")).toBe("/foo");
-    expect(removeRoot("C:\\bar", "file:///bar")).toBe("/");
-    expect(removeRoot("C:\\bar/boo", "file:///bar/boo/baz")).toBe("/baz");
-    expect(removeRoot(import.meta.dirname, fromFileUrl(import.meta.resolve("./foo")))).toBe("/foo");
+describe("Path class", async () => {
+  it("Remove base", async () => {
+    const removeBase = (root: string, path: string) =>
+      Path.create(path).removeBase(root).toString();
+    expect(removeBase("", "foo")).toBe("/foo");
+    expect(removeBase("/foo/", "/foo")).toBe("/");
+    expect(removeBase("/foo/", "/ola")).toBe("/ola");
+    expect(removeBase("/foo/", "/../ola")).toBe("/ola");
+    expect(removeBase("file:///foo", "/foo")).toBe("/");
+    expect(removeBase("file:///foo", "file:///foo")).toBe("/");
+    expect(removeBase("bar", "file:///foo")).toBe("/foo");
+    expect(removeBase("../bar", "file:///foo")).toBe("/foo");
+    expect(removeBase("C:\\bar", "file:///bar")).toBe("/");
+    expect(removeBase("C:\\bar/boo", "file:///bar/boo/baz")).toBe("/baz");
+    expect(removeBase(import.meta.dirname, fromFileUrl(import.meta.resolve("./foo")))).toBe("/foo");
+  });
+
+  it("Get/Set extension", async () => {
+    const getExtension = (path: string) => Path.create(path).extension;
+    const setExtension = (path: string, ext: string) => {
+      const p = Path.create(path);
+      p.extension = ext;
+      return p.toString();
+    };
+
+    expect(getExtension("/foo.bar")).toBe(".bar");
+    expect(getExtension("/foo.BAR")).toBe(".bar");
+    expect(setExtension("/foo", ".bar")).toBe("/foo.bar");
+    expect(setExtension("/foo.foo", ".bar")).toBe("/foo.bar");
+  });
+
+  it("Join", async () => {
+    const join = (path: string, paths: string[]) =>
+      Path.create(path)
+        .join(...paths)
+        .toString();
+
+    expect(join("/foo", ["bar"])).toBe("/foo/bar");
+  });
+
+  it("Basename", async () => {
+    const basename = (path: string) => Path.create(path).basename;
+
+    expect(basename("/foo")).toBe("foo");
+    expect(basename("/")).toBe("");
+    expect(basename("/other/")).toBe("other");
+    expect(basename("/other/more.txt")).toBe("more");
   });
 });

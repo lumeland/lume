@@ -9,6 +9,7 @@ import { localIp, openBrowser } from "./utils/net.ts";
 import { notFound } from "@lumeland/plugin-not-found";
 
 import type Site from "@lumeland/core/site.ts";
+import Path from "@lumeland/core/path.ts";
 
 export interface DevOptions {
   /** True if requires to open a server */
@@ -84,20 +85,15 @@ function setupServer(site: Site) {
 function setupWatcher(site: Site) {
   // Start the watcher
   const watcher = site.getWatcher();
-  const src = normalizePath(site.options.src);
+  const src = Path.create(site.options.src);
   watcher.addEventListener("change", async (event) => {
     const files = new Set<string>();
 
-    for (const file of event.files!) {
-      // Not in the src folder
-      if (!file.startsWith(src)) {
-        continue;
-      }
+    for (const f of event.files!) {
+      const file = Path.create(f);
 
-      if (src !== "/") {
-        files.add(file.slice(src.length));
-      } else {
-        files.add(file);
+      if (src.contains(file)) {
+        files.add(file.removeBase(src).toString());
       }
     }
 

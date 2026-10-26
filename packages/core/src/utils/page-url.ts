@@ -1,5 +1,6 @@
 import { posix } from "../../deps/path.ts";
-import { decodeURIComponentSafe, getExtension, normalizePath } from "./path.ts";
+import { decodeURIComponentSafe, getExtension } from "./path.ts";
+import Path from "../path.ts";
 
 import type { Destination } from "../source.ts";
 import type { Page } from "../file.ts";
@@ -7,7 +8,7 @@ import type { Data, DirectoryData } from "../types.ts";
 
 /** Returns a function to filter the 404 page */
 export function filter404page(page404?: string): (page: Data) => boolean {
-  const url404 = page404 ? normalizePath(page404) : undefined;
+  const url404 = page404 ? Path.create(page404).toString() : undefined;
 
   return url404 ? (data: Data) => data.url !== url404 : () => true;
 }
@@ -18,11 +19,7 @@ export function getBasename(url: string): string {
     return "";
   }
 
-  if (url.endsWith("/")) {
-    return decodeURIComponentSafe(posix.basename(url));
-  }
-
-  return decodeURIComponentSafe(posix.basename(url, getExtension(url)));
+  return Path.createDecoded(url).basename;
 }
 
 /** Returns the final URL assigned to a page */

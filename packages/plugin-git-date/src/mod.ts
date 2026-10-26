@@ -1,6 +1,5 @@
+import Path from "@lumeland/core/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
-import { join } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { runPipedCommand } from "@lumeland/core/services/process.ts";
 
@@ -52,6 +51,7 @@ function getLastModified(path: string): Map<string, string> {
     return dates;
   }
 
+  const topLevelPath = Path.create(toplevel);
   const str = gitCommand("log", "--format=DATE:%ci", "--name-only", "--", path);
 
   if (!str) {
@@ -68,7 +68,7 @@ function getLastModified(path: string): Map<string, string> {
     }
 
     if (text && currentDate) {
-      const path = normalizePath(join(toplevel, text));
+      const path = topLevelPath.clone().join(text).toString();
       // First commits, last modification
       if (!dates.has(path)) {
         dates.set(path, currentDate);

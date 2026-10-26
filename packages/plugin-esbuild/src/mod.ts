@@ -1,4 +1,4 @@
-import { getPathAndExtension, normalizePath, removeRoot } from "@lumeland/core/utils/path.ts";
+import { getPathAndExtension } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes } from "@lumeland/core/utils/format.ts";
@@ -10,6 +10,7 @@ import { build, BuildOptions, Metafile, OutputFile, stop } from "../deps/esbuild
 import { posix, toFileUrl } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
+import Path from "@lumeland/core/path.ts";
 
 export interface Options {
   /** File extensions to bundle */
@@ -140,12 +141,10 @@ export function esbuild(userOptions?: Options) {
           continue;
         }
 
-        const normalizedOutPath = normalizePath(outputPath);
-        const outputFile = outputFiles.find((file) => {
-          const relativeFilePath = normalizePath(normalizePath(file.path).replace(basePath, ""));
-
-          return relativeFilePath === normalizedOutPath;
-        });
+        const normalizedOutPath = Path.create(outputPath).toString();
+        const outputFile = outputFiles.find(
+          (file) => Path.create(file.path).removeBase(basePath).toString() === normalizedOutPath,
+        );
 
         if (!outputFile) {
           log.error(
@@ -159,7 +158,9 @@ export function esbuild(userOptions?: Options) {
           ? outputFile.text
           : resolveImports(
               outputFile.text,
-              output.entryPoint ? removeRoot(basePath, output.entryPoint) : outputPath,
+              output.entryPoint
+                ? Path.create(output.entryPoint).removeBase(basePath).toString()
+                : outputPath,
               outputPath,
               basePath,
               metafile,
@@ -174,7 +175,9 @@ export function esbuild(userOptions?: Options) {
         let entryPoint: Page | undefined;
 
         if (output.entryPoint) {
-          const outputRelativeEntryPoint = removeRoot(basePath, output.entryPoint);
+          const outputRelativeEntryPoint = Path.create(output.entryPoint)
+            .removeBase(basePath)
+            .toString();
 
           entryPoint = pages.find(
             (page) =>
@@ -251,8 +254,9 @@ function resolveImport(
         return false;
       }
 
-      const outputRelativeEntryPoint = removeRoot(basePath, output.entryPoint);
-
+      const outputRelativeEntryPoint = Path.create(output.entryPoint)
+        .removeBase(basePath)
+        .toString();
       return outputRelativeEntryPoint === sourcePathOfImport;
     });
 
