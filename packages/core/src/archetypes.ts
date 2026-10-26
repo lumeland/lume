@@ -8,6 +8,7 @@ import { isUrl } from "./utils/path.ts";
 import { cwd } from "./services/process.ts";
 import { FsError, readTextFile, writeFile, writeTextFile } from "./services/fs.ts";
 import { read } from "./utils/read.ts";
+import { getFiles, isFromCdn } from "./utils/cdn.ts";
 
 export interface Options {
   src: string;
@@ -46,18 +47,27 @@ export default class Archetypes {
     }
 
     if (isGenerator(archetype)) {
-      for await (const file of archetype(...args) as AsyncGenerator<ArchetypeFile>) {
+      for await (const file of archetype(...args) as AsyncGenerator<
+        ArchetypeFile | ArchetypeRemote
+      >) {
         await this.save(file);
       }
     } else {
-      const file = archetype(...args) as ArchetypeFile | undefined;
+      const file = archetype(...args) as ArchetypeFile | ArchetypeRemote | undefined;
       if (file) {
         await this.save(file);
       }
     }
   }
 
-  async save(file: ArchetypeFile): Promise<void> {
+  async save(file: ArchetypeFile | ArchetypeRemote): Promise<void> {
+    if (isRemote(file)) {
+      const files = await remoteToFile(file);
+      for (const file of files) {
+        await this.save(file);
+      }
+      return;
+    }
     const { path, base = "src", content, overwrite } = file;
 
     if (!path) {
@@ -135,13 +145,28 @@ export default class Archetypes {
 
 export type Archetype = (
   ...args: string[]
-) => void | ArchetypeFile | Generator<ArchetypeFile> | AsyncGenerator<ArchetypeFile>;
+) =>
+  | void
+  | ArchetypeFile
+  | ArchetypeRemote
+  | Generator<ArchetypeFile | ArchetypeRemote>
+  | AsyncGenerator<ArchetypeFile | ArchetypeRemote>;
 
+/** To generate files dynamically */
 export interface ArchetypeFile<T = unknown> {
   base?: "src" | "root";
   path: string;
   overwrite?: boolean;
   content: T | URL | ((prev?: T) => T | Promise<T>);
+  url?: string;
+}
+
+/** Allow to download files */
+export interface ArchetypeRemote {
+  url: string | URL;
+  path?: string;
+  files: string[];
+  overwrite?: boolean;
 }
 
 async function saveFile(path: string, content: string | Uint8Array, overwrite = false) {
@@ -198,4 +223,32 @@ async function readFile(path: string): Promise<string | undefined> {
     }
     throw error;
   }
+}
+
+function isRemote(arch: ArchetypeFile | ArchetypeRemote): arch is ArchetypeRemote {
+  return !!arch.url;
+}
+
+async function remoteToFile(remote: ArchetypeRemote): Promise<ArchetypeFile[]> {
+  const overwrite = remote.overwrite;
+  const url = remote.url.toString();
+
+  if (isFromCdn(url) || url.startsWith("file:")) {
+    const files = await getFiles(url, remote.files);
+    return Array.from(files).map(([file, url]) => ({
+      path: join(remote.path ?? "/", file),
+      overwrite,
+      content: new URL(url),
+    }));
+  }
+
+  if (isUrl(url)) {
+    return remote.files.map((file) => ({
+      path: join(remote.path ?? "/", file),
+      overwrite,
+      content: new URL(url),
+    }));
+  }
+
+  throw new Error(`Invalid archifact's url "${url}"`);
 }
