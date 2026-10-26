@@ -1,5 +1,5 @@
 import { posix } from "../deps/path.ts";
-import { getExtension, normalizePath } from "./utils/path.ts";
+import { getExtension } from "./utils/path.ts";
 import { mergeData } from "./utils/merge-data.ts";
 import { getBasename, getPageUrl } from "./utils/page-url.ts";
 import { getPageDate } from "./utils/page-date.ts";

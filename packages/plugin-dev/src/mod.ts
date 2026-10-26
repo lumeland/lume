@@ -1,5 +1,4 @@
 import { SiteWatcher } from "@lumeland/core/watcher.ts";
-import { normalizePath } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { inspect } from "@lumeland/core/services/process.ts";
 import reload from "./reload.ts";

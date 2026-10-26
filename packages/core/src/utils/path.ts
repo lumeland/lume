@@ -1,24 +1,4 @@
-import { posix, SEPARATOR } from "../../deps/path.ts";
-
-const WINDOWS_ABSOLUTE = /^\w:[\\/]/;
-
-/**
- * Convert the Windows paths (that use the separator "\")
- * to Posix paths (with the separator "/")
- * and ensure it starts with "/".
- */
-export function normalizePath(path: string) {
-  if (SEPARATOR !== "/") {
-    path = path.replaceAll(SEPARATOR, "/");
-
-    // Is absolute Windows path (C:/...)
-    if (path.match(WINDOWS_ABSOLUTE)) {
-      return path;
-    }
-  }
-
-  return posix.join("/", path);
-}
+import { SEPARATOR } from "../../deps/path.ts";
 
 /** Check if the path is an URL */
 export function isUrl(path: string): boolean {
