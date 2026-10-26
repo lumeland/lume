@@ -1,9 +1,9 @@
 import Nunjucks from "../deps/nunjucks.ts";
-import { basename, join, posix } from "../deps/path.ts";
+import { basename, join } from "../deps/path.ts";
 import loader from "@lumeland/core/loaders/text.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
-import { removeRoot } from "@lumeland/core/utils/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Engine, Helper, HelperOptions } from "@lumeland/core/renderer.ts";
@@ -147,12 +147,12 @@ class LumeLoader extends Nunjucks.Loader implements Nunjucks.ILoaderAsync {
     });
   }
 
-  override resolve(from: string, to: string): string {
-    const fromDir = posix.dirname(removeRoot(this.site.src(), from));
-    const entry = getInclude(fromDir, to, this.site.fs);
+  override resolve(rawFrom: string, to: string): string {
+    const from = Path.create(rawFrom).removeBase(this.site.src());
+    const entry = getInclude(from.dirname, to, this.site.fs);
 
     if (!entry) {
-      log.error(`[nunjucks plugin] Unable to resolve ${to} from ${from}`);
+      log.error(`[nunjucks plugin] Unable to resolve ${to} from ${rawFrom}`);
       return "";
     }
 

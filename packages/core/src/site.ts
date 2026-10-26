@@ -1,12 +1,13 @@
-import { fromFileUrl, join, posix } from "../deps/path.ts";
+import { fromFileUrl, posix } from "../deps/path.ts";
 import { merge } from "./utils/object.ts";
-import { isUrl, normalizePath } from "./utils/path.ts";
+import { isUrl } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
 import { log } from "./utils/log.ts";
 import { filter404page } from "./utils/page-url.ts";
 import { insertContent } from "./utils/page-content.ts";
 import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
 import { setCache } from "./utils/read.ts";
+import Path from "./path.ts";
 
 import FS from "./fs.ts";
 import { ComponentLoader } from "./components.ts";
@@ -83,6 +84,8 @@ const defaults = {
  */
 export default class Site {
   options: Merge<SiteOptions, typeof defaults>;
+
+  rootPath: Path;
 
   /** Internal data. Used to save arbitrary data by plugins and processors */
   _data: Record<string, unknown> = {};
@@ -164,6 +167,7 @@ export default class Site {
     if (this.options.cwd.startsWith("file:")) {
       this.options.cwd = fromFileUrl(this.options.cwd);
     }
+    this.rootPath = Path.create(this.options.cwd);
 
     const root = this.root();
     const src = this.src();
@@ -242,11 +246,11 @@ export default class Site {
 
     // Normalize the ignored paths
     this.options.watcher.ignore = this.options.watcher.ignore.map((path) =>
-      typeof path === "string" ? normalizePath(path) : path,
+      typeof path === "string" ? Path.create(path).toString() : path,
     );
 
     // Ignore the dest folder by the watcher
-    this.options.watcher.ignore.push(normalizePath(this.options.dest));
+    this.options.watcher.ignore.push(Path.create(this.options.dest).toString());
     this.fs.options.ignore = this.options.watcher.ignore;
 
     // Initialize the cache if LUME_NOCACHE is not enabled
@@ -298,7 +302,7 @@ export default class Site {
    * Use the arguments to return a subpath
    */
   root(...path: string[]): string {
-    return normalizePath(join(this.options.cwd, ...path));
+    return this.rootPath.clone().join(...path).full;
   }
 
   /**
@@ -613,7 +617,7 @@ export default class Site {
       throw new Error(`It's not possible to copy files outsite the src directory ("${from}")`);
     }
 
-    this.source.addFile(normalizePath(from), to ?? ((str: string) => str), copy);
+    this.source.addFile(Path.create(from).toString(), to ?? ((str: string) => str), copy);
   }
 
   /** Ignore one or several files or directories */
@@ -1030,7 +1034,7 @@ export default class Site {
   }
 
   async getOrCreatePage<D = DefaultType>(url: string): Promise<Page<D>> {
-    url = normalizePath(url);
+    url = Path.create(url).toString();
 
     // It's a page
     const page = this.pages.find((page) => page.data.url === url);
@@ -1072,13 +1076,7 @@ export default class Site {
   async getContent(file: string, binary: false): Promise<string | undefined>;
   async getContent(file: string, binary: boolean): Promise<string | Uint8Array | undefined>;
   async getContent(file: string, binary: boolean): Promise<string | Uint8Array | undefined> {
-    file = normalizePath(file);
-    const basePath = this.src();
-
-    if (file.startsWith(basePath)) {
-      file = normalizePath(file.slice(basePath.length));
-    }
-
+    file = Path.create(file).removeBase(this.src()).toString();
     file = decodeURI(file);
     const url = encodeURI(file);
 

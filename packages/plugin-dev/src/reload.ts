@@ -1,4 +1,4 @@
-import { normalizePath } from "@lumeland/core/utils/path.ts";
+import Path from "@lumeland/core/path.ts";
 import { readTextFileSync } from "@lumeland/core/services/fs.ts";
 
 import type { Middleware } from "@lumeland/core/server.ts";
@@ -51,7 +51,7 @@ export function reload(options: Options): Middleware {
     const message = JSON.stringify({
       type: "update",
       revision,
-      files: Array.from(files).map((file) => normalizePath(file)),
+      files: Array.from(files).map((file) => Path.create(file).toString()),
       data: debugBar,
     });
 

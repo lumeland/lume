@@ -1,10 +1,11 @@
 import { posix } from "../deps/path.ts";
-import { getExtension, normalizePath } from "./utils/path.ts";
+import { getExtension } from "./utils/path.ts";
 import { mergeData } from "./utils/merge-data.ts";
 import { getBasename, getPageUrl } from "./utils/page-url.ts";
 import { getPageDate } from "./utils/page-date.ts";
 import { Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
+import Path from "./path.ts";
 
 import type { Data, DirectoryData, RawData } from "./types.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -99,7 +100,7 @@ export default class Source {
   }
 
   addIgnoredPath(path: string) {
-    this.ignored.add(normalizePath(path));
+    this.ignored.add(Path.create(path).toString());
   }
 
   addIgnoreFilter(filter: ScopeFilter) {
@@ -114,7 +115,7 @@ export default class Source {
         );
       }
     } else {
-      from = normalizePath(from);
+      from = Path.create(from).toString();
     }
 
     if (typeof to === "string") {
@@ -122,7 +123,7 @@ export default class Source {
         to = to.slice(0, -1);
       }
 
-      to = normalizePath(to);
+      to = Path.create(to).toString();
     }
 
     this.addedFiles.set(from, [to, isCopy]);

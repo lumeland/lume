@@ -1,13 +1,14 @@
-import { isUrl, normalizePath } from "@lumeland/core/utils/path.ts";
+import { isUrl } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { Page } from "@lumeland/core/file.ts";
-import { basename, join, toFileUrl } from "../deps/path.ts";
+import { basename, toFileUrl } from "../deps/path.ts";
 import { toBase64 } from "@lumeland/core/services/global.ts";
 
 import type Site from "@lumeland/core/site.ts";
+import Path from "@lumeland/core/path.ts";
 
 export interface Options {
   /** Set true to inline the source map in the output file */
@@ -136,19 +137,11 @@ export function saveAsset(site: Site, page: Page, content: string, sourceMap?: S
 
   // Normalize any source url
   function normalizeSource(source: string): string {
-    if (source.startsWith("deno:")) {
-      // esbuild
-      source = source.substring(5);
-    }
     if (isUrl(source)) {
       return source;
     }
 
-    source = normalizePath(source);
-
-    return source.startsWith(root)
-      ? toFileUrl(decodeURIComponent(source)).href
-      : toFileUrl(decodeURIComponent(join(root, source))).href;
+    return Path.createDecoded(source).addBase(root).url.href;
   }
 
   sourceMap.sources = sourceMap.sources

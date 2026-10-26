@@ -1,4 +1,3 @@
-import { normalizePath, replaceExtension } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { compileStringAsync } from "../deps/sass.ts";
@@ -9,6 +8,7 @@ import { warnUntil } from "@lumeland/core/utils/log.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
+import Path from "@lumeland/core/path.ts";
 
 type SassOptions = Omit<StringOptions<"async">, "url" | "syntax">;
 
@@ -50,24 +50,23 @@ export function sass(userOptions?: Options) {
     });
 
     const { entries } = site.fs;
-    const basePath = site.src();
+    const basePath = Path.create(site.src());
 
     async function sass(page: Page) {
       const { content, filename, enableSourceMap } = prepareAsset(site, page);
-      const baseFilename = posix.dirname(filename);
+      const assetPath = Path.create(filename);
+      const baseFilename = assetPath.dirname;
 
       const sassOptions: StringOptions<"async"> = {
         ...options.options,
         sourceMap: enableSourceMap,
         style: options.format,
         syntax: page.src.ext === ".sass" ? "indented" : "scss",
-        url: toFileUrl(filename),
+        url: assetPath.url,
         importer: {
           canonicalize(url: string) {
-            const pathname = normalizePath(fromFileUrl(url));
-            const mainPath = pathname.startsWith(basePath)
-              ? normalizePath(pathname.slice(basePath.length))
-              : pathname;
+            const pathname = Path.create(url);
+            const mainPath = pathname.clone().removeBase(basePath).toString();
 
             for (const path of getPathsToLook(mainPath)) {
               const entry = entries.get(path);
@@ -78,11 +77,11 @@ export function sass(userOptions?: Options) {
             }
 
             // Search in includes
-            const includePath = pathname.startsWith(baseFilename)
-              ? pathname.slice(baseFilename.length)
+            const includePath = pathname.contains(baseFilename)
+              ? pathname.removeBase(baseFilename)
               : mainPath;
 
-            for (const path of getPathsToLook(includePath)) {
+            for (const path of getPathsToLook(includePath.toString())) {
               const resolved = resolveInclude(path);
               const entry = entries.get(resolved);
 
@@ -114,7 +113,9 @@ export function sass(userOptions?: Options) {
 
       // @ts-ignore: sourceMap is not in the type definition
       saveAsset(site, page, output.css, output.sourceMap);
-      page.data.url = replaceExtension(page.data.url, ".css");
+      const url = Path.create(page.data.url);
+      url.extension = ".css";
+      page.data.url = url.toString();
     }
   };
 }
@@ -148,6 +149,9 @@ function getPathsToLook(path: string): string[] {
 export default sass;
 
 function resolveInclude(path: string): string {
-  const normalized = normalizePath(path);
-  return normalized.startsWith("/_includes/") ? normalized : posix.join("/_includes/", normalized);
+  const includes = Path.create("/_includes");
+  const normalized = Path.create(path);
+  return normalized.belongsTo(includes)
+    ? normalized.toString()
+    : includes.join(normalized.toString()).toString();
 }

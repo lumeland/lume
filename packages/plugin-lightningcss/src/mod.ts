@@ -1,4 +1,3 @@
-import { removeRoot } from "@lumeland/core/utils/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
@@ -9,7 +8,7 @@ import { browsers, version } from "@lumeland/core/utils/browsers.ts";
 import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
-import { posix } from "../deps/path.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type { Item } from "@lumeland/core/debugbar.ts";
 import type Site from "@lumeland/core/site.ts";
@@ -139,7 +138,7 @@ export function lightningCSS(userOptions?: Options) {
           inputSourceMap: JSON.stringify(sourceMap),
           ...options.options,
           resolver: {
-            resolve(id: string, from: string) {
+            resolve(id: string, rawFrom: string) {
               if (isFromCdn(id)) {
                 return getFile(id);
               }
@@ -148,10 +147,12 @@ export function lightningCSS(userOptions?: Options) {
                 return id;
               }
 
-              const entry = getInclude(posix.dirname(removeRoot(root, from)), id, site.fs);
+              const from = Path.create(rawFrom).removeBase(root);
+
+              const entry = getInclude(from.dirname, id, site.fs);
 
               if (!entry) {
-                log.error(`[lightningcss plugin] Included file ${id} from ${from} not found`);
+                log.error(`[lightningcss plugin] Included file ${id} from ${rawFrom} not found`);
                 return "";
               }
 

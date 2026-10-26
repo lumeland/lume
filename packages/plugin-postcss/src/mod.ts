@@ -9,8 +9,7 @@ import { warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes } from "@lumeland/core/utils/format.ts";
 import { browsers, versionString } from "@lumeland/core/utils/browsers.ts";
 import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
-import { removeRoot } from "@lumeland/core/utils/path.ts";
-import { posix } from "../../core/deps/path.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { SourceMap } from "@lumeland/plugin-source-maps";
@@ -141,7 +140,8 @@ function configureImport(site: Site) {
         return "/" + id;
       }
 
-      const entry = getInclude(removeRoot(root, posix.join(basedir, "/")), id, site.fs);
+      const path = Path.create(basedir).removeBase(root);
+      const entry = getInclude(path.toString(), id, site.fs);
 
       if (!entry) {
         throw new Error(`File ${id} not found from ${basedir}`);

@@ -1,5 +1,5 @@
 import { globToRegExp } from "../deps/path.ts";
-import { normalizePath } from "./utils/path.ts";
+import Path from "./path.ts";
 
 import type { Page, StaticFile } from "./file.ts";
 import type { Data, DefaultType, DirectoryData } from "./types.ts";
@@ -46,16 +46,16 @@ export default class Searcher {
   /**
    * Return the data in the scope of a path (file or folder)
    */
-  data<T>(path = "/"): Data<T> | DirectoryData<T> | undefined {
-    const normalized = normalizePath(path);
-    const dirData = this.#sourceData.get(normalized);
+  data<T>(rawPath = "/"): Data<T> | DirectoryData<T> | undefined {
+    const path = Path.create(rawPath).toString();
+    const dirData = this.#sourceData.get(path);
 
     if (dirData) {
       return dirData as DirectoryData<T>;
     }
 
     const result = this.#pages.find(
-      (page) => page.data.url === normalized || page.data.sourcePath === normalized,
+      (page) => page.data.url === path || page.data.sourcePath === path,
     );
 
     if (result) {
