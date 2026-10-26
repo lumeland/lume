@@ -12,7 +12,7 @@ describe("tailwindcss plugin", async () => {
     site.use(tailwindCSS());
     site.add([".css"]);
 
-    expect(await build(site)).toMatchSnapshot();
+    expect(await build(site, { maxStringContentLength: 1000 })).toMatchSnapshot();
   });
 
   it("should minify the site", async () => {
@@ -27,7 +27,7 @@ describe("tailwindcss plugin", async () => {
     );
     site.add([".css"]);
 
-    expect(await build(site)).toMatchSnapshot();
+    expect(await build(site, { maxStringContentLength: 1000 })).toMatchSnapshot();
   });
 
   it("should generate source maps", async () => {
@@ -39,6 +39,6 @@ describe("tailwindcss plugin", async () => {
     site.use(tailwindCSS());
     site.use(sourceMaps());
 
-    expect(await build(site)).toMatchSnapshot();
+    expect(await build(site, { maxStringContentLength: 1000 })).toMatchSnapshot();
   });
 });

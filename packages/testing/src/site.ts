@@ -23,6 +23,7 @@ export function getSite(
 
 interface SiteSnapshotOptions {
   avoidBinaryFilesLength?: boolean;
+  maxStringContentLength?: number;
 }
 
 /** Build a site and print errors */
@@ -46,7 +47,11 @@ function normalizeValue(
 
   if (typeof content === "string") {
     // Normalize line ending for Windows
-    return content.replaceAll("\r\n", "\n").replaceAll(/base64,[^"]+/g, "base64,(...)");
+    content = content.replaceAll("\r\n", "\n").replaceAll(/base64,[^"]+/g, "base64,(...)");
+    if (options.maxStringContentLength) {
+      return content.slice(0, options.maxStringContentLength);
+    }
+    return content;
   }
 
   if (content instanceof Uint8Array) {
