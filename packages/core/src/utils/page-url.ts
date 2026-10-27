@@ -1,5 +1,4 @@
 import { posix } from "../../deps/path.ts";
-import { decodeURIComponentSafe, getExtension } from "./path.ts";
 import Path from "../path.ts";
 
 import type { Destination } from "../source.ts";

@@ -1,5 +1,5 @@
 import { canParse, format, maxSatisfying, parse, parseRange } from "../../deps/semver.ts";
-import { fromFileUrl, globToRegExp, join, posix, toFileUrl } from "../../deps/path.ts";
+import { fromFileUrl, globToRegExp, join, posix } from "../../deps/path.ts";
 import { readDirSync } from "../services/fs.ts";
 import Path from "../path.ts";
 
