@@ -52,7 +52,7 @@ const tsconfig = {
     rootDir: ".",
     declaration: true,
   },
-  exclude: ["tests"],
+  exclude: ["tests", "build"],
 };
 
 const root = `packages/plugin-${name}`;
