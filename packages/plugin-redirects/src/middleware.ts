@@ -4,9 +4,6 @@ export interface Options {
   /** A map of redirects */
   redirects: Record<string, string | Redirect>;
 
-  /** Whether distinguish the trailing slash or not */
-  strict?: boolean;
-
   /** List of search params to copy to the final URL */
   copySearchParams: (string | RegExp)[];
 }
@@ -25,10 +22,6 @@ export function redirects(options: Options): Middleware {
   }
 
   function findRedirect(url: string): Redirect | undefined {
-    if (options.strict) {
-      return redirects.get(url);
-    }
-
     // Remove the trailing slash
     const cleaned = url === "/" ? url : url.replace(/\/$/, "");
     return redirects.get(cleaned) || redirects.get(cleaned + "/");
