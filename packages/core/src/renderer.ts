@@ -225,7 +225,7 @@ export default class Renderer {
   /** Render the page layout */
   async #renderLayout(page: Page, content: Content): Promise<Content> {
     let data = { ...page.data };
-    let path = posix.dirname(page.src.path + page.src.ext);
+    let fromDir = posix.dirname(page.src.path + page.src.ext);
     let layout = data.layout;
 
     // Render the layouts recursively
@@ -236,10 +236,10 @@ export default class Renderer {
         throw new Error(`The layout format "${layout}" doesn't exist`);
       }
 
-      const layoutEntry = getInclude(path, layout, this.fs);
+      const layoutEntry = getInclude(fromDir, layout, this.fs);
 
       if (!layoutEntry) {
-        throw new Error(`The layout file "${layout}" for the file "${path}" doesn't exist`);
+        throw new Error(`The layout file "${layout}" from the dir "${fromDir}" doesn't exist`);
       }
 
       const layoutData = await layoutEntry.getContent(format.loader);
@@ -251,7 +251,7 @@ export default class Renderer {
 
       content = await this.render<Content>(layoutData.content, data, layoutEntry.path, true);
       layout = layoutData.layout;
-      path = layoutEntry.path.split("/_includes/")[0];
+      fromDir = posix.dirname(layoutEntry.path);
     }
 
     return content;
