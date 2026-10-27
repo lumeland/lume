@@ -1,6 +1,10 @@
 # create-lume
 
-Script to create Lume sites
+Script to create Lume sites.
+
+```
+npm create lume
+```
 
 ---
 
