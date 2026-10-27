@@ -5,7 +5,7 @@ import { getInclude } from "@lumeland/core/utils/includes.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
-import { warnUntil } from "@lumeland/core/utils/log.ts";
+import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes } from "@lumeland/core/utils/format.ts";
 import { browsers, versionString } from "@lumeland/core/utils/browsers.ts";
 import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
@@ -144,7 +144,8 @@ function configureImport(site: Site) {
       const entry = getInclude(path.toString(), id, site.fs);
 
       if (!entry) {
-        throw new Error(`File ${id} not found from ${basedir}`);
+        log.error(`[postcss plugin] Included file ${id} not found`);
+        return "/~error";
       }
 
       return entry.path;
@@ -152,6 +153,10 @@ function configureImport(site: Site) {
 
     /** Load the content (using the Lume reader) */
     async load(file: string) {
+      if (file === "/~error") {
+        // The error was already reported in resolve()
+        return "";
+      }
       if (file.startsWith("/") && isFromCdn(file.slice(1))) {
         const url = getFile(file.slice(1));
         return await readFile(url);
