@@ -233,6 +233,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
     writeFile(srcRoot, "index.md", [
       "# Hello world",
+      "",
       "[Go to Lume documentation](https://lume.land)",
     ]);
   }
