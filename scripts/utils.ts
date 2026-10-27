@@ -87,19 +87,24 @@ export async function copyFolder(from: string, to: string): Promise<void> {
   await cp(from, to, { recursive: true });
 }
 
+export function getJson<T = Record<string, any>>(root: string, path: string): T {
+  const file = join(root, path);
+
+  try {
+    return JSON.parse(readFileSync(file, "utf-8")) as T;
+  } catch {
+    return {} as T;
+  }
+}
+
 export function editJson<T = Record<string, any>>(
   root: string,
   path: string,
   cb: (data: T) => void,
 ) {
   const file = join(root, path);
-  let data = {} as T;
+  const data = getJson<T>(root, path);
 
-  try {
-    data = JSON.parse(readFileSync(file, "utf-8"));
-  } catch {
-    console.log(`Not found. Generate file: ${file}`);
-  }
   try {
     cb(data);
   } catch (err) {
@@ -107,4 +112,23 @@ export function editJson<T = Record<string, any>>(
     throw err;
   }
   writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+}
+
+export function editText(root: string, path: string, cb: (data: string) => string | string[]) {
+  const file = join(root, path);
+  let data = "";
+
+  try {
+    data = readFileSync(file, "utf-8");
+  } catch {
+    console.log(`Not found. Generate file: ${file}`);
+  }
+  try {
+    const newData = cb(data);
+    data = Array.isArray(newData) ? newData.join("\n") : newData;
+  } catch (err) {
+    console.log(`Error editing file: ${file}`);
+    throw err;
+  }
+  writeFileSync(file, data + "\n");
 }

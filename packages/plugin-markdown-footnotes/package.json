@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-markdown-footnotes",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to collect all footnotes from markdown files",
   "keywords": [
     "lume-plugin"

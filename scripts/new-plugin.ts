@@ -77,5 +77,19 @@ describe("${name} plugin", async () => {
 });
 `,
 );
+await saveFile(
+  root,
+  `README.md`,
+  `# @lumeland/plugin-${name}
+
+<!-- Plugin description here -->
+
+More info at https://lume.land/plugins/${name}
+
+---
+
+Please see [CHANGELOG](CHANGELOG.md) for information about the recent changes.
+`,
+);
 
 mkdirSync(join(root, "deps"));

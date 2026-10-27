@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-picture",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to create responsive images using the Transform Images plugin",
   "keywords": [
     "lume-plugin"

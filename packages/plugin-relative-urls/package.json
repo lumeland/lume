@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-relative-urls",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to convert all URLs to relative",
   "keywords": [
     "lume-plugin"

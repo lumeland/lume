@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-terser",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to minify JavaScript files with Terser",
   "keywords": [
     "lume-plugin"

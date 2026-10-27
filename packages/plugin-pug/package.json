@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-pug",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to use Pug to create pages and layouts",
   "keywords": [
     "lume-plugin"

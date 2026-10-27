@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-modify-urls",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to modify all URLs of HTML and CSS files with a custom function",
   "keywords": [
     "lume-plugin"

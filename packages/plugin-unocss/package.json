@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-unocss",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to use UnoCSS to create the CSS styles",
   "keywords": [
     "lume-plugin"

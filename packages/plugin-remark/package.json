@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-remark",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to use Remark to render the markdown content",
   "keywords": [
     "lume-plugin"

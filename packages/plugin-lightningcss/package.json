@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-lightningcss",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to transform and minify your CSS files with Lightning CSS",
   "keywords": [
     "lume-plugin"

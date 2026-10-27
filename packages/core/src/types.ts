@@ -4,7 +4,7 @@ import type { Loader } from "./fs.ts";
 import type { default as Site, Plugin } from "./site.ts";
 import type { Archetype, ArchetypeFile } from "./archetypes.ts";
 import type { Middleware, RequestHandler } from "./server.ts";
-import type { MergeStrategy } from "./utils/merge_data.ts";
+import type { MergeStrategy } from "./utils/merge-data.ts";
 import type { ProxyComponents } from "./components.ts";
 
 /** Raw data defined for pages or _data files */

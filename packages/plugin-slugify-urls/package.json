@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-slugify-urls",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to slugify all page URLs to remove potentially conflicting characters",
   "keywords": [
     "lume-plugin"

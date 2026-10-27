@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-extract-date",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to extract dates from the filenames",
   "keywords": [
     "lume-plugin"

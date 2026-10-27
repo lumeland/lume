@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-filter-pages",
-  "version": "1.0.0-beta-8",
+  "version": "1.0.0-beta-9",
   "description": "Plugin to filter pages under a specific condition",
   "keywords": [
     "lume-plugin"
