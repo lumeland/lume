@@ -155,19 +155,6 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   fs.mkdirSync(root, { recursive: true });
 
   createNodeFiles(root, targetDir.replaceAll(/[^\w-]/g, ""));
-
-  writeFile(root, "tsconfig.json", {
-    compilerOptions: {
-      moduleResolution: "NodeNext",
-      module: "NodeNext",
-      jsx: "react-jsx",
-      jsxImportSource: "@lumeland/ssx",
-      allowImportingTsExtensions: true,
-      rewriteRelativeImportExtensions: true,
-      erasableSyntaxOnly: true,
-    },
-  });
-
   writeFile(root, ".gitignore", ["_site", "_cache", "node_modules", ".env", ".DS_Store"]);
 
   const src = options.src ? path.join("/", options.src).replace(/^\//, "") : "";

@@ -31,11 +31,11 @@ for (const entry of readdirSync(`./${root}`)) {
 
   // Bump beta version
   editJson(dir, "package.json", (data) => {
-  // data.files = Array.from(new Set(["build", "CHANGELOG.md", ...(data.files ?? [])]));
+    // data.files = Array.from(new Set(["build", "CHANGELOG.md", ...(data.files ?? [])]));
 
-  // if (data.name.startsWith("@lumeland/plugin-")) {
-  //   data.homepage = `https://lume.land/plugins/${data.name.slice(17)}/`;
-  // }
+    // if (data.name.startsWith("@lumeland/plugin-")) {
+    //   data.homepage = `https://lume.land/plugins/${data.name.slice(17)}/`;
+    // }
 
     const [version, beta] = data.version.split("-beta-");
     if (beta) {

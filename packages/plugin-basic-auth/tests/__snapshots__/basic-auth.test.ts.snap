@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic-auth plugin > should match authorized snapshot 1`] = `
+{
+  "body": "OK",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`basic-auth plugin > should match unauthorized snapshot (2) 1`] = `
+{
+  "body": "401 Unauthorized",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "www-authenticate": "Basic realm="Basic Authentication"",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 401,
+  "statusText": "Unauthorized",
+}
+`;
+
+exports[`basic-auth plugin > should match unauthorized snapshot 1`] = `
+{
+  "body": "401 Unauthorized",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "www-authenticate": "Basic realm="Basic Authentication"",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 401,
+  "statusText": "Unauthorized",
+}
+`;
