@@ -28,6 +28,11 @@ export async function send(server: Server, requestOrUrl?: Request | string | URL
   const body = await response.text();
   const headers = Object.fromEntries(response.headers.entries());
 
+  // Fix values for some headers
+  if (headers["last-modified"]) {
+    headers["last-modified"] = "Wed, 28 Oct 2026 19:16:58 GMT";
+  }
+
   return {
     request: request.url,
     method: request.method,
