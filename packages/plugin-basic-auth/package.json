@@ -1,8 +1,9 @@
 {
   "name": "@lumeland/plugin-basic-auth",
   "version": "1.0.0-rc.1",
-  "description": "Plugin to implement HTTP Basic Authentication",
+  "description": "Middleware to implement HTTP Basic Authentication",
   "keywords": [
+    "lume-middleware",
     "lume-plugin"
   ],
   "license": "MIT",

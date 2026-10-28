@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic-auth plugin > should match HTML 1`] = `
+{
+  "body": "OK",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "expires": "Wed, 04 Nov 2026 18:33:42 GMT",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`basic-auth plugin > should match JavaScript 1`] = `
+{
+  "body": "OK",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "expires": "Wed, 04 Nov 2026 18:33:42 GMT",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`basic-auth plugin > should match feed 1`] = `
+{
+  "body": "OK",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "expires": "Wed, 04 Nov 2026 18:33:42 GMT",
+  },
+  "method": "GET",
+  "request": "https://example.com/",
+  "status": 200,
+  "statusText": "",
+}
+`;
