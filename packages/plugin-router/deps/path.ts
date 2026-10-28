@@ -1,2 +1,1 @@
-import { posix } from "node:path";
-export const join = posix.join;
+export { join } from "node:path/posix";
