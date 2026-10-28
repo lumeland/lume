@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`serve-folder plugin > should match after behavior 1`] = `
+{
+  "body": "<!DOCTYPE html>
+<html>
+<body>
+    Hello world
+</body>
+</html>",
+  "headers": {
+    "accept-ranges": "bytes",
+    "content-length": "61",
+    "content-type": "text/html; charset=UTF-8",
+    "last-modified": "Wed, 28 Oct 2026 19:16:58 GMT",
+    "server": "Lume",
+  },
+  "method": "GET",
+  "request": "https://example.com/index.html",
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`serve-folder plugin > should match after behavior 2`] = `
+{
+  "body": "",
+  "headers": {},
+  "method": "GET",
+  "request": "https://example.com/other.html",
+  "status": 404,
+  "statusText": "",
+}
+`;
+
+exports[`serve-folder plugin > should match before behavior 1`] = `
+{
+  "body": "<!DOCTYPE html>
+<html>
+<body>
+    Hello world
+</body>
+</html>",
+  "headers": {
+    "accept-ranges": "bytes",
+    "content-length": "61",
+    "content-type": "text/html; charset=UTF-8",
+    "last-modified": "Wed, 28 Oct 2026 19:16:58 GMT",
+    "server": "Lume",
+  },
+  "method": "GET",
+  "request": "https://example.com/index.html",
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`serve-folder plugin > should match before behavior 2`] = `
+{
+  "body": "OK",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  "method": "GET",
+  "request": "https://example.com/other.html",
+  "status": 200,
+  "statusText": "",
+}
+`;

@@ -11,8 +11,11 @@ export function getServer(handler?: (request: Request) => Response | Promise<Res
   });
 }
 
-export async function send(server: Server, request?: Request) {
-  request ??= new Request("http://localhost");
+export async function send(server: Server, requestOrUrl?: Request | string | URL) {
+  const request =
+    requestOrUrl instanceof Request
+      ? requestOrUrl
+      : new Request(requestOrUrl ?? "http://localhost");
   const response = await server.handle(request, {
     remoteAddr: {
       transport: "tcp",

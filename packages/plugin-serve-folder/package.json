@@ -1,0 +1,34 @@
+{
+  "name": "@lumeland/plugin-serve-folder",
+  "version": "1.0.0-rc.1",
+  "description": "Middleware to add additional folders to the server",
+  "keywords": [
+    "lume-middleware",
+    "lume-plugin"
+  ],
+  "license": "MIT",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc -p .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:*",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:*"
+  }
+}

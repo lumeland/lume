@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`router plugin > should match routes snapshots 1`] = `
+{
+  "body": "{"get":"ok"}",
+  "headers": {
+    "content-type": "application/json",
+  },
+  "method": "GET",
+  "request": "https://example.com/get",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`router plugin > should match routes snapshots 2`] = `
+{
+  "body": "{"get":"ok","name":"lume"}",
+  "headers": {
+    "content-type": "application/json",
+  },
+  "method": "GET",
+  "request": "https://example.com/get/lume",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`router plugin > should match routes snapshots 3`] = `
+{
+  "body": "{"post":"ok"}",
+  "headers": {
+    "content-type": "application/json",
+  },
+  "method": "POST",
+  "request": "https://example.com/post",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`router plugin > should match routes snapshots 4`] = `
+{
+  "body": "{"put":"ok"}",
+  "headers": {
+    "content-type": "application/json",
+  },
+  "method": "PUT",
+  "request": "https://example.com/put",
+  "status": 200,
+  "statusText": "",
+}
+`;
+
+exports[`router plugin > should match routes snapshots 5`] = `
+{
+  "body": "not found",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+  },
+  "method": "GET",
+  "request": "https://example.com/not-found",
+  "status": 404,
+  "statusText": "",
+}
+`;
