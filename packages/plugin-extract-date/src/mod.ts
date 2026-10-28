@@ -15,7 +15,7 @@ export const defaults = {
 
 /**
  * A plugin to extract the date from the files and folders paths
- * @see https://lume.land/plugins/extract_date/
+ * @see https://lume.land/plugins/extract-date/
  */
 export function extractDate(userOptions?: Options) {
   const options = merge(defaults, userOptions);

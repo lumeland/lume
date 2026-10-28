@@ -18,7 +18,7 @@ const ORDER_REGEX = /(\d+)\.(.+)/;
 
 /**
  * A plugin to extract the order from the files and folders paths
- * @see https://lume.land/plugins/extract_order/
+ * @see https://lume.land/plugins/extract-order/
  */
 export function extractOrder(userOptions?: Options) {
   const options = merge(defaults, userOptions);

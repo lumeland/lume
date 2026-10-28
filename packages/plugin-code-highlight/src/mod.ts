@@ -54,7 +54,7 @@ export const defaults = {
 
 /**
  * A plugin to syntax-highlight code using the highlight.js library
- * @see https://lume.land/plugins/code_highlight/
+ * @see https://lume.land/plugins/code-highlight/
  */
 export function codeHighlight(userOptions?: Options) {
   const options = merge(defaults, userOptions);

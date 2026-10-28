@@ -21,7 +21,7 @@ export const defaults = {
 
 /**
  * A plugin to modify all URLs found in HTML and CSS documents
- * @see https://lume.land/plugins/modify_urls/
+ * @see https://lume.land/plugins/modify-urls/
  */
 export function modifyUrls(userOptions: Options) {
   const options = merge(defaults, userOptions);

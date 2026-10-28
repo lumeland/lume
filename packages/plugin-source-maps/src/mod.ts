@@ -25,7 +25,7 @@ export const defaults = {
 
 /**
  * A plugin to manage source maps
- * @see https://lume.land/plugins/source_maps/
+ * @see https://lume.land/plugins/source-maps/
  */
 export function sourceMaps(userOptions?: Options) {
   const options = merge(defaults, userOptions);
@@ -187,7 +187,7 @@ declare global {
     export interface GlobalData {
       /**
        * The source map data (if it's an asset)
-       * @see https://lume.land/plugins/source_maps/
+       * @see https://lume.land/plugins/source-maps/
        */
       sourceMap?: SourceMap;
     }

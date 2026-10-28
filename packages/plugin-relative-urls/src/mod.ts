@@ -6,7 +6,7 @@ import type Site from "@lumeland/core/site.ts";
 
 /**
  * A plugin to convert all internal URLs to relative
- * @see https://lume.land/plugins/relative_urls/
+ * @see https://lume.land/plugins/relative-urls/
  */
 export function relativeUrls() {
   return (site: Site) => {
@@ -52,7 +52,7 @@ export default relativeUrls;
 declare global {
   namespace Lume {
     export interface Helpers {
-      /** @see https://lume.land/plugins/relative_urls/ */
+      /** @see https://lume.land/plugins/relative-urls/ */
       relativeUrl: (this: HelperThis | void, url: string, from?: string) => string;
     }
   }

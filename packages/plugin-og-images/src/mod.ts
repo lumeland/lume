@@ -29,7 +29,7 @@ export const defaults = {
 
 /**
  * A plugin to generate Open Graph images for your pages
- * @see https://lume.land/plugins/og_images/
+ * @see https://lume.land/plugins/og-images/
  */
 export function ogImages(userOptions?: Options) {
   return (site: Site) => {
@@ -134,7 +134,7 @@ declare global {
     export interface GlobalData {
       /**
        * The layout to generate the Open Graph Image
-       * @see https://lume.land/plugins/og_image/
+       * @see https://lume.land/plugins/og-image/
        */
       openGraphLayout?: string;
     }

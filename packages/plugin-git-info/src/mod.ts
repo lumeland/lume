@@ -44,7 +44,7 @@ declare global {
     export interface GlobalData {
       /**
        * GIT info
-       * @see https://lume.land/plugins/git_info/
+       * @see https://lume.land/plugins/git-info/
        */
       gitInfo: GitInfo;
     }

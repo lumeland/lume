@@ -31,7 +31,7 @@ export const defaults = {
 
 /**
  * A plugin to minify HTML, CSS & JavaScript files
- * @see https://lume.land/plugins/minify_html/
+ * @see https://lume.land/plugins/minify-html/
  */
 export function minifyHTML(userOptions?: Options) {
   const options = merge(defaults, userOptions);

@@ -4,7 +4,7 @@ import type Site from "@lumeland/core/site.ts";
 
 /**
  * A plugin to prepend a base path to all internal URLs
- * @see https://lume.land/plugins/base_path/
+ * @see https://lume.land/plugins/base-path/
  */
 export function basePath() {
   return (site: Site) => {

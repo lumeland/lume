@@ -185,7 +185,7 @@ export interface Options {
 
 /**
  * A plugin to insert structured JSON-LD data for SEO and social media
- * @see https://lume.land/plugins/json_ld/
+ * @see https://lume.land/plugins/json-ld/
  */
 export function jsonLd(userOptions?: Options) {
   const insert = userOptions?.insert ?? true;
@@ -283,7 +283,7 @@ declare global {
     export interface GlobalData {
       /**
        * JSON_LD elements
-       * @see https://lume.land/plugins/json_ld/
+       * @see https://lume.land/plugins/json-ld/
        */
       jsonLd?: JsonldData | JsonldData[];
     }

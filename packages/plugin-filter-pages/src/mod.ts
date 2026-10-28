@@ -24,7 +24,7 @@ export const defaults = {
 
 /**
  * A plugin to filter pages
- * @see https://lume.land/plugins/filter_pages/
+ * @see https://lume.land/plugins/filter-pages/
  */
 export function filterPages(userOptions: Options) {
   const options = merge(defaults, userOptions);

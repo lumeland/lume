@@ -82,7 +82,7 @@ interface SingleTransformation extends Transformation {
 
 /**
  * A plugin to transform images in Lume
- * @see https://lume.land/plugins/transform_images/
+ * @see https://lume.land/plugins/transform-images/
  */
 export function transformImages(userOptions?: Options) {
   const options = merge(defaults, userOptions);
@@ -278,7 +278,7 @@ declare global {
     export interface GlobalData {
       /**
        * Image transformations
-       * @see https://lume.land/plugins/transform_images/
+       * @see https://lume.land/plugins/transform-images/
        */
       transformImages?: Transformation | Transformation[];
     }

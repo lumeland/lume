@@ -6,7 +6,7 @@ import type Site from "@lumeland/core/site.ts";
 
 /**
  * A plugin to convert links to source files to the final page
- * @see https://lume.land/plugins/resolve_urls/
+ * @see https://lume.land/plugins/resolve-urls/
  */
 export function resolveUrls() {
   return (site: Site) => {

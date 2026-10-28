@@ -17,7 +17,7 @@ export const defaults = {
 
 /**
  * A plugin to calculate the reading time of a content
- * @see https://lume.land/plugins/reading_info/
+ * @see https://lume.land/plugins/reading-info/
  */
 export function readingInfo(userOptions?: Options) {
   const options = merge(defaults, userOptions);
@@ -88,13 +88,13 @@ declare global {
     export interface GlobalData {
       /**
        * Reading info
-       * @see https://lume.land/plugins/reading_info/
+       * @see https://lume.land/plugins/reading-info/
        */
       readingInfo: ReadingInfo;
     }
 
     export interface Helpers {
-      /** @see https://lume.land/plugins/reading_info/ */
+      /** @see https://lume.land/plugins/reading-info/ */
       readingInfo: (content?: string, lang?: string) => ReadingInfo;
     }
   }
