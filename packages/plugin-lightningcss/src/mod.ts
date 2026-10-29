@@ -57,7 +57,7 @@ export function lightningCSS(userOptions?: Options) {
 
     site.process([".css"], function processLightningCSS(files: Page[]) {
       const hasPages = warnUntil(
-        "[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>",
+        '[lightningcss plugin] No CSS files found. Make sure to add the CSS files with <code>site.add()</code>. For example: <code>site.add("style.css")</code>',
         files.length,
       );
 

@@ -177,7 +177,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       options: Object.entries(plugins).map(([key, [name]]) => ({
         label: name,
         value: key,
-        hint: `https://lume.land/plugins/${key}/`,
+        hint: `https://lume.land/plugins/${name}/`,
       })),
       maxItems: Infinity,
     });
