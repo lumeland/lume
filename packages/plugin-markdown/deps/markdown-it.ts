@@ -5,7 +5,7 @@ export { default as markdownItDeflist } from "markdown-it-deflist";
 
 import type { MarkdownIt } from "markdown-it";
 
-export type MarkdownItPlugin<Params extends unknown[] = unknown[]> = (
+export type MarkdownItPlugin<Params extends any[] = any[]> = (
   md: MarkdownIt,
   ...params: Params
 ) => void;

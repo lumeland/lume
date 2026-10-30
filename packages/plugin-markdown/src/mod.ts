@@ -17,7 +17,7 @@ export interface Options {
    * The list of markdown-it plugins to use
    * @default `[markdownItAttrs, markdownItDeflist]`
    */
-  plugins?: (MarkdownItPlugin | [MarkdownItPlugin, ...unknown[]])[];
+  plugins?: (MarkdownItPlugin | [MarkdownItPlugin, ...any[]])[];
 
   /** To modify existing rules or new custom rules */
   rules?: Record<string, (...args: any[]) => any>;

@@ -1,6 +1,6 @@
 # @lumeland/plugin-markdown
 
-Plugin to create pages in Markdown format
+Plugin to create pages in Markdown format.
 
 More info at https://lume.land/plugins/markdown
 
