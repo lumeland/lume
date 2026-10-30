@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/core",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "The core of Lume SSG",
   "license": "MIT",
   "author": "Óscar Otero",
