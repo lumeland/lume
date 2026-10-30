@@ -13,13 +13,13 @@
   "dependencies": {
     "@lumeland/lume": "workspace:*",
     "jszip": "^3.10.2",
-    "oxfmt": "^0.74.0",
-    "oxlint": "^1.89.0",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
     "oxlint-tsgolint": "^7.0.2005",
     "tar-stream": "^3.2.2"
   },
   "devDependencies": {
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
   },
   "devEngines": {
