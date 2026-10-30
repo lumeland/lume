@@ -1,7 +1,7 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Fs } from "@lumeland/cms/storage/fs.ts";
-import { posix } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
+import { posix } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type CMS from "@lumeland/cms/core/cms.ts";

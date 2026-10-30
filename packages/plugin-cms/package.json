@@ -1,8 +1,9 @@
 {
   "name": "@lumeland/plugin-cms",
-  "version": "1.0.0-beta-9",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Plugin to integrate LumeCMS with Lume.",
   "keywords": [
+    "lume-cms",
     "lume-plugin"
   ],
   "homepage": "https://lume.land/plugins/cms/",

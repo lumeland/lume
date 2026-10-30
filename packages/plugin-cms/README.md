@@ -1,6 +1,8 @@
 # @lumeland/plugin-cms
 
-More info at https://lume.land/plugins/cms
+Plugin to integrate LumeCMS with Lume.
+
+More info at https://lume.land/cms
 
 ---
 
