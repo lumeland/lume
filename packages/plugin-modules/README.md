@@ -1,6 +1,6 @@
 # @lumeland/plugin-modules
 
-Plugin to use ESM and TypeScript modules to create pages, layouts, and store data
+Plugin to use ESM and TypeScript modules to create pages, layouts, and store data.
 
 More info at https://lume.land/plugins/modules
 

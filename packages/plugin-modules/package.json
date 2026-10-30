@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-modules",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to use ESM and TypeScript modules to create pages, layouts, and store data",
+  "version": "1.0.0",
+  "description": "Plugin to use ESM and TypeScript modules to create pages, layouts, and store data.",
   "keywords": [
     "lume-plugin"
   ],
