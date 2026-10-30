@@ -259,7 +259,7 @@ export type ComponentsAssetsCompiler = (
 
 export const defaultAssetsCompiler: ComponentsAssetsCompiler = async (_, imports) => {
   const content = await Promise.all(
-    Array.from(imports).map(async ([_, entry]) => {
+    Array.from(imports).map(async ([, entry]) => {
       if (typeof entry === "string") {
         return entry;
       }

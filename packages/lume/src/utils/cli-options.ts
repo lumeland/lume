@@ -1,6 +1,6 @@
-import { parseArgs } from "node:util";
-import { args } from "@lumeland/core/services/process.ts";
 import { checkPort } from "@lumeland/core/services/net.ts";
+import { args } from "@lumeland/core/services/process.ts";
+import { parseArgs } from "../../deps/args.ts";
 
 import type { SiteOptions } from "@lumeland/core/site.ts";
 
