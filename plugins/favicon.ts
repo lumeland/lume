@@ -5,6 +5,7 @@ import { create, sharpsToIco } from "../deps/sharp.ts";
 
 import type { ResvgRenderOptions } from "../deps/resvg.ts";
 import type Cache from "../core/cache.ts";
+import type { Document } from "../deps/dom.ts";
 import type { FormatEnum } from "../deps/sharp.ts";
 import type Site from "../core/site.ts";
 

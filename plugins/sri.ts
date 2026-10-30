@@ -37,7 +37,7 @@ export function sri(userOptions?: Options) {
         const nodes = document.querySelectorAll(options.selector);
 
         for (const node of nodes) {
-          const element = node as Element;
+          const element = node;
           const url = element.getAttribute("src") ||
             element.getAttribute("href");
 
