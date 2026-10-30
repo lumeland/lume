@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-url",
-  "version": "1.0.0-rc.1",
-  "description": "Plugin to register the url filter to fix and resolve URLs",
+  "version": "1.0.0",
+  "description": "Plugin to register the url filter to fix and resolve URLs.",
   "keywords": [
     "lume-plugin"
   ],
