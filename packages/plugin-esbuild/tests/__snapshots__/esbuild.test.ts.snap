@@ -111,6 +111,8 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
       "/_includes",
       "/_includes/layout.js",
       "/data.json",
@@ -122,7 +124,7 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
       "/other",
       "/other.page.ts",
       "/other/_data.yml",
-      "/other/script.ts",
+      "/other/script2.ts",
       "/other/to_lowercase.ts",
     ],
   },
@@ -132,7 +134,11 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
       "content": "console.log("Hello from script.ts!");
 ",
       "data": {
-        "basename": "script",
+        "basename": "script2",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -144,11 +150,11 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/foo/bar/script.js",
+        "url": "/foo/bar/script2.js",
       },
       "src": {
         "ext": ".ts",
-        "path": "/other/script",
+        "path": "/other/script2",
         "remote": undefined,
       },
     },
@@ -157,6 +163,10 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
 ",
       "data": {
         "basename": "to_lowercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -181,6 +191,10 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
 ",
       "data": {
         "basename": "main",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -204,12 +218,33 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
       "content": "
   <body>
     Hello world
+
+<button>
+  Click here
+</button>
+
+
   </body>
   ",
       "data": {
         "basename": "main",
-        "children": "Hello world",
-        "content": "Hello world",
+        "children": "Hello world
+
+<button>
+  Click here
+</button>
+
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "Hello world
+
+{{ comp button }}
+  Click here
+{{ /comp }}
+",
         "date": [],
         "layout": "layout.js",
         "mergedKeys": [
@@ -236,6 +271,10 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
 ",
       "data": {
         "basename": "other",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "content": "__vite_ssr_export_default__",
         "date": [],
         "mergedKeys": [
@@ -254,6 +293,24 @@ exports[`esbuild plugin > should match site snapshot 1`] = `
       "src": {
         "ext": ".page.ts",
         "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("hello from the button component");
+",
+      "data": {
+        "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/script.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
         "remote": undefined,
       },
     },
@@ -372,6 +429,8 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
       "/_includes",
       "/_includes/layout.js",
       "/data.json",
@@ -383,7 +442,7 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
       "/other",
       "/other.page.ts",
       "/other/_data.yml",
-      "/other/script.ts",
+      "/other/script2.ts",
       "/other/to_lowercase.ts",
     ],
   },
@@ -393,12 +452,33 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
       "content": "
   <body>
     Hello world
+
+<button>
+  Click here
+</button>
+
+
   </body>
   ",
       "data": {
         "basename": "main",
-        "children": "Hello world",
-        "content": "Hello world",
+        "children": "Hello world
+
+<button>
+  Click here
+</button>
+
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "Hello world
+
+{{ comp button }}
+  Click here
+{{ /comp }}
+",
         "date": [],
         "layout": "layout.js",
         "mergedKeys": [
@@ -424,7 +504,11 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
       "content": "console.log("Hello from script.ts!");
 ",
       "data": {
-        "basename": "script",
+        "basename": "script2",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -436,11 +520,11 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/one/foo/bar/two/script/hash.js",
+        "url": "/one/foo/bar/two/script2/hash.js",
       },
       "src": {
         "ext": ".ts",
-        "path": "/other/script",
+        "path": "/other/script2",
         "remote": undefined,
       },
     },
@@ -449,6 +533,10 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
 ",
       "data": {
         "basename": "to_lowercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -473,6 +561,10 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
 ",
       "data": {
         "basename": "main",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -497,6 +589,10 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
 ",
       "data": {
         "basename": "other",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "content": "__vite_ssr_export_default__",
         "date": [],
         "mergedKeys": [
@@ -515,6 +611,24 @@ exports[`esbuild plugin > should match with complex entryNames 1`] = `
       "src": {
         "ext": ".page.ts",
         "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("hello from the button component");
+",
+      "data": {
+        "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/one/two/script/hash.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
         "remote": undefined,
       },
     },
@@ -633,6 +747,8 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
       "/_includes",
       "/_includes/layout.js",
       "/data.json",
@@ -644,7 +760,7 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
       "/other",
       "/other.page.ts",
       "/other/_data.yml",
-      "/other/script.ts",
+      "/other/script2.ts",
       "/other/to_lowercase.ts",
     ],
   },
@@ -655,6 +771,10 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
 ",
       "data": {
         "basename": "main",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -679,6 +799,10 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
 ",
       "data": {
         "basename": "other",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "content": "__vite_ssr_export_default__",
         "date": [],
         "mergedKeys": [
@@ -701,10 +825,32 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
       },
     },
     {
-      "content": "console.log("Hello from script.ts!");
+      "content": "console.log("hello from the button component");
 ",
       "data": {
         "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/js/script.hash.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("Hello from script.ts!");
+",
+      "data": {
+        "basename": "script2",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -716,11 +862,11 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/js/script.hash.js",
+        "url": "/js/script2.hash.js",
       },
       "src": {
         "ext": ".ts",
-        "path": "/other/script",
+        "path": "/other/script2",
         "remote": undefined,
       },
     },
@@ -729,6 +875,10 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
 ",
       "data": {
         "basename": "to_lowercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -752,12 +902,33 @@ exports[`esbuild plugin > should match with entryNames 1`] = `
       "content": "
   <body>
     Hello world
+
+<button>
+  Click here
+</button>
+
+
   </body>
   ",
       "data": {
         "basename": "main",
-        "children": "Hello world",
-        "content": "Hello world",
+        "children": "Hello world
+
+<button>
+  Click here
+</button>
+
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "Hello world
+
+{{ comp button }}
+  Click here
+{{ /comp }}
+",
         "date": [],
         "layout": "layout.js",
         "mergedKeys": [
@@ -894,6 +1065,8 @@ exports[`esbuild plugin > should match with out extension 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
       "/_includes",
       "/_includes/layout.js",
       "/data.json",
@@ -905,7 +1078,7 @@ exports[`esbuild plugin > should match with out extension 1`] = `
       "/other",
       "/other.page.ts",
       "/other/_data.yml",
-      "/other/script.ts",
+      "/other/script2.ts",
       "/other/to_lowercase.ts",
     ],
   },
@@ -915,7 +1088,11 @@ exports[`esbuild plugin > should match with out extension 1`] = `
       "content": "console.log("Hello from script.ts!");
 ",
       "data": {
-        "basename": "script",
+        "basename": "script2",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -927,11 +1104,11 @@ exports[`esbuild plugin > should match with out extension 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/foo/bar/script.min.js",
+        "url": "/foo/bar/script2.min.js",
       },
       "src": {
         "ext": ".ts",
-        "path": "/other/script",
+        "path": "/other/script2",
         "remote": undefined,
       },
     },
@@ -940,6 +1117,10 @@ exports[`esbuild plugin > should match with out extension 1`] = `
 ",
       "data": {
         "basename": "to_lowercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -964,6 +1145,10 @@ exports[`esbuild plugin > should match with out extension 1`] = `
 ",
       "data": {
         "basename": "main",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -987,12 +1172,33 @@ exports[`esbuild plugin > should match with out extension 1`] = `
       "content": "
   <body>
     Hello world
+
+<button>
+  Click here
+</button>
+
+
   </body>
   ",
       "data": {
         "basename": "main",
-        "children": "Hello world",
-        "content": "Hello world",
+        "children": "Hello world
+
+<button>
+  Click here
+</button>
+
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "Hello world
+
+{{ comp button }}
+  Click here
+{{ /comp }}
+",
         "date": [],
         "layout": "layout.js",
         "mergedKeys": [
@@ -1019,6 +1225,10 @@ exports[`esbuild plugin > should match with out extension 1`] = `
 ",
       "data": {
         "basename": "other",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "content": "__vite_ssr_export_default__",
         "date": [],
         "mergedKeys": [
@@ -1037,6 +1247,24 @@ exports[`esbuild plugin > should match with out extension 1`] = `
       "src": {
         "ext": ".page.ts",
         "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("hello from the button component");
+",
+      "data": {
+        "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/script.min.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
         "remote": undefined,
       },
     },
@@ -1155,6 +1383,8 @@ exports[`esbuild plugin > should match without bundle 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
       "/_includes",
       "/_includes/layout.js",
       "/data.json",
@@ -1166,7 +1396,7 @@ exports[`esbuild plugin > should match without bundle 1`] = `
       "/other",
       "/other.page.ts",
       "/other/_data.yml",
-      "/other/script.ts",
+      "/other/script2.ts",
       "/other/to_lowercase.ts",
     ],
   },
@@ -1176,7 +1406,11 @@ exports[`esbuild plugin > should match without bundle 1`] = `
       "content": "console.log("Hello from script.ts!");
 ",
       "data": {
-        "basename": "script",
+        "basename": "script2",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -1188,11 +1422,11 @@ exports[`esbuild plugin > should match without bundle 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/foo/bar/script.hash.min.js",
+        "url": "/foo/bar/script2.hash.min.js",
       },
       "src": {
         "ext": ".ts",
-        "path": "/other/script",
+        "path": "/other/script2",
         "remote": undefined,
       },
     },
@@ -1201,6 +1435,10 @@ exports[`esbuild plugin > should match without bundle 1`] = `
 ",
       "data": {
         "basename": "to_lowercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -1225,6 +1463,10 @@ exports[`esbuild plugin > should match without bundle 1`] = `
 ",
       "data": {
         "basename": "main",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -1248,12 +1490,33 @@ exports[`esbuild plugin > should match without bundle 1`] = `
       "content": "
   <body>
     Hello world
+
+<button>
+  Click here
+</button>
+
+
   </body>
   ",
       "data": {
         "basename": "main",
-        "children": "Hello world",
-        "content": "Hello world",
+        "children": "Hello world
+
+<button>
+  Click here
+</button>
+
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "Hello world
+
+{{ comp button }}
+  Click here
+{{ /comp }}
+",
         "date": [],
         "layout": "layout.js",
         "mergedKeys": [
@@ -1280,6 +1543,10 @@ exports[`esbuild plugin > should match without bundle 1`] = `
 ",
       "data": {
         "basename": "to_uppercase",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -1304,6 +1571,10 @@ exports[`esbuild plugin > should match without bundle 1`] = `
 ",
       "data": {
         "basename": "other",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "content": "__vite_ssr_export_default__",
         "date": [],
         "mergedKeys": [
@@ -1322,6 +1593,24 @@ exports[`esbuild plugin > should match without bundle 1`] = `
       "src": {
         "ext": ".page.ts",
         "path": "/other",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "console.log("hello from the button component");
+",
+      "data": {
+        "basename": "script",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/script.hash.min.js",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
         "remote": undefined,
       },
     },

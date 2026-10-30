@@ -1,4 +1,5 @@
 import { Entry } from "./fs.ts";
+import text from "./loaders/text.ts";
 
 import type { DirectoryData } from "./types.ts";
 import type Formats from "./formats.ts";
@@ -249,3 +250,24 @@ export function toProxy(
     },
   }) as unknown as ProxyComponents;
 }
+
+export type ComponentsAssetsCompiler = (
+  filename: string,
+  imports: Map<string, string | Entry>,
+  entries: Map<string, Entry>,
+) => Promise<string>;
+
+export const defaultAssetsCompiler: ComponentsAssetsCompiler = async (_, imports) => {
+  const content = await Promise.all(
+    Array.from(imports).map(async ([_, entry]) => {
+      if (typeof entry === "string") {
+        return entry;
+      }
+
+      const { content } = await entry.getContent(text);
+      return (content as string) || "";
+    }),
+  );
+
+  return content.join("\n");
+};

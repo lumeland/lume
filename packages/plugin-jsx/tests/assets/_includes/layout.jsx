@@ -1,3 +1,4 @@
+/** @jsxImportSource @lumeland/ssx */
 export default ({ children, title }) => (
   <html>
     <head>

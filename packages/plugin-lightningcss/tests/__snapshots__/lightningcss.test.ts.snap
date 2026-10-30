@@ -108,18 +108,54 @@ exports[`lightningcss plugin > should match site snapshot with bundle 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
+      "/_components/title.vto",
       "/_includes",
       "/_includes/variables.css",
-      "/index.css",
+      "/index.vto",
+      "/style.css",
       "/text.css",
     ],
   },
   "files": [],
   "pages": [
     {
-      "content": "::root{--color:#333;--background:#fff;--font-family:sans-serif}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;line-height:1.15}body{margin:0}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:100%;line-height:1.15}button,select{text-transform:none}button{-webkit-appearance:button}[type=button]{-webkit-appearance:button}[type=reset]{-webkit-appearance:button}[type=submit]{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted buttontext}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}",
+      "content": "<main>
+  <h1>Title </h1>
+
+
+  <button>
+    Click here
+  </button>
+
+</main>
+",
       "data": {
-        "basename": "index",
+        "basename": "",
+        "children": "<main>
+  <h1>Title </h1>
+
+
+  <button>
+    Click here
+  </button>
+
+</main>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<main>
+  {{ comp.title({ content: "Title "}) }}
+
+  {{ comp button }}
+    Click here
+  {{ /comp}}
+</main>
+",
+        "date": [],
         "mergedKeys": [
           "tags",
         ],
@@ -131,11 +167,38 @@ exports[`lightningcss plugin > should match site snapshot with bundle 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/index.css",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".vto",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "::root{--color:#333;--background:#fff;--font-family:sans-serif}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;line-height:1.15}body{margin:0}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:100%;line-height:1.15}button,select{text-transform:none}button{-webkit-appearance:button}[type=button]{-webkit-appearance:button}[type=reset]{-webkit-appearance:button}[type=submit]{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted buttontext}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}h1{color:orange}button{color:#00f}",
+      "data": {
+        "basename": "style",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/style.css",
       },
       "src": {
         "ext": ".css",
-        "path": "/index",
+        "path": "/style",
         "remote": undefined,
       },
     },
@@ -143,6 +206,10 @@ exports[`lightningcss plugin > should match site snapshot with bundle 1`] = `
       "content": "*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;line-height:1.15}body{margin:0}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:100%;line-height:1.15}button,select{text-transform:none}button{-webkit-appearance:button}[type=button]{-webkit-appearance:button}[type=reset]{-webkit-appearance:button}[type=submit]{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted buttontext}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}",
       "data": {
         "basename": "text",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],
@@ -274,18 +341,54 @@ exports[`lightningcss plugin > should match site snapshot with transform 1`] = `
     ],
     "src": [
       "/",
+      "/_components",
+      "/_components/button.vto",
+      "/_components/title.vto",
       "/_includes",
       "/_includes/variables.css",
-      "/index.css",
+      "/index.vto",
+      "/style.css",
       "/text.css",
     ],
   },
   "files": [],
   "pages": [
     {
-      "content": "@import "variables.css";@import "./text.css";",
+      "content": "<main>
+  <h1>Title </h1>
+
+
+  <button>
+    Click here
+  </button>
+
+</main>
+",
       "data": {
-        "basename": "index",
+        "basename": "",
+        "children": "<main>
+  <h1>Title </h1>
+
+
+  <button>
+    Click here
+  </button>
+
+</main>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "<main>
+  {{ comp.title({ content: "Title "}) }}
+
+  {{ comp button }}
+    Click here
+  {{ /comp}}
+</main>
+",
+        "date": [],
         "mergedKeys": [
           "tags",
         ],
@@ -297,11 +400,28 @@ exports[`lightningcss plugin > should match site snapshot with transform 1`] = `
         "paginate": "paginate",
         "search": [],
         "tags": "Array(0)",
-        "url": "/index.css",
+        "url": "/",
       },
       "src": {
-        "ext": ".css",
+        "ext": ".vto",
         "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "@import "variables.css";@import "./text.css";h1{color:orange}button{color:#00f}",
+      "data": {
+        "basename": "style",
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "url": "/style.css",
+      },
+      "src": {
+        "ext": "",
+        "path": "",
         "remote": undefined,
       },
     },
@@ -309,6 +429,10 @@ exports[`lightningcss plugin > should match site snapshot with transform 1`] = `
       "content": "@import "npm:modern-normalize@2.0.0";.text{font-family:var(--font-family)}.text p{color:var(--color);box-shadow:0 0 .5em var(--background);backface-visibility:hidden}",
       "data": {
         "basename": "text",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
         "mergedKeys": [
           "tags",
         ],

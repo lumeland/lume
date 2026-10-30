@@ -9,6 +9,8 @@ import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { bundleAsync, transform } from "../deps/lightningcss.ts";
 import Path from "@lumeland/core/path.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
+import { compileComponentsCSS } from "./comp.ts";
 
 import type { Item } from "@lumeland/core/debugbar.ts";
 import type Site from "@lumeland/core/site.ts";
@@ -18,7 +20,6 @@ import type {
   TransformOptions,
   TransformResult,
 } from "../deps/lightningcss.ts";
-import { getInclude } from "@lumeland/core/utils/includes.ts";
 
 export interface Options {
   /** Bundle the CSS or only transform it */
@@ -54,6 +55,8 @@ export const defaults = {
 export function lightningCSS(userOptions?: Options) {
   return (site: Site) => {
     const options = merge(defaults, userOptions);
+
+    site.compileComponentsAssets("css", compileComponentsCSS);
 
     site.process([".css"], function processLightningCSS(files: Page[]) {
       const hasPages = warnUntil(

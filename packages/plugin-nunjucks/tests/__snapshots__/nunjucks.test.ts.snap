@@ -347,14 +347,13 @@ exports[`nunjucks plugin > should match site snapshot 1`] = `
       },
     },
     {
-      "content": "// fs:/_components/Button.ts.js
-document.querySelectorAll("button").forEach((button) => {
+      "content": "
+document.querySelectorAll("button").forEach(button => {
   button.addEventListener("click", () => {
     alert("Hello world!");
   });
 });
 
-// fs:/_components/icon/User.njk.js
 console.log("Hello world, from the icon/User component");
 ",
       "data": {
@@ -373,8 +372,9 @@ console.log("Hello world, from the icon/User component");
       },
     },
     {
-      "content": "button {
-  background-color: #00f;
+      "content": "
+button {
+  background-color: blue;
 }
 
 icon {

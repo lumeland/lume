@@ -8,9 +8,10 @@ import { Page } from "@lumeland/core/file.ts";
 import lumeLoader from "./loader.ts";
 import { build, BuildOptions, Metafile, OutputFile, stop } from "../deps/esbuild.ts";
 import { posix, toFileUrl } from "../deps/path.ts";
+import Path from "@lumeland/core/path.ts";
+import { compileComponentsJS } from "./comp.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import Path from "@lumeland/core/path.ts";
 
 export interface Options {
   /** File extensions to bundle */
@@ -64,6 +65,8 @@ export function esbuild(userOptions?: Options) {
     site.hooks.addEsbuildPlugin = (plugin) => {
       options.options.plugins!.unshift(plugin);
     };
+
+    site.compileComponentsAssets("js", compileComponentsJS);
 
     const basePath = options.options.absWorkingDir || site.src();
 

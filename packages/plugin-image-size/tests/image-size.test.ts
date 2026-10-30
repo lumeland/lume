@@ -10,7 +10,7 @@ describe("image-size plugin", async () => {
 
     site.add("/");
     site.use(imageSize());
-    site.remoteFile("/logo.png", "https://lume.land/logo.png");
+    site.remote("/logo.png", "https://lume.land/logo.png");
 
     expect(await build(site)).toMatchSnapshot();
   });

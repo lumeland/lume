@@ -4,6 +4,7 @@ import { EmptyWriter } from "@lumeland/core/writer.ts";
 
 import type { default as Site, SiteOptions } from "@lumeland/core/site.ts";
 import { inspect, setEnv } from "@lumeland/core/services/process.ts";
+import { log } from "@lumeland/core/utils/log.ts";
 
 /** Create a new lume site using the "assets" path as cwd */
 export function getSite(
@@ -30,6 +31,9 @@ interface SiteSnapshotOptions {
 export async function build(site: Site, options?: SiteSnapshotOptions) {
   try {
     await site.build();
+    if (log.hasErrors) {
+      log.output();
+    }
     return getSiteSnapshot(site, options);
   } catch (error) {
     console.error(inspect(error));

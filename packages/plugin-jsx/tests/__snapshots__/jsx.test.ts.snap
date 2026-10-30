@@ -139,6 +139,181 @@ exports[`jsx plugin > should match site snapshot 1`] = `
     ],
   },
   "files": [],
-  "pages": [],
+  "pages": [
+    {
+      "content": "<html><head><title>This is the title</title></head><body><main><h1>Hello world</h1><p>This is a JSX page</p></main></body></html>",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1><p>This is a JSX page</p>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": [
+          "type",
+          "props",
+        ],
+        "date": [],
+        "layout": "layout.jsx",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "This is the title",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".page.jsx",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<html><head><title></title></head><body><main><div>1</div></main></body></html>",
+      "data": {
+        "basename": "1",
+        "children": "<div>1</div>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": [
+          "type",
+          "props",
+        ],
+        "date": [],
+        "layout": "layout.jsx",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page/1/",
+      },
+      "src": {
+        "ext": ".page.jsx",
+        "path": "/multiple[0]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<html><head><title></title></head><body><main><div>2</div></main></body></html>",
+      "data": {
+        "basename": "2",
+        "children": "<div>2</div>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": [
+          "type",
+          "props",
+        ],
+        "date": [],
+        "layout": "layout.jsx",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/page/2/",
+      },
+      "src": {
+        "ext": ".page.jsx",
+        "path": "/multiple[1]",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<html><head><title>This is the title</title></head><body><main><h1>This is the title</h1><p>This is a JSX page <a href="/">Go to home</a></p></main></body></html>",
+      "data": {
+        "basename": "with-function",
+        "children": "<h1>This is the title</h1><p>This is a JSX page <a href="/">Go to home</a></p>",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "__vite_ssr_export_default__",
+        "date": [],
+        "layout": "layout.jsx",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "This is the title",
+        "url": "/with-function/",
+      },
+      "src": {
+        "ext": ".page.jsx",
+        "path": "/with-function",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<html><head><title>Markdown combined with JSX</title></head><body><main><h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+</main></body></html>",
+      "data": {
+        "basename": "with-markdown",
+        "children": "<h1 class="foo">Hello world</h1>
+<p>This is a <strong>markdown</strong> text. <a href="/">Go home</a></p>
+",
+        "comp": [
+          "_components",
+          "_proxies",
+        ],
+        "content": "# Hello world{.foo}
+
+This is a **markdown** text. [Go home](/)
+",
+        "date": [],
+        "layout": "layout.jsx",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Markdown combined with JSX",
+        "url": "/with-markdown/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/with-markdown",
+        "remote": undefined,
+      },
+    },
+  ],
 }
 `;
