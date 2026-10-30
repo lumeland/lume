@@ -1,6 +1,6 @@
 # @lumeland/plugin-sitemap
 
-Plugin to generate a sitemap automatically
+Plugin to generate a sitemap automatically.
 
 More info at https://lume.land/plugins/sitemap
 

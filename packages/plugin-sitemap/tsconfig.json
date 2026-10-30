@@ -12,5 +12,5 @@
     "rootDir": ".",
     "declaration": true
   },
-  "exclude": ["tests", "build"]
+  "exclude": ["tests", "build", "vitest.config.ts"]
 }
