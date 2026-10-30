@@ -1,6 +1,10 @@
 import lume from "../mod.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-import Site from "@lumeland/core/site.ts";
+import { realPathSync } from "@lumeland/core/services/fs.ts";
+import { toFileUrl } from "../../deps/path.ts";
+import { isUrl } from "@lumeland/core/utils/path.ts";
+
+import type Site from "@lumeland/core/site.ts";
 
 /** Create a site instance */
 export async function createSite(_config?: URL): Promise<Site> {
@@ -11,13 +15,6 @@ export async function createSite(_config?: URL): Promise<Site> {
   log.info(`Loading config file <gray>${_config}</gray>`);
   const mod = await import(_config.toString());
   const site = mod.default as Site;
-
-  // if (!(site instanceof Site)) {
-  //   log.fatal(
-  //     `[Lume] Missing Site instance! Ensure your config file does export the Site instance as default.`,
-  //   );
-  //   throw new Error("Site instance is not found");
-  // }
   return site;
 }
 
@@ -31,4 +28,29 @@ export async function buildSite(site: Site): Promise<void> {
   const duration = performance.measure("duration", "start", "end").duration / 1000;
   const total = site.pages.length + site.files.length;
   log.info(`  <gray>${total} files generated in ${duration.toFixed(2)} seconds</gray>`);
+}
+
+/** Resolve a configuration file */
+export function resolveConfigFile(defaultPaths: string[], customPath?: string): URL | undefined {
+  if (customPath) {
+    if (isUrl(customPath)) {
+      return new URL(customPath);
+    }
+
+    try {
+      const file = realPathSync(customPath);
+      return toFileUrl(file);
+    } catch {
+      throw new Error(`Config file not found (${customPath})`);
+    }
+  }
+
+  for (const path of defaultPaths) {
+    try {
+      const file = realPathSync(path);
+      return toFileUrl(file);
+    } catch {
+      // Ignore
+    }
+  }
 }

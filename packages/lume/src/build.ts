@@ -1,10 +1,9 @@
 import { log } from "@lumeland/core/utils/log.ts";
-import { resolveConfigFile } from "@lumeland/core/utils/lume-config.ts";
 import { EmptyWriter } from "@lumeland/core/writer.ts";
 // import { openInspector } from "@lumeland/deps/inspector.ts";
 import { hmr, addReloadFile } from "@lumeland/core/services/hmr.ts";
 import { exit, setEnv, inspect } from "@lumeland/core/services/process.ts";
-import { buildSite, createSite } from "./utils/site.ts";
+import { buildSite, createSite, resolveConfigFile } from "./utils/site.ts";
 import { envBoolean } from "@lumeland/core/utils/env.ts";
 import { dev } from "@lumeland/plugin-dev";
 

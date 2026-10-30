@@ -1,5 +1,4 @@
 import { isUrl } from "./path.ts";
-import { tokens } from "./tokens.ts";
 import { readFile as readFile_, readTextFile } from "../services/fs.ts";
 import { fromFileUrl } from "../../deps/path.ts";
 
@@ -40,13 +39,6 @@ export async function read(
   if (url.protocol === "file:") {
     const path = fromFileUrl(url);
     return isBinary ? readFile_(path) : readTextFile(path);
-  }
-
-  const authorization = tokens.get(url.host);
-  if (authorization) {
-    const headers = new Headers(init?.headers);
-    headers.set("Authorization", authorization);
-    init = { ...init, headers };
   }
 
   const cached = isBinary ? cache?.getBytes([url]) : cache?.getText([url]);
