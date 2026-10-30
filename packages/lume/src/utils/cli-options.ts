@@ -43,6 +43,17 @@ async function getCliArgs(): Promise<CliArgs> {
         type: "boolean",
         short: "o",
       },
+      inspect: {
+        type: "boolean",
+        short: "i",
+      },
+      watch: {
+        type: "boolean",
+        short: "w",
+      },
+      "dry-run": {
+        type: "boolean",
+      },
     },
   });
 

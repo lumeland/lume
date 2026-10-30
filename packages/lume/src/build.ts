@@ -1,11 +1,11 @@
 import { log } from "@lumeland/core/utils/log.ts";
 import { EmptyWriter } from "@lumeland/core/writer.ts";
-// import { openInspector } from "@lumeland/deps/inspector.ts";
 import { hmr, addReloadFile } from "@lumeland/core/services/hmr.ts";
 import { exit, setEnv, inspect } from "@lumeland/core/services/process.ts";
 import { buildSite, createSite, resolveConfigFile } from "./utils/site.ts";
 import { envBoolean } from "@lumeland/core/utils/env.ts";
 import { dev } from "@lumeland/plugin-dev";
+import { openInspector } from "../deps/inspector.ts";
 
 import type Server from "@lumeland/core/server.ts";
 
@@ -18,15 +18,9 @@ export interface BuildOptions {
 }
 
 /** Build the website and optionally watch changes and serve the site */
-export async function build({
-  config,
-  serve,
-  watch,
-  dryRun,
-  inspect: openInspector,
-}: BuildOptions) {
-  if (openInspector) {
-    // TODO: openInspector();
+export async function build({ config, serve, watch, dryRun, inspect: inspector }: BuildOptions) {
+  if (inspector) {
+    openInspector();
   }
 
   if (serve || watch) {
@@ -59,11 +53,12 @@ export async function build({
     log.info(`Web server started at http://${server.hostname}:${server.port}/`);
   }
 
-  log.info("Preparing to build the site");
-
   if (dryRun) {
+    log.info("Dry-run enabled. This mode is for testing purposes, no files will be saved");
     site.writer = new EmptyWriter();
   }
+
+  log.info("Preparing to build the site");
 
   try {
     await buildSite(site);

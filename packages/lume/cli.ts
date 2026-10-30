@@ -8,16 +8,16 @@ cli.version(pkg.version);
 cli
   .command("build", "Build your site")
   .option("--config <config>", "The config file path.")
-  .option("--src <src>", "The source directory for your site.", { default: "./" })
-  .option("--dest <dest>", "The build destination.", { default: "_site" })
-  .option("--location <type>", "The URL location of the site.", { default: "http://localhost" })
-  .option("--dry-run", "Test the build without generating the files")
+  .option("--src <folder>", "The source directory for your site.", { default: "./" })
+  .option("--dest <folder>", "The build destination.", { default: "_site" })
+  .option("--location <url>", "The URL location of the site.", { default: "http://localhost" })
   .option("-s, --serve", "Start a live-reloading web server and watch changes.")
-  .option("-p, --port <port:number>", "The port where the server runs.", { default: 3000 })
+  .option("-p, --port <number>", "The port where the server runs.", { default: 3000 })
   .option("--hostname <hostname>", "The hostname where the server runs.", { default: "localhost" })
-  .option("-o, --open", "Open the site in a browser.")
-  .option("-w, --watch", "Build and watch changes.")
-  .option("-i, --inspect", "Opens an inspector server for debugging.")
+  .option("--dry-run", "Test the build without generating the files")
+  .option("-o, --open", "Open the site in a browser.", { default: false })
+  .option("-w, --watch", "Build and watch changes.", { default: false })
+  .option("-i, --inspect", "Opens an inspector server for debugging.", { default: false })
   .action(async ({ config, serve, watch, dryRun, inspect }) => {
     const { build } = await import("./src/build.ts");
 
