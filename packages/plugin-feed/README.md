@@ -1,6 +1,6 @@
 # @lumeland/plugin-feed
 
-Plugin to generate a RSS, Atom or JSON Feed automatically for your site
+Plugin to generate a RSS, Atom and JSON feeds automatically.
 
 More info at https://lume.land/plugins/feed
 
