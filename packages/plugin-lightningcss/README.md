@@ -1,6 +1,6 @@
 # @lumeland/plugin-lightningcss
 
-Plugin to transform and minify your CSS files with Lightning CSS
+Plugin to transform and minify your CSS files with Lightning CSS.
 
 More info at https://lume.land/plugins/lightningcss
 
