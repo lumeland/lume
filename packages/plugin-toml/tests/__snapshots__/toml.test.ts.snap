@@ -158,8 +158,19 @@ exports[`TOML plugin > should match site snapshot 1`] = `
       },
     },
     {
-      "content": "<h1>Welcome</h1>
-",
+      "content": "<html>
+  <head>
+    <title>First page</title>
+  </head>
+  <body>
+    <h1>Default title</h1>
+    <p>Default description</p>
+    <h2>First page</h2>
+    <p><h1>Welcome</h1>
+</p>
+    
+  </body>
+</html>",
       "data": {
         "basename": "page1",
         "children": "<h1>Welcome</h1>
@@ -167,6 +178,7 @@ exports[`TOML plugin > should match site snapshot 1`] = `
         "content": "# Welcome
 ",
         "date": [],
+        "layout": "layout.vto",
         "mergedKeys": [
           "tags",
         ],

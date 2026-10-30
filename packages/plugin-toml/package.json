@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-toml",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to add support for TOML format to store data and create pages",
+  "version": "1.0.0",
+  "description": "Plugin to add support for TOML format to store data and create pages.",
   "keywords": [
     "lume-plugin"
   ],
