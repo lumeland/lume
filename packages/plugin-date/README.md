@@ -1,6 +1,6 @@
 # @lumeland/plugin-date
 
-Plugin to manipulate date & time values in different locales
+Plugin to format date & time values in different locales.
 
 More info at https://lume.land/plugins/date
 

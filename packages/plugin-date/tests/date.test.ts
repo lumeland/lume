@@ -47,9 +47,9 @@ describe("date plugin", async () => {
     const [format] = helpers.get("date")!;
 
     const aBitMoreThanAYearFromNow = new Date(Date.now() + 367 * 24 * 60 * 60 * 1000);
-    // See https://date-fns.org/v3.6.0/docs/formatDistanceToNow
+    // See https://date-fns.org/docs/formatDistanceToNow
     expect(format(aBitMoreThanAYearFromNow, "HUMAN_SINCE")).toBe("about 1 year");
-    // See https://date-fns.org/v3.6.0/docs/formatDistanceToNowStrict
+    // See https://date-fns.org/docs/formatDistanceToNowStrict
     expect(format(aBitMoreThanAYearFromNow, "HUMAN_SINCE_STRICT")).toBe("1 year");
   });
 
