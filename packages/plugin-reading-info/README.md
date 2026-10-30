@@ -1,6 +1,6 @@
 # @lumeland/plugin-reading-info
 
-Plugin to provide some information about the page content
+Plugin to provide some information about the page content.
 
 More info at https://lume.land/plugins/reading-info
 
