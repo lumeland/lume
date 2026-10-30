@@ -1,11 +1,11 @@
-import Path from "@lumeland/core/path.ts";
 import { readTextFileSync } from "@lumeland/core/services/fs.ts";
+import { toBase64 } from "@lumeland/core/services/global.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type { Middleware } from "@lumeland/core/server.ts";
 import type { Watcher } from "@lumeland/core/watcher.ts";
 import type DebugBar from "@lumeland/core/debugbar.ts";
 import type Server from "@lumeland/core/server.ts";
-import { toBase64 } from "@lumeland/core/services/global.ts";
 
 export interface Options {
   /** The watcher instance to use */

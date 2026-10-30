@@ -1,6 +1,6 @@
 # @lumeland/plugin-dev
 
-Middlewares used by Lume in development mode
+Middlewares used by Lume in development mode.
 
 More info at https://lume.land/plugins/dev
 
