@@ -1,6 +1,6 @@
 # @lumeland/plugin-vento
 
-Plugin to use the Vento template engine to create pages and layouts
+Plugin to use the Vento template engine to create pages and layouts.
 
 More info at https://lume.land/plugins/vento
 
