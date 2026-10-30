@@ -1,6 +1,6 @@
 # @lumeland/plugin-source-maps
 
-Plugin to generate source maps files for CSS and JS
+Plugin to generate source maps files for CSS and JS.
 
 More info at https://lume.land/plugins/source-maps
 

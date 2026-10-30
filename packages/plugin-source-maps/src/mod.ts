@@ -6,9 +6,9 @@ import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { basename, toFileUrl } from "../deps/path.ts";
 import { toBase64 } from "@lumeland/core/services/global.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import Path from "@lumeland/core/path.ts";
 
 export interface Options {
   /** Set true to inline the source map in the output file */
