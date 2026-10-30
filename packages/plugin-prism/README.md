@@ -1,5 +1,7 @@
 # @lumeland/plugin-prism
 
+Plugin for code syntax highlighting using Prism.
+
 More info at https://lume.land/plugins/prism
 
 ---

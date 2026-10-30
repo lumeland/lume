@@ -1,5 +1,5 @@
 import { Prism, themePath } from "../deps/prism.ts";
-import "../deps/prism.ts";
+import "../deps/vento.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { insertContent } from "@lumeland/core/utils/page-content.ts";

@@ -143,6 +143,8 @@ exports[`prism plugin > should match site snapshot 1`] = `
 </code></pre>
 <pre class="language-js" tabindex="0"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+<pre class="language-vto" tabindex="0"><code class="language-vto"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token vto language-vto"><span class="token delimiter punctuation">{{</span><span class="token javascript language-javascript"> hello<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
 </body></html>",
       "data": {
         "basename": "",
@@ -173,6 +175,8 @@ exports[`prism plugin > should match site snapshot 1`] = `
 &lt;/html&gt;
 </code></pre>
 <pre><code class="language-js">console.log(&quot;foo&quot;);
+</code></pre>
+<pre><code class="language-vto">&lt;h1&gt;{{ hello.toUpperCase() }}&lt;/h1&gt;
 </code></pre>
 ",
         "content": "# Hello world
@@ -210,6 +214,10 @@ body {
 
 \`\`\`js
 console.log("foo");
+\`\`\`
+
+\`\`\`vto
+<h1>{{ hello.toUpperCase() }}</h1>
 \`\`\`
 ",
         "date": [],
@@ -396,6 +404,8 @@ exports[`prism plugin > should save the css theme in a specific file 1`] = `
 </code></pre>
 <pre class="language-js" tabindex="0"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+<pre class="language-vto" tabindex="0"><code class="language-vto"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token vto language-vto"><span class="token delimiter punctuation">{{</span><span class="token javascript language-javascript"> hello<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
 </body></html>",
       "data": {
         "basename": "",
@@ -426,6 +436,8 @@ exports[`prism plugin > should save the css theme in a specific file 1`] = `
 &lt;/html&gt;
 </code></pre>
 <pre><code class="language-js">console.log(&quot;foo&quot;);
+</code></pre>
+<pre><code class="language-vto">&lt;h1&gt;{{ hello.toUpperCase() }}&lt;/h1&gt;
 </code></pre>
 ",
         "content": "# Hello world
@@ -463,6 +475,10 @@ body {
 
 \`\`\`js
 console.log("foo");
+\`\`\`
+
+\`\`\`vto
+<h1>{{ hello.toUpperCase() }}</h1>
 \`\`\`
 ",
         "date": [],

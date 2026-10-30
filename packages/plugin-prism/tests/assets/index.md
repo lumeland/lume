@@ -34,3 +34,7 @@ body {
 ```js
 console.log("foo");
 ```
+
+```vto
+<h1>{{ hello.toUpperCase() }}</h1>
+```
