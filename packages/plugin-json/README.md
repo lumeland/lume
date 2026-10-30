@@ -1,6 +1,6 @@
 # @lumeland/plugin-json
 
-Plugin to add support for JSON or JSONC to store data and create pages
+Plugin to add support for JSON or JSONC to store data and create pages.
 
 More info at https://lume.land/plugins/json
 
