@@ -4,6 +4,7 @@ import {
 } from "../../deps/remove-markdown.ts";
 
 import type { Data } from "../../types.ts";
+import type { Document } from "../../deps/dom.ts";
 
 /**
  * Get the value of a page data

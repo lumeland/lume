@@ -4,6 +4,7 @@ import { merge } from "../core/utils/object.ts";
 import { contentType } from "../deps/media_types.ts";
 import { log } from "../core/utils/log.ts";
 
+import type { Document, Element } from "../deps/dom.ts";
 import type Site from "../core/site.ts";
 
 interface SourceFormat {

@@ -5,6 +5,7 @@ import { log } from "../core/utils/log.ts";
 import { filter404page } from "../core/utils/page_url.ts";
 
 import type Site from "../core/site.ts";
+import type { Document } from "../deps/dom.ts";
 import type { Data } from "../types.ts";
 import { isGenerator } from "../core/utils/generator.ts";
 

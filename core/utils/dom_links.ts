@@ -1,3 +1,5 @@
+import type { Document, Element } from "../../deps/dom.ts";
+
 export interface Link {
   element: Element;
   attribute: string;

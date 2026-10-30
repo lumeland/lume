@@ -2,6 +2,7 @@ import { isPlainObject } from "../core/utils/object.ts";
 import { getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
+import type { Document } from "../deps/dom.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
 import { Data } from "../types.ts";
 
