@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-robots",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to create the robots.txt file automatically",
+  "version": "1.0.0",
+  "description": "Plugin to create the robots.txt file automatically.",
   "keywords": [
     "lume-plugin"
   ],
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "rm -rf build && tsc -p .",
-    "update-robots": "curl -L -o src/ai-robots.json 'https://cdn.jsdelivr.net/gh/ai-robots-txt/ai.robots.txt@latest/robots.json'",
+    "update:robots": "curl -L -o src/ai-robots.json 'https://cdn.jsdelivr.net/gh/ai-robots-txt/ai.robots.txt@latest/robots.json'",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"

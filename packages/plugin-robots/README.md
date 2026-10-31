@@ -1,6 +1,6 @@
 # @lumeland/plugin-robots
 
-Plugin to create the robots.txt file automatically
+Plugin to create the robots.txt file automatically.
 
 More info at https://lume.land/plugins/robots
 
