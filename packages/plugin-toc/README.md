@@ -1,6 +1,6 @@
 # @lumeland/plugin-toc
 
-Plugin to generate automatically the table of contents
+Plugin to generate automatically the table of contents.
 
 More info at https://lume.land/plugins/toc
 
