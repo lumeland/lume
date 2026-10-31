@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-seo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin for automatically check SEO basic issues.",
   "keywords": [
     "lume-plugin"
@@ -22,12 +22,12 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.5",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }
