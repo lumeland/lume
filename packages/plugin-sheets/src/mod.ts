@@ -1,11 +1,11 @@
-import { read, utils } from "../deps/xlsx.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import loadText from "@lumeland/core/loaders/text.ts";
 import loadBinary from "@lumeland/core/loaders/binary.ts";
+import { read, utils } from "../deps/xlsx.ts";
 
-import type { ParsingOptions, Sheet2JSONOpts, WorkSheet } from "../deps/xlsx.ts";
 import type Site from "@lumeland/core/site.ts";
 import type { RawData } from "@lumeland/core/types.ts";
+import type { ParsingOptions, Sheet2JSONOpts, WorkSheet } from "../deps/xlsx.ts";
 
 export interface Options {
   /** File extensions to load */

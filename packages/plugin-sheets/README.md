@@ -1,6 +1,6 @@
 # @lumeland/plugin-sheets
 
-Plugin to add support for Spreadsheets to store data
+Plugin to add support for Spreadsheets to store data.
 
 More info at https://lume.land/plugins/sheets
 
