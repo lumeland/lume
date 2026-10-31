@@ -1,6 +1,6 @@
 # @lumeland/plugin-postcss
 
-Plugin to transform the CSS code with PostCSS
+Plugin to transform the CSS code with PostCSS.
 
 More info at https://lume.land/plugins/postcss
 

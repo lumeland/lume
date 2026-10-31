@@ -1,4 +1,3 @@
-import { autoprefixer, postcss, postcssImport } from "../deps/postcss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { getInclude } from "@lumeland/core/utils/includes.ts";
@@ -10,6 +9,7 @@ import { bytes } from "@lumeland/core/utils/format.ts";
 import { browsers, versionString } from "@lumeland/core/utils/browsers.ts";
 import { getFile, isFromCdn } from "@lumeland/core/utils/cdn.ts";
 import Path from "@lumeland/core/path.ts";
+import { autoprefixer, postcss, postcssImport } from "../deps/postcss.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { SourceMap } from "@lumeland/plugin-source-maps";
