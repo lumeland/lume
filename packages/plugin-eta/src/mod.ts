@@ -1,7 +1,7 @@
-import { Eta } from "../deps/eta.ts";
-import { posix } from "../deps/path.ts";
 import loader from "@lumeland/core/loaders/text.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
+import { Eta } from "../deps/eta.ts";
+import { posix } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Engine, Helper, HelperOptions } from "@lumeland/core/renderer.ts";
