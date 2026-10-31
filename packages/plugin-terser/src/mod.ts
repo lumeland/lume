@@ -1,14 +1,14 @@
-import { minify } from "../deps/terser.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { bytes, percentage } from "@lumeland/core/utils/format.ts";
+import { minify } from "../deps/terser.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import type { MinifyOptions } from "../deps/terser.ts";
 import type { Item } from "@lumeland/core/debugbar.ts";
+import type { MinifyOptions } from "../deps/terser.ts";
 
 export interface Options {
   /** File extensions to minify */
