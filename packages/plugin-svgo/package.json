@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-svgo",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to optimize SVG files with SVGO",
+  "version": "1.0.0",
+  "description": "Plugin to optimize SVG files with SVGO.",
   "keywords": [
     "lume-plugin"
   ],

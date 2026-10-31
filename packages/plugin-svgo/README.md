@@ -1,6 +1,6 @@
 # @lumeland/plugin-svgo
 
-Plugin to optimize SVG files with SVGO
+Plugin to optimize SVG files with SVGO.
 
 More info at https://lume.land/plugins/svgo
 

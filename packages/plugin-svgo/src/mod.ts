@@ -1,7 +1,7 @@
-import { optimize } from "../deps/svgo.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { warnUntil } from "@lumeland/core/utils/log.ts";
 import { bytes, percentage } from "@lumeland/core/utils/format.ts";
+import { optimize } from "../deps/svgo.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";
