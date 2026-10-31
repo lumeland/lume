@@ -1,8 +1,8 @@
+import { merge } from "@lumeland/core/utils/object.ts";
 import { parseDate } from "@lumeland/core/utils/date.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import { merge } from "@lumeland/core/utils/object.ts";
 
 export interface Options {
   /** Remove the date from the path */

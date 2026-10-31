@@ -1,6 +1,6 @@
 # @lumeland/plugin-extract-date
 
-Plugin to extract dates from the filenames
+Plugin to extract dates from filenames.
 
 More info at https://lume.land/plugins/extract-date
 
