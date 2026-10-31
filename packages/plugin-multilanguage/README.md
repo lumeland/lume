@@ -1,6 +1,6 @@
 # @lumeland/plugin-multilanguage
 
-Plugin to create multiple language versions of the same page
+Plugin to create multiple language versions of the same page.
 
 More info at https://lume.land/plugins/multilanguage
 
