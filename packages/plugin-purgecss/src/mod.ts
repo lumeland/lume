@@ -1,7 +1,7 @@
-import { PurgeCSS, purgeHtml } from "../deps/purgecss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { getExtension, matchExtension } from "@lumeland/core/utils/path.ts";
+import { PurgeCSS, purgeHtml } from "../deps/purgecss.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";
