@@ -1,6 +1,6 @@
 # @lumeland/testing
 
-Testing utilities for Lume
+Utilities for testing plugins.
 
 ---
 
