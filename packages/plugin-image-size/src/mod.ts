@@ -1,11 +1,11 @@
-import { imageDimensionsFromData, imageDimensionsFromStream } from "../deps/image_dimensions.ts";
-import { posix } from "../deps/path.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-
-import type Site from "@lumeland/core/site.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { isUrl } from "@lumeland/core/utils/path.ts";
 import { readStream } from "@lumeland/core/services/fs.ts";
+import { imageDimensionsFromData, imageDimensionsFromStream } from "../deps/image-dimensions.ts";
+import { posix } from "../deps/path.ts";
+
+import type Site from "@lumeland/core/site.ts";
 
 interface Dimmensions {
   width: number;

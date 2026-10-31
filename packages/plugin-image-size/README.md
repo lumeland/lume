@@ -1,6 +1,6 @@
 # @lumeland/plugin-image-size
 
-Plugin to set automatically the width and height attributes of images
+Plugin to set automatically the width and height attributes of images.
 
 More info at https://lume.land/plugins/image-size
 
