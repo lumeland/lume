@@ -1,14 +1,14 @@
-import Nunjucks from "../deps/nunjucks.ts";
-import { basename, join } from "../deps/path.ts";
 import loader from "@lumeland/core/loaders/text.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import Path from "@lumeland/core/path.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
+import { basename, join } from "../deps/path.ts";
+import Nunjucks from "../deps/nunjucks.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Engine, Helper, HelperOptions } from "@lumeland/core/renderer.ts";
 import type { ProxyComponents } from "@lumeland/core/components.ts";
-import { getInclude } from "@lumeland/core/utils/includes.ts";
 
 export interface Options {
   /** File extensions to load */
