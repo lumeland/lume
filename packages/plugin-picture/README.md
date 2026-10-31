@@ -1,6 +1,6 @@
 # @lumeland/plugin-picture
 
-Plugin to create responsive images using the Transform Images plugin
+Plugin to create responsive images using the Transform Images plugin.
 
 More info at https://lume.land/plugins/picture
 
