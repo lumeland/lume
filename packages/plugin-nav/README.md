@@ -1,6 +1,6 @@
 # @lumeland/plugin-nav
 
-Plugin with helpers to build menus and breadcrumbs
+Plugin with helpers to build menus and breadcrumbs.
 
 More info at https://lume.land/plugins/nav
 
