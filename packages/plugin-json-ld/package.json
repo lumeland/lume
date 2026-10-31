@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-json-ld",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to generate JSON-LD tags in the HTML pages",
+  "version": "1.0.0",
+  "description": "Plugin to generate JSON-LD tags in HTML pages.",
   "keywords": [
     "lume-plugin"
   ],

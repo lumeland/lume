@@ -1,6 +1,6 @@
 # @lumeland/plugin-json-ld
 
-Plugin to generate JSON-LD tags in the HTML pages
+Plugin to generate JSON-LD tags in HTML pages.
 
 More info at https://lume.land/plugins/json-ld
 

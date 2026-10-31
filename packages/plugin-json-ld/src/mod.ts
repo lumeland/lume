@@ -2,8 +2,8 @@ import { isPlainObject } from "@lumeland/core/utils/object.ts";
 import { getPlainDataValue } from "@lumeland/core/utils/data-values.ts";
 
 import type Site from "@lumeland/core/site.ts";
+import type { Data } from "@lumeland/core/types.ts";
 import type { Graph, Thing } from "../deps/schema-dts.ts";
-import { Data } from "@lumeland/core/types.ts";
 
 export type JsonldData = Graph | Thing;
 
