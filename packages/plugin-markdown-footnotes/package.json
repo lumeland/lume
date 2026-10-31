@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-markdown-footnotes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin to collect all footnotes from markdown files.",
   "keywords": [
     "lume-plugin"
@@ -22,14 +22,14 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.5",
     "markdown-it": "^15.0.3",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*",
+    "@lumeland/core": "workspace:^",
     "markdown-it": "^15.0.3"
   }
 }
