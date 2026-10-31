@@ -1,5 +1,5 @@
-import { posix } from "../deps/path.ts";
 import modifyUrls from "@lumeland/plugin-modify-urls";
+import { posix } from "../deps/path.ts";
 
 import type { HelperThis } from "@lumeland/core/renderer.ts";
 import type Site from "@lumeland/core/site.ts";
