@@ -1,7 +1,8 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { getLibFiles, partytownSnippet } from "../deps/partytown.ts";
-import type { PartytownConfig } from "../deps/partytown.ts";
+
 import type Site from "@lumeland/core/site.ts";
+import type { PartytownConfig } from "../deps/partytown.ts";
 
 export interface Options {
   /**
