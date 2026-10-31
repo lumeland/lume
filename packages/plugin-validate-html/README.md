@@ -1,6 +1,6 @@
 # @lumeland/plugin-validate-html
 
-Plugin to automatically check the HTML code from your pages
+Plugin to check and validate HTML code.
 
 More info at https://lume.land/plugins/validate-html
 

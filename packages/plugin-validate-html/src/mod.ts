@@ -1,11 +1,11 @@
-import { HtmlValidate, Reporter } from "../deps/html-validate.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { writeTextFileSync } from "@lumeland/core/services/fs.ts";
+import { HtmlValidate, Reporter } from "../deps/html-validate.ts";
 
-import type { ConfigData, Report } from "../deps/html-validate.ts";
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";
+import type { ConfigData, Report } from "../deps/html-validate.ts";
 
 export interface Options {
   /**
