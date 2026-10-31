@@ -1,6 +1,6 @@
 # @lumeland/plugin-pug
 
-Plugin to use Pug to create pages and layouts
+Plugin to use Pug to create pages and layouts.
 
 More info at https://lume.land/plugins/pug
 
