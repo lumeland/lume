@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-serve-folder",
-  "version": "1.0.0-rc.1",
-  "description": "Middleware to add additional folders to the server",
+  "version": "1.0.0",
+  "description": "Middleware to add additional folders to the server.",
   "keywords": [
     "lume-middleware",
     "lume-plugin"
@@ -23,12 +23,12 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }
