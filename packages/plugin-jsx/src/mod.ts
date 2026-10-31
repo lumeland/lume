@@ -1,6 +1,6 @@
-import { renderComponent } from "../deps/ssx.ts";
 import loader from "@lumeland/core/loaders/module.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
+import { renderComponent } from "../deps/ssx.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Engine, Helper } from "@lumeland/core/renderer.ts";
