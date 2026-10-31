@@ -1,5 +1,5 @@
-import type { Middleware } from "@lumeland/core/server.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
+import type { Middleware } from "@lumeland/core/server.ts";
 
 const HOUR = 3600000;
 const DAY = HOUR * 24;

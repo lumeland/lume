@@ -1,6 +1,6 @@
 # @lumeland/plugin-expires
 
-Middleware to add the Expires header to HTTP responses
+Middleware to add the Expires header to HTTP responses.
 
 More info at https://lume.land/plugins/expires
 
