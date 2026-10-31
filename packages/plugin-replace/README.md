@@ -1,6 +1,6 @@
 # @lumeland/plugin-replace
 
-Plugin to replace placeholders with final values
+Plugin to replace placeholders with final values.
 
 More info at https://lume.land/plugins/replace
 
