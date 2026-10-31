@@ -1,6 +1,6 @@
 # @lumeland/plugin-redirects
 
-Plugin to create redirections from one page to another
+Plugin to create redirections from one page to other.
 
 More info at https://lume.land/plugins/redirects
 
