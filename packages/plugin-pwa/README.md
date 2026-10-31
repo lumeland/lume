@@ -1,6 +1,6 @@
 # @lumeland/plugin-pwa
 
-Plugin to generate the manifest.json file to create a Progressive Web Application
+Plugin to generate the manifest.json file and icons for Progressive Web Applications.
 
 More info at https://lume.land/plugins/pwa
 

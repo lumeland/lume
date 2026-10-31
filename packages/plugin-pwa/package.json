@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-pwa",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to generate the manifest.json file to create a Progressive Web Application",
+  "version": "1.0.0",
+  "description": "Plugin to generate the manifest.json file and icons for Progressive Web Applications.",
   "keywords": [
     "lume-plugin"
   ],
