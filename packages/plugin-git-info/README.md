@@ -1,6 +1,6 @@
 # @lumeland/plugin-git-info
 
-Extract the current branch, commit hash and tag from Git
+Plugin to extract the current branch, commit hash and tag from GIT.
 
 More info at https://lume.land/plugins/git-info
 
