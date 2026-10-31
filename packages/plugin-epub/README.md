@@ -1,6 +1,6 @@
 # @lumeland/plugin-epub
 
-Output a .epub file with the site
+Plugin to output a .epub file with the site.
 
 More info at https://lume.land/plugins/epub
 

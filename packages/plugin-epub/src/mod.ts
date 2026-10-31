@@ -1,21 +1,19 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { filesToPages, type Page } from "@lumeland/core/file.ts";
 import navPlugin from "@lumeland/plugin-nav";
-import type { Nav, NavData } from "@lumeland/plugin-nav";
-import type Site from "@lumeland/core/site.ts";
-
+import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
 import {
   createContainer,
   createEncryption,
   createOPF,
   createTocNcx,
-  type EpubType,
   getManifest,
   ManifestItem,
-  type Metadata,
-  type Property,
 } from "./epub.ts";
-import { BlobReader, BlobWriter, ZipWriter } from "../deps/zip.ts";
+
+import type { Nav, NavData } from "@lumeland/plugin-nav";
+import type Site from "@lumeland/core/site.ts";
+import type { EpubType, Metadata, Property } from "./epub.ts";
 
 export interface Options {
   /** File to output the .epub file */
