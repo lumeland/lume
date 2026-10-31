@@ -1,6 +1,6 @@
 # @lumeland/plugin-remark
 
-Plugin to use Remark to render the markdown content
+Plugin to use Remark to render the markdown content.
 
 More info at https://lume.land/plugins/remark
 
