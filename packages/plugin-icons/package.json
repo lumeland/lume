@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-icons",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to import icons from the most popular icon libraries",
+  "version": "1.0.0",
+  "description": "Plugin to import icons from the most popular icon libraries.",
   "keywords": [
     "lume-plugin"
   ],
@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "rm -rf build && tsc -p .",
+    "update:icons": "deno run -A --quiet 'https://cdn.jsdelivr.net/gh/oscarotero/nudd@0.2.15/cli.ts' update --min-age=24 --ignore='Richard9394/MingCute' deps/icons.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u"

@@ -1,6 +1,6 @@
 # @lumeland/plugin-icons
 
-Plugin to import icons from the most popular icon libraries
+Plugin to import icons from the most popular icon libraries.
 
 More info at https://lume.land/plugins/icons
 
