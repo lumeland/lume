@@ -1,13 +1,13 @@
-import { hljs, themePath } from "../deps/highlight.ts";
-import { ventoLang } from "../deps/vento.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { readFile } from "@lumeland/core/utils/read.ts";
 import { insertContent } from "@lumeland/core/utils/page-content.ts";
+import { hljs, themePath } from "../deps/highlight.ts";
+import { ventoLang } from "../deps/vento.ts";
 
-import type { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";
+import type { HLJSOptions, LanguageFn } from "../deps/highlight.ts";
 
 export interface Options {
   /** Register languages on the Highlight.js context. */
