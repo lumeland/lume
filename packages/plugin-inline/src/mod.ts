@@ -1,10 +1,10 @@
-import { posix } from "../deps/path.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { concurrent } from "@lumeland/core/utils/concurrent.ts";
-import { contentType } from "../deps/media-types.ts";
 import { walkUrls } from "@lumeland/core/utils/css-urls.ts";
 import { toBase64 } from "@lumeland/core/services/global.ts";
+import { posix } from "../deps/path.ts";
+import { contentType } from "../deps/media-types.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { Page } from "@lumeland/core/file.ts";
