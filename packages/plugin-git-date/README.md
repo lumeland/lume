@@ -1,6 +1,6 @@
 # @lumeland/plugin-git-date
 
-Plugin to extract the last modification time of all pages from the Git history
+Plugin to extract the last modification time of all pages from the GIT history.
 
 More info at https://lume.land/plugins/git-date
 
