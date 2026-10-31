@@ -59,12 +59,13 @@ function getFsFiles(specifier: string, patterns: string[]): Map<string, string> 
   );
 
   for (const path of walk(basePath)) {
-    const filename = Path.create(path).removeBase(basePath);
-    if (!regexps.some((regexp) => regexp.test(filename.toString()))) {
+    const from = Path.create(path);
+    const to = from.clone().removeBase(basePath).toString();
+    if (!regexps.some((regexp) => regexp.test(to))) {
       continue;
     }
 
-    fileMap.set(filename.toString(), filename.url.href);
+    fileMap.set(to, from.url.href);
   }
   return fileMap;
 }
