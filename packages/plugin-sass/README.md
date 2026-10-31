@@ -1,6 +1,6 @@
 # @lumeland/plugin-sass
 
-Plugin to compile SCSS and SASS files to CSS
+Plugin to compile SCSS and SASS files to CSS.
 
 More info at https://lume.land/plugins/sass
 
