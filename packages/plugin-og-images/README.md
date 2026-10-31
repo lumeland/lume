@@ -1,6 +1,6 @@
 # @lumeland/plugin-og-images
 
-Plugin to create Open Graph images automatically
+Plugin to create Open Graph images automatically.
 
 More info at https://lume.land/plugins/og-images
 

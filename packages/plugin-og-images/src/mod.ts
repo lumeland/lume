@@ -1,9 +1,9 @@
-import satori, { SatoriOptions } from "../deps/satori.ts";
-import { getInclude } from "@lumeland/core/utils/includes.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
+import { getInclude } from "@lumeland/core/utils/includes.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
 import loader from "@lumeland/core/loaders/module.ts";
+import satori, { SatoriOptions } from "../deps/satori.ts";
 import { posix } from "../deps/path.ts";
 import { Resvg } from "../deps/resvg.ts";
 import { fonts } from "../deps/fonts.ts";
