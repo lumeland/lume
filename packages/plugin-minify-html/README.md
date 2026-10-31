@@ -1,6 +1,6 @@
 # @lumeland/plugin-minify-html
 
-Plugin to minify the HTML code of your pages
+Plugin to minify the HTML code.
 
 More info at https://lume.land/plugins/minify-html
 

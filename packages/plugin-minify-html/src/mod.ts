@@ -1,7 +1,7 @@
-import { minify } from "../deps/minify-html.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { bytes, percentage } from "@lumeland/core/utils/format.ts";
+import { minify } from "../deps/minify-html.ts";
 
 import type { Options as MinifyOptions } from "../deps/minify-html.ts";
 import type Site from "@lumeland/core/site.ts";
