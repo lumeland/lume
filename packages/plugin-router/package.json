@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-router",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "Middleware to provide a simple server-side router.",
   "keywords": [
     "lume-middleware",
@@ -23,12 +23,12 @@
     "test:update": "vitest run -u"
   },
   "devDependencies": {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3"
   },
   "peerDependencies": {
-    "@lumeland/core": "workspace:*"
+    "@lumeland/core": "workspace:^"
   }
 }

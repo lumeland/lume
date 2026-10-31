@@ -72,8 +72,6 @@ export default class Router {
         continue;
       }
 
-      console.log({ request });
-
       const url = new URL(request.url);
       const result = pattern.exec({
         pathname: url.pathname,
