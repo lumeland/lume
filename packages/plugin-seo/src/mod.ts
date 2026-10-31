@@ -6,8 +6,8 @@ import enCommonWords from "./common-words/en.json" with { type: "json" };
 import { refresh, validatePage } from "./seo.ts";
 
 import type Site from "@lumeland/core/site.ts";
-import type { Options as SeoOptions, ErrorMessage } from "./seo.ts";
 import type { Item } from "@lumeland/core/debugbar.ts";
+import type { Options as SeoOptions, ErrorMessage } from "./seo.ts";
 
 const commonWords = new Set<string>(enCommonWords);
 

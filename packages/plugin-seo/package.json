@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-seo",
-  "version": "1.0.0-beta-9",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Plugin for automatically check SEO basic issues.",
   "keywords": [
     "lume-plugin"
   ],

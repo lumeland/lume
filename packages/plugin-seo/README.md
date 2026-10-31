@@ -1,5 +1,7 @@
 # @lumeland/plugin-seo
 
+Plugin for automatically check SEO basic issues.
+
 More info at https://lume.land/plugins/seo
 
 ---
