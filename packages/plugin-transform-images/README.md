@@ -1,6 +1,6 @@
 # @lumeland/plugin-transform-images
 
-Image manipulation plugin using Sharp
+Plugin for image manipulation using Sharp.
 
 More info at https://lume.land/plugins/transform-images
 

@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-transform-images",
-  "version": "1.0.0-beta-9",
-  "description": "Image manipulation plugin using Sharp",
+  "version": "1.0.0",
+  "description": "Plugin for image manipulation using Sharp.",
   "keywords": [
     "lume-plugin"
   ],
