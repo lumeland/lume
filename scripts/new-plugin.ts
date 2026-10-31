@@ -28,10 +28,10 @@ const pkg = {
     "test:update": "vitest run -u",
   },
   peerDependencies: {
-    "@lumeland/core": "workspace:*",
+    "@lumeland/core": "workspace:^",
   },
   devDependencies: {
-    "@lumeland/testing": "workspace:*",
+    "@lumeland/testing": "workspace:^",
     "@types/node": "^26.6.4",
     typescript: "^7.0.2",
     vitest: "^5.0.3",
