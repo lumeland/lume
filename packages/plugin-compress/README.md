@@ -1,6 +1,6 @@
 # @lumeland/plugin-compress
 
-Plugin to compress the output using gzip or brotli formats
+Plugin to compress the output using gzip or brotli formats.
 
 More info at https://lume.land/plugins/compress
 
