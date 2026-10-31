@@ -1,6 +1,6 @@
 # @lumeland/plugin-katex
 
-Plugin to provide TeX math rendering in HTML
+Plugin to provide TeX math rendering in HTML.
 
 More info at https://lume.land/plugins/katex
 
