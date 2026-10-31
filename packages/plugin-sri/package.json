@@ -1,7 +1,7 @@
 {
   "name": "@lumeland/plugin-sri",
-  "version": "1.0.0-beta-9",
-  "description": "Plugin to use SRI to load securely assets loaded from an external CDN",
+  "version": "1.0.0",
+  "description": "Plugin to use SRI to load securely assets loaded from a external CDNs.",
   "keywords": [
     "lume-plugin"
   ],

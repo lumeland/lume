@@ -1,6 +1,6 @@
 # @lumeland/plugin-sri
 
-Plugin to use SRI to load securely assets loaded from an external CDN
+Plugin to use SRI to load securely assets loaded from a external CDNs.
 
 More info at https://lume.land/plugins/sri
 
