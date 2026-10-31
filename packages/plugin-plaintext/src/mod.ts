@@ -1,23 +1,24 @@
+import { merge } from "@lumeland/core/utils/object.ts";
 import { removeMarkdown } from "../deps/remove-markdown.ts";
 
-import type { RemoveMarkdownOptions } from "../deps/remove-markdown.ts";
 import type Site from "@lumeland/core/site.ts";
+import type { RemoveMarkdownOptions } from "../deps/remove-markdown.ts";
 
 export interface Options extends RemoveMarkdownOptions {}
 
-export const defaults: Options = {
+export const defaults = {
   stripListLeaders: true,
   gfm: true,
   useImgAltText: true,
   replaceLinksWithURL: false,
-};
+} satisfies Options;
 
 /**
  * Plugin to convert a markdown or HTML string to plain text
  * @see https://lume.land/plugins/plaintext/
  */
 export function plaintext(userOptions?: Options) {
-  const options = { ...defaults, ...userOptions };
+  const options = merge(defaults, userOptions);
 
   return (site: Site) => {
     site.filter("plaintext", (text?: unknown, opts?: Options) => {

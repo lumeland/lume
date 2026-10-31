@@ -1,6 +1,6 @@
 # @lumeland/plugin-plaintext
 
-Plugin with a helper to remove HTML and Markdown syntax in any text
+Plugin with a helper to remove HTML and Markdown syntax in any text.
 
 More info at https://lume.land/plugins/plaintext
 
