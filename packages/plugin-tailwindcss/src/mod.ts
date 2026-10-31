@@ -1,12 +1,12 @@
-import { compile, Scanner, toSourceMap } from "../deps/tailwindcss.ts";
 import { merge } from "@lumeland/core/utils/object.ts";
 import { log, warnUntil } from "@lumeland/core/utils/log.ts";
 import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { browsers, version } from "@lumeland/core/utils/browsers.ts";
+import { compile, Scanner, toSourceMap } from "../deps/tailwindcss.ts";
 import { Features, transform } from "../deps/lightningcss.ts";
 
-import type { ChangedContent } from "../deps/tailwindcss.ts";
 import type Site from "@lumeland/core/site.ts";
+import type { ChangedContent } from "../deps/tailwindcss.ts";
 
 export interface Options {
   /** To enable minified output */

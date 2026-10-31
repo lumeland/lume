@@ -1,6 +1,6 @@
 # @lumeland/plugin-tailwindcss
 
-Plugin to use Tailwind to create the CSS styles
+Plugin to use Tailwind to create the CSS styles.
 
 More info at https://lume.land/plugins/tailwindcss
 
