@@ -1,6 +1,6 @@
 # @lumeland/plugin-unocss
 
-Plugin to use UnoCSS to create the CSS styles
+Plugin to use UnoCSS to create CSS styles.
 
 More info at https://lume.land/plugins/unocss
 
