@@ -1,6 +1,7 @@
 import { merge } from "@lumeland/core/utils/object.ts";
 import { Fs } from "@lumeland/cms/storage/fs.ts";
 import { log } from "@lumeland/core/utils/log.ts";
+import Path from "@lumeland/core/path.ts";
 import { posix } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
@@ -59,7 +60,10 @@ export function lumeCms(userOptions: Options) {
       hasChanged: boolean,
       storage: Storage,
     ): undefined | string | Promise<string | undefined> {
-      if (!(storage instanceof Fs) || !posix.join(storage.root, storage.path).startsWith(root)) {
+      if (
+        !(storage instanceof Fs) ||
+        !Path.create(posix.join(storage.root, storage.path)).belongsTo(root)
+      ) {
         return;
       }
 
