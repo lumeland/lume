@@ -81,7 +81,7 @@ export default class Archetypes {
     const fullPath = join(base === "root" ? this.root : this.src, path);
 
     if (content instanceof URL) {
-      return await saveFile(fullPath, await read(content.href), overwrite);
+      return await saveFile(fullPath, await read(content.href, true), overwrite);
     }
 
     if (typeof content === "string" || content instanceof Uint8Array) {
