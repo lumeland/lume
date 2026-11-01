@@ -1,7 +1,7 @@
 import { parse, stringify } from "../deps/yaml.ts";
 import { extract, test } from "../deps/front-matter.ts";
 import { ensureDir } from "./utils/fs.ts";
-import { dirname, join, toFileUrl } from "../deps/path.ts";
+import { dirname, join, toFileUrl, relative } from "../deps/path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { log } from "./utils/log.ts";
 import { isUrl } from "./utils/path.ts";
@@ -29,21 +29,25 @@ export default class Archetypes {
     this.archetypes.set(name, archetype);
   }
 
-  async run(name: string, args: string[] = []): Promise<void> {
+  async run(name: string | Archetype, args: string[] = []): Promise<void> {
     let archetype: Archetype;
 
-    try {
-      archetype = await this.load(name);
-    } catch (cause) {
-      log.fatal(
-        `[archetype] Archetype "${name}" not found or is errored.: ${(cause as Error).message}`,
-      );
-      return;
-    }
+    if (typeof name === "string") {
+      try {
+        archetype = await this.load(name);
+      } catch (cause) {
+        log.fatal(
+          `[archetype] Archetype "${name}" not found or is errored.: ${(cause as Error).message}`,
+        );
+        return;
+      }
 
-    if (typeof archetype !== "function") {
-      log.fatal(`[archetype] Archetype "${name}" is not a valid function.`);
-      return;
+      if (typeof archetype !== "function") {
+        log.fatal(`[archetype] Archetype "${name}" is not a valid function.`);
+        return;
+      }
+    } else {
+      archetype = name;
     }
 
     if (isGenerator(archetype)) {
@@ -179,10 +183,12 @@ async function saveFile(path: string, content: string | Uint8Array, overwrite = 
       await writeTextFile(path, content, !overwrite);
     }
 
+    const relPath = relative(cwd(), path);
+
     if (overwrite) {
-      log.info(`✔️ Updated file: <gray>${path}</gray>`);
+      log.info(`✔️ Updated file: <gray>${relPath}</gray>`);
     } else {
-      log.info(`✔️ Created file: <gray>${path}</gray>`);
+      log.info(`✔️ Created file: <gray>${relPath}</gray>`);
     }
   } catch (error) {
     if ((error as FsError).code === "exists") {
