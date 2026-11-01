@@ -27,7 +27,7 @@ const plugins: Record<string, [string, string?]> = {
   filterPages: ["filter-pages"],
   gitDate: ["git-date"],
   gitInfo: ["git-info"],
-  googleFonts: ["google-fonts"],
+  googleFonts: ["google-fonts", '{ fonts: "" }'],
   icons: ["icons"],
   imageSize: ["image-size"],
   inline: ["inline"],
@@ -40,7 +40,7 @@ const plugins: Record<string, [string, string?]> = {
   metas: ["metas"],
   minifyHtml: ["minify-html"],
   modifyUrls: ["modify-urls"],
-  multilanguage: ["multilanguage"],
+  multilanguage: ["multilanguage", "{ languages: [] }"],
   nav: ["nav"],
   nunjucks: ["nunjucks"],
   ogImages: ["og-images"],
@@ -74,7 +74,7 @@ const plugins: Record<string, [string, string?]> = {
   transformImages: ["transform-images"],
   unocss: ["unocss"],
   validateHtml: ["validate-html"],
-  wellKnown: ["well-known"],
+  wellKnown: ["well-known", "{}"],
 };
 
 interface InitOptions {
@@ -229,7 +229,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   let doneMessage = `🔥 Done! Now run ${styleText(["greenBright"], runCommand())} to get started!`;
   prompts.outro(doneMessage);
 
-  /** Get the install arguments according the package manager */
+  /** Get the install arguments according to the package manager */
   function installArgs(...pkgs: string[]) {
     switch (pkgManager) {
       case "yarn":
@@ -241,7 +241,19 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     }
   }
 
-  /** Get the run script arguments according the package manager */
+  /** Get the link arguments according to the package manager */
+  function linkArgs(pkg: string) {
+    switch (pkgManager) {
+      case "yarn":
+      case "pnpm":
+      case "bun":
+        return ["link", pkg];
+      default:
+        return ["link", pkg, "--save"];
+    }
+  }
+
+  /** Get the run script arguments according to the package manager */
   function scriptArgs(...script: string[]) {
     switch (pkgManager) {
       case "yarn":
@@ -254,8 +266,19 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   }
 
   async function installTheme(source: string) {
-    const name = source.startsWith(".") ? realpathSync(source) : source;
-    run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
+    let name = source;
+
+    if (name.startsWith(".")) {
+      name = realpathSync(name);
+      if (name.endsWith(".tgz")) {
+        run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
+      } else {
+        run(pkgManager, linkArgs(name), root);
+        run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx"), root);
+      }
+    } else {
+      run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
+    }
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
     const specifier = Object.keys(pkg.dependencies).find(
@@ -271,8 +294,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       `import site from "./${config}"`,
       `import * as theme from "${specifier}"`,
       "if (theme.setup) {",
-      "site.archetype('__setup__', theme.setup);",
-      "site.archetypes.run('__setup__');",
+      "site.archetypes.run(theme.setup);",
       "} else {",
       `console.log('No setup script found for ${specifier}')`,
       "}",
