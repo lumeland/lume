@@ -276,9 +276,9 @@ Other title
 
 <div><p>Welcome to this <a href="/">page</a></p></div>
 ",
-        "content": "<h1>{{ title |> md(true) }}</h1>
+        "content": "<h1>{{ title |> mdRemark(true) }}</h1>
 
-<div>{{ description |> md }}</div>
+<div>{{ description |> mdRemark }}</div>
 ",
         "date": [],
         "description": "Welcome to this [page](/)
