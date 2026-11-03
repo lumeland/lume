@@ -111,13 +111,14 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
   // 2. Handle directory if exist and not empty
   if (fs.existsSync(root) && !isEmpty(root)) {
-    if (
-      isDenoProject(root) &&
-      (await prompts.confirm({
+    if (isDenoProject(root)) {
+      const migrate = await prompts.confirm({
         message: "This folder has a Lume site with Deno. Do you want help to migrate to Node?",
-      }))
-    ) {
-      return migrateToNode();
+      });
+      if (prompts.isCancel(migrate)) return cancel();
+      if (migrate) {
+        return migrateToNode();
+      }
     }
 
     const res = await prompts.select({
@@ -390,6 +391,8 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
       return full;
     });
+
+    console.log({ packages });
 
     writeFile(root, lumeConfigPath, lumeConfig);
     run(pkgManager, installArgs(...packages), root);
