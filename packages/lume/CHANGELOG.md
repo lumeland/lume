@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 4.0.1 - Unreleased
+
+### Fixed
+
+- Error loading default archetypes.
+
 ## 4.0.0 - 2026-10-30
 
 In this version, Lume was migrated from Deno to Node, and published on NPM as `@lumeland/lume`. See the blog posts or the migrating guide in the Lume website for more info.

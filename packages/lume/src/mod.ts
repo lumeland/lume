@@ -59,12 +59,14 @@ export default function lume(
   site.options.watcher.ignore.push(...ignore);
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
 
+  const ext = import.meta.url.endsWith(".ts") ? "ts" : "js";
+
   return site
     .ignore(...ignore)
     .ignore((path) => path.endsWith(".d.ts"))
     .mergeKey("tags", "stringArray")
-    .archetype("new-archetype", import.meta.resolve("./archetypes/archetype.ts"))
-    .archetype("new-plugin", import.meta.resolve("./archetypes/plugin.ts"))
+    .archetype("new-archetype", import.meta.resolve(`./archetypes/archetype.${ext}`))
+    .archetype("new-plugin", import.meta.resolve(`./archetypes/plugin.${ext}`))
     .use(url())
     .use(json(pluginOptions.json))
     .use(markdown(pluginOptions.markdown))
