@@ -5,17 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## 1.0.3 - 2026-11-04
 
 ### Fixed
 
-- `emptyDest` removed only the first entry of the dest folder.
+- `emptyDest` removed only the first entry of the dest folder [#3](https://codeberg.org/lume/lume/pulls/3).
 
 ## 1.0.2 - 2026-11-01
 
 ### Fixed
 
-- Archetypes: Download URLs as binary files.
+- Archetypes: URLs are not downloaded as binary files.
 - Archetypes: Allow to run unregistered archetypes.
 - Archetypes: Print relative paths of the created files.
 
