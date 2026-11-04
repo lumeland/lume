@@ -5,7 +5,7 @@ import { FsError, mkdirSync, readDirSync, removeSync, statSync } from "../servic
 export function emptyDir(dir: string): void {
   try {
     for (const item of readDirSync(dir)) {
-      return removeSync(join(dir, item.name), true);
+      removeSync(join(dir, item.name), true);
     }
   } catch (error) {
     if ((error as FsError).code !== "not-found") {
