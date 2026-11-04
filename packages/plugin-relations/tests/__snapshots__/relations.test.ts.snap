@@ -1,0 +1,434 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`relations plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/_includes",
+      "/_includes/categories.vto",
+      "/_includes/comment.vto",
+      "/_includes/posts.vto",
+      "/categories",
+      "/categories/_data.yml",
+      "/categories/category-1.md",
+      "/categories/category-2.md",
+      "/comments",
+      "/comments/_data.yml",
+      "/comments/comment-1.md",
+      "/comments/comment-2.md",
+      "/comments/comment-3.md",
+      "/posts",
+      "/posts/_data.yml",
+      "/posts/post-1.md",
+      "/posts/post-2.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<h1>Category 1</h1>
+
+<div><p>This is the first category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+  <li><p>Second post with category 1 and comment 2</p></li>
+</ul>
+",
+      "data": {
+        "basename": "category-1",
+        "children": "<p>This is the first category</p>
+",
+        "content": "This is the first category
+",
+        "date": [],
+        "layout": "categories.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "post": "Array(1)",
+        "renderOrder": -2,
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Category 1",
+        "type": "category",
+        "url": "/categories/category-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/categories/category-1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<h1>Category 2</h1>
+
+<div><p>This is the second category</p>
+</div>
+
+<h2>Posts</h2>
+<ul>
+  <li><p>First post with category 2 and comments 1 and 3</p></li>
+</ul>
+",
+      "data": {
+        "basename": "category-2",
+        "children": "<p>This is the second category</p>
+",
+        "content": "This is the second category
+",
+        "date": [],
+        "layout": "categories.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "post": "Array(1)",
+        "search": [],
+        "tags": "Array(0)",
+        "title": "Category 2",
+        "type": "category",
+        "url": "/categories/category-2/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/categories/category-2",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>This is the first comment</p>
+",
+      "data": {
+        "basename": "comment-1",
+        "children": "<p>This is the first comment</p>
+",
+        "content": "This is the first comment
+",
+        "date": [],
+        "id": 1,
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "post": "Array(1)",
+        "search": [],
+        "tags": "Array(0)",
+        "type": "comment",
+        "url": "/comments/comment-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/comments/comment-1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>This is the second comment</p>
+",
+      "data": {
+        "basename": "comment-2",
+        "children": "<p>This is the second comment</p>
+",
+        "content": "This is the second comment
+",
+        "date": [],
+        "id": 2,
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "post": "Array(1)",
+        "renderOrder": -1,
+        "search": [],
+        "tags": "Array(0)",
+        "type": "comment",
+        "url": "/comments/comment-2/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/comments/comment-2",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<p>This is the third comment</p>
+",
+      "data": {
+        "basename": "comment-3",
+        "children": "<p>This is the third comment</p>
+",
+        "content": "This is the third comment
+",
+        "date": [],
+        "id": 3,
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "post": "Array(1)",
+        "search": [],
+        "tags": "Array(0)",
+        "type": "comment",
+        "url": "/comments/comment-3/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/comments/comment-3",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<div><p>First post with category 2 and comments 1 and 3</p>
+</div>
+
+<h2>Category:</h2>
+<a href="/categories/category-2/">Category 2</a>
+<p>This is the second category</p>
+
+<ul>
+</ul>
+",
+      "data": {
+        "basename": "post-1",
+        "category": [
+          "basename",
+          "mergedKeys",
+          "paginate",
+          "search",
+          "tags",
+          "type",
+          "layout",
+          "title",
+          "content",
+          "url",
+          "date",
+          "page",
+          "children",
+          "post",
+        ],
+        "category_id": "category-2",
+        "children": "<p>First post with category 2 and comments 1 and 3</p>
+",
+        "comment_id": "Array(2)",
+        "comments": "Array(2)",
+        "content": "First post with category 2 and comments 1 and 3
+",
+        "date": [],
+        "id": "first-post",
+        "layout": "posts.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "renderOrder": 1,
+        "search": [],
+        "tags": "Array(0)",
+        "type": "post",
+        "url": "/posts/post-1/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/posts/post-1",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": "<div><p>Second post with category 1 and comment 2</p>
+</div>
+
+<h2>Category:</h2>
+<a href="/categories/category-1/">Category 1</a>
+<p>This is the first category</p>
+
+<ul>
+</ul>
+",
+      "data": {
+        "basename": "post-2",
+        "category": [
+          "basename",
+          "mergedKeys",
+          "paginate",
+          "search",
+          "tags",
+          "type",
+          "layout",
+          "title",
+          "renderOrder",
+          "content",
+          "url",
+          "date",
+          "page",
+          "children",
+          "post",
+        ],
+        "category_id": "category-1",
+        "children": "<p>Second post with category 1 and comment 2</p>
+",
+        "comment_id": "Array(1)",
+        "comments": "Array(1)",
+        "content": "Second post with category 1 and comment 2
+",
+        "date": [],
+        "id": "second-post",
+        "layout": "posts.vto",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "type": "post",
+        "url": "/posts/post-2/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/posts/post-2",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
