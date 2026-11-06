@@ -1,4 +1,4 @@
-import { fromFileUrl, posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import { merge } from "./utils/object.ts";
 import { isUrl } from "./utils/path.ts";
 import { envBoolean, setEnv } from "./utils/env.ts";
@@ -7,7 +7,6 @@ import { filter404page } from "./utils/page-url.ts";
 import { insertContent } from "./utils/page-content.ts";
 import { getFile, getFiles, isFromCdn } from "./utils/cdn.ts";
 import { setCache } from "./utils/read.ts";
-import Path from "./path.ts";
 
 import FS from "./fs.ts";
 import { ComponentLoader, defaultAssetsCompiler } from "./components.ts";
@@ -166,7 +165,7 @@ export default class Site {
     this.options = merge(defaults, options);
 
     if (this.options.cwd.startsWith("file:")) {
-      this.options.cwd = fromFileUrl(this.options.cwd);
+      this.options.cwd = Path.fromFileUrl(this.options.cwd);
     }
     this.rootPath = Path.create(this.options.cwd);
 
@@ -586,7 +585,7 @@ export default class Site {
             const dest =
               typeof to === "function"
                 ? () => (to as Destination)(name)
-                : posix.join(to ?? "", name);
+                : Path.join(to ?? "", name);
             this.#addOrCopy(url, dest, copy);
           }
         });
@@ -601,7 +600,7 @@ export default class Site {
       const url = new URL(from);
 
       if (to === undefined) {
-        to = posix.basename(url.pathname) || undefined;
+        to = Path.basename(url.pathname) || undefined;
       }
 
       if (typeof to === "function") {
@@ -609,7 +608,7 @@ export default class Site {
       }
 
       if (to?.endsWith("/")) {
-        to = posix.join(to, posix.basename(url.pathname));
+        to = Path.join(to, Path.basename(url.pathname));
       }
 
       if (!to || to.endsWith("/")) {
@@ -651,7 +650,7 @@ export default class Site {
   remote(filename: string, url: string, paths?: string | string[]): this {
     // Single file
     if (!paths) {
-      this.fs.remoteFiles.set(posix.join("/", filename), isFromCdn(url) ? getFile(url) : url);
+      this.fs.remoteFiles.set(Path.join("/", filename), isFromCdn(url) ? getFile(url) : url);
       return this;
     }
 
@@ -662,7 +661,7 @@ export default class Site {
       return this.addEventListener("beforeBuild", async () => {
         const files = await getFiles(url, paths);
         for (const [path, url] of files.entries()) {
-          this.fs.remoteFiles.set(posix.join("/", filename, path), url);
+          this.fs.remoteFiles.set(Path.join("/", filename, path), url);
         }
       });
     }
@@ -676,8 +675,8 @@ export default class Site {
 
     for (const path of paths) {
       this.fs.remoteFiles.set(
-        posix.join("/", filename, path),
-        new URL(posix.join(pathname, path), url).href,
+        Path.join("/", filename, path),
+        new URL(Path.join(pathname, path), url).href,
       );
     }
 
@@ -1004,7 +1003,7 @@ export default class Site {
     }
 
     if (!path.startsWith(this.options.location.pathname)) {
-      path = posix.join(this.options.location.pathname, path);
+      path = Path.join(this.options.location.pathname, path);
     }
 
     return absolute ? this.options.location.origin + path : path;

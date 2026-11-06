@@ -1,4 +1,4 @@
-import { posix } from "../../deps/path.ts";
+import Path from "../path.ts";
 import type { default as FS, Entry } from "../fs.ts";
 
 export function getInclude(fromDir: string, to: string, fs: FS): Entry | undefined {
@@ -9,9 +9,9 @@ export function getInclude(fromDir: string, to: string, fs: FS): Entry | undefin
 
   // Relative path
   if (to.startsWith(".")) {
-    return fs.entries.get(posix.join("/", fromDir, to));
+    return fs.entries.get(Path.join("/", fromDir, to));
   }
 
   // Get from _includes folder
-  return fs.entries.get(posix.join("/_includes", to));
+  return fs.entries.get(Path.join("/_includes", to));
 }

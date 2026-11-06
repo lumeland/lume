@@ -1,4 +1,3 @@
-import { posix } from "../../deps/path.ts";
 import Path from "../path.ts";
 
 import type { Destination } from "../source.ts";
@@ -47,7 +46,7 @@ export function getPageUrl(
   if (typeof url === "string") {
     // Relative URL
     if (url.startsWith("./") || url.startsWith("../")) {
-      return normalizeUrl(posix.join(parentPath, url));
+      return normalizeUrl(Path.join(parentPath, url));
     }
 
     if (url.startsWith("/")) {
@@ -77,14 +76,14 @@ export function getPageUrl(
 /** Returns the default URL for a page */
 function getDefaultUrl(basename: string, parentPath: string, prettyUrls: boolean): string {
   // Calculate the URL from the path
-  const url = posix.join(parentPath, basename);
+  const url = Path.join(parentPath, basename);
 
   // Pretty URLs affects to all pages but 404
   if (prettyUrls && url !== "/404") {
-    if (posix.basename(url) === "index") {
-      return posix.join(posix.dirname(url), "/");
+    if (Path.basename(url) === "index") {
+      return Path.join(Path.dirname(url), "/");
     }
-    return posix.join(url, "/");
+    return Path.join(url, "/");
   }
 
   return `${url}.html`;

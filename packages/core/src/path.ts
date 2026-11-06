@@ -21,6 +21,34 @@ export default class Path {
     return Path.create(decodeURIComponentSafe(path));
   }
 
+  static join(...paths: string[]): string {
+    return posix.join(...paths);
+  }
+
+  static dirname(path: string): string {
+    return posix.dirname(path);
+  }
+
+  static relative(from: string, to: string): string {
+    return posix.relative(from, to);
+  }
+
+  static extension(path: string): string {
+    return path.match(EXTENSION)?.[0].toLowerCase() ?? "";
+  }
+
+  static basename(path: string, extension?: string): string {
+    return posix.basename(path, extension);
+  }
+
+  static fromFileUrl(url: string | URL): string {
+    return fromFileUrl(url);
+  }
+
+  static toFileUrl(path: string): URL {
+    return toFileUrl(path);
+  }
+
   private constructor(drive: string | undefined, path: string) {
     this.#drive = drive;
     this.#path = path;
@@ -31,7 +59,7 @@ export default class Path {
   }
 
   get dirname(): string {
-    return posix.dirname(this.#path);
+    return Path.dirname(this.#path);
   }
 
   toString() {
@@ -47,16 +75,15 @@ export default class Path {
   }
 
   get url(): URL {
-    return toFileUrl(this.full);
+    return Path.toFileUrl(this.full);
   }
 
   get basename(): string {
-    return posix.basename(this.#path, this.extension);
+    return Path.basename(this.#path, this.extension);
   }
 
   get extension(): string {
-    const match = this.#path.match(EXTENSION);
-    return match ? match[0].toLowerCase() : "";
+    return Path.extension(this.#path);
   }
 
   set extension(ext: string) {
@@ -65,7 +92,7 @@ export default class Path {
   }
 
   join(...paths: string[]): this {
-    this.#path = posix.join(this.#path, ...paths);
+    this.#path = Path.join(this.#path, ...paths);
     return this;
   }
 
@@ -78,7 +105,7 @@ export default class Path {
     }
 
     if (this.#path === base || this.#path.startsWith(base)) {
-      this.#path = posix.join("/", this.#path.slice(base.length));
+      this.#path = Path.join("/", this.#path.slice(base.length));
     }
 
     return this;
@@ -92,7 +119,7 @@ export default class Path {
     base = Path.create(base).toString();
 
     if (!this.#path.startsWith(base)) {
-      this.#path = posix.join(base, this.#path);
+      this.#path = Path.join(base, this.#path);
     }
 
     return this;
@@ -108,6 +135,10 @@ export default class Path {
     return this.#path === base || this.#path.startsWith(base);
   }
 
+  relativeTo(dest: string): string {
+    return posix.relative(this.dirname, dest);
+  }
+
   contains(base: string | Path): boolean {
     return Path.create(base).belongsTo(this);
   }
@@ -117,7 +148,7 @@ function parse(path: string): [string | undefined, string] {
   let drive: string | undefined;
 
   if (path.startsWith("file://")) {
-    path = fromFileUrl(path);
+    path = Path.fromFileUrl(path);
   }
 
   if (path.match(WINDOWS_ABSOLUTE)) {
@@ -127,7 +158,7 @@ function parse(path: string): [string | undefined, string] {
     path = path.replaceAll("\\", "/");
   }
 
-  path = posix.join("/", path);
+  path = Path.join("/", path);
 
   return [drive, path];
 }

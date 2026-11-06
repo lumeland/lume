@@ -1,5 +1,4 @@
-import { posix } from "../deps/path.ts";
-import { toFileUrl } from "../deps/path.ts";
+import Path from "./path.ts";
 import { readDirSync, realPathSync, statSync } from "./services/fs.ts";
 
 import type { FileInfo, FsError } from "./services/fs.ts";
@@ -70,7 +69,7 @@ export default class FS {
   /** Update the entry and returns it if it was removed */
   update(path: string): Entry | undefined {
     // Check if it's a remote file
-    const src = toFileUrl(posix.join(this.options.root, path)).href;
+    const src = Path.toFileUrl(Path.join(this.options.root, path)).href;
     const remote = findMapByValue(this.remoteFiles, src);
     if (remote) {
       path = remote;
@@ -122,17 +121,17 @@ export default class FS {
     return ignore
       ? !ignore.some((ignore) =>
           typeof ignore === "string"
-            ? path.startsWith(posix.join(ignore, "/")) || path === ignore
+            ? path.startsWith(Path.join(ignore, "/")) || path === ignore
             : ignore(path),
         )
       : true;
   }
 
   #walkFs(dir: Entry) {
-    const dirPath = posix.join(this.options.root, dir.path);
+    const dirPath = Path.join(this.options.root, dir.path);
 
     for (const dirEntry of readDirSync(dirPath)) {
-      const path = posix.join(dir.path, dirEntry.name);
+      const path = Path.join(dir.path, dirEntry.name);
 
       if (dirEntry.isSymlink) {
         this.#walkLink(dir, dirEntry.name);
@@ -147,7 +146,7 @@ export default class FS {
         dirEntry.name,
         path,
         dirEntry.isDirectory ? "directory" : "file",
-        posix.join(this.options.root, path),
+        Path.join(this.options.root, path),
       );
 
       dir.children.set(dirEntry.name, entry);
@@ -160,11 +159,11 @@ export default class FS {
   }
 
   #walkLink(dir: Entry, name: string) {
-    const src = posix.join(dir.src, name);
+    const src = Path.join(dir.src, name);
     const info = statSync(src);
     const type = info.isDirectory ? "directory" : "file";
 
-    const entry = new Entry(name, posix.join(dir.path, name), type, realPathSync(src));
+    const entry = new Entry(name, Path.join(dir.path, name), type, realPathSync(src));
 
     dir.children.set(name, entry);
     this.entries.set(entry.path, entry);
@@ -197,7 +196,7 @@ export default class FS {
     }
 
     if (!data.src) {
-      data.src = posix.join(this.options.root, data.path);
+      data.src = Path.join(this.options.root, data.path);
     }
 
     if (!data.type) {
@@ -212,7 +211,7 @@ export default class FS {
     while (pieces.length > 1) {
       const name = pieces.shift()!;
       const children = parent.children;
-      const path = posix.join(parent.path, name);
+      const path = Path.join(parent.path, name);
 
       if (!this.#isValid(path)) {
         break;
@@ -237,12 +236,12 @@ export default class FS {
     const isFolder = entry?.type === "directory";
 
     this.entries.delete(path);
-    const parent = this.entries.get(posix.dirname(path))!;
-    const name = posix.basename(path);
+    const parent = this.entries.get(Path.dirname(path))!;
+    const name = Path.basename(path);
     parent.children.delete(name);
 
     if (isFolder) {
-      const prefix = posix.join(path, "/");
+      const prefix = Path.join(path, "/");
       for (const childPath of this.entries.keys()) {
         if (childPath.startsWith(prefix)) {
           this.entries.delete(childPath);

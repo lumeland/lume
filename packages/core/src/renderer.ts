@@ -1,10 +1,10 @@
+import Path from "./path.ts";
 import { isGenerator } from "./utils/generator.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { mergeData } from "./utils/merge-data.ts";
 import { getBasename, getPageUrl } from "./utils/page-url.ts";
 import { getPageDate } from "./utils/page-date.ts";
 import { Page } from "./file.ts";
-import { posix } from "../deps/path.ts";
 import { log } from "./utils/log.ts";
 
 import type { Content } from "./file.ts";
@@ -96,7 +96,7 @@ export default class Renderer {
         );
 
         let index = 0;
-        const basePath = posix.dirname(page.data.url);
+        const basePath = Path.dirname(page.data.url);
 
         for await (const data of generator) {
           if (data.url === false) {
@@ -112,7 +112,7 @@ export default class Renderer {
           if (!data.url && data.basename !== undefined) {
             // @ts-ignore: The url is added later
             delete newPage.data.url;
-            base = posix.dirname(page.outputPath);
+            base = Path.dirname(page.outputPath);
           }
 
           const url = getPageUrl(newPage, this.prettyUrls, base);
@@ -225,7 +225,7 @@ export default class Renderer {
   /** Render the page layout */
   async #renderLayout(page: Page, content: Content): Promise<Content> {
     let data = { ...page.data };
-    let fromDir = posix.dirname(page.src.path + page.src.ext);
+    let fromDir = Path.dirname(page.src.path + page.src.ext);
     let layout = data.layout;
 
     // Render the layouts recursively
@@ -251,7 +251,7 @@ export default class Renderer {
 
       content = await this.render<Content>(layoutData.content, data, layoutEntry.path, true);
       layout = layoutData.layout;
-      fromDir = posix.dirname(layoutEntry.path);
+      fromDir = Path.dirname(layoutEntry.path);
     }
 
     return content;

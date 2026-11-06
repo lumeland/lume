@@ -1,11 +1,10 @@
-import { posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import { getExtension } from "./utils/path.ts";
 import { mergeData } from "./utils/merge-data.ts";
 import { getBasename, getPageUrl } from "./utils/page-url.ts";
 import { getPageDate } from "./utils/page-date.ts";
 import { Page, StaticFile } from "./file.ts";
 import { toProxy } from "./components.ts";
-import Path from "./path.ts";
 
 import type { Data, DirectoryData, RawData } from "./types.ts";
 import type { default as FS, Entry } from "./fs.ts";
@@ -197,7 +196,7 @@ export default class Source {
 
     // Load _data
     const dirData = await this.#loadDirData(dir, parentData);
-    let dirPath = posix.join(parentPath, dirData.basename!);
+    let dirPath = Path.join(parentPath, dirData.basename!);
 
     // Load _components
     const dirComponents = await this.#loadDirComponents(dir, parentComponents, dirData);
@@ -478,7 +477,7 @@ export default class Source {
     }
 
     for (const data of pages) {
-      const basename = posix.basename(data.url as string).replace(/\.[\w.]+$/, "");
+      const basename = Path.basename(data.url as string).replace(/\.[\w.]+$/, "");
       const page = new Page();
       page.data = mergeData(dirData, { basename, date: new Date() }, data) as Data;
 
@@ -630,8 +629,8 @@ function createFile(
     typeof destination === "string"
       ? destination
       : typeof destination === "function"
-        ? destination(posix.join(dirPath, entry.name))
-        : posix.join(dirPath, entry.name);
+        ? destination(Path.join(dirPath, entry.name))
+        : Path.join(dirPath, entry.name);
 
   return StaticFile.create(
     {

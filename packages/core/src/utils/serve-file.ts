@@ -1,6 +1,7 @@
+import Path from "../path.ts";
 import { contentType } from "../../deps/media-types.ts";
 import { decodeURIComponentSafe } from "./path.ts";
-import { extname, posix } from "../../deps/path.ts";
+import { extname } from "../../deps/path.ts";
 
 import { type FileInfo, readStream, statSync } from "../services/fs.ts";
 
@@ -22,8 +23,8 @@ const STATUS: Record<string, [number, string]> = {
 
 export async function serveFile(root: string, req: Request): Promise<Response> {
   const url = new URL(req.url);
-  const pathname = posix.normalize(decodeURIComponentSafe(url.pathname));
-  const fullPath = posix.join(root, pathname);
+  const pathname = Path.join("/", decodeURIComponentSafe(url.pathname));
+  const fullPath = Path.join(root, pathname);
   let filePath = fullPath.endsWith("/") ? `${fullPath}index.html` : fullPath;
   let fileInfo = getInfo(filePath);
 
@@ -32,12 +33,12 @@ export async function serveFile(root: string, req: Request): Promise<Response> {
   });
 
   if (fileInfo?.isDirectory) {
-    headers.set("Location", posix.join(pathname, "/") + url.search);
+    headers.set("Location", Path.join(pathname, "/") + url.search);
     return createResponse(STATUS.MovedPermanently, headers, null);
   }
 
   // Exists a HTML file with this name?
-  if (!fileInfo && !posix.extname(filePath)) {
+  if (!fileInfo && !Path.extension(filePath)) {
     filePath = `${filePath}.html`;
     fileInfo = getInfo(filePath);
   }

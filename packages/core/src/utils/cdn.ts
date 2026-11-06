@@ -1,7 +1,7 @@
-import { canParse, format, maxSatisfying, parse, parseRange } from "../../deps/semver.ts";
-import { fromFileUrl, globToRegExp, join, posix } from "../../deps/path.ts";
-import { readDirSync } from "../services/fs.ts";
 import Path from "../path.ts";
+import { canParse, format, maxSatisfying, parse, parseRange } from "../../deps/semver.ts";
+import { globToRegExp, join } from "../../deps/path.ts";
+import { readDirSync } from "../services/fs.ts";
 
 type PackageType = "npm" | "gh";
 
@@ -51,11 +51,11 @@ async function getCDNFiles(specifier: string, patterns: string[]): Promise<Map<s
 }
 
 function getFsFiles(specifier: string, patterns: string[]): Map<string, string> {
-  const basePath = join(fromFileUrl(specifier), "/");
+  const basePath = join(Path.fromFileUrl(specifier), "/");
   const fileMap = new Map<string, string>();
 
   const regexps = patterns.map((pattern) =>
-    globToRegExp(posix.join("/", pattern), { globstar: true, extended: true }),
+    globToRegExp(Path.join("/", pattern), { globstar: true, extended: true }),
   );
 
   for (const path of walk(basePath)) {

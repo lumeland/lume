@@ -1,5 +1,5 @@
 import { emptyDir, ensureDir } from "./utils/fs.ts";
-import { posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import {
   readFileSync,
   readTextFileSync,
@@ -28,7 +28,7 @@ export default class Cache {
   set(key: unknown[], value: string | Uint8Array): void {
     const path = this.getPath(key);
 
-    ensureDir(posix.dirname(path));
+    ensureDir(Path.dirname(path));
 
     if (typeof value === "string") {
       writeTextFileSync(path, value);
@@ -53,7 +53,7 @@ export default class Cache {
       }
       return md5(JSON.stringify(value));
     });
-    return posix.join(this.#folder, ...paths);
+    return Path.join(this.#folder, ...paths);
   }
 
   /** Get the content from the cache folder as Uint8Array */

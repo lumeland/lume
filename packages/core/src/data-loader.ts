@@ -1,4 +1,4 @@
-import { posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import { isPlainObject } from "./utils/object.ts";
 
 import type { Entry } from "./fs.ts";
@@ -61,7 +61,7 @@ export default class DataLoader {
     }
 
     if (entry.type === "file") {
-      const name = posix.basename(entry.name, posix.extname(entry.name));
+      const name = Path.basename(entry.name, Path.extension(entry.name));
       const fileData = (await this.#loadFile(entry)) || {};
 
       if (fileData.content && Object.keys(fileData).length === 1) {

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## 1.0.4 - Unreleased
+
+### Added
+
+- `posix` path utils moved to static functions in `Path`.
+- `fromFileUrl` and `toFileUrl` utils moved to static functions in `Path`.
+
 ## 1.0.3 - 2026-11-04
 
 ### Fixed

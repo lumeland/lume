@@ -1,6 +1,6 @@
 import { isUrl } from "./path.ts";
 import { readFile as readFile_, readTextFile } from "../services/fs.ts";
-import { fromFileUrl } from "../../deps/path.ts";
+import Path from "../path.ts";
 
 import type Cache from "../cache.ts";
 let cache: Cache | undefined;
@@ -37,7 +37,7 @@ export async function read(
   const url = new URL(path);
 
   if (url.protocol === "file:") {
-    const path = fromFileUrl(url);
+    const path = Path.fromFileUrl(url);
     return isBinary ? readFile_(path) : readTextFile(path);
   }
 

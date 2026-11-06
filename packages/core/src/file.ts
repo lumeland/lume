@@ -1,4 +1,4 @@
-import { posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import { documentToString, stringToDocument } from "./utils/dom.ts";
 import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
@@ -33,7 +33,7 @@ export class Page<D = DefaultType> {
     src?: Partial<Src>,
   ): Page<D> {
     let { url, ...rest } = data;
-    const basename = posix.basename(url).replace(/\.[\w.]+$/, "");
+    const basename = Path.basename(url).replace(/\.[\w.]+$/, "");
     const page = new Page(src);
 
     if (url.endsWith("/index.html")) {

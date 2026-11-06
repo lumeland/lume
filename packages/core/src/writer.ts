@@ -1,4 +1,4 @@
-import { posix } from "../deps/path.ts";
+import Path from "./path.ts";
 import { emptyDir, ensureDir } from "./utils/fs.ts";
 import { concurrent } from "./utils/concurrent.ts";
 import { sha1 } from "./utils/digest.ts";
@@ -73,7 +73,7 @@ export class FSWriter implements Writer {
       return false;
     }
 
-    const filename = posix.join(this.dest, outputPath);
+    const filename = Path.join(this.dest, outputPath);
     const id = this.caseSensitiveUrls ? filename : filename.toLowerCase();
     const hash = await sha1(content);
     const previous = this.#outputs.get(id);
@@ -96,7 +96,7 @@ export class FSWriter implements Writer {
 
     log.info(`🔥 ${page.data.url} <- <gray>${sourcePath}</gray>`);
 
-    ensureDir(posix.dirname(filename));
+    ensureDir(Path.dirname(filename));
 
     if (content instanceof Uint8Array) {
       await writeFile(filename, content);
@@ -134,10 +134,10 @@ export class FSWriter implements Writer {
     }
 
     entry.flags.add("saved");
-    const pathTo = posix.join(this.dest, file.outputPath);
+    const pathTo = Path.join(this.dest, file.outputPath);
 
     try {
-      ensureDir(posix.dirname(pathTo));
+      ensureDir(Path.dirname(pathTo));
 
       if (entry.flags.has("remote")) {
         await writeFile(pathTo, (await entry.getContent(binaryLoader)).content as Uint8Array);
@@ -168,7 +168,7 @@ export class FSWriter implements Writer {
   async removeFiles(files: string[]) {
     await concurrent(files, async (file) => {
       try {
-        const outputPath = posix.join(this.dest, file);
+        const outputPath = Path.join(this.dest, file);
         this.#outputs.delete(outputPath.toLowerCase());
         await remove(outputPath);
 
@@ -182,7 +182,7 @@ export class FSWriter implements Writer {
 }
 
 function removeEmptyDirectory(path: string, base: string) {
-  const dir = posix.dirname(path);
+  const dir = Path.dirname(path);
 
   try {
     if (dir !== base) {
