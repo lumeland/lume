@@ -286,7 +286,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
     const specifier = Object.keys(pkg.dependencies).find(
-      (name) => name !== "@lumeland/lume" && name !== "@lumeland/ssx",
+      (name) => !packages.includes(name),
     );
 
     if (!specifier) {
