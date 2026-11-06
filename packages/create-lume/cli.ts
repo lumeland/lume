@@ -77,6 +77,8 @@ const plugins: Record<string, [string, string?]> = {
   wellKnown: ["well-known", "{}"],
 };
 
+const ignoredScripts = ["esbuild", "fsevents", "@parcel/watcher"];
+
 interface InitOptions {
   js?: boolean;
   src?: string;
@@ -88,6 +90,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   const cwd = process.cwd();
   const cancel = () => prompts.cancel("Operation cancelled");
   const pkgManager = getPackageManager(options.pkgManager);
+  const packages = ["@lumeland/lume", "@lumeland/core", "@lumeland/ssx"];
 
   prompts.intro("Create a Lume site");
 
@@ -117,7 +120,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
       });
       if (prompts.isCancel(migrate)) return cancel();
       if (migrate) {
-        return migrateToNode();
+        return migrateToNode(packages);
       }
     }
 
@@ -168,10 +171,8 @@ async function init(targetDir: string | undefined, options: InitOptions) {
 
   // 4. Install Lume + theme or only Lume
   if (options.theme) {
-    await installTheme(options.theme);
+    await installTheme(options.theme, packages);
   } else {
-    const packages = ["@lumeland/lume", "@lumeland/ssx"];
-
     // 4.1. Select plugins
     const selectedPlugins = await prompts.autocompleteMultiselect({
       message: "Plugins to install",
@@ -233,8 +234,10 @@ async function init(targetDir: string | undefined, options: InitOptions) {
   /** Get the install arguments according to the package manager */
   function installArgs(...pkgs: string[]) {
     switch (pkgManager) {
-      case "yarn":
       case "pnpm":
+        return ["add", ...ignoredScripts.map((name) => `--allow-build=!${name}`), ...pkgs];
+      case "yarn":
+        return ["add", ...pkgs, "--silent"];
       case "bun":
         return ["add", ...pkgs];
       default:
@@ -266,19 +269,19 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     }
   }
 
-  async function installTheme(source: string) {
+  async function installTheme(source: string, packages: string[]) {
     let name = source;
 
     if (name.startsWith(".")) {
       name = realpathSync(name);
       if (name.endsWith(".tgz")) {
-        run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
+        run(pkgManager, installArgs(...packages, name), root);
       } else {
         run(pkgManager, linkArgs(name), root);
-        run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx"), root);
+        run(pkgManager, installArgs(...packages), root);
       }
     } else {
-      run(pkgManager, installArgs("@lumeland/lume", "@lumeland/ssx", name), root);
+      run(pkgManager, installArgs(...packages, name), root);
     }
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
@@ -338,14 +341,13 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     return code;
   }
 
-  function migrateToNode() {
+  function migrateToNode(packages: string[]) {
     createNodeFiles(root, path.basename(root).replaceAll(/[^\w-]/g, ""));
     const denoConfig = JSON.parse(fs.readFileSync(path.join(root, "deno.json"), "utf-8"));
     const lumeConfigPath = fs.existsSync(path.join(root, "_config.ts"))
       ? "_config.ts"
       : "_config.js";
     let lumeConfig = fs.readFileSync(path.join(root, lumeConfigPath), "utf-8");
-    const packages = ["@lumeland/lume", "@lumeland/ssx"];
 
     for (const spec of Object.values(denoConfig.imports as Record<string, string>)) {
       if (spec.startsWith("npm:")) {
@@ -492,11 +494,7 @@ function createNodeFiles(root: string, name?: string) {
     name: name || "lume-site",
     private: true,
     type: "module",
-    allowScripts: {
-      esbuild: false,
-      fsevents: false,
-      "@parcel/watcher": false,
-    },
+    allowScripts: Object.fromEntries(ignoredScripts.map((name) => [name, false])),
     scripts: {
       serve: "lume build -s",
       build: "lume build",
