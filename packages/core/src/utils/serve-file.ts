@@ -1,7 +1,6 @@
 import Path from "../path.ts";
 import { contentType } from "../../deps/media-types.ts";
 import { decodeURIComponentSafe } from "./path.ts";
-import { extname } from "../../deps/path.ts";
 
 import { type FileInfo, readStream, statSync } from "../services/fs.ts";
 
@@ -65,7 +64,7 @@ export async function serveFile(root: string, req: Request): Promise<Response> {
   }
 
   // Set mime-type using the file extension in filePath
-  const contentTypeValue = contentType(extname(filePath));
+  const contentTypeValue = contentType(Path.extension(filePath));
   if (contentTypeValue) {
     // Fix for https://github.com/lumeland/lume/issues/734
     headers.set(

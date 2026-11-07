@@ -1,13 +1,8 @@
-import { SEPARATOR } from "../../deps/path.ts";
+import Path from "../path.ts";
 
 /** Check if the path is an URL */
 export function isUrl(path: string): boolean {
   return !!path.match(/^(https?|file):\/\//);
-}
-
-/** Check if the path is absolute */
-export function isAbsolutePath(path: string): boolean {
-  return SEPARATOR !== "/" ? /^\w:[/\\]/.test(path) : path.startsWith("/");
 }
 
 /** Split a path to path + extension */
@@ -20,10 +15,12 @@ export function getPathAndExtension(path: string): [string, string] {
   return [pathWithoutExtension, extension];
 }
 
-/** Get the extension of a path (this works better than std/path) */
+/**
+ * Get the extension of a path (this works better than std/path)
+ * @deprecated Use `Path.extension()`
+ */
 export function getExtension(path: string): string {
-  const match = path.match(/\.\w+$/);
-  return match ? match[0].toLowerCase() : "";
+  return Path.extension(path);
 }
 
 export type Extensions = string[] | "*";

@@ -285,9 +285,7 @@ async function init(targetDir: string | undefined, options: InitOptions) {
     }
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf-8"));
-    const specifier = Object.keys(pkg.dependencies).find(
-      (name) => !packages.includes(name),
-    );
+    const specifier = Object.keys(pkg.dependencies).find((name) => !packages.includes(name));
 
     if (!specifier) {
       throw new Error(`Theme ${source} not installed`);

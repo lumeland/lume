@@ -1,11 +1,10 @@
-import { relative } from "../deps/path.ts";
 import Events from "./events.ts";
 import Path from "./path.ts";
+import { updateDependencies, updateVersion } from "./services/hmr.ts";
+import { watchFiles } from "./services/fs.ts";
 
 import type Site from "./site.ts";
 import type { Event, EventListener, EventOptions } from "./events.ts";
-import { updateDependencies, updateVersion } from "./services/hmr.ts";
-import { watchFiles } from "./services/fs.ts";
 
 /** The options to configure the local server */
 export interface Options {
@@ -150,7 +149,7 @@ export default class FSWatcher implements Watcher {
       }
 
       paths.forEach((path) => {
-        const normalized = Path.create(relative(root, path)).toString();
+        const normalized = Path.create(path).removeBase(rootPath).toString();
         changes.add(normalized);
 
         // The file has dependencies

@@ -1,6 +1,6 @@
 import Path from "../path.ts";
 import { canParse, format, maxSatisfying, parse, parseRange } from "../../deps/semver.ts";
-import { globToRegExp, join } from "../../deps/path.ts";
+import { globToRegExp } from "../../deps/path.ts";
 import { readDirSync } from "../services/fs.ts";
 
 type PackageType = "npm" | "gh";
@@ -51,14 +51,14 @@ async function getCDNFiles(specifier: string, patterns: string[]): Promise<Map<s
 }
 
 function getFsFiles(specifier: string, patterns: string[]): Map<string, string> {
-  const basePath = join(Path.fromFileUrl(specifier), "/");
+  const basePath = Path.create(specifier).join("/");
   const fileMap = new Map<string, string>();
 
   const regexps = patterns.map((pattern) =>
     globToRegExp(Path.join("/", pattern), { globstar: true, extended: true }),
   );
 
-  for (const path of walk(basePath)) {
+  for (const path of walk(basePath.full)) {
     const from = Path.create(path);
     const to = from.clone().removeBase(basePath).toString();
     if (!regexps.some((regexp) => regexp.test(to))) {
@@ -159,7 +159,7 @@ function* walk(root: string): IterableIterator<string> {
       continue;
     }
 
-    const path = join(root, entry.name);
+    const path = Path.join(root, entry.name);
 
     if (entry.isDirectory) {
       yield* walk(path);

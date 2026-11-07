@@ -347,7 +347,7 @@ export default class Source {
       return;
     }
 
-    const ext = format?.ext || getExtension(file.name);
+    const ext = format?.ext || Path.extension(file.name);
 
     // The file is added explicitly with `site.add()` or `site.copy()`
     if (added) {
