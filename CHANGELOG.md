@@ -6,6 +6,10 @@ and this project try to adheres to [Semantic Versioning](https://semver.org/).
 Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
+## [Unreleased]
+### Fixed
+- `emptyDir` removed only the first entry of the dest directory.
+
 ## [3.3.3] - 2026-10-20
 ### Changed
 - Internal: New `services` folder with functions to execute the Deno.* functions.
