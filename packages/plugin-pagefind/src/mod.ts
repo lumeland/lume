@@ -1,9 +1,9 @@
 import { merge } from "@lumeland/core/utils/object.ts";
+import Path from "@lumeland/core/path.ts";
 import { insertContent } from "@lumeland/core/utils/page-content.ts";
 import { read } from "@lumeland/core/utils/read.ts";
 import { Page } from "@lumeland/core/file.ts";
 import { log } from "@lumeland/core/utils/log.ts";
-import { posix } from "../deps/path.ts";
 import { pagefind as Pagefind, getAssets } from "../deps/pagefind.ts";
 
 import type Site from "@lumeland/core/site.ts";
@@ -55,15 +55,15 @@ export function pagefind(userOptions?: Options) {
     // Add Component UI files if enabled
     if (options.componentUI) {
       const assets = getAssets();
-      const cssFile = posix.join("/", options.componentUI.cssFile || site.options.cssFile);
-      const jsFile = posix.join("/", options.componentUI.jsFile || site.options.jsFile);
+      const cssFile = Path.create(options.componentUI.cssFile || site.options.cssFile);
+      const jsFile = Path.create(options.componentUI.jsFile || site.options.jsFile);
       const placeholder = options.componentUI.placeholder;
 
       site.process(async () => {
-        const cssPage = await site.getOrCreatePage(cssFile);
+        const cssPage = await site.getOrCreatePage(cssFile.toString());
         cssPage.text = insertContent(cssPage.text, await read(assets.css), placeholder);
 
-        const jsPage = await site.getOrCreatePage(jsFile);
+        const jsPage = await site.getOrCreatePage(jsFile.toString());
         jsPage.text = insertContent(jsPage.text, await read(assets.js), placeholder);
       });
     }
@@ -109,13 +109,13 @@ export function pagefind(userOptions?: Options) {
         if (path.endsWith(".css") || (path.endsWith(".js") && path.endsWith("/pagefind.js"))) {
           continue; // Don't export UI files
         }
-        const content = textExtensions.includes(posix.extname(path))
+        const content = textExtensions.includes(Path.extension(path))
           ? textDecoder.decode(file.content)
           : file.content;
 
         allPages.push(
           Page.create({
-            url: posix.join("/", options.outputPath, path),
+            url: Path.join("/", options.outputPath, path),
             content,
           }),
         );

@@ -24,14 +24,14 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "@pagefind/component-ui": "1.5.2",
-    "pagefind": "1.5.2"
+    "@pagefind/component-ui": "1.6.0",
+    "pagefind": "1.6.0"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:^"

@@ -384,7 +384,7 @@ This is the second page
           "data",
           "isCopy",
         ],
-        "url": "/pagefind/pagefind.en_2c777c7cca.pf_meta",
+        "url": "/pagefind/pagefind.en_d01d8d9ec4.pf_meta",
       },
       "src": {
         "ext": "",
@@ -606,19 +606,65 @@ var ar_default = {
   strings: strings2
 };
 
-// ../translations/bn.json
-var bn_exports = {};
-__export(bn_exports, {
+// ../translations/bg.json
+var bg_exports = {};
+__export(bg_exports, {
   comments: () => comments3,
-  default: () => bn_default,
+  default: () => bg_default,
   direction: () => direction3,
   strings: () => strings3,
   thanks_to: () => thanks_to3
 });
-var thanks_to3 = "Maruf Alom <mail@marufalom.com>";
+var thanks_to3 = "Salif Mehmed <mail@salif.eu>";
 var comments3 = "";
 var direction3 = "ltr";
 var strings3 = {
+  placeholder: "\\u0422\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435",
+  clear_search: "\\u0418\\u0437\\u0447\\u0438\\u0441\\u0442\\u0432\\u0430\\u043D\\u0435",
+  load_more: "\\u0417\\u0430\\u0440\\u0435\\u0436\\u0434\\u0430\\u043D\\u0435 \\u043D\\u0430 \\u043E\\u0449\\u0435 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438",
+  search_label: "\\u0422\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435 \\u0432 \\u0441\\u0430\\u0439\\u0442\\u0430",
+  filters_label: "\\u0424\\u0438\\u043B\\u0442\\u0440\\u0438",
+  zero_results: "\\u041D\\u044F\\u043C\\u0430 \\u043D\\u0430\\u043C\\u0435\\u0440\\u0435\\u043D\\u0438 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]",
+  many_results: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0430 \\u0437\\u0430 [SEARCH_TERM]",
+  one_result: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442 \\u0437\\u0430 [SEARCH_TERM]",
+  total_zero_results: "\\u041D\\u044F\\u043C\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438",
+  total_one_result: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442",
+  total_many_results: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0430",
+  alt_search: "\\u041D\\u044F\\u043C\\u0430 \\u043D\\u0430\\u043C\\u0435\\u0440\\u0435\\u043D\\u0438 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]. \\u041F\\u043E\\u043A\\u0430\\u0437\\u0432\\u0430\\u043D\\u0435 \\u043D\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [DIFFERENT_TERM] \\u0432\\u043C\\u0435\\u0441\\u0442\\u043E \\u0442\\u043E\\u0432\\u0430",
+  search_suggestion: "\\u041D\\u044F\\u043C\\u0430 \\u043D\\u0430\\u043C\\u0435\\u0440\\u0435\\u043D\\u0438 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]. \\u041E\\u043F\\u0438\\u0442\\u0430\\u0439\\u0442\\u0435 \\u043D\\u044F\\u043A\\u043E\\u0435 \\u043E\\u0442 \\u0441\\u043B\\u0435\\u0434\\u043D\\u0438\\u0442\\u0435 \\u0442\\u044A\\u0440\\u0441\\u0435\\u043D\\u0438\\u044F:",
+  searching: "\\u0422\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435 \\u043D\\u0430 [SEARCH_TERM]...",
+  results_label: "\\u0420\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u043E\\u0442 \\u0442\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435\\u0442\\u043E",
+  keyboard_navigate: "\\u043D\\u0430\\u0432\\u0438\\u0433\\u0430\\u0446\\u0438\\u044F",
+  keyboard_select: "\\u0438\\u0437\\u0431\\u043E\\u0440",
+  keyboard_clear: "\\u0438\\u0437\\u0447\\u0438\\u0441\\u0442\\u0432\\u0430\\u043D\\u0435",
+  keyboard_close: "\\u0437\\u0430\\u0442\\u0432\\u0430\\u0440\\u044F\\u043D\\u0435",
+  keyboard_search: "\\u0442\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435",
+  error_search: "\\u041D\\u0435\\u0443\\u0441\\u043F\\u0435\\u0448\\u043D\\u043E \\u0442\\u044A\\u0440\\u0441\\u0435\\u043D\\u0435",
+  filter_selected_one: "[COUNT] \\u0438\\u0437\\u0431\\u0440\\u0430\\u043D",
+  filter_selected_many: "[COUNT] \\u0438\\u0437\\u0431\\u0440\\u0430\\u043D\\u0438",
+  input_hint: "\\u0420\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438\\u0442\\u0435 \\u0449\\u0435 \\u0441\\u0435 \\u043F\\u043E\\u044F\\u0432\\u044F\\u0442, \\u0434\\u043E\\u043A\\u0430\\u0442\\u043E \\u043F\\u0438\\u0448\\u0435\\u0442\\u0435",
+  loading: "\\u0417\\u0430\\u0440\\u0435\\u0436\\u0434\\u0430\\u043D\\u0435"
+};
+var bg_default = {
+  thanks_to: thanks_to3,
+  comments: comments3,
+  direction: direction3,
+  strings: strings3
+};
+
+// ../translations/bn.json
+var bn_exports = {};
+__export(bn_exports, {
+  comments: () => comments4,
+  default: () => bn_default,
+  direction: () => direction4,
+  strings: () => strings4,
+  thanks_to: () => thanks_to4
+});
+var thanks_to4 = "Maruf Alom <mail@marufalom.com>";
+var comments4 = "";
+var direction4 = "ltr";
+var strings4 = {
   placeholder: "\\u0985\\u09A8\\u09C1\\u09B8\\u09A8\\u09CD\\u09A7\\u09BE\\u09A8 \\u0995\\u09B0\\u09C1\\u09A8",
   clear_search: "\\u09AE\\u09C1\\u099B\\u09C7 \\u09AB\\u09C7\\u09B2\\u09C1\\u09A8",
   load_more: "\\u0986\\u09B0\\u09CB \\u09AB\\u09B2\\u09BE\\u09AB\\u09B2 \\u09A6\\u09C7\\u0996\\u09C1\\u09A8",
@@ -646,25 +692,25 @@ var strings3 = {
   loading: "\\u09B2\\u09CB\\u09A1 \\u09B9\\u099A\\u09CD\\u099B\\u09C7"
 };
 var bn_default = {
-  thanks_to: thanks_to3,
-  comments: comments3,
-  direction: direction3,
-  strings: strings3
+  thanks_to: thanks_to4,
+  comments: comments4,
+  direction: direction4,
+  strings: strings4
 };
 
 // ../translations/ca.json
 var ca_exports = {};
 __export(ca_exports, {
-  comments: () => comments4,
+  comments: () => comments5,
   default: () => ca_default,
-  direction: () => direction4,
-  strings: () => strings4,
-  thanks_to: () => thanks_to4
+  direction: () => direction5,
+  strings: () => strings5,
+  thanks_to: () => thanks_to5
 });
-var thanks_to4 = "Pablo Villaverde <https://github.com/pvillaverde>";
-var comments4 = "";
-var direction4 = "ltr";
-var strings4 = {
+var thanks_to5 = "Pablo Villaverde <https://github.com/pvillaverde>";
+var comments5 = "";
+var direction5 = "ltr";
+var strings5 = {
   placeholder: "Cerca",
   clear_search: "Netejar",
   load_more: "Veure m\\xE9s resultats",
@@ -692,25 +738,25 @@ var strings4 = {
   loading: "Carregant"
 };
 var ca_default = {
-  thanks_to: thanks_to4,
-  comments: comments4,
-  direction: direction4,
-  strings: strings4
+  thanks_to: thanks_to5,
+  comments: comments5,
+  direction: direction5,
+  strings: strings5
 };
 
 // ../translations/cs.json
 var cs_exports = {};
 __export(cs_exports, {
-  comments: () => comments5,
+  comments: () => comments6,
   default: () => cs_default,
-  direction: () => direction5,
-  strings: () => strings5,
-  thanks_to: () => thanks_to5
+  direction: () => direction6,
+  strings: () => strings6,
+  thanks_to: () => thanks_to6
 });
-var thanks_to5 = "Dalibor Hon <https://github.com/dallyh>";
-var comments5 = "";
-var direction5 = "ltr";
-var strings5 = {
+var thanks_to6 = "Dalibor Hon <https://github.com/dallyh>";
+var comments6 = "";
+var direction6 = "ltr";
+var strings6 = {
   placeholder: "Hledat",
   clear_search: "Smazat",
   load_more: "Na\\u010D\\xEDst dal\\u0161\\xED v\\xFDsledky",
@@ -738,25 +784,25 @@ var strings5 = {
   loading: "Na\\u010D\\xEDt\\xE1n\\xED"
 };
 var cs_default = {
-  thanks_to: thanks_to5,
-  comments: comments5,
-  direction: direction5,
-  strings: strings5
+  thanks_to: thanks_to6,
+  comments: comments6,
+  direction: direction6,
+  strings: strings6
 };
 
 // ../translations/da.json
 var da_exports = {};
 __export(da_exports, {
-  comments: () => comments6,
+  comments: () => comments7,
   default: () => da_default,
-  direction: () => direction6,
-  strings: () => strings6,
-  thanks_to: () => thanks_to6
+  direction: () => direction7,
+  strings: () => strings7,
+  thanks_to: () => thanks_to7
 });
-var thanks_to6 = "Jonas Smedegaard <dr@jones.dk>";
-var comments6 = "";
-var direction6 = "ltr";
-var strings6 = {
+var thanks_to7 = "Jonas Smedegaard <dr@jones.dk>";
+var comments7 = "";
+var direction7 = "ltr";
+var strings7 = {
   placeholder: "S\\xF8g",
   clear_search: "Nulstil",
   load_more: "Indl\\xE6s flere resultater",
@@ -784,71 +830,71 @@ var strings6 = {
   loading: "Indl\\xE6ser"
 };
 var da_default = {
-  thanks_to: thanks_to6,
-  comments: comments6,
-  direction: direction6,
-  strings: strings6
-};
-
-// ../translations/de.json
-var de_exports = {};
-__export(de_exports, {
-  comments: () => comments7,
-  default: () => de_default,
-  direction: () => direction7,
-  strings: () => strings7,
-  thanks_to: () => thanks_to7
-});
-var thanks_to7 = "Jan Claasen <jan@cloudcannon.com>";
-var comments7 = "";
-var direction7 = "ltr";
-var strings7 = {
-  placeholder: "Suche",
-  clear_search: "L\\xF6schen",
-  load_more: "Mehr Ergebnisse laden",
-  search_label: "Suche diese Seite",
-  filters_label: "Filter",
-  zero_results: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]",
-  many_results: "[COUNT] Ergebnisse f\\xFCr [SEARCH_TERM]",
-  one_result: "[COUNT] Ergebnis f\\xFCr [SEARCH_TERM]",
-  total_zero_results: "Keine Ergebnisse",
-  total_one_result: "[COUNT] Ergebnis",
-  total_many_results: "[COUNT] Ergebnisse",
-  alt_search: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]. Stattdessen werden Ergebnisse f\\xFCr [DIFFERENT_TERM] angezeigt",
-  search_suggestion: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]. Versuchen Sie eine der folgenden Suchen:",
-  searching: "Suche nach [SEARCH_TERM]\\u202F\\u2026",
-  results_label: "Suchergebnisse",
-  keyboard_navigate: "navigieren",
-  keyboard_select: "ausw\\xE4hlen",
-  keyboard_clear: "l\\xF6schen",
-  keyboard_close: "schlie\\xDFen",
-  keyboard_search: "suchen",
-  error_search: "Suche fehlgeschlagen",
-  filter_selected_one: "[COUNT] ausgew\\xE4hlt",
-  filter_selected_many: "[COUNT] ausgew\\xE4hlt",
-  input_hint: "Ergebnisse werden w\\xE4hrend der Eingabe angezeigt",
-  loading: "Wird geladen"
-};
-var de_default = {
   thanks_to: thanks_to7,
   comments: comments7,
   direction: direction7,
   strings: strings7
 };
 
-// ../translations/el.json
-var el_exports = {};
-__export(el_exports, {
+// ../translations/de.json
+var de_exports = {};
+__export(de_exports, {
   comments: () => comments8,
-  default: () => el_default,
+  default: () => de_default,
   direction: () => direction8,
   strings: () => strings8,
   thanks_to: () => thanks_to8
 });
-var thanks_to8 = "George Papadopoulos";
+var thanks_to8 = "Jan Claasen <jan@cloudcannon.com>";
 var comments8 = "";
 var direction8 = "ltr";
 var strings8 = {
+  placeholder: "Suchen",
+  clear_search: "L\\xF6schen",
+  load_more: "Weitere Ergebnisse laden",
+  search_label: "Diese Seite durchsuchen",
+  filters_label: "Filter",
+  zero_results: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]",
+  many_results: "[COUNT] Ergebnisse f\\xFCr [SEARCH_TERM]",
+  one_result: "Ein Ergebnis f\\xFCr [SEARCH_TERM]",
+  total_zero_results: "Keine Ergebnisse",
+  total_one_result: "Ein Ergebnis",
+  total_many_results: "[COUNT] Ergebnisse",
+  alt_search: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]. Stattdessen erscheinen Ergebnisse f\\xFCr [DIFFERENT_TERM].",
+  search_suggestion: "Keine Ergebnisse f\\xFCr [SEARCH_TERM]. Probier einen der folgenden Vorschl\\xE4ge:",
+  searching: "[SEARCH_TERM] wird gesucht\\xA0\\u2026",
+  results_label: "Suchergebnisse",
+  keyboard_navigate: "Navigieren",
+  keyboard_select: "Ausw\\xE4hlen",
+  keyboard_clear: "L\\xF6schen",
+  keyboard_close: "Schlie\\xDFen",
+  keyboard_search: "Suchen",
+  error_search: "Suche fehlgeschlagen",
+  filter_selected_one: "[COUNT] ausgew\\xE4hlt",
+  filter_selected_many: "[COUNT] ausgew\\xE4hlt",
+  input_hint: "Ergebnisse erscheinen beim Tippen",
+  loading: "Wird geladen\\xA0\\u2026"
+};
+var de_default = {
+  thanks_to: thanks_to8,
+  comments: comments8,
+  direction: direction8,
+  strings: strings8
+};
+
+// ../translations/el.json
+var el_exports = {};
+__export(el_exports, {
+  comments: () => comments9,
+  default: () => el_default,
+  direction: () => direction9,
+  strings: () => strings9,
+  thanks_to: () => thanks_to9
+});
+var thanks_to9 = "George Papadopoulos";
+var comments9 = "";
+var direction9 = "ltr";
+var strings9 = {
   placeholder: "\\u0391\\u03BD\\u03B1\\u03B6\\u03AE\\u03C4\\u03B7\\u03C3\\u03B7",
   clear_search: "\\u039A\\u03B1\\u03B8\\u03B1\\u03C1\\u03B9\\u03C3\\u03BC\\u03CC\\u03C2",
   load_more: "\\u03A6\\u03CC\\u03C1\\u03C4\\u03C9\\u03C3\\u03B7 \\u03C0\\u03B5\\u03C1\\u03B9\\u03C3\\u03C3\\u03CC\\u03C4\\u03B5\\u03C1\\u03C9\\u03BD \\u03B1\\u03C0\\u03BF\\u03C4\\u03B5\\u03BB\\u03B5\\u03C3\\u03BC\\u03AC\\u03C4\\u03C9\\u03BD",
@@ -876,25 +922,25 @@ var strings8 = {
   loading: "\\u03A6\\u03CC\\u03C1\\u03C4\\u03C9\\u03C3\\u03B7"
 };
 var el_default = {
-  thanks_to: thanks_to8,
-  comments: comments8,
-  direction: direction8,
-  strings: strings8
+  thanks_to: thanks_to9,
+  comments: comments9,
+  direction: direction9,
+  strings: strings9
 };
 
 // ../translations/en.json
 var en_exports = {};
 __export(en_exports, {
-  comments: () => comments9,
+  comments: () => comments10,
   default: () => en_default,
-  direction: () => direction9,
-  strings: () => strings9,
-  thanks_to: () => thanks_to9
+  direction: () => direction10,
+  strings: () => strings10,
+  thanks_to: () => thanks_to10
 });
-var thanks_to9 = "Liam Bigelow <liam@cloudcannon.com>";
-var comments9 = "";
-var direction9 = "ltr";
-var strings9 = {
+var thanks_to10 = "Liam Bigelow <liam@cloudcannon.com>";
+var comments10 = "";
+var direction10 = "ltr";
+var strings10 = {
   placeholder: "Search",
   clear_search: "Clear",
   load_more: "Load more results",
@@ -922,25 +968,25 @@ var strings9 = {
   loading: "Loading"
 };
 var en_default = {
-  thanks_to: thanks_to9,
-  comments: comments9,
-  direction: direction9,
-  strings: strings9
+  thanks_to: thanks_to10,
+  comments: comments10,
+  direction: direction10,
+  strings: strings10
 };
 
 // ../translations/es.json
 var es_exports = {};
 __export(es_exports, {
-  comments: () => comments10,
+  comments: () => comments11,
   default: () => es_default,
-  direction: () => direction10,
-  strings: () => strings10,
-  thanks_to: () => thanks_to10
+  direction: () => direction11,
+  strings: () => strings11,
+  thanks_to: () => thanks_to11
 });
-var thanks_to10 = "Pablo Villaverde <https://github.com/pvillaverde>";
-var comments10 = "";
-var direction10 = "ltr";
-var strings10 = {
+var thanks_to11 = "Pablo Villaverde <https://github.com/pvillaverde>";
+var comments11 = "";
+var direction11 = "ltr";
+var strings11 = {
   placeholder: "Buscar",
   clear_search: "Limpiar",
   load_more: "Ver m\\xE1s resultados",
@@ -968,25 +1014,25 @@ var strings10 = {
   loading: "Cargando"
 };
 var es_default = {
-  thanks_to: thanks_to10,
-  comments: comments10,
-  direction: direction10,
-  strings: strings10
+  thanks_to: thanks_to11,
+  comments: comments11,
+  direction: direction11,
+  strings: strings11
 };
 
 // ../translations/eu.json
 var eu_exports = {};
 __export(eu_exports, {
-  comments: () => comments11,
+  comments: () => comments12,
   default: () => eu_default,
-  direction: () => direction11,
-  strings: () => strings11,
-  thanks_to: () => thanks_to11
+  direction: () => direction12,
+  strings: () => strings12,
+  thanks_to: () => thanks_to12
 });
-var thanks_to11 = "Mikel Larreategi <mlarreaegi@codesyntax.com>";
-var comments11 = "";
-var direction11 = "ltr";
-var strings11 = {
+var thanks_to12 = "Mikel Larreategi <mlarreaegi@codesyntax.com>";
+var comments12 = "";
+var direction12 = "ltr";
+var strings12 = {
   placeholder: "Bilatu",
   clear_search: "Garbitu",
   load_more: "Kargatu emaitza gehiagi",
@@ -1014,71 +1060,71 @@ var strings11 = {
   loading: "Kargatzen"
 };
 var eu_default = {
-  thanks_to: thanks_to11,
-  comments: comments11,
-  direction: direction11,
-  strings: strings11
-};
-
-// ../translations/fa.json
-var fa_exports = {};
-__export(fa_exports, {
-  comments: () => comments12,
-  default: () => fa_default,
-  direction: () => direction12,
-  strings: () => strings12,
-  thanks_to: () => thanks_to12
-});
-var thanks_to12 = "Ali Khaleqi Yekta <https://yekta.dev>";
-var comments12 = "";
-var direction12 = "rtl";
-var strings12 = {
-  placeholder: "\\u062C\\u0633\\u062A\\u062C\\u0648",
-  clear_search: "\\u067E\\u0627\\u06A9\\u0633\\u0627\\u0632\\u06CC",
-  load_more: "\\u0628\\u0627\\u0631\\u06AF\\u0630\\u0627\\u0631\\u06CC \\u0646\\u062A\\u0627\\u06CC\\u062C \\u0628\\u06CC\\u0634\\u062A\\u0631",
-  search_label: "\\u062C\\u0633\\u062A\\u062C\\u0648 \\u062F\\u0631 \\u0633\\u0627\\u06CC\\u062A",
-  filters_label: "\\u0641\\u06CC\\u0644\\u062A\\u0631\\u0647\\u0627",
-  zero_results: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u06CC\\u0627\\u0641\\u062A \\u0646\\u0634\\u062F",
-  many_results: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647 \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u06CC\\u0627\\u0641\\u062A \\u0634\\u062F",
-  one_result: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647 \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u06CC\\u0627\\u0641\\u062A \\u0634\\u062F",
-  total_zero_results: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u06CC\\u0627\\u0641\\u062A \\u0646\\u0634\\u062F",
-  total_one_result: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647",
-  total_many_results: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647",
-  alt_search: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u06CC\\u0627\\u0641\\u062A \\u0646\\u0634\\u062F. \\u062F\\u0631 \\u0639\\u0648\\u0636 \\u0646\\u062A\\u0627\\u06CC\\u062C \\u0628\\u0631\\u0627\\u06CC [DIFFERENT_TERM] \\u0646\\u0645\\u0627\\u06CC\\u0634 \\u062F\\u0627\\u062F\\u0647 \\u0645\\u06CC\\u200C\\u0634\\u0648\\u062F",
-  search_suggestion: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u06CC\\u0627\\u0641\\u062A \\u0646\\u0634\\u062F. \\u06CC\\u06A9\\u06CC \\u0627\\u0632 \\u062C\\u0633\\u062A\\u062C\\u0648\\u0647\\u0627\\u06CC \\u0632\\u06CC\\u0631 \\u0631\\u0627 \\u0627\\u0645\\u062A\\u062D\\u0627\\u0646 \\u06A9\\u0646\\u06CC\\u062F:",
-  searching: "\\u062F\\u0631 \\u062D\\u0627\\u0644 \\u062C\\u0633\\u062A\\u062C\\u0648\\u06CC [SEARCH_TERM]...",
-  results_label: "\\u0646\\u062A\\u0627\\u06CC\\u062C \\u062C\\u0633\\u062A\\u062C\\u0648",
-  keyboard_navigate: "\\u067E\\u06CC\\u0645\\u0627\\u06CC\\u0634",
-  keyboard_select: "\\u0627\\u0646\\u062A\\u062E\\u0627\\u0628",
-  keyboard_clear: "\\u067E\\u0627\\u06A9\\u0633\\u0627\\u0632\\u06CC",
-  keyboard_close: "\\u0628\\u0633\\u062A\\u0646",
-  keyboard_search: "\\u062C\\u0633\\u062A\\u062C\\u0648",
-  error_search: "\\u062C\\u0633\\u062A\\u062C\\u0648 \\u0646\\u0627\\u0645\\u0648\\u0641\\u0642 \\u0628\\u0648\\u062F",
-  filter_selected_one: "[COUNT] \\u0627\\u0646\\u062A\\u062E\\u0627\\u0628 \\u0634\\u062F\\u0647",
-  filter_selected_many: "[COUNT] \\u0627\\u0646\\u062A\\u062E\\u0627\\u0628 \\u0634\\u062F\\u0647",
-  input_hint: "\\u0646\\u062A\\u0627\\u06CC\\u062C \\u0647\\u0646\\u06AF\\u0627\\u0645 \\u062A\\u0627\\u06CC\\u067E \\u0646\\u0645\\u0627\\u06CC\\u0634 \\u062F\\u0627\\u062F\\u0647 \\u0645\\u06CC\\u200C\\u0634\\u0648\\u0646\\u062F",
-  loading: "\\u062F\\u0631 \\u062D\\u0627\\u0644 \\u0628\\u0627\\u0631\\u06AF\\u0630\\u0627\\u0631\\u06CC"
-};
-var fa_default = {
   thanks_to: thanks_to12,
   comments: comments12,
   direction: direction12,
   strings: strings12
 };
 
-// ../translations/fi.json
-var fi_exports = {};
-__export(fi_exports, {
+// ../translations/fa.json
+var fa_exports = {};
+__export(fa_exports, {
   comments: () => comments13,
-  default: () => fi_default,
+  default: () => fa_default,
   direction: () => direction13,
   strings: () => strings13,
   thanks_to: () => thanks_to13
 });
-var thanks_to13 = "Valtteri Laitinen <dev@valtlai.fi>";
+var thanks_to13 = "Ali Khaleqi Yekta <https://yekta.dev>, Goudarz Jafari <https://goudarzjafari.com>";
 var comments13 = "";
-var direction13 = "ltr";
+var direction13 = "rtl";
 var strings13 = {
+  placeholder: "\\u062C\\u0633\\u062A\\u200C\\u0648\\u200C\\u062C\\u0648",
+  clear_search: "\\u067E\\u0627\\u06A9\\u0633\\u0627\\u0632\\u06CC",
+  load_more: "\\u0646\\u0645\\u0627\\u06CC\\u0634 \\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0647\\u0627\\u06CC \\u0628\\u06CC\\u0634\\u062A\\u0631",
+  search_label: "\\u062C\\u0633\\u062A\\u200C\\u0648\\u062C\\u0648 \\u062F\\u0631 \\u0648\\u0628\\u06AF\\u0627\\u0647",
+  filters_label: "\\u0641\\u06CC\\u0644\\u062A\\u0631\\u0647\\u0627",
+  zero_results: "\\u0647\\u06CC\\u0686 \\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u067E\\u06CC\\u062F\\u0627 \\u0646\\u0634\\u062F",
+  many_results: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647 \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u067E\\u06CC\\u062F\\u0627 \\u0634\\u062F",
+  one_result: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647 \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u067E\\u06CC\\u062F\\u0627 \\u0634\\u062F",
+  total_zero_results: "\\u0647\\u06CC\\u0686 \\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u067E\\u06CC\\u062F\\u0627 \\u0646\\u0634\\u062F",
+  total_one_result: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647",
+  total_many_results: "[COUNT] \\u0646\\u062A\\u06CC\\u062C\\u0647",
+  alt_search: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u067E\\u06CC\\u062F\\u0627 \\u0646\\u0634\\u062F. \\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0647\\u0627\\u06CC \\u0645\\u0631\\u0628\\u0648\\u0637 \\u0628\\u0647 [DIFFERENT_TERM] \\u0646\\u0645\\u0627\\u06CC\\u0634 \\u062F\\u0627\\u062F\\u0647 \\u0645\\u06CC\\u200C\\u0634\\u0648\\u062F",
+  search_suggestion: "\\u0646\\u062A\\u06CC\\u062C\\u0647\\u200C\\u0627\\u06CC \\u0628\\u0631\\u0627\\u06CC [SEARCH_TERM] \\u067E\\u06CC\\u062F\\u0627 \\u0646\\u0634\\u062F. \\u06CC\\u06A9\\u06CC \\u0627\\u0632 \\u062C\\u0633\\u062A\\u200C\\u0648\\u200C\\u062C\\u0648\\u0647\\u0627\\u06CC \\u0632\\u06CC\\u0631 \\u0631\\u0627 \\u0627\\u0645\\u062A\\u062D\\u0627\\u0646 \\u06A9\\u0646\\u06CC\\u062F:",
+  searching: "\\u062F\\u0631 \\u062D\\u0627\\u0644 \\u062C\\u0633\\u062A\\u200C\\u0648\\u200C\\u062C\\u0648\\u06CC [SEARCH_TERM]...",
+  results_label: "\\u0646\\u062A\\u0627\\u06CC\\u062C \\u062C\\u0633\\u062A\\u062C\\u0648",
+  keyboard_navigate: "\\u067E\\u06CC\\u0645\\u0627\\u06CC\\u0634",
+  keyboard_select: "\\u0627\\u0646\\u062A\\u062E\\u0627\\u0628",
+  keyboard_clear: "\\u067E\\u0627\\u06A9\\u0633\\u0627\\u0632\\u06CC",
+  keyboard_close: "\\u0628\\u0633\\u062A\\u0646",
+  keyboard_search: "\\u062C\\u0633\\u062A\\u200C\\u0648\\u200C\\u062C\\u0648",
+  error_search: "\\u062C\\u0633\\u062A\\u200C\\u0648\\u200C\\u062C\\u0648 \\u0646\\u0627\\u0645\\u0648\\u0641\\u0642 \\u0628\\u0648\\u062F",
+  filter_selected_one: "[COUNT] \\u0645\\u0648\\u0631\\u062F \\u0627\\u0646\\u062A\\u062E\\u0627\\u0628 \\u0634\\u062F",
+  filter_selected_many: "[COUNT] \\u0645\\u0648\\u0631\\u062F \\u0627\\u0646\\u062A\\u062E\\u0627\\u0628 \\u0634\\u062F",
+  input_hint: "\\u0628\\u0627 \\u062A\\u0627\\u06CC\\u067E \\u06A9\\u0631\\u062F\\u0646\\u060C \\u0646\\u062A\\u0627\\u06CC\\u062C \\u0646\\u0645\\u0627\\u06CC\\u0634 \\u062F\\u0627\\u062F\\u0647 \\u0645\\u06CC\\u200C\\u0634\\u0648\\u0646\\u062F",
+  loading: "\\u062F\\u0631 \\u062D\\u0627\\u0644 \\u0628\\u0627\\u0631\\u06AF\\u0630\\u0627\\u0631\\u06CC"
+};
+var fa_default = {
+  thanks_to: thanks_to13,
+  comments: comments13,
+  direction: direction13,
+  strings: strings13
+};
+
+// ../translations/fi.json
+var fi_exports = {};
+__export(fi_exports, {
+  comments: () => comments14,
+  default: () => fi_default,
+  direction: () => direction14,
+  strings: () => strings14,
+  thanks_to: () => thanks_to14
+});
+var thanks_to14 = "Valtteri Laitinen <dev@valtlai.fi>";
+var comments14 = "";
+var direction14 = "ltr";
+var strings14 = {
   placeholder: "Haku",
   clear_search: "Tyhjenn\\xE4",
   load_more: "Lataa lis\\xE4\\xE4 tuloksia",
@@ -1106,42 +1152,42 @@ var strings13 = {
   loading: "Ladataan"
 };
 var fi_default = {
-  thanks_to: thanks_to13,
-  comments: comments13,
-  direction: direction13,
-  strings: strings13
+  thanks_to: thanks_to14,
+  comments: comments14,
+  direction: direction14,
+  strings: strings14
 };
 
 // ../translations/fr.json
 var fr_exports = {};
 __export(fr_exports, {
-  comments: () => comments14,
+  comments: () => comments15,
   default: () => fr_default,
-  direction: () => direction14,
-  strings: () => strings14,
-  thanks_to: () => thanks_to14
+  direction: () => direction15,
+  strings: () => strings15,
+  thanks_to: () => thanks_to15
 });
-var thanks_to14 = "Nicolas Friedli <nicolas@theologique.ch>";
-var comments14 = "";
-var direction14 = "ltr";
-var strings14 = {
+var thanks_to15 = "Nicolas Friedli <nicolas@theologique.ch>";
+var comments15 = "";
+var direction15 = "ltr";
+var strings15 = {
   placeholder: "Rechercher",
-  clear_search: "Nettoyer",
-  load_more: "Charger plus de r\\xE9sultats",
+  clear_search: "Effacer",
+  load_more: "Afficher plus de r\\xE9sultats",
   search_label: "Recherche sur ce site",
   filters_label: "Filtres",
-  zero_results: "Pas de r\\xE9sultat pour [SEARCH_TERM]",
+  zero_results: "Aucun r\\xE9sultat pour [SEARCH_TERM]",
   many_results: "[COUNT] r\\xE9sultats pour [SEARCH_TERM]",
-  one_result: "[COUNT] r\\xE9sultat pour [SEARCH_TERM]",
-  total_zero_results: "Pas de r\\xE9sultat",
-  total_one_result: "[COUNT] r\\xE9sultat",
+  one_result: "Un r\\xE9sultat pour [SEARCH_TERM]",
+  total_zero_results: "Aucun r\\xE9sultat",
+  total_one_result: "Un r\\xE9sultat",
   total_many_results: "[COUNT] r\\xE9sultats",
-  alt_search: "Pas de r\\xE9sultat pour [SEARCH_TERM]. Montre les r\\xE9sultats pour [DIFFERENT_TERM] \\xE0 la place",
-  search_suggestion: "Pas de r\\xE9sultat pour [SEARCH_TERM]. Essayer une des recherches suivantes:",
-  searching: "Recherche [SEARCH_TERM]...",
+  alt_search: "Aucun r\\xE9sultat pour [SEARCH_TERM]. Afficher les r\\xE9sultats pour [DIFFERENT_TERM] \\xE0 la place",
+  search_suggestion: "Aucun r\\xE9sultat pour [SEARCH_TERM]. Essayez l'une des recherches suivantes :",
+  searching: "Recherche de [SEARCH_TERM] en cours...",
   results_label: "R\\xE9sultats de recherche",
   keyboard_navigate: "naviguer",
-  keyboard_select: "choisir",
+  keyboard_select: "s\\xE9lectionner",
   keyboard_clear: "effacer",
   keyboard_close: "fermer",
   keyboard_search: "rechercher",
@@ -1149,28 +1195,28 @@ var strings14 = {
   filter_selected_one: "[COUNT] s\\xE9lectionn\\xE9",
   filter_selected_many: "[COUNT] s\\xE9lectionn\\xE9s",
   input_hint: "Les r\\xE9sultats appara\\xEEtront au fur et \\xE0 mesure de la saisie",
-  loading: "Chargement"
+  loading: "Chargement en cours..."
 };
 var fr_default = {
-  thanks_to: thanks_to14,
-  comments: comments14,
-  direction: direction14,
-  strings: strings14
+  thanks_to: thanks_to15,
+  comments: comments15,
+  direction: direction15,
+  strings: strings15
 };
 
 // ../translations/gl.json
 var gl_exports = {};
 __export(gl_exports, {
-  comments: () => comments15,
+  comments: () => comments16,
   default: () => gl_default,
-  direction: () => direction15,
-  strings: () => strings15,
-  thanks_to: () => thanks_to15
+  direction: () => direction16,
+  strings: () => strings16,
+  thanks_to: () => thanks_to16
 });
-var thanks_to15 = "Pablo Villaverde <https://github.com/pvillaverde>";
-var comments15 = "";
-var direction15 = "ltr";
-var strings15 = {
+var thanks_to16 = "Pablo Villaverde <https://github.com/pvillaverde>";
+var comments16 = "";
+var direction16 = "ltr";
+var strings16 = {
   placeholder: "Buscar",
   clear_search: "Limpar",
   load_more: "Ver m\\xE1is resultados",
@@ -1198,25 +1244,25 @@ var strings15 = {
   loading: "Cargando"
 };
 var gl_default = {
-  thanks_to: thanks_to15,
-  comments: comments15,
-  direction: direction15,
-  strings: strings15
+  thanks_to: thanks_to16,
+  comments: comments16,
+  direction: direction16,
+  strings: strings16
 };
 
 // ../translations/he.json
 var he_exports = {};
 __export(he_exports, {
-  comments: () => comments16,
+  comments: () => comments17,
   default: () => he_default,
-  direction: () => direction16,
-  strings: () => strings16,
-  thanks_to: () => thanks_to16
+  direction: () => direction17,
+  strings: () => strings17,
+  thanks_to: () => thanks_to17
 });
-var thanks_to16 = "Nir Tamir <nirtamir2@gmail.com>";
-var comments16 = "";
-var direction16 = "rtl";
-var strings16 = {
+var thanks_to17 = "Nir Tamir <nirtamir2@gmail.com>";
+var comments17 = "";
+var direction17 = "rtl";
+var strings17 = {
   placeholder: "\\u05D7\\u05D9\\u05E4\\u05D5\\u05E9",
   clear_search: "\\u05E0\\u05D9\\u05E7\\u05D5\\u05D9",
   load_more: "\\u05E2\\u05D5\\u05D3 \\u05EA\\u05D5\\u05E6\\u05D0\\u05D5\\u05EA",
@@ -1244,25 +1290,25 @@ var strings16 = {
   loading: "\\u05D8\\u05D5\\u05E2\\u05DF"
 };
 var he_default = {
-  thanks_to: thanks_to16,
-  comments: comments16,
-  direction: direction16,
-  strings: strings16
+  thanks_to: thanks_to17,
+  comments: comments17,
+  direction: direction17,
+  strings: strings17
 };
 
 // ../translations/hi.json
 var hi_exports = {};
 __export(hi_exports, {
-  comments: () => comments17,
+  comments: () => comments18,
   default: () => hi_default,
-  direction: () => direction17,
-  strings: () => strings17,
-  thanks_to: () => thanks_to17
+  direction: () => direction18,
+  strings: () => strings18,
+  thanks_to: () => thanks_to18
 });
-var thanks_to17 = "Amit Yadav <amit@thetechbasket.com>";
-var comments17 = "";
-var direction17 = "ltr";
-var strings17 = {
+var thanks_to18 = "Amit Yadav <amit@thetechbasket.com>";
+var comments18 = "";
+var direction18 = "ltr";
+var strings18 = {
   placeholder: "\\u0916\\u094B\\u091C\\u0947\\u0902",
   clear_search: "\\u0938\\u093E\\u092B \\u0915\\u0930\\u0947\\u0902",
   load_more: "\\u0914\\u0930 \\u0905\\u0927\\u093F\\u0915 \\u092A\\u0930\\u093F\\u0923\\u093E\\u092E \\u0932\\u094B\\u0921 \\u0915\\u0930\\u0947\\u0902",
@@ -1290,25 +1336,25 @@ var strings17 = {
   loading: "\\u0932\\u094B\\u0921 \\u0939\\u094B \\u0930\\u0939\\u093E \\u0939\\u0948"
 };
 var hi_default = {
-  thanks_to: thanks_to17,
-  comments: comments17,
-  direction: direction17,
-  strings: strings17
+  thanks_to: thanks_to18,
+  comments: comments18,
+  direction: direction18,
+  strings: strings18
 };
 
 // ../translations/hr.json
 var hr_exports = {};
 __export(hr_exports, {
-  comments: () => comments18,
+  comments: () => comments19,
   default: () => hr_default,
-  direction: () => direction18,
-  strings: () => strings18,
-  thanks_to: () => thanks_to18
+  direction: () => direction19,
+  strings: () => strings19,
+  thanks_to: () => thanks_to19
 });
-var thanks_to18 = "Diomed <https://github.com/diomed>";
-var comments18 = "";
-var direction18 = "ltr";
-var strings18 = {
+var thanks_to19 = "Diomed <https://github.com/diomed>";
+var comments19 = "";
+var direction19 = "ltr";
+var strings19 = {
   placeholder: "Tra\\u017Ei",
   clear_search: "O\\u010Disti",
   load_more: "U\\u010Ditaj vi\\u0161e rezultata",
@@ -1336,25 +1382,25 @@ var strings18 = {
   loading: "U\\u010Ditavanje"
 };
 var hr_default = {
-  thanks_to: thanks_to18,
-  comments: comments18,
-  direction: direction18,
-  strings: strings18
+  thanks_to: thanks_to19,
+  comments: comments19,
+  direction: direction19,
+  strings: strings19
 };
 
 // ../translations/hu.json
 var hu_exports = {};
 __export(hu_exports, {
-  comments: () => comments19,
+  comments: () => comments20,
   default: () => hu_default,
-  direction: () => direction19,
-  strings: () => strings19,
-  thanks_to: () => thanks_to19
+  direction: () => direction20,
+  strings: () => strings20,
+  thanks_to: () => thanks_to20
 });
-var thanks_to19 = "Adam Laki <info@adamlaki.com>";
-var comments19 = "";
-var direction19 = "ltr";
-var strings19 = {
+var thanks_to20 = "Adam Laki <info@adamlaki.com>";
+var comments20 = "";
+var direction20 = "ltr";
+var strings20 = {
   placeholder: "Keres\\xE9s",
   clear_search: "T\\xF6rl\\xE9s",
   load_more: "Tov\\xE1bbi tal\\xE1latok bet\\xF6lt\\xE9se",
@@ -1382,25 +1428,25 @@ var strings19 = {
   loading: "Bet\\xF6lt\\xE9s"
 };
 var hu_default = {
-  thanks_to: thanks_to19,
-  comments: comments19,
-  direction: direction19,
-  strings: strings19
+  thanks_to: thanks_to20,
+  comments: comments20,
+  direction: direction20,
+  strings: strings20
 };
 
 // ../translations/id.json
 var id_exports = {};
 __export(id_exports, {
-  comments: () => comments20,
+  comments: () => comments21,
   default: () => id_default,
-  direction: () => direction20,
-  strings: () => strings20,
-  thanks_to: () => thanks_to20
+  direction: () => direction21,
+  strings: () => strings21,
+  thanks_to: () => thanks_to21
 });
-var thanks_to20 = "Nixentric";
-var comments20 = "";
-var direction20 = "ltr";
-var strings20 = {
+var thanks_to21 = "Nixentric";
+var comments21 = "";
+var direction21 = "ltr";
+var strings21 = {
   placeholder: "Cari",
   clear_search: "Bersihkan",
   load_more: "Muat lebih banyak hasil",
@@ -1428,25 +1474,25 @@ var strings20 = {
   loading: "Memuat"
 };
 var id_default = {
-  thanks_to: thanks_to20,
-  comments: comments20,
-  direction: direction20,
-  strings: strings20
+  thanks_to: thanks_to21,
+  comments: comments21,
+  direction: direction21,
+  strings: strings21
 };
 
 // ../translations/it.json
 var it_exports = {};
 __export(it_exports, {
-  comments: () => comments21,
+  comments: () => comments22,
   default: () => it_default,
-  direction: () => direction21,
-  strings: () => strings21,
-  thanks_to: () => thanks_to21
+  direction: () => direction22,
+  strings: () => strings22,
+  thanks_to: () => thanks_to22
 });
-var thanks_to21 = "Cosette Bruhns Alonso, Andrew Janco <apjanco@upenn.edu>";
-var comments21 = "";
-var direction21 = "ltr";
-var strings21 = {
+var thanks_to22 = "Cosette Bruhns Alonso, Andrew Janco <apjanco@upenn.edu>";
+var comments22 = "";
+var direction22 = "ltr";
+var strings22 = {
   placeholder: "Cerca",
   clear_search: "Cancella la cronologia",
   load_more: "Mostra pi\\xF9 risultati",
@@ -1474,25 +1520,25 @@ var strings21 = {
   loading: "Caricamento"
 };
 var it_default = {
-  thanks_to: thanks_to21,
-  comments: comments21,
-  direction: direction21,
-  strings: strings21
+  thanks_to: thanks_to22,
+  comments: comments22,
+  direction: direction22,
+  strings: strings22
 };
 
 // ../translations/ja.json
 var ja_exports = {};
 __export(ja_exports, {
-  comments: () => comments22,
+  comments: () => comments23,
   default: () => ja_default,
-  direction: () => direction22,
-  strings: () => strings22,
-  thanks_to: () => thanks_to22
+  direction: () => direction23,
+  strings: () => strings23,
+  thanks_to: () => thanks_to23
 });
-var thanks_to22 = "Tate";
-var comments22 = "";
-var direction22 = "ltr";
-var strings22 = {
+var thanks_to23 = "Tate";
+var comments23 = "";
+var direction23 = "ltr";
+var strings23 = {
   placeholder: "\\u691C\\u7D22",
   clear_search: "\\u30AF\\u30EA\\u30A2",
   load_more: "\\u6B21\\u3092\\u8AAD\\u307F\\u8FBC\\u3080",
@@ -1520,25 +1566,25 @@ var strings22 = {
   loading: "\\u8AAD\\u307F\\u8FBC\\u307F\\u4E2D"
 };
 var ja_default = {
-  thanks_to: thanks_to22,
-  comments: comments22,
-  direction: direction22,
-  strings: strings22
+  thanks_to: thanks_to23,
+  comments: comments23,
+  direction: direction23,
+  strings: strings23
 };
 
 // ../translations/ko.json
 var ko_exports = {};
 __export(ko_exports, {
-  comments: () => comments23,
+  comments: () => comments24,
   default: () => ko_default,
-  direction: () => direction23,
-  strings: () => strings23,
-  thanks_to: () => thanks_to23
+  direction: () => direction24,
+  strings: () => strings24,
+  thanks_to: () => thanks_to24
 });
-var thanks_to23 = "Seokho Son <https://github.com/seokho-son>";
-var comments23 = "";
-var direction23 = "ltr";
-var strings23 = {
+var thanks_to24 = "Seokho Son <https://github.com/seokho-son>";
+var comments24 = "";
+var direction24 = "ltr";
+var strings24 = {
   placeholder: "\\uAC80\\uC0C9\\uC5B4",
   clear_search: "\\uBE44\\uC6B0\\uAE30",
   load_more: "\\uAC80\\uC0C9 \\uACB0\\uACFC \\uB354 \\uBCF4\\uAE30",
@@ -1566,25 +1612,25 @@ var strings23 = {
   loading: "\\uB85C\\uB529 \\uC911"
 };
 var ko_default = {
-  thanks_to: thanks_to23,
-  comments: comments23,
-  direction: direction23,
-  strings: strings23
+  thanks_to: thanks_to24,
+  comments: comments24,
+  direction: direction24,
+  strings: strings24
 };
 
 // ../translations/mi.json
 var mi_exports = {};
 __export(mi_exports, {
-  comments: () => comments24,
+  comments: () => comments25,
   default: () => mi_default,
-  direction: () => direction24,
-  strings: () => strings24,
-  thanks_to: () => thanks_to24
+  direction: () => direction25,
+  strings: () => strings25,
+  thanks_to: () => thanks_to25
 });
-var thanks_to24 = "";
-var comments24 = "";
-var direction24 = "ltr";
-var strings24 = {
+var thanks_to25 = "";
+var comments25 = "";
+var direction25 = "ltr";
+var strings25 = {
   placeholder: "Rapu",
   clear_search: "Whakakore",
   load_more: "Whakauta \\u0113tahi otinga k\\u0113",
@@ -1612,25 +1658,71 @@ var strings24 = {
   loading: "E uta ana"
 };
 var mi_default = {
-  thanks_to: thanks_to24,
-  comments: comments24,
-  direction: direction24,
-  strings: strings24
+  thanks_to: thanks_to25,
+  comments: comments25,
+  direction: direction25,
+  strings: strings25
+};
+
+// ../translations/mk.json
+var mk_exports = {};
+__export(mk_exports, {
+  comments: () => comments26,
+  default: () => mk_default,
+  direction: () => direction26,
+  strings: () => strings26,
+  thanks_to: () => thanks_to26
+});
+var thanks_to26 = "I90rche";
+var comments26 = "";
+var direction26 = "ltr";
+var strings26 = {
+  placeholder: "\\u041F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0430\\u0458",
+  clear_search: "\\u0418\\u0441\\u0447\\u0438\\u0441\\u0442\\u0438",
+  load_more: "\\u0412\\u0447\\u0438\\u0442\\u0430\\u0458 \\u043F\\u043E\\u0432\\u0435\\u045C\\u0435 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438",
+  search_label: "\\u041F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0430\\u0458 \\u0458\\u0430 \\u0432\\u0435\\u0431-\\u043B\\u043E\\u043A\\u0430\\u0446\\u0438\\u0458\\u0430\\u0442\\u0430",
+  filters_label: "\\u0424\\u0438\\u043B\\u0442\\u0440\\u0438",
+  zero_results: "\\u041D\\u0435\\u043C\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]",
+  many_results: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]",
+  one_result: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442 \\u0437\\u0430 [SEARCH_TERM]",
+  total_zero_results: "\\u041D\\u0435\\u043C\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438",
+  total_one_result: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442",
+  total_many_results: "[COUNT] \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438",
+  alt_search: "\\u041D\\u0435\\u043C\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]. \\u041F\\u0440\\u0438\\u043A\\u0430\\u0436\\u0430\\u043D\\u0438 \\u0441\\u0435 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [DIFFERENT_TERM]",
+  search_suggestion: "\\u041D\\u0435\\u043C\\u0430 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u0437\\u0430 [SEARCH_TERM]. \\u041E\\u0431\\u0438\\u0434\\u0435\\u0442\\u0435 \\u0441\\u0435 \\u0441\\u043E \\u043D\\u0435\\u043A\\u043E\\u0435 \\u043E\\u0434 \\u0441\\u043B\\u0435\\u0434\\u043D\\u0438\\u0432\\u0435 \\u043F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0443\\u0432\\u0430\\u045A\\u0430:",
+  searching: "\\u0421\\u0435 \\u043F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0443\\u0432\\u0430 [SEARCH_TERM]...",
+  results_label: "\\u0420\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438 \\u043E\\u0434 \\u043F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0443\\u0432\\u0430\\u045A\\u0435\\u0442\\u043E",
+  keyboard_navigate: "\\u043D\\u0430\\u0432\\u0438\\u0433\\u0430\\u0446\\u0438\\u0458\\u0430",
+  keyboard_select: "\\u0438\\u0437\\u0431\\u043E\\u0440",
+  keyboard_clear: "\\u0447\\u0438\\u0441\\u0442\\u0435\\u045A\\u0435",
+  keyboard_close: "\\u0437\\u0430\\u0442\\u0432\\u043E\\u0440\\u0430\\u045A\\u0435",
+  keyboard_search: "\\u043F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0443\\u0432\\u0430\\u045A\\u0435",
+  error_search: "\\u041F\\u0440\\u0435\\u0431\\u0430\\u0440\\u0443\\u0432\\u0430\\u045A\\u0435\\u0442\\u043E \\u043D\\u0435 \\u0443\\u0441\\u043F\\u0435\\u0430",
+  filter_selected_one: "[COUNT] \\u0438\\u0437\\u0431\\u0440\\u0430\\u043D",
+  filter_selected_many: "[COUNT] \\u0438\\u0437\\u0431\\u0440\\u0430\\u043D\\u0438",
+  input_hint: "\\u0420\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0438\\u0442\\u0435 \\u045C\\u0435 \\u0441\\u0435 \\u043F\\u043E\\u0458\\u0430\\u0432\\u0430\\u0442 \\u0434\\u043E\\u0434\\u0435\\u043A\\u0430 \\u043F\\u0438\\u0448\\u0443\\u0432\\u0430\\u0442\\u0435",
+  loading: "\\u0421\\u0435 \\u0432\\u0447\\u0438\\u0442\\u0443\\u0432\\u0430"
+};
+var mk_default = {
+  thanks_to: thanks_to26,
+  comments: comments26,
+  direction: direction26,
+  strings: strings26
 };
 
 // ../translations/my.json
 var my_exports = {};
 __export(my_exports, {
-  comments: () => comments25,
+  comments: () => comments27,
   default: () => my_default,
-  direction: () => direction25,
-  strings: () => strings25,
-  thanks_to: () => thanks_to25
+  direction: () => direction27,
+  strings: () => strings27,
+  thanks_to: () => thanks_to27
 });
-var thanks_to25 = "Harry Min Khant <https://harrymkt.github.io>";
-var comments25 = "";
-var direction25 = "ltr";
-var strings25 = {
+var thanks_to27 = "Harry Min Khant <https://harrymkt.github.io>";
+var comments27 = "";
+var direction27 = "ltr";
+var strings27 = {
   placeholder: "\\u101B\\u103E\\u102C\\u101B\\u1014\\u103A",
   clear_search: "\\u101B\\u103E\\u102C\\u1016\\u103D\\u1031\\u1019\\u103E\\u102F\\u1000\\u102D\\u102F \\u101B\\u103E\\u1004\\u103A\\u1038\\u101C\\u1004\\u103A\\u1038\\u1015\\u102B\\u104B",
   load_more: "\\u1014\\u1031\\u102C\\u1000\\u103A\\u1011\\u1015\\u103A\\u101B\\u101C\\u1012\\u103A\\u1019\\u103B\\u102C\\u1038\\u1000\\u102D\\u102F \\u1010\\u1004\\u103A\\u1015\\u102B\\u104B",
@@ -1658,25 +1750,25 @@ var strings25 = {
   loading: "\\u1010\\u1004\\u103A\\u1014\\u1031\\u101E\\u100A\\u103A"
 };
 var my_default = {
-  thanks_to: thanks_to25,
-  comments: comments25,
-  direction: direction25,
-  strings: strings25
+  thanks_to: thanks_to27,
+  comments: comments27,
+  direction: direction27,
+  strings: strings27
 };
 
 // ../translations/nb.json
 var nb_exports = {};
 __export(nb_exports, {
-  comments: () => comments26,
+  comments: () => comments28,
   default: () => nb_default,
-  direction: () => direction26,
-  strings: () => strings26,
-  thanks_to: () => thanks_to26
+  direction: () => direction28,
+  strings: () => strings28,
+  thanks_to: () => thanks_to28
 });
-var thanks_to26 = "Eirik Mikkelsen";
-var comments26 = "";
-var direction26 = "ltr";
-var strings26 = {
+var thanks_to28 = "Eirik Mikkelsen";
+var comments28 = "";
+var direction28 = "ltr";
+var strings28 = {
   placeholder: "S\\xF8k",
   clear_search: "Fjern",
   load_more: "Last flere resultater",
@@ -1704,25 +1796,25 @@ var strings26 = {
   loading: "Laster"
 };
 var nb_default = {
-  thanks_to: thanks_to26,
-  comments: comments26,
-  direction: direction26,
-  strings: strings26
+  thanks_to: thanks_to28,
+  comments: comments28,
+  direction: direction28,
+  strings: strings28
 };
 
 // ../translations/nl.json
 var nl_exports = {};
 __export(nl_exports, {
-  comments: () => comments27,
+  comments: () => comments29,
   default: () => nl_default,
-  direction: () => direction27,
-  strings: () => strings27,
-  thanks_to: () => thanks_to27
+  direction: () => direction29,
+  strings: () => strings29,
+  thanks_to: () => thanks_to29
 });
-var thanks_to27 = "Paul van Brouwershaven";
-var comments27 = "";
-var direction27 = "ltr";
-var strings27 = {
+var thanks_to29 = "Paul van Brouwershaven";
+var comments29 = "";
+var direction29 = "ltr";
+var strings29 = {
   placeholder: "Zoeken",
   clear_search: "Reset",
   load_more: "Meer resultaten laden",
@@ -1750,25 +1842,25 @@ var strings27 = {
   loading: "Laden"
 };
 var nl_default = {
-  thanks_to: thanks_to27,
-  comments: comments27,
-  direction: direction27,
-  strings: strings27
+  thanks_to: thanks_to29,
+  comments: comments29,
+  direction: direction29,
+  strings: strings29
 };
 
 // ../translations/nn.json
 var nn_exports = {};
 __export(nn_exports, {
-  comments: () => comments28,
+  comments: () => comments30,
   default: () => nn_default,
-  direction: () => direction28,
-  strings: () => strings28,
-  thanks_to: () => thanks_to28
+  direction: () => direction30,
+  strings: () => strings30,
+  thanks_to: () => thanks_to30
 });
-var thanks_to28 = "Eirik Mikkelsen";
-var comments28 = "";
-var direction28 = "ltr";
-var strings28 = {
+var thanks_to30 = "Eirik Mikkelsen";
+var comments30 = "";
+var direction30 = "ltr";
+var strings30 = {
   placeholder: "S\\xF8k",
   clear_search: "Fjern",
   load_more: "Last fleire resultat",
@@ -1796,25 +1888,25 @@ var strings28 = {
   loading: "Lastar"
 };
 var nn_default = {
-  thanks_to: thanks_to28,
-  comments: comments28,
-  direction: direction28,
-  strings: strings28
+  thanks_to: thanks_to30,
+  comments: comments30,
+  direction: direction30,
+  strings: strings30
 };
 
 // ../translations/no.json
 var no_exports = {};
 __export(no_exports, {
-  comments: () => comments29,
+  comments: () => comments31,
   default: () => no_default,
-  direction: () => direction29,
-  strings: () => strings29,
-  thanks_to: () => thanks_to29
+  direction: () => direction31,
+  strings: () => strings31,
+  thanks_to: () => thanks_to31
 });
-var thanks_to29 = "Christopher Wingate";
-var comments29 = "";
-var direction29 = "ltr";
-var strings29 = {
+var thanks_to31 = "Christopher Wingate";
+var comments31 = "";
+var direction31 = "ltr";
+var strings31 = {
   placeholder: "S\\xF8k",
   clear_search: "Fjern",
   load_more: "Last flere resultater",
@@ -1842,25 +1934,25 @@ var strings29 = {
   loading: "Laster"
 };
 var no_default = {
-  thanks_to: thanks_to29,
-  comments: comments29,
-  direction: direction29,
-  strings: strings29
+  thanks_to: thanks_to31,
+  comments: comments31,
+  direction: direction31,
+  strings: strings31
 };
 
 // ../translations/pl.json
 var pl_exports = {};
 __export(pl_exports, {
-  comments: () => comments30,
+  comments: () => comments32,
   default: () => pl_default,
-  direction: () => direction30,
-  strings: () => strings30,
-  thanks_to: () => thanks_to30
+  direction: () => direction32,
+  strings: () => strings32,
+  thanks_to: () => thanks_to32
 });
-var thanks_to30 = "";
-var comments30 = "";
-var direction30 = "ltr";
-var strings30 = {
+var thanks_to32 = "";
+var comments32 = "";
+var direction32 = "ltr";
+var strings32 = {
   placeholder: "Szukaj",
   clear_search: "Wyczy\\u015B\\u0107",
   load_more: "Za\\u0142aduj wi\\u0119cej",
@@ -1888,25 +1980,25 @@ var strings30 = {
   loading: "\\u0141adowanie"
 };
 var pl_default = {
-  thanks_to: thanks_to30,
-  comments: comments30,
-  direction: direction30,
-  strings: strings30
+  thanks_to: thanks_to32,
+  comments: comments32,
+  direction: direction32,
+  strings: strings32
 };
 
 // ../translations/pt.json
 var pt_exports = {};
 __export(pt_exports, {
-  comments: () => comments31,
+  comments: () => comments33,
   default: () => pt_default,
-  direction: () => direction31,
-  strings: () => strings31,
-  thanks_to: () => thanks_to31
+  direction: () => direction33,
+  strings: () => strings33,
+  thanks_to: () => thanks_to33
 });
-var thanks_to31 = "Jonatah";
-var comments31 = "";
-var direction31 = "ltr";
-var strings31 = {
+var thanks_to33 = "Jonatah";
+var comments33 = "";
+var direction33 = "ltr";
+var strings33 = {
   placeholder: "Pesquisar",
   clear_search: "Limpar",
   load_more: "Ver mais resultados",
@@ -1934,25 +2026,25 @@ var strings31 = {
   loading: "Carregando"
 };
 var pt_default = {
-  thanks_to: thanks_to31,
-  comments: comments31,
-  direction: direction31,
-  strings: strings31
+  thanks_to: thanks_to33,
+  comments: comments33,
+  direction: direction33,
+  strings: strings33
 };
 
 // ../translations/ro.json
 var ro_exports = {};
 __export(ro_exports, {
-  comments: () => comments32,
+  comments: () => comments34,
   default: () => ro_default,
-  direction: () => direction32,
-  strings: () => strings32,
-  thanks_to: () => thanks_to32
+  direction: () => direction34,
+  strings: () => strings34,
+  thanks_to: () => thanks_to34
 });
-var thanks_to32 = "Bogdan Mateescu <bogdan@surfverse.com>";
-var comments32 = "";
-var direction32 = "ltr";
-var strings32 = {
+var thanks_to34 = "Bogdan Mateescu <bogdan@surfverse.com>";
+var comments34 = "";
+var direction34 = "ltr";
+var strings34 = {
   placeholder: "C\\u0103utare",
   clear_search: "\\u015Eterge\\u0163i",
   load_more: "\\xCEnc\\u0103rca\\u021Bi mai multe rezultate",
@@ -1980,25 +2072,25 @@ var strings32 = {
   loading: "Se \\xEEncarc\\u0103"
 };
 var ro_default = {
-  thanks_to: thanks_to32,
-  comments: comments32,
-  direction: direction32,
-  strings: strings32
+  thanks_to: thanks_to34,
+  comments: comments34,
+  direction: direction34,
+  strings: strings34
 };
 
 // ../translations/ru.json
 var ru_exports = {};
 __export(ru_exports, {
-  comments: () => comments33,
+  comments: () => comments35,
   default: () => ru_default,
-  direction: () => direction33,
-  strings: () => strings33,
-  thanks_to: () => thanks_to33
+  direction: () => direction35,
+  strings: () => strings35,
+  thanks_to: () => thanks_to35
 });
-var thanks_to33 = "Aleksandr Gordeev";
-var comments33 = "";
-var direction33 = "ltr";
-var strings33 = {
+var thanks_to35 = "Aleksandr Gordeev";
+var comments35 = "";
+var direction35 = "ltr";
+var strings35 = {
   placeholder: "\\u041F\\u043E\\u0438\\u0441\\u043A",
   clear_search: "\\u041E\\u0447\\u0438\\u0441\\u0442\\u0438\\u0442\\u044C \\u043F\\u043E\\u043B\\u0435",
   load_more: "\\u0417\\u0430\\u0433\\u0440\\u0443\\u0437\\u0438\\u0442\\u044C \\u0435\\u0449\\u0435",
@@ -2026,25 +2118,25 @@ var strings33 = {
   loading: "\\u0417\\u0430\\u0433\\u0440\\u0443\\u0437\\u043A\\u0430"
 };
 var ru_default = {
-  thanks_to: thanks_to33,
-  comments: comments33,
-  direction: direction33,
-  strings: strings33
+  thanks_to: thanks_to35,
+  comments: comments35,
+  direction: direction35,
+  strings: strings35
 };
 
 // ../translations/sr.json
 var sr_exports = {};
 __export(sr_exports, {
-  comments: () => comments34,
+  comments: () => comments36,
   default: () => sr_default,
-  direction: () => direction34,
-  strings: () => strings34,
-  thanks_to: () => thanks_to34
+  direction: () => direction36,
+  strings: () => strings36,
+  thanks_to: () => thanks_to36
 });
-var thanks_to34 = "Andrija Sagicc";
-var comments34 = "";
-var direction34 = "ltr";
-var strings34 = {
+var thanks_to36 = "Andrija Sagicc";
+var comments36 = "";
+var direction36 = "ltr";
+var strings36 = {
   placeholder: "\\u041F\\u0440\\u0435\\u0442\\u0440\\u0430\\u0433\\u0430",
   clear_search: "\\u0411\\u0440\\u0438\\u0441\\u0430\\u045A\\u0435",
   load_more: "\\u041F\\u0440\\u0438\\u043A\\u0430\\u0437 \\u0432\\u0438\\u0448\\u0435 \\u0440\\u0435\\u0437\\u0443\\u043B\\u0442\\u0430\\u0442\\u0430",
@@ -2072,25 +2164,25 @@ var strings34 = {
   loading: "\\u0423\\u0447\\u0438\\u0442\\u0430\\u0432\\u0430\\u045A\\u0435"
 };
 var sr_default = {
-  thanks_to: thanks_to34,
-  comments: comments34,
-  direction: direction34,
-  strings: strings34
+  thanks_to: thanks_to36,
+  comments: comments36,
+  direction: direction36,
+  strings: strings36
 };
 
 // ../translations/sv.json
 var sv_exports = {};
 __export(sv_exports, {
-  comments: () => comments35,
+  comments: () => comments37,
   default: () => sv_default,
-  direction: () => direction35,
-  strings: () => strings35,
-  thanks_to: () => thanks_to35
+  direction: () => direction37,
+  strings: () => strings37,
+  thanks_to: () => thanks_to37
 });
-var thanks_to35 = "Montazar Al-Jaber <montazar@nanawee.tech>";
-var comments35 = "";
-var direction35 = "ltr";
-var strings35 = {
+var thanks_to37 = "Montazar Al-Jaber <montazar@nanawee.tech>";
+var comments37 = "";
+var direction37 = "ltr";
+var strings37 = {
   placeholder: "S\\xF6k",
   clear_search: "Rensa",
   load_more: "Visa fler tr\\xE4ffar",
@@ -2118,29 +2210,29 @@ var strings35 = {
   loading: "L\\xE4ser in"
 };
 var sv_default = {
-  thanks_to: thanks_to35,
-  comments: comments35,
-  direction: direction35,
-  strings: strings35
+  thanks_to: thanks_to37,
+  comments: comments37,
+  direction: direction37,
+  strings: strings37
 };
 
 // ../translations/sw.json
 var sw_exports = {};
 __export(sw_exports, {
-  comments: () => comments36,
+  comments: () => comments38,
   default: () => sw_default,
-  direction: () => direction36,
-  strings: () => strings36,
-  thanks_to: () => thanks_to36
+  direction: () => direction38,
+  strings: () => strings38,
+  thanks_to: () => thanks_to38
 });
-var thanks_to36 = "Anonymous";
-var comments36 = "";
-var direction36 = "ltr";
-var strings36 = {
+var thanks_to38 = "Anonymous";
+var comments38 = "";
+var direction38 = "ltr";
+var strings38 = {
   placeholder: "Tafuta",
   clear_search: "Futa",
   load_more: "Pakia matokeo zaidi",
-  search_label: "Tafuta tovuti hii",
+  search_label: "Tafuta kwenye tovuti hii",
   filters_label: "Vichujio",
   zero_results: "Hakuna matokeo ya [SEARCH_TERM]",
   many_results: "Matokeo [COUNT] ya [SEARCH_TERM]",
@@ -2148,41 +2240,41 @@ var strings36 = {
   total_zero_results: "Hakuna matokeo",
   total_one_result: "Tokeo [COUNT]",
   total_many_results: "Matokeo [COUNT]",
-  alt_search: "Hakuna mayokeo ya [SEARCH_TERM]. Badala yake, inaonyesha matokeo ya [DIFFERENT_TERM]",
+  alt_search: "Hakuna matokeo ya [SEARCH_TERM]. Badala yake, matokeo ya [DIFFERENT_TERM] yanaonyeshwa",
   search_suggestion: "Hakuna matokeo ya [SEARCH_TERM]. Jaribu mojawapo ya utafutaji ufuatao:",
-  searching: "Kutafuta [SEARCH_TERM]...",
+  searching: "Inatafuta [SEARCH_TERM]...",
   results_label: "Matokeo ya utafutaji",
   keyboard_navigate: "sogeza",
   keyboard_select: "chagua",
   keyboard_clear: "futa",
   keyboard_close: "funga",
   keyboard_search: "tafuta",
-  error_search: "Utafutaji umeshindwa",
-  filter_selected_one: "[COUNT] imechaguliwa",
-  filter_selected_many: "[COUNT] zimechaguliwa",
+  error_search: "Utafutaji umeshindikana",
+  filter_selected_one: "[COUNT] kimechaguliwa",
+  filter_selected_many: "[COUNT] vimechaguliwa",
   input_hint: "Matokeo yataonekana unapoandika",
   loading: "Inapakia"
 };
 var sw_default = {
-  thanks_to: thanks_to36,
-  comments: comments36,
-  direction: direction36,
-  strings: strings36
+  thanks_to: thanks_to38,
+  comments: comments38,
+  direction: direction38,
+  strings: strings38
 };
 
 // ../translations/ta.json
 var ta_exports = {};
 __export(ta_exports, {
-  comments: () => comments37,
+  comments: () => comments39,
   default: () => ta_default,
-  direction: () => direction37,
-  strings: () => strings37,
-  thanks_to: () => thanks_to37
+  direction: () => direction39,
+  strings: () => strings39,
+  thanks_to: () => thanks_to39
 });
-var thanks_to37 = "";
-var comments37 = "";
-var direction37 = "ltr";
-var strings37 = {
+var thanks_to39 = "";
+var comments39 = "";
+var direction39 = "ltr";
+var strings39 = {
   placeholder: "\\u0BA4\\u0BC7\\u0B9F\\u0BC1\\u0B95",
   clear_search: "\\u0B85\\u0BB4\\u0BBF\\u0B95\\u0BCD\\u0B95\\u0BC1\\u0B95",
   load_more: "\\u0BAE\\u0BC7\\u0BB2\\u0BC1\\u0BAE\\u0BCD \\u0BAE\\u0BC1\\u0B9F\\u0BBF\\u0BB5\\u0BC1\\u0B95\\u0BB3\\u0BC8\\u0B95\\u0BCD \\u0B95\\u0BBE\\u0B9F\\u0BCD\\u0B9F\\u0BC1\\u0B95",
@@ -2210,25 +2302,25 @@ var strings37 = {
   loading: "\\u0B8F\\u0BB1\\u0BCD\\u0BB1\\u0BC1\\u0B95\\u0BBF\\u0BB1\\u0BA4\\u0BC1"
 };
 var ta_default = {
-  thanks_to: thanks_to37,
-  comments: comments37,
-  direction: direction37,
-  strings: strings37
+  thanks_to: thanks_to39,
+  comments: comments39,
+  direction: direction39,
+  strings: strings39
 };
 
 // ../translations/th.json
 var th_exports = {};
 __export(th_exports, {
-  comments: () => comments38,
+  comments: () => comments40,
   default: () => th_default,
-  direction: () => direction38,
-  strings: () => strings38,
-  thanks_to: () => thanks_to38
+  direction: () => direction40,
+  strings: () => strings40,
+  thanks_to: () => thanks_to40
 });
-var thanks_to38 = "Patiphon Loetsuthakun <ptphon@gmail.com>";
-var comments38 = "";
-var direction38 = "ltr";
-var strings38 = {
+var thanks_to40 = "Patiphon Loetsuthakun <ptphon@gmail.com>";
+var comments40 = "";
+var direction40 = "ltr";
+var strings40 = {
   placeholder: "\\u0E04\\u0E49\\u0E19\\u0E2B\\u0E32",
   clear_search: "\\u0E25\\u0E49\\u0E32\\u0E07",
   load_more: "\\u0E42\\u0E2B\\u0E25\\u0E14\\u0E1C\\u0E25\\u0E25\\u0E31\\u0E1E\\u0E18\\u0E4C\\u0E40\\u0E1E\\u0E34\\u0E48\\u0E21\\u0E40\\u0E15\\u0E34\\u0E21",
@@ -2256,25 +2348,25 @@ var strings38 = {
   loading: "\\u0E01\\u0E33\\u0E25\\u0E31\\u0E07\\u0E42\\u0E2B\\u0E25\\u0E14"
 };
 var th_default = {
-  thanks_to: thanks_to38,
-  comments: comments38,
-  direction: direction38,
-  strings: strings38
+  thanks_to: thanks_to40,
+  comments: comments40,
+  direction: direction40,
+  strings: strings40
 };
 
 // ../translations/tr.json
 var tr_exports = {};
 __export(tr_exports, {
-  comments: () => comments39,
+  comments: () => comments41,
   default: () => tr_default,
-  direction: () => direction39,
-  strings: () => strings39,
-  thanks_to: () => thanks_to39
+  direction: () => direction41,
+  strings: () => strings41,
+  thanks_to: () => thanks_to41
 });
-var thanks_to39 = "Taylan \\xD6zg\\xFCr Bildik";
-var comments39 = "";
-var direction39 = "ltr";
-var strings39 = {
+var thanks_to41 = "Taylan \\xD6zg\\xFCr Bildik";
+var comments41 = "";
+var direction41 = "ltr";
+var strings41 = {
   placeholder: "Ara\\u015Ft\\u0131r",
   clear_search: "Temizle",
   load_more: "Daha fazla sonu\\xE7",
@@ -2302,25 +2394,25 @@ var strings39 = {
   loading: "Y\\xFCkleniyor"
 };
 var tr_default = {
-  thanks_to: thanks_to39,
-  comments: comments39,
-  direction: direction39,
-  strings: strings39
+  thanks_to: thanks_to41,
+  comments: comments41,
+  direction: direction41,
+  strings: strings41
 };
 
 // ../translations/uk.json
 var uk_exports = {};
 __export(uk_exports, {
-  comments: () => comments40,
+  comments: () => comments42,
   default: () => uk_default,
-  direction: () => direction40,
-  strings: () => strings40,
-  thanks_to: () => thanks_to40
+  direction: () => direction42,
+  strings: () => strings42,
+  thanks_to: () => thanks_to42
 });
-var thanks_to40 = "Vladyslav Lyshenko <vladdnepr1989@gmail.com>";
-var comments40 = "";
-var direction40 = "ltr";
-var strings40 = {
+var thanks_to42 = "Vladyslav Lyshenko <vladdnepr1989@gmail.com>";
+var comments42 = "";
+var direction42 = "ltr";
+var strings42 = {
   placeholder: "\\u041F\\u043E\\u0448\\u0443\\u043A",
   clear_search: "\\u041E\\u0447\\u0438\\u0441\\u0442\\u0438\\u0442\\u0438 \\u043F\\u043E\\u043B\\u0435",
   load_more: "\\u0417\\u0430\\u0432\\u0430\\u043D\\u0442\\u0430\\u0436\\u0438\\u0442\\u0438 \\u0449\\u0435",
@@ -2348,25 +2440,25 @@ var strings40 = {
   loading: "\\u0417\\u0430\\u0432\\u0430\\u043D\\u0442\\u0430\\u0436\\u0435\\u043D\\u043D\\u044F"
 };
 var uk_default = {
-  thanks_to: thanks_to40,
-  comments: comments40,
-  direction: direction40,
-  strings: strings40
+  thanks_to: thanks_to42,
+  comments: comments42,
+  direction: direction42,
+  strings: strings42
 };
 
 // ../translations/vi.json
 var vi_exports = {};
 __export(vi_exports, {
-  comments: () => comments41,
+  comments: () => comments43,
   default: () => vi_default,
-  direction: () => direction41,
-  strings: () => strings41,
-  thanks_to: () => thanks_to41
+  direction: () => direction43,
+  strings: () => strings43,
+  thanks_to: () => thanks_to43
 });
-var thanks_to41 = "Long Nhat Nguyen";
-var comments41 = "";
-var direction41 = "ltr";
-var strings41 = {
+var thanks_to43 = "Long Nhat Nguyen";
+var comments43 = "";
+var direction43 = "ltr";
+var strings43 = {
   placeholder: "T\\xECm ki\\u1EBFm",
   clear_search: "X\\xF3a",
   load_more: "Nhi\\u1EC1u k\\u1EBFt qu\\u1EA3 h\\u01A1n",
@@ -2394,109 +2486,17 @@ var strings41 = {
   loading: "\\u0110ang t\\u1EA3i"
 };
 var vi_default = {
-  thanks_to: thanks_to41,
-  comments: comments41,
-  direction: direction41,
-  strings: strings41
-};
-
-// ../translations/zh-cn.json
-var zh_cn_exports = {};
-__export(zh_cn_exports, {
-  comments: () => comments42,
-  default: () => zh_cn_default,
-  direction: () => direction42,
-  strings: () => strings42,
-  thanks_to: () => thanks_to42
-});
-var thanks_to42 = "Amber Song";
-var comments42 = "";
-var direction42 = "ltr";
-var strings42 = {
-  placeholder: "\\u641C\\u7D22",
-  clear_search: "\\u6E05\\u9664",
-  load_more: "\\u52A0\\u8F7D\\u66F4\\u591A\\u7ED3\\u679C",
-  search_label: "\\u7AD9\\u5185\\u641C\\u7D22",
-  filters_label: "\\u7B5B\\u9009",
-  zero_results: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
-  many_results: "\\u627E\\u5230 [COUNT] \\u4E2A [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
-  one_result: "\\u627E\\u5230 [COUNT] \\u4E2A [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
-  total_zero_results: "\\u65E0\\u7ED3\\u679C",
-  total_one_result: "[COUNT] \\u4E2A\\u7ED3\\u679C",
-  total_many_results: "[COUNT] \\u4E2A\\u7ED3\\u679C",
-  alt_search: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C\\u3002\\u6539\\u4E3A\\u663E\\u793A [DIFFERENT_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
-  search_suggestion: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C\\u3002\\u8BF7\\u5C1D\\u8BD5\\u4EE5\\u4E0B\\u641C\\u7D22\\u3002",
-  searching: "\\u6B63\\u5728\\u641C\\u7D22 [SEARCH_TERM]...",
-  results_label: "\\u641C\\u7D22\\u7ED3\\u679C",
-  keyboard_navigate: "\\u5BFC\\u822A",
-  keyboard_select: "\\u9009\\u62E9",
-  keyboard_clear: "\\u6E05\\u9664",
-  keyboard_close: "\\u5173\\u95ED",
-  keyboard_search: "\\u641C\\u7D22",
-  error_search: "\\u641C\\u7D22\\u5931\\u8D25",
-  filter_selected_one: "\\u5DF2\\u9009\\u62E9 [COUNT] \\u4E2A",
-  filter_selected_many: "\\u5DF2\\u9009\\u62E9 [COUNT] \\u4E2A",
-  input_hint: "\\u8F93\\u5165\\u65F6\\u5C06\\u663E\\u793A\\u7ED3\\u679C",
-  loading: "\\u52A0\\u8F7D\\u4E2D"
-};
-var zh_cn_default = {
-  thanks_to: thanks_to42,
-  comments: comments42,
-  direction: direction42,
-  strings: strings42
-};
-
-// ../translations/zh-tw.json
-var zh_tw_exports = {};
-__export(zh_tw_exports, {
-  comments: () => comments43,
-  default: () => zh_tw_default,
-  direction: () => direction43,
-  strings: () => strings43,
-  thanks_to: () => thanks_to43
-});
-var thanks_to43 = "Amber Song";
-var comments43 = "";
-var direction43 = "ltr";
-var strings43 = {
-  placeholder: "\\u641C\\u5C0B",
-  clear_search: "\\u6E05\\u9664",
-  load_more: "\\u8F09\\u5165\\u66F4\\u591A\\u7D50\\u679C",
-  search_label: "\\u7AD9\\u5167\\u641C\\u5C0B",
-  filters_label: "\\u7BE9\\u9078",
-  zero_results: "\\u627E\\u4E0D\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
-  many_results: "\\u627E\\u5230 [COUNT] \\u500B [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
-  one_result: "\\u627E\\u5230 [COUNT] \\u500B [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
-  total_zero_results: "\\u7121\\u7D50\\u679C",
-  total_one_result: "[COUNT] \\u500B\\u7D50\\u679C",
-  total_many_results: "[COUNT] \\u500B\\u7D50\\u679C",
-  alt_search: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C\\u3002\\u6539\\u70BA\\u986F\\u793A [DIFFERENT_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
-  search_suggestion: "\\u627E\\u4E0D\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C\\u3002\\u8ACB\\u5617\\u8A66\\u4EE5\\u4E0B\\u7684\\u5EFA\\u8B70\\u4E4B\\u4E00\\u3002",
-  searching: "\\u6B63\\u5728\\u641C\\u5C0B[SEARCH_TERM]...",
-  results_label: "\\u641C\\u5C0B\\u7D50\\u679C",
-  keyboard_navigate: "\\u5C0E\\u89BD",
-  keyboard_select: "\\u9078\\u64C7",
-  keyboard_clear: "\\u6E05\\u9664",
-  keyboard_close: "\\u95DC\\u9589",
-  keyboard_search: "\\u641C\\u5C0B",
-  error_search: "\\u641C\\u5C0B\\u5931\\u6557",
-  filter_selected_one: "\\u5DF2\\u9078\\u64C7 [COUNT] \\u500B",
-  filter_selected_many: "\\u5DF2\\u9078\\u64C7 [COUNT] \\u500B",
-  input_hint: "\\u8F38\\u5165\\u6642\\u5C07\\u986F\\u793A\\u7D50\\u679C",
-  loading: "\\u8F09\\u5165\\u4E2D"
-};
-var zh_tw_default = {
   thanks_to: thanks_to43,
   comments: comments43,
   direction: direction43,
   strings: strings43
 };
 
-// ../translations/zh.json
-var zh_exports = {};
-__export(zh_exports, {
+// ../translations/zh-cn.json
+var zh_cn_exports = {};
+__export(zh_cn_exports, {
   comments: () => comments44,
-  default: () => zh_default,
+  default: () => zh_cn_default,
   direction: () => direction44,
   strings: () => strings44,
   thanks_to: () => thanks_to44
@@ -2531,17 +2531,109 @@ var strings44 = {
   input_hint: "\\u8F93\\u5165\\u65F6\\u5C06\\u663E\\u793A\\u7ED3\\u679C",
   loading: "\\u52A0\\u8F7D\\u4E2D"
 };
-var zh_default = {
+var zh_cn_default = {
   thanks_to: thanks_to44,
   comments: comments44,
   direction: direction44,
   strings: strings44
 };
 
+// ../translations/zh-tw.json
+var zh_tw_exports = {};
+__export(zh_tw_exports, {
+  comments: () => comments45,
+  default: () => zh_tw_default,
+  direction: () => direction45,
+  strings: () => strings45,
+  thanks_to: () => thanks_to45
+});
+var thanks_to45 = "Amber Song";
+var comments45 = "";
+var direction45 = "ltr";
+var strings45 = {
+  placeholder: "\\u641C\\u5C0B",
+  clear_search: "\\u6E05\\u9664",
+  load_more: "\\u8F09\\u5165\\u66F4\\u591A\\u7D50\\u679C",
+  search_label: "\\u7AD9\\u5167\\u641C\\u5C0B",
+  filters_label: "\\u7BE9\\u9078",
+  zero_results: "\\u627E\\u4E0D\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
+  many_results: "\\u627E\\u5230 [COUNT] \\u500B [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
+  one_result: "\\u627E\\u5230 [COUNT] \\u500B [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
+  total_zero_results: "\\u7121\\u7D50\\u679C",
+  total_one_result: "[COUNT] \\u500B\\u7D50\\u679C",
+  total_many_results: "[COUNT] \\u500B\\u7D50\\u679C",
+  alt_search: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C\\u3002\\u6539\\u70BA\\u986F\\u793A [DIFFERENT_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C",
+  search_suggestion: "\\u627E\\u4E0D\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u95DC\\u7D50\\u679C\\u3002\\u8ACB\\u5617\\u8A66\\u4EE5\\u4E0B\\u7684\\u5EFA\\u8B70\\u4E4B\\u4E00\\u3002",
+  searching: "\\u6B63\\u5728\\u641C\\u5C0B[SEARCH_TERM]...",
+  results_label: "\\u641C\\u5C0B\\u7D50\\u679C",
+  keyboard_navigate: "\\u5C0E\\u89BD",
+  keyboard_select: "\\u9078\\u64C7",
+  keyboard_clear: "\\u6E05\\u9664",
+  keyboard_close: "\\u95DC\\u9589",
+  keyboard_search: "\\u641C\\u5C0B",
+  error_search: "\\u641C\\u5C0B\\u5931\\u6557",
+  filter_selected_one: "\\u5DF2\\u9078\\u64C7 [COUNT] \\u500B",
+  filter_selected_many: "\\u5DF2\\u9078\\u64C7 [COUNT] \\u500B",
+  input_hint: "\\u8F38\\u5165\\u6642\\u5C07\\u986F\\u793A\\u7D50\\u679C",
+  loading: "\\u8F09\\u5165\\u4E2D"
+};
+var zh_tw_default = {
+  thanks_to: thanks_to45,
+  comments: comments45,
+  direction: direction45,
+  strings: strings45
+};
+
+// ../translations/zh.json
+var zh_exports = {};
+__export(zh_exports, {
+  comments: () => comments46,
+  default: () => zh_default,
+  direction: () => direction46,
+  strings: () => strings46,
+  thanks_to: () => thanks_to46
+});
+var thanks_to46 = "Amber Song";
+var comments46 = "";
+var direction46 = "ltr";
+var strings46 = {
+  placeholder: "\\u641C\\u7D22",
+  clear_search: "\\u6E05\\u9664",
+  load_more: "\\u52A0\\u8F7D\\u66F4\\u591A\\u7ED3\\u679C",
+  search_label: "\\u7AD9\\u5185\\u641C\\u7D22",
+  filters_label: "\\u7B5B\\u9009",
+  zero_results: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
+  many_results: "\\u627E\\u5230 [COUNT] \\u4E2A [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
+  one_result: "\\u627E\\u5230 [COUNT] \\u4E2A [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
+  total_zero_results: "\\u65E0\\u7ED3\\u679C",
+  total_one_result: "[COUNT] \\u4E2A\\u7ED3\\u679C",
+  total_many_results: "[COUNT] \\u4E2A\\u7ED3\\u679C",
+  alt_search: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C\\u3002\\u6539\\u4E3A\\u663E\\u793A [DIFFERENT_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C",
+  search_suggestion: "\\u672A\\u627E\\u5230 [SEARCH_TERM] \\u7684\\u76F8\\u5173\\u7ED3\\u679C\\u3002\\u8BF7\\u5C1D\\u8BD5\\u4EE5\\u4E0B\\u641C\\u7D22\\u3002",
+  searching: "\\u6B63\\u5728\\u641C\\u7D22 [SEARCH_TERM]...",
+  results_label: "\\u641C\\u7D22\\u7ED3\\u679C",
+  keyboard_navigate: "\\u5BFC\\u822A",
+  keyboard_select: "\\u9009\\u62E9",
+  keyboard_clear: "\\u6E05\\u9664",
+  keyboard_close: "\\u5173\\u95ED",
+  keyboard_search: "\\u641C\\u7D22",
+  error_search: "\\u641C\\u7D22\\u5931\\u8D25",
+  filter_selected_one: "\\u5DF2\\u9009\\u62E9 [COUNT] \\u4E2A",
+  filter_selected_many: "\\u5DF2\\u9009\\u62E9 [COUNT] \\u4E2A",
+  input_hint: "\\u8F93\\u5165\\u65F6\\u5C06\\u663E\\u793A\\u7ED3\\u679C",
+  loading: "\\u52A0\\u8F7D\\u4E2D"
+};
+var zh_default = {
+  thanks_to: thanks_to46,
+  comments: comments46,
+  direction: direction46,
+  strings: strings46
+};
+
 // import-glob:../../translations/*.json
-var modules = [af_exports, ar_exports, bn_exports, ca_exports, cs_exports, da_exports, de_exports, el_exports, en_exports, es_exports, eu_exports, fa_exports, fi_exports, fr_exports, gl_exports, he_exports, hi_exports, hr_exports, hu_exports, id_exports, it_exports, ja_exports, ko_exports, mi_exports, my_exports, nb_exports, nl_exports, nn_exports, no_exports, pl_exports, pt_exports, ro_exports, ru_exports, sr_exports, sv_exports, sw_exports, ta_exports, th_exports, tr_exports, uk_exports, vi_exports, zh_cn_exports, zh_tw_exports, zh_exports];
+var modules = [af_exports, ar_exports, bg_exports, bn_exports, ca_exports, cs_exports, da_exports, de_exports, el_exports, en_exports, es_exports, eu_exports, fa_exports, fi_exports, fr_exports, gl_exports, he_exports, hi_exports, hr_exports, hu_exports, id_exports, it_exports, ja_exports, ko_exports, mi_exports, mk_exports, my_exports, nb_exports, nl_exports, nn_exports, no_exports, pl_exports, pt_exports, ro_exports, ru_exports, sr_exports, sv_exports, sw_exports, ta_exports, th_exports, tr_exports, uk_exports, vi_exports, zh_cn_exports, zh_tw_exports, zh_exports];
 var __default = modules;
-var filenames = ["../../translations/af.json", "../../translations/ar.json", "../../translations/bn.json", "../../translations/ca.json", "../../translations/cs.json", "../../translations/da.json", "../../translations/de.json", "../../translations/el.json", "../../translations/en.json", "../../translations/es.json", "../../translations/eu.json", "../../translations/fa.json", "../../translations/fi.json", "../../translations/fr.json", "../../translations/gl.json", "../../translations/he.json", "../../translations/hi.json", "../../translations/hr.json", "../../translations/hu.json", "../../translations/id.json", "../../translations/it.json", "../../translations/ja.json", "../../translations/ko.json", "../../translations/mi.json", "../../translations/my.json", "../../translations/nb.json", "../../translations/nl.json", "../../translations/nn.json", "../../translations/no.json", "../../translations/pl.json", "../../translations/pt.json", "../../translations/ro.json", "../../translations/ru.json", "../../translations/sr.json", "../../translations/sv.json", "../../translations/sw.json", "../../translations/ta.json", "../../translations/th.json", "../../translations/tr.json", "../../translations/uk.json", "../../translations/vi.json", "../../translations/zh-cn.json", "../../translations/zh-tw.json", "../../translations/zh.json"];
+var filenames = ["../../translations/af.json", "../../translations/ar.json", "../../translations/bg.json", "../../translations/bn.json", "../../translations/ca.json", "../../translations/cs.json", "../../translations/da.json", "../../translations/de.json", "../../translations/el.json", "../../translations/en.json", "../../translations/es.json", "../../translations/eu.json", "../../translations/fa.json", "../../translations/fi.json", "../../translations/fr.json", "../../translations/gl.json", "../../translations/he.json", "../../translations/hi.json", "../../translations/hr.json", "../../translations/hu.json", "../../translations/id.json", "../../translations/it.json", "../../translations/ja.json", "../../translations/ko.json", "../../translations/mi.json", "../../translations/mk.json", "../../translations/my.json", "../../translations/nb.json", "../../translations/nl.json", "../../translations/nn.json", "../../translations/no.json", "../../translations/pl.json", "../../translations/pt.json", "../../translations/ro.json", "../../translations/ru.json", "../../translations/sr.json", "../../translations/sv.json", "../../translations/sw.json", "../../translations/ta.json", "../../translations/th.json", "../../translations/tr.json", "../../translations/uk.json", "../../translations/vi.json", "../../translations/zh-cn.json", "../../translations/zh-tw.json", "../../translations/zh.json"];
 
 // node_modules/is-alphabetical/index.js
 function isAlphabetical(character) {
@@ -2605,28 +2697,29 @@ var normal = {
 
 // node_modules/bcp-47/lib/parse.js
 var own = {}.hasOwnProperty;
-function parse(tag, options = {}) {
-  const result = empty();
-  const source = String(tag);
-  const value = source.toLowerCase();
-  let index = 0;
+function parse(tag, options) {
   if (tag === null || tag === void 0) {
     throw new Error("Expected string, got \`" + tag + "\`");
   }
+  const settings = options || {};
+  const result = empty();
+  const source = String(tag);
+  const value = source.toLowerCase();
   if (own.call(normal, value)) {
     const replacement = normal[value];
-    if ((options.normalize === void 0 || options.normalize === null || options.normalize) && typeof replacement === "string") {
+    if ((settings.normalize === null || settings.normalize === void 0 || settings.normalize) && typeof replacement === "string") {
       return parse(replacement);
     }
     result[regular.includes(value) ? "regular" : "irregular"] = source;
     return result;
   }
+  let index = 0;
   while (isAlphabetical(value.charCodeAt(index)) && index < 9) index++;
   if (index > 1 && index < 9) {
     result.language = source.slice(0, index);
     if (index < 4) {
       let groups = 0;
-      while (value.charCodeAt(index) === 45 && isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && isAlphabetical(value.charCodeAt(index + 3)) && !isAlphabetical(value.charCodeAt(index + 4))) {
+      while (value.charCodeAt(index) === 45 && isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && isAlphabetical(value.charCodeAt(index + 3)) && !isAlphanumerical(value.charCodeAt(index + 4))) {
         if (groups > 2) {
           return fail(
             index,
@@ -2639,15 +2732,15 @@ function parse(tag, options = {}) {
         groups++;
       }
     }
-    if (value.charCodeAt(index) === 45 && isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && isAlphabetical(value.charCodeAt(index + 3)) && isAlphabetical(value.charCodeAt(index + 4)) && !isAlphabetical(value.charCodeAt(index + 5))) {
+    if (value.charCodeAt(index) === 45 && isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && isAlphabetical(value.charCodeAt(index + 3)) && isAlphabetical(value.charCodeAt(index + 4)) && !isAlphanumerical(value.charCodeAt(index + 5))) {
       result.script = source.slice(index + 1, index + 5);
       index += 5;
     }
     if (value.charCodeAt(index) === 45) {
-      if (isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && !isAlphabetical(value.charCodeAt(index + 3))) {
+      if (isAlphabetical(value.charCodeAt(index + 1)) && isAlphabetical(value.charCodeAt(index + 2)) && !isAlphanumerical(value.charCodeAt(index + 3))) {
         result.region = source.slice(index + 1, index + 3);
         index += 3;
-      } else if (isDecimal(value.charCodeAt(index + 1)) && isDecimal(value.charCodeAt(index + 2)) && isDecimal(value.charCodeAt(index + 3)) && !isDecimal(value.charCodeAt(index + 4))) {
+      } else if (isDecimal(value.charCodeAt(index + 1)) && isDecimal(value.charCodeAt(index + 2)) && isDecimal(value.charCodeAt(index + 3)) && !isAlphanumerical(value.charCodeAt(index + 4))) {
         result.region = source.slice(index + 1, index + 4);
         index += 4;
       }
@@ -2705,8 +2798,8 @@ function parse(tag, options = {}) {
         );
       }
       result.extensions.push({
-        singleton: source.charAt(index + 1),
-        extensions: source.slice(index + 3, offset).split("-")
+        extensions: source.slice(index + 3, offset).split("-"),
+        singleton: source.charAt(index + 1)
       });
       index = offset;
     }
@@ -2732,27 +2825,34 @@ function parse(tag, options = {}) {
       result.privateuse.push(source.slice(index + 1, offset));
       index = offset;
     }
+    if (result.privateuse.length === 0) {
+      return fail(
+        index,
+        7,
+        "Empty private-use area, expected at least 1 subtag"
+      );
+    }
   }
   if (index !== source.length) {
     return fail(index, 6, "Found superfluous content after tag");
   }
   return result;
   function fail(offset, code, reason) {
-    if (options.warning) options.warning(reason, code, offset);
-    return options.forgiving ? result : empty();
+    if (settings.warning) settings.warning(reason, code, offset);
+    return settings.forgiving ? result : empty();
   }
 }
 function empty() {
   return {
-    language: null,
     extendedLanguageSubtags: [],
-    script: null,
-    region: null,
-    variants: [],
     extensions: [],
-    privateuse: [],
     irregular: null,
-    regular: null
+    language: null,
+    privateuse: [],
+    region: null,
+    regular: null,
+    script: null,
+    variants: []
   };
 }
 
@@ -2926,6 +3026,7 @@ var Instance = class {
     this.componentsByType = {};
     this.searchTerm = "";
     this.searchFilters = {};
+    this.searchSort = {};
     this.searchResult = { results: [] };
     this.availableFilters = null;
     this.totalFilters = null;
@@ -2950,6 +3051,18 @@ var Instance = class {
     delete pagefindOpts.mergeIndex;
     this.pagefindOptions = pagefindOpts;
     this._announcer = new Announcer(this.generateId.bind(this));
+  }
+  applyOptions(opts) {
+    if (this.__pagefind__) {
+      console.warn(
+        \`[Pagefind Component UI]: Instance "\${this.name}" has already loaded, configuration ignored\`
+      );
+      return;
+    }
+    const { bundlePath, mergeIndex, ...pagefindOpts } = opts;
+    if (bundlePath !== void 0) this.options.bundlePath = bundlePath;
+    if (mergeIndex !== void 0) this.options.mergeIndex = mergeIndex;
+    this.pagefindOptions = { ...this.pagefindOptions, ...pagefindOpts };
   }
   generateId(prefix, length = 2) {
     const idChars = "abcdef";
@@ -2995,9 +3108,7 @@ var Instance = class {
     if (!this.componentsByType[type]) {
       this.componentsByType[type] = [];
     }
-    if (!this._languageSet) {
-      this.setLanguage();
-    }
+    this.ensureLanguage();
     if (this.components.includes(component)) {
       component.capabilities = capabilities;
       this.reconcileAria();
@@ -3009,6 +3120,20 @@ var Instance = class {
     this.componentsByType[type].push(component);
     this.components.push(component);
     this.reconcileAria();
+  }
+  unregisterComponent(component) {
+    this.components = this.components.filter((c) => c !== component);
+    const type = component.componentType;
+    if (type && this.componentsByType[type]) {
+      this.componentsByType[type] = this.componentsByType[type].filter(
+        (c) => c !== component
+      );
+    }
+    Object.keys(this.__hooks__).forEach((event) => {
+      this.__hooks__[event] = this.__hooks__[event].filter(
+        (h) => typeof h === "function" || h.owner !== component
+      );
+    });
   }
   getInputs(requiredCapability = null) {
     const components = this.componentsByType["input"] || [];
@@ -3172,6 +3297,14 @@ var Instance = class {
     return this._direction;
   }
   /**
+   * Auto-detect the language of this html page, unless one has already been set.
+   */
+  ensureLanguage() {
+    if (!this._languageSet) {
+      this.setLanguage();
+    }
+  }
+  /**
    * Set the language for translations.
    */
   setLanguage(langCode) {
@@ -3299,7 +3432,10 @@ var Instance = class {
     }
     if (!this.__pagefind__) return;
     const searchTerm = term && term.length ? term : null;
-    const results = await this.__pagefind__.search(searchTerm, { filters });
+    const results = await this.__pagefind__.search(searchTerm, {
+      filters,
+      sort: this.searchSort
+    });
     if (results && this.__searchID__ === thisSearch) {
       if (results.filters && Object.keys(results.filters)?.length) {
         this.availableFilters = results.filters;
@@ -3463,10 +3599,9 @@ function getInstanceManager() {
 function configureInstance(name, options) {
   const manager = getInstanceManager();
   if (manager.hasInstance(name)) {
-    console.warn(
-      \`[Pagefind Component UI]: Instance "\${name}" already exists, configuration ignored\`
-    );
-    return manager.getInstance(name);
+    const instance = manager.getInstance(name);
+    instance.applyOptions(options);
+    return instance;
   }
   return manager.getInstance(name, options);
 }
@@ -3897,6 +4032,7 @@ var PagefindElement = class extends HTMLElement {
     const instanceName = this.getAttribute("instance") || "default";
     const manager = getInstanceManager();
     this.instance = manager.getInstance(instanceName);
+    this.instance.ensureLanguage();
     this.init();
     if (this.register && typeof this.register === "function") {
       this.register(this.instance);
@@ -3906,6 +4042,7 @@ var PagefindElement = class extends HTMLElement {
     if (this.cleanup && typeof this.cleanup === "function") {
       this.cleanup();
     }
+    this.instance?.unregisterComponent(this);
     this._initialized = false;
   }
   attributeChangedCallback(name, oldValue, newValue) {
@@ -3985,6 +4122,10 @@ var PagefindConfig = class extends PagefindElement {
     if (excerptLength) {
       instance.pagefindOptions.excerptLength = parseInt(excerptLength, 10);
     }
+    const excerptEllipsis = this.getAttribute("excerpt-ellipsis");
+    if (excerptEllipsis) {
+      instance.pagefindOptions.excerptEllipsis = excerptEllipsis;
+    }
     const lang = this.getAttribute("lang");
     if (lang) {
       instance.setLanguage(lang);
@@ -3996,6 +4137,11 @@ var PagefindConfig = class extends PagefindElement {
     const highlightParam = this.getAttribute("highlight-param");
     if (highlightParam) {
       instance.pagefindOptions.highlightParam = highlightParam;
+    }
+    const sort = this.getAttribute("sort");
+    if (sort) {
+      const [key, direction47 = "asc"] = sort.split(":");
+      instance.searchSort = { [key]: direction47 };
     }
     if (this.hasAttribute("exact-diacritics")) {
       instance.pagefindOptions.exactDiacritics = true;
@@ -4013,6 +4159,27 @@ var PagefindConfig = class extends PagefindElement {
 };
 if (!customElements.get("pagefind-config")) {
   customElements.define("pagefind-config", PagefindConfig);
+}
+
+// core/composition.ts
+var COMPOSITION_TAIL_MS = 50;
+function trackComposition(element) {
+  let composing = false;
+  let endedAt = Number.NEGATIVE_INFINITY;
+  element.addEventListener("compositionstart", () => {
+    composing = true;
+  });
+  element.addEventListener("compositionend", () => {
+    composing = false;
+    endedAt = performance.now();
+  });
+  element.addEventListener("keyup", () => {
+    endedAt = Number.NEGATIVE_INFINITY;
+  });
+  element.addEventListener("focusout", () => {
+    composing = false;
+  });
+  return (e) => e.isComposing || composing || performance.now() - endedAt < COMPOSITION_TAIL_MS;
 }
 
 // components/pagefind-input.ts
@@ -4108,7 +4275,11 @@ var PagefindInput = class extends PagefindElement {
         this.instance?.triggerSearch(target.value);
       }
     });
+    const isComposingKey = trackComposition(this.inputEl);
     this.inputEl.addEventListener("keydown", (e) => {
+      if (isComposingKey(e)) {
+        return;
+      }
       if (e.key === "Escape") {
         ++this.searchID;
         if (this.inputEl) this.inputEl.value = "";
@@ -4688,7 +4859,7 @@ var PagefindResults = class extends PagefindElement {
    * traversal. Returns the neighbor anchor and the index of the Result it
    * belongs to, or null if there is no neighbor in that direction.
    */
-  findNeighborAnchor(current, direction45) {
+  findNeighborAnchor(current, direction47) {
     if (!this.containerEl) return null;
     const walker = document.createTreeWalker(
       this.containerEl,
@@ -4698,7 +4869,7 @@ var PagefindResults = class extends PagefindElement {
       }
     );
     walker.currentNode = current;
-    const neighbor = direction45 > 0 ? walker.nextNode() : walker.previousNode();
+    const neighbor = direction47 > 0 ? walker.nextNode() : walker.previousNode();
     if (!neighbor || !(neighbor instanceof HTMLAnchorElement)) return null;
     const resultIndex = this.resultIndexForNode(neighbor);
     return { anchor: neighbor, resultIndex };
@@ -4821,8 +4992,8 @@ var PagefindResults = class extends PagefindElement {
       behavior: instant ? "instant" : "smooth"
     });
   }
-  preloadAhead(fromIndex, direction45) {
-    const step = direction45 > 0 ? 1 : -1;
+  preloadAhead(fromIndex, direction47) {
+    const step = direction47 > 0 ? 1 : -1;
     for (let i = 1; i <= 3; i++) {
       const idx = fromIndex + step * i;
       if (idx >= 0 && idx < this.results.length) {
@@ -5914,20 +6085,36 @@ var PagefindModal = class extends PagefindElement {
       this.handleClose();
     };
     this.dialogEl.addEventListener("close", this._closeHandler);
+    const isComposingKey = trackComposition(this.dialogEl);
     this.dialogEl.addEventListener(
       "keydown",
       (e) => {
         if (e.key === "Escape") {
           e.preventDefault();
           e.stopPropagation();
+          if (isComposingKey(e)) {
+            return;
+          }
           this.close();
         }
       },
       true
     );
     this.dialogEl.addEventListener("click", (e) => {
-      if (e.target === this.dialogEl) {
+      const target = e.target;
+      if (target === this.dialogEl) {
         this.close();
+        return;
+      }
+      const link = target.closest("pagefind-results a");
+      if (!link) return;
+      this.close();
+      const anchor = link.hash && document.getElementById(link.hash.slice(1));
+      if (anchor) {
+        requestAnimationFrame(() => {
+          anchor.tabIndex = -1;
+          anchor.focus();
+        });
       }
     });
   }
@@ -6119,6 +6306,10 @@ var PagefindModalTrigger = class extends PagefindElement {
   }
   get placeholder() {
     return this._userPlaceholder || this.instance?.translate("keyboard_search") || "Search";
+  }
+  set placeholder(value) {
+    this._userPlaceholder = value;
+    if (this._initialized) this.render();
   }
   init() {
     this.readAttributes();
@@ -6519,6 +6710,7 @@ var PagefindSearchbox = class extends PagefindElement {
     this.debounce = 150;
     this.autofocus = false;
     this.showSubResults = false;
+    this.maxSubResults = 3;
     this.maxResults = 0;
     // 0 means no limit
     this.showKeyboardHints = true;
@@ -6538,6 +6730,7 @@ var PagefindSearchbox = class extends PagefindElement {
       "debounce",
       "autofocus",
       "show-sub-results",
+      "max-sub-results",
       "max-results",
       "show-keyboard-hints",
       "shortcut",
@@ -6546,6 +6739,10 @@ var PagefindSearchbox = class extends PagefindElement {
   }
   get placeholder() {
     return this._userPlaceholder || this.instance?.translate("placeholder") || "Search...";
+  }
+  set placeholder(value) {
+    this._userPlaceholder = value;
+    if (this.inputEl) this.inputEl.placeholder = this.placeholder;
   }
   readAttributes() {
     if (this.hasAttribute("placeholder")) {
@@ -6559,6 +6756,9 @@ var PagefindSearchbox = class extends PagefindElement {
     }
     if (this.hasAttribute("show-sub-results")) {
       this.showSubResults = this.getAttribute("show-sub-results") !== "false";
+    }
+    if (this.hasAttribute("max-sub-results")) {
+      this.maxSubResults = parseInt(this.getAttribute("max-sub-results") || "3", 10) || 3;
     }
     if (this.hasAttribute("max-results")) {
       this.maxResults = parseInt(this.getAttribute("max-results") || "0", 10);
@@ -6734,7 +6934,11 @@ var PagefindSearchbox = class extends PagefindElement {
       }
       this.instance?.triggerSearch(value);
     });
+    const isComposingKey = trackComposition(this.inputEl);
     this.inputEl.addEventListener("keydown", (e) => {
+      if (isComposingKey(e)) {
+        return;
+      }
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
@@ -6969,8 +7173,8 @@ var PagefindSearchbox = class extends PagefindElement {
     this.updateSelectionUI(true);
     this.preloadAhead(nextIndex, delta);
   }
-  preloadAhead(fromIndex, direction45) {
-    const step = direction45 > 0 ? 1 : -1;
+  preloadAhead(fromIndex, direction47) {
+    const step = direction47 > 0 ? 1 : -1;
     const count = Math.abs(this.pendingNavigation) + 3;
     for (let i = 1; i <= count; i++) {
       const idx = fromIndex + step * i;
@@ -7001,11 +7205,11 @@ var PagefindSearchbox = class extends PagefindElement {
       this.updateSelectionUI();
       return;
     }
-    const direction45 = this.pendingNavigation > 0 ? 1 : -1;
+    const direction47 = this.pendingNavigation > 0 ? 1 : -1;
     let currentResultIndex = this.activeIndex;
     let currentOffset = this.activeOptionOffset;
     while (this.pendingNavigation !== 0) {
-      if (direction45 > 0) {
+      if (direction47 > 0) {
         const currentResult = this.results[currentResultIndex];
         if (currentResult?.data) {
           const options = this.getOptionsForResult(currentResult);
@@ -7029,7 +7233,7 @@ var PagefindSearchbox = class extends PagefindElement {
           if (nextResult) {
             nextResult.load();
             this.scheduleLoadingAnnouncement();
-            this.preloadAhead(nextIdx, direction45);
+            this.preloadAhead(nextIdx, direction47);
           }
           break;
         }
@@ -7173,7 +7377,7 @@ var PagefindSearchbox = class extends PagefindElement {
     this.announceResults();
   }
   buildTemplateData(result) {
-    const subResults = this.showSubResults ? this.instance.getDisplaySubResults(result) : [];
+    const subResults = this.showSubResults ? this.instance.getDisplaySubResults(result, this.maxSubResults) : [];
     const resultId = this.instance.generateId("pf-sb-result");
     return {
       meta: result.meta || {},
@@ -8213,6 +8417,7 @@ pagefind-modal-trigger {
 :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-checkbox-input {
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
     margin: 0;
     accent-color: var(--pf-text);
     cursor: pointer;
@@ -8924,8 +9129,15 @@ pagefind-modal-trigger {
     :is(*, #\\#):is(*, #\\#):is(*, #\\#) pagefind-keyboard-hints,
     :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-keyboard-hints,
     :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-searchbox-footer,
-    :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-modal-footer-hint {
+    :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-modal-footer-hint,
+    :is(*, #\\#):is(*, #\\#):is(*, #\\#) .pf-trigger-shortcut {
         display: none;
+    }
+
+    :is(*, #\\#):is(*, #\\#):is(*, #\\#)
+        .pf-searchbox-input-wrapper:has(.pf-trigger-shortcut)
+        .pf-searchbox-input {
+        padding-inline-end: 12px;
     }
 }
 
