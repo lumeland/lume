@@ -4,6 +4,7 @@ import binaryLoader from "./loaders/binary.ts";
 import { decodeURIComponentSafe } from "./utils/path.ts";
 
 import type { Entry } from "./fs.ts";
+import type { Document } from "../deps/dom.ts";
 import type { Data, DefaultType, FileData } from "../types.ts";
 
 const decoder = new TextDecoder();

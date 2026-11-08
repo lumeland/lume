@@ -1,6 +1,8 @@
 import { katex, KatexOptions } from "../../deps/katex.ts";
 import splitAtDelimiters from "./splitAtDelimiters.js";
 
+import type { Document, Element } from "../../deps/dom.ts";
+
 /* Note: optionsCopy is mutated by this method. If it is ever exposed in the
  * API, we should copy it before mutating.
  */
@@ -67,7 +69,7 @@ function renderElem(elem: Element, optionsCopy: KatexOptions) {
             if (frag) {
                 // Remove extra text nodes
                 for (let j = 0; j < nSiblings; j++) {
-                    childNode.nextSibling?.remove();
+                    if (childNode.nextSibling) elem.removeChild(childNode.nextSibling);
                 }
                 i += frag.childNodes.length - 1;
                 elem.replaceChild(frag, childNode);

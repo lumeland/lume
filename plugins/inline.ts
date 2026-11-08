@@ -8,6 +8,7 @@ import { walkUrls } from "../core/utils/css_urls.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
+import type { Element } from "../deps/dom.ts";
 
 export interface Options {
   /** List of extra attributes to copy if replacing the element */
@@ -79,12 +80,13 @@ export function inline(userOptions?: Options) {
       const templateElements = Array.from(
         page.document.querySelectorAll("template"),
       ).flatMap((template) =>
+        // @ts-expect-error can't cast type Element to HTMLTemplateElement
         Array.from(template.content.querySelectorAll(selector))
       );
       for (
         const element of [
           ...Array.from(page.document.querySelectorAll(selector)),
-          ...templateElements,
+          ...templateElements as Element[],
         ]
       ) {
         await runInline(page.data.url, element);

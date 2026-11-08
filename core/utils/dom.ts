@@ -1,4 +1,4 @@
-import { DOMParser } from "../../deps/dom.ts";
+import { type Document, DOMParser } from "../../deps/dom.ts";
 
 const parser = new DOMParser();
 
@@ -8,7 +8,7 @@ export function documentToString(document: Document) {
   const content = documentElement?.outerHTML ?? "";
 
   // It's XHTML
-  if (documentElement.hasAttribute("xmlns")) {
+  if (documentElement?.hasAttribute("xmlns")) {
     return `<?xml version="1.0" encoding="utf-8"?>\n${html2Xhtml(content)}`;
   }
 
@@ -32,7 +32,7 @@ export function stringToDocument(string: string): Document {
     throw new Error("Unable to parse the HTML code");
   }
 
-  return document as unknown as Document;
+  return document;
 }
 
 /** Convert HTML code to XHTML */

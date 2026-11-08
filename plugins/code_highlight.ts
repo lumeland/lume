@@ -97,11 +97,12 @@ export function codeHighlight(userOptions?: Options) {
 
     function processCodeHighlight(pages: Page[]) {
       for (const page of pages) {
-        page.document.querySelectorAll<HTMLElement>(
+        page.document.querySelectorAll(
           options.options.cssSelector!,
         )
           .forEach((element) => {
             try {
+              // @ts-expect-error https://github.com/b-fuze/deno-dom/issues/195
               hljs.highlightElement(element);
               element.removeAttribute("data-highlighted");
             } catch (error) {

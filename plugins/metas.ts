@@ -3,6 +3,7 @@ import { getDataValue, getPlainDataValue } from "../core/utils/data_values.ts";
 
 import type Site from "../core/site.ts";
 import type { Page } from "../core/file.ts";
+import type { Document } from "../deps/dom.ts";
 import type { Data } from "../types.ts";
 
 export interface MetaData {

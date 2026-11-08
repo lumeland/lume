@@ -2,6 +2,7 @@ import { merge } from "../core/utils/object.ts";
 import createSlugifier from "../core/slugifier.ts";
 import { log } from "../core/utils/log.ts";
 
+import type { Element } from "../deps/dom.ts";
 import type Site from "../core/site.ts";
 
 export interface Options {
@@ -46,7 +47,7 @@ export default function (userOptions?: Options) {
   };
 
   function buildToc(element: Element, uniqueIds: Set<string>) {
-    const document = element.ownerDocument;
+    const document = element.ownerDocument!;
 
     const id = element.getAttribute("toc");
     if (!id) {
@@ -172,7 +173,7 @@ interface HeaderLinkOptions {
 export function headerLink(options: HeaderLinkOptions = {}) {
   return (header: Element) => {
     const id = header.getAttribute("id");
-    const link = header.ownerDocument.createElement("a");
+    const link = header.ownerDocument!.createElement("a");
     link.setAttribute("href", `#${id}`);
     if (options.class) {
       link.setAttribute("class", options.class);
@@ -204,7 +205,7 @@ export function linkInsideHeader(
 ) {
   return (header: Element) => {
     const id = header.getAttribute("id");
-    const link = header.ownerDocument.createElement("a");
+    const link = header.ownerDocument!.createElement("a");
 
     link.setAttribute("href", `#${id}`);
     if (options.class) {

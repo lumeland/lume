@@ -1,3 +1,5 @@
+import type { Document } from "../../deps/dom.ts";
+
 export type ErrorMessage = string | {
   msg: string;
   text?: string;
