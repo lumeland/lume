@@ -142,7 +142,9 @@ export function sitemap(userOptions?: Options) {
       if (options.stylesheet) {
         sitemap["#instructions"] = {
           "xml-stylesheet": {
-            "@type": "text/xsl",
+            "@type": options.stylesheet.endsWith(".css")
+              ? "text/css"
+              : "text/xsl",
             "@href": options.stylesheet,
           },
         };
