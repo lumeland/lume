@@ -1,0 +1,185 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`mermaid plugin > should match site snapshot 1`] = `
+{
+  "config": {
+    "formats": [
+      {
+        "engines": 0,
+        "ext": ".page.toml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.ts",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".page.js",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.jsonc",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 0,
+        "ext": ".page.json",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".json",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".jsonc",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".md",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".markdown",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".js",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 1,
+        "ext": ".ts",
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vento",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "engines": 1,
+        "ext": ".vto",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".toml",
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yaml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "dataLoader": [Function],
+        "engines": 0,
+        "ext": ".yml",
+        "isPage": true,
+        "loader": [Function],
+      },
+      {
+        "ext": ".html",
+      },
+    ],
+    "src": [
+      "/",
+      "/index.md",
+    ],
+  },
+  "files": [],
+  "pages": [
+    {
+      "content": "<!DOCTYPE html>
+<html><head></head><body><h1>Hello world</h1>
+<pre><svg xmlns="http://www.w3.org/2000/svg" class="mermaid mermaid-flowchart" viewbox="0 0 874 274" width="100%" role="img" aria-roledescription="flowchart" data-mermaid-version="13.0.0-alpha.1" style="max-width:874px;--_ff:var(--mermaid-fontFamily,&quot;Recursive Variable&quot;, arial, sans-serif);--_fs:var(--mermaid-fontSize,14px);--_mb:var(--mermaid-mainBkg,#ffffff);--_nb:var(--mermaid-nodeBorder,var(--_pb));--_pb:var(--mermaid-primaryBorderColor,#28253d);--_nt:var(--mermaid-nodeTextColor,color(from color(from var(--_mb) srgb-linear calc(1 - max(clamp(0,((0.2126*r + 0.7152*g + 0.0722*b) - 0.223253)*1e9,1))) 0 0) srgb calc(0.156863 + 0.843137*r) calc(0.145098 + 0.854902*r) calc(0.239216 + 0.760784*r)));--_sw:var(--mermaid-strokeWidth,2px);--_l:var(--mermaid-lineColor,#000000);--_ah:var(--mermaid-arrowheadColor,var(--_l));--_ds:var(--mermaid-dropShadow,drop-shadow(4px 4px 0 rgb(0 0 0 / 0.06)));--_cb:var(--mermaid-clusterBkg,#f9f9fb);--_cs:var(--mermaid-clusterBorder,#bdbccc);--_cw:var(--mermaid-clusterStrokeWidth,1px);--_tc:var(--mermaid-titleColor,color(from color(from var(--_cb) srgb-linear calc(1 - max(clamp(0,((0.2126*r + 0.7152*g + 0.0722*b) - 0.223253)*1e9,1))) 0 0) srgb calc(0.156863 + 0.843137*r) calc(0.145098 + 0.854902*r) calc(0.239216 + 0.760784*r)))" font-family="var(--_ff)" font-size="var(--_fs)"><g class="clusters"><g class="cluster" data-id="subgraph1" data-ast="s:subgraph1" data-color-id="color-0"><rect x="210" y="8" width="192" height="182.3" fill="#fdf4ff" stroke="#e879f9" stroke-width="var(--_cw)" filter="var(--_ds)"></rect><text class="cluster-label" fill="var(--_tc)" x="306" y="28.67" text-anchor="middle">subgraph1</text></g><g class="cluster" data-id="subgraph2" data-ast="s:subgraph2" data-color-id="color-1"><rect x="452" y="173.15" width="414" height="92.2" fill="#f0fdfa" stroke="#2dd4bf" stroke-width="var(--_cw)" filter="var(--_ds)"></rect><text class="cluster-label" fill="var(--_tc)" x="659" y="193.82" text-anchor="middle">subgraph2</text></g></g><g class="edgePaths" fill="none" stroke="var(--_l)" stroke-width="var(--_sw)" stroke-linecap="round"><g class="edge flowchart-link edge-thickness-normal edge-pattern-solid" data-id="L_top1_bottom1_0" data-ast="e:top1>bottom1"><path d="M306,130.2L306,93.7" fill="none"></path><path class="marker" d="M306,84.2L312.39,94.7L299.61,94.7Z" fill="var(--_ah)" stroke="none"></path></g><g class="edge flowchart-link edge-thickness-normal edge-pattern-solid" data-id="L_top2_bottom2_0" data-ast="e:top2>bottom2"><path d="M644,225.3L680.5,225.3" fill="none"></path><path class="marker" d="M690,225.3L679.5,231.69L679.5,218.91Z" fill="var(--_ah)" stroke="none"></path></g><g class="edge flowchart-link edge-thickness-normal edge-pattern-solid" data-id="L_outside_subgraph1_0" data-ast="e:outside>subgraph1"><path d="M160,154.23L180,154.23A5,5 0 0,0 185,149.23L185,104.15A5,5 0 0,1 190,99.15L196.5,99.15" fill="none"></path><path class="marker" d="M206,99.15L195.5,105.54L195.5,92.76Z" fill="var(--_ah)" stroke="none"></path></g><g class="edge flowchart-link edge-thickness-normal edge-pattern-solid" data-id="L_outside_top2_0" data-ast="e:outside>top2"><path d="M160,170.23L180,170.23A5,5 0 0,1 185,175.23L185,220.3A5,5 0 0,0 190,225.3L478.5,225.3" fill="none"></path><path class="marker" d="M488,225.3L477.5,231.69L477.5,218.91Z" fill="var(--_ah)" stroke="none"></path></g></g><g class="edgeLabels"></g><g class="nodes" fill="var(--_nt)"><g class="node default" data-id="top1" data-ast="n:top1" transform="translate(306,150.25)"><rect x="-76" y="-20.05" width="152" height="40.1" fill="var(--_mb)" stroke="var(--_nb)" stroke-width="var(--_sw)" filter="var(--_ds)"></rect><text x="0" y="4.62" text-anchor="middle">top</text></g><g class="node default" data-id="bottom1" data-ast="n:bottom1" transform="translate(306,60.15)"><rect x="-76" y="-20.05" width="152" height="40.1" fill="var(--_mb)" stroke="var(--_nb)" stroke-width="var(--_sw)" filter="var(--_ds)"></rect><text x="0" y="4.62" text-anchor="middle">bottom</text></g><g class="node default" data-id="top2" data-ast="n:top2" transform="translate(568,225.3)"><rect x="-76" y="-20.05" width="152" height="40.1" fill="var(--_mb)" stroke="var(--_nb)" stroke-width="var(--_sw)" filter="var(--_ds)"></rect><text x="0" y="4.62" text-anchor="middle">top</text></g><g class="node default" data-id="bottom2" data-ast="n:bottom2" transform="translate(770,225.3)"><rect x="-76" y="-20.05" width="152" height="40.1" fill="var(--_mb)" stroke="var(--_nb)" stroke-width="var(--_sw)" filter="var(--_ds)"></rect><text x="0" y="4.62" text-anchor="middle">bottom</text></g><g class="node default" data-id="outside" data-ast="n:outside" transform="translate(84,162.23)"><rect x="-76" y="-20.05" width="152" height="40.1" fill="var(--_mb)" stroke="var(--_nb)" stroke-width="var(--_sw)" filter="var(--_ds)"></rect><text x="0" y="4.62" text-anchor="middle">outside</text></g></g></svg></pre>
+</body></html>",
+      "data": {
+        "basename": "",
+        "children": "<h1>Hello world</h1>
+<pre><code class="mermaid">flowchart LR
+    subgraph subgraph1
+        direction BT
+        top1[top] --&gt; bottom1[bottom]
+    end
+    subgraph subgraph2
+        direction TB
+        top2[top] --&gt; bottom2[bottom]
+    end
+    %% ^ These subgraphs are identical, except for the links to them:
+
+    %% Link *to* subgraph1: subgraph1 direction is maintained
+    outside --&gt; subgraph1
+    %% Link *within* subgraph2:
+    %% subgraph2 inherits the direction of the top-level graph (LR)
+    outside ---&gt; top2
+</code></pre>
+",
+        "content": "# Hello world
+
+\`\`\`{.mermaid}
+flowchart LR
+    subgraph subgraph1
+        direction BT
+        top1[top] --> bottom1[bottom]
+    end
+    subgraph subgraph2
+        direction TB
+        top2[top] --> bottom2[bottom]
+    end
+    %% ^ These subgraphs are identical, except for the links to them:
+
+    %% Link *to* subgraph1: subgraph1 direction is maintained
+    outside --> subgraph1
+    %% Link *within* subgraph2:
+    %% subgraph2 inherits the direction of the top-level graph (LR)
+    outside ---> top2
+\`\`\`
+",
+        "date": [],
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/",
+      },
+      "src": {
+        "ext": ".md",
+        "path": "/index",
+        "remote": undefined,
+      },
+    },
+  ],
+}
+`;
