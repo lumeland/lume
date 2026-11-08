@@ -5,12 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## 1.0.4 - Unreleased
+## 1.0.4 - 2026-11-08
 
 ### Added
 
-- `posix` path utils moved to static functions in `Path`.
-- `fromFileUrl` and `toFileUrl` utils moved to static functions in `Path`.
+- `Path.*` static methods with common `posix` utils (join, basename, etc).
+- `Path.fromFileUrl` and `Path.toFileUrl` static methods.
+
+### Fixed
+
+- Watcher: remove the root of the paths before checking the ignore conditions.
 
 ## 1.0.3 - 2026-11-04
 

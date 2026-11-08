@@ -259,6 +259,8 @@ export default class Site {
 
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(Path.create(this.options.dest).toString());
+
+    // Ignore all files ignored by the watcher
     this.fs.options.ignore = this.options.watcher.ignore;
 
     // Initialize the cache if LUME_NOCACHE is not enabled

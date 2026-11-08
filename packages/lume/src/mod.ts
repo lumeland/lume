@@ -9,7 +9,7 @@ import search from "@lumeland/plugin-search";
 import paginate from "@lumeland/plugin-paginate";
 import toml from "@lumeland/plugin-toml";
 import yaml from "@lumeland/plugin-yaml";
-import { getOptionsFromCli } from "./utils/cli-options.ts";
+import { setOptionsFromCli } from "./utils/cli-options.ts";
 
 import type { Options as JsonOptions } from "@lumeland/plugin-json";
 import type { Options as MarkdownOptions } from "@lumeland/plugin-markdown";
@@ -36,7 +36,7 @@ export default function lume(
   cliOptions = true,
 ): Site {
   if (cliOptions) {
-    getOptionsFromCli(options);
+    setOptionsFromCli(options);
   }
 
   const site = new Site(options);
@@ -51,13 +51,17 @@ export default function lume(
     "/pnpm-workspace.yaml",
     "/tsconfig.json",
     "/node_modules",
-    "/.git",
     "/_cache",
   ];
 
   // Ignore some files by the watcher
   site.options.watcher.ignore.push(...ignore);
+
+  // Ignore dot files and folders (except .well-known files)
   site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
+  site.options.watcher.ignore.push(
+    (path) => path.startsWith("/.") && path !== "/.well-known" && !path.startsWith("/.well-known/"),
+  );
 
   const ext = import.meta.url.endsWith(".ts") ? "ts" : "js";
 

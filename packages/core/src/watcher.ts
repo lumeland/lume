@@ -131,16 +131,29 @@ export default class FSWatcher implements Watcher {
       updateVersion();
 
       for (const path of changedPaths.map((p) => Path.create(p))) {
+        const normalized = Path.create(path);
+
+        if (!normalized.belongsTo(rootPath)) {
+          continue;
+        }
+
+        const full = normalized.url.href;
+        normalized.removeBase(rootPath);
+
         // Filter ignored paths
         const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
-            ? path.belongsTo(rootPath.clone().join(condition))
-            : condition(path.toString()),
+            ? normalized.belongsTo(condition)
+            : condition(normalized.toString()),
         );
         if (isIgnored) continue;
-        paths.add(path.toString());
-        for (const dep of updateDependencies(path.url.href)) {
-          paths.add(Path.create(dep).toString());
+        paths.add(normalized.toString());
+        for (const dep of updateDependencies(full)) {
+          const normalizedDep = Path.create(dep);
+
+          if (normalizedDep.belongsTo(rootPath)) {
+            paths.add(normalizedDep.removeBase(rootPath).toString());
+          }
         }
       }
 
@@ -149,12 +162,11 @@ export default class FSWatcher implements Watcher {
       }
 
       paths.forEach((path) => {
-        const normalized = Path.create(path).removeBase(rootPath).toString();
-        changes.add(normalized);
+        changes.add(path);
 
         // The file has dependencies
         for (const [file, deps] of Object.entries(dependencies ?? {})) {
-          const isDependent = deps.some((dep) => Path.create(dep).toString() === normalized);
+          const isDependent = deps.some((dep) => Path.create(dep).toString() === path);
 
           if (isDependent) {
             changes.add(Path.create(file).toString());

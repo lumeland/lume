@@ -83,7 +83,7 @@ async function getCliArgs(): Promise<CliArgs> {
 
 const cli = await getCliArgs();
 
-export function getOptionsFromCli(options: SiteOptions): SiteOptions {
+export function setOptionsFromCli(options: SiteOptions): SiteOptions {
   if (cli.src) {
     options.src = cli.src;
   }
