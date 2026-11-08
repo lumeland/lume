@@ -1,6 +1,5 @@
 import { katex } from "../deps/katex.ts";
-// @ts-expect-error: No types for this
-import splitAtDelimiters from "./splitAtDelimiters.js";
+import splitAtDelimiters from "./split-at-delimiters.ts";
 
 import type { KatexOptions } from "../deps/katex.ts";
 
