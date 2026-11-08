@@ -14,3 +14,18 @@ Deno.test("multilanguage plugin", async (t) => {
   await build(site);
   await assertSiteSnapshot(t, site);
 });
+
+Deno.test("multilanguage plugin with no alternate link injection", async (t) => {
+  const site = getSite({
+    src: "multilanguage",
+  });
+
+  site.use(multilanguage({
+    defaultLanguage: "gl",
+    languages: ["en", "fr", "it", "gl"],
+    injectAlternateLink: false,
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});

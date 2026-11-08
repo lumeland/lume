@@ -41,10 +41,14 @@ export interface Options {
 
   /** A prefix-free language */
   defaultLanguage?: string;
+
+  /** Whether to include <link rel="alternate"> elements to each page's head */
+  injectAlternateLink?: boolean;
 }
 
 // Default options
 export const defaults = {
+  injectAlternateLink: true,
   languages: [],
 } satisfies Options;
 
@@ -218,42 +222,44 @@ export function multilanguage(userOptions: Options) {
 
     // Include automatically the <link rel="alternate"> elements
     // with the other languages
-    site.process<PluginData>(
-      [".html"],
-      function processMultilanguageHtml(pages) {
-        for (const page of pages) {
-          const { document } = page;
-          const alternates = page.data.alternates;
-          const lang = page.data.lang as string | undefined;
+    if (options.injectAlternateLink) {
+      site.process<PluginData>(
+        [".html"],
+        function processMultilanguageHtml(pages) {
+          for (const page of pages) {
+            const { document } = page;
+            const alternates = page.data.alternates;
+            const lang = page.data.lang as string | undefined;
 
-          if (!alternates || !lang) {
-            continue;
-          }
+            if (!alternates || !lang) {
+              continue;
+            }
 
-          // Include <html lang="${lang}"> attribute element if it's missing
-          if (!document.documentElement?.getAttribute("lang")) {
-            document.documentElement?.setAttribute("lang", lang);
-          }
+            // Include <html lang="${lang}"> attribute element if it's missing
+            if (!document.documentElement?.getAttribute("lang")) {
+              document.documentElement?.setAttribute("lang", lang);
+            }
 
-          // Insert the <link> elements automatically
-          for (const data of alternates) {
-            appendHreflang(
-              data.lang as string,
-              site.url(data.url, true),
-              document,
-            );
-          }
+            // Insert the <link> elements automatically
+            for (const data of alternates) {
+              appendHreflang(
+                data.lang as string,
+                site.url(data.url, true),
+                document,
+              );
+            }
 
-          if (page.data.unmatchedLangUrl) {
-            appendHreflang(
-              "x-default",
-              site.url(page.data.unmatchedLangUrl, true),
-              document,
-            );
+            if (page.data.unmatchedLangUrl) {
+              appendHreflang(
+                "x-default",
+                site.url(page.data.unmatchedLangUrl, true),
+                document,
+              );
+            }
           }
-        }
-      },
-    );
+        },
+      );
+    }
 
     /** Merge translations with the root data object */
     function mergeTranslations(data: Data<PluginData>) {

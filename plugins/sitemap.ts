@@ -32,6 +32,12 @@ export interface Options {
   /** The values to sort the sitemap */
   sort?: string;
 
+  /**
+   * Whether to append <xhtml:link rel="alternate"> elements to each <url>
+   * entry of a multilanguage page
+   */
+  injectAlternateLink?: boolean;
+
   items?: SitemapItemsOptions;
 }
 
@@ -51,6 +57,7 @@ export const defaults = {
   filename: "/sitemap.xml",
   query: "unlisted!=true",
   sort: "url=asc",
+  injectAlternateLink: true,
   items: {
     lastmod: "=date",
   },
@@ -119,7 +126,7 @@ export function sitemap(userOptions?: Options) {
               node.priority = priority;
             }
 
-            if (data.alternates?.length) {
+            if (data.alternates?.length && options.injectAlternateLink) {
               node["xhtml:link"] = data.alternates.map((alternate) => ({
                 "@rel": "alternate",
                 "@hreflang": alternate.lang!,

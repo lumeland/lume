@@ -7,6 +7,9 @@ Go to the `v2` branch to see the changelog of Lume 2.
 Go to the `v1` branch to see the changelog of Lume 1.
 
 ## [Unreleased]
+### Added
+- `sitemap` and `multilanguage` plugins: allow choosing only one method to indicate alternate pages
+
 ### Fixed
 - `emptyDir` removed only the first entry of the dest directory.
 

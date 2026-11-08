@@ -42,6 +42,28 @@ Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
+Deno.test("Sitemap plugin with a multilanguage plugin and no alternate link injection", async (t) => {
+  const site = getSite({
+    src: "multilanguage",
+    location: new URL("https://example.com/"),
+  });
+
+  site.use(multilanguage({
+    defaultLanguage: "gl",
+    languages: ["en", "fr", "it", "gl"],
+  }));
+  site.use(extractDate());
+  site.use(sitemap({
+    injectAlternateLink: false,
+    items: {
+      lastmod: "",
+    },
+  }));
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
 Deno.test("Sitemap plugin with filter_pages plugin", async (t) => {
   const site = getSite({
     src: "normal",
