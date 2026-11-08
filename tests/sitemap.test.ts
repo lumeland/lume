@@ -21,6 +21,22 @@ Deno.test("Sitemap plugin", async (t) => {
   await assertSiteSnapshot(t, site);
 });
 
+Deno.test("Sitemap plugin with CSS stylesheet", async (t) => {
+  const site = getSite({
+    src: "normal",
+    location: new URL("https://example.com/"),
+  });
+
+  site.use(sitemap({
+    stylesheet: "/sitemap-style.css",
+  }));
+  site.use(extractDate());
+  site.ignore("static.yml");
+
+  await build(site);
+  await assertSiteSnapshot(t, site);
+});
+
 Deno.test("Sitemap plugin with a multilanguage plugin", async (t) => {
   const site = getSite({
     src: "multilanguage",
