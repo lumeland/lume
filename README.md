@@ -5,12 +5,12 @@
 **Lume** is the Galician word for _fire_ but also a (yet another) static site
 generator for Node. Previous Lume versions were available for Deno.
 
-It’s inspired by other general-purpose static site generators, such as
-[Jekyll](https://jekyllrb.com/) and [Eleventy](https://www.11ty.dev/), but it’s
+It's inspired by other general-purpose static site generators, such as
+[Jekyll](https://jekyllrb.com/) and [Eleventy](https://www.11ty.dev/), but it's
 faster, simpler and easier to use and configure, besides being super flexible.
 
 - Supports **multiple file formats**, like Markdown, YAML, JavaScript,
-  TypeScript, JSX, [Vento](https://vento.js.org/) and Nunjucks, and it’s easy to
+  TypeScript, JSX, [Vento](https://vento.js.org/) and Nunjucks, and it's easy to
   extend.
 - You can hook **any processor** to transform assets, like Terser for Javascript
   or PostCSS for CSS.
@@ -31,7 +31,7 @@ to Node. See the
 [migration guide](https://lume.land/docs/advanced/migrate-to-lume4/).
 
 The tags in this repo are for v3 and older versions. Previous Lume releases for
-Deno relied on git tags. v4 is a monorepo and it’s not tagged anymore.
+Deno relied on git tags. v4 is a monorepo and it's not tagged anymore.
 
 **Lume 4 runs on Node,** so make sure you have version 24 LTS or newer
 installed. See [Node documentation](https://nodejs.org/en/download) for more
@@ -71,7 +71,7 @@ the `deno.json` and `_config.ts` files.
 
 Note that this migration may not be complete. Depending on your site and
 configuration, maybe you need additional changes in your code. The script
-doesn’t remove the Deno files (`deno.json` and company), it only creates the new
+doesn't remove the Deno files (`deno.json` and company), it only creates the new
 files. So once your site is completely migrated, you will need to remove these
 files by yourself.
 
