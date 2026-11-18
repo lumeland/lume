@@ -5,7 +5,6 @@ import { prepareAsset, saveAsset } from "@lumeland/plugin-source-maps";
 import { warnUntil } from "@lumeland/core/utils/log.ts";
 import Path from "@lumeland/core/path.ts";
 import { compileStringAsync } from "../deps/sass.ts";
-import { fromFileUrl, posix, toFileUrl } from "../deps/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 import type { StringOptions } from "../deps/sass.ts";
@@ -72,7 +71,7 @@ export function sass(userOptions?: Options) {
               const entry = entries.get(path);
 
               if (entry) {
-                return toFileUrl(site.src(entry.path));
+                return Path.toFileUrl(site.src(entry.path));
               }
             }
 
@@ -86,14 +85,14 @@ export function sass(userOptions?: Options) {
               const entry = entries.get(resolved);
 
               if (entry) {
-                return toFileUrl(site.src(entry.path));
+                return Path.toFileUrl(site.src(entry.path));
               }
             }
 
             return null;
           },
           async load(url: URL) {
-            const pathname = fromFileUrl(url);
+            const pathname = Path.fromFileUrl(url);
             const contents = await site.getContent(pathname, false);
 
             if (typeof contents === "string") {
@@ -121,13 +120,13 @@ export function sass(userOptions?: Options) {
 }
 
 function getPathsToLook(path: string): string[] {
-  const basename = posix.basename(path);
+  const basename = Path.basename(path);
 
-  if (posix.extname(path)) {
+  if (Path.extension(path)) {
     if (basename.startsWith("_")) {
       return [path];
     }
-    return [path, posix.join(posix.dirname(path), `_${basename}`)];
+    return [path, Path.join(Path.dirname(path), `_${basename}`)];
   } else {
     if (basename.startsWith("_")) {
       return [`${path}.scss`, `${path}.sass`];
@@ -136,12 +135,12 @@ function getPathsToLook(path: string): string[] {
     return [
       `${path}.scss`,
       `${path}.sass`,
-      posix.join(posix.dirname(path), `_${basename}.scss`),
-      posix.join(posix.dirname(path), `_${basename}.sass`),
-      posix.join(path, `index.scss`),
-      posix.join(path, `index.sass`),
-      posix.join(path, `_index.scss`),
-      posix.join(path, `_index.sass`),
+      Path.join(Path.dirname(path), `_${basename}.scss`),
+      Path.join(Path.dirname(path), `_${basename}.sass`),
+      Path.join(path, `index.scss`),
+      Path.join(path, `index.sass`),
+      Path.join(path, `_index.scss`),
+      Path.join(path, `_index.sass`),
     ];
   }
 }
