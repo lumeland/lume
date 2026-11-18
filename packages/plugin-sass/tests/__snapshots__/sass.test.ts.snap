@@ -121,6 +121,8 @@ exports[`sass plugin > should match site snapshot 1`] = `
       "/_includes/sass/third.scss",
       "/index.scss",
       "/index2.sass",
+      "/nested",
+      "/nested/page.scss",
       "/styles.css",
     ],
   },
@@ -169,6 +171,29 @@ exports[`sass plugin > should match site snapshot 1`] = `
       "src": {
         "ext": ".sass",
         "path": "/index2",
+        "remote": undefined,
+      },
+    },
+    {
+      "content": ".nested-probe{color:red}",
+      "data": {
+        "basename": "page",
+        "mergedKeys": [
+          "tags",
+        ],
+        "page": [
+          "src",
+          "data",
+          "isCopy",
+        ],
+        "paginate": "paginate",
+        "search": [],
+        "tags": "Array(0)",
+        "url": "/nested/page.css",
+      },
+      "src": {
+        "ext": ".scss",
+        "path": "/nested/page",
         "remote": undefined,
       },
     },

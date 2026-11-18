@@ -77,7 +77,7 @@ export function sass(userOptions?: Options) {
             }
 
             // Search in includes
-            const includePath = pathname.contains(baseFilename)
+            const includePath = pathname.belongsTo(baseFilename)
               ? pathname.removeBase(baseFilename)
               : mainPath;
 
