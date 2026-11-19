@@ -145,8 +145,6 @@ export function checkUrls(userOptions?: Options) {
       const notFound = new Map<string, Set<string>>();
       const dest = site.dest();
 
-      log.info("Searching for broken links...");
-
       await concurrent(urls, async ([url, refs]) => {
         if (url.startsWith("http")) {
           if (!(await checkExternalUrl(url, anchors))) {
@@ -341,9 +339,12 @@ function outputConsole(notFound: Map<string, Set<string>>) {
     return;
   }
 
-  log.warn(
-    `[check_urls plugin] ${notFound.size} broken link(s) found. Setup an output file or check the debug bar.`,
-  );
+  // One line per broken link: the page that links, an arrow, the missing target.
+  for (const [url, refs] of notFound) {
+    for (const ref of refs) {
+      log.info(`⛓️‍💥 ${ref} -> ${url}`);
+    }
+  }
 }
 
 function checkAnchor(id: string, content: string): boolean {
