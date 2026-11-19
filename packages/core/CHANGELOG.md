@@ -5,13 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 4.0.5 - 2026-11-19
 
 ### Fixed
 
-- `watcher.ignore` no longer hides paths from the source scan. `site.add()` and
-  `site.copy()` work for files inside a watcher-ignored folder; use
-  `site.ignore()` to keep files out of the build.
+- `watcher.ignore` no longer hides paths from the source scan [#885](https://github.com/lumeland/lume/pull/885/).
 
 ## 1.0.4 - 2026-11-08
 
