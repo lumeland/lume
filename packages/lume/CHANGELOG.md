@@ -5,12 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 4.0.3 - Unreleased
 
 ### Fixed
 
 - `watcher.ignore` no longer affects the source scan. The built-in ignored
   paths (`node_modules`, lock files, dot files) are still ignored by it.
+- `LUME_DRAFTS` environment variable is "true" on build [#887](https://github.com/lumeland/lume/issues/887).
 
 ## 4.0.2 - 2026-11-08
 

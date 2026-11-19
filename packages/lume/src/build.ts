@@ -39,7 +39,7 @@ export async function build({ config, serve, watch, dryRun, inspect: inspector }
 
   // Show draft pages in development mode (if not set already)
   const showDrafts = envBoolean("LUME_DRAFTS");
-  if (showDrafts === undefined) {
+  if (showDrafts === undefined && serve) {
     setEnv("LUME_DRAFTS", "true");
   }
 
