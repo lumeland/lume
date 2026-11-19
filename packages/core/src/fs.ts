@@ -10,7 +10,7 @@ export type Loader = (path: string) => Promise<RawData>;
 
 export interface Options {
   root: string;
-  ignore?: (string | ((path: string) => boolean))[];
+  ignore: (string | ((path: string) => boolean))[];
 }
 
 export class Entry {

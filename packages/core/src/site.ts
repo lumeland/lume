@@ -175,7 +175,7 @@ export default class Site {
     const { cwd, prettyUrls, components, server, caseSensitiveUrls } = this.options;
 
     // To load source files
-    const fs = new FS({ root: src });
+    const fs = new FS({ root: src, ignore: [] });
     const formats = new Formats();
 
     const dataLoader = new DataLoader({ formats });
@@ -257,16 +257,10 @@ export default class Site {
       typeof path === "string" ? Path.create(path).toString() : path,
     );
 
-    // Ignore the dest folder by the watcher
-    this.options.watcher.ignore.push(Path.create(this.options.dest).toString());
-
-    // The source scan keeps its own list. It starts with the same built-in
-    // defaults as the watcher (added by the `lume()` factory), but it does not
-    // share the array: `watcher.ignore` is user configuration to silence
-    // change events, and a path silenced there may still be referenced by
-    // `site.add()`/`site.copy()` (for example, a generated artifact inside an
-    // ignored directory).
-    this.fs.options.ignore = [Path.create(this.options.dest).toString()];
+    // Ignore the dest folder by the watcher and the scanner
+    const destFolder = Path.create(this.options.dest).toString();
+    this.options.watcher.ignore.push(destFolder);
+    this.fs.options.ignore.push(destFolder);
 
     // Initialize the cache if LUME_NOCACHE is not enabled
     if (envBoolean("LUME_NOCACHE") !== true) {
