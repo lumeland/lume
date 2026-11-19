@@ -58,10 +58,15 @@ export default function lume(
   site.options.watcher.ignore.push(...ignore);
 
   // Ignore dot files and folders (except .well-known files)
-  site.options.watcher.ignore.push((path) => path.endsWith("/.DS_Store"));
-  site.options.watcher.ignore.push(
-    (path) => path.startsWith("/.") && path !== "/.well-known" && !path.startsWith("/.well-known/"),
-  );
+  const ignoreDotStore = (path: string) => path.endsWith("/.DS_Store");
+  const ignoreDotFiles = (path: string) =>
+    path.startsWith("/.") && path !== "/.well-known" && !path.startsWith("/.well-known/");
+  site.options.watcher.ignore.push(ignoreDotStore, ignoreDotFiles);
+
+  // The source scan needs the same built-in defaults (it must not descend into
+  // `node_modules`), but on its own list: `watcher.ignore` is user
+  // configuration and must not hide files from `site.add()`/`site.copy()`.
+  site.fs.options.ignore = [...site.fs.options.ignore!, ...ignore, ignoreDotStore, ignoreDotFiles];
 
   const ext = import.meta.url.endsWith(".ts") ? "ts" : "js";
 

@@ -18,7 +18,8 @@
     "./*.ts": "./src/*.ts"
   },
   "scripts": {
-    "build": "rm -rf build && tsc -p ."
+    "build": "rm -rf build && tsc -p .",
+    "test": "vitest run"
   },
   "dependencies": {
     "@lumeland/core": "workspace:^",
@@ -37,7 +38,8 @@
     "tsx": "^4.23.15"
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   },
   "peerDependencies": {
     "@lumeland/ssx": "^0.1.16"

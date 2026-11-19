@@ -260,8 +260,13 @@ export default class Site {
     // Ignore the dest folder by the watcher
     this.options.watcher.ignore.push(Path.create(this.options.dest).toString());
 
-    // Ignore all files ignored by the watcher
-    this.fs.options.ignore = this.options.watcher.ignore;
+    // The source scan keeps its own list. It starts with the same built-in
+    // defaults as the watcher (added by the `lume()` factory), but it does not
+    // share the array: `watcher.ignore` is user configuration to silence
+    // change events, and a path silenced there may still be referenced by
+    // `site.add()`/`site.copy()` (for example, a generated artifact inside an
+    // ignored directory).
+    this.fs.options.ignore = [Path.create(this.options.dest).toString()];
 
     // Initialize the cache if LUME_NOCACHE is not enabled
     if (envBoolean("LUME_NOCACHE") !== true) {

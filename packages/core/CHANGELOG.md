@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Fixed
+
+- `watcher.ignore` no longer hides paths from the source scan. `site.add()` and
+  `site.copy()` work for files inside a watcher-ignored folder; use
+  `site.ignore()` to keep files out of the build.
+
 ## 1.0.4 - 2026-11-08
 
 ### Added
