@@ -125,35 +125,88 @@ export default class FSWatcher implements Watcher {
       }
     };
 
+    // Reverse index of the manual dependencies: dependency -> the files that
+    // must be marked changed when it changes.
+    const dependents = new Map<string, string[]>();
+
+    for (const [file, deps] of Object.entries(dependencies ?? {})) {
+      for (const dep of deps) {
+        const key = Path.create(dep).toString();
+        const list = dependents.get(key);
+
+        if (list) {
+          list.push(Path.create(file).toString());
+        } else {
+          dependents.set(key, [Path.create(file).toString()]);
+        }
+      }
+    }
+
     for await (const changedPaths of watcher) {
       const paths = new Set<string>();
+      const selected = new Set<string>();
+      const seeds: string[] = [];
 
       updateVersion();
 
-      for (const path of changedPaths.map((p) => Path.create(p))) {
-        const normalized = Path.create(path);
+      // `updateDependencies()` invalidates the module version and reloads the
+      // process for reload files, so it runs at most once per file. Every file
+      // it yields has been invalidated by its own recursion, so those are
+      // reported and used as seeds, but not expanded again.
+      const expand = (relative: string, url: string) => {
+        if (selected.has(relative)) {
+          return;
+        }
 
-        if (!normalized.belongsTo(rootPath)) {
+        selected.add(relative);
+        paths.add(relative);
+        seeds.push(relative);
+
+        for (const dep of updateDependencies(url)) {
+          const normalizedDep = Path.create(dep);
+
+          if (!normalizedDep.belongsTo(rootPath)) {
+            continue;
+          }
+
+          const relativeDep = normalizedDep.removeBase(rootPath).toString();
+
+          if (!selected.has(relativeDep)) {
+            selected.add(relativeDep);
+            paths.add(relativeDep);
+            seeds.push(relativeDep);
+          }
+        }
+      };
+
+      for (const path of changedPaths.map((p) => Path.create(p))) {
+        if (!path.belongsTo(rootPath)) {
           continue;
         }
 
-        const full = normalized.url.href;
-        normalized.removeBase(rootPath);
+        const full = path.url.href;
+        path.removeBase(rootPath);
+        const relative = path.toString();
 
-        // Filter ignored paths
         const isIgnored = ignore?.some((condition) =>
-          typeof condition === "string"
-            ? normalized.belongsTo(condition)
-            : condition(normalized.toString()),
+          typeof condition === "string" ? path.belongsTo(condition) : condition(relative),
         );
-        if (isIgnored) continue;
-        paths.add(normalized.toString());
-        for (const dep of updateDependencies(full)) {
-          const normalizedDep = Path.create(dep);
 
-          if (normalizedDep.belongsTo(rootPath)) {
-            paths.add(normalizedDep.removeBase(rootPath).toString());
-          }
+        // A change below an ignored path is not reported, but it still seeds
+        // the manual dependencies, so its dependents are marked changed.
+        if (isIgnored) {
+          seeds.push(relative);
+          continue;
+        }
+
+        expand(relative, full);
+      }
+
+      // Manual dependencies are transitive: every file selected above seeds
+      // the next edge, and `selected` bounds the walk.
+      for (let i = 0; i < seeds.length; i++) {
+        for (const file of dependents.get(seeds[i]) ?? []) {
+          expand(file, Path.create(file).addBase(rootPath).url.href);
         }
       }
 
@@ -163,15 +216,6 @@ export default class FSWatcher implements Watcher {
 
       paths.forEach((path) => {
         changes.add(path);
-
-        // The file has dependencies
-        for (const [file, deps] of Object.entries(dependencies ?? {})) {
-          const isDependent = deps.some((dep) => Path.create(dep).toString() === path);
-
-          if (isDependent) {
-            changes.add(Path.create(file).toString());
-          }
-        }
       });
 
       // Only run the callback if it is not already running

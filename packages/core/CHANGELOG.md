@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Added
+
+- `watcher.dependencies` now applies to ignored dependencies: a change below a
+  path listed in `watcher.ignore` marks its dependent file changed.
+- `watcher.dependencies` is transitive: a file marked changed by a dependency
+  edge is itself a dependency for the next edge.
+- Dependents of a file discovered through HMR (an importer of the changed
+  file) are marked changed, and an importer that also changed is invalidated
+  once per batch.
+
 ## 4.0.5 - 2026-11-19
 
 ### Fixed
