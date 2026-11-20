@@ -9,6 +9,7 @@ describe("Scripts", async () => {
 
   const fs = new FS({
     root: "/",
+    ignore: [],
   });
 
   fs.tree = new Entry("", "/", "directory", "/");

@@ -5,6 +5,7 @@
     "packages/*/tests/__snapshots__/**"
   ],
   "options": {
-    "typeAware": true
+    "typeAware": true,
+    "typeCheck": true
   }
 }
