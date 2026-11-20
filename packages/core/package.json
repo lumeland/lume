@@ -14,8 +14,9 @@
   },
   "scripts": {
     "build": "rm -rf build && tsc -p .",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "tsc -p tsconfig.typecheck.json && vitest run",
+    "test:types": "tsc -p tsconfig.typecheck.json",
+    "test:watch": "tsc -p tsconfig.typecheck.json --watch --preserveWatchOutput & vitest; status=$?; kill $! 2>/dev/null; exit $status",
     "test:update": "vitest run -u"
   },
   "dependencies": {

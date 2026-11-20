@@ -48,7 +48,7 @@ export interface Watcher {
   dispatchEvent(event: WatchEvent): Promise<boolean>;
 
   /** Start the watcher */
-  start(): Promise<void>;
+  start(abort: AbortSignal): Promise<void>;
 }
 
 export default class FSWatcher implements Watcher {
@@ -86,11 +86,11 @@ export default class FSWatcher implements Watcher {
 
     await this.dispatchEvent({ type: "start" });
 
-    const callback = async () => {
+    const onUpdate = async () => {
       // If the callback is already running, debounce the next call
       if (runningCallback) {
         clearTimeout(timer);
-        setTimeout(callback, debounce ?? 100);
+        setTimeout(onUpdate, debounce ?? 100);
         return;
       }
 
@@ -121,12 +121,14 @@ export default class FSWatcher implements Watcher {
 
       // New changes detected while running the callback
       if (changes.size) {
-        void callback();
+        void onUpdate();
       }
     };
 
     for await (const changedPaths of watcher) {
       const paths = new Set<string>();
+      const changed = new Set<string>();
+      const urls = new Map<string, string>();
 
       updateVersion();
 
@@ -139,20 +141,54 @@ export default class FSWatcher implements Watcher {
 
         const full = normalized.url.href;
         normalized.removeBase(rootPath);
+        const relative = normalized.toString();
 
-        // Filter ignored paths
+        changed.add(relative);
+
+        // Ignored paths are not rebuilt, and their implicit (import) graph is
+        // not expanded either. An explicit `dependencies` entry is the way to
+        // make a change below an ignored folder mark a watched file.
         const isIgnored = ignore?.some((condition) =>
           typeof condition === "string"
             ? normalized.belongsTo(condition)
             : condition(normalized.toString()),
         );
-        if (isIgnored) continue;
-        paths.add(normalized.toString());
+        if (isIgnored) {
+          continue;
+        }
+        paths.add(relative);
+        urls.set(relative, full);
+
         for (const dep of updateDependencies(full)) {
           const normalizedDep = Path.create(dep);
 
           if (normalizedDep.belongsTo(rootPath)) {
             paths.add(normalizedDep.removeBase(rootPath).toString());
+          }
+        }
+      }
+
+      // Manual dependencies also apply to ignored paths: when a dependency
+      // changes, its dependent is treated exactly as if it had changed itself.
+      for (const [file, deps] of Object.entries(dependencies ?? {})) {
+        if (!deps.some((dep) => changed.has(Path.create(dep).toString()))) {
+          continue;
+        }
+
+        const dependent = Path.create(file).toString();
+        paths.add(dependent);
+
+        // A real change to the dependent would go through
+        // `updateDependencies()` (which reloads the process for reload files).
+        if (!urls.has(dependent)) {
+          const full = Path.create(root).join(dependent).url.href;
+
+          for (const dep of updateDependencies(full)) {
+            const normalizedDep = Path.create(dep);
+
+            if (normalizedDep.belongsTo(rootPath)) {
+              paths.add(normalizedDep.removeBase(rootPath).toString());
+            }
           }
         }
       }
@@ -163,22 +199,13 @@ export default class FSWatcher implements Watcher {
 
       paths.forEach((path) => {
         changes.add(path);
-
-        // The file has dependencies
-        for (const [file, deps] of Object.entries(dependencies ?? {})) {
-          const isDependent = deps.some((dep) => Path.create(dep).toString() === path);
-
-          if (isDependent) {
-            changes.add(Path.create(file).toString());
-          }
-        }
       });
 
       // Only run the callback if it is not already running
       if (!runningCallback) {
         // Debounce
         clearTimeout(timer);
-        timer = setTimeout(callback, debounce ?? 100);
+        timer = setTimeout(onUpdate, debounce ?? 100);
       }
     }
   }
