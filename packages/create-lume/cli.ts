@@ -3,9 +3,9 @@
 import process from "node:process";
 import path from "node:path";
 import fs, { realpathSync } from "node:fs";
-import { spawnSync } from "node:child_process";
 import { styleText } from "node:util";
 import * as prompts from "@clack/prompts";
+import { xSync } from "tinyexec";
 import cac from "cac";
 
 const pkgManagers = ["npm", "yarn", "pnpm", "bun"] as const;
@@ -479,12 +479,11 @@ function writeFile(
 
 /** Run an command and return if it's success */
 function run(cmd: string, args: string[] = [], cwd?: string): boolean {
-  const child = spawnSync(cmd, args, {
-    cwd,
-    stdio: "inherit",
+  const child = xSync(cmd, args, {
+    nodeOptions: { stdio: "inherit", cwd },
   });
 
-  return child.status === 0;
+  return child.exitCode === 0;
 }
 
 function createNodeFiles(root: string, name?: string) {
