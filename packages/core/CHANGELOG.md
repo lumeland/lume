@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   file) are marked changed, and an importer that also changed is invalidated
   once per batch.
 
+### Changed
+
+- Updated `@lumeland/dom` to v1.0.0. This version is a Node rewrite of the original package by b-fuse.
+
 ## 4.0.5 - 2026-11-19
 
 ### Fixed
