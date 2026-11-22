@@ -479,11 +479,11 @@ function writeFile(
 
 /** Run an command and return if it's success */
 function run(cmd: string, args: string[] = [], cwd?: string): boolean {
-  const child = xSync(cmd, args, {
+  const result = xSync(cmd, args, {
     nodeOptions: { stdio: "inherit", cwd },
   });
 
-  return child.exitCode === 0;
+  return result.exitCode === 0;
 }
 
 function createNodeFiles(root: string, name?: string) {
