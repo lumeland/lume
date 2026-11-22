@@ -145,8 +145,6 @@ export function checkUrls(userOptions?: Options) {
       const notFound = new Map<string, Set<string>>();
       const dest = site.dest();
 
-      log.info("Searching for broken links...");
-
       await concurrent(urls, async ([url, refs]) => {
         if (url.startsWith("http")) {
           if (!(await checkExternalUrl(url, anchors))) {
@@ -167,6 +165,8 @@ export function checkUrls(userOptions?: Options) {
         }
       });
 
+      const debugBarReport = site.debugBar?.collection("Url checker");
+
       // Output
       const { output } = options;
       if (typeof output === "function") {
@@ -174,21 +174,34 @@ export function checkUrls(userOptions?: Options) {
       } else if (typeof output === "string") {
         outputFile(notFound, output);
       } else {
-        outputConsole(notFound);
+        if (debugBarReport) {
+          if (notFound.size === 0) {
+            log.info("[check_urls plugin] No broken links found!");
+          } else {
+            log.warn(
+              `[check_urls plugin] ${notFound.size} broken link(s) found! Setup an output file or check the debug bar.`,
+            );
+          }
+        } else {
+          for (const [url, refs] of notFound) {
+            for (const ref of refs) {
+              log.warn(`⛓️‍💥 ${ref} -> ${url}`);
+            }
+          }
+        }
       }
 
-      const report = site.debugBar?.collection("Url checker");
-      if (report) {
-        report.icon = "link-break";
-        report.empty = "No broken links found! 🎉";
-        report.contexts = {
+      if (debugBarReport) {
+        debugBarReport.icon = "link-break";
+        debugBarReport.empty = "No broken links found! 🎉";
+        debugBarReport.contexts = {
           "broken link": {
             background: "error",
           },
         };
 
         for (const [url, refs] of notFound) {
-          report.items.push({
+          debugBarReport.items.push({
             title: url,
             context: "broken link",
             items: Array.from(refs).map((ref) => ({
@@ -333,17 +346,6 @@ function outputFile(notFound: Map<string, Set<string>>, file: string) {
   }
 
   log.warn(`[check_urls plugin] ${notFound.size} broken links saved to <gray>${file}</gray>`);
-}
-
-function outputConsole(notFound: Map<string, Set<string>>) {
-  if (notFound.size === 0) {
-    log.info("[check_urls plugin] No broken links found!");
-    return;
-  }
-
-  log.warn(
-    `[check_urls plugin] ${notFound.size} broken link(s) found. Setup an output file or check the debug bar.`,
-  );
 }
 
 function checkAnchor(id: string, content: string): boolean {
