@@ -1,0 +1,36 @@
+{
+  "name": "@lumeland/plugin-pele",
+  "version": "1.0.0",
+  "description": "Plugin to render mermaid diagrams at build time using Pele.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "build",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": "./src/mod.ts",
+    "./*.ts": "./src/*.ts"
+  },
+  "keywords": [
+    "lume-plugin"
+  ],
+  "scripts": {
+    "build": "rm -rf build && tsc -p .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u"
+  },
+  "peerDependencies": {
+    "@lumeland/core": "workspace:^"
+  },
+  "devDependencies": {
+    "@lumeland/testing": "workspace:^",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "dependencies": {
+    "pele": "^1.13.0"
+  }
+}
