@@ -1,8 +1,7 @@
 {
   "name": "@lumeland/plugin-mermaid",
-  "version": "1.0.0-alpha.0",
-  "private": true,
-  "description": "",
+  "version": "1.0.0-alpha.1",
+  "description": "Plugin to render mermaid diagrams at build time.",
   "keywords": [
     "lume-plugin"
   ],
@@ -23,13 +22,13 @@
     "test:update": "vitest run -u"
   },
   "dependencies": {
-    "mermaid": "13.0.0-alpha.1"
+    "mermaid": "^13.0.0-alpha.3"
   },
   "devDependencies": {
     "@lumeland/testing": "workspace:^",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.3"
+    "vitest": "^5.1.1"
   },
   "peerDependencies": {
     "@lumeland/core": "workspace:^"
