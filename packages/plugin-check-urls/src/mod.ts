@@ -4,7 +4,7 @@ import { concurrent } from "@lumeland/core/utils/concurrent.ts";
 import { log } from "@lumeland/core/utils/log.ts";
 import { decodeURIComponentSafe } from "@lumeland/core/utils/path.ts";
 import { readTextFileSync, statSync, writeTextFileSync } from "@lumeland/core/services/fs.ts";
-import { join } from "../deps/path.ts";
+import Path from "@lumeland/core/path.ts";
 
 import type Site from "@lumeland/core/site.ts";
 
@@ -248,7 +248,7 @@ function checkInternalUrl(url: string, dest: string, strict: boolean, anchors: b
   // It's a folder
   if (path.endsWith("/")) {
     try {
-      const filePath = join(dest, path, "index.html");
+      const filePath = Path.join(dest, path, "index.html");
       statSync(filePath);
 
       // Check if the anchor exists in the index.html file
@@ -263,7 +263,7 @@ function checkInternalUrl(url: string, dest: string, strict: boolean, anchors: b
     // It's a file
   } else {
     try {
-      const filePath = join(dest, path);
+      const filePath = Path.join(dest, path);
       statSync(filePath);
 
       // Check if the anchor exists in the HTML file
@@ -274,7 +274,7 @@ function checkInternalUrl(url: string, dest: string, strict: boolean, anchors: b
       }
     } catch {
       if (!strict) {
-        result = checkInternalUrl(join(url, "/index.html"), dest, true, anchors);
+        result = checkInternalUrl(Path.join(url, "/index.html"), dest, true, anchors);
       }
     }
   }

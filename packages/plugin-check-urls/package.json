@@ -1,6 +1,6 @@
 {
   "name": "@lumeland/plugin-check-urls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin to automatically check the URLs of your site to detect broken links.",
   "keywords": [
     "lume-plugin"
