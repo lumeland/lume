@@ -39,7 +39,11 @@ export function pele(userOptions?: Options) {
     for (const element of page.document.querySelectorAll(options.selector)) {
       try {
         const { svg } = render(element.textContent, options.options);
-        element.outerHTML = svg;
+        if (element.matches("pre > code")) {
+          element.parentElement!.outerHTML = svg;
+        } else {
+          element.innerHTML = svg;
+        }
       } catch (err) {
         log.error(`[pele plugin] Error in ${page.sourcePath}: ${(err as Error).message}`);
       }

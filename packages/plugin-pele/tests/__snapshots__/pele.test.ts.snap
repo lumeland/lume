@@ -116,7 +116,8 @@ exports[`pele plugin > should match site snapshot 1`] = `
     {
       "content": "<!DOCTYPE html>
 <html><head></head><body><h1>Hello world</h1>
-<pre><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-treeView" viewBox="0 0 172 268" width="172" height="268" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_hw:var(--pele-heading-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,monospace)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="treeView"><g class="pele-tree-guides" fill="none" stroke="var(--_b)" stroke-width="1"><path d="M15,34V102Q15,106 19,106H23M15,50H23M15,78H23"></path><path d="M35,118V186Q35,190 39,190H43M35,134H43M35,162H43"></path><path d="M55,202V242Q55,246 59,246H63M55,218H63"></path></g><g class="pele-node pele-tree-dir" data-id="project"><text class="pele-label" x="8" y="27.6" font-weight="var(--_hw)" space="preserve">project</text></g><g class="pele-node pele-tree-file" data-id="_data.yaml"><text class="pele-label" x="28" y="55.6" space="preserve">_data.yaml</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="28" y="83.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="documents"><text class="pele-label" x="28" y="111.6" font-weight="var(--_hw)" space="preserve">documents</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="48" y="139.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="48" y="167.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="examples"><text class="pele-label" x="48" y="195.6" font-weight="var(--_hw)" space="preserve">examples</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="68" y="223.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="my-page.md"><text class="pele-label" x="68" y="251.6" space="preserve">my-page.md</text></g></svg></pre>
+<svg xmlns="http://www.w3.org/2000/svg" class="pele pele-treeView" viewBox="0 0 172 268" width="172" height="268" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_hw:var(--pele-heading-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,monospace)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="treeView"><g class="pele-tree-guides" fill="none" stroke="var(--_b)" stroke-width="1"><path d="M15,34V102Q15,106 19,106H23M15,50H23M15,78H23"></path><path d="M35,118V186Q35,190 39,190H43M35,134H43M35,162H43"></path><path d="M55,202V242Q55,246 59,246H63M55,218H63"></path></g><g class="pele-node pele-tree-dir" data-id="project"><text class="pele-label" x="8" y="27.6" font-weight="var(--_hw)" space="preserve">project</text></g><g class="pele-node pele-tree-file" data-id="_data.yaml"><text class="pele-label" x="28" y="55.6" space="preserve">_data.yaml</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="28" y="83.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="documents"><text class="pele-label" x="28" y="111.6" font-weight="var(--_hw)" space="preserve">documents</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="48" y="139.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="48" y="167.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="examples"><text class="pele-label" x="48" y="195.6" font-weight="var(--_hw)" space="preserve">examples</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="68" y="223.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="my-page.md"><text class="pele-label" x="68" y="251.6" space="preserve">my-page.md</text></g></svg>
+<div class="pele"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-treeView" viewBox="0 0 172 268" width="172" height="268" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_hw:var(--pele-heading-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,monospace)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="treeView"><g class="pele-tree-guides" fill="none" stroke="var(--_b)" stroke-width="1"><path d="M15,34V102Q15,106 19,106H23M15,50H23M15,78H23"></path><path d="M35,118V186Q35,190 39,190H43M35,134H43M35,162H43"></path><path d="M55,202V242Q55,246 59,246H63M55,218H63"></path></g><g class="pele-node pele-tree-dir" data-id="project"><text class="pele-label" x="8" y="27.6" font-weight="var(--_hw)" space="preserve">project</text></g><g class="pele-node pele-tree-file" data-id="_data.yaml"><text class="pele-label" x="28" y="55.6" space="preserve">_data.yaml</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="28" y="83.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="documents"><text class="pele-label" x="28" y="111.6" font-weight="var(--_hw)" space="preserve">documents</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="48" y="139.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="..."><text class="pele-label" x="48" y="167.6" space="preserve">...</text></g><g class="pele-node pele-tree-dir" data-id="examples"><text class="pele-label" x="48" y="195.6" font-weight="var(--_hw)" space="preserve">examples</text></g><g class="pele-node pele-tree-file" data-id="_data.json"><text class="pele-label" x="68" y="223.6" space="preserve">_data.json</text></g><g class="pele-node pele-tree-file" data-id="my-page.md"><text class="pele-label" x="68" y="251.6" space="preserve">my-page.md</text></g></svg></div>
 </body></html>",
       "data": {
         "basename": "",
@@ -132,6 +133,18 @@ project/
         └── _data.json
         └── my-page.md
 </code></pre>
+<div class="pele">
+treeView-beta
+project/
+├── _data.yaml
+├── ...
+└── documents/
+    └── _data.json
+    └── ...
+    └── examples/
+        └── _data.json
+        └── my-page.md
+</div>
 ",
         "content": "# Hello world
 
@@ -147,6 +160,19 @@ project/
         └── _data.json
         └── my-page.md
 \`\`\`
+
+<div class="pele">
+treeView-beta
+project/
+├── _data.yaml
+├── ...
+└── documents/
+    └── _data.json
+    └── ...
+    └── examples/
+        └── _data.json
+        └── my-page.md
+</div>
 ",
         "date": [],
         "mergedKeys": [
