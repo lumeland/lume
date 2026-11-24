@@ -8,7 +8,11 @@ describe("pele plugin", async () => {
       cwd: import.meta.resolve("./assets"),
     });
 
-    site.use(pele())
+    site.use(
+      pele({
+        monospace: true,
+      }),
+    );
 
     expect(await build(site)).toMatchSnapshot();
   });
