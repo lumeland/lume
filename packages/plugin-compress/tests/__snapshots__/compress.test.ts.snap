@@ -932,10 +932,10 @@ exports[`compress plugin > gzip should match site snapshot 1`] = `
       },
     },
     {
-      "content": "Uint8Array(85)",
+      "content": "Uint8Array(87)",
       "data": {
         "basename": "404",
-        "content": "Uint8Array(85)",
+        "content": "Uint8Array(87)",
         "page": [
           "src",
           "data",
@@ -1279,10 +1279,10 @@ exports[`compress plugin > gzip should match site snapshot 1`] = `
       },
     },
     {
-      "content": "Uint8Array(102)",
+      "content": "Uint8Array(103)",
       "data": {
         "basename": "index",
-        "content": "Uint8Array(102)",
+        "content": "Uint8Array(103)",
         "page": [
           "src",
           "data",
@@ -1394,10 +1394,10 @@ exports[`compress plugin > gzip should match site snapshot 1`] = `
       },
     },
     {
-      "content": "Uint8Array(32)",
+      "content": "Uint8Array(34)",
       "data": {
         "basename": "index",
-        "content": "Uint8Array(32)",
+        "content": "Uint8Array(34)",
         "page": [
           "src",
           "data",
@@ -1443,10 +1443,10 @@ exports[`compress plugin > gzip should match site snapshot 1`] = `
       },
     },
     {
-      "content": "Uint8Array(71)",
+      "content": "Uint8Array(72)",
       "data": {
         "basename": "styles",
-        "content": "Uint8Array(71)",
+        "content": "Uint8Array(72)",
         "page": [
           "src",
           "data",
